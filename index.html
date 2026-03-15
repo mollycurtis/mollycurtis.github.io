@@ -13,1063 +13,512 @@
       --soft-gray: #f2f0ed;
       --mid-gray: #999;
       --dark: #1a1a1a;
-      --card-bg: #ffffff;
+      --max-width: 1300px;
     }
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--off-white);
-      color: var(--dark);
-      font-size: 16px;
-      line-height: 1.7;
-    }
-
-    .grad {
-      background: var(--gradient-text);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
+    body { font-family: 'DM Sans', sans-serif; background: var(--off-white); color: var(--dark); font-size: 16px; line-height: 1.7; }
+    .grad { background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .inner { max-width: var(--max-width); margin: 0 auto; width: 100%; }
 
     /* NAV */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.2rem 6vw;
-      background: rgba(250,249,247,0.92);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(0,0,0,0.06);
-    }
-
-    .nav-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.15rem;
-      font-weight: 700;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 1.8rem;
-      list-style: none;
-      align-items: center;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: var(--dark);
-      font-size: 0.82rem;
-      font-weight: 500;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      transition: opacity 0.2s;
-    }
-
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(250,249,247,0.94); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(0,0,0,0.06); }
+    .nav-inner { max-width: var(--max-width); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1.1rem 2rem; }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; align-items: center; }
+    .nav-links a { text-decoration: none; color: var(--dark); font-size: 0.82rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; transition: opacity 0.2s; }
     .nav-links a:hover { opacity: 0.5; }
-
-    .nav-resume {
-      padding: 0.5rem 1.1rem;
-      background: var(--gradient);
-      color: white !important;
-      border-radius: 3px;
-      font-size: 0.78rem !important;
-    }
+    .nav-resume { padding: 0.5rem 1.1rem; background: var(--gradient); color: white !important; border-radius: 3px; font-size: 0.78rem !important; }
+    .nav-resume:hover { opacity: 0.85 !important; }
 
     /* HERO */
-    .hero {
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      padding: 8rem 6vw 4rem;
-      gap: 4rem;
-    }
+    .hero { min-height: 100vh; display: flex; align-items: center; padding: 7rem 2rem 4rem; }
+    .hero-inner { max-width: var(--max-width); margin: 0 auto; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 5rem; width: 100%; }
+    .hero-text { max-width: 640px; }
+    .hero-eyebrow { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid-gray); margin-bottom: 1rem; }
+    .hero-name { font-family: 'Playfair Display', serif; font-size: clamp(3.5rem, 5vw, 5.5rem); line-height: 1.0; white-space: nowrap; margin-bottom: 0.4rem; }
+    .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(1rem, 1.6vw, 1.35rem); font-style: italic; color: #777; margin-bottom: 1.5rem; }
+    .hero-bio { font-size: 1rem; font-weight: 300; color: #444; max-width: 540px; margin-bottom: 0.9rem; line-height: 1.8; }
+    .hero-bio-2 { font-size: 0.92rem; font-weight: 300; color: #777; max-width: 520px; margin-bottom: 1.6rem; line-height: 1.8; }
+    .hero-specialties { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 1.8rem; }
+    .specialty-tag { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.05em; padding: 0.28rem 0.8rem; border-radius: 20px; border: 1.5px solid rgba(185,79,200,0.3); color: #b94fc8; background: rgba(185,79,200,0.05); }
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary { display: inline-block; padding: 0.8rem 1.8rem; background: var(--gradient); color: white; text-decoration: none; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; border-radius: 3px; transition: opacity 0.2s, transform 0.2s; }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-2px); }
+    .btn-secondary { display: inline-block; padding: 0.8rem 1.8rem; border: 1.5px solid #ccc; color: var(--dark); text-decoration: none; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; border-radius: 3px; transition: all 0.2s; }
+    .btn-secondary:hover { border-color: var(--dark); }
 
-    .hero-text { max-width: 560px; }
+    /* HERO CIRCLE IMAGE */
+    .hero-image { flex-shrink: 0; }
+    .hero-img-circle { width: 400px; height: 400px; border-radius: 50%; overflow: hidden; position: relative; box-shadow: 0 0 0 8px white, 0 0 0 12px rgba(185,79,200,0.2); }
+    .hero-img-circle img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
 
-    .hero-eyebrow {
-      font-size: 0.82rem;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--mid-gray);
-      margin-bottom: 1.2rem;
-    }
-
-    .hero-name {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(3rem, 6vw, 5rem);
-      line-height: 1.05;
-      margin-bottom: 0.5rem;
-    }
-
-    .hero-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.1rem, 2vw, 1.5rem);
-      font-style: italic;
-      color: #666;
-      margin-bottom: 1.6rem;
-    }
-
-    .hero-bio {
-      font-size: 1rem;
-      font-weight: 300;
-      color: #444;
-      max-width: 480px;
-      margin-bottom: 1.2rem;
-      line-height: 1.8;
-    }
-
-    .hero-bio-2 {
-      font-size: 0.93rem;
-      font-weight: 300;
-      color: #666;
-      max-width: 480px;
-      margin-bottom: 1.8rem;
-      line-height: 1.8;
-    }
-
-    .hero-specialties {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 2rem;
-    }
-
-    .specialty-tag {
-      font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      padding: 0.3rem 0.85rem;
-      border-radius: 20px;
-      border: 1.5px solid rgba(185,79,200,0.3);
-      color: #b94fc8;
-      background: rgba(185,79,200,0.05);
-    }
-
-    .hero-ctas {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .hero-cta {
-      display: inline-block;
-      padding: 0.85rem 2rem;
-      background: var(--gradient);
-      color: white;
-      text-decoration: none;
-      font-size: 0.88rem;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      border-radius: 3px;
-      transition: opacity 0.2s, transform 0.2s;
-    }
-
-    .hero-cta:hover { opacity: 0.88; transform: translateY(-2px); }
-
-    .hero-cta-secondary {
-      display: inline-block;
-      padding: 0.85rem 2rem;
-      border: 1.5px solid #ccc;
-      color: var(--dark);
-      text-decoration: none;
-      font-size: 0.88rem;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      border-radius: 3px;
-      transition: all 0.2s;
-    }
-
-    .hero-cta-secondary:hover { border-color: var(--dark); }
-
-    .hero-image { display: flex; justify-content: center; }
-
-    .hero-img-wrap {
-      position: relative;
-      width: 420px;
-      max-width: 100%;
-    }
-
-    .hero-img-wrap::before {
-      content: '';
-      position: absolute;
-      inset: -10px -10px -10px 10px;
-      background: var(--gradient);
-      border-radius: 4px;
-      z-index: 0;
-      opacity: 0.25;
-    }
-
-    .hero-img-wrap img {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      border-radius: 4px;
-      display: block;
-      object-fit: cover;
-      height: 560px;
-    }
+    /* IMPACT */
+    .impact-strip { background: var(--dark); padding: 3.5rem 2rem; }
+    .impact-inner { max-width: var(--max-width); margin: 0 auto; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 2rem; text-align: center; }
+    .impact-number { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 3.5vw, 3.2rem); line-height: 1; margin-bottom: 0.4rem; }
+    .impact-label { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.45); line-height: 1.5; }
 
     /* SECTIONS */
-    section { padding: 6rem 6vw; }
+    section { padding: 5.5rem 2rem; }
     section:nth-child(even) { background: var(--soft-gray); }
+    .section-label { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid-gray); margin-bottom: 0.4rem; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.6rem); line-height: 1.1; margin-bottom: 0.7rem; }
+    .section-intro { font-size: 0.97rem; color: #666; font-weight: 300; max-width: 560px; margin-bottom: 2.5rem; }
+    .divider { height: 3px; background: var(--gradient); border: none; border-radius: 2px; width: 50px; margin: 0 0 2.5rem; }
 
-    .section-label {
-      font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--mid-gray);
-      margin-bottom: 0.5rem;
-    }
+    /* PROJECT GRID */
+    .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.8rem; }
+    .project-card { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 20px rgba(0,0,0,0.06); transition: transform 0.25s, box-shadow 0.25s; display: flex; flex-direction: column; }
+    .project-card:hover { transform: translateY(-5px); box-shadow: 0 12px 36px rgba(0,0,0,0.1); }
 
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      line-height: 1.1;
-      margin-bottom: 0.8rem;
-    }
+    /* BEFORE/AFTER */
+    .img-toggle { position: relative; width: 100%; height: 220px; cursor: pointer; overflow: hidden; background: linear-gradient(135deg, #f0e8f5, #ede8f7); flex-shrink: 0; }
+    .img-toggle img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; transition: opacity 0.35s ease; }
+    .img-after { opacity: 1; }
+    .img-before { opacity: 0; }
+    .img-toggle.show-before .img-after { opacity: 0; }
+    .img-toggle.show-before .img-before { opacity: 1; }
+    .toggle-badge { position: absolute; bottom: 10px; right: 10px; z-index: 2; background: rgba(0,0,0,0.6); color: white; font-size: 0.68rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.28rem 0.65rem; border-radius: 20px; pointer-events: none; }
+    .toggle-hint { position: absolute; bottom: 10px; left: 10px; z-index: 2; background: rgba(0,0,0,0.45); color: rgba(255,255,255,0.8); font-size: 0.65rem; letter-spacing: 0.06em; padding: 0.25rem 0.6rem; border-radius: 20px; pointer-events: none; }
+    .thumb-placeholder { width: 100%; height: 220px; background: linear-gradient(135deg, #f7e8f0, #ede8f7); display: flex; align-items: center; justify-content: center; font-size: 0.82rem; color: #bbb; font-style: italic; flex-shrink: 0; }
 
-    .section-intro {
-      font-size: 1rem;
-      color: #555;
-      font-weight: 300;
-      max-width: 560px;
-      margin-bottom: 3rem;
-    }
+    .project-body { padding: 1.6rem; display: flex; flex-direction: column; flex: 1; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.9rem; }
+    .tag { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.25rem 0.65rem; border-radius: 20px; background: var(--soft-gray); color: #777; }
+    .project-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 0.5rem; line-height: 1.3; }
+    .project-overview { font-size: 0.88rem; color: #666; margin-bottom: 1.2rem; font-weight: 300; line-height: 1.7; }
+    .worked-on { margin-bottom: 1.2rem; }
+    .worked-on label, .detail-item label { display: block; font-size: 0.65rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid-gray); margin-bottom: 0.4rem; }
+    .worked-on ul { list-style: none; padding: 0; }
+    .worked-on ul li { font-size: 0.83rem; color: #555; padding: 0.18rem 0 0.18rem 1rem; position: relative; line-height: 1.5; }
+    .worked-on ul li::before { content: '→'; position: absolute; left: 0; background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 0.72rem; top: 0.3rem; }
+    .project-details { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; border-top: 1px solid #f0f0f0; padding-top: 1.1rem; margin-top: auto; }
+    .detail-item span { font-size: 0.83rem; color: var(--dark); line-height: 1.5; }
+    .detail-full { grid-column: 1 / -1; }
 
-    .divider {
-      height: 3px;
-      background: var(--gradient);
-      border: none;
-      border-radius: 2px;
-      width: 60px;
-      margin: 0 0 3rem;
-    }
-
-    /* IMPACT STRIP */
-    .impact-strip {
-      display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
-      gap: 2rem;
-      padding: 4rem 6vw;
-      background: var(--dark);
-      text-align: center;
-    }
-
-    .impact-number {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.2rem, 4vw, 3.5rem);
-      line-height: 1;
-      margin-bottom: 0.4rem;
-    }
-
-    .impact-label {
-      font-size: 0.8rem;
-      font-weight: 400;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.5);
-      line-height: 1.5;
-    }
-
-    /* PROJECT CARDS */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
-      margin-top: 1rem;
-    }
-
-    .project-card {
-      background: var(--card-bg);
-      border-radius: 6px;
-      overflow: hidden;
-      box-shadow: 0 2px 20px rgba(0,0,0,0.06);
-      transition: transform 0.25s, box-shadow 0.25s;
-    }
-
-    .project-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.1);
-    }
-
-    .thumb-placeholder {
-      width: 100%;
-      height: 220px;
-      background: linear-gradient(135deg, #f7e8f0, #ede8f7);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.82rem;
-      color: #aaa;
-      font-style: italic;
-      text-align: center;
-      padding: 1rem;
-    }
-
-    .thumb-placeholder img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .project-body { padding: 1.8rem; }
-
-    .project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .tag {
-      font-size: 0.7rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 0.28rem 0.7rem;
-      border-radius: 20px;
-      background: var(--soft-gray);
-      color: #666;
-    }
-
-    .tag-grad {
-      background: var(--gradient);
-      color: white;
-    }
-
-    .project-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.3rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .project-overview {
-      font-size: 0.93rem;
-      color: #555;
-      margin-bottom: 1.4rem;
-      font-weight: 300;
-    }
-
-    .project-details {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      border-top: 1px solid #f0f0f0;
-      padding-top: 1.2rem;
-    }
-
-    .detail-item label {
-      display: block;
-      font-size: 0.68rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--mid-gray);
-      margin-bottom: 0.3rem;
-    }
-
-    .detail-item span {
-      font-size: 0.85rem;
-      color: var(--dark);
-      line-height: 1.5;
-    }
-
-    .detail-full {
-      grid-column: 1 / -1;
-    }
-
-    .worked-on {
-      margin-bottom: 1.2rem;
-    }
-
-    .worked-on label {
-      display: block;
-      font-size: 0.68rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--mid-gray);
-      margin-bottom: 0.5rem;
-    }
-
-    .worked-on ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .worked-on ul li {
-      font-size: 0.85rem;
-      color: #444;
-      padding: 0.2rem 0;
-      padding-left: 1rem;
-      position: relative;
-    }
-
-    .worked-on ul li::before {
-      content: '→';
-      position: absolute;
-      left: 0;
-      background: var(--gradient-text);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      font-size: 0.75rem;
-      top: 0.28rem;
-    }
-
-    /* PROCESS */
-    .process-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1rem;
-    }
-
-    .process-step {
-      padding: 1.8rem;
-      background: white;
-      border-radius: 6px;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.05);
-    }
-
-    .process-number {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      line-height: 1;
-      margin-bottom: 0.6rem;
-    }
-
-    .process-step h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .process-step p {
-      font-size: 0.85rem;
-      color: #666;
-      font-weight: 300;
-      line-height: 1.6;
-    }
+    /* PROCESS TIMELINE */
+    .process-timeline { position: relative; display: flex; gap: 1.5rem; margin-top: 1rem; align-items: stretch; }
+    .process-timeline::before { content: ''; position: absolute; top: 22px; left: 22px; right: 22px; height: 3px; background: var(--gradient); border-radius: 2px; z-index: 0; }
+    .process-step { flex: 1; background: white; border-radius: 8px; padding: 1.6rem 1.4rem; box-shadow: 0 2px 16px rgba(0,0,0,0.05); position: relative; z-index: 1; }
+    .process-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--gradient); margin-bottom: 0.9rem; box-shadow: 0 0 0 3px white, 0 0 0 5px rgba(185,79,200,0.25); }
+    .process-number { font-family: 'Playfair Display', serif; font-size: 1.5rem; line-height: 1; margin-bottom: 0.4rem; }
+    .process-step h3 { font-family: 'Playfair Display', serif; font-size: 0.92rem; margin-bottom: 0.4rem; }
+    .process-step p { font-size: 0.8rem; color: #777; font-weight: 300; line-height: 1.6; }
 
     /* SKILLS */
-    .skills-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      margin-top: 1rem;
-    }
-
-    .skill-group h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
-      margin-bottom: 1rem;
-    }
-
-    .skill-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-
-    .skill-pill {
-      padding: 0.45rem 1rem;
-      border-radius: 30px;
-      font-size: 0.82rem;
-      border: 1.5px solid #e0e0e0;
-      background: white;
-      transition: all 0.2s;
-      cursor: default;
-    }
-
-    .skill-pill:hover {
-      border-color: transparent;
-      background: var(--gradient);
-      color: white;
-    }
-
-    .skill-pill.active {
-      background: var(--gradient);
-      color: white;
-      border-color: transparent;
-    }
+    .skills-layout { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.5rem; }
+    .skill-group h3 { font-family: 'Playfair Display', serif; font-size: 1rem; margin-bottom: 1rem; }
+    .skill-pills { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    .skill-pill { padding: 0.4rem 0.9rem; border-radius: 30px; font-size: 0.78rem; border: 1.5px solid #ddd; background: white; color: #555; transition: all 0.2s; cursor: default; }
+    .skill-pill:hover { border-color: transparent; background: var(--gradient); color: white; }
 
     /* PHOTOGRAPHY */
-    .photo-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-
-    .photo-grid-item {
-      aspect-ratio: 4/5;
-      background: linear-gradient(135deg, #f0e8f5, #f5e8ed);
-      border-radius: 4px;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.8rem;
-      color: #bbb;
-      font-style: italic;
-    }
-
-    .photo-grid-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+    .photo-section-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .photo-text p { font-size: 0.97rem; color: #555; font-weight: 300; margin-bottom: 1.2rem; line-height: 1.8; }
+    .photo-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; }
+    .photo-item { aspect-ratio: 4/5; border-radius: 6px; overflow: hidden; background: linear-gradient(135deg, #f0e8f5, #f5e8ed); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; color: #ccc; font-style: italic; }
+    .photo-item img { width: 100%; height: 100%; object-fit: cover; }
 
     /* ABOUT */
-    .about-layout {
-      display: grid;
-      grid-template-columns: 1.3fr 1fr;
-      gap: 5rem;
-      align-items: start;
-    }
-
-    .about-text p {
-      font-size: 1rem;
-      font-weight: 300;
-      color: #444;
-      margin-bottom: 1.2rem;
-      line-height: 1.8;
-    }
-
-    .about-text .looking-for {
-      margin-top: 2rem;
-      padding: 1.5rem;
-      background: white;
-      border-radius: 6px;
-      border-left: 3px solid transparent;
-      border-image: var(--gradient) 1;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.05);
-    }
-
-    .about-text .looking-for h4 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1rem;
-      margin-bottom: 0.6rem;
-    }
-
-    .about-text .looking-for p {
-      font-size: 0.9rem;
-      margin-bottom: 0;
-    }
-
-    .aside-block { margin-bottom: 2rem; }
-
-    .aside-block h4 {
-      font-family: 'Playfair Display', serif;
-      font-size: 0.95rem;
-      margin-bottom: 0.4rem;
-    }
-
-    .aside-block p {
-      font-size: 0.88rem;
-      color: #666;
-      line-height: 1.6;
-    }
+    .about-layout { display: grid; grid-template-columns: 1.3fr 1fr; gap: 5rem; align-items: start; }
+    .about-text p { font-size: 0.97rem; font-weight: 300; color: #555; margin-bottom: 1.1rem; line-height: 1.8; }
+    .looking-for-box { margin-top: 2rem; padding: 1.4rem 1.6rem; background: white; border-radius: 6px; border-left: 3px solid #b94fc8; box-shadow: 0 2px 16px rgba(0,0,0,0.05); }
+    .looking-for-box h4 { font-family: 'Playfair Display', serif; font-size: 0.95rem; margin-bottom: 0.5rem; }
+    .looking-for-box p { font-size: 0.88rem; margin-bottom: 0 !important; color: #555; }
+    .aside-block { margin-bottom: 1.8rem; }
+    .aside-block h4 { font-family: 'Playfair Display', serif; font-size: 0.88rem; margin-bottom: 0.35rem; }
+    .aside-block p { font-size: 0.85rem; color: #777; line-height: 1.6; }
+    .aside-block a { color: #b94fc8; text-decoration: none; font-weight: 500; }
 
     /* CONTACT */
-    .contact-section {
-      text-align: center;
-      padding: 6rem 6vw;
-    }
-
-    .contact-section p {
-      font-size: 1rem;
-      color: #666;
-      max-width: 420px;
-      margin: 0 auto 2.5rem;
-      font-weight: 300;
-    }
-
-    .contact-links {
-      display: flex;
-      gap: 1.2rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .contact-btn {
-      padding: 0.85rem 1.8rem;
-      font-size: 0.85rem;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border-radius: 3px;
-      transition: all 0.2s;
-    }
-
-    .contact-btn-primary {
-      background: var(--gradient);
-      color: white;
-    }
-
-    .contact-btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
-
-    .contact-btn-secondary {
-      border: 1.5px solid #ccc;
-      color: var(--dark);
-    }
-
-    .contact-btn-secondary:hover { border-color: var(--dark); }
+    .contact-inner { text-align: center; max-width: 500px; margin: 0 auto; }
+    .contact-inner p { font-size: 0.97rem; color: #777; margin-bottom: 2.2rem; font-weight: 300; }
+    .contact-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
     /* FOOTER */
-    footer {
-      background: var(--dark);
-      color: rgba(255,255,255,0.4);
-      text-align: center;
-      padding: 2rem 6vw;
-      font-size: 0.8rem;
-    }
-
-    footer span { color: rgba(255,255,255,0.7); }
+    footer { background: var(--dark); color: rgba(255,255,255,0.35); text-align: center; padding: 1.8rem 2rem; font-size: 0.78rem; }
+    footer span { color: rgba(255,255,255,0.6); }
 
     /* ANIMATIONS */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .hero-text > * {
-      animation: fadeUp 0.7s ease both;
-    }
-
-    .hero-text > *:nth-child(1) { animation-delay: 0.1s; }
-    .hero-text > *:nth-child(2) { animation-delay: 0.2s; }
-    .hero-text > *:nth-child(3) { animation-delay: 0.3s; }
-    .hero-text > *:nth-child(4) { animation-delay: 0.4s; }
-    .hero-text > *:nth-child(5) { animation-delay: 0.5s; }
-    .hero-text > *:nth-child(6) { animation-delay: 0.6s; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    .hero-text > * { animation: fadeUp 0.65s ease both; }
+    .hero-text > *:nth-child(1) { animation-delay: 0.05s; }
+    .hero-text > *:nth-child(2) { animation-delay: 0.15s; }
+    .hero-text > *:nth-child(3) { animation-delay: 0.25s; }
+    .hero-text > *:nth-child(4) { animation-delay: 0.35s; }
+    .hero-text > *:nth-child(5) { animation-delay: 0.45s; }
+    .hero-text > *:nth-child(6) { animation-delay: 0.55s; }
 
     /* RESPONSIVE */
+    @media (max-width: 1100px) {
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+      .skills-layout { grid-template-columns: repeat(2, 1fr); }
+      .process-timeline { flex-wrap: wrap; }
+      .process-timeline::before { display: none; }
+    }
     @media (max-width: 860px) {
-      .hero {
-        grid-template-columns: 1fr;
-        text-align: center;
-        padding-top: 7rem;
-      }
-
-      .hero-image { order: -1; }
-      .hero-img-wrap { width: 260px; }
-      .hero-img-wrap img { height: 340px; }
-      .hero-bio, .hero-bio-2 { margin-left: auto; margin-right: auto; }
+      .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 2.5rem; }
+      .hero-image { order: -1; display: flex; justify-content: center; }
+      .hero-img-circle { width: 220px; height: 220px; }
+      .hero-name { white-space: normal; }
       .hero-specialties { justify-content: center; }
       .hero-ctas { justify-content: center; }
-      .skills-layout { grid-template-columns: 1fr; gap: 2rem; }
+      .hero-bio, .hero-bio-2 { margin: 0 auto 1rem; }
       .about-layout { grid-template-columns: 1fr; gap: 2.5rem; }
-      .photo-grid { grid-template-columns: repeat(2, 1fr); }
-      .nav-links { gap: 1rem; }
+      .photo-section-layout { grid-template-columns: 1fr; gap: 2rem; }
+      .projects-grid { grid-template-columns: 1fr; }
     }
-
     @media (max-width: 600px) {
-      .nav-links li:not(:last-child):not(:nth-last-child(2)) { display: none; }
-      .photo-grid { grid-template-columns: 1fr 1fr; }
-      .process-grid { grid-template-columns: 1fr; }
+      .skills-layout { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
   <nav>
-    <div class="nav-logo"><span class="grad">MC</span></div>
-    <ul class="nav-links">
-      <li><a href="#work">Work</a></li>
-      <li><a href="#process">Process</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#photography">Photography</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="Molly_Curtis_Resume.pdf" target="_blank" class="nav-resume">Résumé</a></li>
-    </ul>
+    <div class="nav-inner">
+      <div class="nav-logo"><span class="grad">MC</span></div>
+      <ul class="nav-links">
+        <li><a href="#work">Work</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#photography">Photography</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="Molly_Curtis_Resume.pdf" target="_blank" class="nav-resume">Resume</a></li>
+      </ul>
+    </div>
   </nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-text">
-      <p class="hero-eyebrow">Portfolio — Digital Experience Designer</p>
-      <h1 class="hero-name">Molly<br/><span class="grad">Curtis</span></h1>
-      <p class="hero-title">Digital Experience Designer</p>
-      <p class="hero-bio">
-        I design cross-channel marketing experiences — from landing pages and digital ads to organic social and conversion optimization — helping turn campaigns into full-funnel digital journeys that drive measurable growth.
-      </p>
-      <p class="hero-bio-2">
-        My work blends UX design, campaign thinking, and performance data to create digital experiences that are both visually strong and strategically effective.
-      </p>
-      <div class="hero-specialties">
-        <span class="specialty-tag">Landing Pages</span>
-        <span class="specialty-tag">Digital Ad Creative</span>
-        <span class="specialty-tag">Organic Social</span>
-        <span class="specialty-tag">Conversion Optimization</span>
-        <span class="specialty-tag">Campaign Design</span>
-        <span class="specialty-tag">Data-Informed UX</span>
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <p class="hero-eyebrow">Portfolio</p>
+        <h1 class="hero-name"><span class="grad">Molly Curtis</span></h1>
+        <p class="hero-title">Digital Experience Designer</p>
+        <p class="hero-bio">I design cross-channel marketing experiences — from landing pages and digital ads to organic social and conversion optimization — helping turn campaigns into full-funnel digital journeys that drive measurable growth.</p>
+        <p class="hero-bio-2">My work blends UX design, campaign thinking, and performance data to create digital experiences that are both visually strong and strategically effective.</p>
+        <div class="hero-specialties">
+          <span class="specialty-tag">Landing Pages</span>
+          <span class="specialty-tag">Digital Ad Creative</span>
+          <span class="specialty-tag">Organic Social</span>
+          <span class="specialty-tag">Conversion Optimization</span>
+          <span class="specialty-tag">Campaign Design</span>
+          <span class="specialty-tag">Data-Informed UX</span>
+        </div>
+        <div class="hero-ctas">
+          <a href="#work" class="btn-primary">View My Work</a>
+          <a href="Molly_Curtis_Resume.pdf" target="_blank" class="btn-secondary">Download Resume</a>
+        </div>
       </div>
-      <div class="hero-ctas">
-        <a href="#work" class="hero-cta">View My Work</a>
-        <a href="Molly_Curtis_Resume.pdf" target="_blank" class="hero-cta-secondary">Download Résumé</a>
+      <div class="hero-image">
+        <div class="hero-img-circle">
+          <img src="IMG_5739.jpeg" alt="Molly Curtis" />
+        </div>
       </div>
-    </div>
-    <div class="hero-image">
-      <div class="hero-img-wrap">
-        <!-- Upload IMG_5739.jpeg to your GitHub repo and it will appear here -->
-        <img src="IMG_5739.jpeg" alt="Molly Curtis" />
-      </div>
-    </div>
-  </section>
-
-  <!-- IMPACT STRIP -->
-  <div class="impact-strip">
-    <div>
-      <div class="impact-number grad">↑XX%</div>
-      <div class="impact-label">Lift in subscription growth<br/>after page redesign</div>
-    </div>
-    <div>
-      <div class="impact-number grad">X+</div>
-      <div class="impact-label">Landing pages<br/>designed & launched</div>
-    </div>
-    <div>
-      <div class="impact-number grad">X+</div>
-      <div class="impact-label">Campaigns supported<br/>across paid & organic</div>
-    </div>
-    <div>
-      <div class="impact-number grad">3+</div>
-      <div class="impact-label">Years at NBI across<br/>marketing & growth</div>
     </div>
   </div>
 
-  <!-- WORK -->
-  <section id="work">
-    <p class="section-label">Selected Work</p>
-    <h2 class="section-title">Projects &amp; <span class="grad">Campaigns</span></h2>
-    <hr class="divider" />
-
-    <div class="projects-grid">
-
-      <!-- CASE STUDY 1 -->
-      <div class="project-card">
-        <div class="thumb-placeholder">
-          <!-- Add before/after screenshots here once you have them -->
-          Add project screenshot here
-        </div>
-        <div class="project-body">
-          <div class="project-tags">
-            <span class="tag tag-grad">Featured</span>
-            <span class="tag">UX / Web</span>
-            <span class="tag">Conversion</span>
-          </div>
-          <h3 class="project-title">NBI Subscription Page Redesign</h3>
-          <p class="project-overview">Redesigned a key subscription page to reduce friction, clarify the value proposition, and improve conversion performance.</p>
-          <div class="worked-on">
-            <label>What I Worked On</label>
-            <ul>
-              <li>Audited the existing experience and identified drop-off points</li>
-              <li>Restructured layout and messaging hierarchy</li>
-              <li>Simplified the page flow and clarified calls to action</li>
-              <li>Designed a more focused, conversion-driven experience</li>
-            </ul>
-          </div>
-          <div class="project-details">
-            <div class="detail-item">
-              <label>My Role</label>
-              <span>Lead Designer & Strategist</span>
-            </div>
-            <div class="detail-item">
-              <label>Tools Used</label>
-              <span>HTML, CSS, Figma, Google Analytics</span>
-            </div>
-            <div class="detail-item detail-full">
-              <label>Impact</label>
-              <span>Contributed to stronger subscription performance through a clearer, more intuitive user journey</span>
-            </div>
-            <div class="detail-item detail-full">
-              <label>What I Learned</label>
-              <span>When the goal is conversion, clarity and hierarchy matter more than extra complexity</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- CASE STUDY 2 -->
-      <div class="project-card">
-        <div class="thumb-placeholder">
-          Add project screenshot here
-        </div>
-        <div class="project-body">
-          <div class="project-tags">
-            <span class="tag">Landing Pages</span>
-            <span class="tag">Paid Media</span>
-            <span class="tag">Email</span>
-          </div>
-          <h3 class="project-title">Campaign Landing Pages</h3>
-          <p class="project-overview">Designed and launched landing pages to support marketing campaigns across paid media, email, and organic channels.</p>
-          <div class="worked-on">
-            <label>What I Worked On</label>
-            <ul>
-              <li>Built pages around campaign goals and audience intent</li>
-              <li>Created layouts that made key messages easy to scan</li>
-              <li>Structured calls to action to support conversion</li>
-              <li>Supported implementation and iteration based on performance</li>
-            </ul>
-          </div>
-          <div class="project-details">
-            <div class="detail-item">
-              <label>My Role</label>
-              <span>UX Design, Page Strategy & Implementation</span>
-            </div>
-            <div class="detail-item">
-              <label>Tools Used</label>
-              <span>Figma, HTML, CSS, Google Analytics</span>
-            </div>
-            <div class="detail-item detail-full">
-              <label>Impact</label>
-              <span>Helped marketing campaigns land more effectively by creating focused, conversion-oriented destination pages</span>
-            </div>
-            <div class="detail-item detail-full">
-              <label>What I Learned</label>
-              <span>The strongest landing pages connect campaign promise, page message, and user action without friction</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- CASE STUDY 3 -->
-      <div class="project-card">
-        <div class="thumb-placeholder">
-          Add ad creative examples here
-        </div>
-        <div class="project-body">
-          <div class="project-tags">
-            <span class="tag">Display Ads</span>
-            <span class="tag">Social</span>
-            <span class="tag">Brand</span>
-          </div>
-          <h3 class="project-title">Cross-Channel Campaign Creative</h3>
-          <p class="project-overview">Developed creative assets to support campaigns across digital ads, web banners, and organic social — ensuring visual consistency across every channel.</p>
-          <div class="worked-on">
-            <label>What I Worked On</label>
-            <ul>
-              <li>Designed digital ad creative in multiple sizes and formats</li>
-              <li>Created supporting visuals for web and organic social</li>
-              <li>Adapted campaign concepts across placements and touchpoints</li>
-              <li>Balanced brand consistency with channel-specific design needs</li>
-            </ul>
-          </div>
-          <div class="project-details">
-            <div class="detail-item">
-              <label>My Role</label>
-              <span>Designer, Campaign Creative</span>
-            </div>
-            <div class="detail-item">
-              <label>Tools Used</label>
-              <span>Adobe Creative Suite, Figma, Canva</span>
-            </div>
-            <div class="detail-item detail-full">
-              <label>Impact</label>
-              <span>Strengthened campaign consistency and helped bring marketing initiatives to life across the full funnel</span>
-            </div>
-            <div class="detail-item detail-full">
-              <label>What I Learned</label>
-              <span>Good campaign design isn't just individual assets — it's building a cohesive experience across every touchpoint</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- PROCESS -->
-  <section id="process" style="background: var(--soft-gray);">
-    <p class="section-label">How I Work</p>
-    <h2 class="section-title">My <span class="grad">Process</span></h2>
-    <hr class="divider" />
-    <p class="section-intro">I approach digital work with both design intention and performance in mind.</p>
-
-    <div class="process-grid">
-      <div class="process-step">
-        <div class="process-number grad">01</div>
-        <h3>Understand the Goal</h3>
-        <p>Review campaign goals, audience needs, and performance context before touching a single pixel.</p>
-      </div>
-      <div class="process-step">
-        <div class="process-number grad">02</div>
-        <h3>Identify Friction</h3>
-        <p>Look for gaps in the user journey, messaging, or visual hierarchy that are costing conversions.</p>
-      </div>
-      <div class="process-step">
-        <div class="process-number grad">03</div>
-        <h3>Design the Experience</h3>
-        <p>Create layouts and creative that make the next step feel clear, natural, and visually compelling.</p>
-      </div>
-      <div class="process-step">
-        <div class="process-number grad">04</div>
-        <h3>Launch & Measure</h3>
-        <p>Support rollout, review results with GA4, and track what's working and what isn't.</p>
-      </div>
-      <div class="process-step">
-        <div class="process-number grad">05</div>
-        <h3>Optimize & Refine</h3>
-        <p>Use data and feedback to improve performance over time. The work is never really done.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- SKILLS -->
-  <section id="skills">
-    <p class="section-label">What I Bring</p>
-    <h2 class="section-title">Skills &amp; <span class="grad">Methods</span></h2>
-    <hr class="divider" />
-
-    <div class="skills-layout">
-      <div class="skill-group">
-        <h3>Design & Creation</h3>
-        <div class="skill-pills">
-          <span class="skill-pill active">UI / UX Design</span>
-          <span class="skill-pill active">Landing Page Design</span>
-          <span class="skill-pill">HTML & CSS</span>
-          <span class="skill-pill">Graphic Design</span>
-          <span class="skill-pill">Display Ad Design</span>
-          <span class="skill-pill">Web Banner Design</span>
-          <span class="skill-pill">Adobe Creative Suite</span>
-          <span class="skill-pill">Figma</span>
-          <span class="skill-pill">Canva</span>
-          <span class="skill-pill">Adobe Photoshop</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h3>Marketing & Growth</h3>
-        <div class="skill-pills">
-          <span class="skill-pill active">Conversion Optimization</span>
-          <span class="skill-pill active">Campaign Creative</span>
-          <span class="skill-pill">Paid Media Strategy</span>
-          <span class="skill-pill">Organic Social</span>
-          <span class="skill-pill">Email Marketing</span>
-          <span class="skill-pill">SEO Basics</span>
-          <span class="skill-pill">A/B Testing</span>
-          <span class="skill-pill">Display Advertising</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h3>Analytics & Data</h3>
-        <div class="skill-pills">
-          <span class="skill-pill active">Google Analytics (GA4)</span>
-          <span class="skill-pill">Conversion Tracking</span>
-          <span class="skill-pill">Performance Reporting</span>
-          <span class="skill-pill">Data Analysis</span>
-          <span class="skill-pill">Data-Informed Design</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h3>Methods & Approach</h3>
-        <div class="skill-pills">
-          <span class="skill-pill">User Research</span>
-          <span class="skill-pill">Wireframing</span>
-          <span class="skill-pill">Content Strategy</span>
-          <span class="skill-pill">User Flow & Page Structure</span>
-          <span class="skill-pill">Brand Consistency</span>
-          <span class="skill-pill">Cross-Functional Collaboration</span>
-          <span class="skill-pill">Shopify</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PHOTOGRAPHY -->
-  <section id="photography" style="background: var(--soft-gray);">
-    <p class="section-label">Beyond the Screen</p>
-    <h2 class="section-title">Photo<span class="grad">graphy</span></h2>
-    <hr class="divider" />
-    <p class="section-intro">Photography sharpens the same instincts I bring to design — composition, storytelling, pacing, and attention to detail. Published in 30+ magazines and online features.</p>
-
-    <div class="photo-grid">
-      <!-- Replace each item below with your actual photos:
-           <img src="photo1.jpg" alt="description" style="width:100%;height:100%;object-fit:cover;" /> -->
-      <div class="photo-grid-item">Photo 1</div>
-      <div class="photo-grid-item">Photo 2</div>
-      <div class="photo-grid-item">Photo 3</div>
-      <div class="photo-grid-item">Photo 4</div>
-      <div class="photo-grid-item">Photo 5</div>
-      <div class="photo-grid-item">Photo 6</div>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about">
-    <p class="section-label">The Person Behind the Work</p>
-    <h2 class="section-title">About <span class="grad">Me</span></h2>
-    <hr class="divider" />
-
-    <div class="about-layout">
-      <div class="about-text">
-        <p>I'm a digital experience designer with a background in marketing and growth, focused on creating work that is both visually strong and performance-driven.</p>
-        <p>My experience spans landing pages, digital campaigns, ad creative, and conversion-focused design. I enjoy building digital experiences that connect the first impression of a campaign to the action that follows.</p>
-        <p>At NBI, I've worked across the full digital stack — redesigning key web experiences, supporting campaign launches across paid, email, and organic channels, and creating creative that helps marketing perform more effectively. I've grown from intern to analyst to specialist, building a foundation in both the data side and the design side of digital marketing.</p>
-        <p>I believe strong design builds trust, and trust drives action.</p>
-
-        <div class="looking-for">
-          <h4 class="grad">What I'm Looking For</h4>
-          <p>I'm most excited by roles where design, marketing, and data intersect — especially teams that care about thoughtful user experience, strong creative, and measurable results. The work I enjoy most is cross-channel, collaborative, and tied to real business impact.</p>
-        </div>
-      </div>
-
+  <div class="impact-strip">
+    <div class="impact-inner">
       <div>
-        <div class="aside-block">
-          <h4 class="grad">Currently</h4>
-          <p>Digital Marketing Specialist<br/>National Business Institute — Feb 2026–Present</p>
+        <div class="impact-number grad">↑XX%</div>
+        <div class="impact-label">Lift in subscription growth<br/>after page redesign</div>
+      </div>
+      <div>
+        <div class="impact-number grad">X+</div>
+        <div class="impact-label">Landing pages<br/>designed & launched</div>
+      </div>
+      <div>
+        <div class="impact-number grad">X+</div>
+        <div class="impact-label">Campaigns supported<br/>across paid & organic</div>
+      </div>
+      <div>
+        <div class="impact-number grad">3+</div>
+        <div class="impact-label">Years in digital marketing,<br/>UX & growth</div>
+      </div>
+    </div>
+  </div>
+
+  <section id="work">
+    <div class="inner">
+      <p class="section-label">Selected Work</p>
+      <h2 class="section-title">Projects &amp; <span class="grad">Campaigns</span></h2>
+      <hr class="divider" />
+      <div class="projects-grid">
+
+        <div class="project-card">
+          <div class="img-toggle" id="toggle1" onclick="toggleImg('toggle1','badge1')">
+            <img class="img-after" src="Sub_w_tweaks-Current-2026.png" alt="After redesign" />
+            <img class="img-before" src="Subscription-Page-Before.png" alt="Before redesign" />
+            <span class="toggle-badge" id="badge1">After</span>
+            <span class="toggle-hint">Click to toggle before / after</span>
+          </div>
+          <div class="project-body">
+            <div class="project-tags">
+              <span class="tag">UX / Web</span>
+              <span class="tag">Conversion</span>
+              <span class="tag">Page Redesign</span>
+            </div>
+            <h3 class="project-title">NBI Subscription Page Redesign</h3>
+            <p class="project-overview">Redesigned a key subscription page to reduce friction and simplify decision-making — the goal was to make the choice clear the moment a customer lands on the page. Less is more.</p>
+            <div class="worked-on">
+              <label>What I Worked On</label>
+              <ul>
+                <li>Audited the existing experience and identified drop-off points</li>
+                <li>Restructured layout and messaging hierarchy</li>
+                <li>Simplified the page flow to reduce cognitive load</li>
+                <li>Clarified calls to action for a focused, conversion-driven experience</li>
+              </ul>
+            </div>
+            <div class="project-details">
+              <div class="detail-item"><label>My Role</label><span>Lead Designer & Strategist</span></div>
+              <div class="detail-item"><label>Tools Used</label><span>HTML, CSS, Figma, GA4</span></div>
+              <div class="detail-item detail-full"><label>Impact</label><span>Contributed to stronger subscription performance through a clearer, more intuitive user journey</span></div>
+              <div class="detail-item detail-full"><label>What I Learned</label><span>When the goal is conversion, clarity and hierarchy matter more than complexity</span></div>
+            </div>
+          </div>
         </div>
-        <div class="aside-block">
-          <h4 class="grad">Education</h4>
-          <p>Bachelor of Business Administration (BBA), Marketing<br/>University of Wisconsin – Eau Claire, 2023</p>
+
+        <div class="project-card">
+          <div class="thumb-placeholder">Add screenshot here</div>
+          <div class="project-body">
+            <div class="project-tags">
+              <span class="tag">Landing Pages</span>
+              <span class="tag">Paid Media</span>
+              <span class="tag">Email</span>
+            </div>
+            <h3 class="project-title">Campaign Landing Pages</h3>
+            <p class="project-overview">Designed and launched landing pages to support marketing campaigns across paid media, email, and organic channels.</p>
+            <div class="worked-on">
+              <label>What I Worked On</label>
+              <ul>
+                <li>Built pages around campaign goals and audience intent</li>
+                <li>Created layouts that made key messages easy to scan</li>
+                <li>Structured calls to action to support conversion</li>
+                <li>Iterated based on GA4 performance data</li>
+              </ul>
+            </div>
+            <div class="project-details">
+              <div class="detail-item"><label>My Role</label><span>UX Design, Page Strategy & Implementation</span></div>
+              <div class="detail-item"><label>Tools Used</label><span>Figma, HTML, CSS, GA4</span></div>
+              <div class="detail-item detail-full"><label>Impact</label><span>Helped campaigns land more effectively through focused, conversion-oriented destination pages</span></div>
+              <div class="detail-item detail-full"><label>What I Learned</label><span>The strongest landing pages connect campaign promise, page message, and user action without friction</span></div>
+            </div>
+          </div>
         </div>
-        <div class="aside-block">
-          <h4 class="grad">Based In</h4>
-          <p>St. Paul, MN</p>
+
+        <div class="project-card">
+          <div class="thumb-placeholder">Add ad creative board here</div>
+          <div class="project-body">
+            <div class="project-tags">
+              <span class="tag">Display Ads</span>
+              <span class="tag">Social</span>
+              <span class="tag">Web Banners</span>
+            </div>
+            <h3 class="project-title">Cross-Channel Campaign Creative</h3>
+            <p class="project-overview">Developed creative assets to support campaigns across digital ads, web banners, and organic social — ensuring visual consistency across every channel.</p>
+            <div class="worked-on">
+              <label>What I Worked On</label>
+              <ul>
+                <li>Designed digital ad creative in multiple sizes and formats</li>
+                <li>Created supporting visuals for web and organic social</li>
+                <li>Adapted campaign concepts across placements and touchpoints</li>
+                <li>Balanced brand consistency with channel-specific needs</li>
+              </ul>
+            </div>
+            <div class="project-details">
+              <div class="detail-item"><label>My Role</label><span>Designer, Campaign Creative</span></div>
+              <div class="detail-item"><label>Tools Used</label><span>Adobe Creative Suite, Figma, Canva</span></div>
+              <div class="detail-item detail-full"><label>Impact</label><span>Strengthened campaign consistency and helped bring marketing initiatives to life across the full funnel</span></div>
+              <div class="detail-item detail-full"><label>What I Learned</label><span>Good campaign design isn't individual assets — it's a cohesive experience across every touchpoint</span></div>
+            </div>
+          </div>
         </div>
-        <div class="aside-block">
-          <h4 class="grad">Also</h4>
-          <p>Freelance Photographer since 2019<br/>Published in 30+ magazines & features</p>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="process" style="background: var(--soft-gray);">
+    <div class="inner">
+      <p class="section-label">How I Work</p>
+      <h2 class="section-title">My <span class="grad">Process</span></h2>
+      <hr class="divider" />
+      <p class="section-intro">I approach every project with both design intention and performance in mind.</p>
+      <div class="process-timeline">
+        <div class="process-step">
+          <div class="process-dot"></div>
+          <div class="process-number grad">01</div>
+          <h3>Understand the Goal</h3>
+          <p>Review campaign goals, audience needs, and performance context before touching a single pixel.</p>
         </div>
-        <div class="aside-block">
-          <h4 class="grad">Résumé</h4>
-          <p><a href="Molly_Curtis_Resume.pdf" target="_blank" style="color: #b94fc8; text-decoration: none; font-weight: 500;">Download PDF →</a></p>
+        <div class="process-step">
+          <div class="process-dot"></div>
+          <div class="process-number grad">02</div>
+          <h3>Identify Friction</h3>
+          <p>Look for gaps in the user journey, messaging, or visual hierarchy that are costing conversions.</p>
+        </div>
+        <div class="process-step">
+          <div class="process-dot"></div>
+          <div class="process-number grad">03</div>
+          <h3>Design the Experience</h3>
+          <p>Create layouts and creative that make the next step feel clear, natural, and visually compelling.</p>
+        </div>
+        <div class="process-step">
+          <div class="process-dot"></div>
+          <div class="process-number grad">04</div>
+          <h3>Launch & Measure</h3>
+          <p>Support rollout, review results with GA4, and track what's working.</p>
+        </div>
+        <div class="process-step">
+          <div class="process-dot"></div>
+          <div class="process-number grad">05</div>
+          <h3>Optimize & Refine</h3>
+          <p>Use data and feedback to improve performance over time. The work is never really done.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CONTACT -->
-  <section id="contact" class="contact-section" style="background: var(--soft-gray);">
-    <p class="section-label">Get In Touch</p>
-    <h2 class="section-title">Let's <span class="grad">Work Together</span></h2>
-    <p>Open to new opportunities in growth marketing, UX/UI design, and creative digital roles.</p>
-    <div class="contact-links">
-      <a href="mailto:Molcur9284@gmail.com" class="contact-btn contact-btn-primary">Molcur9284@gmail.com</a>
-      <a href="https://linkedin.com/in/mollyycurtiss" target="_blank" class="contact-btn contact-btn-secondary">LinkedIn</a>
-      <a href="Molly_Curtis_Resume.pdf" target="_blank" class="contact-btn contact-btn-secondary">Download Résumé</a>
+  <section id="skills">
+    <div class="inner">
+      <p class="section-label">What I Bring</p>
+      <h2 class="section-title">Skills &amp; <span class="grad">Expertise</span></h2>
+      <hr class="divider" />
+      <div class="skills-layout">
+        <div class="skill-group">
+          <h3>Design & Creation</h3>
+          <div class="skill-pills">
+            <span class="skill-pill">UI / UX Design</span>
+            <span class="skill-pill">Landing Page Design</span>
+            <span class="skill-pill">HTML & CSS</span>
+            <span class="skill-pill">Graphic Design</span>
+            <span class="skill-pill">Display Ad Design</span>
+            <span class="skill-pill">Web Banner Design</span>
+            <span class="skill-pill">Adobe Creative Suite</span>
+            <span class="skill-pill">Figma</span>
+            <span class="skill-pill">Canva</span>
+            <span class="skill-pill">Adobe Photoshop</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Marketing & Growth</h3>
+          <div class="skill-pills">
+            <span class="skill-pill">Conversion Optimization</span>
+            <span class="skill-pill">Campaign Creative</span>
+            <span class="skill-pill">Paid Media Strategy</span>
+            <span class="skill-pill">Organic Social</span>
+            <span class="skill-pill">Email Marketing</span>
+            <span class="skill-pill">SEO Basics</span>
+            <span class="skill-pill">A/B Testing</span>
+            <span class="skill-pill">Display Advertising</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Analytics & Data</h3>
+          <div class="skill-pills">
+            <span class="skill-pill">Google Analytics (GA4)</span>
+            <span class="skill-pill">Conversion Tracking</span>
+            <span class="skill-pill">Performance Reporting</span>
+            <span class="skill-pill">Data Analysis</span>
+            <span class="skill-pill">Data-Informed Design</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Strategy & Process</h3>
+          <div class="skill-pills">
+            <span class="skill-pill">User Research</span>
+            <span class="skill-pill">Wireframing</span>
+            <span class="skill-pill">Content Strategy</span>
+            <span class="skill-pill">User Flow & Page Structure</span>
+            <span class="skill-pill">Brand Consistency</span>
+            <span class="skill-pill">Cross-Functional Collaboration</span>
+            <span class="skill-pill">Shopify</span>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <section id="photography" style="background: var(--soft-gray);">
+    <div class="inner">
+      <p class="section-label">Beyond the Screen</p>
+      <h2 class="section-title">Photo<span class="grad">graphy</span></h2>
+      <hr class="divider" />
+      <div class="photo-section-layout">
+        <div class="photo-text">
+          <p>Photography sharpens the same instincts I bring to design — composition, storytelling, pacing, and attention to detail.</p>
+          <p>I've been shooting professionally since 2019, with work published in 30+ magazines and online features. My focus is portrait and editorial photography.</p>
+          <p>The eye I've developed behind the lens directly informs how I approach layout, visual hierarchy, and the emotional impact of a design.</p>
+          <a href="https://molcurphotos.com" target="_blank" class="btn-primary" style="margin-top:0.5rem;">View Full Portfolio →</a>
+        </div>
+        <div class="photo-grid-3">
+          <!-- Replace each .photo-item with your photo:
+               <div class="photo-item"><img src="photo1.jpg" alt="" /></div> -->
+          <div class="photo-item">Photo 1</div>
+          <div class="photo-item">Photo 2</div>
+          <div class="photo-item">Photo 3</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="inner">
+      <p class="section-label">The Person Behind the Work</p>
+      <h2 class="section-title">About <span class="grad">Me</span></h2>
+      <hr class="divider" />
+      <div class="about-layout">
+        <div class="about-text">
+          <p>I'm a digital experience designer with a background in marketing and growth, focused on creating work that is both visually strong and performance-driven.</p>
+          <p>My experience spans landing pages, digital campaigns, ad creative, and conversion-focused design. I enjoy building digital experiences that connect the first impression of a campaign to the action that follows.</p>
+          <p>At NBI, I've worked across the full digital stack — redesigning key web experiences, supporting campaign launches across paid, email, and organic channels, and creating creative that helps marketing perform more effectively. I grew from intern to analyst to specialist, building a foundation in both the data and design sides of digital marketing.</p>
+          <p>I believe strong design builds trust, and trust drives action.</p>
+          <div class="looking-for-box">
+            <h4 class="grad">What I'm Looking For</h4>
+            <p>I'm most excited by roles where design, marketing, and data intersect — especially teams that care about thoughtful user experience, strong creative, and measurable results. The work I enjoy most is cross-channel, collaborative, and tied to real business impact.</p>
+          </div>
+        </div>
+        <div>
+          <div class="aside-block"><h4 class="grad">Currently</h4><p>Digital Marketing Specialist<br/>National Business Institute — Feb 2026–Present</p></div>
+          <div class="aside-block"><h4 class="grad">Education</h4><p>Bachelor of Business Administration, Marketing<br/>University of Wisconsin – Eau Claire, 2023</p></div>
+          <div class="aside-block"><h4 class="grad">Based In</h4><p>St. Paul, MN</p></div>
+          <div class="aside-block"><h4 class="grad">Photography</h4><p>Freelance since 2019 · Published in 30+ magazines<br/><a href="https://molcurphotos.com" target="_blank">molcurphotos.com →</a></p></div>
+          <div class="aside-block"><h4 class="grad">Resume</h4><p><a href="Molly_Curtis_Resume.pdf" target="_blank">Download PDF →</a></p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" style="background: var(--soft-gray);">
+    <div class="inner">
+      <div class="contact-inner">
+        <p class="section-label" style="text-align:center;">Get In Touch</p>
+        <h2 class="section-title" style="text-align:center;">Let's <span class="grad">Work Together</span></h2>
+        <hr class="divider" style="margin: 0 auto 1.5rem;" />
+        <p>Open to new opportunities in growth marketing, UX/UI design, and creative digital roles.</p>
+        <div class="contact-links">
+          <a href="mailto:Molcur9284@gmail.com" class="btn-primary">Molcur9284@gmail.com</a>
+          <a href="https://linkedin.com/in/mollyycurtiss" target="_blank" class="btn-secondary">LinkedIn</a>
+          <a href="Molly_Curtis_Resume.pdf" target="_blank" class="btn-secondary">Resume</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <footer>
     <p>© 2025 <span>Molly Curtis</span>. Designed & built by me.</p>
   </footer>
+
+  <script>
+    function toggleImg(toggleId, badgeId) {
+      const el = document.getElementById(toggleId);
+      const badge = document.getElementById(badgeId);
+      el.classList.toggle('show-before');
+      badge.textContent = el.classList.contains('show-before') ? 'Before' : 'After';
+    }
+  </script>
 
 </body>
 </html>
