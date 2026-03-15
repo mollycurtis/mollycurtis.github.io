@@ -215,10 +215,10 @@
 
     /* SKILLS */
     .skills-layout { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.8rem; }
-    .skill-group h3 { font-family: 'Playfair Display', serif; font-size: 1.05rem; margin-bottom: 1rem; }
-    .skill-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-    .skill-pill { padding: 0.42rem 0.95rem; border-radius: 30px; font-size: 0.8rem; border: 1.5px solid #ddd; background: white; color: #555; transition: all 0.2s; cursor: default; }
-    .skill-pill:hover { border-color: transparent; background: var(--gradient); color: white; }
+    .skill-group h3 { font-family: 'Playfair Display', serif; font-size: 1.05rem; margin-bottom: 1.1rem; }
+    .skill-pills { display: flex; flex-wrap: wrap; gap: 0.55rem; }
+    .skill-pill { padding: 0.45rem 1.05rem; border-radius: 30px; font-size: 0.78rem; font-weight: 500; background: white; color: #7b5ea7; border: 1.5px solid rgba(185,79,200,0.25); box-shadow: inset 0 0 0 0 transparent; transition: all 0.2s; cursor: default; }
+    .skill-pill:hover { background: var(--gradient); color: white; border-color: transparent; }
 
     /* PHOTOGRAPHY */
     .photo-section-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
@@ -226,6 +226,16 @@
     .photo-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.9rem; }
     .photo-item { aspect-ratio: 4/5; border-radius: 8px; overflow: hidden; background: linear-gradient(135deg, #f0e8f5, #f5e8ed); display: flex; align-items: center; justify-content: center; font-size: 0.78rem; color: #ccc; font-style: italic; }
     .photo-item img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* PHOTO SLIDESHOW */
+    .photo-slideshow { position: relative; border-radius: 10px; overflow: hidden; aspect-ratio: 4/5; background: #f0e8f5; }
+    .photo-slideshow img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.8s ease; }
+    .photo-slideshow img.active { opacity: 1; }
+    .slideshow-dots { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; z-index: 2; }
+    .slideshow-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.5); transition: all 0.3s; border: none; padding: 0; cursor: default; }
+    .slideshow-dot.active { background: white; width: 16px; border-radius: 3px; }
+    .photo-placeholder-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; }
+    .photo-placeholder-item { aspect-ratio: 4/5; border-radius: 8px; background: linear-gradient(135deg, #f0e8f5, #f5e8ed); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; color: #ccc; font-style: italic; }
 
     /* ABOUT */
     .about-layout { display: grid; grid-template-columns: 1.3fr 1fr; gap: 5.5rem; align-items: start; }
@@ -384,12 +394,10 @@
                   <span class="tag">Page Redesign</span>
                 </div>
                 <h3>NBI Subscription Page Redesign</h3>
-                <p>Redesigned a key subscription page to simplify decision-making and reduce friction. The goal: make the right choice obvious the moment a customer lands. Click the preview to compare before and after.</p>
+                <p>Redesigned a key subscription page to reduce friction and simplify decision-making — the goal was to make the value clear the moment a visitor lands on the page. Click the preview to compare before and after.</p>
               </div>
-
-              <!-- PREVIEW THUMBNAIL → opens modal -->
               <div class="preview-thumb" onclick="openModal('modalSub')">
-                <img src="Subscriptoin-Page-After.png" alt="Subscription page after redesign" />
+                <img src="Subscription-Page-After.png" alt="Subscription page after redesign" />
                 <div class="preview-overlay">
                   <div class="preview-badge-wrap">
                     <span class="preview-badge">Before & After</span>
@@ -397,36 +405,35 @@
                   </div>
                 </div>
               </div>
-
               <div class="featured-case-body">
                 <div class="fcase-item fcase-span2">
                   <label>What I Worked On</label>
                   <ul>
                     <li>Audited the existing experience and identified drop-off points</li>
-                    <li>Restructured layout and messaging hierarchy for clarity</li>
-                    <li>Simplified the page flow to reduce cognitive load — less is more</li>
+                    <li>Restructured layout and messaging hierarchy</li>
+                    <li>Simplified the page flow to reduce cognitive load</li>
                     <li>Clarified calls to action for a focused, conversion-driven experience</li>
                   </ul>
                 </div>
                 <div class="fcase-item"><label>My Role</label><span>Lead Designer & Strategist</span></div>
                 <div class="fcase-item"><label>Tools Used</label><span>HTML/CSS, Shogun, Claude, Canva, GA4</span></div>
                 <div class="fcase-item fcase-span2"><label>Impact</label><span>Drove an X% increase in subscriptions through a clearer, more intuitive user journey that simplified decision-making for customers from the moment they landed on the page</span></div>
-                <div class="fcase-item fcase-span2"><label>What I Learned</label><span>When the goal is conversion, clarity and hierarchy matter more than complexity. Removing friction is as valuable as adding features.</span></div>
+                <div class="fcase-item fcase-span2"><label>What I Learned</label><span>When the goal is conversion, clarity and hierarchy matter more than complexity.</span></div>
               </div>
             </div>
           </div>
 
-          <!-- SLIDE 2: LANDING PAGES -->
+          <!-- SLIDE 2: AI LEARNING HUB -->
           <div class="project-slide">
             <div class="featured-case">
               <div class="featured-case-header">
                 <div class="featured-tags">
-                  <span class="tag">Landing Pages</span>
-                  <span class="tag">Paid Media</span>
-                  <span class="tag">Email</span>
+                  <span class="tag">UX / Web</span>
+                  <span class="tag">Lead Generation</span>
+                  <span class="tag">Campaign</span>
                 </div>
-                <h3>Campaign Landing Pages</h3>
-                <p>Designed and launched 650+ landing pages supporting campaigns across paid search, social, email, and organic — built with conversion and clarity as the foundation.</p>
+                <h3>AI Learning Hub — Lead Generation Experience</h3>
+                <p>Designed and supported the launch of an AI Learning Hub — a centralized resource page built to attract and convert visitors interested in legal AI tools. The experience combined educational resources, gated content, and campaign promotion to drive lead generation.</p>
               </div>
               <div class="preview-thumb" style="cursor:default;">
                 <div class="thumb-placeholder-styled">Add screenshot here</div>
@@ -435,21 +442,54 @@
                 <div class="fcase-item fcase-span2">
                   <label>What I Worked On</label>
                   <ul>
-                    <li>Built pages around specific campaign goals and audience intent</li>
-                    <li>Created layouts that made key messages easy to scan</li>
-                    <li>Structured calls to action to reduce friction and support conversion</li>
-                    <li>Iterated on layout and messaging based on GA4 performance data</li>
+                    <li>Designed homepage promotional modules driving traffic to the hub</li>
+                    <li>Created the AI Learning Hub page layout and resource structure</li>
+                    <li>Supported lead generation pages connected to downloadable resources</li>
+                    <li>Designed supporting web banners to promote the initiative across the site</li>
                   </ul>
                 </div>
-                <div class="fcase-item"><label>My Role</label><span>UX Design, Page Strategy & Implementation</span></div>
-                <div class="fcase-item"><label>Tools Used</label><span>Figma, HTML/CSS, Shogun, GA4</span></div>
-                <div class="fcase-item fcase-span2"><label>Impact</label><span>Helped campaigns land more effectively through focused, conversion-oriented destination pages across 650+ launches</span></div>
-                <div class="fcase-item fcase-span2"><label>What I Learned</label><span>The strongest landing pages connect campaign promise, page message, and user action without friction. Consistency at scale requires a system, not just a style.</span></div>
+                <div class="fcase-item"><label>My Role</label><span>UX Design, Page Strategy, Campaign Support</span></div>
+                <div class="fcase-item"><label>Tools Used</label><span>Figma, HTML, CSS, GA4</span></div>
+                <div class="fcase-item fcase-span2"><label>Impact</label><span>Created a scalable resource hub that helped capture leads and support ongoing AI-focused marketing initiatives.</span></div>
+                <div class="fcase-item fcase-span2"><label>What I Learned</label><span>Educational content can be one of the most effective ways to drive engagement and lead generation when structured clearly.</span></div>
               </div>
             </div>
           </div>
 
-          <!-- SLIDE 3: CAMPAIGN CREATIVE -->
+          <!-- SLIDE 3: PERSONA-TARGETED LANDING PAGES -->
+          <div class="project-slide">
+            <div class="featured-case">
+              <div class="featured-case-header">
+                <div class="featured-tags">
+                  <span class="tag">Landing Pages</span>
+                  <span class="tag">Audience Targeting</span>
+                  <span class="tag">UX Design</span>
+                </div>
+                <h3>Persona-Targeted Campaign Landing Pages</h3>
+                <p>Designed landing pages tailored to specific states, legal topics, and audience personas — helping campaigns speak directly to the needs of different segments. These pages aligned campaign messaging with audience intent to improve engagement and conversion.</p>
+              </div>
+              <div class="preview-thumb" style="cursor:default;">
+                <div class="thumb-placeholder-styled">Add screenshot here</div>
+              </div>
+              <div class="featured-case-body">
+                <div class="fcase-item fcase-span2">
+                  <label>What I Worked On</label>
+                  <ul>
+                    <li>Designed state-specific and topic-specific landing pages</li>
+                    <li>Structured messaging around audience needs and search intent</li>
+                    <li>Created layouts that made value propositions easy to scan</li>
+                    <li>Supported campaign launches with focused conversion pages</li>
+                  </ul>
+                </div>
+                <div class="fcase-item"><label>My Role</label><span>UX Design, Page Strategy & Implementation</span></div>
+                <div class="fcase-item"><label>Tools Used</label><span>Figma, HTML, CSS, GA4</span></div>
+                <div class="fcase-item fcase-span2"><label>Impact</label><span>Helped campaigns reach the right audiences with more relevant messaging and clearer user journeys.</span></div>
+                <div class="fcase-item fcase-span2"><label>What I Learned</label><span>The most effective campaigns connect message, audience, and experience into one seamless journey.</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SLIDE 4: DIGITAL AD CREATIVE -->
           <div class="project-slide">
             <div class="featured-case">
               <div class="featured-case-header">
@@ -458,8 +498,8 @@
                   <span class="tag">Social</span>
                   <span class="tag">Web Banners</span>
                 </div>
-                <h3>Cross-Channel Campaign Creative</h3>
-                <p>Developed creative assets across digital ads, web banners, and organic social — ensuring visual consistency at every channel and touchpoint across 80+ campaigns.</p>
+                <h3>Digital Ad Creative & Campaign Assets</h3>
+                <p>Developed digital ad creative to support marketing campaigns across display networks, web banners, and social channels. Creative was designed to adapt across multiple sizes and placements while maintaining consistent messaging and visual identity.</p>
               </div>
               <div class="preview-thumb" style="cursor:default;">
                 <div class="thumb-placeholder-styled">Add ad creative board here</div>
@@ -468,37 +508,16 @@
                 <div class="fcase-item fcase-span2">
                   <label>What I Worked On</label>
                   <ul>
-                    <li>Designed digital ad creative in multiple sizes and formats</li>
-                    <li>Created supporting visuals for web and organic social</li>
-                    <li>Adapted campaign concepts across placements and audience touchpoints</li>
-                    <li>Balanced brand consistency with channel-specific design needs</li>
+                    <li>Designed display ads in multiple sizes and formats</li>
+                    <li>Created creative sets for different campaigns and audiences</li>
+                    <li>Adapted concepts across placements and channels</li>
+                    <li>Built creative variations to support campaign testing and optimization</li>
                   </ul>
                 </div>
                 <div class="fcase-item"><label>My Role</label><span>Designer, Campaign Creative</span></div>
                 <div class="fcase-item"><label>Tools Used</label><span>Adobe Creative Suite, Figma, Canva</span></div>
-                <div class="fcase-item fcase-span2"><label>Impact</label><span>Strengthened campaign consistency and helped bring marketing initiatives to life across the full funnel</span></div>
-                <div class="fcase-item fcase-span2"><label>What I Learned</label><span>Good campaign design isn't individual assets — it's a cohesive visual experience across every single touchpoint.</span></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- SLIDE 4: PLACEHOLDER -->
-          <div class="project-slide">
-            <div class="featured-case">
-              <div class="featured-case-header">
-                <div class="featured-tags"><span class="tag">Coming Soon</span></div>
-                <h3>Project / Campaign — Coming Soon</h3>
-                <p>More work coming soon. Check back for updates.</p>
-              </div>
-              <div class="preview-thumb" style="cursor:default;">
-                <div class="thumb-placeholder-styled">Coming soon</div>
-              </div>
-              <div class="featured-case-body">
-                <div class="fcase-item fcase-span2"><label>What I Worked On</label><ul><li>Details coming soon</li></ul></div>
-                <div class="fcase-item"><label>My Role</label><span>TBD</span></div>
-                <div class="fcase-item"><label>Tools Used</label><span>TBD</span></div>
-                <div class="fcase-item fcase-span2"><label>Impact</label><span>TBD</span></div>
-                <div class="fcase-item fcase-span2"><label>What I Learned</label><span>TBD</span></div>
+                <div class="fcase-item fcase-span2"><label>Impact</label><span>Supported marketing campaigns with scalable creative assets that could run across multiple channels and placements.</span></div>
+                <div class="fcase-item fcase-span2"><label>What I Learned</label><span>Strong ad creative is not just about individual visuals — it's about building adaptable assets that support campaign performance at scale.</span></div>
               </div>
             </div>
           </div>
@@ -526,10 +545,10 @@
       <div class="modal-hint">← Drag the slider to compare →</div>
       <div class="comparison-wrapper" id="compSlider">
         <div class="comparison-before">
-          <img src="Subscription-Page-Before2025.png" alt="Before redesign" />
+          <img src="Subscription-Page-Before.png" alt="Before redesign" />
         </div>
         <div class="comparison-after" id="afterPane">
-          <img src="Subscriptoin-Page-After.png" alt="After redesign" />
+          <img src="Subscription-Page-After.png" alt="After redesign" />
         </div>
         <div class="slider-handle" id="sliderHandle">
           <div class="slider-btn">&#8249;&#8250;</div>
@@ -605,8 +624,6 @@
             <span class="skill-pill">Performance Reporting</span>
             <span class="skill-pill">Data-Informed Design</span>
             <span class="skill-pill">AI-Powered Workflows</span>
-            <span class="skill-pill">Shogun</span>
-            <span class="skill-pill">Shopify</span>
           </div>
         </div>
       </div>
@@ -625,10 +642,17 @@
           <p>One of my most ambitious projects: I conceived, cast, and directed a 12-model editorial shoot built around the zodiac — hiring talent, MUAs, and stylists, coordinating a two-day studio shoot, sourcing every prop, and handling all retouching and delivery from start to finish. The content performed exceptionally well and stands as some of my best work.</p>
           <a href="https://molcurphotos.com" target="_blank" class="btn-primary" style="margin-top:1.2rem; display:inline-block;">View Full Portfolio →</a>
         </div>
-        <div class="photo-grid-3">
-          <div class="photo-item">Photo 1</div>
-          <div class="photo-item">Photo 2</div>
-          <div class="photo-item">Photo 3</div>
+        <div class="photo-slideshow" id="photoSlideshow">
+          <!-- Replace each src with your actual photo filenames once uploaded -->
+          <img src="photo1.jpg" alt="Photography 1" class="active" />
+          <img src="photo2.jpg" alt="Photography 2" />
+          <img src="photo3.jpg" alt="Photography 3" />
+          <img src="photo4.jpg" alt="Photography 4" />
+          <img src="photo5.jpg" alt="Photography 5" />
+          <img src="photo6.jpg" alt="Photography 6" />
+          <img src="photo7.jpg" alt="Photography 7" />
+          <img src="photo8.jpg" alt="Photography 8" />
+          <div class="slideshow-dots" id="slideshowDots"></div>
         </div>
       </div>
     </div>
@@ -654,14 +678,13 @@
         <div>
           <div class="aside-block"><h4 class="grad">Currently</h4><p>Digital Marketing Specialist<br/>National Business Institute — June 2023–Present</p></div>
           <div class="aside-block"><h4 class="grad">Education</h4><p>Bachelor of Business Administration, Marketing<br/>University of Wisconsin – Eau Claire, 2023</p></div>
-          <div class="aside-block"><h4 class="grad">Location</h4><p>Eau Claire, WI → St. Paul, MN (soon)<br/><span style="font-size:0.82rem; color:#b94fc8;">Open to remote work</span></p></div>
-          <div class="aside-block"><h4 class="grad">Resume</h4><p><a href="Molly_Curtis_Resume.pdf" target="_blank">Download PDF →</a></p></div>
+          <div class="aside-block"><h4 class="grad">Location</h4><p>Eau Claire, WI → St. Paul, MN<br/><span style="font-size:0.82rem; color:#b94fc8;">Open to remote work</span></p></div>
           <div class="aside-block">
             <h4 class="grad">Fun Facts</h4>
             <ul class="fun-facts-list">
-              <li>Obsessed with interior design — thrifting for mid-century modern & eclectic vintage finds</li>
+              <li>Obsessed with interior design — always thrifting for mid-century modern & eclectic finds</li>
               <li>Cat mom to Milo 🐱</li>
-              <li>Always has her headphones on</li>
+              <li>Always has headphones on and finding new music</li>
               <li>2026 goal: try a new hobby every single month</li>
             </ul>
           </div>
@@ -679,7 +702,7 @@
         <hr class="divider" style="margin: 0 auto 1.5rem;" />
         <p class="tagline">Open to new opportunities in growth marketing, UX/UI design, and creative digital roles.</p>
         <div class="contact-links">
-          <a href="mailto:Molcur9284@gmail.com" class="btn-primary">Molcur9284@gmail.com</a>
+          <a href="/cdn-cgi/l/email-protection#91dcfefdf2e4e3a8a3a9a5d1f6fcf0f8fdbff2fefc" class="btn-primary"><span class="__cf_email__" data-cfemail="ade0c2c1ced8df949f9599edcac0ccc4c183cec2c0">[email&#160;protected]</span></a>
           <a href="https://linkedin.com/in/mollyycurtiss" target="_blank" class="btn-secondary">LinkedIn</a>
         </div>
       </div>
@@ -690,7 +713,7 @@
     <p>© 2026 <span>Molly Curtis</span>. Designed & built by me.</p>
   </footer>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // ── PROJECT SLIDER ──
     let currentSlide = 0;
     const totalSlides = 4;
@@ -781,16 +804,4 @@
 
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-          if (entry.isIntersecting && !animated) {
-            animated = true;
-            items.forEach(el => animateCount(el));
-          }
-        });
-      }, { threshold: 0.4 });
-
-      observer.observe(strip);
-    })();
-  </script>
-
-</body>
-</html>
+          i
