@@ -1,29 +1,17 @@
-// ── GLOBAL FUNCTIONS (must be global for onclick= attributes) ──
+// All interactive functions must be global so onclick="" attributes can call them
 
 var currentSlide = 0;
 var totalSlides = 4;
 
 function updateSlider() {
-  var slides = document.querySelectorAll('.project-slide');
+  var slider = document.getElementById('projectSlider');
   var dots = document.querySelectorAll('.slider-dot');
   var progress = document.getElementById('slideProgress');
-  var wrap = document.getElementById('projectSlider');
-  if (!slides.length) return;
-
-  slides.forEach(function(slide, i) {
-    slide.style.transition = 'transform 0.5s cubic-bezier(0.4,0,0.2,1)';
-    slide.style.transform = 'translateX(' + ((i - currentSlide) * 100) + '%)';
-  });
-
+  if (!slider) return;
+  slider.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+  slider.style.transition = 'transform 0.5s cubic-bezier(0.4,0,0.2,1)';
   dots.forEach(function(d, i) { d.classList.toggle('active', i === currentSlide); });
   if (progress) progress.textContent = (currentSlide + 1) + ' / ' + totalSlides;
-
-  // Update wrap height to active slide height
-  if (wrap) {
-    setTimeout(function() {
-      wrap.style.height = slides[currentSlide].offsetHeight + 'px';
-    }, 520);
-  }
 }
 
 function slideProject(dir) {
@@ -50,34 +38,16 @@ function closeModalOutside(e, id) {
   if (e.target === document.getElementById(id)) closeModal(id);
 }
 
-// ── DOM READY ──
-document.addEventListener('DOMContentLoaded', function() {
+window.addEventListener('load', function() {
 
-  // ── INIT SLIDER ──
-  var slides = document.querySelectorAll('.project-slide');
-  var wrap = document.getElementById('projectSlider');
-
-  if (slides.length && wrap) {
-    // Position all slides, no transition on init
-    slides.forEach(function(slide, i) {
-      slide.style.position = 'absolute';
-      slide.style.top = '0';
-      slide.style.left = '0';
-      slide.style.width = '100%';
-      slide.style.transition = 'none';
-      slide.style.transform = 'translateX(' + (i * 100) + '%)';
-    });
-
-    // Set wrap height to slide 0 height
-    wrap.style.position = 'relative';
-    wrap.style.overflow = 'hidden';
-    wrap.style.height = slides[0].offsetHeight + 'px';
-    window.addEventListener('resize', function() {
-      wrap.style.height = slides[currentSlide].offsetHeight + 'px';
-    });
+  // Force slider to position 0 on load
+  var slider = document.getElementById('projectSlider');
+  if (slider) {
+    slider.style.transition = 'none';
+    slider.style.transform = 'translateX(0)';
   }
 
-  // ── COMPARISON SLIDER ──
+  // Comparison slider
   var compWrapper = document.getElementById('compSlider');
   var afterPane = document.getElementById('afterPane');
   var handle = document.getElementById('sliderHandle');
@@ -97,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('touchend', function() { dragging = false; });
   }
 
-  // ── COUNT-UP ──
+  // Count-up animation
   var strip = document.getElementById('impactStrip');
   if (strip) {
     var countItems = strip.querySelectorAll('.count-up');
@@ -107,14 +77,18 @@ document.addEventListener('DOMContentLoaded', function() {
       var target = el.getAttribute('data-target');
       var suffix = el.getAttribute('data-suffix') || '';
       var prefix = el.getAttribute('data-prefix') || '';
-      if (isNaN(target) || target === '') return;
+      if (!target || isNaN(target)) return;
       var end = parseInt(target);
       var dur = 1800;
       var t0 = performance.now();
       function tick(now) {
         var p = Math.min((now - t0) / dur, 1);
         var v = Math.round(easeOut(p) * end);
-        el.textContent = end >= 1000 ? (v >= 1000 ? '1K+' : v + suffix) : prefix + v + suffix;
+        if (end >= 1000) {
+          el.textContent = v >= 1000 ? '1K+' : v + suffix;
+        } else {
+          el.textContent = prefix + v + suffix;
+        }
         if (p < 1) requestAnimationFrame(tick);
       }
       requestAnimationFrame(tick);
@@ -122,20 +96,21 @@ document.addEventListener('DOMContentLoaded', function() {
     new IntersectionObserver(function(entries) {
       if (entries[0].isIntersecting && !counted) {
         counted = true;
-        countItems.forEach(animateCount);
+        countItems.forEach(function(el) { animateCount(el); });
       }
     }, { threshold: 0.3 }).observe(strip);
   }
 
-  // ── PHOTO SLIDESHOW ──
+  // Photo slideshow
   var ss = document.getElementById('photoSlideshow');
   if (ss) {
     var dotsEl = document.getElementById('slideshowDots');
     var ssIdx = 0;
     setTimeout(function() {
-      var validImgs = Array.prototype.filter.call(ss.querySelectorAll('img'), function(img) {
-        return img.style.display !== 'none';
-      });
+      var validImgs = Array.prototype.filter.call(
+        ss.querySelectorAll('img'),
+        function(img) { return img.style.display !== 'none'; }
+      );
       if (!validImgs.length) return;
       var ph = ss.querySelector('.slideshow-placeholder');
       if (ph) ph.style.display = 'none';
@@ -150,16 +125,18 @@ document.addEventListener('DOMContentLoaded', function() {
       function showPhoto(n) {
         validImgs.forEach(function(img, i) { img.classList.toggle('active', i === n); });
         if (dotsEl) {
-          dotsEl.querySelectorAll('.slideshow-dot').forEach(function(d, i) { d.classList.toggle('active', i === n); });
+          dotsEl.querySelectorAll('.slideshow-dot').forEach(function(d, i) {
+            d.classList.toggle('active', i === n);
+          });
         }
         ssIdx = n;
       }
       showPhoto(0);
       setInterval(function() { showPhoto((ssIdx + 1) % validImgs.length); }, 3500);
-    }, 300);
+    }, 400);
   }
 
-  // ── BACK TO TOP ──
+  // Back to top
   var btn = document.getElementById('backToTop');
   if (btn) {
     window.addEventListener('scroll', function() {
