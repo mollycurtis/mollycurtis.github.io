@@ -29,6 +29,8 @@
     .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
     .nav-links a { text-decoration: none; color: var(--dark); font-size: 0.85rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; transition: opacity 0.2s; }
     .nav-links a:hover { opacity: 0.5; }
+    .nav-linkedin { padding: 0.55rem 1.2rem; border: 1.5px solid rgba(185,79,200,0.4); color: #b94fc8 !important; border-radius: 30px; font-size: 0.8rem !important; transition: all 0.2s; }
+    .nav-linkedin:hover { background: rgba(185,79,200,0.08); opacity: 1 !important; }
     .nav-resume { padding: 0.55rem 1.2rem; background: var(--gradient); color: white !important; border-radius: 30px; font-size: 0.8rem !important; }
 
     /* HERO */
@@ -67,14 +69,14 @@
 
     /* PROJECT SLIDER */
     .project-slider-wrap { position: relative; }
-    .project-slider { display: flex; overflow: hidden; }
-    .project-slide { min-width: 100%; }
+    .project-slider { display: flex; overflow: hidden; width: 100%; }
+    .project-slide { min-width: 100%; flex-shrink: 0; width: 100%; }
 
     /* FEATURED CASE */
     .featured-case { background: white; border-radius: 14px; overflow: hidden; box-shadow: 0 4px 32px rgba(0,0,0,0.08); }
     .featured-case-header { padding: 2.2rem 2.8rem 1.6rem; }
     .featured-case-header h3 { font-family: 'Playfair Display', serif; font-size: 1.7rem; margin-bottom: 0.45rem; }
-    .featured-case-header p { font-size: 0.95rem; color: #666; font-weight: 300; line-height: 1.75; max-width: 720px; }
+    .featured-case-header p { font-size: 0.95rem; color: #666; font-weight: 300; line-height: 1.75; }
     .featured-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.7rem; }
     .tag { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.28rem 0.7rem; border-radius: 20px; background: var(--soft-gray); color: #777; }
 
@@ -221,8 +223,9 @@
     .skill-pill:hover { background: var(--gradient); color: white; border-color: transparent; }
 
     /* PHOTOGRAPHY */
-    .photo-section-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .photo-section-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; margin-top: -0.5rem; }
     .photo-text p { font-size: 1rem; color: #555; font-weight: 300; margin-bottom: 1.2rem; line-height: 1.85; }
+    .photo-text p:first-child { margin-top: 0; }
     .photo-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.9rem; }
     .photo-item { aspect-ratio: 4/5; border-radius: 8px; overflow: hidden; background: linear-gradient(135deg, #f0e8f5, #f5e8ed); display: flex; align-items: center; justify-content: center; font-size: 0.78rem; color: #ccc; font-style: italic; }
     .photo-item img { width: 100%; height: 100%; object-fit: cover; }
@@ -317,6 +320,7 @@
         <li><a href="#skills">Skills</a></li>
         <li><a href="#photography">Photography</a></li>
         <li><a href="#about">About</a></li>
+        <li><a href="https://linkedin.com/in/mollyycurtiss" target="_blank" class="nav-linkedin">LinkedIn</a></li>
         <li><a href="Molly_Curtis_Resume.pdf" target="_blank" class="nav-resume">Resume</a></li>
       </ul>
     </div>
@@ -401,11 +405,11 @@
                   <span class="tag">Conversion</span>
                   <span class="tag">Page Redesign</span>
                 </div>
-                <h3>NBI Subscription Page Redesign</h3>
+                <h3>Subscription Page Redesign</h3>
                 <p>Redesigned a key subscription page to reduce friction and simplify decision-making — the goal was to make the value clear the moment a visitor lands on the page. Click the preview to compare before and after.</p>
               </div>
               <div class="preview-thumb" onclick="openModal('modalSub')">
-                <img src="Subscription-Page-After.png" alt="Subscription page after redesign" />
+                <img src="Subscription-Page-Before.png" alt="Subscription page before redesign" />
                 <div class="preview-overlay">
                   <div class="preview-badge-wrap">
                     <span class="preview-badge">Before & After</span>
@@ -426,7 +430,7 @@
                 <div class="fcase-item"><label>My Role</label><span>Lead Designer & Strategist</span></div>
                 <div class="fcase-item"><label>Tools Used</label><span>HTML/CSS, Shogun, Claude, Canva, GA4</span></div>
                 <div class="fcase-item fcase-span2"><label>Impact</label><span>Drove an X% increase in subscriptions through a clearer, more intuitive user journey that simplified decision-making for customers from the moment they landed on the page</span></div>
-                <div class="fcase-item fcase-span2"><label>What I Learned</label><span>When the goal is conversion, clarity and hierarchy matter more than complexity.</span></div>
+                <div class="fcase-item fcase-span2"><label>What I Learned</label><span>When the goal is conversion, clarity and hierarchy matter more than complexity. Stripping a page down to only what drives action is often more effective than adding more content.</span></div>
               </div>
             </div>
           </div>
@@ -561,8 +565,8 @@
         <div class="slider-handle" id="sliderHandle">
           <div class="slider-btn">&#8249;&#8250;</div>
         </div>
-        <span class="comparison-label label-before">Before</span>
-        <span class="comparison-label label-after">After</span>
+        <span class="comparison-label label-before">After</span>
+        <span class="comparison-label label-after">Before</span>
       </div>
     </div>
   </div>
@@ -713,10 +717,7 @@
         <h2 class="section-title" style="text-align:center;">Let's <span class="grad">Work Together</span></h2>
         <hr class="divider" style="margin: 0 auto 1.5rem;" />
         <p class="tagline">Open to new opportunities in growth marketing, UX/UI design, and creative digital roles.</p>
-        <div class="contact-links">
-          <a href="/cdn-cgi/l/email-protection#91dcfefdf2e4e3a8a3a9a5d1f6fcf0f8fdbff2fefc" class="btn-primary"><span class="__cf_email__" data-cfemail="ade0c2c1ced8df949f9599edcac0ccc4c183cec2c0">[email&#160;protected]</span></a>
-          <a href="https://linkedin.com/in/mollyycurtiss" target="_blank" class="btn-secondary">LinkedIn</a>
-        </div>
+        <p style="font-size:1.05rem; color:#555; font-weight:400; margin-top:-0.5rem;">Reach out at <strong style="color:#1a1a1a;">Molcur9284@gmail.com</strong></p>
       </div>
     </div>
   </section>
