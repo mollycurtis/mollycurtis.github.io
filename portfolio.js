@@ -3,12 +3,14 @@ var currentSlide = 0;
 var totalSlides = 4;
 
 function updateSlider() {
-  var slider = document.getElementById('projectSlider');
+  var slides = document.querySelectorAll('.project-slide');
   var dots = document.querySelectorAll('.slider-dot');
   var progress = document.getElementById('slideProgress');
-  if (!slider) return;
-  slider.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
-  slider.style.transition = 'transform 0.5s cubic-bezier(0.4,0,0.2,1)';
+  if (!slides.length) return;
+  slides.forEach(function(slide, i) {
+    slide.style.transform = 'translateX(' + ((i - currentSlide) * 100) + '%)';
+    slide.style.transition = 'transform 0.5s cubic-bezier(0.4,0,0.2,1)';
+  });
   dots.forEach(function(d, i) { d.classList.toggle('active', i === currentSlide); });
   if (progress) progress.textContent = (currentSlide + 1) + ' / ' + totalSlides;
 }
@@ -40,11 +42,31 @@ function closeModalOutside(e, id) {
 // ── DOM READY ──
 document.addEventListener('DOMContentLoaded', function() {
 
-  // Force slider to correct initial state
-  var slider = document.getElementById('projectSlider');
-  if (slider) {
-    slider.style.transform = 'translateX(0)';
-    slider.style.transition = 'none';
+  // Init slider — position all slides absolutely side by side
+  var slides = document.querySelectorAll('.project-slide');
+  var wrap = document.getElementById('projectSlider');
+  if (slides.length && wrap) {
+    // Make the slider a position:relative container
+    wrap.style.position = 'relative';
+    wrap.style.overflow = 'hidden';
+    // Set each slide to absolute, full width, stacked
+    slides.forEach(function(slide, i) {
+      slide.style.position = 'absolute';
+      slide.style.top = '0';
+      slide.style.left = '0';
+      slide.style.width = '100%';
+      slide.style.transform = 'translateX(' + (i * 100) + '%)';
+      slide.style.transition = 'none';
+    });
+    // Set wrap height to match first slide
+    function syncHeight() {
+      wrap.style.height = slides[currentSlide].offsetHeight + 'px';
+    }
+    syncHeight();
+    window.addEventListener('resize', syncHeight);
+
+    // Re-sync height after slide transition
+    wrap.addEventListener('transitionend', syncHeight);
   }
 
   // Comparison slider
