@@ -69,8 +69,8 @@
 
     /* PROJECT SLIDER */
     .project-slider-wrap { position: relative; }
-    .project-slider { position: relative; overflow: hidden; width: 100%; min-height: 200px; }
-    .project-slide { position: absolute; top: 0; left: 0; width: 100%; }
+    .project-slider { display: flex; overflow: hidden; width: 100%; }
+    .project-slide { min-width: 100%; flex-shrink: 0; width: 100%; box-sizing: border-box; }
 
     /* FEATURED CASE */
     .featured-case { background: white; border-radius: 14px; overflow: hidden; box-shadow: 0 4px 32px rgba(0,0,0,0.08); }
