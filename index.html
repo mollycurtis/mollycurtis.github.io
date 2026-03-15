@@ -267,6 +267,42 @@
     .contact-inner .tagline { font-size: 1.05rem; color: #777; margin-bottom: 2.4rem; font-weight: 300; white-space: nowrap; }
     .contact-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
+    /* BACK TO TOP */
+    #backToTop {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: var(--gradient);
+      color: white;
+      border: none;
+      font-size: 1.1rem;
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s, transform 0.3s;
+      z-index: 99;
+      box-shadow: 0 4px 16px rgba(185,79,200,0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #backToTop.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
+    /* MOBILE NAV */
+    @media (max-width: 680px) {
+      .nav-inner { padding: 1rem 1.2rem; }
+      .nav-links { gap: 0.8rem; }
+      .nav-links li:not(:last-child):not(:nth-last-child(2)):not(:nth-last-child(3)) { display: none; }
+      .nav-links a { font-size: 0.72rem; }
+      .nav-resume, .nav-linkedin { padding: 0.45rem 0.85rem; font-size: 0.72rem !important; }
+    }
+    @media (max-width: 420px) {
+      .nav-links li:not(:last-child):not(:nth-last-child(2)) { display: none; }
+    }
+
     footer { background: var(--dark); color: rgba(255,255,255,0.35); text-align: center; padding: 2rem 2.5rem; font-size: 0.82rem; }
     footer span { color: rgba(255,255,255,0.6); }
 
@@ -717,7 +753,7 @@
         <h2 class="section-title" style="text-align:center;">Let's <span class="grad">Work Together</span></h2>
         <hr class="divider" style="margin: 0 auto 1.5rem;" />
         <p class="tagline">Open to new opportunities in growth marketing, UX/UI design, and creative digital roles.</p>
-        <p style="font-size:1.05rem; color:#555; font-weight:400; margin-top:-0.5rem;">Reach out at <strong style="color:#1a1a1a;"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3a775556594f480308020e7a5d575b535614595557">[email&#160;protected]</a></strong></p>
+        <p style="font-size:1.05rem; color:#555; font-weight:400; margin-top:0.5rem;">Reach out at molcur9284@gmail.com</p>
       </div>
     </div>
   </section>
