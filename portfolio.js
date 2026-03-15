@@ -40,6 +40,13 @@ function closeModalOutside(e, id) {
 // ── DOM READY ──
 document.addEventListener('DOMContentLoaded', function() {
 
+  // Force slider to correct initial state
+  var slider = document.getElementById('projectSlider');
+  if (slider) {
+    slider.style.transform = 'translateX(0)';
+    slider.style.transition = 'none';
+  }
+
   // Comparison slider
   var wrapper = document.getElementById('compSlider');
   var afterPane = document.getElementById('afterPane');
