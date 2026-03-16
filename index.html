@@ -8,523 +8,552 @@
   <style>
     :root {
       --gradient: linear-gradient(135deg, #e8445a 0%, #b94fc8 55%, #7b5ea7 100%);
-      --gradient-text: linear-gradient(135deg, #e8445a 0%, #c040c8 60%, #7b5ea7 100%);
+      --gt: linear-gradient(135deg, #e8445a 0%, #c040c8 60%, #7b5ea7 100%);
       --off-white: #faf9f7;
       --soft-gray: #f2f0ed;
       --mid-gray: #999;
       --dark: #1a1a1a;
-      --max-width: 1300px;
+      --mw: 1280px;
     }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'DM Sans', sans-serif; background: var(--off-white); color: var(--dark); font-size: 17px; line-height: 1.7; }
-    .grad { background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .inner { max-width: var(--max-width); margin: 0 auto; width: 100%; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--off-white); color: var(--dark); font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    .grad { background: var(--gt); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .inner { max-width: var(--mw); margin: 0 auto; width: 100%; padding: 0 2.5rem; }
 
     /* NAV */
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--gradient); }
-    .nav-inner { max-width: var(--max-width); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 2.5rem; }
-    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; color: white; }
-    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
-    .nav-links a { text-decoration: none; color: white; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; transition: opacity 0.2s; }
-    .nav-links a:hover { opacity: 0.7; }
-    .nav-linkedin { padding: 0.55rem 1.2rem; border: 1.5px solid rgba(255,255,255,0.7); color: white !important; border-radius: 30px; font-size: 0.8rem !important; transition: all 0.2s; }
-    .nav-linkedin:hover { background: rgba(255,255,255,0.15); opacity: 1 !important; }
-    .nav-resume { padding: 0.55rem 1.2rem; background: white; color: #b94fc8 !important; border-radius: 30px; font-size: 0.8rem !important; font-weight: 600 !important; }
-    .nav-resume:hover { opacity: 0.9 !important; }
+    .nav-inner { max-width: var(--mw); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1rem 2.5rem; }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: white; letter-spacing: 0.02em; }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; align-items: center; }
+    .nav-links a { text-decoration: none; color: rgba(255,255,255,0.85); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase; transition: opacity 0.2s; }
+    .nav-links a:hover { opacity: 0.6; }
+    .nav-pill { padding: 0.45rem 1rem; border-radius: 30px; font-size: 0.75rem !important; }
+    .nav-li { border: 1.5px solid rgba(255,255,255,0.6); color: rgba(255,255,255,0.9) !important; }
+    .nav-li:hover { background: rgba(255,255,255,0.12); opacity: 1 !important; }
+    .nav-re { background: white; color: #b94fc8 !important; font-weight: 600 !important; }
+    .nav-re:hover { opacity: 0.88 !important; }
+
+    /* BUTTONS */
+    .btn { display: inline-block; text-decoration: none; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; border-radius: 30px; padding: 0.78rem 1.8rem; transition: opacity 0.2s, transform 0.2s; }
+    .btn:hover { opacity: 0.85; transform: translateY(-1px); }
+    .btn-grad { background: var(--gradient); color: white; }
+    .btn-outline { border: 1.5px solid #ccc; color: var(--dark); }
+    .btn-outline:hover { border-color: #b94fc8; }
 
     /* HERO */
-    .hero { min-height: 100vh; display: flex; align-items: center; padding: 7rem 2.5rem 4rem; }
-    .hero-inner { max-width: var(--max-width); margin: 0 auto; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 5rem; width: 100%; }
-    .hero-text { max-width: 680px; }
-    .hero-eyebrow { font-size: 0.82rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mid-gray); margin-bottom: 1.1rem; }
-    .hero-name { font-family: 'Playfair Display', serif; font-size: clamp(4rem, 5.5vw, 6.2rem); line-height: 1.0; white-space: nowrap; margin-bottom: 0.5rem; }
-    .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(1.1rem, 1.8vw, 1.55rem); font-style: italic; color: #777; margin-bottom: 1.6rem; }
-    .hero-bio { font-size: 1.08rem; font-weight: 300; color: #444; max-width: 560px; margin-bottom: 1rem; line-height: 1.85; }
-    .hero-bio-2 { font-size: 0.97rem; font-weight: 300; color: #777; max-width: 540px; margin-bottom: 1.8rem; line-height: 1.85; }
-    .hero-specialties { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
-    .specialty-tag { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.05em; padding: 0.32rem 0.9rem; border-radius: 30px; border: 1.5px solid rgba(185,79,200,0.3); color: #b94fc8; background: rgba(185,79,200,0.05); }
-    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .btn-primary { display: inline-block; padding: 0.85rem 2rem; background: var(--gradient); color: white; text-decoration: none; font-size: 0.88rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; border-radius: 30px; transition: opacity 0.2s, transform 0.2s; }
-    .btn-primary:hover { opacity: 0.88; transform: translateY(-2px); }
-    .btn-secondary { display: inline-block; padding: 0.85rem 2rem; border: 1.5px solid #ccc; color: var(--dark); text-decoration: none; font-size: 0.88rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; border-radius: 30px; transition: all 0.2s; }
-    .btn-secondary:hover { border-color: var(--dark); }
-    .hero-image { flex-shrink: 0; }
-    .hero-img-circle { width: 420px; height: 420px; border-radius: 50%; overflow: hidden; position: relative; box-shadow: 0 0 0 8px white, 0 0 0 13px rgba(185,79,200,0.2); }
-    .hero-img-circle img { width: 100%; height: 130%; object-fit: cover; object-position: center 15%; display: block; margin-top: -15%; }
+    .hero { min-height: 100vh; display: flex; align-items: center; padding: 6.5rem 2.5rem 3.5rem; }
+    .hero-inner { max-width: var(--mw); margin: 0 auto; display: grid; grid-template-columns: 1fr 420px; align-items: center; gap: 5rem; width: 100%; }
+    .hero-eyebrow { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--mid-gray); margin-bottom: 0.9rem; }
+    .hero-name { font-family: 'Playfair Display', serif; font-size: clamp(3.6rem, 5vw, 5.8rem); line-height: 1.0; white-space: nowrap; margin-bottom: 0.4rem; text-shadow: 0 2px 20px rgba(200,64,200,0.08); }
+    .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(1rem, 1.6vw, 1.4rem); font-style: italic; color: #777; margin-bottom: 1.4rem; }
+    .hero-bio { font-size: 1rem; font-weight: 300; color: #444; max-width: 520px; margin-bottom: 1.6rem; line-height: 1.82; }
+    .hero-pills { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 1.8rem; }
+    .pill { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.04em; padding: 0.3rem 0.85rem; border-radius: 30px; border: 1.5px solid rgba(185,79,200,0.28); color: #b94fc8; background: rgba(185,79,200,0.05); white-space: nowrap; }
+    .hero-ctas { display: flex; gap: 0.9rem; flex-wrap: wrap; }
+    .hero-img-wrap { width: 420px; height: 420px; border-radius: 50%; overflow: hidden; box-shadow: 0 0 0 7px white, 0 0 0 11px rgba(185,79,200,0.18); flex-shrink: 0; }
+    .hero-img-wrap img { width: 100%; height: 130%; object-fit: cover; object-position: center 15%; display: block; margin-top: -15%; }
 
     /* IMPACT */
-    .impact-strip { background: var(--dark); padding: 3.8rem 2.5rem; }
-    .impact-inner { max-width: var(--max-width); margin: 0 auto; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 2rem; text-align: center; }
-    .impact-number { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 3.5vw, 3.4rem); line-height: 1; margin-bottom: 0.45rem; }
-    .impact-label { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.45); line-height: 1.5; }
+    .impact { background: var(--dark); padding: 3.2rem 2.5rem; }
+    .impact-inner { max-width: var(--mw); margin: 0 auto; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 1.5rem; text-align: center; }
+    .impact-n { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 3.2vw, 3rem); line-height: 1; margin-bottom: 0.35rem; }
+    .impact-l { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); line-height: 1.5; }
 
     /* SECTIONS */
-    section { padding: 6rem 2.5rem; }
-    section:nth-child(even) { background: var(--soft-gray); }
-    .section-label { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mid-gray); margin-bottom: 0.45rem; }
-    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 3.2vw, 2.9rem); line-height: 1.1; margin-bottom: 0.75rem; }
-    .section-intro { font-size: 1rem; color: #666; font-weight: 300; max-width: 580px; margin-bottom: 2.8rem; }
-    .divider { height: 3px; background: var(--gradient); border: none; border-radius: 2px; width: 52px; margin: 0 0 2.8rem; }
+    section { padding: 5rem 0; }
+    .sec-bg { background: var(--soft-gray); }
+    .sl { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--mid-gray); margin-bottom: 0.35rem; }
+    .st { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 2.8vw, 2.6rem); line-height: 1.1; margin-bottom: 0.6rem; text-shadow: 0 1px 12px rgba(200,64,200,0.07); }
+    .sdiv { height: 3px; background: var(--gradient); border: none; border-radius: 2px; width: 44px; margin: 0 0 2.2rem; }
 
-    /* PROJECT SLIDER */
-    .project-slider-wrap { position: relative; }
-    .project-slider { display: flex; overflow: hidden; width: 100%; }
-    .project-slide { min-width: 100%; flex-shrink: 0; width: 100%; box-sizing: border-box; }
+    /* SLIDER */
+    .slider-wrap { position: relative; overflow: hidden; }
+    .slider-track { display: flex; transition: transform 0.5s cubic-bezier(0.4,0,0.2,1); will-change: transform; }
+    .slide { min-width: 100%; flex-shrink: 0; }
 
-    /* FEATURED CASE */
-    .featured-case { background: white; border-radius: 14px; overflow: hidden; box-shadow: 0 4px 32px rgba(0,0,0,0.08); }
-    .featured-case-header { padding: 2.2rem 2.8rem 1.6rem; }
-    .featured-case-header h3 { font-family: 'Playfair Display', serif; font-size: 1.7rem; margin-bottom: 0.45rem; }
-    .featured-case-header p { font-size: 0.95rem; color: #666; font-weight: 300; line-height: 1.75; }
-    .featured-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.7rem; }
-    .tag { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.28rem 0.7rem; border-radius: 20px; background: var(--soft-gray); color: #777; }
-
-    /* PREVIEW THUMB */
-    .preview-thumb { position: relative; margin: 0 2.8rem; border-radius: 10px; overflow: hidden; height: 260px; background: linear-gradient(135deg, #f0e8f5, #ede8f7); cursor: pointer; }
-    .preview-thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; transition: transform 0.35s ease; }
-    .preview-thumb:hover img { transform: scale(1.02); }
-    .preview-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 50%); display: flex; align-items: flex-end; padding: 1.4rem 1.6rem; }
-    .preview-cta { display: inline-flex; align-items: center; gap: 0.5rem; background: white; color: var(--dark); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.55rem 1.1rem; border-radius: 30px; box-shadow: 0 2px 12px rgba(0,0,0,0.15); }
-    .preview-badge-wrap { display: flex; gap: 0.6rem; align-items: center; }
-    .preview-badge { font-size: 0.7rem; font-weight: 500; padding: 0.25rem 0.65rem; border-radius: 20px; background: rgba(255,255,255,0.15); color: white; backdrop-filter: blur(4px); letter-spacing: 0.06em; }
-    .thumb-placeholder-styled { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; color: #bbb; font-style: italic; }
-
-    /* MODAL */
-    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.78); z-index: 1000; align-items: center; justify-content: center; padding: 2rem; opacity: 0; transition: opacity 0.25s ease; }
-    .modal-overlay.open { opacity: 1; }
-    .modal-box { background: white; border-radius: 14px; max-width: 900px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative; }
-    .modal-close { position: absolute; top: 1rem; right: 1rem; width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid #ddd; background: white; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10; transition: all 0.2s; }
-    .modal-close:hover { border-color: #b94fc8; color: #b94fc8; }
-    .modal-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; padding: 1.8rem 2rem 0.5rem; }
-    .modal-hint { font-size: 0.76rem; color: var(--mid-gray); padding: 0 2rem 0.8rem; letter-spacing: 0.05em; }
-
-    /* COMPARISON SLIDER */
-    .comparison-wrapper { position: relative; margin: 0 2rem 2rem; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 22px rgba(0,0,0,0.1); user-select: none; cursor: col-resize; }
-    .comparison-wrapper img { display: block; width: 100%; pointer-events: none; }
-    .comparison-after { position: absolute; inset: 0; overflow: hidden; width: 50%; }
-    .comparison-after img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: top left; }
-    .comparison-before img { width: 100%; display: block; }
-    .slider-handle { position: absolute; top: 0; bottom: 0; left: 50%; width: 3px; background: white; transform: translateX(-50%); z-index: 10; box-shadow: 0 0 14px rgba(0,0,0,0.3); pointer-events: none; }
-    .slider-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 46px; height: 46px; border-radius: 50%; background: white; box-shadow: 0 2px 14px rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center; font-size: 0.88rem; color: #555; font-weight: 700; letter-spacing: -1px; pointer-events: none; }
-    .comparison-label { position: absolute; top: 14px; padding: 0.28rem 0.75rem; border-radius: 20px; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; pointer-events: none; }
-    .label-before { left: 14px; background: rgba(0,0,0,0.55); color: white; }
-    .label-after { right: 14px; background: white; color: var(--dark); box-shadow: 0 1px 6px rgba(0,0,0,0.15); }
-
-    /* CASE BODY */
-    .featured-case-body { padding: 1.6rem 2.8rem 2.8rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.6rem; border-top: 1px solid #f0f0f0; margin-top: 1.6rem; }
-    .fcase-item label { display: block; font-size: 0.67rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 0.5rem; background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .fcase-item span, .fcase-item p { font-size: 0.88rem; color: #444; line-height: 1.65; }
-    .fcase-item ul { list-style: none; padding: 0; }
-    .fcase-item ul li { font-size: 0.86rem; color: #555; padding: 0.18rem 0 0.18rem 1rem; position: relative; line-height: 1.5; }
-    .fcase-item ul li::before { content: '→'; position: absolute; left: 0; background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 0.74rem; top: 0.3rem; }
-    .fcase-span2 { grid-column: span 2; }
+    /* CARD */
+    .card { background: white; border-radius: 14px; overflow: hidden; box-shadow: 0 2px 24px rgba(0,0,0,0.07); }
+    .card-header { padding: 2rem 2.4rem 1.2rem; }
+    .card-header h3 { font-family: 'Playfair Display', serif; font-size: 1.55rem; margin-bottom: 0.4rem; text-shadow: 0 1px 10px rgba(200,64,200,0.07); }
+    .card-header p { font-size: 0.9rem; color: #666; font-weight: 300; line-height: 1.7; max-width: 680px; }
+    .card-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.6rem; }
+    .ctag { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; padding: 0.22rem 0.65rem; border-radius: 20px; background: var(--soft-gray); color: #888; }
+    .thumb { position: relative; margin: 0 2.4rem; border-radius: 10px; overflow: hidden; height: 240px; background: linear-gradient(135deg,#f0e8f5,#ede8f7); cursor: pointer; }
+    .thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; transition: transform 0.4s ease; }
+    .thumb:hover img { transform: scale(1.02); }
+    .thumb-over { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 55%); display: flex; align-items: flex-end; padding: 1.2rem 1.4rem; }
+    .thumb-cta { background: white; color: var(--dark); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; padding: 0.48rem 1rem; border-radius: 30px; }
+    .thumb-ph { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: #c0a8d0; font-style: italic; }
+    .card-body { padding: 1.4rem 2.4rem 2.2rem; display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 1.2rem; border-top: 1px solid #f0f0f0; margin-top: 1.4rem; }
+    .ci label { display: block; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 0.35rem; background: var(--gt); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .ci span, .ci p { font-size: 0.82rem; color: #444; line-height: 1.6; }
+    .ci ul { list-style: none; }
+    .ci ul li { font-size: 0.8rem; color: #555; padding: 0.12rem 0 0.12rem 0.9rem; position: relative; line-height: 1.5; }
+    .ci ul li::before { content: '→'; position: absolute; left: 0; background: var(--gt); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 0.68rem; top: 0.27rem; }
+    .cs2 { grid-column: span 2; }
 
     /* SLIDER CONTROLS */
-    .slider-controls { display: flex; align-items: center; justify-content: center; gap: 1.2rem; margin-top: 2rem; }
-    .slider-dot { width: 10px; height: 10px; border-radius: 50%; background: #ddd; cursor: pointer; transition: all 0.25s; border: none; padding: 0; }
-    .slider-dot.active { background: var(--gradient); width: 28px; border-radius: 5px; }
-    .slider-arrow { width: 42px; height: 42px; border-radius: 50%; border: 1.5px solid #ddd; background: white; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: #555; transition: all 0.2s; }
-    .slider-arrow:hover { border-color: #b94fc8; color: #b94fc8; }
-    .slider-progress { font-size: 0.8rem; color: var(--mid-gray); font-weight: 500; letter-spacing: 0.08em; min-width: 44px; text-align: center; }
+    .sc { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 1.8rem; }
+    .sd { width: 9px; height: 9px; border-radius: 50%; background: #ddd; cursor: pointer; border: none; padding: 0; transition: all 0.25s; }
+    .sd.active { background: var(--gradient); width: 26px; border-radius: 5px; }
+    .sa { width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid #ddd; background: white; cursor: pointer; font-size: 1rem; color: #666; transition: all 0.2s; display: flex; align-items: center; justify-content: center; }
+    .sa:hover { border-color: #b94fc8; color: #b94fc8; }
+    .sp { font-size: 0.75rem; color: var(--mid-gray); font-weight: 500; min-width: 38px; text-align: center; }
+
+    /* MODAL */
+    .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 1000; align-items: center; justify-content: center; padding: 1.5rem; opacity: 0; transition: opacity 0.25s; }
+    .modal.open { opacity: 1; }
+    .modal-box { background: white; border-radius: 14px; max-width: 880px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative; }
+    .modal-close { position: absolute; top: 0.9rem; right: 0.9rem; width: 34px; height: 34px; border-radius: 50%; border: 1.5px solid #e0e0e0; background: white; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; z-index: 5; transition: all 0.2s; }
+    .modal-close:hover { border-color: #b94fc8; color: #b94fc8; }
+    .modal-head { padding: 1.6rem 2rem 0.4rem; }
+    .modal-head h4 { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 0.2rem; }
+    .modal-head p { font-size: 0.75rem; color: var(--mid-gray); letter-spacing: 0.05em; }
+    .comp { position: relative; margin: 0 1.6rem 1.8rem; border-radius: 10px; overflow: hidden; user-select: none; cursor: col-resize; box-shadow: 0 2px 18px rgba(0,0,0,0.1); }
+    .comp img { display: block; width: 100%; pointer-events: none; }
+    .comp-after { position: absolute; inset: 0; overflow: hidden; width: 50%; }
+    .comp-after img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+    .comp-handle { position: absolute; top: 0; bottom: 0; left: 50%; width: 3px; background: white; transform: translateX(-50%); z-index: 5; pointer-events: none; box-shadow: 0 0 12px rgba(0,0,0,0.25); }
+    .comp-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 42px; height: 42px; border-radius: 50%; background: white; box-shadow: 0 2px 12px rgba(0,0,0,0.18); display: flex; align-items: center; justify-content: center; font-size: 0.82rem; font-weight: 700; color: #666; letter-spacing: -1px; pointer-events: none; }
+    .comp-label { position: absolute; top: 12px; padding: 0.22rem 0.65rem; border-radius: 20px; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; pointer-events: none; }
+    .cl-a { left: 12px; background: rgba(0,0,0,0.5); color: white; }
+    .cl-b { right: 12px; background: white; color: var(--dark); }
 
     /* PROCESS */
-    .process-timeline { position: relative; display: flex; gap: 1.6rem; margin-top: 1rem; align-items: stretch; }
-    .process-timeline::before { content: ''; position: absolute; top: 22px; left: 22px; right: 22px; height: 3px; background: var(--gradient); border-radius: 2px; z-index: 0; }
-    .process-step { flex: 1; background: white; border-radius: 10px; padding: 1.8rem 1.5rem; box-shadow: 0 2px 18px rgba(0,0,0,0.05); position: relative; z-index: 1; }
-    .process-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--gradient); margin-bottom: 1rem; box-shadow: 0 0 0 3px white, 0 0 0 5px rgba(185,79,200,0.25); }
-    .process-number { font-family: 'Playfair Display', serif; font-size: 1.6rem; line-height: 1; margin-bottom: 0.45rem; }
-    .process-step h3 { font-family: 'Playfair Display', serif; font-size: 0.95rem; margin-bottom: 0.45rem; }
-    .process-step p { font-size: 0.83rem; color: #777; font-weight: 300; line-height: 1.65; }
+    .process-row { display: flex; gap: 1.2rem; position: relative; }
+    .process-row::before { content:''; position: absolute; top: 18px; left: 18px; right: 18px; height: 2px; background: var(--gradient); z-index: 0; border-radius: 2px; }
+    .ps { flex: 1; background: white; border-radius: 10px; padding: 1.4rem 1.2rem; box-shadow: 0 2px 14px rgba(0,0,0,0.05); position: relative; z-index: 1; }
+    .ps-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--gradient); margin-bottom: 0.8rem; box-shadow: 0 0 0 3px white, 0 0 0 5px rgba(185,79,200,0.2); }
+    .ps-n { font-family: 'Playfair Display', serif; font-size: 1.4rem; line-height: 1; margin-bottom: 0.35rem; }
+    .ps h3 { font-family: 'Playfair Display', serif; font-size: 0.88rem; margin-bottom: 0.3rem; }
+    .ps p { font-size: 0.78rem; color: #888; font-weight: 300; line-height: 1.6; }
 
     /* SKILLS */
-    .skills-layout { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.8rem; }
-    .skill-group h3 { font-family: 'Playfair Display', serif; font-size: 1.05rem; margin-bottom: 1.1rem; }
-    .skill-pills { display: flex; flex-wrap: wrap; gap: 0.55rem; }
-    .skill-pill { padding: 0.45rem 1.05rem; border-radius: 30px; font-size: 0.78rem; font-weight: 500; background: white; color: #7b5ea7; border: 1.5px solid rgba(185,79,200,0.25); transition: all 0.2s; cursor: default; }
-    .skill-pill:hover { background: var(--gradient); color: white; border-color: transparent; }
+    .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.2rem; }
+    .sg h3 { font-family: 'Playfair Display', serif; font-size: 0.95rem; margin-bottom: 0.9rem; }
+    .pills { display: flex; flex-direction: column; gap: 0.45rem; align-items: flex-start; }
+    .sk { display: inline-block; padding: 0.38rem 0.95rem; border-radius: 30px; font-size: 0.75rem; font-weight: 500; background: white; color: #7b5ea7; border: 1.5px solid rgba(185,79,200,0.22); transition: all 0.2s; cursor: default; white-space: nowrap; }
+    .sk:hover { background: var(--gradient); color: white; border-color: transparent; }
 
     /* ABOUT */
-    .about-layout { display: grid; grid-template-columns: 1.3fr 1fr; gap: 5.5rem; align-items: start; }
-    .about-text p { font-size: 1rem; font-weight: 300; color: #555; margin-bottom: 1.2rem; line-height: 1.85; }
-    .looking-for-box { margin-top: 2rem; padding: 1.5rem 1.8rem; background: white; border-radius: 10px; border-left: 3px solid #b94fc8; box-shadow: 0 2px 18px rgba(0,0,0,0.05); }
-    .looking-for-box h4 { font-family: 'Playfair Display', serif; font-size: 1rem; margin-bottom: 0.55rem; }
-    .looking-for-box p { font-size: 0.9rem; margin-bottom: 0 !important; color: #555; }
-    .aside-block { margin-bottom: 2rem; }
-    .aside-block h4 { font-family: 'Playfair Display', serif; font-size: 0.92rem; margin-bottom: 0.4rem; }
-    .aside-block p { font-size: 0.88rem; color: #777; line-height: 1.7; }
-    .aside-block a { color: #b94fc8; text-decoration: none; font-weight: 500; }
-    .fun-facts-list { list-style: none; padding: 0; margin-top: 0.3rem; }
-    .fun-facts-list li { font-size: 0.85rem; color: #666; padding: 0.22rem 0 0.22rem 1.1rem; position: relative; line-height: 1.6; }
-    .fun-facts-list li::before { content: '✦'; position: absolute; left: 0; font-size: 0.55rem; top: 0.5rem; background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 5rem; align-items: start; }
+    .about-text p { font-size: 0.97rem; font-weight: 300; color: #555; margin-bottom: 1rem; line-height: 1.85; }
+    .lfb { margin-top: 1.8rem; padding: 1.3rem 1.6rem; background: white; border-radius: 10px; border-left: 3px solid #b94fc8; box-shadow: 0 2px 14px rgba(0,0,0,0.05); }
+    .lfb h4 { font-family: 'Playfair Display', serif; font-size: 0.92rem; margin-bottom: 0.4rem; }
+    .lfb p { font-size: 0.85rem; color: #555; margin: 0; }
+    .aside-b { margin-bottom: 1.6rem; }
+    .aside-b h4 { font-family: 'Playfair Display', serif; font-size: 0.85rem; margin-bottom: 0.3rem; }
+    .aside-b p { font-size: 0.83rem; color: #777; line-height: 1.65; }
+    .aside-b a { color: #b94fc8; text-decoration: none; font-weight: 500; }
+    .ffl { list-style: none; margin-top: 0.2rem; }
+    .ffl li { font-size: 0.82rem; color: #666; padding: 0.18rem 0 0.18rem 1rem; position: relative; line-height: 1.55; }
+    .ffl li::before { content:'✦'; position: absolute; left: 0; font-size: 0.5rem; top: 0.46rem; background: var(--gt); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
-    /* PHOTO SLIDESHOW */
-    .photo-section-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
-    .photo-text p { font-size: 1rem; color: #555; font-weight: 300; margin-bottom: 1.2rem; line-height: 1.85; }
-    .photo-slideshow { position: relative; border-radius: 10px; overflow: hidden; width: 100%; height: 480px; background: linear-gradient(135deg, #f0e8f5, #ede8f7); }
-    .photo-slideshow img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.8s ease; display: block; }
-    .photo-slideshow img.active { opacity: 1; }
-    .slideshow-dots { position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; z-index: 2; }
-    .slideshow-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.5); transition: all 0.3s; border: none; padding: 0; cursor: default; }
-    .slideshow-dot.active { background: white; width: 16px; border-radius: 3px; }
-    .slideshow-placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.6rem; }
-    .slideshow-placeholder span { font-size: 0.82rem; color: #c0a8d0; font-style: italic; }
+    /* PHOTOGRAPHY */
+    .photo-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .photo-text p { font-size: 0.95rem; color: #555; font-weight: 300; margin-bottom: 1rem; line-height: 1.82; }
+    .photo-ss { position: relative; border-radius: 10px; overflow: hidden; height: 460px; background: linear-gradient(135deg,#f0e8f5,#ede8f7); }
+    .photo-ss img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.8s ease; }
+    .photo-ss img.active { opacity: 1; }
+    .ss-dots { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); display: flex; gap: 5px; z-index: 2; }
+    .ss-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,0.5); border: none; padding: 0; transition: all 0.3s; cursor: default; }
+    .ss-dot.active { background: white; width: 14px; border-radius: 3px; }
+    .ss-ph { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; }
+    .ss-ph span { font-size: 0.78rem; color: #c0a8d0; font-style: italic; }
 
     /* CONTACT */
-    .contact-inner { text-align: center; max-width: 700px; margin: 0 auto; }
-    .contact-inner .tagline { font-size: 1.05rem; color: #777; margin-bottom: 1.5rem; font-weight: 300; white-space: nowrap; }
+    .contact-box { text-align: center; max-width: 600px; margin: 0 auto; }
+    .contact-box .tagline { font-size: 1rem; color: #666; margin-bottom: 1.4rem; font-weight: 300; }
+    .email-display { font-size: 1rem; color: #555; }
 
     /* BACK TO TOP */
-    #backToTop { position: fixed; bottom: 2rem; right: 2rem; width: 46px; height: 46px; border-radius: 50%; background: var(--gradient); color: white; border: none; font-size: 1.1rem; cursor: pointer; opacity: 0; pointer-events: none; transition: opacity 0.3s; z-index: 99; box-shadow: 0 4px 16px rgba(185,79,200,0.35); display: flex; align-items: center; justify-content: center; }
-    #backToTop.visible { opacity: 1; pointer-events: auto; }
+    #btt { position: fixed; bottom: 1.8rem; right: 1.8rem; width: 44px; height: 44px; border-radius: 50%; background: var(--gradient); color: white; border: none; font-size: 1rem; cursor: pointer; opacity: 0; pointer-events: none; transition: opacity 0.3s; z-index: 99; box-shadow: 0 4px 14px rgba(185,79,200,0.3); display: flex; align-items: center; justify-content: center; }
+    #btt.vis { opacity: 1; pointer-events: auto; }
 
     /* FOOTER */
-    footer { background: var(--gradient); color: rgba(255,255,255,0.95); text-align: center; padding: 2rem 2.5rem; font-size: 0.88rem; font-weight: 500; }
+    footer { background: var(--gradient); color: rgba(255,255,255,0.92); text-align: center; padding: 1.8rem 2.5rem; font-size: 0.84rem; font-weight: 500; }
 
     /* ANIMATIONS */
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
-    .hero-text > * { animation: fadeUp 0.65s ease both; }
-    .hero-text > *:nth-child(1) { animation-delay: 0.05s; }
-    .hero-text > *:nth-child(2) { animation-delay: 0.15s; }
-    .hero-text > *:nth-child(3) { animation-delay: 0.25s; }
-    .hero-text > *:nth-child(4) { animation-delay: 0.35s; }
-    .hero-text > *:nth-child(5) { animation-delay: 0.45s; }
-    .hero-text > *:nth-child(6) { animation-delay: 0.55s; }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+    .hero-text > * { animation: fadeUp 0.6s ease both; }
+    .hero-text > *:nth-child(1){animation-delay:.05s}
+    .hero-text > *:nth-child(2){animation-delay:.12s}
+    .hero-text > *:nth-child(3){animation-delay:.2s}
+    .hero-text > *:nth-child(4){animation-delay:.28s}
+    .hero-text > *:nth-child(5){animation-delay:.36s}
+    .hero-text > *:nth-child(6){animation-delay:.44s}
 
     /* RESPONSIVE */
-    @media (max-width: 1200px) {
-      .skills-layout { grid-template-columns: repeat(2, 1fr); }
-      .featured-case-body { grid-template-columns: repeat(2, 1fr); }
-      .fcase-span2 { grid-column: span 1; }
-      .process-timeline { flex-wrap: wrap; }
-      .process-timeline::before { display: none; }
-      .contact-inner .tagline { white-space: normal; }
+    @media(max-width:1100px){
+      .skills-grid{grid-template-columns:repeat(2,1fr)}
+      .card-body{grid-template-columns:1fr 1fr}
+      .cs2{grid-column:span 1}
+      .process-row{flex-wrap:wrap}
+      .process-row::before{display:none}
     }
-    @media (max-width: 900px) {
-      .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 3rem; }
-      .hero-image { order: -1; display: flex; justify-content: center; }
-      .hero-img-circle { width: 260px; height: 260px; }
-      .hero-name { white-space: normal; font-size: clamp(3rem, 10vw, 5rem); }
-      .hero-specialties, .hero-ctas { justify-content: center; }
-      .hero-bio, .hero-bio-2 { margin: 0 auto 1rem; }
-      .about-layout { grid-template-columns: 1fr; gap: 3rem; }
-      .photo-section-layout { grid-template-columns: 1fr; gap: 2.5rem; }
-      .featured-case-header { padding: 1.8rem; }
-      .preview-thumb { margin: 0 1.5rem; }
-      .featured-case-body { padding: 1.5rem 1.8rem 2rem; }
-      .comparison-wrapper { margin: 0 1rem 1.5rem; }
+    @media(max-width:860px){
+      .hero-inner{grid-template-columns:1fr;text-align:center;gap:2.5rem}
+      .hero-img-wrap{order:-1;width:220px;height:220px;margin:0 auto}
+      .hero-name{white-space:normal;font-size:clamp(2.8rem,9vw,4rem)}
+      .hero-pills,.hero-ctas{justify-content:center}
+      .hero-bio{margin:0 auto 1.2rem}
+      .about-grid{grid-template-columns:1fr;gap:2.5rem}
+      .photo-layout{grid-template-columns:1fr;gap:2rem}
+      .inner{padding:0 1.5rem}
+      .nav-inner{padding:0.9rem 1.5rem}
     }
-    @media (max-width: 680px) {
-      .nav-inner { padding: 1rem 1.2rem; }
-      .nav-links { gap: 0.8rem; }
-      .nav-links li:not(:last-child):not(:nth-last-child(2)):not(:nth-last-child(3)) { display: none; }
-      .nav-links a { font-size: 0.72rem; }
-      .nav-resume, .nav-linkedin { padding: 0.45rem 0.85rem; font-size: 0.72rem !important; }
+    @media(max-width:680px){
+      .nav-links li:not(:last-child):not(:nth-last-child(2)):not(:nth-last-child(3)){display:none}
+      .nav-links a{font-size:0.7rem}
+      .card-header{padding:1.5rem 1.5rem 1rem}
+      .thumb{margin:0 1.5rem}
+      .card-body{padding:1.2rem 1.5rem 1.8rem;grid-template-columns:1fr}
     }
-    @media (max-width: 600px) {
-      .skills-layout { grid-template-columns: 1fr; }
-      .featured-case-body { grid-template-columns: 1fr; }
-      section { padding: 4.5rem 1.5rem; }
+    @media(max-width:600px){
+      .skills-grid{grid-template-columns:1fr}
+      section{padding:3.8rem 0}
     }
   </style>
 </head>
 <body>
 
-  <nav>
-    <div class="nav-inner">
-      <div class="nav-logo">MC</div>
-      <ul class="nav-links">
-        <li><a href="#work">Work</a></li>
-        <li><a href="#process">Process</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#photography">Photography</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="https://linkedin.com/in/mollyycurtiss" target="_blank" class="nav-linkedin">LinkedIn</a></li>
-        <li><a href="Molly_Curtis_Resume.pdf.pdf" target="_blank" class="nav-resume">Resume</a></li>
-      </ul>
-    </div>
-  </nav>
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">MC</div>
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="https://linkedin.com/in/mollyycurtiss" target="_blank" class="nav-pill nav-li">LinkedIn</a></li>
+      <li><a href="Molly_Curtis_Resume.pdf.pdf" target="_blank" class="nav-pill nav-re">Resume</a></li>
+    </ul>
+  </div>
+</nav>
 
-  <div class="hero">
-    <div class="hero-inner">
-      <div class="hero-text">
-        <p class="hero-eyebrow">Portfolio</p>
-        <h1 class="hero-name"><span class="grad">Molly Curtis</span></h1>
-        <p class="hero-title">Digital Experience Designer</p>
-        <p class="hero-bio">I design cross-channel marketing experiences — from landing pages and digital ads to organic social and conversion optimization — helping turn campaigns into full-funnel digital journeys that drive measurable growth.</p>
-        <p class="hero-bio-2">My work blends UX design, campaign thinking, and performance data to create digital experiences that are both visually strong and strategically effective.</p>
-        <div class="hero-specialties">
-          <span class="specialty-tag">Landing Pages</span>
-          <span class="specialty-tag">Digital Ad Creative</span>
-          <span class="specialty-tag">Organic Social</span>
-          <span class="specialty-tag">Conversion Optimization</span>
-          <span class="specialty-tag">Campaign Design</span>
-          <span class="specialty-tag">Data-Informed UX</span>
-          <span class="specialty-tag">Editorial Photography</span>
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <p class="hero-eyebrow">Portfolio</p>
+      <h1 class="hero-name"><span class="grad">Molly Curtis</span></h1>
+      <p class="hero-title">Digital Experience Designer</p>
+      <p class="hero-bio">I design cross-channel marketing experiences — landing pages, digital ads, organic social, and conversion optimization — turning campaigns into full-funnel journeys that drive measurable growth.</p>
+      <div class="hero-pills">
+        <span class="pill">Landing Pages</span>
+        <span class="pill">Digital Ad Creative</span>
+        <span class="pill">Conversion Optimization</span>
+        <span class="pill">Organic Social</span>
+        <span class="pill">Campaign Design</span>
+        <span class="pill">Data-Informed UX</span>
+      </div>
+      <div class="hero-ctas">
+        <a href="#work" class="btn btn-grad">View My Work</a>
+        <a href="Molly_Curtis_Resume.pdf.pdf" target="_blank" class="btn btn-outline">Download Resume</a>
+      </div>
+    </div>
+    <div class="hero-img-wrap">
+      <img src="IMG_5739.jpeg" alt="Molly Curtis" />
+    </div>
+  </div>
+</div>
+
+<!-- IMPACT -->
+<div class="impact" id="impactStrip">
+  <div class="impact-inner">
+    <div>
+      <div class="impact-n grad"><span class="cu" data-t="XX" data-s="%" data-p="↑">↑XX%</span></div>
+      <div class="impact-l">Subscription growth<br/>after redesign</div>
+    </div>
+    <div>
+      <div class="impact-n grad"><span class="cu" data-t="650" data-s="+">650+</span></div>
+      <div class="impact-l">Landing pages<br/>launched</div>
+    </div>
+    <div>
+      <div class="impact-n grad"><span class="cu" data-t="80" data-s="+">80+</span></div>
+      <div class="impact-l">Campaigns across<br/>paid &amp; organic</div>
+    </div>
+    <div>
+      <div class="impact-n grad"><span class="cu" data-t="1000" data-s="+">1K+</span></div>
+      <div class="impact-l">Organic followers<br/>in under a year</div>
+    </div>
+  </div>
+</div>
+
+<!-- WORK -->
+<section id="work">
+  <div class="inner">
+    <p class="sl">Selected Work</p>
+    <h2 class="st">Projects &amp; <span class="grad">Campaigns</span></h2>
+    <hr class="sdiv" />
+    <div class="slider-wrap">
+      <div class="slider-track" id="track">
+
+        <!-- SLIDE 1 -->
+        <div class="slide">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-tags"><span class="ctag">Conversion</span><span class="ctag">UX / Web</span><span class="ctag">Page Redesign</span></div>
+              <h3>Subscription Page Redesign</h3>
+              <p>Redesigned a key subscription page to reduce friction and simplify decision-making — making the value obvious from the first scroll. Click to compare before &amp; after.</p>
+            </div>
+            <div class="thumb" onclick="openModal('m1')">
+              <img src="Subscription-Page-Before.png" alt="Subscription page" onerror="this.style.display='none'" />
+              <div class="thumb-over"><span class="thumb-cta">&#9654; Compare Before &amp; After</span></div>
+            </div>
+            <div class="card-body">
+              <div class="ci cs2"><label>What I Worked On</label><ul><li>Audited existing experience, identified drop-off points</li><li>Restructured layout and messaging hierarchy</li><li>Simplified page flow to reduce cognitive load</li><li>Clarified CTAs for a focused, conversion-driven experience</li></ul></div>
+              <div class="ci"><label>My Role</label><span>Lead Designer &amp; Strategist</span></div>
+              <div class="ci"><label>Tools</label><span>HTML/CSS · Shogun · Claude · Canva · GA4</span></div>
+              <div class="ci cs2"><label>Impact</label><span>Drove an X% increase in subscriptions through a clearer user journey that simplified decision-making from the moment visitors landed.</span></div>
+              <div class="ci cs2"><label>What I Learned</label><span>Clarity and hierarchy beat complexity. Stripping a page to only what drives action is often more effective than adding more content.</span></div>
+            </div>
+          </div>
         </div>
-        <div class="hero-ctas">
-          <a href="#work" class="btn-primary">View My Work</a>
-          <a href="Molly_Curtis_Resume.pdf.pdf" target="_blank" class="btn-secondary">Download Resume</a>
+
+        <!-- SLIDE 2 -->
+        <div class="slide">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-tags"><span class="ctag">Lead Generation</span><span class="ctag">UX / Web</span><span class="ctag">Campaign</span></div>
+              <h3>AI Learning Hub — Lead Generation Experience</h3>
+              <p>Designed and launched a centralized AI resource hub to attract and convert visitors interested in legal AI tools — combining educational content, gated resources, and campaign promotion to drive leads.</p>
+            </div>
+            <div class="thumb" style="cursor:default;"><div class="thumb-ph">Add screenshot here</div></div>
+            <div class="card-body">
+              <div class="ci cs2"><label>What I Worked On</label><ul><li>Designed homepage modules driving traffic to the hub</li><li>Built the hub page layout and resource structure</li><li>Supported lead gen pages tied to downloadable resources</li><li>Designed web banners promoting the initiative site-wide</li></ul></div>
+              <div class="ci"><label>My Role</label><span>UX Design · Page Strategy · Campaign Support</span></div>
+              <div class="ci"><label>Tools</label><span>Figma · HTML/CSS · GA4</span></div>
+              <div class="ci cs2"><label>Impact</label><span>Created a scalable resource hub that captured leads and supported ongoing AI-focused marketing initiatives.</span></div>
+              <div class="ci cs2"><label>What I Learned</label><span>Educational content structured clearly is one of the most effective lead generation tools available.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 3 -->
+        <div class="slide">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-tags"><span class="ctag">Persona Targeting</span><span class="ctag">Landing Pages</span><span class="ctag">UX Design</span></div>
+              <h3>Persona-Targeted Campaign Landing Pages</h3>
+              <p>Designed landing pages tailored to specific states, legal topics, and audience personas — aligning campaign messaging with user intent to improve relevance and conversion.</p>
+            </div>
+            <div class="thumb" style="cursor:default;"><div class="thumb-ph">Add screenshot here</div></div>
+            <div class="card-body">
+              <div class="ci cs2"><label>What I Worked On</label><ul><li>Designed state-specific and topic-specific landing pages</li><li>Structured messaging around audience needs and search intent</li><li>Created scannable layouts with clear value propositions</li><li>Supported campaign launches with focused conversion pages</li></ul></div>
+              <div class="ci"><label>My Role</label><span>UX Design · Page Strategy · Implementation</span></div>
+              <div class="ci"><label>Tools</label><span>Figma · HTML/CSS · GA4</span></div>
+              <div class="ci cs2"><label>Impact</label><span>Helped campaigns reach the right audiences with more relevant messaging and clearer user journeys.</span></div>
+              <div class="ci cs2"><label>What I Learned</label><span>The most effective campaigns connect message, audience, and experience into one seamless journey.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 4 -->
+        <div class="slide">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-tags"><span class="ctag">Scaled Creative</span><span class="ctag">Display Ads</span><span class="ctag">Social · Web Banners</span></div>
+              <h3>Digital Ad Creative &amp; Cross-Channel Campaign Assets</h3>
+              <p>Developed scalable ad creative across display networks, web banners, and social — designed to adapt across sizes and placements while keeping messaging and visual identity consistent.</p>
+            </div>
+            <div class="thumb" style="cursor:default;"><div class="thumb-ph">Add creative board here</div></div>
+            <div class="card-body">
+              <div class="ci cs2"><label>What I Worked On</label><ul><li>Designed display ads in multiple sizes and formats</li><li>Created campaign-specific creative sets for different audiences</li><li>Adapted concepts across placements and channels</li><li>Built variations to support testing and optimization</li></ul></div>
+              <div class="ci"><label>My Role</label><span>Designer · Campaign Creative</span></div>
+              <div class="ci"><label>Tools</label><span>Adobe Creative Suite · Figma · Canva</span></div>
+              <div class="ci cs2"><label>Impact</label><span>Delivered scalable creative assets that ran across multiple channels and supported campaign performance at scale.</span></div>
+              <div class="ci cs2"><label>What I Learned</label><span>Strong campaign creative isn't about individual visuals — it's about building adaptable assets that perform across every touchpoint.</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- end track -->
+
+      <div class="sc">
+        <button class="sa" onclick="slideProject(-1)">&#8592;</button>
+        <button class="sd active" onclick="goToSlide(0)"></button>
+        <button class="sd" onclick="goToSlide(1)"></button>
+        <button class="sd" onclick="goToSlide(2)"></button>
+        <button class="sd" onclick="goToSlide(3)"></button>
+        <button class="sa" onclick="slideProject(1)">&#8594;</button>
+        <span class="sp" id="sp">1 / 4</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEFORE/AFTER MODAL -->
+<div class="modal" id="m1" onclick="closeModalOutside(event,'m1')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('m1')">&#10005;</button>
+    <div class="modal-head">
+      <h4>Subscription Page &mdash; Before &amp; After</h4>
+      <p>&#8592; Drag the slider to compare &#8594;</p>
+    </div>
+    <div class="comp" id="compSlider">
+      <div style="line-height:0;"><img src="Subscription-Page-After.png" alt="After" /></div>
+      <div class="comp-after" id="afterPane"><img src="Subscription-Page-Before.png" alt="Before" /></div>
+      <div class="comp-handle" id="compHandle"><div class="comp-btn">&#8249;&#8250;</div></div>
+      <span class="comp-label cl-a">After</span>
+      <span class="comp-label cl-b">Before</span>
+    </div>
+  </div>
+</div>
+
+<!-- PROCESS -->
+<section id="process" class="sec-bg">
+  <div class="inner">
+    <p class="sl">How I Work</p>
+    <h2 class="st">My <span class="grad">Process</span></h2>
+    <hr class="sdiv" />
+    <div class="process-row">
+      <div class="ps"><div class="ps-dot"></div><div class="ps-n grad">01</div><h3>Understand the Goal</h3><p>Start with campaign goals, audience, and performance context.</p></div>
+      <div class="ps"><div class="ps-dot"></div><div class="ps-n grad">02</div><h3>Identify Friction</h3><p>Find the gaps in the user journey costing conversions.</p></div>
+      <div class="ps"><div class="ps-dot"></div><div class="ps-n grad">03</div><h3>Design the Experience</h3><p>Build layouts and creative that make the next step obvious.</p></div>
+      <div class="ps"><div class="ps-dot"></div><div class="ps-n grad">04</div><h3>Launch &amp; Measure</h3><p>Ship it, track it with GA4, and see what's working.</p></div>
+      <div class="ps"><div class="ps-dot"></div><div class="ps-n grad">05</div><h3>Optimize &amp; Refine</h3><p>Use data and feedback to keep improving over time.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="inner">
+    <p class="sl">What I Bring</p>
+    <h2 class="st">Skills &amp; <span class="grad">Expertise</span></h2>
+    <hr class="sdiv" />
+    <div class="skills-grid">
+      <div class="sg">
+        <h3>Design &amp; Creation</h3>
+        <div class="pills">
+          <span class="sk">UI / UX Design</span>
+          <span class="sk">Landing Page Design</span>
+          <span class="sk">HTML &amp; CSS</span>
+          <span class="sk">Display Ad Design</span>
+          <span class="sk">Adobe Creative Suite</span>
+          <span class="sk">Figma</span>
+          <span class="sk">Canva</span>
         </div>
       </div>
-      <div class="hero-image">
-        <div class="hero-img-circle">
-          <img src="IMG_5739.jpeg" alt="Molly Curtis" />
+      <div class="sg">
+        <h3>Marketing &amp; Growth</h3>
+        <div class="pills">
+          <span class="sk">Conversion Optimization</span>
+          <span class="sk">Campaign Creative</span>
+          <span class="sk">Paid Search &amp; Social</span>
+          <span class="sk">Organic Social</span>
+          <span class="sk">Audience Targeting</span>
+          <span class="sk">A/B Testing</span>
+        </div>
+      </div>
+      <div class="sg">
+        <h3>Strategy &amp; Process</h3>
+        <div class="pills">
+          <span class="sk">Wireframing</span>
+          <span class="sk">Content Strategy</span>
+          <span class="sk">Brand Consistency</span>
+          <span class="sk">Competitor Research</span>
+          <span class="sk">Cross-Functional Collab</span>
+        </div>
+      </div>
+      <div class="sg">
+        <h3>Analytics &amp; Tools</h3>
+        <div class="pills">
+          <span class="sk">Google Analytics (GA4)</span>
+          <span class="sk">Conversion Tracking</span>
+          <span class="sk">Performance Reporting</span>
+          <span class="sk">Data-Informed Design</span>
+          <span class="sk">AI-Powered Workflows</span>
         </div>
       </div>
     </div>
   </div>
+</section>
 
-  <div class="impact-strip" id="impactStrip">
-    <div class="impact-inner">
-      <div>
-        <div class="impact-number grad"><span class="count-up" data-target="XX" data-suffix="%" data-prefix="↑">↑XX%</span></div>
-        <div class="impact-label">Subscription growth<br/>after redesign</div>
+<!-- ABOUT -->
+<section id="about" class="sec-bg">
+  <div class="inner">
+    <p class="sl">The Person Behind the Work</p>
+    <h2 class="st">About <span class="grad">Molly Curtis</span></h2>
+    <hr class="sdiv" />
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm a digital experience designer with a background in marketing and growth — focused on work that is both visually strong and performance-driven. My experience spans landing pages, digital campaigns, ad creative, and conversion-focused design across every major marketing channel.</p>
+        <p>Over 4 years I've grown from marketing intern to full-stack digital specialist at NBI, building hands-on experience across design, data, campaign strategy, and web development.</p>
+        <p>I believe the best digital experiences are the simplest ones — removing noise, cutting friction, and making the next step obvious is almost always the answer.</p>
+        <div class="lfb">
+          <h4 class="grad">What I'm Looking For</h4>
+          <p>Roles where design, marketing, and data intersect — teams that care about thoughtful UX, strong creative, and measurable results. Marketing never stops evolving, and I thrive in environments that stay ahead of it.</p>
+        </div>
       </div>
       <div>
-        <div class="impact-number grad"><span class="count-up" data-target="650" data-suffix="+">650+</span></div>
-        <div class="impact-label">Landing pages<br/>launched</div>
-      </div>
-      <div>
-        <div class="impact-number grad"><span class="count-up" data-target="80" data-suffix="+">80+</span></div>
-        <div class="impact-label">Campaigns across<br/>paid &amp; organic</div>
-      </div>
-      <div>
-        <div class="impact-number grad"><span class="count-up" data-target="1000" data-suffix="+">1K+</span></div>
-        <div class="impact-label">Organic followers<br/>in under a year</div>
+        <div class="aside-b"><h4 class="grad">Currently</h4><p>Digital Marketing Specialist<br/>National Business Institute — June 2023&ndash;Present</p></div>
+        <div class="aside-b"><h4 class="grad">Education</h4><p>BBA, Marketing<br/>University of Wisconsin &ndash; Eau Claire, 2023</p></div>
+        <div class="aside-b"><h4 class="grad">Location</h4><p>Eau Claire, WI &rarr; St. Paul, MN<br/><span style="font-size:0.78rem;color:#b94fc8;">Open to remote work</span></p></div>
+        <div class="aside-b">
+          <h4 class="grad">Fun Facts</h4>
+          <ul class="ffl">
+            <li>Obsessed with interior design — thrifting for mid-century modern &amp; eclectic finds</li>
+            <li>Cat mom to Milo &#128049;</li>
+            <li>Always has headphones on and finding new music</li>
+            <li>2026 goal: try a new hobby every single month</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
+</section>
 
-  <section id="work">
-    <div class="inner">
-      <p class="section-label">Selected Work</p>
-      <h2 class="section-title">Projects &amp; <span class="grad">Campaigns</span></h2>
-      <hr class="divider" />
-      <div class="project-slider-wrap">
-        <div class="project-slider" id="projectSlider">
-
-          <div class="project-slide">
-            <div class="featured-case">
-              <div class="featured-case-header">
-                <div class="featured-tags"><span class="tag">UX / Web</span><span class="tag">Conversion</span><span class="tag">Page Redesign</span></div>
-                <h3>Subscription Page Redesign</h3>
-                <p>Redesigned a key subscription page to reduce friction and simplify decision-making — the goal was to make the value clear the moment a visitor lands on the page. Click the preview to compare before and after.</p>
-              </div>
-              <div class="preview-thumb" onclick="openModal('modalSub')">
-                <img src="Subscription-Page-Before.png" alt="Subscription page before redesign" />
-                <div class="preview-overlay">
-                  <div class="preview-badge-wrap">
-                    <span class="preview-badge">Before &amp; After</span>
-                    <span class="preview-cta">&#9654; Compare</span>
-                  </div>
-                </div>
-              </div>
-              <div class="featured-case-body">
-                <div class="fcase-item fcase-span2"><label>What I Worked On</label><ul><li>Audited the existing experience and identified drop-off points</li><li>Restructured layout and messaging hierarchy</li><li>Simplified the page flow to reduce cognitive load</li><li>Clarified calls to action for a focused, conversion-driven experience</li></ul></div>
-                <div class="fcase-item"><label>My Role</label><span>Lead Designer &amp; Strategist</span></div>
-                <div class="fcase-item"><label>Tools Used</label><span>HTML/CSS, Shogun, Claude, Canva, GA4</span></div>
-                <div class="fcase-item fcase-span2"><label>Impact</label><span>Drove an X% increase in subscriptions through a clearer, more intuitive user journey that simplified decision-making for customers from the moment they landed on the page</span></div>
-                <div class="fcase-item fcase-span2"><label>What I Learned</label><span>When the goal is conversion, clarity and hierarchy matter more than complexity. Stripping a page down to only what drives action is often more effective than adding more content.</span></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="project-slide">
-            <div class="featured-case">
-              <div class="featured-case-header">
-                <div class="featured-tags"><span class="tag">UX / Web</span><span class="tag">Lead Generation</span><span class="tag">Campaign</span></div>
-                <h3>AI Learning Hub — Lead Generation Experience</h3>
-                <p>Designed and supported the launch of an AI Learning Hub — a centralized resource page built to attract and convert visitors interested in legal AI tools. The experience combined educational resources, gated content, and campaign promotion to drive lead generation.</p>
-              </div>
-              <div class="preview-thumb" style="cursor:default;"><div class="thumb-placeholder-styled">Add screenshot here</div></div>
-              <div class="featured-case-body">
-                <div class="fcase-item fcase-span2"><label>What I Worked On</label><ul><li>Designed homepage promotional modules driving traffic to the hub</li><li>Created the AI Learning Hub page layout and resource structure</li><li>Supported lead generation pages connected to downloadable resources</li><li>Designed supporting web banners to promote the initiative across the site</li></ul></div>
-                <div class="fcase-item"><label>My Role</label><span>UX Design, Page Strategy, Campaign Support</span></div>
-                <div class="fcase-item"><label>Tools Used</label><span>Figma, HTML, CSS, GA4</span></div>
-                <div class="fcase-item fcase-span2"><label>Impact</label><span>Created a scalable resource hub that helped capture leads and support ongoing AI-focused marketing initiatives.</span></div>
-                <div class="fcase-item fcase-span2"><label>What I Learned</label><span>Educational content can be one of the most effective ways to drive engagement and lead generation when structured clearly.</span></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="project-slide">
-            <div class="featured-case">
-              <div class="featured-case-header">
-                <div class="featured-tags"><span class="tag">Landing Pages</span><span class="tag">Audience Targeting</span><span class="tag">UX Design</span></div>
-                <h3>Persona-Targeted Campaign Landing Pages</h3>
-                <p>Designed landing pages tailored to specific states, legal topics, and audience personas — helping campaigns speak directly to the needs of different segments. These pages aligned campaign messaging with audience intent to improve engagement and conversion.</p>
-              </div>
-              <div class="preview-thumb" style="cursor:default;"><div class="thumb-placeholder-styled">Add screenshot here</div></div>
-              <div class="featured-case-body">
-                <div class="fcase-item fcase-span2"><label>What I Worked On</label><ul><li>Designed state-specific and topic-specific landing pages</li><li>Structured messaging around audience needs and search intent</li><li>Created layouts that made value propositions easy to scan</li><li>Supported campaign launches with focused conversion pages</li></ul></div>
-                <div class="fcase-item"><label>My Role</label><span>UX Design, Page Strategy &amp; Implementation</span></div>
-                <div class="fcase-item"><label>Tools Used</label><span>Figma, HTML, CSS, GA4</span></div>
-                <div class="fcase-item fcase-span2"><label>Impact</label><span>Helped campaigns reach the right audiences with more relevant messaging and clearer user journeys.</span></div>
-                <div class="fcase-item fcase-span2"><label>What I Learned</label><span>The most effective campaigns connect message, audience, and experience into one seamless journey.</span></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="project-slide">
-            <div class="featured-case">
-              <div class="featured-case-header">
-                <div class="featured-tags"><span class="tag">Display Ads</span><span class="tag">Social</span><span class="tag">Web Banners</span></div>
-                <h3>Digital Ad Creative &amp; Campaign Assets</h3>
-                <p>Developed digital ad creative to support marketing campaigns across display networks, web banners, and social channels. Creative was designed to adapt across multiple sizes and placements while maintaining consistent messaging and visual identity.</p>
-              </div>
-              <div class="preview-thumb" style="cursor:default;"><div class="thumb-placeholder-styled">Add ad creative board here</div></div>
-              <div class="featured-case-body">
-                <div class="fcase-item fcase-span2"><label>What I Worked On</label><ul><li>Designed display ads in multiple sizes and formats</li><li>Created creative sets for different campaigns and audiences</li><li>Adapted concepts across placements and channels</li><li>Built creative variations to support campaign testing and optimization</li></ul></div>
-                <div class="fcase-item"><label>My Role</label><span>Designer, Campaign Creative</span></div>
-                <div class="fcase-item"><label>Tools Used</label><span>Adobe Creative Suite, Figma, Canva</span></div>
-                <div class="fcase-item fcase-span2"><label>Impact</label><span>Supported marketing campaigns with scalable creative assets that could run across multiple channels and placements.</span></div>
-                <div class="fcase-item fcase-span2"><label>What I Learned</label><span>Strong ad creative is not just about individual visuals — it's about building adaptable assets that support campaign performance at scale.</span></div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-        <div class="slider-controls">
-          <button class="slider-arrow" onclick="slideProject(-1)">&#8592;</button>
-          <button class="slider-dot active" onclick="goToSlide(0)"></button>
-          <button class="slider-dot" onclick="goToSlide(1)"></button>
-          <button class="slider-dot" onclick="goToSlide(2)"></button>
-          <button class="slider-dot" onclick="goToSlide(3)"></button>
-          <button class="slider-arrow" onclick="slideProject(1)">&#8594;</button>
-          <span class="slider-progress" id="slideProgress">1 / 4</span>
-        </div>
+<!-- PHOTOGRAPHY -->
+<section id="photography">
+  <div class="inner">
+    <p class="sl">Beyond the Screen</p>
+    <h2 class="st">Photo<span class="grad">graphy</span></h2>
+    <hr class="sdiv" />
+    <div class="photo-layout">
+      <div class="photo-text">
+        <p>Photography sharpens the same instincts I bring to design — composition, storytelling, and attention to detail. Shooting professionally since 2019, with work published in <strong>30+</strong> magazines and features, focused on portrait and editorial.</p>
+        <p>My most ambitious project: I conceived, cast, and directed a 12-model editorial shoot built around the zodiac — hiring talent, MUAs, and stylists, coordinating a two-day studio shoot, and handling all retouching from start to finish. The work performed exceptionally well.</p>
+        <a href="https://molcurphotos.com" target="_blank" class="btn btn-grad" style="margin-top:1rem;display:inline-block;">View Full Portfolio &rarr;</a>
       </div>
-    </div>
-  </section>
-
-  <div class="modal-overlay" id="modalSub" onclick="closeModalOutside(event,'modalSub')">
-    <div class="modal-box">
-      <button class="modal-close" onclick="closeModal('modalSub')">&#10005;</button>
-      <div class="modal-title">Subscription Page &mdash; Before &amp; After</div>
-      <div class="modal-hint">&#8592; Drag the slider to compare &#8594;</div>
-      <div class="comparison-wrapper" id="compSlider">
-        <div class="comparison-before"><img src="Subscription-Page-After.png" alt="After redesign" /></div>
-        <div class="comparison-after" id="afterPane"><img src="Subscription-Page-Before.png" alt="Before redesign" /></div>
-        <div class="slider-handle" id="sliderHandle"><div class="slider-btn">&#8249;&#8250;</div></div>
-        <span class="comparison-label label-before">After</span>
-        <span class="comparison-label label-after">Before</span>
+      <div class="photo-ss" id="photoSS">
+        <img src="photo1.JPEG" alt="Photography" class="active" onerror="this.style.display='none'" />
+        <img src="photo2.jpg" alt="Photography" onerror="this.style.display='none'" />
+        <img src="photo3.jpg" alt="Photography" onerror="this.style.display='none'" />
+        <img src="photo4.jpg" alt="Photography" onerror="this.style.display='none'" />
+        <img src="photo5.jpg" alt="Photography" onerror="this.style.display='none'" />
+        <img src="photo6.jpg" alt="Photography" onerror="this.style.display='none'" />
+        <img src="photo7.jpg" alt="Photography" onerror="this.style.display='none'" />
+        <img src="photo8.jpg" alt="Photography" onerror="this.style.display='none'" />
+        <div class="ss-ph">
+          <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#d4b8e0" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <span>Photos coming soon</span>
+        </div>
+        <div class="ss-dots" id="ssDots"></div>
       </div>
     </div>
   </div>
+</section>
 
-  <section id="process" style="background: var(--soft-gray);">
-    <div class="inner">
-      <p class="section-label">How I Work</p>
-      <h2 class="section-title">My <span class="grad">Process</span></h2>
-      <hr class="divider" />
-      <p class="section-intro">I approach every project with both design intention and performance in mind.</p>
-      <div class="process-timeline">
-        <div class="process-step"><div class="process-dot"></div><div class="process-number grad">01</div><h3>Understand the Goal</h3><p>Review campaign goals, audience needs, and performance context before touching a single pixel.</p></div>
-        <div class="process-step"><div class="process-dot"></div><div class="process-number grad">02</div><h3>Identify Friction</h3><p>Look for gaps in the user journey, messaging, or visual hierarchy that are costing conversions.</p></div>
-        <div class="process-step"><div class="process-dot"></div><div class="process-number grad">03</div><h3>Design the Experience</h3><p>Create layouts and creative that make the next step feel clear, natural, and visually compelling.</p></div>
-        <div class="process-step"><div class="process-dot"></div><div class="process-number grad">04</div><h3>Launch &amp; Measure</h3><p>Support rollout, review results with GA4, and track what's working.</p></div>
-        <div class="process-step"><div class="process-dot"></div><div class="process-number grad">05</div><h3>Optimize &amp; Refine</h3><p>Use data and feedback to improve over time. The work is never really done.</p></div>
-      </div>
+<!-- CONTACT -->
+<section id="contact" class="sec-bg">
+  <div class="inner">
+    <div class="contact-box">
+      <p class="sl" style="text-align:center;">Get In Touch</p>
+      <h2 class="st" style="text-align:center;">Let's <span class="grad">Work Together</span></h2>
+      <hr class="sdiv" style="margin:0 auto 1.4rem;" />
+      <p class="tagline">Open to new opportunities in growth marketing, UX/UI design, and creative digital roles.</p>
+      <p class="email-display" style="margin-top:0.6rem;">Reach out at <strong style="background:var(--gt);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">molcur9284 at gmail dot com</strong></p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="skills">
-    <div class="inner">
-      <p class="section-label">What I Bring</p>
-      <h2 class="section-title">Skills &amp; <span class="grad">Expertise</span></h2>
-      <hr class="divider" />
-      <div class="skills-layout">
-        <div class="skill-group"><h3>Design &amp; Creation</h3><div class="skill-pills"><span class="skill-pill">UI / UX Design</span><span class="skill-pill">Landing Page Design</span><span class="skill-pill">HTML &amp; CSS</span><span class="skill-pill">Display Ad Design</span><span class="skill-pill">Adobe Creative Suite</span><span class="skill-pill">Figma</span><span class="skill-pill">Canva</span></div></div>
-        <div class="skill-group"><h3>Marketing &amp; Growth</h3><div class="skill-pills"><span class="skill-pill">Conversion Optimization</span><span class="skill-pill">Campaign Creative</span><span class="skill-pill">Paid Search &amp; Social</span><span class="skill-pill">Organic Social</span><span class="skill-pill">Audience Targeting</span><span class="skill-pill">A/B Testing</span></div></div>
-        <div class="skill-group"><h3>Strategy &amp; Process</h3><div class="skill-pills"><span class="skill-pill">Wireframing</span><span class="skill-pill">Content Strategy</span><span class="skill-pill">Brand Consistency</span><span class="skill-pill">Competitor Research</span><span class="skill-pill">Cross-Functional Collaboration</span></div></div>
-        <div class="skill-group"><h3>Analytics &amp; Tools</h3><div class="skill-pills"><span class="skill-pill">Google Analytics (GA4)</span><span class="skill-pill">Conversion Tracking</span><span class="skill-pill">Performance Reporting</span><span class="skill-pill">Data-Informed Design</span><span class="skill-pill">AI-Powered Workflows</span></div></div>
-      </div>
-    </div>
-  </section>
+<footer>&copy; 2026 Molly Curtis. Designed &amp; built by me.</footer>
 
-  <section id="about" style="background: var(--soft-gray);">
-    <div class="inner">
-      <p class="section-label">The Person Behind the Work</p>
-      <h2 class="section-title">About <span class="grad">Molly Curtis</span></h2>
-      <hr class="divider" />
-      <div class="about-layout">
-        <div class="about-text">
-          <p>I'm a digital experience designer with a background in marketing and growth, focused on creating work that is both visually strong and performance-driven.</p>
-          <p>My experience spans landing pages, digital campaigns, ad creative, and conversion-focused design — supporting all marketing channels including paid search and social, email, organic, and direct mail.</p>
-          <p>Over 4 years I've grown from marketing intern to full-stack digital specialist, building hands-on experience across design, data, campaign strategy, and web development.</p>
-          <p>I believe the best experiences are the simplest ones — removing noise, cutting friction, and making the next step obvious is almost always the answer.</p>
-          <div class="looking-for-box">
-            <h4 class="grad">What I'm Looking For</h4>
-            <p>I'm most excited by roles where design, marketing, and data intersect — teams that care about thoughtful UX, strong creative, and measurable results. The work I enjoy most is cross-channel, collaborative, and tied to real business impact. Marketing never stops evolving, and I thrive in environments that stay ahead of it.</p>
-          </div>
-        </div>
-        <div>
-          <div class="aside-block"><h4 class="grad">Currently</h4><p>Digital Marketing Specialist<br/>National Business Institute — June 2023&ndash;Present</p></div>
-          <div class="aside-block"><h4 class="grad">Education</h4><p>Bachelor of Business Administration, Marketing<br/>University of Wisconsin &ndash; Eau Claire, 2023</p></div>
-          <div class="aside-block"><h4 class="grad">Location</h4><p>Eau Claire, WI &rarr; St. Paul, MN<br/><span style="font-size:0.82rem; color:#b94fc8;">Open to remote work</span></p></div>
-          <div class="aside-block">
-            <h4 class="grad">Fun Facts</h4>
-            <ul class="fun-facts-list">
-              <li>Obsessed with interior design — always thrifting for mid-century modern &amp; eclectic finds</li>
-              <li>Cat mom to Milo &#128049;</li>
-              <li>Always has headphones on and finding new music</li>
-              <li>2026 goal: try a new hobby every single month</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</button>
 
-  <section id="photography">
-    <div class="inner">
-      <p class="section-label">Beyond the Screen</p>
-      <h2 class="section-title">Photo<span class="grad">graphy</span></h2>
-      <hr class="divider" />
-      <div class="photo-section-layout">
-        <div class="photo-text">
-          <p>Photography sharpens the same instincts I bring to design &mdash; composition, storytelling, pacing, and attention to detail. I've been shooting professionally since 2019, with work published in <strong>30+</strong> magazines and online features, focused on portrait and editorial photography.</p>
-          <p>One of my most ambitious projects: I conceived, cast, and directed a 12-model editorial shoot built around the zodiac &mdash; hiring talent, MUAs, and stylists, coordinating a two-day studio shoot, sourcing every prop, and handling all retouching and delivery from start to finish. The content performed exceptionally well and stands as some of my best work.</p>
-          <a href="https://molcurphotos.com" target="_blank" class="btn-primary" style="margin-top:1.2rem; display:inline-block;">View Full Portfolio &rarr;</a>
-        </div>
-        <div class="photo-slideshow" id="photoSlideshow">
-          <img src="photo1.JPEG" alt="Photography" class="active" onerror="this.style.display='none'" />
-          <img src="photo2.jpg" alt="Photography" onerror="this.style.display='none'" />
-          <img src="photo3.jpg" alt="Photography" onerror="this.style.display='none'" />
-          <img src="photo4.jpg" alt="Photography" onerror="this.style.display='none'" />
-          <img src="photo5.jpg" alt="Photography" onerror="this.style.display='none'" />
-          <img src="photo6.jpg" alt="Photography" onerror="this.style.display='none'" />
-          <img src="photo7.jpg" alt="Photography" onerror="this.style.display='none'" />
-          <img src="photo8.jpg" alt="Photography" onerror="this.style.display='none'" />
-          <div class="slideshow-placeholder">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#d4b8e0" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-            <span>Photos coming soon</span>
-          </div>
-          <div class="slideshow-dots" id="slideshowDots"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact" style="background: var(--soft-gray);">
-    <div class="inner">
-      <div class="contact-inner">
-        <p class="section-label" style="text-align:center;">Get In Touch</p>
-        <h2 class="section-title" style="text-align:center;">Let's <span class="grad">Work Together</span></h2>
-        <hr class="divider" style="margin: 0 auto 1.5rem;" />
-        <p class="tagline">Open to new opportunities in growth marketing, UX/UI design, and creative digital roles.</p>
-        <p style="font-size:1.05rem;color:#555;font-weight:400;margin-top:0.5rem;">Reach out at <strong style="background:var(--gradient-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:700;">molcur9284 at gmail dot com</strong></p>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <p>&copy; 2026 Molly Curtis. Designed &amp; built by me.</p>
-  </footer>
-
-  <button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</button>
-
-  <script src="portfolio.js"></script>
+<script src="portfolio.js"></script>
 </body>
 </html>
