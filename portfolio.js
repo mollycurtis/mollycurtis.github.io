@@ -99,6 +99,19 @@ window.onload = function() {
       if (!imgs.length) return;
       var ph = ss.querySelector('.ss-ph');
       if (ph) ph.style.display = 'none';
+      // First image is relative (drives height), rest are absolute overlays
+      imgs.forEach(function(img, i) {
+        if (i === 0) {
+          img.style.position = 'relative';
+        } else {
+          img.style.position = 'absolute';
+          img.style.top = '0';
+          img.style.left = '0';
+          img.style.width = '100%';
+          img.style.height = '100%';
+          img.style.objectFit = 'cover';
+        }
+      });
       if (dotsEl) {
         dotsEl.innerHTML='';
         imgs.forEach(function(_,i){
