@@ -23,7 +23,7 @@
 
     /* NAV */
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--gradient); }
-    .nav-inner { max-width: var(--mw); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1rem 2.5rem; }
+    .nav-inner { max-width: 1300px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1rem 2.5rem; }
     .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: white; letter-spacing: 0.02em; }
     .nav-links { display: flex; gap: 1.8rem; list-style: none; align-items: center; }
     .nav-links a { text-decoration: none; color: rgba(255,255,255,0.85); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase; transition: opacity 0.2s; }
@@ -47,7 +47,7 @@
     .hero-eyebrow { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--mid-gray); margin-bottom: 0.9rem; }
     .hero-name { font-family: 'Playfair Display', serif; font-size: clamp(3.6rem, 5vw, 5.8rem); line-height: 1.0; white-space: nowrap; margin-bottom: 0.4rem; text-shadow: 0 2px 20px rgba(200,64,200,0.08); }
     .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(1rem, 1.6vw, 1.4rem); font-style: italic; color: #777; margin-bottom: 1.4rem; }
-    .hero-bio { font-size: 1rem; font-weight: 300; color: #444; max-width: 520px; margin-bottom: 1.6rem; line-height: 1.82; }
+    .hero-bio { font-size: 1rem; font-weight: 300; color: #444; max-width: 680px; margin-bottom: 1.6rem; line-height: 1.82; }
     .hero-pills { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 1.8rem; }
     .pill { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.04em; padding: 0.3rem 0.85rem; border-radius: 30px; border: 1.5px solid rgba(185,79,200,0.28); color: #b94fc8; background: rgba(185,79,200,0.05); white-space: nowrap; }
     .hero-ctas { display: flex; gap: 0.9rem; flex-wrap: wrap; }
@@ -86,7 +86,8 @@
     .thumb-over { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 55%); display: flex; align-items: flex-end; padding: 1.2rem 1.4rem; }
     .thumb-cta { background: white; color: var(--dark); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; padding: 0.48rem 1rem; border-radius: 30px; }
     .thumb-ph { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: #c0a8d0; font-style: italic; }
-    .card-body { padding: 1.4rem 2.4rem 2.2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem 2.5rem; border-top: 1px solid #f0f0f0; margin-top: 1.4rem; }
+    .card-body { padding: 1.4rem 2.4rem 2.2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem 3rem; border-top: 1px solid #f0f0f0; margin-top: 1.4rem; }
+    .ci.cs2 { grid-column: span 1; }
     .ci label { display: block; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 0.35rem; background: var(--gt); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     .ci span, .ci p { font-size: 0.82rem; color: #444; line-height: 1.6; }
     .ci ul { list-style: none; }
@@ -132,11 +133,12 @@
 
     /* SKILLS */
     .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
-    .sg { padding: 2.2rem 2.5rem; border: 1px solid rgba(185,79,200,0.1); }
-    .sg:nth-child(1) { border-right: 1px solid rgba(185,79,200,0.1); border-bottom: 1px solid rgba(185,79,200,0.1); border-top: none; border-left: none; }
-    .sg:nth-child(2) { border-bottom: 1px solid rgba(185,79,200,0.1); border-left: none; border-top: none; border-right: none; }
-    .sg:nth-child(3) { border-right: 1px solid rgba(185,79,200,0.1); border-top: none; border-bottom: none; border-left: none; }
-    .sg:nth-child(4) { border: none; }
+    .sg { padding: 2rem 2.2rem; }
+    .skills-grid { border: 1px solid rgba(185,79,200,0.12); border-radius: 12px; overflow: hidden; }
+    .sg:nth-child(1) { border-right: 1px solid rgba(185,79,200,0.12); border-bottom: 1px solid rgba(185,79,200,0.12); }
+    .sg:nth-child(2) { border-bottom: 1px solid rgba(185,79,200,0.12); }
+    .sg:nth-child(3) { border-right: 1px solid rgba(185,79,200,0.12); }
+    .sg:nth-child(4) { }
     .sg h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 0.9rem; }
     .pills { display: flex; flex-direction: row; flex-wrap: wrap; gap: 0.45rem; align-items: flex-start; }
     .sk { display: inline-block; padding: 0.42rem 1.05rem; border-radius: 30px; font-size: 0.82rem; font-weight: 500; background: white; color: #7b5ea7; border: 1.5px solid rgba(185,79,200,0.22); transition: all 0.2s; cursor: default; white-space: nowrap; }
@@ -149,20 +151,19 @@
     .lfb h4 { font-family: 'Playfair Display', serif; font-size: 0.92rem; margin-bottom: 0.4rem; }
     .lfb p { font-size: 0.85rem; color: #555; margin: 0; }
     .aside-b { margin-bottom: 1.6rem; }
-    .aside-b h4 { font-family: 'Playfair Display', serif; font-size: 0.85rem; margin-bottom: 0.3rem; }
-    .aside-b p { font-size: 0.83rem; color: #777; line-height: 1.65; }
+    .aside-b h4 { font-family: 'Playfair Display', serif; font-size: 1rem; margin-bottom: 0.35rem; }
+    .aside-b p { font-size: 0.93rem; color: #666; line-height: 1.7; }
     .aside-b a { color: #b94fc8; text-decoration: none; font-weight: 500; }
     .ffl { list-style: none; margin-top: 0.2rem; }
     .ffl li { font-size: 0.82rem; color: #666; padding: 0.18rem 0 0.18rem 1rem; position: relative; line-height: 1.55; }
     .ffl li::before { content:'✦'; position: absolute; left: 0; font-size: 0.5rem; top: 0.46rem; background: var(--gt); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
     /* PHOTOGRAPHY */
-    .photo-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .photo-layout { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 4rem; align-items: start; }
     .photo-text p { font-size: 0.95rem; color: #555; font-weight: 300; margin-bottom: 1rem; line-height: 1.82; }
-    .photo-ss { position: relative; border-radius: 10px; overflow: hidden; background: linear-gradient(135deg,#f0e8f5,#ede8f7); }
-    .photo-ss img { display: block; width: 100%; height: auto; object-fit: cover; opacity: 0; transition: opacity 0.8s ease; position: relative; }
+    .photo-ss { position: relative; border-radius: 10px; overflow: hidden; background: linear-gradient(135deg,#f0e8f5,#ede8f7); height: 400px; }
+    .photo-ss img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; opacity: 0; transition: opacity 0.8s ease; display: block; }
     .photo-ss img.active { opacity: 1; }
-    .photo-ss img:not(.active) { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
     .ss-dots { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); display: flex; gap: 5px; z-index: 2; }
     .ss-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,0.5); border: none; padding: 0; transition: all 0.3s; cursor: default; }
     .ss-dot.active { background: white; width: 14px; border-radius: 3px; }
@@ -222,8 +223,7 @@
       section{padding:3.8rem 0}
     }
 
-    /* CURSOR GLOW */
-    #cursor-glow { pointer-events: none; position: fixed; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(200,64,200,0.1) 0%, rgba(232,68,90,0.06) 40%, transparent 70%); transform: translate(-50%,-50%); z-index: 9999; transition: opacity 0.3s; mix-blend-mode: normal; }
+    
   </style>
 </head>
 <body>
@@ -253,7 +253,7 @@
       <p class="hero-bio">I design cross-channel marketing experiences — landing pages, digital ads, organic social, and conversion optimization — turning campaigns into full-funnel journeys that drive measurable growth.</p>
       <div class="hero-pills">
         <span class="pill">Landing Pages</span>
-        <span class="pill">Digital Ad Creative</span>
+        <span class="pill">Digital Ad Creation</span>
         <span class="pill">Conversion Optimization</span>
         <span class="pill">Organic Social</span>
         <span class="pill">Data-Informed UX</span>
@@ -313,10 +313,10 @@
               <div class="thumb-over"><span class="thumb-cta">&#9654; Compare Before &amp; After</span></div>
             </div>
             <div class="card-body">
-              <div class="ci cs2"><label>What I Worked On</label><ul><li>Audited existing experience, identified drop-off points</li><li>Restructured layout and messaging hierarchy</li><li>Simplified page flow to reduce cognitive load</li><li>Clarified CTAs for a focused, conversion-driven experience</li></ul></div>
+              <div class="ci"><label>What I Worked On</label><ul><li>Audited existing experience, identified drop-off points</li><li>Restructured layout and messaging hierarchy</li><li>Simplified page flow to reduce cognitive load</li><li>Clarified CTAs for a focused, conversion-driven experience</li></ul></div>
               <div class="ci"><label>Tools</label><span>HTML/CSS · Shogun · Claude · Canva · GA4</span></div>
-              <div class="ci cs2"><label>Impact</label><span>Drove an X% increase in subscriptions through a clearer user journey that simplified decision-making from the moment visitors landed. Customer support also reported a significant drop in calls about billing confusion — a recurring pain point that disappeared after the redesign.</span></div>
-              <div class="ci cs2"><label>What I Learned</label><span>Clarity and hierarchy beat complexity. Stripping a page to only what drives action is often more effective than adding more content.</span></div>
+              <div class="ci"><label>Impact</label><span>Drove an X% increase in subscriptions through a clearer user journey that simplified decision-making from the moment visitors landed. Customer support also reported a significant drop in calls about billing confusion — a recurring pain point that disappeared after the redesign.</span></div>
+              <div class="ci"><label>What I Learned</label><span>Clarity and hierarchy beat complexity. Stripping a page to only what drives action is often more effective than adding more content.</span></div>
             </div>
           </div>
         </div>
@@ -331,10 +331,10 @@
             </div>
             <div class="thumb" style="cursor:default;"><div class="thumb-ph">Add screenshot here</div></div>
             <div class="card-body">
-              <div class="ci cs2"><label>What I Worked On</label><ul><li>Designed homepage modules driving traffic to the hub</li><li>Built the hub page layout and resource structure</li><li>Supported lead gen pages tied to downloadable resources</li><li>Designed web banners promoting the initiative site-wide</li></ul></div>
+              <div class="ci"><label>What I Worked On</label><ul><li>Designed homepage modules driving traffic to the hub</li><li>Built the hub page layout and resource structure</li><li>Supported lead gen pages tied to downloadable resources</li><li>Designed web banners promoting the initiative site-wide</li></ul></div>
               <div class="ci"><label>Tools</label><span>Figma · HTML/CSS · GA4</span></div>
-              <div class="ci cs2"><label>Impact</label><span>Created a scalable resource hub that captured leads and supported ongoing AI-focused marketing initiatives.</span></div>
-              <div class="ci cs2"><label>What I Learned</label><span>Educational content structured clearly is one of the most effective lead generation tools available.</span></div>
+              <div class="ci"><label>Impact</label><span>Created a scalable resource hub that captured leads and supported ongoing AI-focused marketing initiatives.</span></div>
+              <div class="ci"><label>What I Learned</label><span>Educational content structured clearly is one of the most effective lead generation tools available.</span></div>
             </div>
           </div>
         </div>
@@ -349,10 +349,10 @@
             </div>
             <div class="thumb" style="cursor:default;"><div class="thumb-ph">Add screenshot here</div></div>
             <div class="card-body">
-              <div class="ci cs2"><label>What I Worked On</label><ul><li>Designed state-specific and topic-specific landing pages</li><li>Structured messaging around audience needs and search intent</li><li>Created scannable layouts with clear value propositions</li><li>Supported campaign launches with focused conversion pages</li></ul></div>
+              <div class="ci"><label>What I Worked On</label><ul><li>Designed state-specific and topic-specific landing pages</li><li>Structured messaging around audience needs and search intent</li><li>Created scannable layouts with clear value propositions</li><li>Supported campaign launches with focused conversion pages</li></ul></div>
               <div class="ci"><label>Tools</label><span>Figma · HTML/CSS · GA4</span></div>
-              <div class="ci cs2"><label>Impact</label><span>Helped campaigns reach the right audiences with more relevant messaging and clearer user journeys.</span></div>
-              <div class="ci cs2"><label>What I Learned</label><span>The most effective campaigns connect message, audience, and experience into one seamless journey.</span></div>
+              <div class="ci"><label>Impact</label><span>Helped campaigns reach the right audiences with more relevant messaging and clearer user journeys.</span></div>
+              <div class="ci"><label>What I Learned</label><span>The most effective campaigns connect message, audience, and experience into one seamless journey.</span></div>
             </div>
           </div>
         </div>
@@ -367,10 +367,10 @@
             </div>
             <div class="thumb" style="cursor:default;"><div class="thumb-ph">Add creative board here</div></div>
             <div class="card-body">
-              <div class="ci cs2"><label>What I Worked On</label><ul><li>Designed display ads in multiple sizes and formats</li><li>Created campaign-specific creative sets for different audiences</li><li>Adapted concepts across placements and channels</li><li>Built variations to support testing and optimization</li></ul></div>
+              <div class="ci"><label>What I Worked On</label><ul><li>Designed display ads in multiple sizes and formats</li><li>Created campaign-specific creative sets for different audiences</li><li>Adapted concepts across placements and channels</li><li>Built variations to support testing and optimization</li></ul></div>
               <div class="ci"><label>Tools</label><span>Adobe Creative Suite · Figma · Canva</span></div>
-              <div class="ci cs2"><label>Impact</label><span>Delivered scalable creative assets that ran across multiple channels and supported campaign performance at scale.</span></div>
-              <div class="ci cs2"><label>What I Learned</label><span>Strong campaign creative isn't about individual visuals — it's about building adaptable assets that perform across every touchpoint.</span></div>
+              <div class="ci"><label>Impact</label><span>Delivered scalable creative assets that ran across multiple channels and supported campaign performance at scale.</span></div>
+              <div class="ci"><label>What I Learned</label><span>Strong campaign creative isn't about individual visuals — it's about building adaptable assets that perform across every touchpoint.</span></div>
             </div>
           </div>
         </div>
@@ -549,13 +549,7 @@
 
 <button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</button>
 
-  <div id="cursor-glow"></div>
-
-  <script>
-    var glow = document.getElementById('cursor-glow');
-    if(glow) document.addEventListener('mousemove', function(e){ glow.style.left=e.clientX+'px'; glow.style.top=e.clientY+'px'; });
-
-    var cur=0, total=4;
+  <script>    var cur=0, total=4;
     function slideProject(dir){ cur=(cur+dir+total)%total; _move(); }
     function goToSlide(n){ cur=n; _move(); }
     function _move(){
@@ -626,7 +620,7 @@
       }
 
       var btn=document.getElementById('btt');
-      if(btn) window.addEventListener('scroll',function(){ btn.classList.toggle('vis',window.scrollY>500); },{passive:true});
+      if(btn) window.addEventListener('scroll',function(){ btn.classList.toggle('vis',window.scrollY>1000); },{passive:true});
     };
   </script>
 </body>
