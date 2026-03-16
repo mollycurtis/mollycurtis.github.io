@@ -42,16 +42,16 @@
     .btn-outline:hover { border-color: #b94fc8; }
 
     /* HERO */
-    .hero { display: flex; align-items: center; padding: 5.5rem 2.5rem 2.5rem; }
+    .hero { display: flex; align-items: center; padding: 4.5rem 2.5rem 1.5rem; }
     .hero-inner { max-width: var(--mw); margin: 0 auto; display: grid; grid-template-columns: 1fr 420px; align-items: center; gap: 5rem; width: 100%; }
     .hero-eyebrow { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--mid-gray); margin-bottom: 0.9rem; }
     .hero-name { font-family: 'Playfair Display', serif; font-size: clamp(3.6rem, 5vw, 5.8rem); line-height: 1.0; white-space: nowrap; margin-bottom: 0.4rem; text-shadow: 0 2px 20px rgba(200,64,200,0.08); }
     .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(1rem, 1.6vw, 1.4rem); font-style: italic; color: #777; margin-bottom: 1.4rem; }
-    .hero-bio { font-size: 1rem; font-weight: 300; color: #444; max-width: 680px; margin-bottom: 1.6rem; line-height: 1.82; }
-    .hero-pills { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 1.8rem; }
+    .hero-bio { font-size: 0.97rem; font-weight: 300; color: #444; max-width: 680px; margin-bottom: 1rem; line-height: 1.78; }
+    .hero-pills { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.2rem; }
     .pill { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.04em; padding: 0.3rem 0.85rem; border-radius: 30px; border: 1.5px solid rgba(185,79,200,0.28); color: #b94fc8; background: rgba(185,79,200,0.05); white-space: nowrap; }
     .hero-ctas { display: flex; gap: 0.9rem; flex-wrap: wrap; }
-    .hero-img-wrap { width: 380px; height: 380px; border-radius: 50%; overflow: hidden; box-shadow: 0 0 0 7px white, 0 0 0 11px rgba(185,79,200,0.18), 0 20px 60px rgba(185,79,200,0.15); flex-shrink: 0; background: white; transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.4s ease; transform-style: preserve-3d; cursor: pointer; }
+    .hero-img-wrap { width: 340px; height: 340px; border-radius: 50%; overflow: hidden; box-shadow: 0 0 0 7px white, 0 0 0 11px rgba(185,79,200,0.18), 0 20px 60px rgba(185,79,200,0.15); flex-shrink: 0; background: white; transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.4s ease; transform-style: preserve-3d; cursor: pointer; }
     .hero-img-wrap:hover { transform: scale(1.06) translateY(-6px) rotate3d(1,1,0,4deg); box-shadow: 0 0 0 7px white, 0 0 0 11px rgba(185,79,200,0.25), 0 32px 80px rgba(185,79,200,0.22); }
     .hero-img-wrap img { width: 100%; height: 100%; object-fit: contain; display: block; background: white; }
 
@@ -74,22 +74,21 @@
     .slide { min-width: 100%; flex-shrink: 0; width: 100%; padding: 0; }
 
     /* CARD */
-    .card { background: white; border-radius: 14px; overflow: hidden; box-shadow: 0 2px 24px rgba(0,0,0,0.07); display: flex; flex-direction: row; align-items: stretch; }
-    .card-header { padding: 1.6rem 2rem 0.8rem; }
-    .card-right { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+    .card { background: white; border-radius: 14px; overflow: hidden; box-shadow: 0 2px 24px rgba(0,0,0,0.07); }
+    .card-header { padding: 2rem 2.4rem 1.2rem; }
     .card-header h3 { font-family: 'Playfair Display', serif; font-size: 1.55rem; margin-bottom: 0.4rem; text-shadow: 0 1px 10px rgba(200,64,200,0.07); }
     .card-header p { font-size: 0.9rem; color: #666; font-weight: 300; line-height: 1.7; }
     .card-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.6rem; }
     .ctag { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; padding: 0.28rem 0.75rem; border-radius: 20px; background: rgba(185,79,200,0.07); color: #b94fc8; border: 1.5px solid rgba(185,79,200,0.2); }
-    .thumb { position: relative; flex-shrink: 0; width: 300px; min-height: 320px; background: linear-gradient(135deg,#f0e8f5,#ede8f7); cursor: pointer; margin: 0; border-radius: 0; }
+    .thumb { position: relative; margin: 0 2.4rem; border-radius: 10px; overflow: hidden; height: 240px; background: linear-gradient(135deg,#f0e8f5,#ede8f7); cursor: pointer; }
     .thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; transition: transform 0.4s ease; }
     .thumb:hover img { transform: scale(1.02); }
     .thumb-over { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 55%); display: flex; align-items: flex-end; padding: 1.2rem 1.4rem; }
     .thumb-cta { background: white; color: var(--dark); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; padding: 0.48rem 1rem; border-radius: 30px; }
-    .thumb-ph { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: #c0a8d0; font-style: italic; }
-    .card-body { padding: 0; display: flex; flex-direction: column; gap: 0; }
+    .thumb-ph { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: #c0a8d0; font-style: italic; }
+    .card-body { padding: 1.4rem 2.4rem 2.2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem 3rem; border-top: 1px solid #f0f0f0; margin-top: 1.4rem; }
 
-    .ci { padding: 0.75rem 2rem; border-top: 1px solid #f3f3f3; }
+
     .ci label { display: block; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 0.28rem; background: var(--gt); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     .ci span, .ci p { font-size: 0.82rem; color: #444; line-height: 1.55; }
     .ci ul { list-style: none; margin: 0; }
@@ -200,9 +199,7 @@
     /* ── Large (≤1200px) ── */
     @media(max-width:1200px){
       .hero-inner { gap: 3rem; }
-      .card { flex-direction: column; }
-      .thumb { width: 100% !important; min-height: 220px !important; border-radius: 14px 14px 0 0 !important; }
-      .card-right { width: 100%; }
+
       .process-row { flex-wrap: wrap; }
       .process-row::before { display: none; }
     }
@@ -345,7 +342,6 @@
               <div class="ci"><label>What I Learned</label><span>Clarity and hierarchy beat complexity. Stripping a page to only what drives action is often more effective than adding more content.</span></div>
               <div class="ci"><label>Tools</label><span>HTML/CSS · Shogun · Claude · Canva · GA4</span></div>
             </div>
-            </div>
           </div>
         </div>
 
@@ -362,7 +358,6 @@
               <div class="ci"><label>Impact</label><span>Created a scalable resource hub that captured leads and supported ongoing AI-focused marketing initiatives.</span></div>
               <div class="ci"><label>What I Learned</label><span>Educational content structured clearly is one of the most effective lead generation tools available.</span></div>
               <div class="ci"><label>Tools</label><span>Figma · HTML/CSS · GA4</span></div>
-            </div>
             </div>
           </div>
         </div>
@@ -381,7 +376,6 @@
               <div class="ci"><label>What I Learned</label><span>The most effective campaigns connect message, audience, and experience into one seamless journey.</span></div>
               <div class="ci"><label>Tools</label><span>Figma · HTML/CSS · GA4</span></div>
             </div>
-            </div>
           </div>
         </div>
 
@@ -398,7 +392,6 @@
               <div class="ci"><label>Impact</label><span>Delivered scalable creative assets that ran across multiple channels and supported campaign performance at scale.</span></div>
               <div class="ci"><label>What I Learned</label><span>Strong campaign creative isn't about individual visuals — it's about building adaptable assets that perform across every touchpoint.</span></div>
               <div class="ci"><label>Tools</label><span>Adobe Creative Suite · Figma · Canva</span></div>
-            </div>
             </div>
           </div>
         </div>
