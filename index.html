@@ -77,16 +77,16 @@
     .card { background: white; border-radius: 14px; overflow: hidden; box-shadow: 0 2px 24px rgba(0,0,0,0.07); }
     .card-header { padding: 2rem 2.4rem 1.2rem; }
     .card-header h3 { font-family: 'Playfair Display', serif; font-size: 1.55rem; margin-bottom: 0.4rem; text-shadow: 0 1px 10px rgba(200,64,200,0.07); }
-    .card-header p { font-size: 0.9rem; color: #666; font-weight: 300; line-height: 1.7; max-width: 680px; }
+    .card-header p { font-size: 0.9rem; color: #666; font-weight: 300; line-height: 1.7; }
     .card-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.6rem; }
-    .ctag { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; padding: 0.22rem 0.65rem; border-radius: 20px; background: var(--soft-gray); color: #888; }
+    .ctag { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; padding: 0.28rem 0.75rem; border-radius: 20px; background: rgba(185,79,200,0.07); color: #b94fc8; border: 1.5px solid rgba(185,79,200,0.2); }
     .thumb { position: relative; margin: 0 2.4rem; border-radius: 10px; overflow: hidden; height: 240px; background: linear-gradient(135deg,#f0e8f5,#ede8f7); cursor: pointer; }
     .thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; transition: transform 0.4s ease; }
     .thumb:hover img { transform: scale(1.02); }
     .thumb-over { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 55%); display: flex; align-items: flex-end; padding: 1.2rem 1.4rem; }
     .thumb-cta { background: white; color: var(--dark); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; padding: 0.48rem 1rem; border-radius: 30px; }
     .thumb-ph { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: #c0a8d0; font-style: italic; }
-    .card-body { padding: 1.4rem 2.4rem 2.2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem 2rem; border-top: 1px solid #f0f0f0; margin-top: 1.4rem; }
+    .card-body { padding: 1.4rem 2.4rem 2.2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem 2.5rem; border-top: 1px solid #f0f0f0; margin-top: 1.4rem; }
     .ci label { display: block; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 0.35rem; background: var(--gt); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     .ci span, .ci p { font-size: 0.82rem; color: #444; line-height: 1.6; }
     .ci ul { list-style: none; }
@@ -131,7 +131,12 @@
     .ps p { font-size: 0.8rem; color: #666; font-weight: 400; line-height: 1.6; }
 
     /* SKILLS */
-    .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.8rem 4rem; }
+    .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+    .sg { padding: 2.2rem 2.5rem; border: 1px solid rgba(185,79,200,0.1); }
+    .sg:nth-child(1) { border-right: 1px solid rgba(185,79,200,0.1); border-bottom: 1px solid rgba(185,79,200,0.1); border-top: none; border-left: none; }
+    .sg:nth-child(2) { border-bottom: 1px solid rgba(185,79,200,0.1); border-left: none; border-top: none; border-right: none; }
+    .sg:nth-child(3) { border-right: 1px solid rgba(185,79,200,0.1); border-top: none; border-bottom: none; border-left: none; }
+    .sg:nth-child(4) { border: none; }
     .sg h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 0.9rem; }
     .pills { display: flex; flex-direction: row; flex-wrap: wrap; gap: 0.45rem; align-items: flex-start; }
     .sk { display: inline-block; padding: 0.42rem 1.05rem; border-radius: 30px; font-size: 0.82rem; font-weight: 500; background: white; color: #7b5ea7; border: 1.5px solid rgba(185,79,200,0.22); transition: all 0.2s; cursor: default; white-space: nowrap; }
@@ -152,10 +157,10 @@
     .ffl li::before { content:'✦'; position: absolute; left: 0; font-size: 0.5rem; top: 0.46rem; background: var(--gt); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
     /* PHOTOGRAPHY */
-    .photo-layout { display: grid; grid-template-columns: 1fr 0.75fr; gap: 4rem; align-items: start; }
+    .photo-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
     .photo-text p { font-size: 0.95rem; color: #555; font-weight: 300; margin-bottom: 1rem; line-height: 1.82; }
-    .photo-ss { position: relative; border-radius: 10px; overflow: hidden; background: linear-gradient(135deg,#f0e8f5,#ede8f7); max-height: 520px; }
-    .photo-ss img { display: block; width: 100%; height: auto; max-height: 520px; object-fit: cover; opacity: 0; transition: opacity 0.8s ease; position: relative; }
+    .photo-ss { position: relative; border-radius: 10px; overflow: hidden; background: linear-gradient(135deg,#f0e8f5,#ede8f7); }
+    .photo-ss img { display: block; width: 100%; height: auto; object-fit: cover; opacity: 0; transition: opacity 0.8s ease; position: relative; }
     .photo-ss img.active { opacity: 1; }
     .photo-ss img:not(.active) { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
     .ss-dots { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); display: flex; gap: 5px; z-index: 2; }
@@ -216,6 +221,9 @@
       .skills-grid{grid-template-columns:1fr 1fr}
       section{padding:3.8rem 0}
     }
+
+    /* CURSOR GLOW */
+    #cursor-glow { pointer-events: none; position: fixed; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(200,64,200,0.1) 0%, rgba(232,68,90,0.06) 40%, transparent 70%); transform: translate(-50%,-50%); z-index: 9999; transition: opacity 0.3s; mix-blend-mode: normal; }
   </style>
 </head>
 <body>
@@ -407,7 +415,7 @@
     <h2 class="st">My <span class="grad">Process</span></h2>
     <hr class="sdiv" />
     <div class="process-row">
-      <div class="ps"><div class="ps-dot"></div><div class="ps-n grad">01</div><h3>Understand the Goal</h3><p>Define campaign goals, audience, and success metrics.</p></div>
+      <div class="ps"><div class="ps-dot"></div><div class="ps-n grad">01</div><h3>Understand the Goal</h3><p>Define campaign goals, audience, and metrics.</p></div>
       <div class="ps"><div class="ps-dot"></div><div class="ps-n grad">02</div><h3>Identify Friction</h3><p>Find the gaps in the user journey costing conversions.</p></div>
       <div class="ps"><div class="ps-dot"></div><div class="ps-n grad">03</div><h3>Design the Experience</h3><p>Build layouts and creative that make the next step obvious.</p></div>
       <div class="ps"><div class="ps-dot"></div><div class="ps-n grad">04</div><h3>Launch &amp; Measure</h3><p>Ship it, track it with GA4, and see what's working.</p></div>
@@ -488,15 +496,6 @@
         <div class="aside-b"><h4 class="grad">Currently</h4><p>Digital Marketing Specialist<br/>National Business Institute — June 2023&ndash;Present</p></div>
         <div class="aside-b"><h4 class="grad">Education</h4><p>BBA, Marketing<br/>University of Wisconsin &ndash; Eau Claire, 2023</p></div>
         <div class="aside-b"><h4 class="grad">Location</h4><p>Eau Claire, WI &rarr; St. Paul, MN<br/><span style="font-size:0.78rem;color:#b94fc8;">Open to remote work</span></p></div>
-        <div class="aside-b">
-          <h4 class="grad">A Little More About Me</h4>
-          <ul class="ffl">
-            <li>Obsessed with interior design — thrifting for mid-century modern &amp; eclectic finds</li>
-            <li>Cat mom to Milo &#128049;</li>
-            <li>Always has headphones on and finding new music</li>
-            <li>2026 goal: try a new hobby every single month</li>
-          </ul>
-        </div>
       </div>
     </div>
   </div>
@@ -541,11 +540,94 @@
       <h2 class="st" style="text-align:center;">Let's <span class="grad">Work Together</span></h2>
       <hr class="sdiv" style="margin:0 auto 1.4rem;" />
       <p class="tagline">Open to new opportunities in growth marketing, UX/UI design, and creative digital roles.</p>
-      <p class="email-display" style="margin-top:0.6rem;">Reach out at <strong style="background:var(--gt);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="523f3d3e3127206b606a6612353f333b3e7c313d3f">[email&#160;protected]</a></strong></p>
+      <p class="email-display" style="margin-top:0.6rem;">Reach out at <strong style="font-weight:700;background:var(--gt);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">molcur9284&#64;gmail&#46;com</strong></p>
     </div>
   </div>
 </section>
 
 <footer>&copy; 2026 Molly Curtis. Designed &amp; built by me.</footer>
 
-<button id="btt" o
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</button>
+
+  <div id="cursor-glow"></div>
+
+  <script>
+    var glow = document.getElementById('cursor-glow');
+    if(glow) document.addEventListener('mousemove', function(e){ glow.style.left=e.clientX+'px'; glow.style.top=e.clientY+'px'; });
+
+    var cur=0, total=4;
+    function slideProject(dir){ cur=(cur+dir+total)%total; _move(); }
+    function goToSlide(n){ cur=n; _move(); }
+    function _move(){
+      var t=document.getElementById('track');
+      if(t) t.style.transform='translateX(-'+(cur*100)+'%)';
+      document.querySelectorAll('.sd').forEach(function(d,i){ d.classList.toggle('active',i===cur); });
+      var p=document.getElementById('sp'); if(p) p.textContent=(cur+1)+' / '+total;
+    }
+
+    function openModal(id){
+      var el=document.getElementById(id); if(!el) return;
+      el.style.display='flex'; setTimeout(function(){ el.classList.add('open'); },10);
+      document.body.style.overflow='hidden';
+    }
+    function closeModal(id){
+      var el=document.getElementById(id); if(!el) return;
+      el.classList.remove('open'); setTimeout(function(){ el.style.display='none'; },280);
+      document.body.style.overflow='';
+    }
+    function closeModalOutside(e,id){ if(e.target.id===id) closeModal(id); }
+
+    window.onload = function(){
+      var t=document.getElementById('track');
+      if(t){ t.style.transition='none'; t.style.transform='translateX(0)'; setTimeout(function(){ t.style.transition='transform 0.5s cubic-bezier(0.4,0,0.2,1)'; },60); }
+
+      var m=document.getElementById('m1'); if(m) m.style.display='none';
+
+      var cw=document.getElementById('compSlider'), ap=document.getElementById('afterPane'), ch=document.getElementById('compHandle');
+      if(cw&&ap&&ch){
+        var drag=false;
+        function sp(x){ var r=cw.getBoundingClientRect(),p=Math.min(Math.max((x-r.left)/r.width,0.02),0.98); ap.style.width=(p*100)+'%'; ch.style.left=(p*100)+'%'; }
+        cw.addEventListener('mousedown',function(e){drag=true;sp(e.clientX);e.preventDefault();});
+        window.addEventListener('mousemove',function(e){if(drag)sp(e.clientX);});
+        window.addEventListener('mouseup',function(){drag=false;});
+        cw.addEventListener('touchstart',function(e){drag=true;sp(e.touches[0].clientX);},{passive:true});
+        window.addEventListener('touchmove',function(e){if(drag)sp(e.touches[0].clientX);},{passive:true});
+        window.addEventListener('touchend',function(){drag=false;});
+      }
+
+      var strip=document.getElementById('impactStrip');
+      if(strip){
+        var done=false;
+        function easeOut(t){ return 1-Math.pow(1-t,3); }
+        function runCount(el){
+          var tgt=parseInt(el.getAttribute('data-t')),s=el.getAttribute('data-s')||'',pr=el.getAttribute('data-p')||'';
+          if(isNaN(tgt)) return;
+          var t0=performance.now();
+          function tick(now){ var p=Math.min((now-t0)/1600,1),v=Math.round(easeOut(p)*tgt); el.textContent=tgt>=1000?(v>=1000?'1K+':v+s):pr+v+s; if(p<1) requestAnimationFrame(tick); }
+          requestAnimationFrame(tick);
+        }
+        function checkStrip(){ if(done) return; var r=strip.getBoundingClientRect(); if(r.top<window.innerHeight){ done=true; strip.querySelectorAll('.cu').forEach(runCount); window.removeEventListener('scroll',checkStrip); } }
+        window.addEventListener('scroll',checkStrip,{passive:true});
+        setTimeout(checkStrip, 800);
+      }
+
+      var ss=document.getElementById('photoSS');
+      if(ss){
+        var dotsEl=document.getElementById('ssDots'),idx=0;
+        setTimeout(function(){
+          var imgs=Array.prototype.filter.call(ss.querySelectorAll('img'),function(i){ return i.style.display!=='none'&&i.naturalWidth>0; });
+          if(!imgs.length) return;
+          var ph=ss.querySelector('.ss-ph'); if(ph) ph.style.display='none';
+          imgs.forEach(function(img,i){ if(i>0){img.style.position='absolute';img.style.top='0';img.style.left='0';img.style.width='100%';img.style.height='100%';img.style.objectFit='cover';} });
+          if(dotsEl){ dotsEl.innerHTML=''; imgs.forEach(function(_,i){ var d=document.createElement('button'); d.className='ss-dot'+(i===0?' active':''); dotsEl.appendChild(d); }); }
+          function show(n){ imgs.forEach(function(img,i){img.classList.toggle('active',i===n);}); if(dotsEl) dotsEl.querySelectorAll('.ss-dot').forEach(function(d,i){d.classList.toggle('active',i===n);}); idx=n; }
+          show(0); setInterval(function(){show((idx+1)%imgs.length);},3500);
+        },500);
+      }
+
+      var btn=document.getElementById('btt');
+      if(btn) window.addEventListener('scroll',function(){ btn.classList.toggle('vis',window.scrollY>500); },{passive:true});
+    };
+  </script>
+</body>
+</html>
