@@ -29,8 +29,8 @@
     .nav-links a { text-decoration: none; color: rgba(255,255,255,0.85); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase; transition: opacity 0.2s; }
     .nav-links a:hover { opacity: 0.6; }
     .nav-pill { padding: 0.45rem 1rem; border-radius: 30px; font-size: 0.75rem !important; }
-    .nav-li { border: 1.5px solid rgba(255,255,255,0.6); color: rgba(255,255,255,0.9) !important; }
-    .nav-li:hover { background: rgba(255,255,255,0.12); opacity: 1 !important; }
+    .nav-li { background: white; color: #b94fc8 !important; border-radius: 30px; font-size: 0.8rem !important; transition: all 0.2s; border: none; font-weight: 600 !important; }
+    .nav-li:hover { opacity: 0.88 !important; }
     .nav-re { background: white; color: #b94fc8 !important; font-weight: 600 !important; }
     .nav-re:hover { opacity: 0.88 !important; }
 
@@ -86,7 +86,7 @@
     .thumb-over { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 55%); display: flex; align-items: flex-end; padding: 1.2rem 1.4rem; }
     .thumb-cta { background: white; color: var(--dark); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; padding: 0.48rem 1rem; border-radius: 30px; }
     .thumb-ph { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: #c0a8d0; font-style: italic; }
-    .card-body { padding: 1.4rem 2.4rem 2.2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; border-top: 1px solid #f0f0f0; margin-top: 1.4rem; }
+    .card-body { padding: 1.4rem 2.4rem 2.2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem 2rem; border-top: 1px solid #f0f0f0; margin-top: 1.4rem; }
     .ci label { display: block; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 0.35rem; background: var(--gt); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     .ci span, .ci p { font-size: 0.82rem; color: #444; line-height: 1.6; }
     .ci ul { list-style: none; }
@@ -124,14 +124,14 @@
     /* PROCESS */
     .process-row { display: flex; gap: 1.2rem; position: relative; }
     .process-row::before { content:''; position: absolute; top: 18px; left: 18px; right: 18px; height: 2px; background: var(--gradient); z-index: 0; border-radius: 2px; }
-    .ps { flex: 1; background: white; border-radius: 10px; padding: 1.4rem 1.2rem; box-shadow: 0 2px 14px rgba(0,0,0,0.05); position: relative; z-index: 1; }
+    .ps { flex: 1; background: white; border-radius: 10px; padding: 1.6rem 1.3rem; box-shadow: 0 2px 14px rgba(0,0,0,0.05); position: relative; z-index: 1; }
     .ps-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--gradient); margin-bottom: 0.8rem; box-shadow: 0 0 0 3px white, 0 0 0 5px rgba(185,79,200,0.2); }
     .ps-n { font-family: 'Playfair Display', serif; font-size: 1.4rem; line-height: 1; margin-bottom: 0.35rem; }
     .ps h3 { font-family: 'Playfair Display', serif; font-size: 0.88rem; margin-bottom: 0.3rem; }
-    .ps p { font-size: 0.78rem; color: #888; font-weight: 300; line-height: 1.6; }
+    .ps p { font-size: 0.8rem; color: #666; font-weight: 400; line-height: 1.6; }
 
     /* SKILLS */
-    .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.2rem; }
+    .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.8rem 4rem; }
     .sg h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 0.9rem; }
     .pills { display: flex; flex-direction: row; flex-wrap: wrap; gap: 0.45rem; align-items: flex-start; }
     .sk { display: inline-block; padding: 0.42rem 1.05rem; border-radius: 30px; font-size: 0.82rem; font-weight: 500; background: white; color: #7b5ea7; border: 1.5px solid rgba(185,79,200,0.22); transition: all 0.2s; cursor: default; white-space: nowrap; }
@@ -152,10 +152,10 @@
     .ffl li::before { content:'✦'; position: absolute; left: 0; font-size: 0.5rem; top: 0.46rem; background: var(--gt); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
     /* PHOTOGRAPHY */
-    .photo-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .photo-layout { display: grid; grid-template-columns: 1fr 0.75fr; gap: 4rem; align-items: start; }
     .photo-text p { font-size: 0.95rem; color: #555; font-weight: 300; margin-bottom: 1rem; line-height: 1.82; }
-    .photo-ss { position: relative; border-radius: 10px; overflow: hidden; background: linear-gradient(135deg,#f0e8f5,#ede8f7); }
-    .photo-ss img { display: block; width: 100%; height: auto; opacity: 0; transition: opacity 0.8s ease; position: relative; }
+    .photo-ss { position: relative; border-radius: 10px; overflow: hidden; background: linear-gradient(135deg,#f0e8f5,#ede8f7); max-height: 520px; }
+    .photo-ss img { display: block; width: 100%; height: auto; max-height: 520px; object-fit: cover; opacity: 0; transition: opacity 0.8s ease; position: relative; }
     .photo-ss img.active { opacity: 1; }
     .photo-ss img:not(.active) { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
     .ss-dots { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); display: flex; gap: 5px; z-index: 2; }
@@ -165,8 +165,8 @@
     .ss-ph span { font-size: 0.78rem; color: #c0a8d0; font-style: italic; }
 
     /* CONTACT */
-    .contact-box { text-align: center; max-width: 600px; margin: 0 auto; }
-    .contact-box .tagline { font-size: 1rem; color: #666; margin-bottom: 1.4rem; font-weight: 300; }
+    .contact-box { text-align: center; max-width: 860px; margin: 0 auto; }
+    .contact-box .tagline { font-size: 1rem; color: #666; margin-bottom: 1.4rem; font-weight: 300; white-space: nowrap; }
     .email-display { font-size: 1rem; color: #555; }
 
     /* BACK TO TOP */
@@ -188,7 +188,7 @@
 
     /* RESPONSIVE */
     @media(max-width:1100px){
-      .skills-grid{grid-template-columns:repeat(2,1fr)}
+      .skills-grid{grid-template-columns:1fr 1fr}
       .card-body{grid-template-columns:1fr 1fr}
       .cs2{grid-column:span 1}
       .process-row{flex-wrap:wrap}
@@ -213,7 +213,7 @@
       .card-body{padding:1.2rem 1.5rem 1.8rem;grid-template-columns:1fr}
     }
     @media(max-width:600px){
-      .skills-grid{grid-template-columns:1fr}
+      .skills-grid{grid-template-columns:1fr 1fr}
       section{padding:3.8rem 0}
     }
   </style>
@@ -306,9 +306,8 @@
             </div>
             <div class="card-body">
               <div class="ci cs2"><label>What I Worked On</label><ul><li>Audited existing experience, identified drop-off points</li><li>Restructured layout and messaging hierarchy</li><li>Simplified page flow to reduce cognitive load</li><li>Clarified CTAs for a focused, conversion-driven experience</li></ul></div>
-              <div class="ci"><label>My Role</label><span>Lead Designer &amp; Strategist</span></div>
               <div class="ci"><label>Tools</label><span>HTML/CSS · Shogun · Claude · Canva · GA4</span></div>
-              <div class="ci cs2"><label>Impact</label><span>Drove an X% increase in subscriptions through a clearer user journey that simplified decision-making from the moment visitors landed.</span></div>
+              <div class="ci cs2"><label>Impact</label><span>Drove an X% increase in subscriptions through a clearer user journey that simplified decision-making from the moment visitors landed. Customer support also reported a significant drop in calls about billing confusion — a recurring pain point that disappeared after the redesign.</span></div>
               <div class="ci cs2"><label>What I Learned</label><span>Clarity and hierarchy beat complexity. Stripping a page to only what drives action is often more effective than adding more content.</span></div>
             </div>
           </div>
@@ -325,7 +324,6 @@
             <div class="thumb" style="cursor:default;"><div class="thumb-ph">Add screenshot here</div></div>
             <div class="card-body">
               <div class="ci cs2"><label>What I Worked On</label><ul><li>Designed homepage modules driving traffic to the hub</li><li>Built the hub page layout and resource structure</li><li>Supported lead gen pages tied to downloadable resources</li><li>Designed web banners promoting the initiative site-wide</li></ul></div>
-              <div class="ci"><label>My Role</label><span>UX Design · Page Strategy · Campaign Support</span></div>
               <div class="ci"><label>Tools</label><span>Figma · HTML/CSS · GA4</span></div>
               <div class="ci cs2"><label>Impact</label><span>Created a scalable resource hub that captured leads and supported ongoing AI-focused marketing initiatives.</span></div>
               <div class="ci cs2"><label>What I Learned</label><span>Educational content structured clearly is one of the most effective lead generation tools available.</span></div>
@@ -344,7 +342,6 @@
             <div class="thumb" style="cursor:default;"><div class="thumb-ph">Add screenshot here</div></div>
             <div class="card-body">
               <div class="ci cs2"><label>What I Worked On</label><ul><li>Designed state-specific and topic-specific landing pages</li><li>Structured messaging around audience needs and search intent</li><li>Created scannable layouts with clear value propositions</li><li>Supported campaign launches with focused conversion pages</li></ul></div>
-              <div class="ci"><label>My Role</label><span>UX Design · Page Strategy · Implementation</span></div>
               <div class="ci"><label>Tools</label><span>Figma · HTML/CSS · GA4</span></div>
               <div class="ci cs2"><label>Impact</label><span>Helped campaigns reach the right audiences with more relevant messaging and clearer user journeys.</span></div>
               <div class="ci cs2"><label>What I Learned</label><span>The most effective campaigns connect message, audience, and experience into one seamless journey.</span></div>
@@ -363,7 +360,6 @@
             <div class="thumb" style="cursor:default;"><div class="thumb-ph">Add creative board here</div></div>
             <div class="card-body">
               <div class="ci cs2"><label>What I Worked On</label><ul><li>Designed display ads in multiple sizes and formats</li><li>Created campaign-specific creative sets for different audiences</li><li>Adapted concepts across placements and channels</li><li>Built variations to support testing and optimization</li></ul></div>
-              <div class="ci"><label>My Role</label><span>Designer · Campaign Creative</span></div>
               <div class="ci"><label>Tools</label><span>Adobe Creative Suite · Figma · Canva</span></div>
               <div class="ci cs2"><label>Impact</label><span>Delivered scalable creative assets that ran across multiple channels and supported campaign performance at scale.</span></div>
               <div class="ci cs2"><label>What I Learned</label><span>Strong campaign creative isn't about individual visuals — it's about building adaptable assets that perform across every touchpoint.</span></div>
@@ -411,7 +407,7 @@
     <h2 class="st">My <span class="grad">Process</span></h2>
     <hr class="sdiv" />
     <div class="process-row">
-      <div class="ps"><div class="ps-dot"></div><div class="ps-n grad">01</div><h3>Understand the Goal</h3><p>Start with campaign goals, audience, and performance context.</p></div>
+      <div class="ps"><div class="ps-dot"></div><div class="ps-n grad">01</div><h3>Understand the Goal</h3><p>Define campaign goals, audience, and success metrics.</p></div>
       <div class="ps"><div class="ps-dot"></div><div class="ps-n grad">02</div><h3>Identify Friction</h3><p>Find the gaps in the user journey costing conversions.</p></div>
       <div class="ps"><div class="ps-dot"></div><div class="ps-n grad">03</div><h3>Design the Experience</h3><p>Build layouts and creative that make the next step obvious.</p></div>
       <div class="ps"><div class="ps-dot"></div><div class="ps-n grad">04</div><h3>Launch &amp; Measure</h3><p>Ship it, track it with GA4, and see what's working.</p></div>
@@ -477,16 +473,15 @@
 <section id="about" class="sec-bg">
   <div class="inner">
     <p class="sl">The Person Behind the Work</p>
-    <h2 class="st">About <span class="grad">Molly Curtis</span></h2>
+    <h2 class="st">About <span class="grad">Me</span></h2>
     <hr class="sdiv" />
     <div class="about-grid">
       <div class="about-text">
-        <p>I'm a digital experience designer with a background in marketing and growth — focused on work that is both visually strong and performance-driven. My experience spans landing pages, digital campaigns, ad creative, and conversion-focused design across every major marketing channel.</p>
-        <p>Over 4 years I've grown from marketing intern to full-stack digital specialist at NBI, building hands-on experience across design, data, campaign strategy, and web development.</p>
-        <p>I believe the best digital experiences are the simplest ones — removing noise, cutting friction, and making the next step obvious is almost always the answer.</p>
+        <p>I'm a digital experience designer with a background in marketing and growth, focused on creating work that is visually strong and performance-driven. My experience spans landing pages, digital campaigns, ad creative, and conversion-focused design across channels.</p>
+        <p>Over the past 3 years, I've grown from intern to analyst to digital marketing specialist, building hands-on experience across design, strategy, analytics, and web execution.</p>
         <div class="lfb">
           <h4 class="grad">What I'm Looking For</h4>
-          <p>Roles where design, marketing, and data intersect — teams that care about thoughtful UX, strong creative, and measurable results. Marketing never stops evolving, and I thrive in environments that stay ahead of it.</p>
+          <p>I'm drawn to roles where design, marketing, and performance intersect. Marketing is always evolving, and I enjoy staying current, adapting quickly, and creating work that reflects how people discover, engage, and convert.</p>
         </div>
       </div>
       <div>
@@ -494,7 +489,7 @@
         <div class="aside-b"><h4 class="grad">Education</h4><p>BBA, Marketing<br/>University of Wisconsin &ndash; Eau Claire, 2023</p></div>
         <div class="aside-b"><h4 class="grad">Location</h4><p>Eau Claire, WI &rarr; St. Paul, MN<br/><span style="font-size:0.78rem;color:#b94fc8;">Open to remote work</span></p></div>
         <div class="aside-b">
-          <h4 class="grad">Fun Facts</h4>
+          <h4 class="grad">A Little More About Me</h4>
           <ul class="ffl">
             <li>Obsessed with interior design — thrifting for mid-century modern &amp; eclectic finds</li>
             <li>Cat mom to Milo &#128049;</li>
@@ -546,15 +541,11 @@
       <h2 class="st" style="text-align:center;">Let's <span class="grad">Work Together</span></h2>
       <hr class="sdiv" style="margin:0 auto 1.4rem;" />
       <p class="tagline">Open to new opportunities in growth marketing, UX/UI design, and creative digital roles.</p>
-      <p class="email-display" style="margin-top:0.6rem;">Reach out at <strong style="background:var(--gt);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">molcur9284@gmail.com</strong></p>
+      <p class="email-display" style="margin-top:0.6rem;">Reach out at <strong style="background:var(--gt);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="523f3d3e3127206b606a6612353f333b3e7c313d3f">[email&#160;protected]</a></strong></p>
     </div>
   </div>
 </section>
 
 <footer>&copy; 2026 Molly Curtis. Designed &amp; built by me.</footer>
 
-<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</button>
-
-<script src="portfolio.js"></script>
-</body>
-</html>
+<button id="btt" o
