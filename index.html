@@ -128,12 +128,13 @@
     .ps { flex: 1; background: white; border-radius: 10px; padding: 1.6rem 1.3rem; box-shadow: 0 2px 14px rgba(0,0,0,0.05); position: relative; z-index: 1; }
     .ps-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--gradient); margin-bottom: 0.8rem; box-shadow: 0 0 0 3px white, 0 0 0 5px rgba(185,79,200,0.2); }
     .ps-n { font-family: 'Playfair Display', serif; font-size: 1.4rem; line-height: 1; margin-bottom: 0.35rem; }
-    .ps h3 { font-family: 'Playfair Display', serif; font-size: 0.88rem; margin-bottom: 0.3rem; }
+    .ps h3 { font-family: 'Playfair Display', serif; font-size: 1.05rem; margin-bottom: 0.35rem; }
     .ps p { font-size: 0.8rem; color: #666; font-weight: 400; line-height: 1.6; }
 
     /* SKILLS */
     .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
-    .sg { padding: 2rem 2.4rem; }
+    .sg { padding: 1.8rem 0; padding-right: 2rem; }
+    .sg:nth-child(2), .sg:nth-child(4) { padding-right: 0; padding-left: 2rem; }
     .skills-grid { }
     .sg:nth-child(1) { border-right: 1px solid rgba(185,79,200,0.15); border-bottom: 1px solid rgba(185,79,200,0.15); }
     .sg:nth-child(2) { border-bottom: 1px solid rgba(185,79,200,0.15); }
@@ -161,7 +162,8 @@
     /* PHOTOGRAPHY */
     .photo-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
     .photo-text p { font-size: 0.95rem; color: #555; font-weight: 300; margin-bottom: 1rem; line-height: 1.82; }
-    .photo-ss { position: relative; border-radius: 16px; overflow: hidden; background: #f0e8f7; aspect-ratio: 3/4; width: 100%; }
+    .photo-text { display: flex; flex-direction: column; justify-content: center; }
+    .photo-ss { position: relative; border-radius: 16px; overflow: hidden; background: #f0e8f7; aspect-ratio: 3/4; width: 75%; margin-left: auto; box-shadow: 0 12px 40px rgba(0,0,0,0.14), 0 4px 16px rgba(185,79,200,0.1); }
     .photo-ss img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; opacity: 0; transition: opacity 0.8s ease; display: block; border-radius: 16px; }
     .photo-ss img.active { opacity: 1; }
     .ss-dots { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); display: flex; gap: 5px; z-index: 2; }
@@ -304,8 +306,8 @@
         <div class="slide">
           <div class="card">
             <div class="card-header">
-              <div class="card-tags"><span class="ctag">Conversion</span><span class="ctag">UX / Web</span></div>
-              <h3>Subscription Page Redesign</h3>
+              <div class="card-tags"><span class="ctag">Conversion Optimization</span><span class="ctag">Page Simplification</span><span class="ctag">User Flow</span></div>
+              <h3>Subscription Conversion Redesign</h3>
               <p>Redesigned a key subscription page to reduce friction and simplify decision-making — making the value obvious from the first scroll.</p>
             </div>
             <div class="thumb" onclick="openModal('m1')">
@@ -325,8 +327,8 @@
         <div class="slide">
           <div class="card">
             <div class="card-header">
-              <div class="card-tags"><span class="ctag">Lead Generation</span><span class="ctag">UX / Web</span><span class="ctag">Campaign</span></div>
-              <h3>AI Learning Hub — Lead Generation Experience</h3>
+              <div class="card-tags"><span class="ctag">Lead Generation</span><span class="ctag">Content Strategy</span><span class="ctag">Resource Hub</span></div>
+              <h3>AI Learning Hub — Lead Generation Strategy</h3>
               <p>Designed and launched a centralized AI resource hub to attract and convert visitors interested in legal AI tools — combining educational content, gated resources, and campaign promotion to drive leads.</p>
             </div>
             <div class="thumb" style="cursor:default;"><div class="thumb-ph">Add screenshot here</div></div>
@@ -343,8 +345,8 @@
         <div class="slide">
           <div class="card">
             <div class="card-header">
-              <div class="card-tags"><span class="ctag">Persona Targeting</span><span class="ctag">Landing Pages</span><span class="ctag">UX Design</span></div>
-              <h3>Persona-Targeted Campaign Landing Pages</h3>
+              <div class="card-tags"><span class="ctag">Audience Targeting</span><span class="ctag">Campaign Strategy</span><span class="ctag">Bulk Landing Pages</span></div>
+              <h3>Persona-Targeted Campaigns</h3>
               <p>Designed landing pages tailored to specific states, legal topics, and audience personas — aligning campaign messaging with user intent to improve relevance and conversion.</p>
             </div>
             <div class="thumb" style="cursor:default;"><div class="thumb-ph">Add screenshot here</div></div>
@@ -361,8 +363,8 @@
         <div class="slide">
           <div class="card">
             <div class="card-header">
-              <div class="card-tags"><span class="ctag">Scaled Creative</span><span class="ctag">Display Ads</span><span class="ctag">Social · Web Banners</span></div>
-              <h3>Digital Ad Creative &amp; Cross-Channel Campaign Assets</h3>
+              <div class="card-tags"><span class="ctag">Display Ads</span><span class="ctag">Campaign Creative</span><span class="ctag">Ad Variations</span></div>
+              <h3>Scaled Ad Creative Production</h3>
               <p>Developed scalable ad creative across display networks, web banners, and social — designed to adapt across sizes and placements while keeping messaging and visual identity consistent.</p>
             </div>
             <div class="thumb" style="cursor:default;"><div class="thumb-ph">Add creative board here</div></div>
