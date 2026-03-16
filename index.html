@@ -112,10 +112,10 @@
     .modal-head { padding: 1.6rem 2rem 0.4rem; }
     .modal-head h4 { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 0.2rem; }
     .modal-head p { font-size: 0.75rem; color: var(--mid-gray); letter-spacing: 0.05em; }
-    .comp { position: relative; margin: 0 1.6rem 1.8rem; border-radius: 10px; overflow: hidden; user-select: none; cursor: col-resize; box-shadow: 0 2px 18px rgba(0,0,0,0.1); }
-    .comp img { display: block; width: 100%; pointer-events: none; }
-    .comp-after { position: absolute; inset: 0; overflow: hidden; width: 50%; }
-    .comp-after img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+    .comp { position: relative; margin: 0 1.6rem 1.8rem; border-radius: 10px; overflow: hidden; user-select: none; cursor: col-resize; box-shadow: 0 2px 18px rgba(0,0,0,0.1); max-height: 70vh; }
+    .comp img { display: block; width: 100%; pointer-events: none; object-fit: cover; object-position: top; }
+    .comp-after { position: absolute; top: 0; left: 0; height: 100%; overflow: hidden; width: 50%; }
+    .comp-after img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: top left; }
     .comp-handle { position: absolute; top: 0; bottom: 0; left: 50%; width: 3px; background: white; transform: translateX(-50%); z-index: 5; pointer-events: none; box-shadow: 0 0 12px rgba(0,0,0,0.25); }
     .comp-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 42px; height: 42px; border-radius: 50%; background: white; box-shadow: 0 2px 12px rgba(0,0,0,0.18); display: flex; align-items: center; justify-content: center; font-size: 0.82rem; font-weight: 700; color: #666; letter-spacing: -1px; pointer-events: none; }
     .comp-label { position: absolute; top: 12px; padding: 0.22rem 0.65rem; border-radius: 20px; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; pointer-events: none; }
@@ -133,11 +133,11 @@
 
     /* SKILLS */
     .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
-    .sg { padding: 2rem 2.2rem; }
-    .skills-grid { border: 1px solid rgba(185,79,200,0.12); border-radius: 12px; overflow: hidden; }
-    .sg:nth-child(1) { border-right: 1px solid rgba(185,79,200,0.12); border-bottom: 1px solid rgba(185,79,200,0.12); }
-    .sg:nth-child(2) { border-bottom: 1px solid rgba(185,79,200,0.12); }
-    .sg:nth-child(3) { border-right: 1px solid rgba(185,79,200,0.12); }
+    .sg { padding: 2rem 2.4rem; }
+    .skills-grid { }
+    .sg:nth-child(1) { border-right: 1px solid rgba(185,79,200,0.15); border-bottom: 1px solid rgba(185,79,200,0.15); }
+    .sg:nth-child(2) { border-bottom: 1px solid rgba(185,79,200,0.15); }
+    .sg:nth-child(3) { border-right: 1px solid rgba(185,79,200,0.15); }
     .sg:nth-child(4) { }
     .sg h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 0.9rem; }
     .pills { display: flex; flex-direction: row; flex-wrap: wrap; gap: 0.45rem; align-items: flex-start; }
@@ -159,10 +159,10 @@
     .ffl li::before { content:'✦'; position: absolute; left: 0; font-size: 0.5rem; top: 0.46rem; background: var(--gt); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
     /* PHOTOGRAPHY */
-    .photo-layout { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 4rem; align-items: start; }
+    .photo-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
     .photo-text p { font-size: 0.95rem; color: #555; font-weight: 300; margin-bottom: 1rem; line-height: 1.82; }
-    .photo-ss { position: relative; border-radius: 10px; overflow: hidden; background: linear-gradient(135deg,#f0e8f5,#ede8f7); height: 400px; }
-    .photo-ss img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; opacity: 0; transition: opacity 0.8s ease; display: block; }
+    .photo-ss { position: relative; border-radius: 16px; overflow: hidden; background: #f0e8f7; aspect-ratio: 3/4; width: 100%; }
+    .photo-ss img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; opacity: 0; transition: opacity 0.8s ease; display: block; border-radius: 16px; }
     .photo-ss img.active { opacity: 1; }
     .ss-dots { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); display: flex; gap: 5px; z-index: 2; }
     .ss-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,0.5); border: none; padding: 0; transition: all 0.3s; cursor: default; }
@@ -304,9 +304,9 @@
         <div class="slide">
           <div class="card">
             <div class="card-header">
-              <div class="card-tags"><span class="ctag">Conversion</span><span class="ctag">UX / Web</span><span class="ctag">Page Redesign</span></div>
+              <div class="card-tags"><span class="ctag">Conversion</span><span class="ctag">UX / Web</span></div>
               <h3>Subscription Page Redesign</h3>
-              <p>Redesigned a key subscription page to reduce friction and simplify decision-making — making the value obvious from the first scroll. Click to compare before &amp; after.</p>
+              <p>Redesigned a key subscription page to reduce friction and simplify decision-making — making the value obvious from the first scroll.</p>
             </div>
             <div class="thumb" onclick="openModal('m1')">
               <img src="Subscription-Page-Before.png" alt="Subscription page" onerror="this.style.display='none'" />
@@ -314,9 +314,9 @@
             </div>
             <div class="card-body">
               <div class="ci"><label>What I Worked On</label><ul><li>Audited existing experience, identified drop-off points</li><li>Restructured layout and messaging hierarchy</li><li>Simplified page flow to reduce cognitive load</li><li>Clarified CTAs for a focused, conversion-driven experience</li></ul></div>
-              <div class="ci"><label>Tools</label><span>HTML/CSS · Shogun · Claude · Canva · GA4</span></div>
-              <div class="ci"><label>Impact</label><span>Drove an X% increase in subscriptions through a clearer user journey that simplified decision-making from the moment visitors landed. Customer support also reported a significant drop in calls about billing confusion — a recurring pain point that disappeared after the redesign.</span></div>
+              <div class="ci"><label>Impact</label><span>Drove an X% increase in subscriptions. Customer support reported a significant drop in billing-related calls — a recurring pain point that disappeared after the redesign.</span></div>
               <div class="ci"><label>What I Learned</label><span>Clarity and hierarchy beat complexity. Stripping a page to only what drives action is often more effective than adding more content.</span></div>
+              <div class="ci"><label>Tools</label><span>HTML/CSS · Shogun · Claude · Canva · GA4</span></div>
             </div>
           </div>
         </div>
@@ -332,9 +332,9 @@
             <div class="thumb" style="cursor:default;"><div class="thumb-ph">Add screenshot here</div></div>
             <div class="card-body">
               <div class="ci"><label>What I Worked On</label><ul><li>Designed homepage modules driving traffic to the hub</li><li>Built the hub page layout and resource structure</li><li>Supported lead gen pages tied to downloadable resources</li><li>Designed web banners promoting the initiative site-wide</li></ul></div>
-              <div class="ci"><label>Tools</label><span>Figma · HTML/CSS · GA4</span></div>
               <div class="ci"><label>Impact</label><span>Created a scalable resource hub that captured leads and supported ongoing AI-focused marketing initiatives.</span></div>
               <div class="ci"><label>What I Learned</label><span>Educational content structured clearly is one of the most effective lead generation tools available.</span></div>
+              <div class="ci"><label>Tools</label><span>Figma · HTML/CSS · GA4</span></div>
             </div>
           </div>
         </div>
@@ -350,9 +350,9 @@
             <div class="thumb" style="cursor:default;"><div class="thumb-ph">Add screenshot here</div></div>
             <div class="card-body">
               <div class="ci"><label>What I Worked On</label><ul><li>Designed state-specific and topic-specific landing pages</li><li>Structured messaging around audience needs and search intent</li><li>Created scannable layouts with clear value propositions</li><li>Supported campaign launches with focused conversion pages</li></ul></div>
-              <div class="ci"><label>Tools</label><span>Figma · HTML/CSS · GA4</span></div>
               <div class="ci"><label>Impact</label><span>Helped campaigns reach the right audiences with more relevant messaging and clearer user journeys.</span></div>
               <div class="ci"><label>What I Learned</label><span>The most effective campaigns connect message, audience, and experience into one seamless journey.</span></div>
+              <div class="ci"><label>Tools</label><span>Figma · HTML/CSS · GA4</span></div>
             </div>
           </div>
         </div>
@@ -368,9 +368,9 @@
             <div class="thumb" style="cursor:default;"><div class="thumb-ph">Add creative board here</div></div>
             <div class="card-body">
               <div class="ci"><label>What I Worked On</label><ul><li>Designed display ads in multiple sizes and formats</li><li>Created campaign-specific creative sets for different audiences</li><li>Adapted concepts across placements and channels</li><li>Built variations to support testing and optimization</li></ul></div>
-              <div class="ci"><label>Tools</label><span>Adobe Creative Suite · Figma · Canva</span></div>
               <div class="ci"><label>Impact</label><span>Delivered scalable creative assets that ran across multiple channels and supported campaign performance at scale.</span></div>
               <div class="ci"><label>What I Learned</label><span>Strong campaign creative isn't about individual visuals — it's about building adaptable assets that perform across every touchpoint.</span></div>
+              <div class="ci"><label>Tools</label><span>Adobe Creative Suite · Figma · Canva</span></div>
             </div>
           </div>
         </div>
@@ -509,23 +509,23 @@
     <hr class="sdiv" />
     <div class="photo-layout">
       <div class="photo-text">
-        <p>Photography sharpens the same instincts I bring to design — composition, storytelling, and attention to detail. Shooting professionally since 2019, with work published in <strong>30+</strong> magazines and features, focused on portrait and editorial.</p>
-        <p>My most ambitious project: I conceived, cast, and directed a 12-model editorial shoot built around the zodiac — hiring talent, MUAs, and stylists, coordinating a two-day studio shoot, and handling all retouching from start to finish. The work performed exceptionally well.</p>
-        <a href="https://molcurphotos.com" target="_blank" class="btn btn-grad" style="margin-top:1rem;display:inline-block;">View Full Portfolio &rarr;</a>
+        <p>Photography sharpens the same instincts I bring to design — composition, storytelling, and attention to detail. Shooting professionally since 2019, with work published in <strong style="font-weight:800;">30+</strong> magazines and features, focused on portrait and editorial.</p>
+        <p>One of my most ambitious projects: I conceptualized, casted, and directed a 12-model editorial shoot built around the zodiac signs — hiring talent, MUAs, and stylists, and coordinating a two-day studio shoot with full retouching from start to finish.</p>
+        <div style="display:flex;align-items:center;gap:0.8rem;flex-wrap:wrap;margin-top:1rem;">
+          <a href="https://molcurphotos.com" target="_blank" class="btn btn-grad">View Full Portfolio &rarr;</a>
+          <a href="https://www.instagram.com/molcurphotos/" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.78rem 1.2rem;border:1.5px solid #ccc;border-radius:30px;color:#555;text-decoration:none;font-size:0.82rem;font-weight:600;letter-spacing:0.05em;transition:all 0.2s;" onmouseover="this.style.borderColor='#b94fc8';this.style.color='#b94fc8'" onmouseout="this.style.borderColor='#ccc';this.style.color='#555'">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+            Instagram
+          </a>
+        </div>
       </div>
       <div class="photo-ss" id="photoSS">
-        <img src="photo1.JPEG" alt="Photography" class="active" onerror="this.style.display='none'" />
-        <img src="photo2.jpg" alt="Photography" onerror="this.style.display='none'" />
-        <img src="photo3.jpg" alt="Photography" onerror="this.style.display='none'" />
-        <img src="photo4.jpg" alt="Photography" onerror="this.style.display='none'" />
-        <img src="photo5.jpg" alt="Photography" onerror="this.style.display='none'" />
-        <img src="photo6.jpg" alt="Photography" onerror="this.style.display='none'" />
-        <img src="photo7.jpg" alt="Photography" onerror="this.style.display='none'" />
-        <img src="photo8.jpg" alt="Photography" onerror="this.style.display='none'" />
-        <div class="ss-ph">
-          <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#d4b8e0" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-          <span>Photos coming soon</span>
-        </div>
+        <img src="photoo1.jpg" alt="Photography 1" />
+        <img src="photo2.jpg" alt="Photography 2" />
+        <img src="photo3.jpg" alt="Photography 3" />
+        <img src="caitdoty.jpg" alt="Photography 4" />
+        <img src="emily3.jpg" alt="Photography 5" />
+        <img src="bola2.jpg" alt="Photography 6" />
         <div class="ss-dots" id="ssDots"></div>
       </div>
     </div>
@@ -608,15 +608,18 @@
       var ss=document.getElementById('photoSS');
       if(ss){
         var dotsEl=document.getElementById('ssDots'),idx=0;
-        setTimeout(function(){
-          var imgs=Array.prototype.filter.call(ss.querySelectorAll('img'),function(i){ return i.style.display!=='none'&&i.naturalWidth>0; });
-          if(!imgs.length) return;
-          var ph=ss.querySelector('.ss-ph'); if(ph) ph.style.display='none';
-          imgs.forEach(function(img,i){ if(i>0){img.style.position='absolute';img.style.top='0';img.style.left='0';img.style.width='100%';img.style.height='100%';img.style.objectFit='cover';} });
-          if(dotsEl){ dotsEl.innerHTML=''; imgs.forEach(function(_,i){ var d=document.createElement('button'); d.className='ss-dot'+(i===0?' active':''); dotsEl.appendChild(d); }); }
-          function show(n){ imgs.forEach(function(img,i){img.classList.toggle('active',i===n);}); if(dotsEl) dotsEl.querySelectorAll('.ss-dot').forEach(function(d,i){d.classList.toggle('active',i===n);}); idx=n; }
-          show(0); setInterval(function(){show((idx+1)%imgs.length);},3500);
-        },500);
+        var imgs=Array.prototype.slice.call(ss.querySelectorAll('img'));
+        // Set all to absolute fill, first one active
+        imgs.forEach(function(img,i){
+          img.style.position='absolute'; img.style.top='0'; img.style.left='0';
+          img.style.width='100%'; img.style.height='100%'; img.style.objectFit='cover';
+          img.style.objectPosition='center top'; img.style.opacity='0';
+          img.style.transition='opacity 0.8s ease';
+        });
+        if(imgs.length){ imgs[0].style.opacity='1'; }
+        if(dotsEl){ dotsEl.innerHTML=''; imgs.forEach(function(_,i){ var d=document.createElement('button'); d.className='ss-dot'+(i===0?' active':''); dotsEl.appendChild(d); }); }
+        function show(n){ imgs.forEach(function(img,i){ img.style.opacity=i===n?'1':'0'; }); if(dotsEl) dotsEl.querySelectorAll('.ss-dot').forEach(function(d,i){d.classList.toggle('active',i===n);}); idx=n; }
+        setInterval(function(){show((idx+1)%imgs.length);},3500);
       }
 
       var btn=document.getElementById('btt');
