@@ -1,419 +1,1251 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Brand Style Guides — Molly Curtis</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Outfit:wght@300;400;500;600;700&family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Barlow+Condensed:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,700;1,900&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'DM Sans', sans-serif; background: #0e0e0e; color: #111; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Midori — Brand Book</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --forest:#1a3a2a;
+  --matcha:#2d6a4a;
+  --stem:#52b788;
+  --amber:#D79A43;
+  --amber-d:#b07a28;
+  --amber-p:#fef5e4;
+  --slate:#b8c4cc;
+  --cream:#faf8f2;
+  --cream2:#f7f3ea;
+  --ink:#111a14;
+  --red:#A23E2A;
+      --ink-mid:rgba(250,248,242,.62);
+  --ink-low:rgba(250,248,242,.38);
+  --display:'Cormorant Garamond',serif;
+  --body:'Outfit',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--forest);color:var(--cream);overflow-x:hidden}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--forest)}
+::-webkit-scrollbar-thumb{background:var(--matcha);border-radius:2px}
 
-    /* NAV */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 1rem 2.5rem;
-      background: white;
-      border-bottom: 1px solid rgba(0,0,0,0.08);
-    }
-    .nav-logo {
-      font-size: 0.85rem; font-weight: 600; letter-spacing: 0.08em;
-      color: #111; text-decoration: none; text-transform: uppercase;
-    }
-    .nav-back {
-      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em;
-      color: #555; text-decoration: none; text-transform: uppercase;
-      transition: color 0.2s;
-    }
-    .nav-back:hover { color: #111; }
+/* ── NAV ── */
+.top-nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:clamp(14px,2vw,22px) clamp(20px,5vw,44px);
+  background:linear-gradient(to bottom,rgba(26,58,42,.97) 0%,transparent 100%);
+  backdrop-filter:blur(4px);
+}
+.nav-logo{display:flex;align-items:center;gap:clamp(10px,1.5vw,16px);flex-wrap:nowrap}
+/* WORDMARK LOGO */
+.nav-wordmark-wrap{display:flex;align-items:baseline;gap:6px}
+.nav-word{
+  font-family:var(--display);font-size:clamp(1.1rem,2vw,1.4rem);
+  font-weight:600;font-style:italic;letter-spacing:.12em;color:var(--cream);
+  line-height:1;
+}
+.nav-kanji{
+  font-family:var(--display);font-size:clamp(.7rem,1.2vw,.9rem);
+  font-weight:400;color:var(--red);letter-spacing:.04em;line-height:1;
+}
+.contents-btn{
+  display:flex;align-items:center;gap:8px;
+  background:transparent;color:var(--cream);
+  border:1px solid rgba(255,255,255,.22);border-radius:100px;
+  padding:clamp(8px,1vw,10px) clamp(14px,2vw,22px);
+  font-family:var(--body);font-size:clamp(.7rem,.9vw,.78rem);font-weight:500;
+  cursor:pointer;transition:all .25s;white-space:nowrap;
+}
+.contents-btn:hover{background:var(--amber);border-color:var(--amber);color:var(--ink)}
 
-    /* CARDS STACK */
-    .cards-wrap {
-      padding-top: 54px;
-    }
+/* ── HERO ── */
+.hero{
+  position:relative;min-height:72vh;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 clamp(20px,5vw,44px) clamp(40px,5vw,60px);overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 65% 55% at 85% 78%,rgba(44,106,74,.38) 0%,transparent 60%),
+    radial-gradient(ellipse 40% 38% at 12% 22%,rgba(26,58,42,.9) 0%,transparent 60%),
+    var(--forest);
+}
+.hero-lines{position:absolute;inset:0;display:flex;pointer-events:none}
+.hero-lines span{flex:1;border-right:1px solid rgba(255,255,255,.035)}
+.hero-kanji-bg{
+  position:absolute;right:0%;bottom:-10%;
+  font-family:var(--display);
+  font-size:clamp(160px,36vw,500px);
+  font-weight:300;color:rgba(82,183,136,.1);
+  pointer-events:none;z-index:1;line-height:1;user-select:none;
+  animation:fadeIn 1.6s ease .5s both;
+}
+.hero-content{position:relative;z-index:2;max-width:1400px;width:100%;margin:0 auto}
+.hero-eyebrow{
+  display:flex;align-items:center;gap:12px;
+  color:var(--amber);margin-bottom:clamp(12px,2vw,20px);
+  font-size:clamp(.58rem,.8vw,.7rem);font-weight:600;letter-spacing:.24em;text-transform:uppercase;
+  animation:fadeUp .8s cubic-bezier(.16,1,.3,1) .1s both;
+}
+.hero-eyebrow::before{content:'';width:clamp(20px,2.5vw,28px);height:1px;background:var(--amber);flex-shrink:0}
+.hero-title-wrap{animation:fadeUp .85s cubic-bezier(.16,1,.3,1) .2s both;margin-bottom:clamp(16px,2.5vw,28px)}
+.hero-title{
+  font-family:var(--display);
+  font-size:clamp(62px,11vw,158px);
+  font-weight:300;font-style:italic;line-height:.88;
+  color:var(--cream);display:flex;align-items:flex-start;gap:12px;
+}
+.hero-title-kanji{
+  font-family:var(--display);font-size:clamp(28px,5vw,72px);
+  font-weight:400;font-style:normal;color:var(--red);
+  margin-top:.12em;line-height:1;
+}
+.hero-tagline{
+  color:var(--ink-mid);max-width:clamp(280px,38vw,400px);
+  font-size:clamp(.82rem,1.2vw,.92rem);font-weight:300;line-height:1.75;
+  animation:fadeUp .85s cubic-bezier(.16,1,.3,1) .35s both;
+}
+/* red seal dot in hero */
+.hero-seal{
+  display:inline-block;width:clamp(6px,1vw,8px);height:clamp(6px,1vw,8px);
+  border-radius:50%;background:var(--red);margin-left:8px;vertical-align:middle;opacity:.8;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
 
-    .brand-card {
-      position: sticky;
-      height: 82vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      gap: 1rem;
-      padding: 2rem 2.5rem;
-      cursor: pointer;
-      overflow: hidden;
-      text-decoration: none;
-      transition: filter 0.3s;
-    }
+/* ── GRID OVERVIEW ── */
+.grid-section{background:#e8e4da;position:relative;z-index:1}
+.cards-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:#d4d0c6}
+@media(max-width:480px){.cards-grid{grid-template-columns:1fr}}
+.card{
+  background:var(--cream);cursor:pointer;overflow:hidden;
+  transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s;
+  position:relative;z-index:1;
+}
+.card:hover{transform:scale(1.016) translateY(-5px);box-shadow:0 20px 52px rgba(26,58,42,.2);z-index:3}
+.card-visual{height:clamp(160px,22vw,240px);display:grid;place-items:center;background:#f4f0e6;overflow:hidden}
+.card-label{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:clamp(12px,1.8vw,17px) clamp(16px,2.2vw,22px) clamp(14px,2vw,20px);
+  font-size:clamp(.78rem,1.1vw,.9rem);font-weight:500;color:var(--ink);
+}
+.card-num{font-size:clamp(.68rem,.9vw,.78rem);font-weight:400;color:#b0a898}
 
-    /* Each card gets a different top so they stack */
-    .brand-card:nth-child(1) { top: 54px; z-index: 10; }
-    .brand-card:nth-child(2) { top: 94px; z-index: 20; }
-    .brand-card:nth-child(3) { top: 134px; z-index: 30; }
-    .brand-card:nth-child(4) { top: 174px; z-index: 40; }
-    .brand-card:nth-child(5) { top: 214px; z-index: 50; }
-    .brand-card:nth-child(6) { top: 254px; z-index: 60; }
+/* card vis: intro rings */
+.vis-intro{position:relative;width:clamp(110px,15vw,160px);height:clamp(110px,15vw,160px);display:grid;place-items:center}
+.intro-ic{position:relative;z-index:5;display:grid;place-items:center}
 
-    /* Card top row */
-    /* Card inner layout */
-    .card-inner {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      justify-content: flex-start;
-    }
-    .card-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-      padding-bottom: 0.9rem;
-      border-bottom: 1px solid rgba(255,255,255,0.18);
-    }
-    .card-row-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-      padding-top: 0.9rem;
-    }
-    .card-top { display: none; }
-    .card-top-right { display: none; }
-    .card-num {
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      opacity: 0.8;
-      font-family: 'Outfit', 'DM Sans', sans-serif;
-    }
-    .card-type {
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      opacity: 0.8;
-      font-family: 'Outfit', 'DM Sans', sans-serif;
-    }
+/* card vis: logo */
+.vis-logo-card{width:100%;height:100%;display:grid;place-items:center;background:#faf8f2}
+.logo-preview-card{display:flex;flex-direction:column;align-items:center;gap:clamp(6px,1vw,10px);position:relative;padding:clamp(16px,3vw,24px) clamp(20px,4vw,32px)}
+.lp-corner{position:absolute;width:9px;height:9px}
+.lp-tl{top:0;left:0;border-top:1.5px solid #c8c0b0;border-left:1.5px solid #c8c0b0}
+.lp-tr{top:0;right:0;border-top:1.5px solid #c8c0b0;border-right:1.5px solid #c8c0b0}
+.lp-bl{bottom:0;left:0;border-bottom:1.5px solid #c8c0b0;border-left:1.5px solid #c8c0b0}
+.lp-br{bottom:0;right:0;border-bottom:1.5px solid #c8c0b0;border-right:1.5px solid #c8c0b0}
+.lp-hline{position:absolute;left:-18px;right:-18px;top:50%;height:1px;border-top:1px dashed #d0c8b8}
+.lp-wordmark{display:flex;align-items:baseline;gap:5px}
+.lp-word{font-family:var(--display);font-size:clamp(1.4rem,2.8vw,2.1rem);font-weight:600;font-style:italic;letter-spacing:.12em;color:var(--ink)}
+.lp-kanji{font-family:var(--display);font-size:clamp(.7rem,1.2vw,.95rem);font-weight:400;color:var(--red)}
+.lp-sub{font-size:clamp(.5rem,.7vw,.58rem);letter-spacing:.28em;text-transform:uppercase;color:#a89880}
 
-    /* Card bottom row */
-    .card-bottom { display: none; }
-    .card-name {
-      font-size: clamp(3.5rem, 8vw, 7rem);
-      font-weight: 700;
-      line-height: 1;
-      letter-spacing: -0.02em;
-      transition: transform 0.4s ease;
-    }
+/* card vis: colors swatch tool */
+.vis-colors-tilt{transform:rotate(-18deg);transition:transform .4s cubic-bezier(.16,1,.3,1)}
+.card:hover .vis-colors-tilt{transform:rotate(-9deg) scale(1.05)}
+.swatch-tool{background:#fff;border-radius:22px;box-shadow:0 10px 30px rgba(0,0,0,.11);padding:clamp(10px,1.5vw,13px) clamp(12px,1.8vw,15px) clamp(9px,1.3vw,11px);display:flex;flex-direction:column;gap:6px;width:clamp(110px,15vw,144px)}
+.sw-row{display:flex;gap:6px;justify-content:center}
+.sw{height:clamp(24px,3.5vw,32px);border-radius:30px;transition:transform .3s}
+.card:hover .sw{transform:scaleY(1.07)}
+.sw-w{width:clamp(40px,5.5vw,54px)}.sw-n{width:clamp(28px,3.8vw,36px)}
+.sw-dots{display:flex;gap:7px;justify-content:center;padding-top:2px}
+.sw-dot{width:clamp(16px,2.2vw,22px);height:clamp(16px,2.2vw,22px);border-radius:50%}
 
+/* card vis: type */
+.vis-type-card{
+  font-family:var(--display);font-size:clamp(2rem,5vw,3.4rem);
+  font-weight:300;font-style:italic;color:var(--ink);letter-spacing:.02em;
+  filter:drop-shadow(3px 4px 0 rgba(0,0,0,.07));
+  white-space:nowrap;transform:translateX(8px);transition:letter-spacing .35s;
+}
+.card:hover .vis-type-card{letter-spacing:.08em}
 
-    /* Arrow */
-    .card-arrow {
-      width: 60px;
-      height: 60px;
-      border: 2px solid currentColor;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.4rem;
-      flex-shrink: 0;
-      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), background 0.3s;
-      margin-bottom: 0.4rem;
-    }
-    .brand-card:hover .card-arrow {
-      transform: rotate(45deg) scale(1.08);
-      background: rgba(255,255,255,0.15);
-    }
+/* card vis: imagery */
+.vis-imagery-card{position:relative;width:clamp(160px,22vw,228px);height:clamp(110px,15vw,162px);display:grid;place-items:center}
+.m-photo{
+  position:absolute;width:clamp(80px,11vw,118px);height:clamp(66px,9vw,98px);
+  border-radius:9px;border:clamp(2px,0.4vw,4px) solid #fff;
+  box-shadow:0 5px 18px rgba(0,0,0,.13);overflow:hidden;
+  transition:transform .4s cubic-bezier(.16,1,.3,1);
+}
+.mp1{left:8px;top:22px;transform:rotate(-9deg);background:linear-gradient(150deg,#2d5e3a 0%,#1a3824 100%)}
+.mp2{left:54px;top:10px;z-index:2;transform:rotate(-1deg);background:linear-gradient(150deg,#3d7a52 0%,#234830 100%)}
+.mp3{right:8px;top:20px;transform:rotate(8deg);background:linear-gradient(150deg,#8ab898 0%,#5a8870 100%)}
+.card:hover .mp1{transform:rotate(-13deg) translateX(-8px)}
+.card:hover .mp3{transform:rotate(12deg) translateX(8px)}
 
-    /* Background image fills the card */
-    .card-bg {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      background-size: cover;
-      background-position: center;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-    }
-    .brand-card:hover .card-bg { opacity: 1; }
+/* ── TAGLINE ── */
+.tagline-section{background:var(--cream2);padding:clamp(36px,4vw,56px) clamp(20px,5vw,44px);position:relative;z-index:2}
+.tagline-inner{max-width:1100px;margin:0 auto}
+.tagline-inner p{
+  font-family:var(--display);font-size:clamp(1.2rem,3vw,1.9rem);
+  font-weight:300;font-style:italic;line-height:1.55;color:#2a3a30;max-width:820px;text-align:center;margin:0 auto;
+}
+.u{text-decoration:underline;text-decoration-color:var(--amber);text-decoration-thickness:2px;text-underline-offset:5px}
+.red-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--red);opacity:.75;margin-left:4px;vertical-align:middle}
 
-    /* Overlay so text stays readable over bg image */
-    .card-overlay {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-    }
-    .brand-card:hover .card-overlay { opacity: 1; }
+/* ── SECTIONS ── */
+.sec{padding:clamp(48px,6vw,80px) clamp(20px,5vw,44px);position:relative;overflow:hidden}
+.sec-dark{background:var(--forest)}
+.sec-mid{background:var(--matcha)}
+.sec-light{background:var(--cream)}
+.sec-cream{background:var(--cream2)}
+.wrap{max-width:1200px;margin:0 auto}
 
-    /* Coming soon */
-    .coming-soon-tag {
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      opacity: 0.4;
-      padding: 0.25rem 0.7rem;
-      border: 1px solid currentColor;
-      border-radius: 20px;
-      margin-bottom: 0.6rem;
-      display: inline-block;
-    }
+.sec-label{
+  display:flex;align-items:center;gap:10px;margin-bottom:clamp(8px,1.2vw,12px);
+  font-size:clamp(.58rem,.78vw,.68rem);font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+}
+.sec-dark .sec-label,.sec-mid .sec-label{color:var(--amber)}
+.sec-dark .sec-label::after,.sec-mid .sec-label::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.1)}
+.sec-light .sec-label,.sec-cream .sec-label{color:var(--amber-d)}
+.sec-light .sec-label::after,.sec-cream .sec-label::after{content:'';flex:1;height:1px;background:rgba(0,0,0,.1)}
 
-    /* ── Individual brand colors ── */
+/* red seal used sparsely at section heads */
+.sec-seal{
+  width:clamp(7px,1vw,9px);height:clamp(7px,1vw,9px);border-radius:50%;
+  background:var(--red);flex-shrink:0;opacity:.75;
+}
 
-    /* MIDORI - matcha green */
-    .card-midori {
-      background: #1a3a2a;
-      color: rgba(215,154,67,0.7);
-    }
-    .card-midori .card-name {
-      color: #faf8f2;
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-weight: 300;
-    }
-    .card-midori .card-row { border-bottom-color: rgba(215,154,67,0.25); }
-    .card-midori .card-arrow { border-color: rgba(215,154,67,0.5); color: #D79A43; }
-    .card-midori:hover .card-arrow { background: rgba(215,154,67,0.15); }
+.sec-header{display:flex;align-items:flex-start;gap:clamp(24px,4vw,60px);margin-bottom:clamp(28px,4vw,44px);flex-wrap:wrap}
+.sec-title{
+  font-family:var(--display);font-size:clamp(2.2rem,4.5vw,4.2rem);
+  font-weight:300;font-style:italic;line-height:1.05;flex-shrink:0;margin-bottom:0;
+}
+.sec-dark .sec-title,.sec-mid .sec-title{color:var(--cream)}
+.sec-light .sec-title,.sec-cream .sec-title{color:var(--ink)}
+.sec-title em{color:var(--amber);font-style:italic}
+.sec-sub{
+  font-size:clamp(.88rem,1.3vw,1rem);font-weight:300;line-height:1.65;
+  max-width:500px;margin-bottom:0;padding-top:.3em;
+  flex:1;min-width:280px;
+}
+.sec-dark .sec-sub,.sec-mid .sec-sub{color:var(--ink-low)}
+.sec-light .sec-sub,.sec-cream .sec-sub{color:#6a6058}
 
-    /* NOCTA - late night red/black */
-    .card-nocta {
-      background: #0a0805;
-      color: rgba(200,52,26,0.6);
-    }
-    .card-nocta .card-name {
-      color: #f5f0e8;
-      font-family: 'Bebas Neue', sans-serif;
-      font-weight: 400;
-      letter-spacing: 0.12em;
-      font-style: normal;
-    }
-    .card-nocta .card-type { font-family: 'Barlow Condensed', sans-serif; letter-spacing: 0.18em; font-size: 0.88rem; }
-    .card-nocta .card-num { font-family: 'Barlow Condensed', sans-serif; font-size: 0.88rem; }
-    .card-nocta .card-row { border-bottom-color: rgba(200,52,26,0.25); }
-    .card-nocta .card-arrow { border-color: rgba(200,52,26,0.45); color: #C8341A; border-radius: 0; }
-    .card-nocta:hover .card-arrow { background: rgba(200,52,26,0.12); transform: rotate(45deg) scale(1.08); }
+/* ── 01 INTRO ── */
+.intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,60px);align-items:start}
+@media(max-width:640px){.intro-grid{grid-template-columns:1fr}}
+.intro-left h1{
+  font-family:var(--display);font-size:clamp(2.2rem,5.5vw,4rem);
+  font-weight:300;font-style:italic;line-height:1;color:var(--cream);margin-bottom:clamp(14px,2vw,22px);
+}
+.intro-left h1 span{color:var(--amber)}
+.intro-left p{font-size:clamp(.86rem,1.15vw,.96rem);font-weight:300;line-height:1.8;color:var(--ink-low);margin-bottom:10px}
+.pills{display:flex;flex-wrap:wrap;gap:7px;margin-top:clamp(18px,2.5vw,28px)}
+.pill{
+  padding:6px 14px;border-radius:100px;
+  font-size:clamp(.65rem,.85vw,.74rem);font-weight:500;letter-spacing:.06em;text-transform:uppercase;
+  border:1px solid rgba(215,154,67,.35);color:var(--amber);
+}
+.vals{display:flex;flex-direction:column;gap:clamp(14px,2vw,18px)}
+.val{border-left:2px solid var(--amber);padding:4px 0 4px clamp(12px,2vw,18px)}
+.val h4{font-family:var(--display);font-size:clamp(1rem,1.5vw,1.15rem);font-style:italic;color:var(--cream);margin-bottom:4px}
+.val p{font-size:clamp(.8rem,1.05vw,.9rem);font-weight:300;line-height:1.65;color:var(--ink-low)}
+/* tiny red seal on intro values */
+.val::before{content:'';display:none}
 
-    /* WANDER - warm sand */
-    .card-wander {
-      background: #1a0e0a;
-      color: rgba(245,192,122,0.55);
-    }
-    .card-wander .card-name {
-      color: #faf3ec;
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-weight: 400;
-      letter-spacing: -0.01em;
-    }
-    .card-wander .card-type { font-family: 'Syne', sans-serif; font-size: 0.7rem; letter-spacing: 0.16em; }
-    .card-wander .card-num { font-family: 'Syne', sans-serif; }
-    .card-wander .card-row { border-bottom-color: rgba(212,80,58,0.2); }
-    .card-wander .card-arrow { border-color: rgba(232,135,74,0.4); color: #e8874a; }
-    .card-wander:hover .card-arrow { background: rgba(232,135,74,0.1); transform: rotate(45deg) scale(1.08); }
+.tov{margin-top:clamp(40px,5vw,60px)}
+.tov-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+@media(max-width:500px){.tov-grid{grid-template-columns:1fr}}
+.tov-card{border-radius:13px;padding:clamp(18px,2.5vw,24px);background:rgba(215,154,67,.07);border:1px solid rgba(215,154,67,.16)}
+.tov-card h5{font-family:var(--display);font-size:clamp(.95rem,1.3vw,1.05rem);font-style:italic;color:var(--amber);margin-bottom:10px}
+.tov-example{font-size:clamp(.75rem,1vw,.82rem);line-height:1.65;color:var(--ink-mid);border-left:2px solid rgba(215,154,67,.3);padding-left:12px;margin-bottom:8px;font-style:italic}
+.tov-caption{font-size:clamp(.6rem,.8vw,.68rem);color:var(--ink-low);letter-spacing:.06em;text-transform:uppercase}
+.tov-avoid{font-size:clamp(.72rem,.95vw,.8rem);color:rgba(200,80,80,.65);text-decoration:line-through;margin-top:6px;padding-left:12px}
 
-    /* CS1 - vintage */
-    .card-cs1 {
-      background: #1a1510;
-      color: rgba(210,190,160,0.5);
-    }
-    .card-cs1 .card-name { color: rgba(210,190,160,0.3); }
+/* ── 02 LOGO ── */
+/* PRIMARY: WORDMARK */
+.logo-primary-box{
+  padding:clamp(24px,3.5vw,40px) clamp(24px,4vw,44px);
+  background:var(--cream2);border-radius:18px;margin-bottom:12px;
+  display:flex;align-items:center;gap:clamp(16px,3vw,40px);flex-wrap:wrap;
+}
+.logo-wm-large{display:flex;align-items:baseline;gap:clamp(8px,1.5vw,14px)}
+.logo-wm-word{
+  font-family:var(--display);font-size:clamp(2.4rem,7vw,4.2rem);
+  font-weight:600;font-style:italic;letter-spacing:.12em;color:var(--ink);line-height:1;
+}
+.logo-wm-kanji{
+  font-family:var(--display);font-size:clamp(1.2rem,3vw,2rem);
+  font-weight:400;font-style:normal;color:var(--red);line-height:1;
+}
+.logo-primary-note{
+  font-size:clamp(.7rem,.95vw,.8rem);font-weight:300;color:#8a8070;
+  max-width:380px;line-height:1.6;margin-left:auto;align-self:center;padding-top:0;
+}
 
-    /* CS2 - photography rebrand */
-    .card-cs2 {
-      background: #0f0f1a;
-      color: rgba(185,130,210,0.5);
-    }
-    .card-cs2 .card-name { color: rgba(185,130,210,0.3); }
+/* logo on different bgs */
 
-    /* CS3 - energy drink */
-    .card-cs3 {
-      background: #0a1a0a;
-      color: rgba(130,210,130,0.5);
-    }
-    .card-cs3 .card-name { color: rgba(130,210,130,0.3); }
+/* clear space */
+.clearspace-box{background:var(--cream2);border-radius:16px;overflow:hidden;padding:clamp(24px,4vw,40px);border:1px solid rgba(0,0,0,.06);margin-bottom:12px}
+.clearspace-title{font-size:clamp(.6rem,.8vw,.68rem);font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--amber-d);margin-bottom:clamp(20px,3vw,32px)}
+.clearspace-demo{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  position:relative;padding:clamp(24px,5vw,48px);
+  border:1.5px dashed rgba(215,154,67,.4);border-radius:12px;background:#faf8f2;
+}
+.cs-line-top,.cs-line-bottom{position:absolute;height:1px;left:12%;right:12%;background:rgba(215,154,67,.45)}
+.cs-line-left,.cs-line-right{position:absolute;width:1px;top:12%;bottom:12%;background:rgba(215,154,67,.45)}
+.cs-line-top{top:clamp(12px,2.5vw,22px)}
+.cs-line-bottom{bottom:clamp(12px,2.5vw,22px)}
+.cs-line-left{left:clamp(12px,2.5vw,22px)}
+.cs-line-right{right:clamp(12px,2.5vw,22px)}
+.cs-arrow{position:absolute;color:var(--amber-d);font-size:clamp(.5rem,.65vw,.58rem);font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:var(--cream2);padding:2px 6px;border-radius:4px;white-space:nowrap}
+.cs-arrow-top{top:clamp(4px,1vw,8px);left:50%;transform:translateX(-50%)}
+.cs-arrow-bottom{bottom:clamp(4px,1vw,8px);left:50%;transform:translateX(-50%)}
+.cs-arrow-left{left:clamp(2px,.5vw,4px);top:50%;transform:translateY(-50%);writing-mode:vertical-lr;rotate:180deg}
+.cs-arrow-right{right:clamp(2px,.5vw,4px);top:50%;transform:translateY(-50%);writing-mode:vertical-lr}
+.clearspace-notes{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:16px}
+@media(max-width:500px){.clearspace-notes{grid-template-columns:1fr 1fr}}
+.cs-note{padding:14px;border-radius:10px;background:#faf8f2;border:1px solid rgba(0,0,0,.06)}
+.cs-note-label{font-size:clamp(.58rem,.75vw,.64rem);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--amber-d);margin-bottom:5px}
+.cs-note p{font-size:clamp(.7rem,.9vw,.76rem);font-weight:300;line-height:1.5;color:#6a6058}
 
-    /* Scroll spacer - makes page scrollable so sticky works */
-    .scroll-space { height: 300vh; background: #0e0e0e; position: relative; z-index: 5; }
-    .scroll-space-inner {
-      position: sticky;
-      bottom: 0;
-      padding: 4rem 2.5rem;
-      text-align: center;
-    }
-    .scroll-space-inner p {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.3);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-    .scroll-space-inner a {
-      display: inline-block;
-      margin-top: 1rem;
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.5);
-      text-decoration: none;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      border-bottom: 1px solid rgba(255,255,255,0.2);
-      padding-bottom: 2px;
-    }
-    .scroll-space-inner a:hover { color: white; border-color: white; }
+/* misuse */
+.misuse-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px}
+@media(max-width:640px){.misuse-grid{grid-template-columns:1fr 1fr}}
+.misuse-tile{border-radius:12px;overflow:hidden;border:1px solid rgba(162,62,42,.2)}
+.misuse-vis{height:clamp(70px,10vw,90px);display:grid;place-items:center;position:relative}
+.misuse-vis::after{content:'✕';position:absolute;top:6px;right:8px;font-size:.7rem;font-weight:700;color:rgba(162,62,42,.8)}
+.misuse-label{padding:10px 12px;background:#faf8f2}
+.misuse-label p{font-size:clamp(.62rem,.8vw,.68rem);font-weight:300;color:#b84040;line-height:1.45}
 
-    @media(max-width:600px) {
-      .brand-card { padding: 1.5rem; }
-      .card-name { font-size: clamp(2.8rem, 12vw, 4.5rem); }
-      .brand-card:nth-child(2) { top: 28px; }
-      .brand-card:nth-child(3) { top: 56px; }
-      .brand-card:nth-child(4) { top: 84px; }
-      .brand-card:nth-child(5) { top: 112px; }
-      .brand-card:nth-child(6) { top: 140px; }
-      .card-arrow { width: 48px; height: 48px; font-size: 1.1rem; }
-    }
-  </style>
+/* logo rules */
+.logo-rules{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:500px){.logo-rules{grid-template-columns:1fr}}
+.rule{border-radius:14px;padding:clamp(18px,2.5vw,24px) clamp(20px,3vw,26px)}
+.rule-do{background:rgba(215,154,67,.08);border:1px solid rgba(215,154,67,.2)}
+.rule-dont{background:rgba(162,62,42,.06);border:1px solid rgba(162,62,42,.15)}
+.rule-tag{font-size:clamp(.62rem,.82vw,.68rem);font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:10px;display:block}
+.rule-do .rule-tag{color:var(--amber-d)}
+.rule-dont .rule-tag{color:var(--red)}
+.rule p{font-size:clamp(.76rem,1vw,.82rem);font-weight:300;line-height:1.65;color:#6a6058}
+
+/* ── 03 COLORS ── */
+.palette{display:grid;grid-template-columns:repeat(6,1fr);gap:clamp(8px,1.2vw,14px);margin-bottom:clamp(24px,3.5vw,36px)}
+@media(max-width:640px){.palette{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:360px){.palette{grid-template-columns:repeat(2,1fr)}}
+.swatch{border-radius:clamp(10px,1.5vw,16px);overflow:hidden;cursor:default;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06)}
+.sw-block{height:clamp(80px,11vw,120px);width:100%}
+.sw-info{padding:clamp(10px,1.4vw,15px) clamp(11px,1.6vw,16px);background:rgba(0,0,0,.25)}
+.sw-name{font-size:clamp(.66rem,.88vw,.76rem);font-weight:600;color:#fff;letter-spacing:.04em}
+.sw-hex{font-size:clamp(.58rem,.76vw,.66rem);color:rgba(255,255,255,.45);margin-top:3px;font-family:monospace;letter-spacing:.04em}
+.sw-role{font-size:clamp(.54rem,.7vw,.62rem);color:rgba(184,196,204,.8);margin-top:3px;letter-spacing:.04em}
+
+/* color ratio */
+.color-ratio{margin-bottom:clamp(24px,3.5vw,36px)}
+.ratio-bar{display:flex;height:clamp(28px,4vw,38px);border-radius:100px;overflow:hidden;margin:14px 0;box-shadow:0 0 0 1px rgba(255,255,255,.18)}
+.rb-seg{display:flex;align-items:center;justify-content:center;font-size:clamp(.52rem,.68vw,.6rem);font-weight:600;color:rgba(255,255,255,.72);letter-spacing:.06em}
+.color-ratio-labels{display:flex;gap:clamp(12px,2vw,18px);flex-wrap:wrap}
+.crl{display:flex;align-items:center;gap:6px;font-size:clamp(.6rem,.8vw,.68rem);color:var(--ink-mid)}
+.crl-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+
+.color-notes{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+@media(max-width:640px){.color-notes{grid-template-columns:1fr}}
+.cn{border-radius:12px;padding:clamp(16px,2.5vw,22px);background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08)}
+.cn-dot{width:10px;height:10px;border-radius:50%;margin-bottom:10px}
+.cn h5{font-size:clamp(.64rem,.86vw,.72rem);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--cream);margin-bottom:5px}
+.cn p{font-size:clamp(.72rem,.96vw,.78rem);font-weight:300;line-height:1.6;color:var(--ink-low)}
+
+/* red in palette */
+.swatch-red .sw-info{background:rgba(162,62,42,.15);border-top:1px solid rgba(162,62,42,.2)}
+
+/* ── 04 TYPOGRAPHY ── */
+.type-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px}
+@media(max-width:580px){.type-grid{grid-template-columns:1fr}}
+.type-tile{border-radius:14px;padding:clamp(24px,3.5vw,36px);background:var(--cream2);border:1px solid rgba(0,0,0,.06)}
+.type-tag{font-size:clamp(.58rem,.76vw,.64rem);font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#a89880;margin-bottom:clamp(14px,2vw,20px);display:block}
+.type-big{font-family:var(--display);font-size:clamp(1.1rem,2.5vw,1.8rem);font-weight:300;font-style:italic;line-height:1.15;color:var(--ink);margin-bottom:10px}
+.type-body-demo{font-family:var(--body);font-size:clamp(1rem,2vw,1.3rem);font-weight:400;color:var(--ink);margin-bottom:6px;line-height:1.1}
+.type-desc{font-size:clamp(.72rem,.95vw,.78rem);font-weight:300;color:#7a7060;line-height:1.6}
+.type-scale{border-radius:14px;padding:clamp(24px,3.5vw,36px);background:var(--forest)}
+.ts-row{display:flex;align-items:baseline;gap:clamp(14px,2.5vw,24px);padding:clamp(10px,1.5vw,14px) 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.ts-row:last-child{border-bottom:none}
+.ts-lbl{font-size:clamp(.56rem,.74vw,.62rem);letter-spacing:.14em;text-transform:uppercase;color:var(--slate);min-width:clamp(64px,8vw,84px);flex-shrink:0}
+.ts-d{font-family:var(--display);font-style:italic;color:var(--cream)}
+.ts-b{font-family:var(--body);color:var(--ink-mid)}
+
+/* ── 05 IMAGERY ── */
+.moodboard{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:clamp(24px,3.5vw,36px)}
+@media(max-width:480px){.moodboard{grid-template-columns:1fr 1fr}}
+.mood-frame{border-radius:12px;overflow:hidden;position:relative;aspect-ratio:4/3}
+.mf-label{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(10px,1.5vw,14px);background:linear-gradient(to top,rgba(0,0,0,.52) 0%,transparent 60%)}
+.mf-label span{font-size:clamp(.58rem,.76vw,.66rem);letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.75)}
+.mf1{background:linear-gradient(135deg,#1a2e1a 0%,#3a6a3a 50%,#52a060 100%)}
+.mf2{background:linear-gradient(135deg,#2e2818 0%,#6a5a30 50%,#8a7848 100%)}
+.mf3{background:linear-gradient(135deg,#1e2e28 0%,#2a4a3a 50%,#52b788 100%)}
+.mf4{background:linear-gradient(135deg,#2a1e14 0%,#5a4030 50%,#c8a878 100%)}
+.mf5{background:linear-gradient(135deg,#e8e0d0 0%,#d8d0c0 50%,#c8c0b0 100%)}
+.mf6{background:linear-gradient(135deg,#1a3028 0%,#2a5040 50%,#3a7060 100%)}
+.img-rules{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media(max-width:580px){.img-rules{grid-template-columns:1fr}}
+.ir{border-radius:12px;padding:clamp(18px,2.5vw,24px);background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07)}
+.ir-num{font-family:var(--display);font-size:clamp(1.4rem,3vw,2rem);font-weight:300;font-style:italic;color:var(--amber);line-height:1;margin-bottom:8px;display:block}
+.ir h4{font-size:clamp(.72rem,.96vw,.78rem);font-weight:600;color:var(--cream);margin-bottom:5px;letter-spacing:.04em}
+.ir p{font-size:clamp(.7rem,.92vw,.76rem);font-weight:300;line-height:1.6;color:var(--ink-low)}
+
+/* ── 06 APPLICATIONS ── */
+/* Real mockups */
+.mockups-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+@media(max-width:580px){.mockups-row{grid-template-columns:1fr}}
+
+/* ── CUP MOCKUP (photorealistic) ── */
+.mockup-cup-scene{
+  border-radius:16px;overflow:hidden;
+  background:linear-gradient(135deg,#1e3028 0%,#2a4a38 60%,#1a3028 100%);
+  padding:clamp(28px,4vw,44px) clamp(20px,3.5vw,36px);
+  display:flex;flex-direction:column;align-items:center;gap:clamp(14px,2vw,20px);
+  min-height:clamp(180px,22vw,260px);position:relative;overflow:hidden;
+}
+.cup-scene-bg{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 60% at 50% 80%,rgba(82,183,136,.12) 0%,transparent 60%);
+}
+/* realistic cup SVG */
+.cup-svg-wrap{position:relative;z-index:2;filter:drop-shadow(0 12px 28px rgba(0,0,0,.5))}
+.mockup-cup-label{position:relative;z-index:2;font-size:clamp(.58rem,.78vw,.66rem);letter-spacing:.16em;text-transform:uppercase;color:rgba(250,248,242,.4)}
+
+/* ── MENU MOCKUP ── */
+.mockup-menu-scene{
+  border-radius:16px;overflow:hidden;
+  background:var(--cream2);
+  padding:clamp(24px,3.5vw,36px) clamp(20px,3vw,32px);
+  display:flex;flex-direction:column;gap:clamp(10px,1.5vw,16px);
+  min-height:clamp(180px,20vw,240px);
+  box-shadow:0 4px 24px rgba(0,0,0,.08);
+}
+.menu-top{display:flex;align-items:flex-start;justify-content:space-between;padding-bottom:clamp(10px,1.5vw,14px);border-bottom:1px solid rgba(0,0,0,.1)}
+.menu-brand-block{display:flex;flex-direction:column;gap:3px}
+.menu-brand-wm{display:flex;align-items:baseline;gap:5px}
+.menu-brand-name{font-family:var(--display);font-size:clamp(1rem,2vw,1.4rem);font-weight:600;font-style:italic;letter-spacing:.1em;color:var(--ink)}
+.menu-brand-k{font-family:var(--display);font-size:clamp(.55rem,1vw,.72rem);font-weight:400;color:var(--red)}
+.menu-season{font-size:clamp(.52rem,.7vw,.6rem);letter-spacing:.18em;text-transform:uppercase;color:#a89880}
+.menu-items{display:flex;flex-direction:column;gap:clamp(8px,1.2vw,12px)}
+.menu-item{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:clamp(8px,1.2vw,12px);border-bottom:1px solid rgba(0,0,0,.06)}
+.menu-item:last-child{border-bottom:none}
+.mi-left{flex:1;padding-right:12px}
+.mi-name{font-size:clamp(.78rem,1.1vw,.88rem);font-weight:600;color:var(--ink);display:block}
+.mi-origin{font-size:clamp(.58rem,.76vw,.64rem);letter-spacing:.1em;text-transform:uppercase;color:var(--amber-d);display:block;margin-top:2px}
+.mi-desc{font-size:clamp(.64rem,.84vw,.7rem);font-weight:300;color:#8a8070;display:block;margin-top:3px;line-height:1.45}
+.mi-price{font-family:var(--display);font-size:clamp(.9rem,1.4vw,1.1rem);font-weight:400;font-style:italic;color:var(--ink);flex-shrink:0;margin-top:1px}
+
+/* ── SOCIAL MOCKUP ── */
+.mockup-social-scene{
+  border-radius:16px;overflow:hidden;
+  background:var(--forest);
+  display:flex;flex-direction:column;
+  min-height:clamp(180px,20vw,240px);position:relative;
+}
+.social-image-area{
+  flex:1;
+  background:linear-gradient(135deg,#1a3428 0%,#2a5a40 40%,#1e4030 100%);
+  position:relative;overflow:hidden;
+  display:flex;align-items:flex-end;justify-content:flex-start;
+  padding:clamp(14px,2vw,20px);min-height:clamp(130px,17vw,190px);
+}
+.social-image-area::after{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 50% 60% at 60% 40%,rgba(82,183,136,.18) 0%,transparent 55%),
+    linear-gradient(to top,rgba(26,58,42,.7) 0%,transparent 50%);
+}
+/* bowl illustration in social */
+.social-footer{padding:clamp(10px,1.5vw,14px) clamp(14px,2vw,20px);display:flex;align-items:center;justify-content:space-between;background:rgba(26,58,42,.6);backdrop-filter:blur(4px)}
+.social-handle{font-size:clamp(.62rem,.82vw,.7rem);letter-spacing:.12em;text-transform:uppercase;color:rgba(250,248,242,.5)}
+/* tiny red seal in social */
+.social-seal{width:8px;height:8px;border-radius:50%;background:var(--red);opacity:.8}
+
+/* ── BAG MOCKUP ── */
+.mockup-bag-scene{
+  border-radius:16px;overflow:hidden;
+  background:linear-gradient(145deg,#f0ebe0 0%,#e4ddd0 100%);
+  padding:clamp(24px,3.5vw,40px) clamp(20px,3vw,32px);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:clamp(12px,1.8vw,18px);
+  min-height:clamp(180px,20vw,240px);
+  position:relative;overflow:hidden;
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.06);
+}
+/* kraft paper texture lines */
+.mockup-bag-scene::before{
+  content:'';position:absolute;inset:0;
+  background-image:repeating-linear-gradient(90deg,rgba(0,0,0,.012) 0px,rgba(0,0,0,.012) 1px,transparent 1px,transparent 18px);
+}
+.bag-3d{position:relative;z-index:2;filter:drop-shadow(0 10px 24px rgba(0,0,0,.18))}
+.bag-mockup-note{position:relative;z-index:2;font-size:clamp(.6rem,.8vw,.68rem);letter-spacing:.14em;text-transform:uppercase;color:#a89880}
+
+/* patterns */
+
+/* ── DRAWER ── */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;opacity:0;pointer-events:none;transition:opacity .3s}
+.overlay.open{opacity:1;pointer-events:all}
+.drawer{
+  position:fixed;top:0;right:0;bottom:0;width:clamp(240px,80vw,280px);
+  background:var(--forest);border-left:1px solid rgba(215,154,67,.15);
+  z-index:201;transform:translateX(100%);
+  transition:transform .38s cubic-bezier(.16,1,.3,1);
+  padding:clamp(28px,5vw,44px) clamp(18px,3vw,26px);
+  display:flex;flex-direction:column;gap:2px;
+}
+.drawer.open{transform:translateX(0)}
+.drawer-head{font-size:clamp(.58rem,.76vw,.64rem);font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--slate);margin-bottom:16px}
+.d-item{display:flex;align-items:center;gap:12px;padding:clamp(10px,1.5vw,12px) 12px;border-radius:9px;font-size:clamp(.78rem,1.1vw,.84rem);font-weight:400;color:var(--ink-mid);text-decoration:none;transition:background .2s,color .2s}
+.d-item:hover{background:rgba(215,154,67,.1);color:var(--amber)}
+.d-num{font-size:clamp(.64rem,.84vw,.7rem);color:var(--slate);min-width:18px}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.reveal.in{opacity:1;transform:none}
+.card:nth-child(1).reveal{transition-delay:.00s}
+.card:nth-child(2).reveal{transition-delay:.06s}
+.card:nth-child(3).reveal{transition-delay:.12s}
+.card:nth-child(4).reveal{transition-delay:.18s}
+.card:nth-child(5).reveal{transition-delay:.24s}
+.card:nth-child(6).reveal{transition-delay:.30s}
+
+/* ── SECTION NAV FOOTER ── */
+.section-nav{
+  background:var(--forest);
+  border-top:1px solid rgba(255,255,255,.1);
+  padding:clamp(32px,4vw,52px) clamp(20px,5vw,44px);
+}
+.snav-inner{
+  max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;
+  border-top:1px solid rgba(255,255,255,.1);
+  margin-bottom:0;
+}
+.snav-item{
+  display:flex;align-items:center;gap:clamp(12px,1.8vw,18px);
+  padding:clamp(14px,2vw,20px) clamp(8px,1.5vw,16px);
+  border-bottom:1px solid rgba(255,255,255,.1);
+  text-decoration:none;
+  transition:background .2s;
+}
+.snav-item:nth-child(odd){border-right:1px solid rgba(255,255,255,.1)}
+.snav-item:hover{background:rgba(255,255,255,.04)}
+.snav-item:hover .snav-name{color:var(--cream)}
+.snav-num{
+  font-family:var(--body);font-size:clamp(.62rem,.8vw,.7rem);
+  font-weight:400;letter-spacing:.06em;color:var(--slate);
+  white-space:nowrap;
+}
+.snav-name{
+  font-family:var(--body);font-size:clamp(.88rem,1.2vw,1rem);
+  font-weight:600;color:rgba(250,248,242,.65);
+  transition:color .2s;
+}
+.snav-footer-row{
+  max-width:1200px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  padding-top:clamp(18px,2.5vw,28px);flex-wrap:wrap;gap:12px;
+}
+.snav-logo{display:flex;align-items:baseline;gap:7px}
+.snav-logo-word{font-family:var(--display);font-size:clamp(.9rem,1.3vw,1.05rem);font-weight:600;font-style:italic;letter-spacing:.1em;color:rgba(250,248,242,.45)}
+.snav-logo-k{font-family:var(--display);font-size:clamp(.58rem,.85vw,.72rem);font-weight:400;color:var(--red);opacity:.6}
+.snav-back{
+  display:flex;align-items:center;gap:7px;
+  padding:clamp(9px,1.2vw,12px) clamp(16px,2vw,22px);
+  background:rgba(215,154,67,.1);border:1px solid rgba(215,154,67,.22);
+  border-radius:100px;text-decoration:none;
+  font-family:var(--body);font-size:clamp(.68rem,.88vw,.76rem);
+  font-weight:500;color:var(--amber);
+  transition:background .2s,color .2s;white-space:nowrap;
+}
+.snav-back:hover{background:var(--amber);color:var(--ink)}
+@media(max-width:580px){
+  .snav-inner{grid-template-columns:1fr}
+  .snav-item:nth-child(odd){border-right:none}
+}
+</style>
 </head>
 <body>
 
-<nav>
-  <a href="https://mollycurtis.github.io" class="nav-logo">Molly Curtis</a>
-  <a href="https://mollycurtis.github.io" class="nav-back">← Portfolio</a>
+<!-- NAV -->
+<nav class="top-nav">
+  <div class="nav-logo">
+    <div class="nav-wordmark-wrap">
+      <span class="nav-word">MIDORI</span>
+      <span class="nav-kanji">緑</span>
+    </div>
+  </div>
+  <button class="contents-btn" onclick="toggleDrawer()">
+    <svg width="14" height="11" viewBox="0 0 15 12" fill="none">
+      <line x1="0" y1="1" x2="15" y2="1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+      <line x1="0" y1="6" x2="10" y2="6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+      <line x1="0" y1="11" x2="15" y2="11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+    </svg>
+    Contents
+  </button>
 </nav>
 
-<div class="cards-wrap">
-
-  <!-- 1. MIDORI -->
-  <a href="https://mollycurtis.github.io/midori" class="brand-card card-midori">
-    <div class="card-bg" style="background-image:url('../midori-preview.jpg');"></div>
-    <div class="card-overlay" style="background:linear-gradient(to bottom, rgba(26,46,30,0.7), rgba(26,46,30,0.4));"></div>
-    <!-- Midori: vertical grid lines -->
-    <div style="position:absolute;inset:0;display:flex;pointer-events:none;z-index:1;">
-      <span style="flex:1;border-right:1px solid rgba(255,255,255,0.035);"></span>
-      <span style="flex:1;border-right:1px solid rgba(255,255,255,0.035);"></span>
-      <span style="flex:1;border-right:1px solid rgba(255,255,255,0.035);"></span>
-      <span style="flex:1;border-right:1px solid rgba(255,255,255,0.035);"></span>
-      <span style="flex:1;border-right:1px solid rgba(255,255,255,0.035);"></span>
-      <span style="flex:1;border-right:1px solid rgba(255,255,255,0.035);"></span>
-      <span style="flex:1;"></span>
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-lines"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+  <div class="hero-kanji-bg">緑</div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Brand Identity Guidelines</div>
+    <div class="hero-title-wrap">
+      <h1 class="hero-title">Midori <span class="hero-title-kanji">緑</span></h1>
     </div>
-    <!-- Midori: ghost kanji background -->
-    <div style="position:absolute;right:-2%;bottom:-15%;font-family:'Cormorant Garamond',serif;font-size:clamp(160px,36vw,420px);font-weight:300;color:rgba(82,183,136,0.08);pointer-events:none;z-index:1;line-height:1;user-select:none;">緑</div>
-    <div class="card-inner">
-      <div class="card-row">
-        <span class="card-num">01</span>
-        <span class="card-type">Matcha &amp; Wellness</span>
+    <p class="hero-tagline">The art of the perfect cup. A brand built on stillness, craft, and the quiet beauty of ceremonial matcha.<span class="hero-seal"></span></p>
+  </div>
+</section>
+
+<!-- CARD GRID -->
+<section class="grid-section" id="contents">
+  <div class="cards-grid">
+    <!-- 01 -->
+    <div class="card reveal" onclick="scrollToSection('intro')">
+      <div class="card-visual">
+        <div class="vis-intro">
+          <div class="intro-ic" style="display:flex;flex-direction:column;align-items:center;gap:4px">
+            <span style="font-family:var(--display);font-size:clamp(3rem,6vw,5rem);font-weight:300;color:rgba(45,106,74,.28);line-height:1;user-select:none">緑</span>
+          </div>
+        </div>
       </div>
-      <div class="card-row-bottom">
-        <div class="card-name">Midori <span style="font-family:'Cormorant Garamond',serif;font-size:0.45em;font-weight:400;font-style:normal;color:#A23E2A;vertical-align:super;margin-left:4px;">緑</span></div>
-        <div class="card-arrow">&#8599;</div>
+      <div class="card-label"><span>Introduction</span><span class="card-num">(01)</span></div>
+    </div>
+    <!-- 02 -->
+    <div class="card reveal" onclick="scrollToSection('logo')">
+      <div class="card-visual">
+        <div class="vis-logo-card">
+          <div class="logo-preview-card">
+            <span class="lp-corner lp-tl"></span><span class="lp-corner lp-tr"></span>
+            <span class="lp-corner lp-bl"></span><span class="lp-corner lp-br"></span>
+            <div class="lp-hline"></div>
+            <div class="lp-wordmark" style="margin:8px 0">
+              <span class="lp-word">MIDORI</span>
+              <span class="lp-kanji">緑</span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="card-label"><span>Logo</span><span class="card-num">(02)</span></div>
+    </div>
+    <!-- 03 -->
+    <div class="card reveal" onclick="scrollToSection('colors')">
+      <div class="card-visual">
+        <div class="vis-colors-tilt">
+          <div class="swatch-tool">
+            <div class="sw-row">
+              <div class="sw sw-w" style="background:#1a3a2a"></div>
+              <div class="sw sw-w" style="background:#52b788"></div>
+            </div>
+            <div class="sw-row">
+              <div class="sw sw-n" style="background:#2d6a4a"></div>
+              <div class="sw sw-w" style="background:#D79A43"></div>
+              <div class="sw sw-n" style="background:#A23E2A"></div>
+            </div>
+            <div class="sw-dots">
+              <div class="sw-dot" style="background:#faf8f2;border:1.5px solid #d8d0c4"></div>
+              <div class="sw-dot" style="background:#f7f3ea"></div>
+              <div class="sw-dot" style="background:#b8c4cc"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-label"><span>Colors</span><span class="card-num">(03)</span></div>
+    </div>
+    <!-- 04 -->
+    <div class="card reveal" onclick="scrollToSection('type')">
+      <div class="card-visual" style="background:#f4f0e6;overflow:hidden">
+        <div class="vis-type-card">Aa Bb Cc</div>
+      </div>
+      <div class="card-label"><span>Typography</span><span class="card-num">(04)</span></div>
+    </div>
+    <!-- 05 -->
+    <div class="card reveal" onclick="scrollToSection('imagery')">
+      <div class="card-visual">
+        <div class="vis-imagery-card">
+          <div class="m-photo mp1"></div>
+          <div class="m-photo mp2"></div>
+          <div class="m-photo mp3"></div>
+        </div>
+      </div>
+      <div class="card-label"><span>Imagery</span><span class="card-num">(05)</span></div>
+    </div>
+    <!-- 06 APPLICATIONS — fixed grid layout -->
+    <div class="card reveal" onclick="scrollToSection('assets')">
+      <div class="card-visual">
+        <div style="display:flex;align-items:center;justify-content:center;width:100%;padding:0 20px">          <!-- Menu card silhouette -->
+          <svg width="76" height="88" viewBox="0 0 76 88" fill="none" style="flex-shrink:0">
+            <!-- card -->
+            <rect x="2" y="2" width="72" height="84" rx="5" fill="#faf8f2" stroke="#e0d8cc" stroke-width="1"/>
+            <!-- top bar forest -->
+            <rect x="2" y="2" width="72" height="8" rx="5" fill="#1a3a2a"/>
+            <rect x="2" y="7" width="72" height="3" fill="#1a3a2a"/>
+            <!-- brand name -->
+            <text x="38" y="22" font-family="Georgia,serif" font-size="6" font-style="italic" font-weight="700" letter-spacing="1.5" fill="#111a14" text-anchor="middle">MIDORI</text>
+            <line x1="10" y1="26" x2="66" y2="26" stroke="#e0d8cc" stroke-width=".8"/>
+            <!-- menu items -->
+            <rect x="10" y="31" width="32" height="2.5" rx="1" fill="#1a3a2a" opacity=".7"/>
+            <rect x="10" y="36" width="22" height="1.5" rx=".75" fill="#D79A43" opacity=".6"/>
+            <rect x="10" y="40" width="38" height="1.5" rx=".75" fill="#ccc4b4"/>
+            <rect x="10" y="47" width="28" height="2.5" rx="1" fill="#1a3a2a" opacity=".7"/>
+            <rect x="10" y="52" width="20" height="1.5" rx=".75" fill="#D79A43" opacity=".6"/>
+            <rect x="10" y="56" width="36" height="1.5" rx=".75" fill="#ccc4b4"/>
+            <rect x="10" y="63" width="30" height="2.5" rx="1" fill="#1a3a2a" opacity=".7"/>
+            <rect x="10" y="68" width="18" height="1.5" rx=".75" fill="#D79A43" opacity=".6"/>
+            <rect x="10" y="72" width="40" height="1.5" rx=".75" fill="#ccc4b4"/>
+            <!-- prices -->
+            <text x="62" y="34" font-family="Georgia,serif" font-size="5" fill="#1a3a2a" text-anchor="middle" opacity=".6">¥ 6</text>
+            <text x="62" y="50" font-family="Georgia,serif" font-size="5" fill="#1a3a2a" text-anchor="middle" opacity=".6">¥ 9</text>
+            <text x="62" y="66" font-family="Georgia,serif" font-size="5" fill="#1a3a2a" text-anchor="middle" opacity=".6">¥ 7</text>
+          </svg>
+        </div>
+      </div>
+      <div class="card-label"><span>Applications</span><span class="card-num">(06)</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TAGLINE -->
+<section class="tagline-section">
+  <div class="tagline-inner">
+    <p>This brand book serves as a <span class="u">guide</span> to ensure consistency and recognition across everything Midori creates — defining the visual and verbal elements so every expression feels <span class="u">unified</span> and intentional.<span class="red-dot"></span></p>
+  </div>
+</section>
+
+<!-- ══ 01 INTRODUCTION ══ -->
+<section class="sec sec-dark" id="intro">
+  <div class="wrap">
+    <div class="sec-label">01 — Introduction <div class="sec-seal"></div></div>
+    <div class="intro-grid reveal">
+      <div class="intro-left">
+        <h1>Who is <span>Midori?</span></h1>
+        <p>Midori (緑, <em style="font-style:italic;color:var(--amber)">meaning green</em>) is a ceremonial matcha bar rooted in Japanese tradition. We believe preparing matcha is a ritual — not a transaction. Every detail communicates calm, craft, and connection.</p>
+        <div class="pills">
+          <span class="pill">Minimal</span><span class="pill">Intentional</span>
+          <span class="pill">Ceremonial</span><span class="pill">Natural</span>
+        </div>
+      </div>
+      <div class="vals">
+        <div class="val"><h4>Stillness</h4><p>Visuals breathe. Language is sparse. Space is generous. Midori never shouts — it invites.</p></div>
+        <div class="val"><h4>Craft</h4><p>From the grade of our matcha to the kerning of our type — nothing is accidental.</p></div>
+        <div class="val"><h4>Connection</h4><p>Matcha connects people to land, to ritual, to each other. Warm beneath the minimal surface.</p></div>
       </div>
     </div>
-  </a>
-
-  <!-- 2. NOCTA -->
-  <a href="https://mollycurtis.github.io/nocta" class="brand-card card-nocta">
-    <div class="card-bg" style="background-image:url('../nocta-preview.jpg');"></div>
-    <div class="card-overlay" style="background:linear-gradient(to bottom, rgba(26,10,0,0.7), rgba(26,10,0,0.4));"></div>
-    <!-- Nocta: radial red glow -->
-    <div style="position:absolute;inset:0;pointer-events:none;z-index:1;background:radial-gradient(ellipse 55% 60% at 75% 50%, rgba(200,52,26,0.14) 0%, transparent 60%), radial-gradient(ellipse 40% 40% at 20% 80%, rgba(212,168,50,0.05) 0%, transparent 55%);"></div>
-    <!-- Nocta: diagonal red rule lines from hero -->
-    <div style="position:absolute;width:200%;height:1px;background:linear-gradient(to right, transparent 0%, rgba(200,52,26,0.3) 30%, rgba(200,52,26,0.5) 50%, rgba(200,52,26,0.3) 70%, transparent 100%);top:38%;left:-50%;transform:rotate(-14deg);pointer-events:none;z-index:1;"></div>
-    <div style="position:absolute;width:200%;height:1px;background:linear-gradient(to right, transparent 0%, rgba(245,240,232,0.04) 40%, rgba(245,240,232,0.07) 50%, rgba(245,240,232,0.04) 60%, transparent 100%);top:55%;left:-50%;transform:rotate(-14deg);pointer-events:none;z-index:1;"></div>
-    <!-- Nocta: ghost NOCTA text background -->
-    <div style="position:absolute;font-family:'Bebas Neue',sans-serif;font-size:clamp(100px,22vw,320px);letter-spacing:-0.02em;color:rgba(245,240,232,0.022);pointer-events:none;z-index:1;top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;user-select:none;">NOCTA</div>
-    <div class="card-inner">
-      <div class="card-row">
-        <span class="card-num">02</span>
-        <span class="card-type">Pizza &amp; Food</span>
-      </div>
-      <div class="card-row-bottom">
-        <div class="card-name">Nocta</div>
-        <div class="card-arrow">&#8599;</div>
-      </div>
-    </div>
-  </a>
-
-  <!-- 3. WANDER -->
-  <a href="https://mollycurtis.github.io/wander" class="brand-card card-wander">
-    <div class="card-bg" style="background-image:url('../wander-preview.jpg');"></div>
-    <div class="card-overlay" style="background:linear-gradient(to bottom, rgba(42,31,14,0.7), rgba(42,31,14,0.4));"></div>
-    <!-- Wander: sunset gradient background from hero -->
-    <div style="position:absolute;inset:0;pointer-events:none;z-index:1;background:linear-gradient(175deg,#1a0e0a 0%,#2d1410 8%,#5a2018 18%,#8a3020 28%,#c4623a 42%,#d4803a 52%,#e8a050 60%,#e89060 68%,#c4623a 78%,#8a2840 88%,#2d1020 100%);opacity:0.55;"></div>
-    <!-- Wander: concentric ellipse rings from hero -->
-    <div style="position:absolute;inset:0;pointer-events:none;z-index:1;opacity:0.07;background:radial-gradient(ellipse 110% 75% at 50% 50%, transparent 22%,rgba(250,246,240,1) 22.4%,transparent 22.8%),radial-gradient(ellipse 110% 75% at 50% 50%, transparent 34%,rgba(250,246,240,1) 34.4%,transparent 34.8%),radial-gradient(ellipse 110% 75% at 50% 50%, transparent 46%,rgba(250,246,240,1) 46.4%,transparent 46.8%),radial-gradient(ellipse 110% 75% at 50% 50%, transparent 58%,rgba(250,246,240,1) 58.4%,transparent 58.8%),radial-gradient(ellipse 110% 75% at 50% 50%, transparent 70%,rgba(250,246,240,1) 70.4%,transparent 70.8%);"></div>
-    <div class="card-inner">
-      <div class="card-row">
-        <span class="card-num">03</span>
-        <span class="card-type">Women&apos;s Solo Travel</span>
-      </div>
-      <div class="card-row-bottom">
-        <div class="card-name">Wander</div>
-        <div class="card-arrow">&#8599;</div>
-      </div>
-    </div>
-  </a>
-
-  <!-- 4. COMING SOON -->
-  <div class="brand-card card-cs1" style="cursor:default;">
-    <div class="card-inner">
-      <div class="card-row">
-        <span class="card-num">04</span>
-        <span class="card-type">Thrift &amp; Vintage</span>
-      </div>
-      <div class="card-row-bottom">
-        <div>
-          <div class="coming-soon-tag">Coming Soon</div>
-          <div class="card-name">TBD</div>
+    <div class="tov reveal">
+      <div class="sec-label" style="margin-top:clamp(32px,5vw,52px)">Tone of Voice</div>
+      <div class="tov-grid">
+        <div class="tov-card">
+          <h5>Calm & precise</h5>
+          <div class="tov-example">"A single bowl. Prepared with intention. Served without hurry."</div>
+          <div class="tov-caption">Short, unhurried sentences. Let whitespace do work.</div>
+          <div class="tov-avoid">"Order your matcha now! Fast service, great taste!"</div>
+        </div>
+        <div class="tov-card">
+          <h5>Knowledgeable, not exclusive</h5>
+          <div class="tov-example">"Stone-ground to a 5-micron powder — the difference you taste."</div>
+          <div class="tov-caption">Educate without gatekeeping. Everyone is welcome.</div>
+          <div class="tov-avoid">"Only true connoisseurs will appreciate this."</div>
+        </div>
+        <div class="tov-card">
+          <h5>Sensory & specific</h5>
+          <div class="tov-example">"The color of a forest after rain. The texture of still water just before it moves."</div>
+          <div class="tov-caption">Appeal to sight, smell, touch. Be evocative but concrete.</div>
+          <div class="tov-avoid">"Delicious matcha with amazing flavor and great vibes."</div>
+        </div>
+        <div class="tov-card">
+          <h5>Never: trendy, rushed, loud</h5>
+          <div class="tov-example">"We don't do limited drops. Midori is always here when you need stillness."</div>
+          <div class="tov-caption">No exclamation marks. No FOMO. No urgency language.</div>
+          <div class="tov-avoid">"Limited time only!! Don't miss out 🔥🔥"</div>
         </div>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- 5. COMING SOON -->
-  <div class="brand-card card-cs2" style="cursor:default;">
-    <div class="card-inner">
-      <div class="card-row">
-        <span class="card-num">05</span>
-        <span class="card-type">Personal Brand</span>
+<!-- ══ 02 LOGO ══ -->
+<section class="sec sec-light" id="logo">
+  <div class="wrap reveal">
+    <div class="sec-label">02 — Logo</div>
+    <div class="sec-header">
+      <h2 class="sec-title">The <em>mark</em> of Midori</h2>
+      <p class="sec-sub">One wordmark. MIDORI set in Cormorant Garamond italic, with 緑 in Seal red as a permanent signature detail. No symbol. No icon. Just the name — and what it means.</p>
+    </div>
+
+    <!-- WORDMARK DISPLAY -->
+    <div style="margin-bottom:8px;font-size:clamp(.58rem,.78vw,.66rem);font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--amber-d)">Primary — Wordmark</div>
+    <div class="logo-primary-box">
+      <div class="logo-wm-large">
+        <span class="logo-wm-word">MIDORI</span>
+        <span class="logo-wm-kanji">緑</span>
       </div>
-      <div class="card-row-bottom">
-        <div>
-          <div class="coming-soon-tag">Coming Soon</div>
-          <div class="card-name">Photography Rebrand</div>
+      <p class="logo-primary-note">The 緑 kanji is always red, always proportioned consistently to the wordmark, always present — a signature, not decoration.</p>
+    </div>
+
+    <!-- ON DIFFERENT BACKGROUNDS -->
+    <div style="margin-bottom:10px;font-size:clamp(.58rem,.78vw,.66rem);font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--amber-d)">Usage on backgrounds</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px">
+      <div style="background:var(--cream2);border-radius:14px;padding:clamp(20px,3vw,32px);display:flex;align-items:center;justify-content:center;gap:8px;min-height:clamp(100px,12vw,130px)">
+        <span style="font-family:var(--display);font-size:clamp(1rem,2vw,1.5rem);font-weight:600;font-style:italic;letter-spacing:.1em;color:var(--ink)">MIDORI</span>
+        <span style="font-family:var(--display);font-size:clamp(.6rem,1.1vw,.85rem);font-weight:400;color:var(--red)">緑</span>
+      </div>
+      <div style="background:var(--forest);border-radius:14px;padding:clamp(20px,3vw,32px);display:flex;align-items:center;justify-content:center;gap:8px;min-height:clamp(100px,12vw,130px)">
+        <span style="font-family:var(--display);font-size:clamp(1rem,2vw,1.5rem);font-weight:600;font-style:italic;letter-spacing:.1em;color:var(--cream)">MIDORI</span>
+        <span style="font-family:var(--display);font-size:clamp(.6rem,1.1vw,.85rem);font-weight:400;color:var(--red)">緑</span>
+      </div>
+      <div style="background:var(--amber);border-radius:14px;padding:clamp(20px,3vw,32px);display:flex;align-items:center;justify-content:center;gap:8px;min-height:clamp(100px,12vw,130px)">
+        <span style="font-family:var(--display);font-size:clamp(1rem,2vw,1.5rem);font-weight:600;font-style:italic;letter-spacing:.1em;color:var(--forest)">MIDORI</span>
+        <span style="font-family:var(--display);font-size:clamp(.6rem,1.1vw,.85rem);font-weight:400;color:#A23E2A">緑</span>
+      </div>
+    </div>
+
+    <!-- Clear space -->
+    <div class="clearspace-box">
+      <div class="clearspace-title">Clear Space &amp; Minimum Size</div>
+      <div class="clearspace-demo">
+        <div class="cs-line-top"></div><div class="cs-line-bottom"></div>
+        <div class="cs-line-left"></div><div class="cs-line-right"></div>
+        <span class="cs-arrow cs-arrow-top">1× mark height</span>
+        <span class="cs-arrow cs-arrow-bottom">1× mark height</span>
+        <span class="cs-arrow cs-arrow-left">1×</span>
+        <span class="cs-arrow cs-arrow-right">1×</span>
+        <div style="display:flex;align-items:baseline;gap:8px">
+          <span style="font-family:var(--display);font-size:clamp(1.4rem,3.5vw,2.4rem);font-weight:600;font-style:italic;letter-spacing:.12em;color:var(--ink)">MIDORI</span>
+          <span style="font-family:var(--display);font-size:clamp(.72rem,1.5vw,1.1rem);font-weight:400;color:var(--red)">緑</span>
+        </div>
+      </div>
+      <div class="clearspace-notes">
+        <div class="cs-note"><div class="cs-note-label">Min. digital</div><p>Wordmark at 80px width minimum. Never scale below this on screen.</p></div>
+        <div class="cs-note"><div class="cs-note-label">Min. print</div><p>Wordmark at 25mm minimum. Below 20mm use single-color ink only.</p></div>
+        <div class="cs-note"><div class="cs-note-label">Clear space</div><p>Always maintain 1× the cap-height on all four sides. No exceptions.</p></div>
+      </div>
+    </div>
+
+    <!-- Incorrect usage -->
+    <div>
+      <div style="font-size:clamp(.6rem,.8vw,.68rem);font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin-bottom:12px">Incorrect Usage</div>
+      <div class="misuse-grid">
+        <div class="misuse-tile">
+          <div class="misuse-vis" style="background:#f4f0e6">
+            <span style="font-family:var(--display);font-size:1.4rem;font-weight:600;font-style:italic;letter-spacing:.12em;color:var(--ink);transform:rotate(18deg);display:block">MIDORI</span>
+          </div>
+          <div class="misuse-label"><p>Don't rotate</p></div>
+        </div>
+        <div class="misuse-tile">
+          <div class="misuse-vis" style="background:#f4f0e6">
+            <span style="font-family:var(--display);font-size:1.4rem;font-weight:600;font-style:italic;letter-spacing:.12em;color:var(--ink);transform:scaleX(1.6);display:block">MIDORI</span>
+          </div>
+          <div class="misuse-label"><p>Don't stretch</p></div>
+        </div>
+        <div class="misuse-tile">
+          <div class="misuse-vis" style="background:#f4f0e6">
+            <span style="font-family:var(--display);font-size:1.4rem;font-weight:600;font-style:italic;letter-spacing:.12em;color:#888">MIDORI 緑</span>
+          </div>
+          <div class="misuse-label"><p>Don't gray out the 緑</p></div>
+        </div>
+        <div class="misuse-tile">
+          <div class="misuse-vis" style="background:linear-gradient(135deg,#6a4a8a,#c060a0)">
+            <span style="font-family:var(--display);font-size:1.4rem;font-weight:600;font-style:italic;letter-spacing:.12em;color:#fff">MIDORI</span>
+          </div>
+          <div class="misuse-label"><p>Don't use on off-brand bg</p></div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- 6. COMING SOON -->
-  <div class="brand-card card-cs3" style="cursor:default;">
-    <div class="card-inner">
-      <div class="card-row">
-        <span class="card-num">06</span>
-        <span class="card-type">Beverage &amp; Wellness</span>
+    <div class="logo-rules" style="margin-top:12px">
+      <div class="rule rule-do"><span class="rule-tag">✓ Do</span><p>Maintain clear space. Lock proportions. Use only on approved backgrounds. Always include 緑 in red at the correct size ratio.</p></div>
+      <div class="rule rule-dont"><span class="rule-tag">✗ Don't</span><p>Never stretch, rotate, or recolor the wordmark. Never place on competing patterns or use 緑 in any color other than red or cream.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 03 COLORS ══ -->
+<section class="sec sec-dark" id="colors">
+  <div class="wrap reveal">
+    <div class="sec-label">03 — Colors <div class="sec-seal"></div></div>
+    <div class="sec-header">
+      <h2 class="sec-title">A palette from <em>nature</em></h2>
+      <p class="sec-sub">Six colors and one signature detail. Each drawn from the world of matcha — and one from the Japanese seal tradition.</p>
+    </div>
+    <div class="palette">
+      <div class="swatch"><div class="sw-block" style="background:#1a3a2a"></div><div class="sw-info"><div class="sw-name">Forest</div><div class="sw-hex">#1A3A2A</div><div class="sw-role">Primary bg</div></div></div>
+      <div class="swatch"><div class="sw-block" style="background:#2d6a4a"></div><div class="sw-info"><div class="sw-name">Matcha</div><div class="sw-hex">#2D6A4A</div><div class="sw-role">Secondary bg</div></div></div>
+      <div class="swatch"><div class="sw-block" style="background:#52b788"></div><div class="sw-info"><div class="sw-name">Stem</div><div class="sw-hex">#52B788</div><div class="sw-role">Highlight</div></div></div>
+      <div class="swatch"><div class="sw-block" style="background:#D79A43"></div><div class="sw-info"><div class="sw-name">Amber</div><div class="sw-hex">#D79A43</div><div class="sw-role">Accent — warmth</div></div></div>
+      <div class="swatch swatch-red"><div class="sw-block" style="background:#A23E2A"></div><div class="sw-info"><div class="sw-name">Seal</div><div class="sw-hex">#A23E2A</div><div class="sw-role">緑 detail only</div></div></div>
+      <div class="swatch"><div class="sw-block" style="background:#faf8f2;border-bottom:1px solid rgba(0,0,0,.07)"></div><div class="sw-info" style="background:rgba(200,190,180,.5)"><div class="sw-name" style="color:#2a3a30">Cream</div><div class="sw-hex" style="color:#7a7060">#FAF8F2</div><div class="sw-role" style="color:#8a8a7a">Light bg / type</div></div></div>
+    </div>
+
+    <!-- ratio bar -->
+    <div class="color-ratio">
+      <div class="sec-label" style="margin-bottom:0">Usage Ratio</div>
+      <div class="ratio-bar">
+        <div class="rb-seg" style="flex:50;background:#1a3a2a">50%</div>
+        <div class="rb-seg" style="flex:20;background:#2d6a4a">20%</div>
+        <div class="rb-seg" style="flex:15;background:#faf8f2;color:rgba(0,0,0,.4)">15%</div>
+        <div class="rb-seg" style="flex:10;background:#D79A43;color:rgba(26,58,42,.8)">10%</div>
+        <div class="rb-seg" style="flex:4;background:#52b788">4%</div>
+        <div class="rb-seg" style="flex:1;background:#A23E2A" title="Seal — sparingly"></div>
       </div>
-      <div class="card-row-bottom">
-        <div>
-          <div class="coming-soon-tag">Coming Soon</div>
-          <div class="card-name">Energy Drink</div>
+      <div class="color-ratio-labels">
+        <span class="crl"><span class="crl-dot" style="background:#1a3a2a"></span>Forest 50%</span>
+        <span class="crl"><span class="crl-dot" style="background:#2d6a4a"></span>Matcha 20%</span>
+        <span class="crl"><span class="crl-dot" style="background:#faf8f2;border:1px solid #ccc"></span>Cream 15%</span>
+        <span class="crl"><span class="crl-dot" style="background:#D79A43"></span>Amber 10%</span>
+        <span class="crl"><span class="crl-dot" style="background:#A23E2A"></span>Seal — sparingly</span>
+      </div>
+    </div>
+
+    <div class="color-notes">
+      <div class="cn"><div class="cn-dot" style="background:#D79A43"></div><h5>Amber is the accent</h5><p>All CTAs, active states, key highlights. The single warm note in a cool-green world. Never as a full background.</p></div>
+      <div class="cn"><div class="cn-dot" style="background:#A23E2A"></div><h5>Seal is a detail</h5><p>Used only on 緑, tiny signature dots, and packaging seals. Never for buttons, links, or UI states. You notice it second — not first.</p></div>
+      <div class="cn"><div class="cn-dot" style="background:#b8c4cc"></div><h5>Slate is invisible</h5><p>Muted gray-blue for captions, timestamps, metadata only. Never as a feature or accent color.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 04 TYPOGRAPHY ══ -->
+<section class="sec sec-cream" id="type">
+  <div class="wrap reveal">
+    <div class="sec-label">04 — Typography</div>
+    <div class="sec-header">
+      <h2 class="sec-title">Two voices, <em>one brand</em></h2>
+      <p class="sec-sub">Cormorant Garamond carries emotion, history, and poetry. Outfit handles everything functional with clean precision.</p>
+    </div>
+    <div class="type-grid">
+      <div class="type-tile">
+        <span class="type-tag">Display — Cormorant Garamond</span>
+        <div class="type-big">"A single bowl. Prepared with intention."</div>
+        <p class="type-desc">Headlines, hero statements, pull-quotes. Light (300) or Regular (400). Italics preferred. Use for emotion — never for instructions or UI labels.</p>
+      </div>
+      <div class="type-tile">
+        <span class="type-tag">Body — Outfit</span>
+        <div class="type-body-demo">ABCDEFGHIJK</div>
+        <div class="type-body-demo" style="font-size:.95rem;color:#7a7060;margin-bottom:10px">abcdefghijk — 0 1 2 3 4</div>
+        <p class="type-desc">All body copy, UI labels, menus, captions. Geometric, highly legible at any size. 300 for body, 500 for labels, 600 for UI elements.</p>
+      </div>
+    </div>
+    <div class="type-scale">
+      <div class="ts-row"><span class="ts-lbl">Display XL</span><span class="ts-d" style="font-size:clamp(1.8rem,4vw,2.6rem)">Midori <span style="color:var(--red);font-size:.55em">緑</span></span></div>
+      <div class="ts-row"><span class="ts-lbl">Display L</span><span class="ts-d" style="font-size:clamp(1.3rem,2.8vw,1.8rem)">The color of intention.</span></div>
+      <div class="ts-row"><span class="ts-lbl">Heading</span><span class="ts-b" style="font-size:clamp(1rem,2vw,1.2rem);font-weight:600">Ceremonial Matcha Bar</span></div>
+      <div class="ts-row"><span class="ts-lbl">Body</span><span class="ts-b" style="font-size:clamp(.8rem,1.2vw,.92rem);font-weight:300">Every cup is prepared with intention, patience, and care for the craft.</span></div>
+      <div class="ts-row"><span class="ts-lbl">Caption</span><span class="ts-b" style="font-size:clamp(.58rem,.78vw,.66rem);letter-spacing:.14em;text-transform:uppercase;color:rgba(250,248,242,.3)">Origin — Nishio, Aichi, Japan</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 05 IMAGERY ══ -->
+<section class="sec sec-dark" id="imagery">
+  <div class="wrap reveal">
+    <div class="sec-label">05 — Imagery</div>
+    <div class="sec-header">
+      <h2 class="sec-title">A visual world of <em>stillness</em></h2>
+      <p class="sec-sub">Photography should feel like a pause — soft light, green-led palette, unhurried subjects.</p>
+    </div>
+    <div class="sec-label" style="margin-bottom:12px">Moodboard Direction</div>
+    <div class="moodboard">
+      <div class="mood-frame mf1"><div class="mf-label"><span>Preparation ritual</span></div></div>
+      <div class="mood-frame mf2"><div class="mf-label"><span>Ceramic & texture</span></div></div>
+      <div class="mood-frame mf3"><div class="mf-label"><span>Morning light</span></div></div>
+      <div class="mood-frame mf4"><div class="mf-label"><span>Warm still life</span></div></div>
+      <div class="mood-frame mf5"><div class="mf-label"><span>Minimal surfaces</span></div></div>
+      <div class="mood-frame mf6"><div class="mf-label"><span>Garden & source</span></div></div>
+    </div>
+    <div class="img-rules">
+      <div class="ir"><span class="ir-num">01</span><h4>Natural light only</h4><p>Diffused directional light. Soft shadows. No harsh flash. Golden hour for warmth.</p></div>
+      <div class="ir"><span class="ir-num">02</span><h4>Green-led, amber-accented</h4><p>Images live in Forest-to-Stem range. Amber ceramics welcome. No cool blues, no neons.</p></div>
+      <div class="ir"><span class="ir-num">03</span><h4>Minimal composition</h4><p>One subject, generous space. Props: ceramic, wood, cloth. Max 3 props. Never cluttered.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 06 APPLICATIONS ══ -->
+<section class="sec sec-light" id="assets">
+  <div class="wrap reveal">
+    <div class="sec-label">06 — Applications</div>
+    <div class="sec-header">
+      <h2 class="sec-title">Brand in the <em>world</em></h2>
+      <p class="sec-sub">How Midori lives on cups, menus, packaging, and walls — where the brand becomes something you can hold.</p>
+    </div>
+
+    <!-- MOCKUPS ROW 1: Social + Menu -->
+    <div class="mockups-row" style="margin-bottom:14px">
+
+      <!-- SOCIAL — editorial post, dark, typographic -->
+      <div class="mockup-social-scene">
+        <div class="social-image-area">
+          <div style="position:absolute;inset:0;background:linear-gradient(145deg,#0c1c12 0%,#163024 40%,#1e4030 70%,#142a1e 100%)"></div>
+          <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 68% 28%,rgba(82,183,136,.1) 0%,transparent 65%)"></div>
+          <!-- ghost bowl mark, large, bottom-right -->
+          <div style="position:absolute;right:-10%;bottom:-10%;opacity:.08;pointer-events:none">
+            <svg width="180" height="180" viewBox="0 0 44 44" fill="none">
+              <ellipse cx="22" cy="22" rx="19" ry="19" stroke="#faf8f2" stroke-width=".9"/>
+              <ellipse cx="22" cy="26" rx="13" ry="8" stroke="#faf8f2" stroke-width="1.2"/>
+            </svg>
+          </div>
+          <!-- amber rule -->
+          <div style="position:absolute;top:clamp(16px,2.5vw,24px);left:clamp(16px,2.5vw,24px);width:24px;height:1.5px;background:var(--amber)"></div>
+          <!-- main type content -->
+          <div style="position:absolute;bottom:clamp(16px,2.5vw,24px);left:clamp(16px,2.5vw,24px);right:clamp(16px,2.5vw,24px);z-index:2">
+            <p style="font-family:var(--display);font-size:clamp(1.2rem,2.4vw,1.8rem);font-style:italic;font-weight:300;color:var(--cream);line-height:1.2;margin-bottom:8px">"stillness<br>in a cup"</p>
+            <div style="display:flex;justify-content:space-between;align-items:flex-end">
+              <span style="font-size:clamp(.52rem,.66vw,.6rem);letter-spacing:.2em;text-transform:uppercase;color:rgba(250,248,242,.38)">midori · nishio, aichi</span>
+              <span style="font-size:clamp(.52rem,.66vw,.6rem);letter-spacing:.16em;text-transform:uppercase;color:rgba(250,248,242,.28)">spring 2025</span>
+            </div>
+          </div>
+        </div>
+        <div class="social-footer">
+          <div style="display:flex;align-items:baseline;gap:5px">
+            <span style="font-family:var(--display);font-size:clamp(.78rem,1.2vw,.9rem);font-weight:600;font-style:italic;letter-spacing:.08em;color:var(--cream)">MIDORI</span>
+            <span style="font-family:var(--display);font-size:clamp(.5rem,.8vw,.6rem);font-weight:400;color:var(--red)">緑</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <span class="social-handle">@midori.matcha</span>
+            <div class="social-seal"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RETAIL BAG — properly proportioned, warm kraft -->
+      <!-- MENU -->
+      <div class="mockup-menu-scene">
+        <div class="menu-top">
+          <div class="menu-brand-block">
+            <div class="menu-brand-wm">
+              <span class="menu-brand-name">MIDORI</span>
+              <span class="menu-brand-k">緑</span>
+            </div>
+            <span class="menu-season">Spring Menu — Nishio, Aichi</span>
+          </div>
+
+        </div>
+        <div class="menu-items">
+          <div class="menu-item">
+            <div class="mi-left">
+              <span class="mi-name">Usucha</span>
+              <span class="mi-origin">Ceremonial grade · Uji</span>
+              <span class="mi-desc">Thin, whisked. The classic preparation.</span>
+            </div>
+            <span class="mi-price">¥ 6</span>
+          </div>
+          <div class="menu-item">
+            <div class="mi-left">
+              <span class="mi-name">Koicha</span>
+              <span class="mi-origin">Premium grade · Nishio</span>
+              <span class="mi-desc">Thick, stone-ground. For the devoted.</span>
+            </div>
+            <span class="mi-price">¥ 9</span>
+          </div>
+          <div class="menu-item">
+            <div class="mi-left">
+              <span class="mi-name">Matcha Latte</span>
+              <span class="mi-origin">Oat or almond · no syrup</span>
+              <span class="mi-desc">Whisked to order, poured slowly.</span>
+            </div>
+            <span class="mi-price">¥ 7</span>
+          </div>
+          <div class="menu-item">
+            <div class="mi-left">
+              <span class="mi-name">Hojicha</span>
+              <span class="mi-origin">Roasted · Kyoto</span>
+              <span class="mi-desc">Warm, smoky. Served in a ceramic cup.</span>
+            </div>
+            <span class="mi-price">¥ 5</span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
+    <!-- MOCKUPS ROW 2: Cup + Bag -->
+    <div class="mockups-row">
+
+      <!-- CUP — tall, dark scene, refined SVG -->
+      <div class="mockup-cup-scene">
+        <div class="cup-scene-bg"></div>
+        <div class="cup-svg-wrap">
+          <svg viewBox="0 0 110 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:clamp(80px,9vw,108px);height:auto;display:block">
+            <defs>
+              <linearGradient id="cupBody" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#e8e0d0"/>
+                <stop offset="55%" stop-color="#f6f0e8"/>
+                <stop offset="100%" stop-color="#d8d0c0"/>
+              </linearGradient>
+              <linearGradient id="cupSide" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#d0c8b8"/>
+                <stop offset="100%" stop-color="#c0b8a8"/>
+              </linearGradient>
+              <linearGradient id="sleeveG" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#122418"/>
+                <stop offset="45%" stop-color="#1a3a2a"/>
+                <stop offset="100%" stop-color="#102010"/>
+              </linearGradient>
+              <linearGradient id="lidTop" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#eae2d6"/>
+                <stop offset="100%" stop-color="#d6cec0"/>
+              </linearGradient>
+            </defs>
+            <!-- shadow -->
+            <ellipse cx="55" cy="196" rx="34" ry="5" fill="rgba(0,0,0,.25)"/>
+            <!-- cup body — clean taper, wider base -->
+            <path d="M20 42 L14 178 Q14 186 24 187 L86 187 Q96 186 96 178 L90 42 Z" fill="url(#cupBody)" stroke="#cac0b0" stroke-width=".7"/>
+            <!-- right edge shading -->
+            <path d="M90 42 L96 178 Q96 186 88 187 L86 187 Q96 186 96 178 L90 42 Z" fill="rgba(0,0,0,.07)"/>
+            <!-- sleeve — covers middle third -->
+            <path d="M18 96 L16 152 Q16 156 22 157 L88 157 Q94 156 94 152 L92 96 Z" fill="url(#sleeveG)"/>
+            <!-- amber stripe top of sleeve -->
+            <rect x="16" y="96" width="78" height="1.8" fill="#D79A43" opacity=".8" rx=".9"/>
+            <!-- amber stripe bottom of sleeve -->
+            <rect x="16" y="152" width="78" height="1.8" fill="#D79A43" opacity=".6" rx=".9"/>
+            <!-- MIDORI — clean, centred -->
+            <text x="55" y="131" font-family="Georgia,serif" font-size="9.5" font-style="italic" font-weight="700" letter-spacing="3.5" fill="#faf8f2" text-anchor="middle" opacity=".94">MIDORI</text>
+            <!-- 緑 small red beneath -->
+            <text x="55" y="143" font-family="Georgia,serif" font-size="6.5" fill="#A23E2A" text-anchor="middle" opacity=".85">緑</text>
+            <!-- lid flat top -->
+            <ellipse cx="55" cy="31" rx="40" ry="10" fill="url(#lidTop)" stroke="#d0c8b8" stroke-width=".7"/>
+            <!-- lid side ring -->
+            <path d="M15 40 Q15 31 55 31 Q95 31 95 40 L93 45 Q93 48 55 48 Q17 48 17 45 Z" fill="#d8d0c2" stroke="#c8c0b0" stroke-width=".7"/>
+            <!-- drink opening -->
+            <path d="M40 30 Q55 24 70 30" stroke="#c8c0b0" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+            <!-- steam -->
+            <path d="M36 25 Q40 16 35 8" stroke="rgba(250,248,242,.18)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            <path d="M55 22 Q59 13 54 5" stroke="rgba(250,248,242,.14)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            <path d="M74 25 Q78 16 73 8" stroke="rgba(250,248,242,.11)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="mockup-cup-label">Takeaway Cup</span>
+      </div>
+
+      <!-- RETAIL BAG — properly proportioned, warm kraft -->
+      <div class="mockup-bag-scene">
+        <div class="bag-3d">
+          <svg viewBox="0 0 130 170" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:clamp(96px,12vw,130px);height:auto;display:block">
+            <defs>
+              <linearGradient id="bagFront" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#d4bc84"/>
+                <stop offset="60%" stop-color="#e2cc96"/>
+                <stop offset="100%" stop-color="#cbb878"/>
+              </linearGradient>
+              <linearGradient id="bagSide" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#c4a868"/>
+                <stop offset="100%" stop-color="#b89858"/>
+              </linearGradient>
+            </defs>
+            <!-- bag shadow -->
+            <ellipse cx="68" cy="165" rx="44" ry="5" fill="rgba(0,0,0,.18)"/>
+            <!-- right side panel -->
+            <path d="M106 52 L110 157 Q110 163 103 164 L98 163 L102 52 Z" fill="url(#bagSide)"/>
+            <!-- main bag body -->
+            <path d="M24 52 L20 157 Q20 163 28 164 L103 164 Q111 163 110 157 L106 52 Z" fill="url(#bagFront)" stroke="#b8a060" stroke-width=".7"/>
+            <!-- fold line at top -->
+            <line x1="24" y1="52" x2="106" y2="52" stroke="#b09050" stroke-width=".8"/>
+            <!-- left handle -->
+            <path d="M40 52 Q36 30 50 26 Q64 22 66 44" stroke="#a88840" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+            <!-- right handle -->
+            <path d="M66 44 Q68 22 82 26 Q96 30 92 52" stroke="#a88840" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+            <!-- punch holes -->
+            <ellipse cx="43" cy="51" rx="5.5" ry="4" fill="#b89848"/>
+            <ellipse cx="89" cy="51" rx="5.5" ry="4" fill="#b89848"/>
+            <!-- cream label, well-proportioned -->
+            <rect x="30" y="75" width="70" height="66" rx="3" fill="#faf8f2" stroke="#e0d8c8" stroke-width=".7"/>
+            <!-- forest top bar -->
+            <rect x="30" y="75" width="70" height="5.5" fill="#1a3a2a" rx="2"/>
+            <!-- amber stripe beneath bar -->
+            <rect x="30" y="80.5" width="70" height="1.5" fill="#D79A43"/>
+            <!-- wordmark on label — centred, good scale -->
+            <text x="65" y="112" font-family="Georgia,serif" font-size="12" font-style="italic" font-weight="700" letter-spacing="3" fill="#111a14" text-anchor="middle">MIDORI</text>
+            <text x="65" y="124" font-family="Georgia,serif" font-size="8.5" fill="#A23E2A" text-anchor="middle" opacity=".88">緑</text>
+            <!-- hairline -->
+            <line x1="48" y1="131" x2="82" y2="131" stroke="#ddd5c4" stroke-width=".7"/>
+            <text x="65" y="138" font-family="Arial,sans-serif" font-size="5.5" letter-spacing="2.5" fill="#a89878" text-anchor="middle">CEREMONIAL MATCHA</text>
+          </svg>
+        </div>
+        <span class="bag-mockup-note">Retail Bag — Kraft &amp; Cream</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION NAV FOOTER -->
+<nav class="section-nav" aria-label="Section navigation">
+  <div class="snav-inner">
+    <a class="snav-item" href="#intro">
+      <span class="snav-num">(01)</span>
+      <span class="snav-name">Introduction</span>
+    </a>
+    <a class="snav-item" href="#type">
+      <span class="snav-num">(04)</span>
+      <span class="snav-name">Typography</span>
+    </a>
+    <a class="snav-item" href="#logo">
+      <span class="snav-num">(02)</span>
+      <span class="snav-name">Logo</span>
+    </a>
+    <a class="snav-item" href="#imagery">
+      <span class="snav-num">(05)</span>
+      <span class="snav-name">Imagery</span>
+    </a>
+    <a class="snav-item" href="#colors">
+      <span class="snav-num">(03)</span>
+      <span class="snav-name">Colors</span>
+    </a>
+    <a class="snav-item" href="#assets">
+      <span class="snav-num">(06)</span>
+      <span class="snav-name">Applications</span>
+    </a>
+  </div>
+  <div class="snav-footer-row">
+    <div class="snav-logo">
+      <span class="snav-logo-word">MIDORI</span>
+      <span class="snav-logo-k">緑</span>
+    </div>
+    <a class="snav-back" href="#top">
+      <svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+        <line x1="7" y1="12" x2="7" y2="2"/>
+        <polyline points="3,6 7,2 11,6"/>
+      </svg>
+      Back to top
+    </a>
+  </div>
+</nav>
+
+<!-- DRAWER -->
+<div class="overlay" id="overlay" onclick="toggleDrawer()"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-head">Contents</div>
+  <a class="d-item" href="#top" onclick="toggleDrawer()"><span class="d-num">00</span> Overview</a>
+  <a class="d-item" href="#intro" onclick="toggleDrawer()"><span class="d-num">01</span> Introduction</a>
+  <a class="d-item" href="#logo" onclick="toggleDrawer()"><span class="d-num">02</span> Logo</a>
+  <a class="d-item" href="#colors" onclick="toggleDrawer()"><span class="d-num">03</span> Colors</a>
+  <a class="d-item" href="#type" onclick="toggleDrawer()"><span class="d-num">04</span> Typography</a>
+  <a class="d-item" href="#imagery" onclick="toggleDrawer()"><span class="d-num">05</span> Imagery</a>
+  <a class="d-item" href="#assets" onclick="toggleDrawer()"><span class="d-num">06</span> Applications</a>
 </div>
 
-<!-- Scroll space keeps the last card visible and gives room to read -->
-<div class="scroll-space">
-  <div class="scroll-space-inner">
-    <p>Brand Style Guides — Molly Curtis</p>
-    <a href="https://mollycurtis.github.io">← Back to Portfolio</a>
-  </div>
-</div>
-
+<script>
+function toggleDrawer(){
+  document.getElementById('drawer').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('open');
+}
+function scrollToSection(id){
+  document.getElementById(id)?.scrollIntoView({behavior:'smooth'});
+}
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)} });
+},{threshold:.07});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
 </body>
 </html>
