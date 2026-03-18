@@ -195,6 +195,57 @@
     .hero-text > *:nth-child(5){animation-delay:.36s}
     .hero-text > *:nth-child(6){animation-delay:.44s}
 
+
+    /* PROJECT GRID */
+    .proj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .proj-card {
+      position: relative; border-radius: 16px; overflow: hidden; text-decoration: none;
+      min-height: 280px; display: flex; flex-direction: column;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 24px rgba(185,79,200,0.1), 0 1px 8px rgba(0,0,0,0.06);
+    }
+    .proj-card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(185,79,200,0.18), 0 4px 16px rgba(0,0,0,0.08); }
+    .proj-card-bg { position: absolute; inset: 0; z-index: 0; transition: transform 0.4s ease; }
+    .proj-card:hover .proj-card-bg { transform: scale(1.03); }
+
+    .proj-card-content { position: relative; z-index: 2; padding: 1.8rem 2rem; display: flex; flex-direction: column; flex: 1; }
+        .proj-card-tag {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #b94fc8;
+      background: none;
+      border: none;
+      border-radius: 0;
+      padding: 0 0 0.55rem 0;
+      margin: 0 0 0.9rem 0;
+      width: fit-content;
+      position: relative;
+    }
+    .proj-card-tag::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 28px;
+      height: 2.5px;
+      background: linear-gradient(90deg, #e8445a 0%, #b94fc8 100%);
+      border-radius: 2px;
+    }
+    .proj-card-title {
+      font-family: 'Playfair Display', serif; font-size: 1.55rem;
+      background: var(--gt); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      line-height: 1.15; margin-bottom: 0.75rem;
+    }
+    .proj-card-desc { font-size: 0.85rem; color: #555; line-height: 1.7; flex: 1; font-weight: 300; }
+    .proj-card-footer { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 1.4rem; gap: 1rem; flex-wrap: wrap; }
+    .proj-card-skills { display: none; }
+    .proj-card-cta { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; white-space: nowrap; padding: 0.45rem 1rem; border-radius: 30px; border: 1px solid rgba(185,79,200,0.5); color: #b94fc8; transition: all 0.2s; background: white; }
+    .proj-card:hover .proj-card-cta { background: var(--gradient); color: white; border-color: transparent; }
+    @media(max-width:680px){ .proj-grid { grid-template-columns: 1fr; } .proj-card { min-height: 240px; } }
+
     /* RESPONSIVE */
     /* ── Large (≤1200px) ── */
     @media(max-width:1200px){
@@ -280,7 +331,7 @@
         <span class="pill">Landing Pages</span>
         <span class="pill">Digital Ad Creation</span>
         <span class="pill">Conversion Optimization</span>
-        <span class="pill">Organic Social</span>
+        <span class="pill">Social Media</span>
         <span class="pill">Data-Informed UX</span>
       </div>
       <div class="hero-ctas">
@@ -322,115 +373,66 @@
     <p class="sl">Selected Work</p>
     <h2 class="st">Projects &amp; <span class="grad">Campaigns</span></h2>
     <hr class="sdiv" />
-    <div class="slider-wrap">
-      <div class="slider-track" id="track">
+    <div class="proj-grid">
 
-        <!-- SLIDE 1 -->
-        <div class="slide">
-          <div class="card">
-            <div class="card-header">
-              <div class="card-tags"><span class="ctag">Conversion Optimization</span><span class="ctag">Page Simplification</span><span class="ctag">User Flow</span></div>
-              <h3>Subscription Conversion Redesign</h3>
-            </div>
-            <div class="thumb" onclick="openModal('m1')">
-              <img src="Subscription-Page-Before.png" alt="Subscription page" onerror="this.style.display='none'" />
-              <div class="thumb-over"><span class="thumb-cta">&#9654; Compare Before &amp; After</span></div>
-            </div>
-            <div class="card-body">
-              <div class="ci"><label>What I Worked On</label><ul><li>Audited existing experience, identified drop-off points</li><li>Restructured layout and messaging hierarchy</li><li>Simplified page flow to reduce cognitive load</li><li>Clarified CTAs for a focused, conversion-driven experience</li></ul></div>
-              <div class="ci"><label>Impact</label><span>Drove an X% increase in subscriptions. Customer support reported a significant drop in billing-related calls — a recurring pain point that disappeared after the redesign.</span></div>
-              <div class="ci"><label>What I Learned</label><span>Clarity and hierarchy beat complexity. Stripping a page to only what drives action is often more effective than adding more content.</span></div>
-              <div class="ci"><label>Tools</label><span>HTML/CSS · Shogun · Claude · Canva · GA4</span></div>
-            </div>
+      <!-- CARD 1: Brand Guides -->
+      <a href="https://mollycurtis.github.io/brandguide" class="proj-card" style="--card-accent:#e8445a;">
+        <div class="proj-card-bg" style="background: linear-gradient(135deg, #fdf6ff 0%, #f8eeff 100%);"></div>
+        <div class="proj-card-content">
+          <div class="proj-card-tag">Brand &amp; Identity</div>
+          <h3 class="proj-card-title">Brand Style Guides</h3>
+          <p class="proj-card-desc">Full brand identity systems — typography, color, visual language, and usage guidelines built intentionally from concept to final deliverable.</p>
+          <div class="proj-card-footer">
+<span class="proj-card-cta">View Work →</span>
           </div>
         </div>
+      </a>
 
-        <!-- SLIDE 2 -->
-        <div class="slide">
-          <div class="card">
-            <div class="card-header">
-              <div class="card-tags"><span class="ctag">Lead Generation</span><span class="ctag">Content Strategy</span><span class="ctag">Resource Hub</span></div>
-              <h3>AI Learning Hub — Lead Generation Strategy</h3>
-            </div>
-            <div class="thumb" style="cursor:default;"><div class="thumb-ph">Add screenshot here</div></div>
-            <div class="card-body">
-              <div class="ci"><label>What I Worked On</label><ul><li>Designed homepage modules driving traffic to the hub</li><li>Built the hub page layout and resource structure</li><li>Supported lead gen pages tied to downloadable resources</li><li>Designed web banners promoting the initiative site-wide</li></ul></div>
-              <div class="ci"><label>Impact</label><span>Created a scalable resource hub that captured leads and supported ongoing AI-focused marketing initiatives.</span></div>
-              <div class="ci"><label>What I Learned</label><span>Educational content structured clearly is one of the most effective lead generation tools available.</span></div>
-              <div class="ci"><label>Tools</label><span>Figma · HTML/CSS · GA4</span></div>
-            </div>
+      <!-- CARD 2: Landing Pages -->
+      <a href="https://mollycurtis.github.io/landingpages" class="proj-card" style="--card-accent:#b94fc8;">
+        <div class="proj-card-bg" style="background: linear-gradient(135deg, #f6f0ff 0%, #fdf0ff 100%);"></div>
+        <div class="proj-card-content">
+          <div class="proj-card-tag">Conversion &amp; UX</div>
+          <h3 class="proj-card-title">Landing Pages</h3>
+          <p class="proj-card-desc">Conversion-focused landing pages built for paid, email, and organic campaigns — designed to reduce friction and drive action.</p>
+          <div class="proj-card-footer">
+<span class="proj-card-cta">View Work →</span>
           </div>
         </div>
+      </a>
 
-        <!-- SLIDE 3 -->
-        <div class="slide">
-          <div class="card">
-            <div class="card-header">
-              <div class="card-tags"><span class="ctag">Audience Targeting</span><span class="ctag">Campaign Strategy</span><span class="ctag">Bulk Landing Pages</span></div>
-              <h3>Persona-Targeted Campaigns</h3>
-            </div>
-            <div class="thumb" style="cursor:default;"><div class="thumb-ph">Add screenshot here</div></div>
-            <div class="card-body">
-              <div class="ci"><label>What I Worked On</label><ul><li>Designed state-specific and topic-specific landing pages</li><li>Structured messaging around audience needs and search intent</li><li>Created scannable layouts with clear value propositions</li><li>Supported campaign launches with focused conversion pages</li></ul></div>
-              <div class="ci"><label>Impact</label><span>Helped campaigns reach the right audiences with more relevant messaging and clearer user journeys.</span></div>
-              <div class="ci"><label>What I Learned</label><span>The most effective campaigns connect message, audience, and experience into one seamless journey.</span></div>
-              <div class="ci"><label>Tools</label><span>Figma · HTML/CSS · GA4</span></div>
-            </div>
+      <!-- CARD 3: Display Ads -->
+      <a href="https://mollycurtis.github.io/displayads" class="proj-card" style="--card-accent:#7b5ea7;">
+        <div class="proj-card-bg" style="background: linear-gradient(135deg, #fff0f8 0%, #f8f0ff 100%);"></div>
+        <div class="proj-card-content">
+          <div class="proj-card-tag">Creative Production</div>
+          <h3 class="proj-card-title">Display Ad Creation</h3>
+          <p class="proj-card-desc">Scalable ad creative designed across multiple sizes and placements — built for consistency across paid campaigns and channels.</p>
+          <div class="proj-card-footer">
+<span class="proj-card-cta">View Work →</span>
           </div>
         </div>
+      </a>
 
-        <!-- SLIDE 4 -->
-        <div class="slide">
-          <div class="card">
-            <div class="card-header">
-              <div class="card-tags"><span class="ctag">Display Ads</span><span class="ctag">Campaign Creative</span><span class="ctag">Ad Variations</span></div>
-              <h3>Scaled Ad Creative Production</h3>
-            </div>
-            <div class="thumb" style="cursor:default;"><div class="thumb-ph">Add creative board here</div></div>
-            <div class="card-body">
-              <div class="ci"><label>What I Worked On</label><ul><li>Designed display ads in multiple sizes and formats</li><li>Created campaign-specific creative sets for different audiences</li><li>Adapted concepts across placements and channels</li><li>Built variations to support testing and optimization</li></ul></div>
-              <div class="ci"><label>Impact</label><span>Delivered scalable creative assets that ran across multiple channels and supported campaign performance at scale.</span></div>
-              <div class="ci"><label>What I Learned</label><span>Strong campaign creative isn't about individual visuals — it's about building adaptable assets that perform across every touchpoint.</span></div>
-              <div class="ci"><label>Tools</label><span>Adobe Creative Suite · Figma · Canva</span></div>
-            </div>
+      <!-- CARD 4: Social & Content -->
+      <a href="https://mollycurtis.github.io/social" class="proj-card" style="--card-accent:#c040c8;">
+        <div class="proj-card-bg" style="background: linear-gradient(135deg, #fdf0ff 0%, #fff0f8 100%);"></div>
+        <div class="proj-card-content">
+          <div class="proj-card-tag">Social &amp; Content</div>
+          <h3 class="proj-card-title">Social &amp; Campaign Content</h3>
+          <p class="proj-card-desc">Organic social content, web banners, and campaign visuals — created to engage audiences and keep brand presence consistent across channels.</p>
+          <div class="proj-card-footer">
+<span class="proj-card-cta">View Work →</span>
           </div>
         </div>
+      </a>
 
-      </div><!-- end track -->
-
-      <div class="sc">
-        <button class="sa" onclick="slideProject(-1)">&#8592;</button>
-        <button class="sd active" onclick="goToSlide(0)"></button>
-        <button class="sd" onclick="goToSlide(1)"></button>
-        <button class="sd" onclick="goToSlide(2)"></button>
-        <button class="sd" onclick="goToSlide(3)"></button>
-        <button class="sa" onclick="slideProject(1)">&#8594;</button>
-        <span class="sp" id="sp">1 / 4</span>
-      </div>
     </div>
   </div>
 </section>
 
-<!-- BEFORE/AFTER MODAL -->
-<div class="modal" id="m1" onclick="closeModalOutside(event,'m1')">
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeModal('m1')">&#10005;</button>
-    <div class="modal-head">
-      <h4>Subscription Page &mdash; Before &amp; After</h4>
-      <p>&#8592; Drag the slider to compare &#8594;</p>
-    </div>
-    <div class="comp" id="compSlider">
-      <div style="line-height:0;"><img src="Subscription-Page-After.png" alt="After" /></div>
-      <div class="comp-after" id="afterPane"><img src="Subscription-Page-Before.png" alt="Before" /></div>
-      <div class="comp-handle" id="compHandle"><div class="comp-btn">&#8249;&#8250;</div></div>
-      <span class="comp-label cl-a">After</span>
-      <span class="comp-label cl-b">Before</span>
-    </div>
-  </div>
-</div>
-
 <!-- PROCESS -->
-<section id="process" class="sec-bg">
+<section id="process" style="background: linear-gradient(135deg, rgba(123,94,167,0.09) 0%, rgba(185,79,200,0.08) 100%);">
   <div class="inner">
     <p class="sl">How I Work</p>
     <h2 class="st">My <span class="grad">Process</span></h2>
@@ -470,6 +472,7 @@
           <span class="sk">Conversion Optimization</span>
           <span class="sk">Campaign Creative</span>
           <span class="sk">Organic &amp; Paid Social</span>
+          <span class="sk">Brand &amp; Identity</span>
           <span class="sk">Audience Targeting</span>
           <span class="sk">A/B Testing</span>
         </div>
@@ -499,7 +502,7 @@
 </section>
 
 <!-- ABOUT -->
-<section id="about" class="sec-bg">
+<section id="about" style="background: linear-gradient(135deg, rgba(232,68,90,0.06) 0%, rgba(185,79,200,0.08) 55%, rgba(123,94,167,0.06) 100%);">
   <div class="inner">
     <p class="sl">The Person Behind the Work</p>
     <h2 class="st">About <span class="grad">Me</span></h2>
@@ -507,7 +510,7 @@
     <div class="about-grid">
       <div class="about-text">
         <p>I'm a digital experience designer with a background in marketing and growth, focused on creating work that is visually strong and performance-driven. My experience spans landing pages, digital campaigns, ad creative, and conversion-focused design across channels.</p>
-        <p>Over the past 3 years, I've grown from intern to analyst to digital marketing specialist, building hands-on experience across design, strategy, analytics, and web execution.</p>
+        <p>In less than 3 years, I've grown from intern to analyst to digital marketing specialist, building hands-on experience across design, strategy, analytics, and web execution.</p>
         <div class="lfb">
           <h4 class="grad">What I'm Looking For</h4>
           <p>I'm drawn to roles where design, marketing, and performance intersect. Marketing is always evolving, and I enjoy staying current, adapting quickly, and creating work that reflects how people discover, engage, and convert.</p>
@@ -554,7 +557,7 @@
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="sec-bg">
+<section id="contact" style="background: linear-gradient(135deg, rgba(123,94,167,0.09) 0%, rgba(185,79,200,0.08) 100%);">
   <div class="inner">
     <div class="contact-box">
       <p class="sl" style="text-align:center;">Get In Touch</p>
@@ -566,7 +569,7 @@
   </div>
 </section>
 
-<footer>&copy; 2026 Molly Curtis. Designed &amp; built by me.</footer>
+<footer>&copy; 2026 Molly Curtis &mdash; Designed, coded, and built from scratch by me.</footer>
 
 <button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</button>
 
