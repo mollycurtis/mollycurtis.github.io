@@ -1,280 +1,295 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Brand Style Guides — Molly Curtis</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Outfit:wght@300;400;500;600;700&family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Barlow+Condensed:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,700;1,900&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Outfit:wght@300;400;500;600;700&family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Barlow+Condensed:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,700;1,900&family=Syne:wght@600;700;800&family=Alfa+Slab+One&family=Josefin+Sans:wght@300;400;600;700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body { font-family: 'DM Sans', sans-serif; background: #0e0e0e; color: #111; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
 
-    /* NAV */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 1rem 2.5rem;
-      background: white;
-      border-bottom: 1px solid rgba(0,0,0,0.08);
-    }
-    .nav-logo {
-      font-size: 0.85rem; font-weight: 600; letter-spacing: 0.08em;
-      color: #111; text-decoration: none; text-transform: uppercase;
-    }
-    .nav-back {
-      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em;
-      color: #555; text-decoration: none; text-transform: uppercase;
-      transition: color 0.2s;
-    }
-    .nav-back:hover { color: #111; }
+```
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1rem 2.5rem;
+  background: white;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+.nav-logo {
+  font-size: 0.85rem; font-weight: 600; letter-spacing: 0.08em;
+  color: #111; text-decoration: none; text-transform: uppercase;
+}
+.nav-back {
+  font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em;
+  color: #555; text-decoration: none; text-transform: uppercase;
+  transition: color 0.2s;
+}
+.nav-back:hover { color: #111; }
 
-    /* CARDS STACK */
-    .cards-wrap {
-      padding-top: 54px;
-    }
+/* CARDS STACK */
+.cards-wrap {
+  padding-top: 54px;
+}
 
-    .brand-card {
-      position: sticky;
-      height: 82vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      gap: 1rem;
-      padding: 2rem 2.5rem;
-      cursor: pointer;
-      overflow: hidden;
-      text-decoration: none;
-      transition: filter 0.3s;
-    }
+.brand-card {
+  position: sticky;
+  height: 82vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 1rem;
+  padding: 2rem 2.5rem;
+  cursor: pointer;
+  overflow: hidden;
+  text-decoration: none;
+  transition: filter 0.3s;
+}
 
-    /* Each card gets a different top so they stack */
-    .brand-card:nth-child(1) { top: 54px; z-index: 10; }
-    .brand-card:nth-child(2) { top: 94px; z-index: 20; }
-    .brand-card:nth-child(3) { top: 134px; z-index: 30; }
-    .brand-card:nth-child(4) { top: 174px; z-index: 40; }
-    .brand-card:nth-child(5) { top: 214px; z-index: 50; }
-    .brand-card:nth-child(6) { top: 254px; z-index: 60; }
+/* Each card gets a different top so they stack */
+.brand-card:nth-child(1) { top: 54px; z-index: 10; }
+.brand-card:nth-child(2) { top: 94px; z-index: 20; }
+.brand-card:nth-child(3) { top: 134px; z-index: 30; }
+.brand-card:nth-child(4) { top: 174px; z-index: 40; }
+.brand-card:nth-child(5) { top: 214px; z-index: 50; }
+.brand-card:nth-child(6) { top: 254px; z-index: 60; }
 
-    /* Card top row */
-    /* Card inner layout */
-    .card-inner {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      justify-content: flex-start;
-    }
-    .card-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-      padding-bottom: 0.9rem;
-      border-bottom: 1px solid rgba(255,255,255,0.18);
-    }
-    .card-row-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-      padding-top: 0.9rem;
-    }
-    .card-top { display: none; }
-    .card-top-right { display: none; }
-    .card-num {
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      opacity: 0.8;
-      font-family: 'Outfit', 'DM Sans', sans-serif;
-    }
-    .card-type {
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      opacity: 0.8;
-      font-family: 'Outfit', 'DM Sans', sans-serif;
-    }
+/* Card top row */
+/* Card inner layout */
+.card-inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: flex-start;
+}
+.card-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid rgba(255,255,255,0.18);
+}
+.card-row-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-top: 0.9rem;
+}
+.card-top { display: none; }
+.card-top-right { display: none; }
+.card-num {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  opacity: 0.8;
+  font-family: 'Outfit', 'DM Sans', sans-serif;
+}
+.card-type {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  opacity: 0.8;
+  font-family: 'Outfit', 'DM Sans', sans-serif;
+}
 
-    /* Card bottom row */
-    .card-bottom { display: none; }
-    .card-name {
-      font-size: clamp(3.5rem, 8vw, 7rem);
-      font-weight: 700;
-      line-height: 1;
-      letter-spacing: -0.02em;
-      transition: transform 0.4s ease;
-    }
+/* Card bottom row */
+.card-bottom { display: none; }
+.card-name {
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  transition: transform 0.4s ease;
+}
 
 
-    /* Arrow */
-    .card-arrow {
-      width: 60px;
-      height: 60px;
-      border: 2px solid currentColor;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.4rem;
-      flex-shrink: 0;
-      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), background 0.3s;
-      margin-bottom: 0.4rem;
-    }
-    .brand-card:hover .card-arrow {
-      transform: rotate(45deg) scale(1.08);
-      background: rgba(255,255,255,0.15);
-    }
+/* Arrow */
+.card-arrow {
+  width: 60px;
+  height: 60px;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+  transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), background 0.3s;
+  margin-bottom: 0.4rem;
+}
+.brand-card:hover .card-arrow {
+  transform: rotate(45deg) scale(1.08);
+  background: rgba(255,255,255,0.15);
+}
 
-    /* Background image fills the card */
-    .card-bg {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      background-size: cover;
-      background-position: center;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-    }
-    .brand-card:hover .card-bg { opacity: 1; }
+/* Background image fills the card */
+.card-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.brand-card:hover .card-bg { opacity: 1; }
 
-    /* Overlay so text stays readable over bg image */
-    .card-overlay {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-    }
-    .brand-card:hover .card-overlay { opacity: 1; }
+/* Overlay so text stays readable over bg image */
+.card-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.brand-card:hover .card-overlay { opacity: 1; }
 
-    /* Coming soon */
-    .coming-soon-tag {
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      opacity: 0.4;
-      padding: 0.25rem 0.7rem;
-      border: 1px solid currentColor;
-      border-radius: 20px;
-      margin-bottom: 0.6rem;
-      display: inline-block;
-    }
+/* Coming soon */
+.coming-soon-tag {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.4;
+  padding: 0.25rem 0.7rem;
+  border: 1px solid currentColor;
+  border-radius: 20px;
+  margin-bottom: 0.6rem;
+  display: inline-block;
+}
 
-    /* ── Individual brand colors ── */
+/* ── Individual brand colors ── */
 
-    /* MIDORI - matcha green */
-    .card-midori {
-      background: #1a3a2a;
-      color: rgba(215,154,67,0.7);
-    }
-    .card-midori .card-name {
-      color: #faf8f2;
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-weight: 300;
-    }
-    .card-midori .card-row { border-bottom-color: rgba(215,154,67,0.25); }
-    .card-midori .card-arrow { border-color: rgba(215,154,67,0.5); color: #D79A43; }
-    .card-midori:hover .card-arrow { background: rgba(215,154,67,0.15); }
+/* MIDORI - matcha green */
+.card-midori {
+  background: #1a3a2a;
+  color: rgba(215,154,67,0.7);
+}
+.card-midori .card-name {
+  color: #faf8f2;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 300;
+}
+.card-midori .card-row { border-bottom-color: rgba(215,154,67,0.25); }
+.card-midori .card-arrow { border-color: rgba(215,154,67,0.5); color: #D79A43; }
+.card-midori:hover .card-arrow { background: rgba(215,154,67,0.15); }
 
-    /* NOCTA - late night red/black */
-    .card-nocta {
-      background: #0a0805;
-      color: rgba(200,52,26,0.6);
-    }
-    .card-nocta .card-name {
-      color: #f5f0e8;
-      font-family: 'Bebas Neue', sans-serif;
-      font-weight: 400;
-      letter-spacing: 0.12em;
-      font-style: normal;
-    }
-    .card-nocta .card-type { font-family: 'Barlow Condensed', sans-serif; letter-spacing: 0.18em; font-size: 0.88rem; }
-    .card-nocta .card-num { font-family: 'Barlow Condensed', sans-serif; font-size: 0.88rem; }
-    .card-nocta .card-row { border-bottom-color: rgba(200,52,26,0.25); }
-    .card-nocta .card-arrow { border-color: rgba(200,52,26,0.45); color: #C8341A; border-radius: 0; }
-    .card-nocta:hover .card-arrow { background: rgba(200,52,26,0.12); transform: rotate(45deg) scale(1.08); }
+/* NOCTA - late night red/black */
+.card-nocta {
+  background: #0a0805;
+  color: rgba(200,52,26,0.6);
+}
+.card-nocta .card-name {
+  color: #f5f0e8;
+  font-family: 'Bebas Neue', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  font-style: normal;
+}
+.card-nocta .card-type { font-family: 'Barlow Condensed', sans-serif; letter-spacing: 0.18em; font-size: 0.88rem; }
+.card-nocta .card-num { font-family: 'Barlow Condensed', sans-serif; font-size: 0.88rem; }
+.card-nocta .card-row { border-bottom-color: rgba(200,52,26,0.25); }
+.card-nocta .card-arrow { border-color: rgba(200,52,26,0.45); color: #C8341A; border-radius: 0; }
+.card-nocta:hover .card-arrow { background: rgba(200,52,26,0.12); transform: rotate(45deg) scale(1.08); }
 
-    /* WANDER - warm sand */
-    .card-wander {
-      background: #1a0e0a;
-      color: rgba(245,192,122,0.55);
-    }
-    .card-wander .card-name {
-      color: #faf3ec;
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-weight: 400;
-      letter-spacing: -0.01em;
-    }
-    .card-wander .card-type { font-family: 'Syne', sans-serif; font-size: 0.7rem; letter-spacing: 0.16em; }
-    .card-wander .card-num { font-family: 'Syne', sans-serif; }
-    .card-wander .card-row { border-bottom-color: rgba(212,80,58,0.2); }
-    .card-wander .card-arrow { border-color: rgba(232,135,74,0.4); color: #e8874a; }
-    .card-wander:hover .card-arrow { background: rgba(232,135,74,0.1); transform: rotate(45deg) scale(1.08); }
+/* WANDER - warm sand */
+.card-wander {
+  background: #1a0e0a;
+  color: rgba(245,192,122,0.55);
+}
+.card-wander .card-name {
+  color: #faf3ec;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+.card-wander .card-type { font-family: 'Syne', sans-serif; font-size: 0.7rem; letter-spacing: 0.16em; }
+.card-wander .card-num { font-family: 'Syne', sans-serif; }
+.card-wander .card-row { border-bottom-color: rgba(212,80,58,0.2); }
+.card-wander .card-arrow { border-color: rgba(232,135,74,0.4); color: #e8874a; }
+.card-wander:hover .card-arrow { background: rgba(232,135,74,0.1); transform: rotate(45deg) scale(1.08); }
 
-    /* CS1 - vintage */
-    .card-cs1 {
-      background: #1a1510;
-      color: rgba(210,190,160,0.5);
-    }
-    .card-cs1 .card-name { color: rgba(210,190,160,0.3); }
+/* FINDLY - vintage thrift */
+.card-cs1 {
+  background: #2c1a0e;
+  color: rgba(212,97,26,0.65);
+}
+.card-cs1 .card-name {
+  color: #f5ede0;
+  font-family: 'Alfa Slab One', serif;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
+.card-cs1 .card-name .findly-ly { color: #d4611a; }
+.card-cs1 .card-type { font-family: 'DM Mono', monospace; letter-spacing: 0.18em; font-size: 0.68rem; }
+.card-cs1 .card-num { font-family: 'DM Mono', monospace; }
+.card-cs1 .card-row { border-bottom-color: rgba(212,97,26,0.25); }
+.card-cs1 .card-arrow { border-color: rgba(212,97,26,0.45); color: #d4611a; border-radius: 0; }
+.card-cs1:hover .card-arrow { background: rgba(212,97,26,0.12); transform: rotate(45deg) scale(1.08); }
 
-    /* CS2 - photography rebrand */
-    .card-cs2 {
-      background: #0f0f1a;
-      color: rgba(185,130,210,0.5);
-    }
-    .card-cs2 .card-name { color: rgba(185,130,210,0.3); }
+/* CS2 - photography rebrand */
+.card-cs2 {
+  background: #0f0f1a;
+  color: rgba(185,130,210,0.5);
+}
+.card-cs2 .card-name { color: rgba(185,130,210,0.3); }
 
-    /* CS3 - energy drink */
-    .card-cs3 {
-      background: #0a1a0a;
-      color: rgba(130,210,130,0.5);
-    }
-    .card-cs3 .card-name { color: rgba(130,210,130,0.3); }
+/* CS3 - energy drink */
+.card-cs3 {
+  background: #0a1a0a;
+  color: rgba(130,210,130,0.5);
+}
+.card-cs3 .card-name { color: rgba(130,210,130,0.3); }
 
-    /* Scroll spacer - makes page scrollable so sticky works */
-    .scroll-space { height: 300vh; background: #0e0e0e; position: relative; z-index: 5; }
-    .scroll-space-inner {
-      position: sticky;
-      bottom: 0;
-      padding: 4rem 2.5rem;
-      text-align: center;
-    }
-    .scroll-space-inner p {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.3);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-    .scroll-space-inner a {
-      display: inline-block;
-      margin-top: 1rem;
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.5);
-      text-decoration: none;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      border-bottom: 1px solid rgba(255,255,255,0.2);
-      padding-bottom: 2px;
-    }
-    .scroll-space-inner a:hover { color: white; border-color: white; }
+/* Scroll spacer - makes page scrollable so sticky works */
+.scroll-space { height: 300vh; background: #0e0e0e; position: relative; z-index: 5; }
+.scroll-space-inner {
+  position: sticky;
+  bottom: 0;
+  padding: 4rem 2.5rem;
+  text-align: center;
+}
+.scroll-space-inner p {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.scroll-space-inner a {
+  display: inline-block;
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  padding-bottom: 2px;
+}
+.scroll-space-inner a:hover { color: white; border-color: white; }
 
-    @media(max-width:600px) {
-      .brand-card { padding: 1.5rem; }
-      .card-name { font-size: clamp(2.8rem, 12vw, 4.5rem); }
-      .brand-card:nth-child(2) { top: 28px; }
-      .brand-card:nth-child(3) { top: 56px; }
-      .brand-card:nth-child(4) { top: 84px; }
-      .brand-card:nth-child(5) { top: 112px; }
-      .brand-card:nth-child(6) { top: 140px; }
-      .card-arrow { width: 48px; height: 48px; font-size: 1.1rem; }
-    }
+@media(max-width:600px) {
+  .brand-card { padding: 1.5rem; }
+  .card-name { font-size: clamp(2.8rem, 12vw, 4.5rem); }
+  .brand-card:nth-child(2) { top: 28px; }
+  .brand-card:nth-child(3) { top: 56px; }
+  .brand-card:nth-child(4) { top: 84px; }
+  .brand-card:nth-child(5) { top: 112px; }
+  .brand-card:nth-child(6) { top: 140px; }
+  .card-arrow { width: 48px; height: 48px; font-size: 1.1rem; }
+}
+```
+
   </style>
 </head>
 <body>
@@ -287,6 +302,7 @@
 <div class="cards-wrap">
 
   <!-- 1. MIDORI -->
+
   <a href="https://mollycurtis.github.io/midori" class="brand-card card-midori">
     <div class="card-bg" style="background-image:url('../midori-preview.jpg');"></div>
     <div class="card-overlay" style="background:linear-gradient(to bottom, rgba(26,46,30,0.7), rgba(26,46,30,0.4));"></div>
@@ -309,12 +325,13 @@
       </div>
       <div class="card-row-bottom">
         <div class="card-name">Midori <span style="font-family:'Cormorant Garamond',serif;font-size:0.45em;font-weight:400;font-style:normal;color:#A23E2A;vertical-align:super;margin-left:4px;">緑</span></div>
-        <div class="card-arrow">&#8599;</div>
+        <div class="card-arrow"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
       </div>
     </div>
   </a>
 
   <!-- 2. NOCTA -->
+
   <a href="https://mollycurtis.github.io/nocta" class="brand-card card-nocta">
     <div class="card-bg" style="background-image:url('../nocta-preview.jpg');"></div>
     <div class="card-overlay" style="background:linear-gradient(to bottom, rgba(26,10,0,0.7), rgba(26,10,0,0.4));"></div>
@@ -332,12 +349,13 @@
       </div>
       <div class="card-row-bottom">
         <div class="card-name">Nocta</div>
-        <div class="card-arrow">&#8599;</div>
+        <div class="card-arrow"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
       </div>
     </div>
   </a>
 
   <!-- 3. WANDER -->
+
   <a href="https://mollycurtis.github.io/wander" class="brand-card card-wander">
     <div class="card-bg" style="background-image:url('../wander-preview.jpg');"></div>
     <div class="card-overlay" style="background:linear-gradient(to bottom, rgba(42,31,14,0.7), rgba(42,31,14,0.4));"></div>
@@ -351,29 +369,35 @@
         <span class="card-type">Women&apos;s Solo Travel</span>
       </div>
       <div class="card-row-bottom">
-        <div class="card-name">wander</div>
-        <div class="card-arrow">&#8599;</div>
+        <div class="card-name">Wander</div>
+        <div class="card-arrow"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
       </div>
     </div>
   </a>
 
-  <!-- 4. COMING SOON -->
-  <div class="brand-card card-cs1" style="cursor:default;">
+  <!-- 4. FINDLY -->
+
+  <a href="https://mollycurtis.github.io/findly" class="brand-card card-cs1">
+    <div class="card-bg" style="background-image:url('../findly-preview.jpg');"></div>
+    <div class="card-overlay" style="background:linear-gradient(to bottom, rgba(44,26,14,0.7), rgba(44,26,14,0.4));"></div>
+    <!-- Findly: tile pattern background from brand -->
+    <div style="position:absolute;inset:0;pointer-events:none;z-index:1;opacity:0.18;background-image:linear-gradient(45deg,#5c3318 25%,transparent 25%),linear-gradient(-45deg,#5c3318 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#5c3318 75%),linear-gradient(-45deg,transparent 75%,#5c3318 75%);background-size:32px 32px;background-position:0 0,0 16px,16px -16px,-16px 0px;background-color:#2c1a0e;"></div>
+    <!-- Findly: orange accent glow -->
+    <div style="position:absolute;inset:0;pointer-events:none;z-index:1;background:radial-gradient(ellipse 60% 50% at 80% 70%, rgba(212,97,26,0.15) 0%, transparent 60%);"></div>
     <div class="card-inner">
       <div class="card-row">
         <span class="card-num">04</span>
         <span class="card-type">Thrift &amp; Vintage</span>
       </div>
       <div class="card-row-bottom">
-        <div>
-          <div class="coming-soon-tag">Coming Soon</div>
-          <div class="card-name">TBD</div>
-        </div>
+        <div class="card-name"><span>FIND</span><span class="findly-ly">LY</span></div>
+        <div class="card-arrow"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
       </div>
     </div>
-  </div>
+  </a>
 
   <!-- 5. COMING SOON -->
+
   <div class="brand-card card-cs2" style="cursor:default;">
     <div class="card-inner">
       <div class="card-row">
@@ -390,6 +414,7 @@
   </div>
 
   <!-- 6. COMING SOON -->
+
   <div class="brand-card card-cs3" style="cursor:default;">
     <div class="card-inner">
       <div class="card-row">
@@ -408,6 +433,7 @@
 </div>
 
 <!-- Scroll space keeps the last card visible and gives room to read -->
+
 <div class="scroll-space">
   <div class="scroll-space-inner">
     <p>Brand Style Guides — Molly Curtis</p>
