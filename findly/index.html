@@ -4,6 +4,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="color-scheme" content="light"/>
+<meta name="supported-color-schemes" content="light"/>
 <title>FINDLY — Brand Book</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -33,18 +35,13 @@
   --mono:'DM Mono',monospace;
 }
 
-html{scroll-behavior:smooth}
-body{font-family:var(–sans);background:var(–cream);color:var(–brown-deep);overflow-x:hidden}
+html{scroll-behavior:smooth;-webkit-overflow-scrolling:touch;color-scheme:light}
+body{font-family:var(–sans);background:var(–cream);color:var(–brown-deep);overflow-x:hidden;-webkit-text-size-adjust:100%}
 ::-webkit-scrollbar{width:5px}
 ::-webkit-scrollbar-track{background:var(–cream2)}
 ::-webkit-scrollbar-thumb{background:var(–orange);border-radius:0}
 
-/* NOISE OVERLAY — safe version, no mix-blend-mode (breaks Safari/iPad) */
-body::after{
-content:’’;position:fixed;inset:0;pointer-events:none;z-index:9999;
-background-image:url(“data:image/svg+xml,%3Csvg viewBox=‘0 0 200 200’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cfilter id=‘n’%3E%3CfeTurbulence type=‘fractalNoise’ baseFrequency=‘0.85’ numOctaves=‘4’ stitchTiles=‘stitch’/%3E%3C/filter%3E%3Crect width=‘100%25’ height=‘100%25’ filter=‘url(%23n)’ opacity=‘0.03’/%3E%3C/svg%3E”);
-opacity:.25;
-}
+/* noise overlay removed — caused white page on Safari/iPad */
 
 /* TILE PATTERN */
 .tile-bg{
@@ -138,7 +135,7 @@ display:flex;align-items:center;justify-content:center;
 padding:clamp(32px,5vw,60px) clamp(28px,4.5vw,52px);
 }
 .hero-right-main::before{
-content:’’;position:absolute;inset:0;
+content:’’;position:absolute;top:0;right:0;bottom:0;left:0;
 background:
 radial-gradient(ellipse 80% 70% at 90% 20%, rgba(212,97,26,.28) 0%, transparent 55%),
 radial-gradient(ellipse 60% 60% at 10% 85%, rgba(44,26,14,.4) 0%, transparent 55%);
@@ -320,7 +317,7 @@ background:var(–orange);color:var(–cream);
 .how-step-num{font-family:var(–display);font-size:clamp(2.4rem,4.5vw,3.6rem);color:rgba(212,97,26,.45);line-height:1;margin-bottom:clamp(10px,1.5vw,16px)}
 .how-step h4{font-family:var(–sans);font-size:clamp(.9rem,1.24vw,1rem);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(–cream);margin-bottom:8px}
 .how-step p{font-family:var(–sans);font-size:clamp(.82rem,1.08vw,.9rem);font-weight:300;line-height:1.72;color:rgba(245,237,224,.62)}
-.how-step-connector{position:absolute;top:clamp(28px,4.5vw,40px);right:0;transform:translateX(50%);width:20px;height:20px;background:var(–orange);clip-path:polygon(0 50%,100% 0,100% 100%);z-index:2}
+.how-step-connector{position:absolute;top:clamp(28px,4.5vw,40px);right:0;transform:translateX(50%);width:20px;height:20px;background:var(–orange);-webkit-clip-path:polygon(0 50%,100% 0,100% 100%);clip-path:polygon(0 50%,100% 0,100% 100%);z-index:2}
 @media(max-width:700px){.how-step-connector{display:none}}
 
 /* LOGO SECTION */
@@ -332,7 +329,7 @@ position:relative;overflow:hidden;
 min-height:clamp(200px,28vw,300px);
 }
 .logo-showcase::before{
-content:’’;position:absolute;inset:0;
+content:’’;position:absolute;top:0;right:0;bottom:0;left:0;
 background:
 radial-gradient(ellipse 70% 80% at 50% 50%,rgba(212,97,26,.12) 0%,transparent 60%),
 radial-gradient(ellipse 40% 40% at 10% 90%,rgba(139,74,32,.1) 0%,transparent 55%);
@@ -371,7 +368,7 @@ pointer-events:none;
 @media(max-width:580px){.palette-grid{grid-template-columns:1fr 1fr}}
 .swatch{overflow:hidden}
 .sw-block{height:clamp(100px,13vw,140px);width:100%;position:relative}
-.sw-block-inner{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(10px,1.5vw,14px)}
+.sw-block-inner{position:absolute;top:0;right:0;bottom:0;left:0;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(10px,1.5vw,14px)}
 .sw-name{font-family:var(–display);font-size:clamp(1rem,1.7vw,1.25rem);letter-spacing:.04em}
 .sw-hex{font-family:var(–mono);font-size:clamp(.58rem,.74vw,.66rem);letter-spacing:.1em;opacity:.8;margin-top:2px}
 .sw-role{font-family:var(–mono);font-size:clamp(.54rem,.7vw,.62rem);letter-spacing:.12em;text-transform:uppercase;margin-top:3px}
@@ -382,7 +379,7 @@ display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
 margin:clamp(20px,3vw,32px) 0;
 }
 .animal-card{padding:clamp(14px,2.2vw,20px);position:relative;overflow:hidden;border:1px solid rgba(44,26,14,.1)}
-.animal-card-bg{position:absolute;inset:0;opacity:.12}
+.animal-card-bg{position:absolute;top:0;right:0;bottom:0;left:0;opacity:.12}
 .leopard-bg{background-color:var(–orange-l)}
 .zebra-bg{background-color:var(–cream2)}
 .cheetah-bg{background-color:var(–brown-warm)}
@@ -475,7 +472,7 @@ height:100%;
 position:relative;overflow:hidden;
 }
 .mock-box-scene::before{
-content:’’;position:absolute;inset:0;
+content:’’;position:absolute;top:0;right:0;bottom:0;left:0;
 background-image:
 linear-gradient(45deg, rgba(90,51,24,.4) 25%, transparent 25%),
 linear-gradient(-45deg, rgba(90,51,24,.4) 25%, transparent 25%),
@@ -522,7 +519,7 @@ height:100%;
 position:relative;overflow:hidden;flex-wrap:wrap;
 }
 .mock-tag-scene::before{
-content:’’;position:absolute;inset:0;
+content:’’;position:absolute;top:0;right:0;bottom:0;left:0;
 background-image:
 linear-gradient(45deg, rgba(46,64,48,.5) 25%, transparent 25%),
 linear-gradient(-45deg, rgba(46,64,48,.5) 25%, transparent 25%),
@@ -569,7 +566,7 @@ padding:clamp(36px,5vw,60px) clamp(20px,4vw,44px);
 .fn-credit{font-family:var(–mono);font-size:clamp(.6rem,.78vw,.68rem);letter-spacing:.14em;text-transform:uppercase;color:rgba(245,237,224,.25);margin-top:clamp(24px,3.5vw,36px);padding-top:clamp(16px,2.5vw,24px);border-top:1px solid rgba(245,237,224,.07)}
 
 /* OVERLAY / DRAWER */
-.overlay{position:fixed;inset:0;background:rgba(44,26,14,.5);z-index:200;opacity:0;pointer-events:none;transition:opacity .3s}
+.overlay{position:fixed;top:0;right:0;bottom:0;left:0;background:rgba(44,26,14,.5);z-index:200;opacity:0;pointer-events:none;transition:opacity .3s}
 .overlay.open{opacity:1;pointer-events:all}
 .drawer{
 position:fixed;top:0;right:0;bottom:0;width:clamp(240px,80vw,270px);
