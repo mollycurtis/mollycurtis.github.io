@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -11,22 +10,24 @@
 
   <style>
     :root {
-      --navy:    #092254;
-      --blue:    #1B3666;
-      --teal:    #006985;
-      --sky:     #D3F0F8;
-      --sky-mid: #a8dff0;
-      --white:   #ffffff;
-      --surface: #f4f8fb;
-      --border:  #dce8f0;
-      --muted:   #7a8fa8;
-      --text:    #1a2a3a;
-      --font:    'Poppins', sans-serif;
+      --navy:      #092254;
+      --blue:      #1B3666;
+      --teal:      #0069a5;
+      --teal-dark: #006985;
+      --sky:       #D3F0F8;
+      --sky-mid:   #a8dff0;
+      --white:     #ffffff;
+      --surface:   #f4f8fb;
+      --border:    #dce8f0;
+      --muted:     #7a8fa8;
+      --text:      #1a2a3a;
+      --font:      'Poppins', sans-serif;
+      /* gradient ending at a noticeably lighter blue */
+      --title-grad: linear-gradient(90deg, #092254 0%, #1B3666 50%, #2196c9 100%);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-
     body {
       font-family: var(--font);
       background: var(--white);
@@ -34,7 +35,7 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* NAV */
+    /* ── NAV ── */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -56,7 +57,7 @@
       color: var(--navy);
     }
     .nav-back {
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 500;
       letter-spacing: 0.06em;
       color: var(--muted);
@@ -64,110 +65,109 @@
       text-transform: uppercase;
       transition: color 0.2s;
     }
-    .nav-back:hover { color: var(--teal); }
+    .nav-back:hover { color: var(--teal-dark); }
 
-    /* HERO */
+    /* ── HERO ── */
     .hero {
       margin-top: 57px;
       position: relative;
       width: 100%;
-      height: 52vw;
-      max-height: 600px;
-      min-height: 300px;
+      height: 38vw;
+      max-height: 420px;
+      min-height: 240px;
       overflow: hidden;
       background: var(--navy);
-      display: flex;
-      align-items: flex-end;
     }
     .hero::before {
       content: '';
       position: absolute;
       right: -80px; top: -80px;
-      width: 480px; height: 480px;
+      width: 420px; height: 420px;
       border-radius: 50%;
-      background: var(--teal);
+      background: var(--teal-dark);
       opacity: 0.18;
     }
     .hero::after {
       content: '';
       position: absolute;
-      right: 100px; bottom: -80px;
-      width: 260px; height: 260px;
+      right: 100px; bottom: -60px;
+      width: 220px; height: 220px;
       border-radius: 50%;
       background: var(--sky);
       opacity: 0.1;
     }
-    .hero-inner {
-      position: relative;
+
+    /* top-left deliverable */
+    .hero-top-left {
+      position: absolute;
+      top: 28px;
+      left: 56px;
       z-index: 2;
-      padding: 0 48px 48px;
-      animation: fadeUp 0.9s 0.15s both;
+      animation: fadeUp 0.8s 0.1s both;
     }
-    .hero-eyebrow {
-      font-size: 11px;
+    .hero-meta-label {
+      font-size: 10px;
       font-weight: 600;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--sky-mid);
-      margin-bottom: 12px;
-    }
-    .hero-title {
-      font-size: clamp(28px, 4vw, 54px);
-      font-weight: 700;
-      color: var(--white);
-      line-height: 1.1;
-    }
-
-    /* META STRIP */
-    .meta {
-      padding: 0 48px;
-      border-bottom: 1px solid var(--border);
-      background: var(--white);
-      animation: fadeUp 0.8s 0.35s both;
-    }
-    .meta-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-    }
-    .meta-cell {
-      padding: 26px 0;
-      border-right: 1px solid var(--border);
-    }
-    .meta-cell:last-child { border-right: none; }
-    .meta-cell:not(:first-child) { padding-left: 30px; }
-    .meta-label {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
       margin-bottom: 7px;
     }
-    .meta-value {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--navy);
-    }
-    .tag {
+    .hero-tag {
       display: inline-block;
       font-size: 11px;
       font-weight: 500;
-      padding: 3px 10px;
+      padding: 3px 11px;
       border-radius: 20px;
-      background: var(--sky);
-      color: var(--teal);
+      background: rgba(211,240,248,0.15);
+      border: 1px solid rgba(211,240,248,0.25);
+      color: var(--sky);
       margin-right: 5px;
       margin-bottom: 4px;
     }
 
-    /* MAIN */
+    /* top-right year */
+    .hero-top-right {
+      position: absolute;
+      top: 28px;
+      right: 56px;
+      z-index: 2;
+      text-align: right;
+      animation: fadeUp 0.8s 0.1s both;
+    }
+    .hero-year-value {
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.9);
+    }
+
+    /* bottom-left title */
+    .hero-bottom {
+      position: absolute;
+      bottom: 36px;
+      left: 56px;
+      z-index: 2;
+      animation: fadeUp 0.9s 0.2s both;
+    }
+    .hero-title {
+      font-size: clamp(26px, 3vw, 42px);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.1;
+      white-space: nowrap;
+    }
+    @media (max-width: 768px) {
+      .hero-title { white-space: normal; }
+    }
+
+    /* ── MAIN ── */
     main {
       max-width: 1040px;
       margin: 0 auto;
-      padding: 0 48px 120px;
+      padding: 0 56px 0;
     }
 
-    /* SECTION BASE */
+    /* ── SECTION BASE ── */
     .section {
       padding: 80px 0 0;
       opacity: 0;
@@ -179,184 +179,160 @@
     .section-eyebrow {
       font-size: 11px;
       font-weight: 600;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--teal);
-      margin-bottom: 14px;
+      color: var(--teal-dark);
+      margin-bottom: 12px;
     }
+
+    /* gradient section titles — 1.5x bigger than before (was clamp 22/34, now 24/38) */
     .section-title {
-      font-size: clamp(20px, 2.8vw, 32px);
+      font-size: clamp(24px, 3.2vw, 38px);
       font-weight: 700;
-      color: var(--navy);
+      background: var(--title-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
       line-height: 1.2;
       margin-bottom: 18px;
+      display: inline-block;
     }
+
     .section-body {
-      font-size: 15px;
-      line-height: 1.75;
+      font-size: 14.5px;
+      line-height: 1.7;
       color: #3d5166;
-      max-width: 640px;
       font-weight: 400;
     }
     .section-body p + p { margin-top: 13px; }
 
-    /* OBJECTIVE */
+    /* ── OBJECTIVE ── */
     .objective-layout {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 60px;
+      gap: 64px;
       align-items: start;
     }
 
-    /* PROBLEMS */
+    /* ── PROBLEMS ── */
     .problems-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 16px;
-      margin-top: 38px;
+      margin-top: 36px;
     }
     .problem-card {
       background: var(--surface);
       border-radius: 10px;
-      padding: 24px;
+      padding: 22px;
       border-top: 3px solid var(--border);
-      transition: border-color 0.2s, transform 0.2s;
+      transition: border-color 0.2s;
     }
-    .problem-card:hover { border-color: var(--teal); transform: translateY(-2px); }
+    .problem-card:hover { border-color: var(--teal-dark); }
     .problem-num {
-      width: 26px; height: 26px;
+      width: 24px; height: 24px;
       border-radius: 50%;
-      background: var(--navy);
+      background: #0069a5;
       color: var(--white);
       font-size: 11px;
       font-weight: 700;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
     .problem-title {
       font-weight: 600;
-      font-size: 13px;
-      margin-bottom: 7px;
+      font-size: 14px;
+      margin-bottom: 6px;
       color: var(--navy);
     }
     .problem-desc {
-      font-size: 12.5px;
+      font-size: 13px;
       line-height: 1.65;
       color: #4a6275;
     }
 
-    /* IMAGE PLACEHOLDER */
-    .img-placeholder {
-      margin-top: 38px;
+    /* ── IMAGE BLOCKS ── */
+    .img-block {
+      margin-top: 36px;
       border-radius: 10px;
       overflow: hidden;
       border: 1px solid var(--border);
     }
-    .placeholder-box {
+    .img-block img {
       width: 100%;
-      aspect-ratio: 16 / 6;
-      background: var(--surface);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-    }
-    .placeholder-icon {
-      width: 42px; height: 42px;
-      border-radius: 8px;
-      border: 2px dashed var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .placeholder-icon svg {
-      width: 18px; height: 18px;
-      stroke: var(--muted);
-      fill: none;
-      stroke-width: 1.5;
-    }
-    .placeholder-text {
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--muted);
+      display: block;
     }
     .img-caption {
-      padding: 11px 18px;
-      font-size: 11.5px;
+      padding: 12px 18px;
+      font-size: 12px;
       font-style: italic;
       color: var(--muted);
       background: var(--white);
       border-top: 1px solid var(--border);
     }
 
-    /* STEPS */
-    .steps { margin-top: 38px; }
+    /* ── STEPS ── */
+    .steps { margin-top: 36px; }
     .step {
       display: grid;
       grid-template-columns: 52px 1fr;
       gap: 24px;
-      padding: 28px 0;
+      padding: 26px 0;
       border-bottom: 1px solid var(--border);
     }
     .step:first-child { border-top: 1px solid var(--border); }
     .step-num {
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 700;
       color: var(--sky-mid);
       letter-spacing: 0.04em;
-      padding-top: 3px;
+      padding-top: 2px;
     }
     .step-content h4 {
       font-weight: 600;
-      font-size: 14px;
-      margin-bottom: 7px;
+      font-size: 14.5px;
+      margin-bottom: 6px;
       color: var(--navy);
     }
     .step-content p {
-      font-size: 13.5px;
+      font-size: 14px;
       line-height: 1.7;
       color: #4a6275;
     }
 
-    /* RESULTS */
+    /* ── RESULTS ── */
     .results-row {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 16px;
-      margin-top: 38px;
+      margin-top: 36px;
     }
     .result-card {
       text-align: center;
-      padding: 38px 18px;
+      padding: 36px 16px;
       border-radius: 10px;
       border: 1px solid var(--border);
       background: var(--white);
-      transition: box-shadow 0.2s, transform 0.2s;
-    }
-    .result-card:hover {
-      box-shadow: 0 10px 32px rgba(0,105,133,0.1);
-      transform: translateY(-2px);
     }
     .result-number {
-      font-size: clamp(26px, 3.2vw, 40px);
+      font-size: clamp(24px, 3vw, 38px);
       font-weight: 700;
-      color: var(--navy);
+      color: #0069a5;
       line-height: 1;
       margin-bottom: 10px;
     }
     .result-label {
-      font-size: 12.5px;
+      font-size: 13px;
       line-height: 1.55;
       color: var(--muted);
     }
 
-    /* CONCLUSION */
+    /* ── CONCLUSION ── */
     .conclusion {
       margin-top: 80px;
-      padding: 54px 60px;
+      padding: 52px 60px;
       background: var(--navy);
       border-radius: 14px;
       color: var(--white);
@@ -369,294 +345,305 @@
       right: -60px; top: -60px;
       width: 300px; height: 300px;
       border-radius: 50%;
-      background: var(--teal);
+      background: var(--teal-dark);
       opacity: 0.18;
     }
     .conclusion-eyebrow {
       font-size: 11px;
       font-weight: 600;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--sky-mid);
       margin-bottom: 14px;
       position: relative;
     }
+    /* conclusion title also 1.5x bigger (was clamp 18/28, now 20/32) */
     .conclusion-title {
-      font-size: clamp(18px, 2.4vw, 30px);
+      font-size: clamp(20px, 2.8vw, 32px);
       font-weight: 700;
       line-height: 1.25;
       margin-bottom: 16px;
       position: relative;
-      max-width: 560px;
     }
     .conclusion-body {
-      font-size: 14.5px;
+      font-size: 15px;
       line-height: 1.75;
       color: rgba(255,255,255,0.7);
-      max-width: 560px;
       position: relative;
       font-weight: 300;
     }
 
-    /* DIVIDER */
+    /* ── PLAIN DIVIDER ── */
     .divider {
       height: 1px;
       background: var(--border);
       margin-top: 80px;
     }
 
-    /* FOOTER CTA */
-    .footer-cta {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 40px 0;
-      border-top: 1px solid var(--border);
+    /* ── GRADIENT DIVIDER (above footer CTA) ── */
+    .grad-divider {
+      margin-top: 80px;
+      height: 1px;
+      background: linear-gradient(90deg,
+        transparent 0%,
+        #092254 20%,
+        #2196c9 70%,
+        transparent 100%
+      );
+      opacity: 0.45;
     }
-    .footer-cta p {
-      font-size: clamp(15px, 2vw, 21px);
-      font-weight: 400;
-      font-style: italic;
-      color: var(--muted);
-    }
-    .btn-primary {
-      display: inline-block;
-      padding: 13px 28px;
-      background: var(--navy);
-      color: var(--white);
-      font-family: var(--font);
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border-radius: 6px;
-      transition: background 0.2s, transform 0.2s;
-      white-space: nowrap;
-    }
-    .btn-primary:hover { background: var(--teal); transform: translateY(-1px); }
 
+    /* ── FOOTER CTA ── */
+    .footer-cta {
+      padding: 56px 0 100px;
+      text-align: center;
+    }
+    .footer-cta-eyebrow {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+    .footer-cta-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: clamp(22px, 3vw, 36px);
+      font-weight: 700;
+      color: var(--navy);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+      transition: color 0.2s, gap 0.2s;
+    }
+    .footer-cta-link:hover {
+      color: var(--teal);
+      gap: 16px;
+    }
+    .footer-cta-link .arrow {
+      font-size: 0.85em;
+      transition: transform 0.2s;
+    }
+    .footer-cta-link:hover .arrow {
+      transform: translateX(4px);
+    }
+
+    /* ── ANIMATIONS ── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(18px); }
       to   { opacity: 1; transform: none; }
     }
 
+    /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       nav { padding: 16px 20px; }
-      .meta { padding: 0 20px; }
-      .meta-grid { grid-template-columns: 1fr 1fr; }
-      .meta-cell:nth-child(2) { border-right: none; }
-      main { padding: 0 20px 80px; }
-      .hero-inner { padding: 0 20px 32px; }
-      .objective-layout { grid-template-columns: 1fr; gap: 28px; }
+      main { padding: 0 20px 0; }
+      .hero-top-left { left: 20px; top: 20px; }
+      .hero-top-right { right: 20px; top: 20px; }
+      .hero-bottom { left: 20px; bottom: 24px; }
+      .objective-layout { grid-template-columns: 1fr; gap: 24px; }
       .problems-grid { grid-template-columns: 1fr; }
       .results-row { grid-template-columns: 1fr; }
       .conclusion { padding: 36px 26px; }
-      .footer-cta { flex-direction: column; gap: 20px; align-items: flex-start; }
     }
   </style>
-
 </head>
 <body>
 
   <nav>
     <a href="/" class="nav-logo">Molly Curtis</a>
-    <a href="/projects" class="nav-back">← All Projects</a>
+    <a href="https://mollycurtis.github.io/landingpages/" class="nav-back">← Landing Pages</a>
   </nav>
 
+  <!-- HERO -->
   <div class="hero">
-    <div class="hero-inner">
-      <div class="hero-eyebrow">Landing Page · Case Study</div>
+
+    <!-- top-left: deliverable -->
+    <div class="hero-top-left">
+      <div class="hero-meta-label">Deliverable</div>
+      <div>
+        <span class="hero-tag">Landing Page</span>
+        <span class="hero-tag">UX Strategy</span>
+        <span class="hero-tag">Copywriting</span>
+      </div>
+    </div>
+
+    <!-- top-right: year -->
+    <div class="hero-top-right">
+      <div class="hero-meta-label">Year</div>
+      <div class="hero-year-value">2025</div>
+    </div>
+
+    <!-- bottom-left: title -->
+    <div class="hero-bottom">
       <h1 class="hero-title">NBI Subscription<br>Page Redesign</h1>
     </div>
-  </div>
 
-  <div class="meta">
-    <div class="meta-grid">
-      <div class="meta-cell">
-        <div class="meta-label">Role</div>
-        <div class="meta-value">Digital Marketing Specialist</div>
-      </div>
-      <div class="meta-cell">
-        <div class="meta-label">Client</div>
-        <div class="meta-value">National Business Institute</div>
-      </div>
-      <div class="meta-cell">
-        <div class="meta-label">Deliverable</div>
-        <div class="meta-value">
-          <span class="tag">Landing Page</span>
-          <span class="tag">UX Strategy</span>
-          <span class="tag">Copywriting</span>
-        </div>
-      </div>
-      <div class="meta-cell">
-        <div class="meta-label">Year</div>
-        <div class="meta-value">2024</div>
-      </div>
-    </div>
   </div>
 
   <main>
 
-```
-<section class="section" id="objective">
-  <div class="objective-layout">
-    <div>
-      <div class="section-eyebrow">Objective</div>
-      <h2 class="section-title">Turn a confusing pricing page into a conversion machine.</h2>
-    </div>
-    <div class="section-body">
-      <p>NBI's subscription page was generating calls to customer service — not subscriptions. The page was dense, visually overwhelming, and asked visitors to make too many decisions before they even understood what they were buying.</p>
-      <p>I identified the problem on my own, built the case for a redesign, and executed the new page from strategy through launch — no brief handed to me, no agency involved.</p>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<section class="section" id="problem">
-  <div class="section-eyebrow">The Before</div>
-  <h2 class="section-title">Six friction points killing the conversion.</h2>
-  <p class="section-body">The original page had good intentions but broke down on execution. Here's what I flagged before touching a single pixel.</p>
-
-  <div class="problems-grid">
-    <div class="problem-card">
-      <div class="problem-num">1</div>
-      <div class="problem-title">Pointless state selector</div>
-      <div class="problem-desc">A dropdown to filter by state — but the difference between states was only a handful of courses. Not a deciding factor. Pure noise that added a decision where none was needed.</div>
-    </div>
-    <div class="problem-card">
-      <div class="problem-num">2</div>
-      <div class="problem-title">Hidden billing toggle</div>
-      <div class="problem-desc">The monthly/annual toggle was visually buried. Customer service was fielding constant calls from people who didn't see it and assumed they could only pay monthly. A UX failure disguised as a feature.</div>
-    </div>
-    <div class="problem-card">
-      <div class="problem-num">3</div>
-      <div class="problem-title">Tiny, forgettable pricing</div>
-      <div class="problem-desc">Prices were displayed in a small, gray font inside a dense comparison table. On a page asking someone to spend $99–$129/month, the price should be the hero — not an afterthought.</div>
-    </div>
-    <div class="problem-card">
-      <div class="problem-num">4</div>
-      <div class="problem-title">Spreadsheet-style hero</div>
-      <div class="problem-desc">The above-the-fold section looked like a feature matrix, not a product page. Row after row of checkmarks gave no emotional context for why a customer should care.</div>
-    </div>
-    <div class="problem-card">
-      <div class="problem-num">5</div>
-      <div class="problem-title">Marketing mush mid-page</div>
-      <div class="problem-desc">A large section with generic benefit statements that read like filler copy. Nothing specific, nothing memorable, nothing that advanced the decision to subscribe.</div>
-    </div>
-    <div class="problem-card">
-      <div class="problem-num">6</div>
-      <div class="problem-title">Zero social proof</div>
-      <div class="problem-desc">No testimonials. No client logos. No names attached to any claim. Visitors were expected to convert on product description alone — with nothing and no one to vouch for it.</div>
-    </div>
-  </div>
-
-  <div class="img-placeholder">
-    <div class="placeholder-box">
-      <div class="placeholder-icon">
-        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+    <!-- OBJECTIVE -->
+    <section class="section" id="objective">
+      <div class="objective-layout">
+        <div>
+          <div class="section-eyebrow">Objective</div>
+          <h2 class="section-title">Turn a confusing pricing page into a conversion machine.</h2>
+        </div>
+        <div class="section-body">
+          <p>The page was dense, visually overwhelming, and asked visitors to make too many decisions before they even understood what they were buying.</p>
+          <p>I identified the problem on my own, built the case for a redesign, and executed the new page from strategy through launch — no brief handed to me, no agency involved.</p>
+        </div>
       </div>
-      <span class="placeholder-text">Before — screenshot coming soon</span>
-    </div>
-    <div class="img-caption">Original subscription page — state selector, buried billing toggle, dense comparison table</div>
-  </div>
-</section>
+    </section>
 
-<div class="divider"></div>
+    <div class="divider"></div>
 
-<section class="section" id="process">
-  <div class="section-eyebrow">My Process</div>
-  <h2 class="section-title">Identify. Simplify. Build.</h2>
-  <p class="section-body">No agency handoff. No formal brief. I spotted the problem, connected it to business impact, and proposed the redesign — then saw it through from strategy to publish.</p>
+    <!-- THE BEFORE -->
+    <section class="section" id="problem">
+      <div class="section-eyebrow">The Before</div>
+      <h2 class="section-title">Six friction points killing the conversion.</h2>
+      <p class="section-body">The original page broke down on execution. Here's what I flagged before touching a single pixel.</p>
 
-  <div class="steps">
-    <div class="step">
-      <div class="step-num">01</div>
-      <div class="step-content">
-        <h4>Audit & root cause analysis</h4>
-        <p>I mapped the page against what a visitor actually needs to convert — clear pricing, a confident value statement, and social proof. Every element that didn't serve one of those three goals became a candidate for removal.</p>
+      <div class="problems-grid">
+        <div class="problem-card">
+          <div class="problem-num">1</div>
+          <div class="problem-title">Pointless state selector</div>
+          <div class="problem-desc">A dropdown filtering by state — but the difference was only a handful of courses. Not a deciding factor for anyone, just noise that added an unnecessary decision.</div>
+        </div>
+        <div class="problem-card">
+          <div class="problem-num">2</div>
+          <div class="problem-title">Hidden billing toggle</div>
+          <div class="problem-desc">The monthly/annual toggle was visually buried, leading to constant customer service calls from people who didn't realize annual billing existed.</div>
+        </div>
+        <div class="problem-card">
+          <div class="problem-num">3</div>
+          <div class="problem-title">Tiny, forgettable pricing</div>
+          <div class="problem-desc">Prices were tucked into a dense comparison table in small gray font. On a $99–$129/month page, pricing needs to be the hero — not an afterthought.</div>
+        </div>
+        <div class="problem-card">
+          <div class="problem-num">4</div>
+          <div class="problem-title">Spreadsheet-style hero</div>
+          <div class="problem-desc">The above-the-fold section looked like a feature matrix. Row after row of checkmarks with no emotional reason for a visitor to care.</div>
+        </div>
+        <div class="problem-card">
+          <div class="problem-num">5</div>
+          <div class="problem-title">Marketing mush mid-page</div>
+          <div class="problem-desc">Generic benefit statements that read like filler. Nothing specific or memorable that moved a visitor closer to subscribing.</div>
+        </div>
+        <div class="problem-card">
+          <div class="problem-num">6</div>
+          <div class="problem-title">Zero social proof</div>
+          <div class="problem-desc">No testimonials, no logos, no names behind any claim. Visitors were expected to convert on product copy alone.</div>
+        </div>
+      </div>
+
+      <div class="img-block">
+        <img src="/projects/nbi-subscription/Before-Subscription.PNG" alt="NBI subscription page before redesign" />
+        <div class="img-caption">Before — state selector, buried billing toggle, spreadsheet-style comparison table</div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- PROCESS -->
+    <section class="section" id="process">
+      <div class="section-eyebrow">My Process</div>
+      <h2 class="section-title">Identify. Simplify. Build.</h2>
+      <p class="section-body">No agency handoff. No formal brief. I spotted the problem, connected it to business impact, proposed the redesign, and built it myself.</p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-content">
+            <h4>Audit & root cause analysis</h4>
+            <p>I mapped every element against what a visitor needs to convert: clear pricing, a confident value statement, and social proof. Anything that didn't serve those three goals was a candidate for removal.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-content">
+            <h4>Reduce decisions, increase clarity</h4>
+            <p>I removed the state selector entirely and redesigned the billing toggle as a prominent, clearly labeled visual switcher. Pricing moved front-and-center at a size that actually commands attention.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-content">
+            <h4>Simplify the plan comparison</h4>
+            <p>Replaced the spreadsheet table with a clean card layout focused on key differentiators. I also added an expandable dropdown on the All Inclusive card — a circle + icon reveals the full list of what's included in the OnDemand pass, so visitors can see everything they get without the page getting cluttered.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div class="step-content">
+            <h4>Replace filler copy with real credibility</h4>
+            <p>The generic benefits section came out. In its place: real firm logos in an animated scrolling bar, animated counters on the three key stats (40+ years, 100K+ reviews, 1,000+ new courses/year), and testimonials with actual names attached.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">05</div>
+          <div class="step-content">
+            <h4>Layer in UX details that do real work</h4>
+            <p>Added a sticky CTA that appears as visitors scroll toward the bottom of the page, giving them a direct path back up to subscribe without having to scroll all the way back. Small detail — measurable impact.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="img-block" style="margin-top:36px;">
+        <img src="/projects/nbi-subscription/After-Subscription.PNG" alt="NBI subscription page after redesign" />
+        <div class="img-caption">After — prominent billing toggle, large pricing, expandable plan details, animated social proof, sticky CTA</div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- RESULTS -->
+    <section class="section" id="results">
+      <div class="section-eyebrow">Outcome</div>
+      <h2 class="section-title">The page finally did its job.</h2>
+      <p class="section-body">After launch, the data confirmed what the design logic predicted — less friction, more conversions.</p>
+
+      <div class="results-row">
+        <div class="result-card">
+          <div class="result-number">↓ Bounce</div>
+          <div class="result-label">Bounce rate dropped — visitors stayed and engaged instead of leaving</div>
+        </div>
+        <div class="result-card">
+          <div class="result-number">↑ Subs</div>
+          <div class="result-label">Subscription volume increased — a clearer page made the decision easier</div>
+        </div>
+        <div class="result-card">
+          <div class="result-number">↓ CS Calls</div>
+          <div class="result-label">Billing confusion calls dropped after the toggle became an unmissable visual switcher</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONCLUSION -->
+    <div class="section" id="conclusion">
+      <div class="conclusion">
+        <div class="conclusion-eyebrow">Takeaway</div>
+        <h2 class="conclusion-title">Good marketing pages remove decisions. Great ones make the right decision feel obvious.</h2>
+        <p class="conclusion-body">This project wasn't assigned to me — I identified the problem, built the case, and executed the solution independently. The most impactful marketing isn't always new campaigns or bigger budgets. Sometimes it's fixing the page that's already in front of your customers.</p>
       </div>
     </div>
-    <div class="step">
-      <div class="step-num">02</div>
-      <div class="step-content">
-        <h4>Reduce decisions, increase clarity</h4>
-        <p>I removed the state selector entirely. I pulled the billing toggle out into a prominent, clearly labeled visual switcher so it couldn't be missed. Pricing became large, confident, and front-and-center — because hiding the price doesn't build trust, it builds hesitation.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">03</div>
-      <div class="step-content">
-        <h4>Rebuild the comparison section</h4>
-        <p>I replaced the spreadsheet-style table with a cleaner card layout focused on key differentiators — not a feature dump. The goal was to help a visitor self-select, not overwhelm them into paralysis.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">04</div>
-      <div class="step-content">
-        <h4>Replace filler copy with real proof</h4>
-        <p>The generic benefits section came out. In its place: credibility signals — real firm names, real numbers (40+ years, 100,000+ reviews, 1,000+ new courses/year), and a testimonials section that gave prospective subscribers something to believe.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">05</div>
-      <div class="step-content">
-        <h4>Build & publish</h4>
-        <p>I built the full redesigned page and took it through to launch — clean layout, improved mobile experience, and a page that finally reflected the quality of the product it was selling.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="img-placeholder" style="margin-top:38px;">
-    <div class="placeholder-box">
-      <div class="placeholder-icon">
-        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-      </div>
-      <span class="placeholder-text">After — screenshot coming soon</span>
-    </div>
-    <div class="img-caption">Redesigned page — prominent billing toggle, large pricing, simplified card layout, enterprise tier cleanly separated</div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<section class="section" id="results">
-  <div class="section-eyebrow">Outcome</div>
-  <h2 class="section-title">The page finally did its job.</h2>
-  <p class="section-body">After launch, the data reflected what the design logic predicted: fewer distractions, more conversions. Removing friction works.</p>
-
-  <div class="results-row">
-    <div class="result-card">
-      <div class="result-number">↓ Bounce</div>
-      <div class="result-label">Bounce rate dropped after launch — visitors were staying and engaging instead of leaving</div>
-    </div>
-    <div class="result-card">
-      <div class="result-number">↑ Subs</div>
-      <div class="result-label">Subscription volume increased meaningfully — the clearer the page, the easier the decision</div>
-    </div>
-    <div class="result-card">
-      <div class="result-number">↓ CS Calls</div>
-      <div class="result-label">Fewer billing confusion calls after the toggle was redesigned as a clear visual switcher</div>
-    </div>
-  </div>
-</section>
-
-<div class="section" id="conclusion">
-  <div class="conclusion">
-    <div class="conclusion-eyebrow">Takeaway</div>
-    <h2 class="conclusion-title">Good marketing pages remove decisions. Great ones make the right decision feel obvious.</h2>
-    <p class="conclusion-body">This project wasn't assigned to me — I identified the problem, built the case, and executed the solution independently. The most impactful marketing isn't always new campaigns or bigger budgets. Sometimes it's fixing the page that's already in front of your customers.</p>
-  </div>
-</div>
-
-<div class="footer-cta section" id="footer-cta">
-  <p>Want to see more work?</p>
-  <a href="/projects" class="btn-primary">View All Projects</a>
-</div>
-```
 
   </main>
+
+  <!-- GRADIENT DIVIDER -->
+  <div style="max-width:1040px; margin:0 auto; padding:0 56px;">
+    <div class="grad-divider"></div>
+  </div>
+
+  <!-- FOOTER CTA -->
+  <div class="footer-cta section" id="footer-cta">
+    <p class="footer-cta-eyebrow">More work by Molly Curtis</p>
+    <a href="https://mollycurtis.github.io/landingpages/" class="footer-cta-link">
+      View More Landing Pages <span class="arrow">→</span>
+    </a>
+  </div>
 
   <script>
     const sections = document.querySelectorAll('.section');
@@ -667,7 +654,7 @@
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.08 });
     sections.forEach(s => observer.observe(s));
   </script>
 
