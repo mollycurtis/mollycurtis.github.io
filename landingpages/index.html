@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -7,11 +6,9 @@
   <title>Landing Pages — Molly Curtis</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <!-- Site fonts + per-brand fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=Poppins:wght@300;400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
   <style>
-    /* ── TOKENS ── */
     :root {
       --dark:    #111114;
       --body:    #3a3a44;
@@ -99,10 +96,8 @@
     .header-rule {
       height: 1px;
       background: var(--border);
-      margin-top: 52px;
       max-width: 1100px;
-      margin-left: auto;
-      margin-right: auto;
+      margin: 0 auto;
     }
 
     /* ── GRID ── */
@@ -128,18 +123,15 @@
       background: var(--white);
       opacity: 0;
       transform: translateY(24px);
-      transition:
-        opacity 0.55s ease,
-        transform 0.55s ease,
-        box-shadow 0.3s ease;
+      transition: opacity 0.55s ease, transform 0.55s ease, box-shadow 0.3s ease;
     }
     .project-card.visible { opacity: 1; transform: none; }
-    .project-card:hover {
+    .project-card:not(.coming-soon):hover {
       box-shadow: 0 16px 52px rgba(0,0,0,0.09);
       transform: translateY(-4px);
     }
     .project-card.coming-soon {
-      opacity: 0.42 !important;
+      opacity: 0.45 !important;
       pointer-events: none;
     }
 
@@ -153,47 +145,127 @@
       align-items: center;
       justify-content: center;
     }
-    .card-thumb img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.5s cubic-bezier(0.22,1,0.36,1);
-    }
-    .project-card:hover .card-thumb img { transform: scale(1.04); }
 
-    /* pill badge on thumb */
-    .thumb-badge {
+    /* ── NBI branded thumb ── */
+    .card-thumb.nbi {
+      background: #092254;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-end;
+      padding: 24px 28px;
+    }
+    .card-thumb.nbi::before {
+      content: '';
       position: absolute;
-      top: 14px;
-      left: 14px;
-      font-size: 10px;
+      right: -48px; top: -48px;
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      background: #006985;
+      opacity: 0.28;
+    }
+    .card-thumb.nbi::after {
+      content: '';
+      position: absolute;
+      right: 60px; bottom: -40px;
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      background: #D3F0F8;
+      opacity: 0.12;
+    }
+    .nbi-thumb-badge {
+      position: absolute;
+      top: 14px; left: 14px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 9px;
       font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      padding: 4px 12px;
+      padding: 4px 11px;
       border-radius: 20px;
+      background: rgba(0,105,133,0.5);
       backdrop-filter: blur(8px);
+      color: #D3F0F8;
+      border: 1px solid rgba(211,240,248,0.2);
+      z-index: 2;
     }
-    .thumb-soon {
+    .nbi-thumb-inner {
+      position: relative;
+      z-index: 2;
+    }
+    .nbi-thumb-eyebrow {
+      font-family: 'Poppins', sans-serif;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #a8dff0;
+      margin-bottom: 7px;
+    }
+    .nbi-thumb-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(16px, 2vw, 24px);
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.15;
+      margin-bottom: 10px;
+    }
+    .nbi-thumb-pills {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .nbi-pill {
+      font-family: 'Poppins', sans-serif;
+      font-size: 9px;
+      font-weight: 500;
+      padding: 3px 10px;
+      border-radius: 20px;
+      border: 1px solid rgba(211,240,248,0.3);
+      color: rgba(211,240,248,0.8);
+    }
+
+    /* ── Coming soon thumb (gray) ── */
+    .card-thumb.cs-thumb {
+      background: var(--surface);
+      flex-direction: column;
+      gap: 10px;
+    }
+    .cs-icon {
+      width: 38px; height: 38px;
+      border-radius: 8px;
+      border: 2px dashed var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cs-icon svg {
+      width: 16px; height: 16px;
+      stroke: var(--muted);
+      fill: none;
+      stroke-width: 1.5;
+    }
+    .cs-label {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+    .cs-badge {
       position: absolute;
-      top: 14px;
-      right: 14px;
+      top: 14px; right: 14px;
       font-size: 10px;
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       padding: 4px 12px;
       border-radius: 20px;
-      background: rgba(255,255,255,0.15);
-      color: rgba(255,255,255,0.7);
-      border: 1px solid rgba(255,255,255,0.2);
+      background: var(--border);
+      color: var(--muted);
     }
 
     /* ── CARD BODY ── */
-    .card-body {
-      padding: 26px 26px 22px;
-    }
+    .card-body { padding: 26px 26px 22px; }
     .card-meta {
       display: flex;
       align-items: center;
@@ -250,10 +322,10 @@
       justify-content: center;
       transition: background 0.2s, border-color 0.2s, transform 0.2s;
     }
-    .project-card:hover .card-arrow {
+    .project-card:not(.coming-soon):hover .card-arrow {
       background: var(--dark);
       border-color: var(--dark);
-      transform: translate(2px,-2px);
+      transform: translate(2px, -2px);
     }
     .card-arrow svg {
       width: 13px; height: 13px;
@@ -262,120 +334,7 @@
       stroke-width: 2;
       transition: stroke 0.2s;
     }
-    .project-card:hover .card-arrow svg { stroke: var(--white); }
-
-    /* ════════════════════════════════════════
-       PER-BRAND CARD THEMING
-       Each .card-brand-* class controls only
-       the thumbnail interior — fonts, colors,
-       layout — without touching the neutral shell.
-    ════════════════════════════════════════ */
-
-    /* ── NBI brand thumbnail ── */
-    .card-thumb.nbi {
-      background: #092254;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: flex-end;
-      padding: 24px 28px;
-      gap: 0;
-    }
-    .card-thumb.nbi::before {
-      content: '';
-      position: absolute;
-      right: -48px; top: -48px;
-      width: 220px; height: 220px;
-      border-radius: 50%;
-      background: #006985;
-      opacity: 0.28;
-    }
-    .card-thumb.nbi::after {
-      content: '';
-      position: absolute;
-      right: 60px; bottom: -40px;
-      width: 120px; height: 120px;
-      border-radius: 50%;
-      background: #D3F0F8;
-      opacity: 0.12;
-    }
-    .nbi-thumb-inner {
-      position: relative;
-      z-index: 2;
-    }
-    .nbi-thumb-eyebrow {
-      font-family: 'Poppins', sans-serif;
-      font-size: 9px;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: #a8dff0;
-      margin-bottom: 7px;
-    }
-    .nbi-thumb-title {
-      font-family: 'Poppins', sans-serif;
-      font-size: clamp(18px, 2.2vw, 26px);
-      font-weight: 700;
-      color: #ffffff;
-      line-height: 1.15;
-      margin-bottom: 10px;
-    }
-    .nbi-thumb-pills {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-    }
-    .nbi-pill {
-      font-family: 'Poppins', sans-serif;
-      font-size: 9px;
-      font-weight: 500;
-      padding: 3px 10px;
-      border-radius: 20px;
-      border: 1px solid rgba(211,240,248,0.3);
-      color: rgba(211,240,248,0.8);
-    }
-    .nbi-thumb-badge {
-      position: absolute;
-      top: 14px;
-      left: 14px;
-      font-family: 'Poppins', sans-serif;
-      font-size: 9px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 4px 11px;
-      border-radius: 20px;
-      background: rgba(0,105,133,0.5);
-      backdrop-filter: blur(8px);
-      color: #D3F0F8;
-      border: 1px solid rgba(211,240,248,0.2);
-    }
-
-    /* ── PLACEHOLDER brand thumbnail ── */
-    .card-thumb.placeholder-brand {
-      flex-direction: column;
-      gap: 10px;
-    }
-    .placeholder-brand-icon {
-      width: 36px; height: 36px;
-      border-radius: 8px;
-      border: 2px dashed rgba(255,255,255,0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .placeholder-brand-icon svg {
-      width: 16px; height: 16px;
-      stroke: rgba(255,255,255,0.3);
-      fill: none;
-      stroke-width: 1.5;
-    }
-    .placeholder-brand-text {
-      font-family: var(--font-display);
-      font-size: 13px;
-      font-style: italic;
-      color: rgba(255,255,255,0.25);
-      letter-spacing: 0.02em;
-    }
+    .project-card:not(.coming-soon):hover .card-arrow svg { stroke: var(--white); }
 
     /* ── ANIMATIONS ── */
     @keyframes fadeUp {
@@ -387,126 +346,138 @@
     @media (max-width: 860px) {
       nav { padding: 18px 22px; }
       .page-header { padding: 60px 22px 44px; }
-      .header-rule { margin-left: 22px; margin-right: 22px; }
       .grid-wrap { padding: 40px 22px 80px; }
       .project-grid { grid-template-columns: 1fr; gap: 22px; }
     }
   </style>
-
 </head>
 <body>
-
-  <!-- NAV -->
 
   <nav>
     <a href="/" class="nav-logo">Molly Curtis</a>
     <a href="/#projects" class="nav-back">← Projects</a>
   </nav>
 
-  <!-- PAGE HEADER -->
-
-  <div class="page-header" style="margin-top:61px;">
+  <div class="page-header">
     <div class="header-eyebrow">Work · Projects</div>
     <h1 class="header-title">Landing Pages</h1>
     <p class="header-desc">Pages built to convert — each with a clear objective, a defined audience, and a reason every element is where it is.</p>
   </div>
   <div class="header-rule"></div>
 
-  <!-- GRID -->
-
   <div class="grid-wrap">
     <div class="project-grid">
 
-```
-  <!-- ══ CARD: NBI Subscription ══ -->
-  <a class="project-card" href="/projects/nbi-subscription">
-    <div class="card-thumb nbi">
-      <span class="nbi-thumb-badge">NBI · 2024</span>
-      <div class="nbi-thumb-inner">
-        <div class="nbi-thumb-eyebrow">Subscription Page Redesign</div>
-        <div class="nbi-thumb-title">Unlock Unlimited<br>CLE Access</div>
-        <div class="nbi-thumb-pills">
-          <span class="nbi-pill">UX Strategy</span>
-          <span class="nbi-pill">Conversion</span>
-          <span class="nbi-pill">Copywriting</span>
+      <!-- CARD 1 — NBI Subscription (live) -->
+      <a class="project-card" href="/projects/nbi-subscription">
+        <div class="card-thumb nbi">
+          <span class="nbi-thumb-badge">NBI · 2025</span>
+          <div class="nbi-thumb-inner">
+            <div class="nbi-thumb-eyebrow">Subscription Page Redesign</div>
+            <div class="nbi-thumb-title">Simplified. Clarified.<br>Converted.</div>
+            <div class="nbi-thumb-pills">
+              <span class="nbi-pill">UX Strategy</span>
+              <span class="nbi-pill">Conversion</span>
+              <span class="nbi-pill">Page Design</span>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="card-tag">Landing Page</span>
-        <span class="card-tag">B2B · SaaS</span>
-        <span class="card-year">2024</span>
-      </div>
-      <h2 class="card-title">NBI Subscription Page Redesign</h2>
-      <p class="card-desc">Identified and solved a conversion problem no one assigned me — removing friction, clarifying billing, adding real proof. Bounce rate dropped. Subscriptions went up.</p>
-      <div class="card-footer">
-        <span class="card-client">National Business Institute</span>
-        <div class="card-arrow">
-          <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-tag">Landing Page</span>
+            <span class="card-tag">B2B · SaaS</span>
+            <span class="card-year">2025</span>
+          </div>
+          <h2 class="card-title">NBI Subscription Page Redesign</h2>
+          <p class="card-desc">Identified and solved a conversion problem — removed friction, clarified billing, added real proof. Bounce rate dropped. Subscriptions went up.</p>
+          <div class="card-footer">
+            <span class="card-client">National Business Institute</span>
+            <div class="card-arrow">
+              <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </a>
+      </a>
 
-  <!-- ══ CARD: Team Advantage Pass ══ -->
-  <a class="project-card" href="/projects/team-advantage-pass">
-    <div class="card-thumb placeholder-brand" style="background: linear-gradient(140deg, #0d1f4a 0%, #1B3666 55%, #006985 100%);">
-      <div class="placeholder-brand-icon">
-        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-      </div>
-      <span class="placeholder-brand-text">Screenshot coming soon</span>
-      <span class="thumb-soon">Coming Soon</span>
-    </div>
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="card-tag">Landing Page</span>
-        <span class="card-tag">B2B</span>
-        <span class="card-year">2024</span>
-      </div>
-      <h2 class="card-title">Team Advantage Pass</h2>
-      <p class="card-desc">Group CLE training for law firms — seat selector, tiered pricing, feature comparison, testimonials, and a sticky CTA that travels down the page.</p>
-      <div class="card-footer">
-        <span class="card-client">National Business Institute</span>
-        <div class="card-arrow">
-          <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      <!-- CARD 2 — Coming soon -->
+      <a class="project-card coming-soon" href="#">
+        <div class="card-thumb cs-thumb">
+          <span class="cs-badge">Coming Soon</span>
+          <div class="cs-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          </div>
+          <span class="cs-label">Coming soon</span>
         </div>
-      </div>
-    </div>
-  </a>
-
-  <!-- ══ CARD: Placeholder 3 ══ -->
-  <a class="project-card coming-soon" href="#">
-    <div class="card-thumb placeholder-brand" style="background: linear-gradient(140deg, #1a1a24 0%, #2e2e3a 100%);">
-      <div class="placeholder-brand-icon">
-        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-      </div>
-      <span class="placeholder-brand-text">Screenshot coming soon</span>
-      <span class="thumb-soon">Coming Soon</span>
-    </div>
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="card-tag">Landing Page</span>
-        <span class="card-year">—</span>
-      </div>
-      <h2 class="card-title">Project Coming Soon</h2>
-      <p class="card-desc">Another landing page project is on its way. Check back soon.</p>
-      <div class="card-footer">
-        <span class="card-client">—</span>
-        <div class="card-arrow">
-          <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-tag">Landing Page</span>
+            <span class="card-year">—</span>
+          </div>
+          <h2 class="card-title">Project Coming Soon</h2>
+          <p class="card-desc">Another landing page case study is on its way.</p>
+          <div class="card-footer">
+            <span class="card-client">—</span>
+            <div class="card-arrow">
+              <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </div>
+          </div>
         </div>
-      </div>
+      </a>
+
+      <!-- CARD 3 — Coming soon -->
+      <a class="project-card coming-soon" href="#">
+        <div class="card-thumb cs-thumb">
+          <span class="cs-badge">Coming Soon</span>
+          <div class="cs-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          </div>
+          <span class="cs-label">Coming soon</span>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-tag">Landing Page</span>
+            <span class="card-year">—</span>
+          </div>
+          <h2 class="card-title">Project Coming Soon</h2>
+          <p class="card-desc">Another landing page case study is on its way.</p>
+          <div class="card-footer">
+            <span class="card-client">—</span>
+            <div class="card-arrow">
+              <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <!-- CARD 4 — Coming soon -->
+      <a class="project-card coming-soon" href="#">
+        <div class="card-thumb cs-thumb">
+          <span class="cs-badge">Coming Soon</span>
+          <div class="cs-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          </div>
+          <span class="cs-label">Coming soon</span>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-tag">Landing Page</span>
+            <span class="card-year">—</span>
+          </div>
+          <h2 class="card-title">Project Coming Soon</h2>
+          <p class="card-desc">Another landing page case study is on its way.</p>
+          <div class="card-footer">
+            <span class="card-client">—</span>
+            <div class="card-arrow">
+              <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </div>
+          </div>
+        </div>
+      </a>
+
     </div>
-  </a>
-
-</div>
-```
-
   </div>
 
   <script>
-    // staggered scroll reveal
     const cards = document.querySelectorAll('.project-card');
     const obs = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
