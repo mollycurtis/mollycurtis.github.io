@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
@@ -36,155 +35,155 @@
 }
 
 html{scroll-behavior:smooth;-webkit-overflow-scrolling:touch;color-scheme:light}
-body{font-family:var(–sans);background:#f5ede0;color:#2c1a0e;overflow-x:hidden;-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);background:#f5ede0;color:#2c1a0e;overflow-x:hidden;-webkit-text-size-adjust:100%}
 ::-webkit-scrollbar{width:5px}
-::-webkit-scrollbar-track{background:var(–cream2)}
-::-webkit-scrollbar-thumb{background:var(–orange);border-radius:0}
+::-webkit-scrollbar-track{background:var(--cream2)}
+::-webkit-scrollbar-thumb{background:var(--orange);border-radius:0}
 
 /* noise overlay removed — caused white page on Safari/iPad */
 
 /* TILE PATTERN */
 .tile-bg{
-background-image:
-linear-gradient(45deg, var(–tile-b) 25%, transparent 25%),
-linear-gradient(-45deg, var(–tile-b) 25%, transparent 25%),
-linear-gradient(45deg, transparent 75%, var(–tile-b) 75%),
-linear-gradient(-45deg, transparent 75%, var(–tile-b) 75%);
-background-size:32px 32px;
-background-position:0 0, 0 16px, 16px -16px, -16px 0px;
-background-color:var(–orange);
+  background-image:
+    linear-gradient(45deg, var(--tile-b) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--tile-b) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--tile-b) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--tile-b) 75%);
+  background-size:32px 32px;
+  background-position:0 0, 0 16px, 16px -16px, -16px 0px;
+  background-color:var(--orange);
 }
 .tile-bg-cream{
-background-image:
-linear-gradient(45deg, var(–cream3) 25%, transparent 25%),
-linear-gradient(-45deg, var(–cream3) 25%, transparent 25%),
-linear-gradient(45deg, transparent 75%, var(–cream3) 75%),
-linear-gradient(-45deg, transparent 75%, var(–cream3) 75%);
-background-size:24px 24px;
-background-position:0 0, 0 12px, 12px -12px, -12px 0px;
-background-color:var(–cream2);
+  background-image:
+    linear-gradient(45deg, var(--cream3) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--cream3) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--cream3) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--cream3) 75%);
+  background-size:24px 24px;
+  background-position:0 0, 0 12px, 12px -12px, -12px 0px;
+  background-color:var(--cream2);
 }
 .tile-bg-dark{
-background-image:
-linear-gradient(45deg, #3a2010 25%, transparent 25%),
-linear-gradient(-45deg, #3a2010 25%, transparent 25%),
-linear-gradient(45deg, transparent 75%, #3a2010 75%),
-linear-gradient(-45deg, transparent 75%, #3a2010 75%);
-background-size:20px 20px;
-background-position:0 0, 0 10px, 10px -10px, -10px 0px;
-background-color:var(–brown-deep);
+  background-image:
+    linear-gradient(45deg, #3a2010 25%, transparent 25%),
+    linear-gradient(-45deg, #3a2010 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #3a2010 75%),
+    linear-gradient(-45deg, transparent 75%, #3a2010 75%);
+  background-size:20px 20px;
+  background-position:0 0, 0 10px, 10px -10px, -10px 0px;
+  background-color:var(--brown-deep);
 }
 
 /* NAV */
 .top-nav{
-position:fixed;top:0;left:0;right:0;z-index:100;
-display:grid;
-grid-template-columns:1fr auto 1fr;
-align-items:center;
-padding:clamp(12px,1.8vw,18px) clamp(20px,4vw,44px);
-background:#2c1a0e;
-border-bottom:3px solid #d4611a;
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  padding:clamp(12px,1.8vw,18px) clamp(20px,4vw,44px);
+  background:#2c1a0e;
+  border-bottom:3px solid #d4611a;
 }
 .nav-left{display:flex;align-items:center;gap:14px;justify-content:flex-start}
-.nav-wordmark{font-family:var(–display);font-size:clamp(1.1rem,1.8vw,1.4rem);letter-spacing:.04em;line-height:1}
-.nav-wordmark .wm-find{color:var(–cream)}
-.nav-wordmark .wm-ly{color:var(–orange)}
-.nav-pill{background:var(–orange);padding:3px 10px;font-family:var(–mono);font-size:clamp(.44rem,.56vw,.5rem);letter-spacing:.16em;text-transform:uppercase;color:var(–cream);white-space:nowrap}
+.nav-wordmark{font-family:var(--display);font-size:clamp(1.1rem,1.8vw,1.4rem);letter-spacing:.04em;line-height:1}
+.nav-wordmark .wm-find{color:var(--cream)}
+.nav-wordmark .wm-ly{color:var(--orange)}
+.nav-pill{background:var(--orange);padding:3px 10px;font-family:var(--mono);font-size:clamp(.44rem,.56vw,.5rem);letter-spacing:.16em;text-transform:uppercase;color:var(--cream);white-space:nowrap}
 @media(max-width:700px){.nav-pill{display:none}}
-.nav-link{font-family:var(–sans);font-size:clamp(.52rem,.7vw,.62rem);font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,237,224,.5);text-decoration:none;transition:color .2s;white-space:nowrap}
-.nav-link:hover{color:var(–orange)}
+.nav-link{font-family:var(--sans);font-size:clamp(.52rem,.7vw,.62rem);font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,237,224,.5);text-decoration:none;transition:color .2s;white-space:nowrap}
+.nav-link:hover{color:var(--orange)}
 @media(max-width:700px){.nav-center{display:none}}
 .nav-right{display:flex;align-items:center;gap:clamp(12px,2vw,24px);justify-content:flex-end}
 .contents-btn{
-background:transparent;color:var(–cream);border:1px solid rgba(245,237,224,.2);
-padding:7px 16px;font-family:var(–mono);font-size:clamp(.5rem,.68vw,.6rem);
-letter-spacing:.1em;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:8px;
+  background:transparent;color:var(--cream);border:1px solid rgba(245,237,224,.2);
+  padding:7px 16px;font-family:var(--mono);font-size:clamp(.5rem,.68vw,.6rem);
+  letter-spacing:.1em;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:8px;
 }
-.contents-btn:hover{background:var(–orange);border-color:var(–orange)}
+.contents-btn:hover{background:var(--orange);border-color:var(--orange)}
 
 /* HERO — split layout */
 .hero{
-min-height:72vh;display:grid;
-grid-template-columns:1fr 1fr;
-margin-top:0;padding-top:clamp(52px,7vw,70px);
+  min-height:72vh;display:grid;
+  grid-template-columns:1fr 1fr;
+  margin-top:0;padding-top:clamp(52px,7vw,70px);
 }
 @media(max-width:700px){.hero{grid-template-columns:1fr;min-height:auto}}
 .hero-left{
-background:#2c1a0e;
-padding:clamp(36px,5vw,60px) clamp(24px,4vw,52px);
-display:flex;flex-direction:column;justify-content:center;
-position:relative;overflow:hidden;
+  background:#2c1a0e;
+  padding:clamp(36px,5vw,60px) clamp(24px,4vw,52px);
+  display:flex;flex-direction:column;justify-content:center;
+  position:relative;overflow:hidden;
 }
 .hero-left::before{
-content:’’;position:absolute;bottom:-40px;left:-40px;
-width:280px;height:280px;
-border-radius:50%;
-background:radial-gradient(circle,rgba(212,97,26,.2) 0%,transparent 70%);
-pointer-events:none;
+  content:'';position:absolute;bottom:-40px;left:-40px;
+  width:280px;height:280px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(212,97,26,.2) 0%,transparent 70%);
+  pointer-events:none;
 }
 .hero-right{position:relative;overflow:hidden}
 .hero-right-inner{
-width:100%;height:100%;min-height:clamp(300px,45vw,520px);
-display:flex;flex-direction:column;
+  width:100%;height:100%;min-height:clamp(300px,45vw,520px);
+  display:flex;flex-direction:column;
 }
 /* hero right: warm editorial, no tile */
 .hero-right-main{
-flex:1;position:relative;overflow:hidden;
-background:#5c3318;
-display:flex;align-items:center;justify-content:center;
-padding:clamp(32px,5vw,60px) clamp(28px,4.5vw,52px);
+  flex:1;position:relative;overflow:hidden;
+  background:#5c3318;
+  display:flex;align-items:center;justify-content:center;
+  padding:clamp(32px,5vw,60px) clamp(28px,4.5vw,52px);
 }
 .hero-right-main::before{
-content:’’;position:absolute;top:0;right:0;bottom:0;left:0;
-background:
-radial-gradient(ellipse 80% 70% at 90% 20%, rgba(212,97,26,.28) 0%, transparent 55%),
-radial-gradient(ellipse 60% 60% at 10% 85%, rgba(44,26,14,.4) 0%, transparent 55%);
-pointer-events:none;
+  content:'';position:absolute;top:0;right:0;bottom:0;left:0;
+  background:
+    radial-gradient(ellipse 80% 70% at 90% 20%, rgba(212,97,26,.28) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 60% at 10% 85%, rgba(44,26,14,.4) 0%, transparent 55%);
+  pointer-events:none;
 }
 .hero-right-tagline{
-position:relative;z-index:2;
-font-family:var(–serif);font-style:italic;
-font-size:clamp(1.3rem,2.8vw,2.4rem);
-color:var(–cream);line-height:1.3;
-border-left:3px solid var(–orange);
-padding-left:clamp(16px,2.5vw,28px);
+  position:relative;z-index:2;
+  font-family:var(--serif);font-style:italic;
+  font-size:clamp(1.3rem,2.8vw,2.4rem);
+  color:var(--cream);line-height:1.3;
+  border-left:3px solid var(--orange);
+  padding-left:clamp(16px,2.5vw,28px);
 }
 .hero-right-tagline span{
-color:var(–orange);font-style:normal;
-font-family:var(–display);font-size:.65em;
-display:block;margin-top:14px;letter-spacing:.06em;
+  color:var(--orange);font-style:normal;
+  font-family:var(--display);font-size:.65em;
+  display:block;margin-top:14px;letter-spacing:.06em;
 }
 /* Suppress all animal dividers outside colors section */
 .animal-divider-leopard,.animal-divider-zebra,.animal-divider-zebra-dark{display:none}
 .sec-has-animal-top::before{display:none}
 /* hero left content */
-.hero-meta{font-family:var(–mono);font-size:clamp(.64rem,.82vw,.72rem);letter-spacing:.2em;text-transform:uppercase;color:rgba(212,97,26,.8);margin-bottom:clamp(14px,2vw,22px)}
-.hero-h1{font-family:var(–display);font-size:clamp(3rem,7vw,6rem);line-height:.95;letter-spacing:.02em;margin-bottom:clamp(8px,1.2vw,14px);animation:fadeUp .8s cubic-bezier(.16,1,.3,1) .1s both}
-.hero-h1 .find{color:var(–cream)}
-.hero-h1 .ly{color:var(–orange)}
-.hero-tagline{font-family:var(–sans);font-size:clamp(.88rem,1.18vw,.98rem);font-weight:300;line-height:1.82;color:rgba(245,237,224,.58);max-width:460px;animation:fadeUp .8s cubic-bezier(.16,1,.3,1) .25s both}
+.hero-meta{font-family:var(--mono);font-size:clamp(.64rem,.82vw,.72rem);letter-spacing:.2em;text-transform:uppercase;color:rgba(212,97,26,.8);margin-bottom:clamp(14px,2vw,22px)}
+.hero-h1{font-family:var(--display);font-size:clamp(3rem,7vw,6rem);line-height:.95;letter-spacing:.02em;margin-bottom:clamp(8px,1.2vw,14px);animation:fadeUp .8s cubic-bezier(.16,1,.3,1) .1s both}
+.hero-h1 .find{color:var(--cream)}
+.hero-h1 .ly{color:var(--orange)}
+.hero-tagline{font-family:var(--sans);font-size:clamp(.88rem,1.18vw,.98rem);font-weight:300;line-height:1.82;color:rgba(245,237,224,.58);max-width:460px;animation:fadeUp .8s cubic-bezier(.16,1,.3,1) .25s both}
 .hero-bottom-strip{
-background:#2e4030;
-padding:clamp(20px,3vw,32px) clamp(24px,4vw,44px);
-display:flex;flex-direction:column;gap:8px;
+  background:#2e4030;
+  padding:clamp(20px,3vw,32px) clamp(24px,4vw,44px);
+  display:flex;flex-direction:column;gap:8px;
 }
-.hero-strip-label{font-family:var(–mono);font-size:clamp(.66rem,.84vw,.74rem);letter-spacing:.2em;text-transform:uppercase;color:var(–green-l)}
-.hero-strip-text{font-family:var(–serif);font-style:italic;font-size:clamp(1rem,2vw,1.5rem);color:var(–cream);line-height:1.3}
+.hero-strip-label{font-family:var(--mono);font-size:clamp(.66rem,.84vw,.74rem);letter-spacing:.2em;text-transform:uppercase;color:var(--green-l)}
+.hero-strip-text{font-family:var(--serif);font-style:italic;font-size:clamp(1rem,2vw,1.5rem);color:var(--cream);line-height:1.3}
 
 /* SEC HEADER SPLIT */
 .sec-header-split{
-display:grid;
-grid-template-columns:auto 1fr;
-gap:clamp(40px,6vw,80px);
-align-items:start;
-margin-bottom:clamp(28px,4vw,44px);
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:clamp(40px,6vw,80px);
+  align-items:start;
+  margin-bottom:clamp(28px,4vw,44px);
 }
 .sec-header-split .sec-head-left{flex-shrink:0}
 .sec-header-split .sec-head-right{
-padding-top:clamp(8px,1.5vw,14px);
-font-family:var(–sans);font-size:clamp(.9rem,1.22vw,1rem);font-weight:300;line-height:1.78;
+  padding-top:clamp(8px,1.5vw,14px);
+  font-family:var(--sans);font-size:clamp(.9rem,1.22vw,1rem);font-weight:300;line-height:1.78;
 }
-.sec-cream2 .sec-header-split .sec-head-right{color:var(–brown-mid)}
+.sec-cream2 .sec-header-split .sec-head-right{color:var(--brown-mid)}
 .sec-dark .sec-header-split .sec-head-right{color:rgba(245,237,224,.52)}
 @media(max-width:680px){.sec-header-split{grid-template-columns:1fr}}
 
@@ -193,30 +192,30 @@ font-family:var(–sans);font-size:clamp(.9rem,1.22vw,1rem);font-weight:300;line
 
 /* CONTENTS STRIP */
 .contents-strip{
-background:#ecddc8;
-border-top:2px solid #5c3318;
-border-bottom:2px solid var(–brown-mid);
-display:flex;overflow-x:auto;
+  background:#ecddc8;
+  border-top:2px solid #5c3318;
+  border-bottom:2px solid var(--brown-mid);
+  display:flex;overflow-x:auto;
 }
 .cs-item{
-flex:1;min-width:120px;
-padding:clamp(24px,3.5vw,36px) clamp(16px,2.2vw,22px);
-border-right:1px solid rgba(44,26,14,.15);
-cursor:pointer;transition:background .18s;
-display:flex;flex-direction:column;gap:6px;
-text-decoration:none;
+  flex:1;min-width:120px;
+  padding:clamp(24px,3.5vw,36px) clamp(16px,2.2vw,22px);
+  border-right:1px solid rgba(44,26,14,.15);
+  cursor:pointer;transition:background .18s;
+  display:flex;flex-direction:column;gap:6px;
+  text-decoration:none;
 }
 .cs-item:last-child{border-right:none}
-.cs-item:hover{background:var(–orange)}
-.cs-item:hover .cs-num,.cs-item:hover .cs-name{color:var(–cream)}
-.cs-num{font-family:var(–mono);font-size:clamp(.58rem,.74vw,.66rem);letter-spacing:.16em;color:var(–orange);text-transform:uppercase}
+.cs-item:hover{background:var(--orange)}
+.cs-item:hover .cs-num,.cs-item:hover .cs-name{color:var(--cream)}
+.cs-num{font-family:var(--mono);font-size:clamp(.58rem,.74vw,.66rem);letter-spacing:.16em;color:var(--orange);text-transform:uppercase}
 .cs-item:hover .cs-num{color:rgba(245,237,224,.7)}
-.cs-name{font-family:var(–sans);font-size:clamp(.88rem,1.18vw,1rem);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(–brown-deep)}
+.cs-name{font-family:var(--sans);font-size:clamp(.88rem,1.18vw,1rem);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--brown-deep)}
 @media(max-width:700px){
-.contents-strip{display:grid;grid-template-columns:1fr 1fr;overflow-x:visible}
-.cs-item{border-right:1px solid rgba(44,26,14,.15);border-bottom:1px solid rgba(44,26,14,.15)}
-.cs-item:nth-child(2n){border-right:none}
-.cs-item:nth-child(7){grid-column:1/-1;border-right:none}
+  .contents-strip{display:grid;grid-template-columns:1fr 1fr;overflow-x:visible}
+  .cs-item{border-right:1px solid rgba(44,26,14,.15);border-bottom:1px solid rgba(44,26,14,.15)}
+  .cs-item:nth-child(2n){border-right:none}
+  .cs-item:nth-child(7){grid-column:1/-1;border-right:none}
 }
 
 /* SECTION STYLES */
@@ -225,20 +224,20 @@ text-decoration:none;
 .sec-cream2{background:#ecddc8}
 .sec-dark{background:#2c1a0e}
 .sec-green{background:#2e4030}
-.sec-orange{background:var(–orange)}
+.sec-orange{background:var(--orange)}
 .wrap{max-width:1200px;margin:0 auto}
 
 /* SECTION HEADERS — offset style */
-.sec-eyebrow{font-family:var(–mono);font-size:clamp(.72rem,.9vw,.82rem);letter-spacing:.22em;text-transform:uppercase;margin-bottom:10px}
-.sec-cream .sec-eyebrow,.sec-cream2 .sec-eyebrow{color:var(–orange)}
-.sec-dark .sec-eyebrow,.sec-green .sec-eyebrow{color:var(–orange-l)}
-.sec-title-xl{font-family:var(–display);font-size:clamp(2.4rem,5.5vw,5rem);line-height:.95;letter-spacing:.01em}
-.sec-cream .sec-title-xl,.sec-cream2 .sec-title-xl{color:var(–brown-deep)}
-.sec-dark .sec-title-xl,.sec-green .sec-title-xl{color:var(–cream)}
-.sec-title-xl em{font-family:var(–serif);font-style:italic;color:var(–orange);font-size:.9em}
-.sec-rule{width:48px;height:3px;background:var(–orange);margin:clamp(14px,2vw,20px) 0}
-.sec-dark .sec-rule{background:var(–orange)}
-.sec-green .sec-rule{background:var(–green-l)}
+.sec-eyebrow{font-family:var(--mono);font-size:clamp(.72rem,.9vw,.82rem);letter-spacing:.22em;text-transform:uppercase;margin-bottom:10px}
+.sec-cream .sec-eyebrow,.sec-cream2 .sec-eyebrow{color:var(--orange)}
+.sec-dark .sec-eyebrow,.sec-green .sec-eyebrow{color:var(--orange-l)}
+.sec-title-xl{font-family:var(--display);font-size:clamp(2.4rem,5.5vw,5rem);line-height:.95;letter-spacing:.01em;font-weight:400}
+.sec-cream .sec-title-xl,.sec-cream2 .sec-title-xl{color:var(--brown-deep)}
+.sec-dark .sec-title-xl,.sec-green .sec-title-xl{color:var(--cream)}
+.sec-title-xl em{font-family:var(--serif);font-style:italic;color:var(--orange);font-size:.9em}
+.sec-rule{width:48px;height:3px;background:var(--orange);margin:clamp(14px,2vw,20px) 0}
+.sec-dark .sec-rule{background:var(--orange)}
+.sec-green .sec-rule{background:var(--green-l)}
 
 /* 2-col layout */
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,72px);align-items:start}
@@ -247,21 +246,21 @@ text-decoration:none;
 @media(max-width:700px){.three-col{grid-template-columns:1fr}}
 
 /* INTRO SECTION */
-.intro-body{font-family:var(–sans);font-size:clamp(.9rem,1.2vw,1rem);font-weight:300;line-height:1.85;color:var(–brown-mid)}
+.intro-body{font-family:var(--sans);font-size:clamp(.9rem,1.2vw,1rem);font-weight:300;line-height:1.85;color:var(--brown-mid)}
 .intro-body + .intro-body{margin-top:12px}
 .intro-pronunciation{
-display:inline-flex;align-items:center;
-margin:clamp(18px,2.5vw,28px) 0;
-background:#2c1a0e;padding:clamp(14px,2vw,20px) clamp(16px,2.2vw,24px);
-border-left:4px solid var(–orange);
+  display:inline-flex;align-items:center;
+  margin:clamp(18px,2.5vw,28px) 0;
+  background:#2c1a0e;padding:clamp(14px,2vw,20px) clamp(16px,2.2vw,24px);
+  border-left:4px solid var(--orange);
 }
-.intro-pronunciation small{font-family:var(–mono);font-size:clamp(.78rem,1.02vw,.88rem);letter-spacing:.1em;color:rgba(245,237,224,.72);font-style:normal}
+.intro-pronunciation small{font-family:var(--mono);font-size:clamp(.78rem,1.02vw,.88rem);letter-spacing:.1em;color:rgba(245,237,224,.72);font-style:normal}
 
 .val-list{display:flex;flex-direction:column;gap:clamp(16px,2.2vw,22px)}
 .val-item{display:grid;grid-template-columns:clamp(28px,4vw,36px) 1fr;gap:clamp(10px,1.5vw,16px);align-items:start}
-.val-num{font-family:var(–display);font-size:clamp(1.2rem,2vw,1.6rem);color:var(–orange);line-height:1;padding-top:2px}
-.val-body h4{font-family:var(–sans);font-size:clamp(.9rem,1.22vw,1.02rem);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(–brown-deep);margin-bottom:4px}
-.val-body p{font-family:var(–sans);font-size:clamp(.82rem,1.08vw,.9rem);font-weight:300;line-height:1.72;color:var(–brown-mid)}
+.val-num{font-family:var(--display);font-size:clamp(1.2rem,2vw,1.6rem);color:var(--orange);line-height:1;padding-top:2px}
+.val-body h4{font-family:var(--sans);font-size:clamp(.9rem,1.22vw,1.02rem);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--brown-deep);margin-bottom:4px}
+.val-body p{font-family:var(--sans);font-size:clamp(.82rem,1.08vw,.9rem);font-weight:300;line-height:1.72;color:var(--brown-mid)}
 
 /* TIERS — horizontal cards */
 .tiers-wrap{margin-top:clamp(32px,4.5vw,52px)}
@@ -275,37 +274,37 @@ border-left:4px solid var(–orange);
 .tc-sub{background:#2c1a0e;border-color:#d4611a}
 .tier-card-header{padding:clamp(16px,2.5vw,22px) clamp(16px,2.2vw,20px) clamp(12px,1.8vw,16px);border-bottom:1px solid rgba(255,255,255,.1)}
 .tc-dig .tier-card-header{border-color:rgba(44,26,14,.1)}
-.tier-tag{font-family:var(–mono);font-size:clamp(.52rem,.68vw,.6rem);letter-spacing:.16em;text-transform:uppercase;display:block;margin-bottom:5px}
-.tc-dig .tier-tag{color:var(–orange)}
-.tc-haul .tier-tag{color:var(–orange-l)}
-.tc-archive .tier-tag{color:var(–green-l)}
-.tc-sub .tier-tag{color:var(–orange)}
-.tier-name{font-family:var(–display);font-size:clamp(1.6rem,2.8vw,2.2rem);line-height:1;letter-spacing:.02em}
-.tc-dig .tier-name{color:var(–brown-deep)}
-.tc-haul .tier-name,.tc-archive .tier-name,.tc-sub .tier-name{color:var(–cream)}
-.tier-price{font-family:var(–serif);font-style:italic;font-size:clamp(1rem,1.8vw,1.4rem);margin-top:6px}
-.tc-dig .tier-price{color:var(–orange)}
-.tc-haul .tier-price{color:var(–orange-l)}
-.tc-archive .tier-price{color:var(–green-l)}
-.tc-sub .tier-price{color:var(–orange)}
+.tier-tag{font-family:var(--mono);font-size:clamp(.52rem,.68vw,.6rem);letter-spacing:.16em;text-transform:uppercase;display:block;margin-bottom:5px}
+.tc-dig .tier-tag{color:var(--orange)}
+.tc-haul .tier-tag{color:var(--orange-l)}
+.tc-archive .tier-tag{color:var(--green-l)}
+.tc-sub .tier-tag{color:var(--orange)}
+.tier-name{font-family:var(--display);font-size:clamp(1.6rem,2.8vw,2.2rem);line-height:1;letter-spacing:.02em}
+.tc-dig .tier-name{color:var(--brown-deep)}
+.tc-haul .tier-name,.tc-archive .tier-name,.tc-sub .tier-name{color:var(--cream)}
+.tier-price{font-family:var(--serif);font-style:italic;font-size:clamp(1rem,1.8vw,1.4rem);margin-top:6px}
+.tc-dig .tier-price{color:var(--orange)}
+.tc-haul .tier-price{color:var(--orange-l)}
+.tc-archive .tier-price{color:var(--green-l)}
+.tc-sub .tier-price{color:var(--orange)}
 .tier-card-body{padding:clamp(12px,1.8vw,16px) clamp(16px,2.2vw,20px) clamp(16px,2.5vw,22px)}
 .tier-items{display:flex;flex-direction:column;gap:7px}
-.tier-item{font-family:var(–sans);font-size:clamp(.82rem,1.08vw,.9rem);font-weight:300;display:flex;align-items:flex-start;gap:7px;line-height:1.55}
-.tc-dig .tier-item{color:var(–brown-mid)}
+.tier-item{font-family:var(--sans);font-size:clamp(.82rem,1.08vw,.9rem);font-weight:300;display:flex;align-items:flex-start;gap:7px;line-height:1.55}
+.tc-dig .tier-item{color:var(--brown-mid)}
 .tc-haul .tier-item,.tc-archive .tier-item,.tc-sub .tier-item{color:rgba(245,237,224,.78)}
-.tier-item::before{content:‘→’;flex-shrink:0;opacity:.6;font-size:.8em;margin-top:1px}
+.tier-item::before{content:'→';flex-shrink:0;opacity:.6;font-size:.8em;margin-top:1px}
 .tier-sub-badge{
-display:inline-flex;align-items:center;gap:6px;
-margin-top:clamp(10px,1.5vw,14px);
-padding:5px 12px;
-font-family:var(–mono);font-size:clamp(.58rem,.74vw,.66rem);letter-spacing:.14em;text-transform:uppercase;
-background:var(–orange);color:var(–cream);
+  display:inline-flex;align-items:center;gap:6px;
+  margin-top:clamp(10px,1.5vw,14px);
+  padding:5px 12px;
+  font-family:var(--mono);font-size:clamp(.58rem,.74vw,.66rem);letter-spacing:.14em;text-transform:uppercase;
+  background:var(--orange);color:var(--cream);
 }
 .tier-corner{
-position:absolute;top:0;right:0;
-padding:5px 11px;
-font-family:var(–mono);font-size:clamp(.52rem,.68vw,.6rem);letter-spacing:.12em;text-transform:uppercase;
-background:var(–orange);color:var(–cream);
+  position:absolute;top:0;right:0;
+  padding:5px 11px;
+  font-family:var(--mono);font-size:clamp(.52rem,.68vw,.6rem);letter-spacing:.12em;text-transform:uppercase;
+  background:var(--orange);color:var(--cream);
 }
 
 /* HOW IT WORKS */
@@ -314,54 +313,54 @@ background:var(–orange);color:var(–cream);
 @media(max-width:400px){.how-steps{grid-template-columns:1fr}}
 .how-step{padding:clamp(24px,3.5vw,36px) clamp(18px,2.8vw,28px);border-right:1px solid rgba(245,237,224,.1);position:relative}
 .how-step:last-child{border-right:none}
-.how-step-num{font-family:var(–display);font-size:clamp(2.4rem,4.5vw,3.6rem);color:rgba(212,97,26,.45);line-height:1;margin-bottom:clamp(10px,1.5vw,16px)}
-.how-step h4{font-family:var(–sans);font-size:clamp(.9rem,1.24vw,1rem);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(–cream);margin-bottom:8px}
-.how-step p{font-family:var(–sans);font-size:clamp(.82rem,1.08vw,.9rem);font-weight:300;line-height:1.72;color:rgba(245,237,224,.62)}
-.how-step-connector{position:absolute;top:clamp(28px,4.5vw,40px);right:0;transform:translateX(50%);width:20px;height:20px;background:var(–orange);-webkit-clip-path:polygon(0 50%,100% 0,100% 100%);clip-path:polygon(0 50%,100% 0,100% 100%);z-index:2}
+.how-step-num{font-family:var(--display);font-size:clamp(2.4rem,4.5vw,3.6rem);color:rgba(212,97,26,.45);line-height:1;margin-bottom:clamp(10px,1.5vw,16px)}
+.how-step h4{font-family:var(--sans);font-size:clamp(.9rem,1.24vw,1rem);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--cream);margin-bottom:8px}
+.how-step p{font-family:var(--sans);font-size:clamp(.82rem,1.08vw,.9rem);font-weight:300;line-height:1.72;color:rgba(245,237,224,.62)}
+.how-step-connector{position:absolute;top:clamp(28px,4.5vw,40px);right:0;transform:translateX(50%);width:20px;height:20px;background:var(--orange);-webkit-clip-path:polygon(0 50%,100% 0,100% 100%);clip-path:polygon(0 50%,100% 0,100% 100%);z-index:2}
 @media(max-width:700px){.how-step-connector{display:none}}
 
 /* LOGO SECTION */
 .logo-showcase{
-background:#2c1a0e;
-padding:clamp(40px,6vw,72px);
-display:flex;flex-direction:column;align-items:center;justify-content:center;
-position:relative;overflow:hidden;
-min-height:clamp(200px,28vw,300px);
+  background:#2c1a0e;
+  padding:clamp(40px,6vw,72px);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+  min-height:clamp(200px,28vw,300px);
 }
 .logo-showcase::before{
-content:’’;position:absolute;top:0;right:0;bottom:0;left:0;
-background:
-radial-gradient(ellipse 70% 80% at 50% 50%,rgba(212,97,26,.12) 0%,transparent 60%),
-radial-gradient(ellipse 40% 40% at 10% 90%,rgba(139,74,32,.1) 0%,transparent 55%);
-pointer-events:none;
+  content:'';position:absolute;top:0;right:0;bottom:0;left:0;
+  background:
+    radial-gradient(ellipse 70% 80% at 50% 50%,rgba(212,97,26,.12) 0%,transparent 60%),
+    radial-gradient(ellipse 40% 40% at 10% 90%,rgba(139,74,32,.1) 0%,transparent 55%);
+  pointer-events:none;
 }
 .logo-main{position:relative;z-index:2;text-align:center}
-.logo-rule-top,.logo-rule-bot{width:clamp(60px,10vw,100px);height:2px;background:var(–orange);margin:0 auto}
-.logo-wordmark{font-family:var(–display);font-size:clamp(2.8rem,8vw,6rem);letter-spacing:.08em;line-height:1;padding:clamp(8px,1.2vw,14px) 0}
-.logo-wordmark .wm-find{color:var(–cream)}
-.logo-wordmark .wm-ly{color:var(–orange)}
-.logo-sub{font-family:var(–mono);font-size:clamp(.6rem,.78vw,.68rem);letter-spacing:.28em;text-transform:uppercase;color:var(–orange);margin-top:4px}
+.logo-rule-top,.logo-rule-bot{width:clamp(60px,10vw,100px);height:2px;background:var(--orange);margin:0 auto}
+.logo-wordmark{font-family:var(--display);font-size:clamp(2.8rem,8vw,6rem);letter-spacing:.08em;line-height:1;padding:clamp(8px,1.2vw,14px) 0}
+.logo-wordmark .wm-find{color:var(--cream)}
+.logo-wordmark .wm-ly{color:var(--orange)}
+.logo-sub{font-family:var(--mono);font-size:clamp(.6rem,.78vw,.68rem);letter-spacing:.28em;text-transform:uppercase;color:var(--orange);margin-top:4px}
 .logo-variants{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:16px}
 @media(max-width:480px){.logo-variants{grid-template-columns:1fr}}
 .lv{padding:clamp(20px,3vw,28px);display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:6px;min-height:clamp(90px,12vw,120px)}
-.lv-word{font-family:var(–display);font-size:clamp(1.2rem,2.5vw,1.8rem);letter-spacing:.06em}
+.lv-word{font-family:var(--display);font-size:clamp(1.2rem,2.5vw,1.8rem);letter-spacing:.06em}
 .lv-rule{width:32px;height:1.5px}
-.lv-tag{font-family:var(–mono);font-size:clamp(.58rem,.76vw,.66rem);letter-spacing:.14em;text-transform:uppercase}
+.lv-tag{font-family:var(--mono);font-size:clamp(.58rem,.76vw,.66rem);letter-spacing:.14em;text-transform:uppercase}
 .logo-dont-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:16px}
 @media(max-width:580px){.logo-dont-grid{grid-template-columns:1fr 1fr}}
 .ldont{overflow:hidden;border:1px solid rgba(44,26,14,.15)}
 .ldont-vis{height:clamp(60px,8vw,80px);display:grid;place-items:center;background:#f5ede0;position:relative}
-.ldont-vis::after{content:‘✕’;position:absolute;top:5px;right:7px;font-size:.7rem;color:rgba(176,77,18,.8);font-family:var(–mono)}
-.ldont-label{padding:9px 12px;background:var(–brown-deep)}
-.ldont-label p{font-family:var(–mono);font-size:clamp(.64rem,.82vw,.72rem);color:rgba(212,97,26,.9);letter-spacing:.04em}
+.ldont-vis::after{content:'✕';position:absolute;top:5px;right:7px;font-size:.7rem;color:rgba(176,77,18,.8);font-family:var(--mono)}
+.ldont-label{padding:9px 12px;background:var(--brown-deep)}
+.ldont-label p{font-family:var(--mono);font-size:clamp(.64rem,.82vw,.72rem);color:rgba(212,97,26,.9);letter-spacing:.04em}
 .logo-do-dont{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
 @media(max-width:480px){.logo-do-dont{grid-template-columns:1fr}}
 .ldd{padding:clamp(16px,2.5vw,22px)}
 .ldd-do{background:rgba(74,102,64,.12);border:1px solid rgba(74,102,64,.25)}
 .ldd-dont{background:rgba(176,77,18,.08);border:1px solid rgba(176,77,18,.18)}
-.ldd-tag{font-family:var(–mono);font-size:clamp(.72rem,.92vw,.82rem);letter-spacing:.16em;text-transform:uppercase;margin-bottom:9px;display:block}
-.ldd-do .ldd-tag{color:var(–green-m)}.ldd-dont .ldd-tag{color:var(–orange)}
-.ldd p{font-family:var(–sans);font-size:clamp(.84rem,1.1vw,.92rem);font-weight:300;line-height:1.65;color:rgba(44,26,14,.7)}
+.ldd-tag{font-family:var(--mono);font-size:clamp(.72rem,.92vw,.82rem);letter-spacing:.16em;text-transform:uppercase;margin-bottom:9px;display:block}
+.ldd-do .ldd-tag{color:var(--green-m)}.ldd-dont .ldd-tag{color:var(--orange)}
+.ldd p{font-family:var(--sans);font-size:clamp(.84rem,1.1vw,.92rem);font-weight:300;line-height:1.65;color:rgba(44,26,14,.7)}
 
 /* COLORS */
 .palette-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:clamp(24px,3.5vw,40px)}
@@ -369,66 +368,66 @@ pointer-events:none;
 .swatch{overflow:hidden}
 .sw-block{height:clamp(100px,13vw,140px);width:100%;position:relative}
 .sw-block-inner{position:absolute;top:0;right:0;bottom:0;left:0;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(10px,1.5vw,14px)}
-.sw-name{font-family:var(–display);font-size:clamp(1rem,1.7vw,1.25rem);letter-spacing:.04em}
-.sw-hex{font-family:var(–mono);font-size:clamp(.58rem,.74vw,.66rem);letter-spacing:.1em;opacity:.8;margin-top:2px}
-.sw-role{font-family:var(–mono);font-size:clamp(.54rem,.7vw,.62rem);letter-spacing:.12em;text-transform:uppercase;margin-top:3px}
+.sw-name{font-family:var(--display);font-size:clamp(1rem,1.7vw,1.25rem);letter-spacing:.04em}
+.sw-hex{font-family:var(--mono);font-size:clamp(.58rem,.74vw,.66rem);letter-spacing:.1em;opacity:.8;margin-top:2px}
+.sw-role{font-family:var(--mono);font-size:clamp(.54rem,.7vw,.62rem);letter-spacing:.12em;text-transform:uppercase;margin-top:3px}
 
 /* ANIMAL PRINT ACCENT */
 .animal-accent-row{
-display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
-margin:clamp(20px,3vw,32px) 0;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
+  margin:clamp(20px,3vw,32px) 0;
 }
 .animal-card{padding:clamp(14px,2.2vw,20px);position:relative;overflow:hidden;border:1px solid rgba(44,26,14,.1)}
 .animal-card-bg{position:absolute;top:0;right:0;bottom:0;left:0;opacity:.12}
-.leopard-bg{background-color:var(–orange-l)}
-.zebra-bg{background-color:var(–cream2)}
-.cheetah-bg{background-color:var(–brown-warm)}
+.leopard-bg{background-color:var(--orange-l)}
+.zebra-bg{background-color:var(--cream2)}
+.cheetah-bg{background-color:var(--brown-warm)}
 .animal-card-content{position:relative;z-index:2}
-.animal-title{font-family:var(–display);font-size:clamp(1rem,1.7vw,1.25rem);color:var(–brown-deep);margin-bottom:6px;letter-spacing:.03em}
-.animal-desc{font-family:var(–sans);font-size:clamp(.8rem,1.06vw,.88rem);font-weight:300;line-height:1.62;color:var(–brown-mid)}
-.animal-usage{font-family:var(–mono);font-size:clamp(.58rem,.74vw,.66rem);letter-spacing:.12em;text-transform:uppercase;color:var(–orange);margin-top:8px}
+.animal-title{font-family:var(--display);font-size:clamp(1rem,1.7vw,1.25rem);color:var(--brown-deep);margin-bottom:6px;letter-spacing:.03em}
+.animal-desc{font-family:var(--sans);font-size:clamp(.8rem,1.06vw,.88rem);font-weight:300;line-height:1.62;color:var(--brown-mid)}
+.animal-usage{font-family:var(--mono);font-size:clamp(.58rem,.74vw,.66rem);letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-top:8px}
 
 .color-usage{
-display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;
-margin-top:clamp(24px,3.5vw,40px);
+  display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;
+  margin-top:clamp(24px,3.5vw,40px);
 }
 @media(max-width:580px){.color-usage{grid-template-columns:1fr}}
 .cu-card{padding:clamp(16px,2.4vw,22px);background:#ecddc8;border:1px solid #e0cdb0;border-top:3px solid #d4611a}
 .cu-dot{width:12px;height:12px;margin-bottom:10px}
-.cu-card h5{font-family:var(–sans);font-size:clamp(.92rem,1.24vw,1.04rem);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(–brown-deep);margin-bottom:6px}
-.cu-card p{font-family:var(–sans);font-size:clamp(.82rem,1.08vw,.9rem);font-weight:300;line-height:1.65;color:var(–brown-mid)}
+.cu-card h5{font-family:var(--sans);font-size:clamp(.92rem,1.24vw,1.04rem);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--brown-deep);margin-bottom:6px}
+.cu-card p{font-family:var(--sans);font-size:clamp(.82rem,1.08vw,.9rem);font-weight:300;line-height:1.65;color:var(--brown-mid)}
 
 /* TYPOGRAPHY */
 .type-showcase{
-background:#2c1a0e;
-padding:clamp(36px,5vw,60px) clamp(24px,4vw,44px);
-position:relative;overflow:hidden;
-margin-bottom:clamp(24px,3.5vw,40px);
+  background:#2c1a0e;
+  padding:clamp(36px,5vw,60px) clamp(24px,4vw,44px);
+  position:relative;overflow:hidden;
+  margin-bottom:clamp(24px,3.5vw,40px);
 }
 .type-row{display:flex;align-items:baseline;gap:clamp(12px,2vw,24px);padding:clamp(10px,1.6vw,14px) 0;border-bottom:1px solid rgba(245,237,224,.07)}
 .type-row:last-child{border-bottom:none}
-.type-lbl{font-family:var(–mono);font-size:clamp(.64rem,.84vw,.74rem);letter-spacing:.14em;text-transform:uppercase;color:rgba(212,97,26,.7);min-width:clamp(80px,10vw,110px);flex-shrink:0}
+.type-lbl{font-family:var(--mono);font-size:clamp(.64rem,.84vw,.74rem);letter-spacing:.14em;text-transform:uppercase;color:rgba(212,97,26,.7);min-width:clamp(80px,10vw,110px);flex-shrink:0}
 .type-tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:clamp(24px,3.5vw,40px)}
 @media(max-width:580px){.type-tiles{grid-template-columns:1fr}}
 .tt{padding:clamp(22px,3.5vw,34px);background:#f5ede0;border:1px solid rgba(44,26,14,.12)}
 .tt-light{background:#f5ede0}
 .tt-mid{background:#ecddc8}
-.tt-tag{font-family:var(–mono);font-size:clamp(.6rem,.78vw,.68rem);letter-spacing:.18em;text-transform:uppercase;color:var(–orange);margin-bottom:clamp(12px,1.8vw,18px);display:block}
-.tt-sample-display{font-family:var(–display);font-size:clamp(1.3rem,2.8vw,2rem);color:var(–brown-deep);line-height:1.05;letter-spacing:.02em;margin-bottom:8px}
-.tt-sample-serif{font-family:var(–serif);font-style:italic;font-size:clamp(1.1rem,2.2vw,1.7rem);color:var(–orange);margin-bottom:8px;line-height:1.25}
-.tt-sample-sans{font-family:var(–sans);font-size:clamp(.96rem,1.6vw,1.12rem);font-weight:400;color:var(–brown-deep);margin-bottom:5px}
-.tt-desc{font-family:var(–sans);font-size:clamp(.82rem,1.08vw,.9rem);font-weight:300;color:var(–brown-mid);line-height:1.65}
-.never-use{background:#2c1a0e;padding:clamp(22px,3.5vw,34px);border:1px solid rgba(245,237,224,.08);margin-top:0}
-.never-use-title{font-family:var(–mono);font-size:clamp(.66rem,.86vw,.76rem);letter-spacing:.18em;text-transform:uppercase;color:var(–orange);margin-bottom:14px}
+.tt-tag{font-family:var(--mono);font-size:clamp(.6rem,.78vw,.68rem);letter-spacing:.18em;text-transform:uppercase;color:var(--orange);margin-bottom:clamp(12px,1.8vw,18px);display:block}
+.tt-sample-display{font-family:var(--display);font-size:clamp(1.3rem,2.8vw,2rem);color:var(--brown-deep);line-height:1.05;letter-spacing:.02em;margin-bottom:8px}
+.tt-sample-serif{font-family:var(--serif);font-style:italic;font-size:clamp(1.1rem,2.2vw,1.7rem);color:var(--orange);margin-bottom:8px;line-height:1.25}
+.tt-sample-sans{font-family:var(--sans);font-size:clamp(.96rem,1.6vw,1.12rem);font-weight:400;color:var(--brown-deep);margin-bottom:5px}
+.tt-desc{font-family:var(--sans);font-size:clamp(.82rem,1.08vw,.9rem);font-weight:300;color:var(--brown-mid);line-height:1.65}
+.never-use{background:#2c1a0e;padding:clamp(22px,3.5vw,34px);border:2px solid rgba(245,237,224,.22);margin-top:0}
+.never-use-title{font-family:var(--mono);font-size:clamp(.66rem,.86vw,.76rem);letter-spacing:.18em;text-transform:uppercase;color:var(--orange);margin-bottom:14px}
 .never-use-items{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 @media(max-width:480px){.never-use-items{grid-template-columns:1fr}}
-.nu-item{font-family:var(–sans);font-size:clamp(.84rem,1.1vw,.92rem);font-weight:300;color:rgba(245,237,224,.45);text-decoration:line-through;padding:7px 0;border-bottom:1px solid rgba(245,237,224,.07)}
+.nu-item{font-family:var(--sans);font-size:clamp(.84rem,1.1vw,.92rem);font-weight:300;color:rgba(245,237,224,.45);text-decoration:line-through;padding:7px 0;border-bottom:1px solid rgba(245,237,224,.07)}
 
 /* IMAGERY */
 .mood-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:clamp(24px,3.5vw,40px)}
 .mood-cell{overflow:hidden;position:relative}
 .mood-inner{width:100%;min-height:clamp(120px,15vw,180px);position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(10px,1.5vw,14px)}
-.mood-label{font-family:var(–mono);font-size:clamp(.58rem,.74vw,.66rem);letter-spacing:.12em;text-transform:uppercase;color:rgba(245,237,224,.85);background:rgba(44,26,14,.55);padding:4px 9px;display:inline-block}
+.mood-label{font-family:var(--mono);font-size:clamp(.58rem,.74vw,.66rem);letter-spacing:.12em;text-transform:uppercase;color:rgba(245,237,224,.85);background:rgba(44,26,14,.55);padding:4px 9px;display:inline-block}
 .m1{background:linear-gradient(145deg,#3a2010,#6a3c1c)}
 .m2{background:linear-gradient(145deg,#2e2818,#504028)}
 .m3{background:linear-gradient(145deg,#1c2814,#304020)}
@@ -439,18 +438,18 @@ margin-bottom:clamp(24px,3.5vw,40px);
 .img-rules-list{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 @media(max-width:580px){.img-rules-list{grid-template-columns:1fr}}
 .ir{padding:clamp(16px,2.5vw,22px);background:#f5ede0;border:1px solid rgba(44,26,14,.12)}
-.ir-num{font-family:var(–display);font-size:clamp(1.4rem,2.5vw,1.9rem);color:var(–orange);line-height:1;margin-bottom:7px;display:block}
-.ir h4{font-family:var(–sans);font-size:clamp(.9rem,1.22vw,1rem);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(–brown-deep);margin-bottom:5px}
-.ir p{font-family:var(–sans);font-size:clamp(.82rem,1.08vw,.9rem);font-weight:300;line-height:1.62;color:var(–brown-mid)}
+.ir-num{font-family:var(--display);font-size:clamp(1.4rem,2.5vw,1.9rem);color:var(--orange);line-height:1;margin-bottom:7px;display:block}
+.ir h4{font-family:var(--sans);font-size:clamp(.9rem,1.22vw,1rem);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--brown-deep);margin-bottom:5px}
+.ir p{font-family:var(--sans);font-size:clamp(.82rem,1.08vw,.9rem);font-weight:300;line-height:1.62;color:var(--brown-mid)}
 
 /* TONE OF VOICE */
 .tov-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:clamp(28px,4vw,44px)}
 @media(max-width:580px){.tov-grid{grid-template-columns:1fr}}
 .tov-card{padding:clamp(16px,2.4vw,22px);background:rgba(44,26,14,.04);border:1px solid rgba(44,26,14,.1);border-top:3px solid #d4611a}
-.tov-card h5{font-family:var(–sans);font-size:clamp(1rem,1.34vw,1.12rem);font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(–brown-deep);margin-bottom:10px}
-.tov-example{font-family:var(–serif);font-style:italic;font-size:clamp(.96rem,1.26vw,1.06rem);line-height:1.65;color:var(–brown-mid);border-left:3px solid rgba(212,97,26,.4);padding-left:12px;margin-bottom:8px}
-.tov-caption{font-family:var(–sans);font-size:clamp(.8rem,1.06vw,.88rem);font-weight:300;color:rgba(44,26,14,.6);line-height:1.6}
-.tov-avoid{font-family:var(–sans);font-size:clamp(.82rem,1.08vw,.9rem);color:rgba(176,77,18,.55);text-decoration:line-through;margin-top:6px;padding-left:12px}
+.tov-card h5{font-family:var(--sans);font-size:clamp(1rem,1.34vw,1.12rem);font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--brown-deep);margin-bottom:10px}
+.tov-example{font-family:var(--serif);font-style:italic;font-size:clamp(.96rem,1.26vw,1.06rem);line-height:1.65;color:var(--brown-mid);border-left:3px solid rgba(212,97,26,.4);padding-left:12px;margin-bottom:8px}
+.tov-caption{font-family:var(--sans);font-size:clamp(.8rem,1.06vw,.88rem);font-weight:300;color:rgba(44,26,14,.6);line-height:1.6}
+.tov-avoid{font-family:var(--sans);font-size:clamp(.82rem,1.08vw,.9rem);color:rgba(176,77,18,.55);text-decoration:line-through;margin-top:6px;padding-left:12px}
 
 /* APPLICATIONS */
 .app-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;align-items:stretch}
@@ -460,150 +459,148 @@ margin-bottom:clamp(24px,3.5vw,40px);
 .app-grid > div > .mock-tag-scene,
 .app-grid > div > .mock-catalog-scene{flex:1}
 @media(max-width:580px){.app-grid{grid-template-columns:1fr}}
-.app-label{font-family:var(–mono);font-size:clamp(.58rem,.74vw,.66rem);letter-spacing:.14em;text-transform:uppercase;color:rgba(44,26,14,.45);margin-top:8px;text-align:center}
+.app-label{font-family:var(--mono);font-size:clamp(.58rem,.74vw,.66rem);letter-spacing:.14em;text-transform:uppercase;color:rgba(44,26,14,.45);margin-top:8px;text-align:center}
 
 /* BOX MOCKUP scene */
 .mock-box-scene{
-background:#2c1a0e;
-padding:clamp(28px,4vw,48px) clamp(20px,3.5vw,36px);
-display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
-min-height:clamp(280px,30vw,340px);
-height:100%;
-position:relative;overflow:hidden;
+  background:#2c1a0e;
+  padding:clamp(28px,4vw,48px) clamp(20px,3.5vw,36px);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
+  min-height:clamp(280px,30vw,340px);
+  height:100%;
+  position:relative;overflow:hidden;
 }
 .mock-box-scene::before{
-content:’’;position:absolute;top:0;right:0;bottom:0;left:0;
-background-image:
-linear-gradient(45deg, rgba(90,51,24,.4) 25%, transparent 25%),
-linear-gradient(-45deg, rgba(90,51,24,.4) 25%, transparent 25%),
-linear-gradient(45deg, transparent 75%, rgba(90,51,24,.4) 75%),
-linear-gradient(-45deg, transparent 75%, rgba(90,51,24,.4) 75%);
-background-size:16px 16px;
-background-position:0 0, 0 8px, 8px -8px, -8px 0px;
-background-color:var(–brown-deep);
-opacity:.35;
+  content:'';position:absolute;top:0;right:0;bottom:0;left:0;
+  background-image:
+    linear-gradient(45deg, rgba(90,51,24,.4) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(90,51,24,.4) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(90,51,24,.4) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(90,51,24,.4) 75%);
+  background-size:16px 16px;
+  background-position:0 0, 0 8px, 8px -8px, -8px 0px;
+  background-color:var(--brown-deep);
+  opacity:.35;
 }
 
 /* INSPO FORM scene */
 .mock-form-scene{
-background:#ecddc8;
-padding:clamp(20px,3vw,32px) clamp(18px,2.8vw,28px);
-display:flex;flex-direction:column;gap:clamp(10px,1.5vw,14px);
-min-height:clamp(280px,30vw,340px);
-height:100%;
-border:2px solid var(–cream3);
-position:relative;
+  background:#ecddc8;
+  padding:clamp(20px,3vw,32px) clamp(18px,2.8vw,28px);
+  display:flex;flex-direction:column;gap:clamp(10px,1.5vw,14px);
+  min-height:clamp(280px,30vw,340px);
+  height:100%;
+  border:2px solid var(--cream3);
+  position:relative;
 }
 .form-header{background:#d4611a;margin:-clamp(20px,3vw,32px) -clamp(18px,2.8vw,28px) 0;padding:clamp(12px,1.8vw,18px) clamp(18px,2.8vw,28px);margin-bottom:clamp(14px,2vw,20px)}
-.form-title{font-family:var(–display);font-size:clamp(1.1rem,2.2vw,1.6rem);color:var(–cream);letter-spacing:.04em}
-.form-sub{font-family:var(–mono);font-size:clamp(.58rem,.74vw,.66rem);letter-spacing:.14em;text-transform:uppercase;color:rgba(245,237,224,.65);margin-top:4px}
+.form-title{font-family:var(--display);font-size:clamp(1.1rem,2.2vw,1.6rem);color:var(--cream);letter-spacing:.04em}
+.form-sub{font-family:var(--mono);font-size:clamp(.58rem,.74vw,.66rem);letter-spacing:.14em;text-transform:uppercase;color:rgba(245,237,224,.65);margin-top:4px}
 .form-field{display:flex;flex-direction:column;gap:4px}
-.form-lbl{font-family:var(–mono);font-size:clamp(.62rem,.8vw,.7rem);letter-spacing:.12em;text-transform:uppercase;color:var(–brown-warm)}
-.form-input{background:#f5ede0;border:1px solid #e0cdb0;padding:clamp(7px,1.1vw,10px) 11px;font-family:var(–sans);font-size:clamp(.76rem,1vw,.84rem);font-weight:300;color:rgba(44,26,14,.45);font-style:italic}
+.form-lbl{font-family:var(--mono);font-size:clamp(.62rem,.8vw,.7rem);letter-spacing:.12em;text-transform:uppercase;color:var(--brown-warm)}
+.form-input{background:#f5ede0;border:1px solid #e0cdb0;padding:clamp(7px,1.1vw,10px) 11px;font-family:var(--sans);font-size:clamp(.76rem,1vw,.84rem);font-weight:300;color:rgba(44,26,14,.45);font-style:italic}
 .form-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
 .form-cell{aspect-ratio:1;overflow:hidden}
 .fgc-1{background:linear-gradient(135deg,#3a2010,#6a3c1c)}
 .fgc-2{background:linear-gradient(135deg,#2e2818,#504028)}
 .fgc-3{background:linear-gradient(135deg,#1c2814,#304020)}
-.fgc-add{background:#f5ede0;border:1px dashed #e0cdb0;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:var(–cream3)}
-.form-btn{background:#2c1a0e;padding:clamp(9px,1.3vw,12px);font-family:var(–sans);font-size:clamp(.6rem,.8vw,.68rem);font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(–cream);text-align:center;cursor:pointer;border:none}
-.mock-form-label{font-family:var(–mono);font-size:clamp(.48rem,.62vw,.54rem);letter-spacing:.14em;text-transform:uppercase;color:rgba(44,26,14,.3);position:absolute;bottom:clamp(10px,1.5vw,14px);right:clamp(18px,2.8vw,28px)}
+.fgc-add{background:#f5ede0;border:1px dashed #e0cdb0;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:var(--cream3)}
+.form-btn{background:#2c1a0e;padding:clamp(9px,1.3vw,12px);font-family:var(--sans);font-size:clamp(.6rem,.8vw,.68rem);font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--cream);text-align:center;cursor:pointer;border:none}
+.mock-form-label{font-family:var(--mono);font-size:clamp(.48rem,.62vw,.54rem);letter-spacing:.14em;text-transform:uppercase;color:rgba(44,26,14,.3);position:absolute;bottom:clamp(10px,1.5vw,14px);right:clamp(18px,2.8vw,28px)}
 
 /* TAG MOCKUP */
 .mock-tag-scene{
-background:#2e4030;
-padding:clamp(24px,3.5vw,40px);
-display:flex;align-items:center;justify-content:center;gap:clamp(16px,3vw,32px);
-min-height:clamp(280px,30vw,340px);
-height:100%;
-position:relative;overflow:hidden;flex-wrap:wrap;
+  background:#2e4030;
+  padding:clamp(24px,3.5vw,40px);
+  display:flex;align-items:center;justify-content:center;gap:clamp(16px,3vw,32px);
+  min-height:clamp(280px,30vw,340px);
+  height:100%;
+  position:relative;overflow:hidden;flex-wrap:wrap;
 }
 .mock-tag-scene::before{
-content:’’;position:absolute;top:0;right:0;bottom:0;left:0;
-background-image:
-linear-gradient(45deg, rgba(46,64,48,.5) 25%, transparent 25%),
-linear-gradient(-45deg, rgba(46,64,48,.5) 25%, transparent 25%),
-linear-gradient(45deg, transparent 75%, rgba(46,64,48,.5) 75%),
-linear-gradient(-45deg, transparent 75%, rgba(46,64,48,.5) 75%);
-background-size:14px 14px;
-background-position:0 0, 0 7px, 7px -7px, -7px 0px;
-background-color:var(–green-d);
-opacity:.35;
+  content:'';position:absolute;top:0;right:0;bottom:0;left:0;
+  background-image:
+    linear-gradient(45deg, rgba(46,64,48,.5) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(46,64,48,.5) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(46,64,48,.5) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(46,64,48,.5) 75%);
+  background-size:14px 14px;
+  background-position:0 0, 0 7px, 7px -7px, -7px 0px;
+  background-color:var(--green-d);
+  opacity:.35;
 }
 
 /* CATALOG CARD MOCKUP */
 .mock-catalog-scene{
-background:#f5ede0;
-padding:clamp(24px,3.5vw,40px);
-display:flex;align-items:center;justify-content:center;
-min-height:clamp(280px,30vw,340px);
-height:100%;
-position:relative;
-border:1px solid var(–cream3);
+  background:#f5ede0;
+  padding:clamp(24px,3.5vw,40px);
+  display:flex;align-items:center;justify-content:center;
+  min-height:clamp(280px,30vw,340px);
+  height:100%;
+  position:relative;
+  border:1px solid var(--cream3);
 }
 
 /* FOOTER NAV */
 .footer-nav{
-background:#2c1a0e;
-border-top:3px solid #d4611a;
-padding:clamp(36px,5vw,60px) clamp(20px,4vw,44px);
+  background:#2c1a0e;
+  border-top:3px solid #d4611a;
+  padding:clamp(36px,5vw,60px) clamp(20px,4vw,44px);
 }
 .fn-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,64px);align-items:start}
 @media(max-width:580px){.fn-inner{grid-template-columns:1fr}}
-.fn-brand{font-family:var(–display);font-size:clamp(2rem,5vw,3.8rem);color:var(–cream);letter-spacing:.04em;line-height:1;margin-bottom:10px}
-.fn-brand em{color:var(–orange)}
-.fn-tagline{font-family:var(–serif);font-style:italic;font-size:clamp(.9rem,1.5vw,1.1rem);color:rgba(245,237,224,.45);margin-bottom:clamp(18px,2.8vw,28px)}
-.fn-link{display:inline-flex;align-items:center;gap:10px;font-family:var(–sans);font-size:clamp(.8rem,1.1vw,.9rem);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(–orange);text-decoration:none;transition:color .2s}
-.fn-link:hover{color:var(–cream)}
+.fn-brand{font-family:var(--display);font-size:clamp(2rem,5vw,3.8rem);color:var(--cream);letter-spacing:.04em;line-height:1;margin-bottom:10px}
+.fn-brand em{color:var(--orange)}
+.fn-tagline{font-family:var(--serif);font-style:italic;font-size:clamp(.9rem,1.5vw,1.1rem);color:rgba(245,237,224,.45);margin-bottom:clamp(18px,2.8vw,28px)}
+.fn-link{display:inline-flex;align-items:center;gap:10px;font-family:var(--sans);font-size:clamp(.8rem,1.1vw,.9rem);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);text-decoration:none;transition:color .2s}
+.fn-link:hover{color:var(--cream)}
 .fn-nav-list{display:flex;flex-direction:column;gap:4px}
 .fn-nav-item{display:flex;align-items:center;gap:12px;padding:clamp(9px,1.4vw,12px) 0;border-bottom:1px solid rgba(245,237,224,.06);text-decoration:none;transition:color .18s}
-.fn-nav-item:hover{color:var(–orange)}
-.fn-nav-num{font-family:var(–mono);font-size:clamp(.6rem,.78vw,.68rem);color:rgba(212,97,26,.55);letter-spacing:.06em}
-.fn-nav-name{font-family:var(–sans);font-size:clamp(.86rem,1.14vw,.96rem);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,237,224,.55);transition:color .18s}
-.fn-nav-item:hover .fn-nav-name{color:var(–orange)}
-.fn-back{margin-top:clamp(18px,2.8vw,28px);display:inline-flex;align-items:center;gap:8px;padding:clamp(9px,1.3vw,12px) clamp(18px,2.5vw,28px);background:var(–orange);font-family:var(–sans);font-size:clamp(.72rem,.92vw,.8rem);font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(–cream);text-decoration:none;transition:background .2s}
-.fn-back:hover{background:var(–brown-warm)}
-.fn-credit{font-family:var(–mono);font-size:clamp(.6rem,.78vw,.68rem);letter-spacing:.14em;text-transform:uppercase;color:rgba(245,237,224,.25);margin-top:clamp(24px,3.5vw,36px);padding-top:clamp(16px,2.5vw,24px);border-top:1px solid rgba(245,237,224,.07)}
+.fn-nav-item:hover{color:var(--orange)}
+.fn-nav-num{font-family:var(--mono);font-size:clamp(.6rem,.78vw,.68rem);color:rgba(212,97,26,.55);letter-spacing:.06em}
+.fn-nav-name{font-family:var(--sans);font-size:clamp(.86rem,1.14vw,.96rem);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,237,224,.55);transition:color .18s}
+.fn-nav-item:hover .fn-nav-name{color:var(--orange)}
+.fn-back{margin-top:clamp(18px,2.8vw,28px);display:inline-flex;align-items:center;gap:8px;padding:clamp(9px,1.3vw,12px) clamp(18px,2.5vw,28px);background:var(--orange);font-family:var(--sans);font-size:clamp(.72rem,.92vw,.8rem);font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--cream);text-decoration:none;transition:background .2s}
+.fn-back:hover{background:var(--brown-warm)}
+.fn-credit{font-family:var(--mono);font-size:clamp(.6rem,.78vw,.68rem);letter-spacing:.14em;text-transform:uppercase;color:rgba(245,237,224,.25);margin-top:clamp(24px,3.5vw,36px);padding-top:clamp(16px,2.5vw,24px);border-top:1px solid rgba(245,237,224,.07)}
 
 /* OVERLAY / DRAWER */
 .overlay{position:fixed;top:0;right:0;bottom:0;left:0;background:rgba(44,26,14,.5);z-index:200;opacity:0;pointer-events:none;transition:opacity .3s}
 .overlay.open{opacity:1;pointer-events:all}
 .drawer{
-position:fixed;top:0;right:0;bottom:0;width:clamp(240px,80vw,270px);
-background:#f5ede0;border-left:3px solid #d4611a;
-z-index:201;transform:translateX(100%);
-transition:transform .38s cubic-bezier(.16,1,.3,1);
-padding:clamp(28px,5vw,44px) clamp(18px,3vw,26px);
-display:flex;flex-direction:column;gap:2px;
+  position:fixed;top:0;right:0;bottom:0;width:clamp(240px,80vw,270px);
+  background:#f5ede0;border-left:3px solid #d4611a;
+  z-index:201;transform:translateX(100%);
+  transition:transform .38s cubic-bezier(.16,1,.3,1);
+  padding:clamp(28px,5vw,44px) clamp(18px,3vw,26px);
+  display:flex;flex-direction:column;gap:2px;
 }
 .drawer.open{transform:translateX(0)}
-.drawer-head{font-family:var(–display);font-size:clamp(1rem,1.5vw,1.2rem);letter-spacing:.04em;color:var(–brown-deep);margin-bottom:16px}
-.d-item{display:flex;align-items:center;gap:12px;padding:clamp(9px,1.3vw,12px) 10px;font-family:var(–sans);font-size:clamp(.78rem,1.06vw,.86rem);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(–brown-mid);text-decoration:none;transition:background .15s,color .15s}
-.d-item:hover{background:var(–orange);color:var(–cream)}
-.d-num{font-family:var(–mono);font-size:clamp(.54rem,.7vw,.6rem);color:var(–orange);min-width:18px}
+.drawer-head{font-family:var(--display);font-size:clamp(1rem,1.5vw,1.2rem);letter-spacing:.04em;color:var(--brown-deep);margin-bottom:16px}
+.d-item{display:flex;align-items:center;gap:12px;padding:clamp(9px,1.3vw,12px) 10px;font-family:var(--sans);font-size:clamp(.78rem,1.06vw,.86rem);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--brown-mid);text-decoration:none;transition:background .15s,color .15s}
+.d-item:hover{background:var(--orange);color:var(--cream)}
+.d-num{font-family:var(--mono);font-size:clamp(.54rem,.7vw,.6rem);color:var(--orange);min-width:18px}
 .d-item:hover .d-num{color:rgba(245,237,224,.7)}
 .drawer-bottom{margin-top:auto;padding-top:clamp(16px,2.5vw,24px);display:flex;flex-direction:column;gap:6px;border-top:1px solid rgba(44,26,14,.1)}
-.d-link{display:block;padding:clamp(8px,1.2vw,11px) 10px;font-family:var(–sans);font-size:clamp(.7rem,.92vw,.8rem);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(–orange);text-decoration:none;transition:color .15s,background .15s}
-.d-link:hover{color:var(–cream);background:var(–orange)}
+.d-link{display:block;padding:clamp(8px,1.2vw,11px) 10px;font-family:var(--sans);font-size:clamp(.7rem,.92vw,.8rem);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);text-decoration:none;transition:color .15s,background .15s}
+.d-link:hover{color:var(--cream);background:var(--orange)}
 .d-link-back{color:rgba(44,26,14,.4)}
-.d-link-back:hover{background:var(–brown-deep);color:var(–cream)}
+.d-link-back:hover{background:var(--brown-deep);color:var(--cream)}
 
 /* REVEAL */
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
 .reveal.in{opacity:1;transform:none}
 
 @media(max-width:420px){
-.how-steps{grid-template-columns:1fr}
-.tier-row{grid-template-columns:1fr}
-.logo-dont-grid{grid-template-columns:1fr 1fr}
+  .how-steps{grid-template-columns:1fr}
+  .tier-row{grid-template-columns:1fr}
+  .logo-dont-grid{grid-template-columns:1fr 1fr}
 }
 </style>
-
 </head>
 <body>
 
 <!-- NAV -->
-
 <nav class="top-nav">
   <div class="nav-left">
     <span class="nav-wordmark"><span class="wm-find">FIND</span><span class="wm-ly">LY</span></span>
@@ -625,7 +622,6 @@ display:flex;flex-direction:column;gap:2px;
 </nav>
 
 <!-- HERO: SPLIT -->
-
 <section class="hero" id="top">
   <div class="hero-left">
     <div class="hero-meta">Brand Identity Guidelines</div>
@@ -649,7 +645,6 @@ display:flex;flex-direction:column;gap:2px;
 </section>
 
 <!-- CONTENTS STRIP -->
-
 <nav class="contents-strip" id="contents">
   <a class="cs-item" href="#intro"><span class="cs-num">01</span><span class="cs-name">Introduction</span></a>
   <a class="cs-item" href="#how"><span class="cs-num">02</span><span class="cs-name">How It Works</span></a>
@@ -660,8 +655,8 @@ display:flex;flex-direction:column;gap:2px;
   <a class="cs-item" href="#assets"><span class="cs-num">07</span><span class="cs-name">Applications</span></a>
 </nav>
 
-<!-- SECTION 01: INTRO -->
 
+<!-- SECTION 01: INTRO -->
 <section class="sec sec-cream" id="intro" style="position:relative">
   <div class="wrap">
     <div class="two-col reveal">
@@ -714,130 +709,127 @@ display:flex;flex-direction:column;gap:2px;
       </div>
     </div>
 
-```
-<!-- TIERS -->
-<div class="tiers-wrap reveal">
-  <div class="sec-eyebrow" style="margin-bottom:12px">Service Tiers + Subscription</div>
-  <div class="tier-row">
-    <!-- Tier 1 -->
-    <div class="tier-card tc-dig">
-      <div class="tier-card-header">
-        <span class="tier-tag">Tier 01 · Entry</span>
-        <div class="tier-name">The Dig</div>
-        <div class="tier-price">From $85</div>
-      </div>
-      <div class="tier-card-body">
-        <div class="tier-items">
-          <div class="tier-item">3–4 curated vintage pieces</div>
-          <div class="tier-item">Based on your inspo board</div>
-          <div class="tier-item">Accent items: ceramics, textiles, small objects</div>
-          <div class="tier-item">Handwritten piece notes included</div>
+    <!-- TIERS -->
+    <div class="tiers-wrap reveal">
+      <div class="sec-eyebrow" style="margin-bottom:12px">Service Tiers + Subscription</div>
+      <div class="tier-row">
+        <!-- Tier 1 -->
+        <div class="tier-card tc-dig">
+          <div class="tier-card-header">
+            <span class="tier-tag">Tier 01 · Entry</span>
+            <div class="tier-name">The Dig</div>
+            <div class="tier-price">From $85</div>
+          </div>
+          <div class="tier-card-body">
+            <div class="tier-items">
+              <div class="tier-item">3–4 curated vintage pieces</div>
+              <div class="tier-item">Based on your inspo board</div>
+              <div class="tier-item">Accent items: ceramics, textiles, small objects</div>
+              <div class="tier-item">Handwritten piece notes included</div>
+            </div>
+          </div>
+        </div>
+        <!-- Tier 2 -->
+        <div class="tier-card tc-haul">
+          <div class="tier-card-header">
+            <span class="tier-tag">Tier 02 · Mid</span>
+            <div class="tier-name">The Haul</div>
+            <div class="tier-price">From $165</div>
+          </div>
+          <div class="tier-card-body">
+            <div class="tier-items">
+              <div class="tier-item">5–8 curated pieces</div>
+              <div class="tier-item">Mix of statement + accent items</div>
+              <div class="tier-item">Includes lighting, art, larger objects</div>
+              <div class="tier-item">Provenance notes + styling suggestion</div>
+            </div>
+          </div>
+        </div>
+        <!-- Tier 3 -->
+        <div class="tier-card tc-archive">
+          <div class="tier-card-header">
+            <span class="tier-tag">Tier 03 · Premium</span>
+            <div class="tier-name">The Archive</div>
+            <div class="tier-price">From $275</div>
+          </div>
+          <div class="tier-card-body">
+            <div class="tier-items">
+              <div class="tier-item">9+ carefully sourced pieces</div>
+              <div class="tier-item">Rare & designer vintage included</div>
+              <div class="tier-item">Era-specific sourcing on request</div>
+              <div class="tier-item">Printed lookbook + full piece histories</div>
+            </div>
+          </div>
+        </div>
+        <!-- Tier 4: Subscription -->
+        <div class="tier-card tc-sub">
+          <div class="tier-corner">★ Sub</div>
+          <div class="tier-card-header">
+            <span class="tier-tag">Tier 04 · Monthly</span>
+            <div class="tier-name">The Find</div>
+            <div class="tier-price">$75/mo</div>
+          </div>
+          <div class="tier-card-body">
+            <div class="tier-items">
+              <div class="tier-item">2–3 seasonal accent pieces monthly</div>
+              <div class="tier-item">Evolving inspo profile on file</div>
+              <div class="tier-item">Pause or cancel anytime</div>
+              <div class="tier-item">Priority sourcing access year-round</div>
+            </div>
+            <span class="tier-sub-badge">↻ Subscription</span>
+          </div>
         </div>
       </div>
     </div>
-    <!-- Tier 2 -->
-    <div class="tier-card tc-haul">
-      <div class="tier-card-header">
-        <span class="tier-tag">Tier 02 · Mid</span>
-        <div class="tier-name">The Haul</div>
-        <div class="tier-price">From $165</div>
-      </div>
-      <div class="tier-card-body">
-        <div class="tier-items">
-          <div class="tier-item">5–8 curated pieces</div>
-          <div class="tier-item">Mix of statement + accent items</div>
-          <div class="tier-item">Includes lighting, art, larger objects</div>
-          <div class="tier-item">Provenance notes + styling suggestion</div>
-        </div>
-      </div>
-    </div>
-    <!-- Tier 3 -->
-    <div class="tier-card tc-archive">
-      <div class="tier-card-header">
-        <span class="tier-tag">Tier 03 · Premium</span>
-        <div class="tier-name">The Archive</div>
-        <div class="tier-price">From $275</div>
-      </div>
-      <div class="tier-card-body">
-        <div class="tier-items">
-          <div class="tier-item">9+ carefully sourced pieces</div>
-          <div class="tier-item">Rare & designer vintage included</div>
-          <div class="tier-item">Era-specific sourcing on request</div>
-          <div class="tier-item">Printed lookbook + full piece histories</div>
-        </div>
-      </div>
-    </div>
-    <!-- Tier 4: Subscription -->
-    <div class="tier-card tc-sub">
-      <div class="tier-corner">★ Sub</div>
-      <div class="tier-card-header">
-        <span class="tier-tag">Tier 04 · Monthly</span>
-        <div class="tier-name">The Find</div>
-        <div class="tier-price">$75/mo</div>
-      </div>
-      <div class="tier-card-body">
-        <div class="tier-items">
-          <div class="tier-item">2–3 seasonal accent pieces monthly</div>
-          <div class="tier-item">Evolving inspo profile on file</div>
-          <div class="tier-item">Pause or cancel anytime</div>
-          <div class="tier-item">Priority sourcing access year-round</div>
-        </div>
-        <span class="tier-sub-badge">↻ Subscription</span>
-      </div>
-    </div>
-  </div>
-</div>
 
-<!-- Zebra stripe section divider -->
-<div style="margin:clamp(32px,5vw,52px) 0 clamp(24px,4vw,40px);height:6px;overflow:hidden;position:relative">
-  <svg width="100%" height="6" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-    <defs>
-      <pattern id="zebra-div" x="0" y="0" width="24" height="6" patternUnits="userSpaceOnUse">
-        <rect width="12" height="6" fill="#8b4a20" opacity=".25"/>
-        <rect x="12" width="12" height="6" fill="#d4611a" opacity=".18"/>
-      </pattern>
-    </defs>
-    <rect width="100%" height="6" fill="url(#zebra-div)"/>
-  </svg>
-</div>
+    <!-- Zebra stripe section divider -->
+    <div style="margin:clamp(32px,5vw,52px) 0 clamp(24px,4vw,40px);height:6px;overflow:hidden;position:relative">
+      <svg width="100%" height="6" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <defs>
+          <pattern id="zebra-div" x="0" y="0" width="24" height="6" patternUnits="userSpaceOnUse">
+            <rect width="12" height="6" fill="#8b4a20" opacity=".25"/>
+            <rect x="12" width="12" height="6" fill="#d4611a" opacity=".18"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="6" fill="url(#zebra-div)"/>
+      </svg>
+    </div>
 
-<!-- TOV -->
-<div class="reveal">
-  <div class="sec-eyebrow" style="margin-top:clamp(40px,6vw,64px);margin-bottom:12px">Tone of Voice</div>
-  <div class="tov-grid">
-    <div class="tov-card">
-      <h5>Warm & knowing</h5>
-      <div class="tov-example">"We found this in a warehouse in Portland. We couldn't stop thinking about it. Now it's yours."</div>
-      <div class="tov-caption">Specific over vague. Conversational but never casual. Speak as someone who genuinely loves this stuff.</div>
-      <div class="tov-avoid">"Beautiful vintage-inspired décor for every home! 🏠✨"</div>
+    <!-- TOV -->
+    <div class="reveal">
+      <div class="sec-eyebrow" style="margin-top:clamp(40px,6vw,64px);margin-bottom:12px">Tone of Voice</div>
+      <div class="tov-grid">
+        <div class="tov-card">
+          <h5>Warm & knowing</h5>
+          <div class="tov-example">"We found this in a warehouse in Portland. We couldn't stop thinking about it. Now it's yours."</div>
+          <div class="tov-caption">Specific over vague. Conversational but never casual. Speak as someone who genuinely loves this stuff.</div>
+          <div class="tov-avoid">"Beautiful vintage-inspired décor for every home! 🏠✨"</div>
+        </div>
+        <div class="tov-card">
+          <h5>Story-forward</h5>
+          <div class="tov-example">"1962. Danish. Someone put it in storage forty years ago and forgot it was good."</div>
+          <div class="tov-caption">Provenance is personality. Names the era, the origin, the material. Objects have a past — we tell it.</div>
+          <div class="tov-avoid">"Great condition item with unique vintage styling, perfect for any décor."</div>
+        </div>
+        <div class="tov-card">
+          <h5>Unhurried, editorial</h5>
+          <div class="tov-example">"There's no algorithm here. Just someone with taste, patience, and a lot of time at estate sales."</div>
+          <div class="tov-caption">No urgency-speak. No "limited stock." Findly's pace is deliberate — the language should match.</div>
+          <div class="tov-avoid">"Shop now! Last few boxes remaining — don't miss out!"</div>
+        </div>
+        <div class="tov-card">
+          <h5>Never: trendy, clinical, loud</h5>
+          <div class="tov-example">"Your board said warm and layered. We went looking."</div>
+          <div class="tov-caption">No "aesthetic" as a noun. No "curated vibes." No exclamation marks. Describe things plainly and beautifully.</div>
+          <div class="tov-avoid">"Serving major mid-century modern energy straight to your door! 🌿"</div>
+        </div>
+      </div>
     </div>
-    <div class="tov-card">
-      <h5>Story-forward</h5>
-      <div class="tov-example">"1962. Danish. Someone put it in storage forty years ago and forgot it was good."</div>
-      <div class="tov-caption">Provenance is personality. Names the era, the origin, the material. Objects have a past — we tell it.</div>
-      <div class="tov-avoid">"Great condition item with unique vintage styling, perfect for any décor."</div>
-    </div>
-    <div class="tov-card">
-      <h5>Unhurried, editorial</h5>
-      <div class="tov-example">"There's no algorithm here. Just someone with taste, patience, and a lot of time at estate sales."</div>
-      <div class="tov-caption">No urgency-speak. No "limited stock." Findly's pace is deliberate — the language should match.</div>
-      <div class="tov-avoid">"Shop now! Last few boxes remaining — don't miss out!"</div>
-    </div>
-    <div class="tov-card">
-      <h5>Never: trendy, clinical, loud</h5>
-      <div class="tov-example">"Your board said warm and layered. We went looking."</div>
-      <div class="tov-caption">No "aesthetic" as a noun. No "curated vibes." No exclamation marks. Describe things plainly and beautifully.</div>
-      <div class="tov-avoid">"Serving major mid-century modern energy straight to your door! 🌿"</div>
-    </div>
-  </div>
-</div>
-```
-
   </div>
 </section>
 
-<!-- SECTION 02: HOW IT WORKS -->
 
+<!-- SECTION 02: HOW IT WORKS -->
 <section class="sec sec-dark sec-has-animal-top" id="how">
   <div class="wrap reveal">
     <div class="sec-eyebrow">02 — How It Works</div>
@@ -853,13 +845,13 @@ display:flex;flex-direction:column;gap:2px;
       <div class="how-step">
         <div class="how-step-num">02</div>
         <h4>Send a inspo board</h4>
-        <p>Images, moods, eras, colors.</p>
+        <p>Drop images, colors, eras — describe the room you're after. The more specific, the better the find. Think moods, not just styles.</p>
         <div class="how-step-connector"></div>
       </div>
       <div class="how-step">
         <div class="how-step-num">03</div>
         <h4>We go sourcing</h4>
-        <p>A curator sources it by hand.</p>
+        <p>Your board goes to a real curator. They hit the markets and estate sales with your vision in hand. Every piece is chosen intentionally.</p>
         <div class="how-step-connector"></div>
       </div>
       <div class="how-step">
@@ -872,7 +864,6 @@ display:flex;flex-direction:column;gap:2px;
 </section>
 
 <!-- SECTION 03: LOGO -->
-
 <section class="sec sec-cream2 sec-has-animal-top" id="logo">
   <div class="wrap reveal">
     <div class="sec-eyebrow">03 — Logo</div>
@@ -884,64 +875,60 @@ display:flex;flex-direction:column;gap:2px;
       <div class="sec-head-right">FINDLY in Alfa Slab One — FIND in Cream or Brown, LY always in Burnt Orange. The two-color split is the mark. No icon, no tagline required. The name and its contrast does the work.</div>
     </div>
 
-```
-<div class="logo-showcase">
-  <div class="logo-main">
-    <div class="logo-rule-top"></div>
-    <div class="logo-wordmark"><span class="wm-find">FIND</span><span class="wm-ly">LY</span></div>
-    <div class="logo-rule-bot"></div>
-    <div class="logo-sub">Curated Vintage · Home Décor</div>
-  </div>
-</div>
+    <div class="logo-showcase">
+      <div class="logo-main">
+        <div class="logo-rule-top"></div>
+        <div class="logo-wordmark"><span class="wm-find">FIND</span><span class="wm-ly">LY</span></div>
+        <div class="logo-rule-bot"></div>
+        <div class="logo-sub">Curated Vintage · Home Décor</div>
+      </div>
+    </div>
 
-<div class="logo-variants">
-  <div class="lv" style="background:#2c1a0e;border:1px solid rgba(245,237,224,.06)">
-    <span class="lv-word"><span style="color:var(--cream)">FIND</span><span style="color:var(--orange)">LY</span></span>
-    <div class="lv-rule" style="background:var(--orange)"></div>
-    <span class="lv-tag" style="font-family:var(--mono);font-size:clamp(.58rem,.76vw,.66rem);letter-spacing:.16em;text-transform:uppercase;color:rgba(212,97,26,.7)">On Dark — Primary</span>
-  </div>
-  <div class="lv" style="background:#f5ede0;border:1px solid rgba(44,26,14,.1)">
-    <span class="lv-word"><span style="color:var(--brown-deep)">FIND</span><span style="color:var(--orange)">LY</span></span>
-    <div class="lv-rule" style="background:var(--orange)"></div>
-    <span class="lv-tag" style="font-family:var(--mono);font-size:clamp(.58rem,.76vw,.66rem);letter-spacing:.16em;text-transform:uppercase;color:var(--orange)">On Cream — Print</span>
-  </div>
-  <div class="lv" style="background:#d4611a;border:1px solid rgba(44,26,14,.1)">
-    <span class="lv-word"><span style="color:var(--cream)">FIND</span><span style="color:var(--brown-deep)">LY</span></span>
-    <div class="lv-rule" style="background:rgba(245,237,224,.5)"></div>
-    <span class="lv-tag" style="font-family:var(--mono);font-size:clamp(.58rem,.76vw,.66rem);letter-spacing:.16em;text-transform:uppercase;color:rgba(245,237,224,.6)">On Orange — Accents only</span>
-  </div>
-</div>
+    <div class="logo-variants">
+      <div class="lv" style="background:#2c1a0e;border:1px solid rgba(245,237,224,.06)">
+        <span class="lv-word"><span style="color:var(--cream)">FIND</span><span style="color:var(--orange)">LY</span></span>
+        <div class="lv-rule" style="background:var(--orange)"></div>
+        <span class="lv-tag" style="font-family:var(--mono);font-size:clamp(.58rem,.76vw,.66rem);letter-spacing:.16em;text-transform:uppercase;color:rgba(212,97,26,.7)">On Dark — Primary</span>
+      </div>
+      <div class="lv" style="background:#f5ede0;border:1px solid rgba(44,26,14,.1)">
+        <span class="lv-word"><span style="color:var(--brown-deep)">FIND</span><span style="color:var(--orange)">LY</span></span>
+        <div class="lv-rule" style="background:var(--orange)"></div>
+        <span class="lv-tag" style="font-family:var(--mono);font-size:clamp(.58rem,.76vw,.66rem);letter-spacing:.16em;text-transform:uppercase;color:var(--orange)">On Cream — Print</span>
+      </div>
+      <div class="lv" style="background:#d4611a;border:1px solid rgba(44,26,14,.1)">
+        <span class="lv-word"><span style="color:var(--cream)">FIND</span><span style="color:var(--brown-deep)">LY</span></span>
+        <div class="lv-rule" style="background:rgba(245,237,224,.5)"></div>
+        <span class="lv-tag" style="font-family:var(--mono);font-size:clamp(.58rem,.76vw,.66rem);letter-spacing:.16em;text-transform:uppercase;color:rgba(245,237,224,.6)">On Orange — Accents only</span>
+      </div>
+    </div>
 
-<div style="margin-top:clamp(24px,3.5vw,40px);font-family:var(--mono);font-size:clamp(.7rem,.9vw,.8rem);letter-spacing:.16em;text-transform:uppercase;color:var(--orange);margin-bottom:10px">Incorrect Usage</div>
-<div class="logo-dont-grid">
-  <div class="ldont">
-    <div class="ldont-vis"><span style="font-family:'Alfa Slab One',serif;font-size:1.3rem;display:block;color:var(--brown-deep)">FINDLY</span></div>
-    <div class="ldont-label"><p>Don't use single color</p></div>
-  </div>
-  <div class="ldont">
-    <div class="ldont-vis" style="background:#d4e4c8"><span style="font-family:'Alfa Slab One',serif;font-size:1.3rem;color:var(--green-m)">FINDLY</span></div>
-    <div class="ldont-label"><p>Don't use on cool/sage backgrounds</p></div>
-  </div>
-  <div class="ldont">
-    <div class="ldont-vis"><span style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--brown-deep);letter-spacing:.04em">FINDLY</span></div>
-    <div class="ldont-label"><p>Don't swap to display serif</p></div>
-  </div>
-  <div class="ldont">
-    <div class="ldont-vis"><span style="font-family:'Alfa Slab One',serif;font-size:.75rem;color:var(--brown-deep);letter-spacing:.55em">F I N D L Y</span></div>
-    <div class="ldont-label"><p>Don't over-space letters</p></div>
-  </div>
-</div>
-<div class="logo-do-dont">
-  <div class="ldd ldd-do"><span class="ldd-tag">✓ Do</span><p>Always Alfa Slab One, all-caps. FIND in the base color (Cream or Brown), LY in Burnt Orange — always. Maintain 1× cap-height clearspace. The two-color split is the mark.</p></div>
-  <div class="ldd ldd-dont"><span class="ldd-tag">✗ Don't</span><p>LY is always orange. No outlines. No wrong backgrounds.</p></div>
-</div>
-```
-
+    <div style="margin-top:clamp(24px,3.5vw,40px);font-family:var(--mono);font-size:clamp(.7rem,.9vw,.8rem);letter-spacing:.16em;text-transform:uppercase;color:var(--orange);margin-bottom:10px">Incorrect Usage</div>
+    <div class="logo-dont-grid">
+      <div class="ldont">
+        <div class="ldont-vis"><span style="font-family:'Alfa Slab One',serif;font-size:1.3rem;display:block;color:var(--brown-deep)">FINDLY</span></div>
+        <div class="ldont-label"><p>Don't use single color</p></div>
+      </div>
+      <div class="ldont">
+        <div class="ldont-vis" style="background:#d4e4c8"><span style="font-family:'Alfa Slab One',serif;font-size:1.3rem;color:var(--green-m)">FINDLY</span></div>
+        <div class="ldont-label"><p>Don't use on cool/sage backgrounds</p></div>
+      </div>
+      <div class="ldont">
+        <div class="ldont-vis"><span style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--brown-deep);letter-spacing:.04em">FINDLY</span></div>
+        <div class="ldont-label"><p>Don't swap to display serif</p></div>
+      </div>
+      <div class="ldont">
+        <div class="ldont-vis"><span style="font-family:'Alfa Slab One',serif;font-size:.75rem;color:var(--brown-deep);letter-spacing:.55em">F I N D L Y</span></div>
+        <div class="ldont-label"><p>Don't over-space letters</p></div>
+      </div>
+    </div>
+    <div class="logo-do-dont">
+      <div class="ldd ldd-do"><span class="ldd-tag">✓ Do</span><p>Always Alfa Slab One, all-caps. FIND in the base color (Cream or Brown), LY in Burnt Orange — always. Maintain 1× cap-height clearspace. The two-color split is the mark.</p></div>
+      <div class="ldd ldd-dont"><span class="ldd-tag">✗ Don't</span><p>LY is always orange. No outlines. No wrong backgrounds.</p></div>
+    </div>
   </div>
 </section>
 
 <!-- SECTION 04: COLORS -->
-
 <section class="sec sec-cream sec-has-animal-top" id="colors">
   <div class="wrap reveal">
     <div class="sec-eyebrow">04 — Colors ✦</div>
@@ -949,177 +936,173 @@ display:flex;flex-direction:column;gap:2px;
     <div class="sec-rule"></div>
     <p style="font-family:var(--sans);font-size:clamp(.86rem,1.18vw,.96rem);font-weight:300;line-height:1.8;color:var(--brown-mid);max-width:640px;margin-bottom:clamp(28px,4vw,44px)">Teak wood, burnt orange tile, aged ceramic, olive drapes. The palette of a well-loved mid-century living room — earthy, grounded, and deliberately warm. No cool tones. No grey.</p>
 
-```
-<div class="palette-grid">
-  <div class="swatch">
-    <div class="sw-block" style="background:#2c1a0e">
-      <div class="sw-block-inner">
-        <span class="sw-name" style="color:#f5ede0">Deep Brown</span>
-        <span class="sw-hex" style="color:rgba(245,237,224,.55)">#2C1A0E</span>
-        <span class="sw-role" style="color:rgba(212,97,26,.8)">Base dark</span>
+    <div class="palette-grid">
+      <div class="swatch">
+        <div class="sw-block" style="background:#2c1a0e">
+          <div class="sw-block-inner">
+            <span class="sw-name" style="color:#f5ede0">Deep Brown</span>
+            <span class="sw-hex" style="color:rgba(245,237,224,.55)">#2C1A0E</span>
+            <span class="sw-role" style="color:rgba(212,97,26,.8)">Base dark</span>
+          </div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="sw-block" style="background:#d4611a">
+          <div class="sw-block-inner">
+            <span class="sw-name" style="color:#f5ede0">Burnt Orange</span>
+            <span class="sw-hex" style="color:rgba(245,237,224,.55)">#D4611A</span>
+            <span class="sw-role" style="color:rgba(245,237,224,.7)">Primary accent</span>
+          </div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="sw-block" style="background:#8b4a20">
+          <div class="sw-block-inner">
+            <span class="sw-name" style="color:#f5ede0">Teak</span>
+            <span class="sw-hex" style="color:rgba(245,237,224,.55)">#8B4A20</span>
+            <span class="sw-role" style="color:rgba(245,237,224,.65)">Mid warm</span>
+          </div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="sw-block" style="background:#f5ede0;border:1px solid #e0cdb0">
+          <div class="sw-block-inner">
+            <span class="sw-name" style="color:#2c1a0e">Parchment</span>
+            <span class="sw-hex" style="color:rgba(44,26,14,.45)">#F5EDE0</span>
+            <span class="sw-role" style="color:var(--orange)">Base light</span>
+          </div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="sw-block" style="background:#2e4030">
+          <div class="sw-block-inner">
+            <span class="sw-name" style="color:#d4e4c8">Forest</span>
+            <span class="sw-hex" style="color:rgba(212,228,200,.5)">#2E4030</span>
+            <span class="sw-role" style="color:rgba(138,170,120,.8)">Contrast accent</span>
+          </div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="sw-block" style="background:#c8a040">
+          <div class="sw-block-inner">
+            <span class="sw-name" style="color:#2c1a0e">Gold</span>
+            <span class="sw-hex" style="color:rgba(44,26,14,.55)">#C8A040</span>
+            <span class="sw-role" style="color:rgba(44,26,14,.6)">Use sparingly</span>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="swatch">
-    <div class="sw-block" style="background:#d4611a">
-      <div class="sw-block-inner">
-        <span class="sw-name" style="color:#f5ede0">Burnt Orange</span>
-        <span class="sw-hex" style="color:rgba(245,237,224,.55)">#D4611A</span>
-        <span class="sw-role" style="color:rgba(245,237,224,.7)">Primary accent</span>
-      </div>
-    </div>
-  </div>
-  <div class="swatch">
-    <div class="sw-block" style="background:#8b4a20">
-      <div class="sw-block-inner">
-        <span class="sw-name" style="color:#f5ede0">Teak</span>
-        <span class="sw-hex" style="color:rgba(245,237,224,.55)">#8B4A20</span>
-        <span class="sw-role" style="color:rgba(245,237,224,.65)">Mid warm</span>
-      </div>
-    </div>
-  </div>
-  <div class="swatch">
-    <div class="sw-block" style="background:#f5ede0;border:1px solid #e0cdb0">
-      <div class="sw-block-inner">
-        <span class="sw-name" style="color:#2c1a0e">Parchment</span>
-        <span class="sw-hex" style="color:rgba(44,26,14,.45)">#F5EDE0</span>
-        <span class="sw-role" style="color:var(--orange)">Base light</span>
-      </div>
-    </div>
-  </div>
-  <div class="swatch">
-    <div class="sw-block" style="background:#2e4030">
-      <div class="sw-block-inner">
-        <span class="sw-name" style="color:#d4e4c8">Forest</span>
-        <span class="sw-hex" style="color:rgba(212,228,200,.5)">#2E4030</span>
-        <span class="sw-role" style="color:rgba(138,170,120,.8)">Contrast accent</span>
-      </div>
-    </div>
-  </div>
-  <div class="swatch">
-    <div class="sw-block" style="background:#c8a040">
-      <div class="sw-block-inner">
-        <span class="sw-name" style="color:#2c1a0e">Gold</span>
-        <span class="sw-hex" style="color:rgba(44,26,14,.55)">#C8A040</span>
-        <span class="sw-role" style="color:rgba(44,26,14,.6)">Use sparingly</span>
-      </div>
-    </div>
-  </div>
-</div>
 
-<!-- RATIO BAR -->
-<div style="margin-bottom:clamp(24px,3.5vw,40px)">
-  <div class="sec-eyebrow" style="margin-bottom:10px">Usage Ratio</div>
-  <div style="display:flex;height:clamp(28px,3.5vw,36px);overflow:hidden;box-shadow:0 0 0 1px rgba(44,26,14,.15);margin-bottom:10px">
-    <div style="flex:40;background:#f5ede0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:clamp(.46rem,.6vw,.54rem);color:rgba(44,26,14,.55);letter-spacing:.06em">40%</div>
-    <div style="flex:26;background:#2c1a0e;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:clamp(.46rem,.6vw,.54rem);color:rgba(245,237,224,.7);letter-spacing:.06em">26%</div>
-    <div style="flex:18;background:#d4611a;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:clamp(.46rem,.6vw,.54rem);color:rgba(245,237,224,.85);letter-spacing:.06em">18%</div>
-    <div style="flex:10;background:#8b4a20;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:clamp(.42rem,.54vw,.5rem);color:rgba(245,237,224,.7);letter-spacing:.04em">10%</div>
-    <div style="flex:4;background:#2e4030;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:clamp(.38rem,.5vw,.46rem);color:rgba(212,228,200,.8)">4%</div>
-    <div style="flex:2;background:#c8a040;display:flex;align-items:center;justify-content:center"></div>
-  </div>
-  <div style="display:flex;flex-wrap:wrap;gap:clamp(8px,1.4vw,14px)">
-    <span style="display:flex;align-items:center;gap:5px;font-family:var(--mono);font-size:clamp(.38rem,.5vw,.46rem);color:var(--brown-mid);letter-spacing:.06em"><span style="width:8px;height:8px;background:#f5ede0;border:1px solid #c0b090;flex-shrink:0"></span>Parchment 40%</span>
-    <span style="display:flex;align-items:center;gap:5px;font-family:var(--mono);font-size:clamp(.38rem,.5vw,.46rem);color:var(--brown-mid);letter-spacing:.06em"><span style="width:8px;height:8px;background:#2c1a0e;flex-shrink:0"></span>Deep Brown 26%</span>
-    <span style="display:flex;align-items:center;gap:5px;font-family:var(--mono);font-size:clamp(.38rem,.5vw,.46rem);color:var(--brown-mid);letter-spacing:.06em"><span style="width:8px;height:8px;background:#d4611a;flex-shrink:0"></span>Burnt Orange 18%</span>
-    <span style="display:flex;align-items:center;gap:5px;font-family:var(--mono);font-size:clamp(.38rem,.5vw,.46rem);color:var(--brown-mid);letter-spacing:.06em"><span style="width:8px;height:8px;background:#8b4a20;flex-shrink:0"></span>Teak 10%</span>
-    <span style="display:flex;align-items:center;gap:5px;font-family:var(--mono);font-size:clamp(.38rem,.5vw,.46rem);color:var(--brown-mid);letter-spacing:.06em"><span style="width:8px;height:8px;background:#2e4030;flex-shrink:0"></span>Forest 4%</span>
-    <span style="display:flex;align-items:center;gap:5px;font-family:var(--mono);font-size:clamp(.38rem,.5vw,.46rem);color:var(--brown-mid);letter-spacing:.06em"><span style="width:8px;height:8px;background:#c8a040;flex-shrink:0"></span>Gold — sparingly</span>
-  </div>
-</div>
+    <!-- RATIO BAR -->
+    <div style="margin-bottom:clamp(24px,3.5vw,40px)">
+      <div class="sec-eyebrow" style="margin-bottom:10px">Usage Ratio</div>
+      <div style="display:flex;height:clamp(28px,3.5vw,36px);overflow:hidden;box-shadow:0 0 0 1px rgba(44,26,14,.15);margin-bottom:10px">
+        <div style="flex:40;background:#f5ede0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:clamp(.46rem,.6vw,.54rem);color:rgba(44,26,14,.55);letter-spacing:.06em">40%</div>
+        <div style="flex:26;background:#2c1a0e;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:clamp(.46rem,.6vw,.54rem);color:rgba(245,237,224,.7);letter-spacing:.06em">26%</div>
+        <div style="flex:18;background:#d4611a;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:clamp(.46rem,.6vw,.54rem);color:rgba(245,237,224,.85);letter-spacing:.06em">18%</div>
+        <div style="flex:10;background:#8b4a20;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:clamp(.42rem,.54vw,.5rem);color:rgba(245,237,224,.7);letter-spacing:.04em">10%</div>
+        <div style="flex:4;background:#2e4030;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:clamp(.38rem,.5vw,.46rem);color:rgba(212,228,200,.8)">4%</div>
+        <div style="flex:2;background:#c8a040;display:flex;align-items:center;justify-content:center"></div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:clamp(8px,1.4vw,14px)">
+        <span style="display:flex;align-items:center;gap:5px;font-family:var(--mono);font-size:clamp(.38rem,.5vw,.46rem);color:var(--brown-mid);letter-spacing:.06em"><span style="width:8px;height:8px;background:#f5ede0;border:1px solid #c0b090;flex-shrink:0"></span>Parchment 40%</span>
+        <span style="display:flex;align-items:center;gap:5px;font-family:var(--mono);font-size:clamp(.38rem,.5vw,.46rem);color:var(--brown-mid);letter-spacing:.06em"><span style="width:8px;height:8px;background:#2c1a0e;flex-shrink:0"></span>Deep Brown 26%</span>
+        <span style="display:flex;align-items:center;gap:5px;font-family:var(--mono);font-size:clamp(.38rem,.5vw,.46rem);color:var(--brown-mid);letter-spacing:.06em"><span style="width:8px;height:8px;background:#d4611a;flex-shrink:0"></span>Burnt Orange 18%</span>
+        <span style="display:flex;align-items:center;gap:5px;font-family:var(--mono);font-size:clamp(.38rem,.5vw,.46rem);color:var(--brown-mid);letter-spacing:.06em"><span style="width:8px;height:8px;background:#8b4a20;flex-shrink:0"></span>Teak 10%</span>
+        <span style="display:flex;align-items:center;gap:5px;font-family:var(--mono);font-size:clamp(.38rem,.5vw,.46rem);color:var(--brown-mid);letter-spacing:.06em"><span style="width:8px;height:8px;background:#2e4030;flex-shrink:0"></span>Forest 4%</span>
+        <span style="display:flex;align-items:center;gap:5px;font-family:var(--mono);font-size:clamp(.38rem,.5vw,.46rem);color:var(--brown-mid);letter-spacing:.06em"><span style="width:8px;height:8px;background:#c8a040;flex-shrink:0"></span>Gold — sparingly</span>
+      </div>
+    </div>
 
-<!-- ANIMAL PRINT SECTION -->
-<div class="sec-eyebrow" style="margin-bottom:14px">Animal Print — Decorative Use Only</div>
-<div class="animal-accent-row">
-  <!-- Leopard -->
-  <div class="animal-card leopard-bg" style="background:#f0c498">
-    <div class="animal-card-bg">
-      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <pattern id="leopard" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
-            <ellipse cx="12" cy="10" rx="5" ry="3.5" fill="#8b4a20" opacity=".7" transform="rotate(-20,12,10)"/>
-            <ellipse cx="18" cy="8" rx="4" ry="3" fill="#8b4a20" opacity=".6" transform="rotate(15,18,8)"/>
-            <ellipse cx="10" cy="16" rx="3.5" ry="2.5" fill="#8b4a20" opacity=".55" transform="rotate(-30,10,16)"/>
-            <ellipse cx="38" cy="28" rx="5" ry="3.5" fill="#8b4a20" opacity=".7" transform="rotate(10,38,28)"/>
-            <ellipse cx="44" cy="26" rx="4" ry="3" fill="#8b4a20" opacity=".6" transform="rotate(-15,44,26)"/>
-            <ellipse cx="36" cy="35" rx="3.5" ry="2.5" fill="#8b4a20" opacity=".55" transform="rotate(20,36,35)"/>
-            <ellipse cx="20" cy="45" rx="5" ry="3.5" fill="#8b4a20" opacity=".7" transform="rotate(-10,20,45)"/>
-            <ellipse cx="26" cy="43" rx="4" ry="3" fill="#8b4a20" opacity=".6" transform="rotate(25,26,43)"/>
-            <ellipse cx="48" cy="50" rx="5" ry="3.5" fill="#8b4a20" opacity=".7" transform="rotate(5,48,50)"/>
-            <ellipse cx="54" cy="48" rx="4" ry="3" fill="#8b4a20" opacity=".6" transform="rotate(-20,54,48)"/>
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#leopard)"/>
-      </svg>
+    <!-- ANIMAL PRINT SECTION -->
+    <div class="sec-eyebrow" style="margin-bottom:14px">Animal Print — Decorative Use Only</div>
+    <div class="animal-accent-row">
+      <!-- Leopard -->
+      <div class="animal-card leopard-bg" style="background:#f0c498">
+        <div class="animal-card-bg">
+          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="leopard" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+                <ellipse cx="12" cy="10" rx="5" ry="3.5" fill="#8b4a20" opacity=".7" transform="rotate(-20,12,10)"/>
+                <ellipse cx="18" cy="8" rx="4" ry="3" fill="#8b4a20" opacity=".6" transform="rotate(15,18,8)"/>
+                <ellipse cx="10" cy="16" rx="3.5" ry="2.5" fill="#8b4a20" opacity=".55" transform="rotate(-30,10,16)"/>
+                <ellipse cx="38" cy="28" rx="5" ry="3.5" fill="#8b4a20" opacity=".7" transform="rotate(10,38,28)"/>
+                <ellipse cx="44" cy="26" rx="4" ry="3" fill="#8b4a20" opacity=".6" transform="rotate(-15,44,26)"/>
+                <ellipse cx="36" cy="35" rx="3.5" ry="2.5" fill="#8b4a20" opacity=".55" transform="rotate(20,36,35)"/>
+                <ellipse cx="20" cy="45" rx="5" ry="3.5" fill="#8b4a20" opacity=".7" transform="rotate(-10,20,45)"/>
+                <ellipse cx="26" cy="43" rx="4" ry="3" fill="#8b4a20" opacity=".6" transform="rotate(25,26,43)"/>
+                <ellipse cx="48" cy="50" rx="5" ry="3.5" fill="#8b4a20" opacity=".7" transform="rotate(5,48,50)"/>
+                <ellipse cx="54" cy="48" rx="4" ry="3" fill="#8b4a20" opacity=".6" transform="rotate(-20,54,48)"/>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#leopard)"/>
+          </svg>
+        </div>
+        <div class="animal-card-content">
+          <div class="animal-title">Leopard</div>
+          <p class="animal-desc">Background textures and overlays at 8–12% opacity. Warm #8B4A20 clusters on Parchment or Orange-light only.</p>
+          <div class="animal-usage">Backgrounds · Texture layers · Never on text</div>
+        </div>
+      </div>
+      <!-- Zebra -->
+      <div class="animal-card zebra-bg" style="background:#ecddc8">
+        <div class="animal-card-bg">
+          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="zebra" x="0" y="0" width="40" height="60" patternUnits="userSpaceOnUse">
+                <path d="M0,0 Q8,5 0,12 Q8,18 0,26 Q10,32 0,40 Q8,48 0,58" stroke="#5c3318" stroke-width="4.5" fill="none" opacity=".35"/>
+                <path d="M14,0 Q22,8 14,18 Q22,26 14,36 Q20,44 14,54" stroke="#5c3318" stroke-width="3.5" fill="none" opacity=".28"/>
+                <path d="M28,0 Q36,6 28,14 Q36,22 28,32 Q36,40 28,52" stroke="#5c3318" stroke-width="5" fill="none" opacity=".3"/>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#zebra)"/>
+          </svg>
+        </div>
+        <div class="animal-card-content">
+          <div class="animal-title">Zebra</div>
+          <p class="animal-desc">Warm brown-on-cream stripes — never black-and-white. Editorial dividers and packaging accent strips. One use per layout maximum.</p>
+          <div class="animal-usage">Dividers · Packaging strips · One per layout</div>
+        </div>
+      </div>
+      <!-- Cheetah -->
+      <div class="animal-card cheetah-bg" style="background:#8b4a20">
+        <div class="animal-card-bg">
+          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="cheetah" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse">
+                <circle cx="10" cy="10" r="3.5" fill="#2c1a0e" opacity=".55"/>
+                <circle cx="24" cy="6" r="2.5" fill="#2c1a0e" opacity=".45"/>
+                <circle cx="36" cy="14" r="3" fill="#2c1a0e" opacity=".5"/>
+                <circle cx="8" cy="28" r="2.5" fill="#2c1a0e" opacity=".45"/>
+                <circle cx="20" cy="22" r="3.5" fill="#2c1a0e" opacity=".55"/>
+                <circle cx="34" cy="30" r="3" fill="#2c1a0e" opacity=".5"/>
+                <circle cx="46" cy="20" r="2" fill="#2c1a0e" opacity=".4"/>
+                <circle cx="14" cy="42" r="3.5" fill="#2c1a0e" opacity=".55"/>
+                <circle cx="30" cy="44" r="2.5" fill="#2c1a0e" opacity=".45"/>
+                <circle cx="44" cy="40" r="3" fill="#2c1a0e" opacity=".5"/>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#cheetah)"/>
+          </svg>
+        </div>
+        <div class="animal-card-content" style="color:var(--cream)">
+          <div class="animal-title" style="color:var(--cream)">Cheetah</div>
+          <p class="animal-desc" style="color:rgba(245,237,224,.7)">Dark brown dots on warm brown. Reserved for the Archive tier only — lookbook print and premium packaging.</p>
+          <div class="animal-usage" style="color:var(--orange-l)">Archive packaging · Lookbook print only</div>
+        </div>
+      </div>
     </div>
-    <div class="animal-card-content">
-      <div class="animal-title">Leopard</div>
-      <p class="animal-desc">Background textures and overlays at 8–12% opacity. Warm #8B4A20 clusters on Parchment or Orange-light only.</p>
-      <div class="animal-usage">Backgrounds · Texture layers · Never on text</div>
-    </div>
-  </div>
-  <!-- Zebra -->
-  <div class="animal-card zebra-bg" style="background:#ecddc8">
-    <div class="animal-card-bg">
-      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <pattern id="zebra" x="0" y="0" width="40" height="60" patternUnits="userSpaceOnUse">
-            <path d="M0,0 Q8,5 0,12 Q8,18 0,26 Q10,32 0,40 Q8,48 0,58" stroke="#5c3318" stroke-width="4.5" fill="none" opacity=".35"/>
-            <path d="M14,0 Q22,8 14,18 Q22,26 14,36 Q20,44 14,54" stroke="#5c3318" stroke-width="3.5" fill="none" opacity=".28"/>
-            <path d="M28,0 Q36,6 28,14 Q36,22 28,32 Q36,40 28,52" stroke="#5c3318" stroke-width="5" fill="none" opacity=".3"/>
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#zebra)"/>
-      </svg>
-    </div>
-    <div class="animal-card-content">
-      <div class="animal-title">Zebra</div>
-      <p class="animal-desc">Warm brown-on-cream stripes — never black-and-white. Editorial dividers and packaging accent strips. One use per layout maximum.</p>
-      <div class="animal-usage">Dividers · Packaging strips · One per layout</div>
-    </div>
-  </div>
-  <!-- Cheetah -->
-  <div class="animal-card cheetah-bg" style="background:#8b4a20">
-    <div class="animal-card-bg">
-      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <pattern id="cheetah" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse">
-            <circle cx="10" cy="10" r="3.5" fill="#2c1a0e" opacity=".55"/>
-            <circle cx="24" cy="6" r="2.5" fill="#2c1a0e" opacity=".45"/>
-            <circle cx="36" cy="14" r="3" fill="#2c1a0e" opacity=".5"/>
-            <circle cx="8" cy="28" r="2.5" fill="#2c1a0e" opacity=".45"/>
-            <circle cx="20" cy="22" r="3.5" fill="#2c1a0e" opacity=".55"/>
-            <circle cx="34" cy="30" r="3" fill="#2c1a0e" opacity=".5"/>
-            <circle cx="46" cy="20" r="2" fill="#2c1a0e" opacity=".4"/>
-            <circle cx="14" cy="42" r="3.5" fill="#2c1a0e" opacity=".55"/>
-            <circle cx="30" cy="44" r="2.5" fill="#2c1a0e" opacity=".45"/>
-            <circle cx="44" cy="40" r="3" fill="#2c1a0e" opacity=".5"/>
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#cheetah)"/>
-      </svg>
-    </div>
-    <div class="animal-card-content" style="color:var(--cream)">
-      <div class="animal-title" style="color:var(--cream)">Cheetah</div>
-      <p class="animal-desc" style="color:rgba(245,237,224,.7)">Dark brown dots on warm brown. Reserved for the Archive tier only — lookbook print and premium packaging.</p>
-      <div class="animal-usage" style="color:var(--orange-l)">Archive packaging · Lookbook print only</div>
-    </div>
-  </div>
-</div>
+    
 
-
-<div class="color-usage">
-  <div class="cu-card"><div class="cu-dot" style="background:var(--orange)"></div><h5>Orange is the signal</h5><p>All CTAs, key labels, nav accents, packaging stripe. It's the warm terracotta tile. Use where the eye needs to go — nowhere else.</p></div>
-  <div class="cu-card" style="border-top-color:var(--green-d)"><div class="cu-dot" style="background:var(--green-d)"></div><h5>Forest is the contrast</h5><p>Used sparingly for the Archive tier and sustainability messaging. The cool to the warm. Maximum one green element in any composition.</p></div>
-  <div class="cu-card" style="border-top-color:var(--gold)"><div class="cu-dot" style="background:var(--gold)"></div><h5>Gold is the finish</h5><p>Price points, premium labels, the Archive tier accent. The glint of a brass lamp in afternoon light. Use it to signal quality — not quantity.</p></div>
-</div>
-```
-
+    <div class="color-usage">
+      <div class="cu-card"><div class="cu-dot" style="background:var(--orange)"></div><h5>Orange is the signal</h5><p>All CTAs, key labels, nav accents, packaging stripe. It's the warm terracotta tile. Use where the eye needs to go — nowhere else.</p></div>
+      <div class="cu-card" style="border-top-color:var(--green-d)"><div class="cu-dot" style="background:var(--green-d)"></div><h5>Forest is the contrast</h5><p>Used sparingly for the Archive tier and sustainability messaging. The cool to the warm. Maximum one green element in any composition.</p></div>
+      <div class="cu-card" style="border-top-color:var(--gold)"><div class="cu-dot" style="background:var(--gold)"></div><h5>Gold is the finish</h5><p>Price points, premium labels, the Archive tier accent. The glint of a brass lamp in afternoon light. Use it to signal quality — not quantity.</p></div>
+    </div>
   </div>
 </section>
 
 <!-- SECTION 05: TYPOGRAPHY -->
-
 <section class="sec sec-dark sec-has-animal-top" id="type">
   <div class="wrap reveal">
     <div class="sec-eyebrow">05 — Typography</div>
@@ -1131,54 +1114,51 @@ display:flex;flex-direction:column;gap:2px;
       <div class="sec-head-right" style="color:rgba(245,237,224,.52)">Alfa Slab One for display presence. Cormorant Garamond for editorial soul. Josefin Sans for legibility and structure. Each has a lane — cross them intentionally or not at all.</div>
     </div>
 
-```
-<div class="type-showcase" style="position:relative;overflow:hidden">
-  <div class="type-row"><span class="type-lbl">Display XL</span><span style="font-family:'Alfa Slab One',serif;font-size:clamp(1.2rem,2.4vw,1.9rem);color:var(--cream);letter-spacing:.02em">THE ROOM THAT ALREADY KNEW YOU.</span></div>
-  <div class="type-row"><span class="type-lbl">Accent</span><span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.1rem,2.2vw,1.7rem);color:var(--orange)">"found in a Portland warehouse. 1962. Danish."</span></div>
-  <div class="type-row"><span class="type-lbl">Heading</span><span style="font-family:'Josefin Sans',sans-serif;font-size:clamp(.92rem,1.7vw,1.2rem);font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,237,224,.75)">The Archive Tier — Premium Curation</span></div>
-  <div class="type-row"><span class="type-lbl">Body</span><span style="font-family:'Josefin Sans',sans-serif;font-size:clamp(.88rem,1.3vw,.98rem);font-weight:300;color:rgba(245,237,224,.5)">A walnut side table, circa 1955. The patina on the top is original — someone drank their coffee here every morning for thirty years.</span></div>
-  <div class="type-row"><span class="type-lbl">Label</span><span style="font-family:'DM Mono',monospace;font-size:clamp(.66rem,.86vw,.76rem);letter-spacing:.18em;text-transform:uppercase;color:rgba(200,160,64,.65)">Tier 03 · Archive · From $275</span></div>
-</div>
-
-
-<div class="type-tiles">
-  <div class="tt tt-light">
-    <span class="tt-tag">Display — Alfa Slab One</span>
-    <div class="tt-sample-display">The Find Over the New</div>
-    <p class="tt-desc">All headlines, packaging, campaign text. Always title case or all-caps. The slab serifs recall mid-century signage and print advertising — bold, authoritative, warm.</p>
-  </div>
-  <div class="tt tt-mid">
-    <span class="tt-tag">Accent — Cormorant Garamond</span>
-    <div class="tt-sample-serif">"every piece has a past life."</div>
-    <p class="tt-desc">Pull quotes, piece descriptions, stylist notes. Always italic. Always in Burnt Orange or Brown. The emotional counterpart to the display weight.</p>
-  </div>
-</div>
-<div class="type-tiles" style="margin-top:12px">
-  <div class="tt tt-light">
-    <span class="tt-tag">Body — Josefin Sans</span>
-    <div class="tt-sample-sans">Josefin Sans 400 — body copy</div>
-    <div style="font-family:'Josefin Sans',sans-serif;font-size:clamp(.9rem,1.5vw,1.08rem);font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--brown-deep);margin-bottom:6px">Sans 700 — UI labels, tags</div>
-    <p class="tt-desc">All body text, product descriptions, website UI, order information. Clean geometric structure against warm parchment backgrounds.</p>
-  </div>
-  <div class="tt" style="background:#2c1a0e;border:1px solid rgba(245,237,224,.08)">
-    <span class="tt-tag">Never use</span>
-    <div class="never-use-items" style="margin-top:0">
-      <div class="nu-item">Script or handwritten fonts</div>
-      <div class="nu-item">System fonts (Arial, Georgia)</div>
-      <div class="nu-item">Cormorant in non-italic</div>
-      <div class="nu-item">Two display fonts together</div>
-      <div class="nu-item">Alfa Slab in lowercase</div>
-      <div class="nu-item">Josefin in light weight for headers</div>
+    <div class="type-showcase" style="position:relative;overflow:hidden">
+      <div class="type-row"><span class="type-lbl">Display XL</span><span style="font-family:'Alfa Slab One',serif;font-size:clamp(1.2rem,2.4vw,1.9rem);color:var(--cream);letter-spacing:.02em">THE ROOM THAT ALREADY KNEW YOU.</span></div>
+      <div class="type-row"><span class="type-lbl">Accent</span><span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.1rem,2.2vw,1.7rem);color:var(--orange)">"found in a Portland warehouse. 1962. Danish."</span></div>
+      <div class="type-row"><span class="type-lbl">Heading</span><span style="font-family:'Josefin Sans',sans-serif;font-size:clamp(.92rem,1.7vw,1.2rem);font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,237,224,.75)">The Archive Tier — Premium Curation</span></div>
+      <div class="type-row"><span class="type-lbl">Body</span><span style="font-family:'Josefin Sans',sans-serif;font-size:clamp(.88rem,1.3vw,.98rem);font-weight:300;color:rgba(245,237,224,.5)">A walnut side table, circa 1955. The patina on the top is original — someone drank their coffee here every morning for thirty years.</span></div>
+      <div class="type-row"><span class="type-lbl">Label</span><span style="font-family:'DM Mono',monospace;font-size:clamp(.66rem,.86vw,.76rem);letter-spacing:.18em;text-transform:uppercase;color:rgba(200,160,64,.65)">Tier 03 · Archive · From $275</span></div>
     </div>
-  </div>
-</div>
-```
 
+    
+    <div class="type-tiles">
+      <div class="tt tt-light">
+        <span class="tt-tag">Display — Alfa Slab One</span>
+        <div class="tt-sample-display">The Find Over the New</div>
+        <p class="tt-desc">All headlines, packaging, campaign text. Always title case or all-caps. The slab serifs recall mid-century signage and print advertising — bold, authoritative, warm.</p>
+      </div>
+      <div class="tt tt-mid">
+        <span class="tt-tag">Accent — Cormorant Garamond</span>
+        <div class="tt-sample-serif">"every piece has a past life."</div>
+        <p class="tt-desc">Pull quotes, piece descriptions, stylist notes. Always italic. Always in Burnt Orange or Brown. The emotional counterpart to the display weight.</p>
+      </div>
+    </div>
+    <div class="type-tiles" style="margin-top:12px">
+      <div class="tt tt-light">
+        <span class="tt-tag">Body — Josefin Sans</span>
+        <div class="tt-sample-sans">Josefin Sans 400 — body copy</div>
+        <div style="font-family:'Josefin Sans',sans-serif;font-size:clamp(.9rem,1.5vw,1.08rem);font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--brown-deep);margin-bottom:6px">Sans 700 — UI labels, tags</div>
+        <p class="tt-desc">All body text, product descriptions, website UI, order information. Clean geometric structure against warm parchment backgrounds.</p>
+      </div>
+      <div class="tt" style="background:#2c1a0e;border:1px solid rgba(245,237,224,.08)">
+        <span class="tt-tag">Never use</span>
+        <div class="never-use-items" style="margin-top:0">
+          <div class="nu-item">Script or handwritten fonts</div>
+          <div class="nu-item">System fonts (Arial, Georgia)</div>
+          <div class="nu-item">Cormorant in non-italic</div>
+          <div class="nu-item">Two display fonts together</div>
+          <div class="nu-item">Alfa Slab in lowercase</div>
+          <div class="nu-item">Josefin in light weight for headers</div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- SECTION 06: IMAGERY -->
 
+<!-- SECTION 06: IMAGERY -->
 <section class="sec sec-cream2 sec-has-animal-top" id="imagery">
   <div class="wrap reveal">
     <div class="sec-eyebrow">06 — Imagery ✦</div>
@@ -1186,28 +1166,25 @@ display:flex;flex-direction:column;gap:2px;
     <div class="sec-rule"></div>
     <p style="font-family:var(--sans);font-size:clamp(.86rem,1.18vw,.96rem);font-weight:300;line-height:1.8;color:var(--brown-mid);max-width:640px;margin-bottom:clamp(28px,4vw,44px)">Photography looks like it was shot on a Saturday morning in someone's actual living room. Amber light, linen surfaces, things slightly out of place. If it looks like a catalogue, it's wrong for Findly.</p>
 
-```
-<div class="mood-grid">
-  <div class="mood-cell"><div class="mood-inner m1"><span class="mood-label">Afternoon amber light</span></div></div>
-  <div class="mood-cell"><div class="mood-inner m2"><span class="mood-label">Linen + ceramic close-up</span></div></div>
-  <div class="mood-cell"><div class="mood-inner m3"><span class="mood-label">Vintage teak detail</span></div></div>
-  <div class="mood-cell"><div class="mood-inner m4"><span class="mood-label">Open box, kraft paper</span></div></div>
-  <div class="mood-cell"><div class="mood-inner m5"><span class="mood-label">Layered textiles, floor</span></div></div>
-  <div class="mood-cell"><div class="mood-inner m6"><span class="mood-label">Object provenance tag</span></div></div>
-</div>
+    <div class="mood-grid">
+      <div class="mood-cell"><div class="mood-inner m1"><span class="mood-label">Afternoon amber light</span></div></div>
+      <div class="mood-cell"><div class="mood-inner m2"><span class="mood-label">Linen + ceramic close-up</span></div></div>
+      <div class="mood-cell"><div class="mood-inner m3"><span class="mood-label">Vintage teak detail</span></div></div>
+      <div class="mood-cell"><div class="mood-inner m4"><span class="mood-label">Open box, kraft paper</span></div></div>
+      <div class="mood-cell"><div class="mood-inner m5"><span class="mood-label">Layered textiles, floor</span></div></div>
+      <div class="mood-cell"><div class="mood-inner m6"><span class="mood-label">Object provenance tag</span></div></div>
+    </div>
 
-
-<div class="img-rules-list">      <div class="ir"><span class="ir-num">01</span><h4>Amber & warm</h4><p>Morning window light, tungsten lamps, golden late afternoon. Warm grading always. No studio lighting, no cool-toned overexposure.</p></div>
-  <div class="ir"><span class="ir-num">02</span><h4>Tactile & close</h4><p>Shoot close enough to feel the grain of teak, the weave of a throw, the glaze of a ceramic. Texture is the product — show it.</p></div>
-  <div class="ir"><span class="ir-num">03</span><h4>Contextual, lived-in</h4><p>No white studio floors. Objects in real rooms, on linen surfaces, with natural context. A room in use looks better than a room on display.</p></div>
-</div>
-```
-
+    
+    <div class="img-rules-list">      <div class="ir"><span class="ir-num">01</span><h4>Amber & warm</h4><p>Morning window light, tungsten lamps, golden late afternoon. Warm grading always. No studio lighting, no cool-toned overexposure.</p></div>
+      <div class="ir"><span class="ir-num">02</span><h4>Tactile & close</h4><p>Shoot close enough to feel the grain of teak, the weave of a throw, the glaze of a ceramic. Texture is the product — show it.</p></div>
+      <div class="ir"><span class="ir-num">03</span><h4>Contextual, lived-in</h4><p>No white studio floors. Objects in real rooms, on linen surfaces, with natural context. A room in use looks better than a room on display.</p></div>
+    </div>
   </div>
 </section>
 
-<!-- SECTION 07: APPLICATIONS -->
 
+<!-- SECTION 07: APPLICATIONS -->
 <section class="sec sec-cream sec-has-animal-top" id="assets">
   <div class="wrap reveal">
     <div class="sec-eyebrow">07 — Applications</div>
@@ -1215,173 +1192,170 @@ display:flex;flex-direction:column;gap:2px;
     <div class="sec-rule"></div>
     <p style="font-family:var(--sans);font-size:clamp(.86rem,1.18vw,.96rem);font-weight:300;line-height:1.8;color:var(--brown-mid);max-width:640px;margin-bottom:clamp(28px,4vw,44px)">Where Findly lives — the box on your doorstep, the inspo form you fill out on a Sunday, the piece tag tied to a 1962 lamp, and the catalog card you keep on the shelf.</p>
 
-```
-<div class="app-grid" style="align-items:stretch">
-  <!-- BOX MOCKUP -->
-  <div>
-    <div class="mock-box-scene">
-      <div style="position:relative;z-index:2;filter:drop-shadow(0 16px 40px rgba(0,0,0,.6))">
-        <svg viewBox="0 0 260 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:clamp(200px,26vw,260px);height:auto;display:block">
-          <defs>
-            <linearGradient id="kraft-top" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#d4b880"/>
-              <stop offset="100%" stop-color="#c4a060"/>
-            </linearGradient>
-            <linearGradient id="kraft-front" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#c4a060"/>
-              <stop offset="100%" stop-color="#b09050"/>
-            </linearGradient>
-            <linearGradient id="kraft-side" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stop-color="#a87840"/>
-              <stop offset="100%" stop-color="#8a6030"/>
-            </linearGradient>
-          </defs>
-          <ellipse cx="132" cy="196" rx="108" ry="5" fill="rgba(44,26,14,.3)"/>
-          <path d="M212 100 L234 88 L234 176 L212 188 Z" fill="url(#kraft-side)"/>
-          <rect x="18" y="100" width="194" height="88" fill="url(#kraft-front)"/>
-          <!-- orange stripe -->
-          <rect x="18" y="100" width="194" height="7" fill="#d4611a"/>
-          <!-- brand on front -->
-          <text x="115" y="152" font-family="Georgia,serif" font-size="22" font-weight="700" letter-spacing="5" fill="#2c1a0e" text-anchor="middle" opacity=".85">FINDLY</text>
-          <text x="115" y="166" font-family="Arial,sans-serif" font-size="5.5" letter-spacing="3" fill="rgba(44,26,14,.4)" text-anchor="middle">CURATED VINTAGE · HOME DÉCOR</text>
-          <!-- tier badge -->
-          <rect x="168" y="174" width="44" height="10" rx="1" fill="none" stroke="rgba(212,97,26,.5)" stroke-width=".8"/>
-          <text x="190" y="181" font-family="Arial,sans-serif" font-size="4.5" letter-spacing="1" fill="rgba(212,97,26,.7)" text-anchor="middle">THE ARCHIVE</text>
-          <!-- kraft texture lines -->
-          <line x1="18" y1="118" x2="212" y2="118" stroke="rgba(44,26,14,.06)" stroke-width="1"/>
-          <line x1="18" y1="136" x2="212" y2="136" stroke="rgba(44,26,14,.06)" stroke-width="1"/>
-          <line x1="18" y1="154" x2="212" y2="154" stroke="rgba(44,26,14,.06)" stroke-width="1"/>
-          <!-- LID -->
-          <rect x="18" y="12" width="194" height="90" rx="1" fill="url(#kraft-top)" stroke="#a07040" stroke-width="1"/>
-          <path d="M212 12 L234 0 L234 88 L212 102 Z" fill="#a07040"/>
-          <rect x="18" y="12" width="194" height="22" rx="1" fill="#d4611a"/>
-          <text x="115" y="27" font-family="Georgia,serif" font-size="11" font-weight="700" letter-spacing="3" fill="#f5ede0" text-anchor="middle">FINDLY</text>
-          <!-- large faint bg text on lid -->
-          <text x="115" y="85" font-family="Georgia,serif" font-size="40" font-weight="700" letter-spacing="6" fill="rgba(44,26,14,.06)" text-anchor="middle">FINDLY</text>
-          <text x="115" y="60" font-family="Arial,sans-serif" font-size="5.5" letter-spacing="3" fill="rgba(44,26,14,.3)" text-anchor="middle">CURATED VINTAGE · HOME DÉCOR</text>
-          <text x="115" y="73" font-family="Arial,sans-serif" font-size="7" fill="rgba(212,97,26,.4)" text-anchor="middle">✦</text>
-          <line x1="18" y1="38" x2="212" y2="38" stroke="rgba(44,26,14,.05)" stroke-width="1"/>
-          <line x1="18" y1="52" x2="212" y2="52" stroke="rgba(44,26,14,.04)" stroke-width="1"/>
-          <line x1="18" y1="66" x2="212" y2="66" stroke="rgba(44,26,14,.04)" stroke-width="1"/>
-          <line x1="18" y1="80" x2="212" y2="80" stroke="rgba(44,26,14,.04)" stroke-width="1"/>
-          <line x1="18" y1="100" x2="212" y2="100" stroke="#d4611a" stroke-width="1.5" opacity=".5"/>
-        </svg>
-      </div>
-    </div>
-    <div class="app-label">Delivery Box — Kraft &amp; Burnt Orange</div>
-  </div>
-
-  <!-- INSPO FORM -->
-  <div>
-    <div class="mock-form-scene">
-      <div class="form-header">
-        <div class="form-title">Share Your Vision</div>
-        <div class="form-sub">Findly Inspo Board Submission</div>
-      </div>
-      <div class="form-field">
-        <div class="form-lbl">Describe your aesthetic</div>
-        <div class="form-input">Warm, organic, mid-century — earthy tones, texture, things that feel old…</div>
-      </div>
-      <div class="form-field">
-        <div class="form-lbl">Eras of interest</div>
-        <div class="form-input">1950s–1970s, maybe some 40s ceramics</div>
-      </div>
-      <div class="form-field">
-        <div class="form-lbl">Drop your inspo images</div>
-        <div class="form-grid">
-          <div class="form-cell fgc-1"></div>
-          <div class="form-cell fgc-2"></div>
-          <div class="form-cell fgc-3"></div>
-          <div class="form-cell fgc-add">+</div>
+    <div class="app-grid" style="align-items:stretch">
+      <!-- BOX MOCKUP -->
+      <div>
+        <div class="mock-box-scene">
+          <div style="position:relative;z-index:2;filter:drop-shadow(0 16px 40px rgba(0,0,0,.6))">
+            <svg viewBox="0 0 260 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:clamp(200px,26vw,260px);height:auto;display:block">
+              <defs>
+                <linearGradient id="kraft-top" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#d4b880"/>
+                  <stop offset="100%" stop-color="#c4a060"/>
+                </linearGradient>
+                <linearGradient id="kraft-front" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#c4a060"/>
+                  <stop offset="100%" stop-color="#b09050"/>
+                </linearGradient>
+                <linearGradient id="kraft-side" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#a87840"/>
+                  <stop offset="100%" stop-color="#8a6030"/>
+                </linearGradient>
+              </defs>
+              <ellipse cx="132" cy="196" rx="108" ry="5" fill="rgba(44,26,14,.3)"/>
+              <path d="M212 100 L234 88 L234 176 L212 188 Z" fill="url(#kraft-side)"/>
+              <rect x="18" y="100" width="194" height="88" fill="url(#kraft-front)"/>
+              <!-- orange stripe -->
+              <rect x="18" y="100" width="194" height="7" fill="#d4611a"/>
+              <!-- brand on front -->
+              <text x="115" y="152" font-family="Georgia,serif" font-size="22" font-weight="700" letter-spacing="5" fill="#2c1a0e" text-anchor="middle" opacity=".85">FINDLY</text>
+              <text x="115" y="166" font-family="Arial,sans-serif" font-size="5.5" letter-spacing="3" fill="rgba(44,26,14,.4)" text-anchor="middle">CURATED VINTAGE · HOME DÉCOR</text>
+              <!-- tier badge -->
+              <rect x="168" y="174" width="44" height="10" rx="1" fill="none" stroke="rgba(212,97,26,.5)" stroke-width=".8"/>
+              <text x="190" y="181" font-family="Arial,sans-serif" font-size="4.5" letter-spacing="1" fill="rgba(212,97,26,.7)" text-anchor="middle">THE ARCHIVE</text>
+              <!-- kraft texture lines -->
+              <line x1="18" y1="118" x2="212" y2="118" stroke="rgba(44,26,14,.06)" stroke-width="1"/>
+              <line x1="18" y1="136" x2="212" y2="136" stroke="rgba(44,26,14,.06)" stroke-width="1"/>
+              <line x1="18" y1="154" x2="212" y2="154" stroke="rgba(44,26,14,.06)" stroke-width="1"/>
+              <!-- LID -->
+              <rect x="18" y="12" width="194" height="90" rx="1" fill="url(#kraft-top)" stroke="#a07040" stroke-width="1"/>
+              <path d="M212 12 L234 0 L234 88 L212 102 Z" fill="#a07040"/>
+              <rect x="18" y="12" width="194" height="22" rx="1" fill="#d4611a"/>
+              <text x="115" y="27" font-family="Georgia,serif" font-size="11" font-weight="700" letter-spacing="3" fill="#f5ede0" text-anchor="middle">FINDLY</text>
+              <!-- large faint bg text on lid -->
+              <text x="115" y="85" font-family="Georgia,serif" font-size="40" font-weight="700" letter-spacing="6" fill="rgba(44,26,14,.06)" text-anchor="middle">FINDLY</text>
+              <text x="115" y="60" font-family="Arial,sans-serif" font-size="5.5" letter-spacing="3" fill="rgba(44,26,14,.3)" text-anchor="middle">CURATED VINTAGE · HOME DÉCOR</text>
+              <text x="115" y="73" font-family="Arial,sans-serif" font-size="7" fill="rgba(212,97,26,.4)" text-anchor="middle">✦</text>
+              <line x1="18" y1="38" x2="212" y2="38" stroke="rgba(44,26,14,.05)" stroke-width="1"/>
+              <line x1="18" y1="52" x2="212" y2="52" stroke="rgba(44,26,14,.04)" stroke-width="1"/>
+              <line x1="18" y1="66" x2="212" y2="66" stroke="rgba(44,26,14,.04)" stroke-width="1"/>
+              <line x1="18" y1="80" x2="212" y2="80" stroke="rgba(44,26,14,.04)" stroke-width="1"/>
+              <line x1="18" y1="100" x2="212" y2="100" stroke="#d4611a" stroke-width="1.5" opacity=".5"/>
+            </svg>
+          </div>
         </div>
+        <div class="app-label">Delivery Box — Kraft &amp; Burnt Orange</div>
       </div>
-      <button class="form-btn">Submit My Board →</button>
-      <span class="mock-form-label">Inspo Board Form — Digital</span>
-    </div>
-    <div class="app-label">Inspo Board Submission — Web Form</div>
-  </div>
-</div>
 
-<div class="app-grid" style="margin-top:16px;align-items:stretch">
-  <!-- TAG + INSERT -->
-  <div>
-    <div class="mock-tag-scene">
-      <div style="position:relative;z-index:2;display:flex;align-items:flex-start;gap:clamp(14px,2.5vw,24px);flex-wrap:wrap;justify-content:center">
-        <!-- Hang tag -->
-        <div style="display:flex;flex-direction:column;align-items:center">
-          <div style="width:1px;height:clamp(20px,3vw,28px);background:rgba(245,237,224,.35);transform:rotate(6deg)"></div>
-          <div style="background:#f5ede0;width:min(140px,38vw);box-shadow:2px 2px 0 var(--orange);border-top:4px solid var(--orange)">
-            <div style="padding:clamp(10px,1.6vw,14px) clamp(10px,1.5vw,13px)">
-              <span style="font-family:'Alfa Slab One',serif;font-size:clamp(.9rem,1.6vw,1.2rem);letter-spacing:.04em;color:var(--brown-deep);display:block;margin-bottom:2px">FINDLY</span>
-              <span style="font-family:'DM Mono',monospace;font-size:clamp(.42rem,.54vw,.48rem);letter-spacing:.16em;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:clamp(8px,1.2vw,12px)">Archive · Tier 03</span>
-              <hr style="border:none;border-top:1px dashed rgba(44,26,14,.2);margin-bottom:clamp(6px,1vw,9px)"/>
-              <div style="font-family:'DM Mono',monospace;font-size:clamp(.4rem,.52vw,.46rem);color:var(--brown-mid);margin-bottom:3px;display:flex;justify-content:space-between"><span>Origin</span><span>Denmark, 1962</span></div>
-              <div style="font-family:'DM Mono',monospace;font-size:clamp(.4rem,.52vw,.46rem);color:var(--brown-mid);margin-bottom:3px;display:flex;justify-content:space-between"><span>Material</span><span>Solid Teak</span></div>
-              <div style="font-family:'DM Mono',monospace;font-size:clamp(.4rem,.52vw,.46rem);color:var(--brown-mid);margin-bottom:clamp(8px,1.2vw,12px);display:flex;justify-content:space-between"><span>Condition</span><span>Very Good</span></div>
-              <hr style="border:none;border-top:1px dashed rgba(44,26,14,.2);margin-bottom:clamp(6px,1vw,10px)"/>
-              <div style="text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(.52rem,.68vw,.62rem);color:var(--brown-mid);line-height:1.5">"Sixty years of<br>Sunday mornings."</div>
+      <!-- INSPO FORM -->
+      <div>
+        <div class="mock-form-scene">
+          <div class="form-header">
+            <div class="form-title">Share Your Vision</div>
+            <div class="form-sub">Findly Inspo Board Submission</div>
+          </div>
+          <div class="form-field">
+            <div class="form-lbl">Describe your aesthetic</div>
+            <div class="form-input">Warm, organic, mid-century — earthy tones, texture, things that feel old…</div>
+          </div>
+          <div class="form-field">
+            <div class="form-lbl">Eras of interest</div>
+            <div class="form-input">1950s–1970s, maybe some 40s ceramics</div>
+          </div>
+          <div class="form-field">
+            <div class="form-lbl">Drop your inspo images</div>
+            <div class="form-grid">
+              <div class="form-cell fgc-1"></div>
+              <div class="form-cell fgc-2"></div>
+              <div class="form-cell fgc-3"></div>
+              <div class="form-cell fgc-add">+</div>
+            </div>
+          </div>
+          <button class="form-btn">Submit My Board →</button>
+          <span class="mock-form-label">Inspo Board Form — Digital</span>
+        </div>
+        <div class="app-label">Inspo Board Submission — Web Form</div>
+      </div>
+    </div>
+
+    <div class="app-grid" style="margin-top:16px;align-items:stretch">
+      <!-- TAG + INSERT -->
+      <div>
+        <div class="mock-tag-scene">
+          <div style="position:relative;z-index:2;display:flex;align-items:flex-start;gap:clamp(14px,2.5vw,24px);flex-wrap:wrap;justify-content:center">
+            <!-- Hang tag -->
+            <div style="display:flex;flex-direction:column;align-items:center">
+              <div style="width:1px;height:clamp(20px,3vw,28px);background:rgba(245,237,224,.35);transform:rotate(6deg)"></div>
+              <div style="background:#f5ede0;width:min(140px,38vw);box-shadow:2px 2px 0 var(--orange);border-top:4px solid var(--orange)">
+                <div style="padding:clamp(10px,1.6vw,14px) clamp(10px,1.5vw,13px)">
+                  <span style="font-family:'Alfa Slab One',serif;font-size:clamp(.9rem,1.6vw,1.2rem);letter-spacing:.04em;color:var(--brown-deep);display:block;margin-bottom:2px">FINDLY</span>
+                  <span style="font-family:'DM Mono',monospace;font-size:clamp(.42rem,.54vw,.48rem);letter-spacing:.16em;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:clamp(8px,1.2vw,12px)">Archive · Tier 03</span>
+                  <hr style="border:none;border-top:1px dashed rgba(44,26,14,.2);margin-bottom:clamp(6px,1vw,9px)"/>
+                  <div style="font-family:'DM Mono',monospace;font-size:clamp(.4rem,.52vw,.46rem);color:var(--brown-mid);margin-bottom:3px;display:flex;justify-content:space-between"><span>Origin</span><span>Denmark, 1962</span></div>
+                  <div style="font-family:'DM Mono',monospace;font-size:clamp(.4rem,.52vw,.46rem);color:var(--brown-mid);margin-bottom:3px;display:flex;justify-content:space-between"><span>Material</span><span>Solid Teak</span></div>
+                  <div style="font-family:'DM Mono',monospace;font-size:clamp(.4rem,.52vw,.46rem);color:var(--brown-mid);margin-bottom:clamp(8px,1.2vw,12px);display:flex;justify-content:space-between"><span>Condition</span><span>Very Good</span></div>
+                  <hr style="border:none;border-top:1px dashed rgba(44,26,14,.2);margin-bottom:clamp(6px,1vw,10px)"/>
+                  <div style="text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(.52rem,.68vw,.62rem);color:var(--brown-mid);line-height:1.5">"Sixty years of<br>Sunday mornings."</div>
+                </div>
+              </div>
+            </div>
+            <!-- Stylist insert card -->
+            <div style="background:#f5ede0;padding:clamp(14px,2.2vw,20px) clamp(12px,1.8vw,16px);width:min(150px,40vw);box-shadow:3px 3px 0 rgba(44,26,14,.25);border-top:3px solid var(--green-d)">
+              <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(.9rem,1.6vw,1.2rem);font-weight:600;color:var(--brown-deep);margin-bottom:6px;line-height:1.2">A note from your curator.</div>
+              <p style="font-family:'Josefin Sans',sans-serif;font-size:clamp(.62rem,.82vw,.72rem);font-weight:300;color:var(--brown-mid);line-height:1.65;margin-bottom:10px">Your board said warm and layered, 60s leaning. This table has been sitting in a warehouse since 1988. We couldn't stop thinking about it.</p>
+              <div style="font-family:'DM Mono',monospace;font-size:clamp(.46rem,.6vw,.52rem);letter-spacing:.12em;text-transform:uppercase;color:var(--orange)">Findly · Archive</div>
             </div>
           </div>
         </div>
-        <!-- Stylist insert card -->
-        <div style="background:#f5ede0;padding:clamp(14px,2.2vw,20px) clamp(12px,1.8vw,16px);width:min(150px,40vw);box-shadow:3px 3px 0 rgba(44,26,14,.25);border-top:3px solid var(--green-d)">
-          <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(.9rem,1.6vw,1.2rem);font-weight:600;color:var(--brown-deep);margin-bottom:6px;line-height:1.2">A note from your curator.</div>
-          <p style="font-family:'Josefin Sans',sans-serif;font-size:clamp(.62rem,.82vw,.72rem);font-weight:300;color:var(--brown-mid);line-height:1.65;margin-bottom:10px">Your board said warm and layered, 60s leaning. This table has been sitting in a warehouse since 1988. We couldn't stop thinking about it.</p>
-          <div style="font-family:'DM Mono',monospace;font-size:clamp(.46rem,.6vw,.52rem);letter-spacing:.12em;text-transform:uppercase;color:var(--orange)">Findly · Archive</div>
+        <div class="app-label">Piece Tag &amp; Stylist Insert Card</div>
+      </div>
+
+      <!-- CATALOG CARD -->
+      <div>
+        <div class="mock-catalog-scene">
+          <!-- Zebra stripe top using SVG -->
+          <div style="position:absolute;top:0;left:0;right:0;height:8px;overflow:hidden">
+            <svg width="100%" height="8" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <pattern id="zebra-stripe" x="0" y="0" width="20" height="8" patternUnits="userSpaceOnUse">
+                  <rect width="10" height="8" fill="#8b4a20"/>
+                  <rect x="10" width="10" height="8" fill="#d4611a"/>
+                </pattern>
+              </defs>
+              <rect width="100%" height="8" fill="url(#zebra-stripe)"/>
+            </svg>
+          </div>
+          <div style="width:min(240px,88%);background:#f5ede0;box-shadow:4px 4px 0 var(--orange),8px 8px 0 rgba(212,97,26,.2);border:1px solid var(--cream3);padding:clamp(16px,2.8vw,24px)">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:clamp(10px,1.5vw,14px);padding-bottom:clamp(8px,1.2vw,12px);border-bottom:1px solid var(--cream3)">
+              <div>
+                <div style="font-family:'Alfa Slab One',serif;font-size:clamp(1rem,2vw,1.4rem);letter-spacing:.04em;color:var(--brown-deep)">FINDLY</div>
+                <div style="font-family:'DM Mono',monospace;font-size:clamp(.42rem,.54vw,.48rem);letter-spacing:.16em;text-transform:uppercase;color:var(--orange);margin-top:2px">Archive · March 2025</div>
+              </div>
+              <div style="width:clamp(28px,4vw,36px);height:clamp(28px,4vw,36px);border:1.5px solid var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center;transform:rotate(-10deg)">
+                <span style="font-family:'DM Mono',monospace;font-size:clamp(.36rem,.46vw,.42rem);letter-spacing:.08em;color:var(--orange);text-align:center;line-height:1.1;text-transform:uppercase">FIND<br>LY</span>
+              </div>
+            </div>
+            <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(.9rem,1.8vw,1.3rem);color:var(--brown-deep);line-height:1.25;margin-bottom:clamp(10px,1.5vw,14px)">"Your board said warm and layered. We went looking."</div>
+            <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:clamp(10px,1.5vw,14px)">
+              <div style="font-family:'DM Mono',monospace;font-size:clamp(.44rem,.58vw,.52rem);letter-spacing:.1em;color:var(--brown-mid);display:flex;align-items:center;gap:6px"><span style="color:var(--orange)">→</span>Teak side table, Denmark 1962</div>
+              <div style="font-family:'DM Mono',monospace;font-size:clamp(.44rem,.58vw,.52rem);letter-spacing:.1em;color:var(--brown-mid);display:flex;align-items:center;gap:6px"><span style="color:var(--orange)">→</span>Ceramic vessel, California 1968</div>
+              <div style="font-family:'DM Mono',monospace;font-size:clamp(.44rem,.58vw,.52rem);letter-spacing:.1em;color:var(--brown-mid);display:flex;align-items:center;gap:6px"><span style="color:var(--orange)">→</span>Woven throw, Portugal undated</div>
+              <div style="font-family:'DM Mono',monospace;font-size:clamp(.44rem,.58vw,.52rem);letter-spacing:.1em;color:var(--brown-mid);display:flex;align-items:center;gap:6px"><span style="color:var(--orange)">→</span>Brass lamp, Netherlands 1971</div>
+            </div>
+            <div style="border-top:1px dashed rgba(44,26,14,.15);padding-top:clamp(8px,1.2vw,12px);display:flex;justify-content:space-between;align-items:flex-end">
+              <span style="font-family:'Josefin Sans',sans-serif;font-size:clamp(.6rem,.78vw,.68rem);font-weight:300;color:rgba(44,26,14,.4)">findly.com</span>
+              <span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(.64rem,.84vw,.74rem);color:rgba(212,97,26,.6)">The find over the new.</span>
+            </div>
+          </div>
         </div>
+        <div class="app-label">Lookbook Insert Card — Archive Tier</div>
       </div>
     </div>
-    <div class="app-label">Piece Tag &amp; Stylist Insert Card</div>
-  </div>
-
-  <!-- CATALOG CARD -->
-  <div>
-    <div class="mock-catalog-scene">
-      <!-- Zebra stripe top using SVG -->
-      <div style="position:absolute;top:0;left:0;right:0;height:8px;overflow:hidden">
-        <svg width="100%" height="8" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="zebra-stripe" x="0" y="0" width="20" height="8" patternUnits="userSpaceOnUse">
-              <rect width="10" height="8" fill="#8b4a20"/>
-              <rect x="10" width="10" height="8" fill="#d4611a"/>
-            </pattern>
-          </defs>
-          <rect width="100%" height="8" fill="url(#zebra-stripe)"/>
-        </svg>
-      </div>
-      <div style="width:min(240px,88%);background:#f5ede0;box-shadow:4px 4px 0 var(--orange),8px 8px 0 rgba(212,97,26,.2);border:1px solid var(--cream3);padding:clamp(16px,2.8vw,24px)">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:clamp(10px,1.5vw,14px);padding-bottom:clamp(8px,1.2vw,12px);border-bottom:1px solid var(--cream3)">
-          <div>
-            <div style="font-family:'Alfa Slab One',serif;font-size:clamp(1rem,2vw,1.4rem);letter-spacing:.04em;color:var(--brown-deep)">FINDLY</div>
-            <div style="font-family:'DM Mono',monospace;font-size:clamp(.42rem,.54vw,.48rem);letter-spacing:.16em;text-transform:uppercase;color:var(--orange);margin-top:2px">Archive · March 2025</div>
-          </div>
-          <div style="width:clamp(28px,4vw,36px);height:clamp(28px,4vw,36px);border:1.5px solid var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center;transform:rotate(-10deg)">
-            <span style="font-family:'DM Mono',monospace;font-size:clamp(.36rem,.46vw,.42rem);letter-spacing:.08em;color:var(--orange);text-align:center;line-height:1.1;text-transform:uppercase">FIND<br>LY</span>
-          </div>
-        </div>
-        <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(.9rem,1.8vw,1.3rem);color:var(--brown-deep);line-height:1.25;margin-bottom:clamp(10px,1.5vw,14px)">"Your board said warm and layered. We went looking."</div>
-        <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:clamp(10px,1.5vw,14px)">
-          <div style="font-family:'DM Mono',monospace;font-size:clamp(.44rem,.58vw,.52rem);letter-spacing:.1em;color:var(--brown-mid);display:flex;align-items:center;gap:6px"><span style="color:var(--orange)">→</span>Teak side table, Denmark 1962</div>
-          <div style="font-family:'DM Mono',monospace;font-size:clamp(.44rem,.58vw,.52rem);letter-spacing:.1em;color:var(--brown-mid);display:flex;align-items:center;gap:6px"><span style="color:var(--orange)">→</span>Ceramic vessel, California 1968</div>
-          <div style="font-family:'DM Mono',monospace;font-size:clamp(.44rem,.58vw,.52rem);letter-spacing:.1em;color:var(--brown-mid);display:flex;align-items:center;gap:6px"><span style="color:var(--orange)">→</span>Woven throw, Portugal undated</div>
-          <div style="font-family:'DM Mono',monospace;font-size:clamp(.44rem,.58vw,.52rem);letter-spacing:.1em;color:var(--brown-mid);display:flex;align-items:center;gap:6px"><span style="color:var(--orange)">→</span>Brass lamp, Netherlands 1971</div>
-        </div>
-        <div style="border-top:1px dashed rgba(44,26,14,.15);padding-top:clamp(8px,1.2vw,12px);display:flex;justify-content:space-between;align-items:flex-end">
-          <span style="font-family:'Josefin Sans',sans-serif;font-size:clamp(.6rem,.78vw,.68rem);font-weight:300;color:rgba(44,26,14,.4)">findly.com</span>
-          <span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(.64rem,.84vw,.74rem);color:rgba(212,97,26,.6)">The find over the new.</span>
-        </div>
-      </div>
-    </div>
-    <div class="app-label">Lookbook Insert Card — Archive Tier</div>
-  </div>
-</div>
-```
-
   </div>
 </section>
 
-<!-- FOOTER NAV -->
 
+<!-- FOOTER NAV -->
 <footer class="footer-nav" id="nav-footer">
   <div class="fn-inner">
     <div>
@@ -1407,7 +1381,6 @@ display:flex;flex-direction:column;gap:2px;
 </footer>
 
 <!-- DRAWER -->
-
 <div class="overlay" id="overlay" onclick="toggleDrawer()"></div>
 <div class="drawer" id="drawer">
   <div class="drawer-head"><span style="color:var(--brown-deep)">FIND</span><span style="color:var(--orange)">LY</span></div>
@@ -1435,6 +1408,5 @@ const io = new IntersectionObserver(entries=>{
 },{threshold:.06});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 </script>
-
 </body>
 </html>
