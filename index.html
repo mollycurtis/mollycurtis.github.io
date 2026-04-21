@@ -139,6 +139,7 @@
     .skills-grid { }
     .sg:nth-child(1) { border-right: 1px solid rgba(185,79,200,0.15); border-bottom: 1px solid rgba(185,79,200,0.15); }
     .sg:nth-child(2) { border-bottom: 1px solid rgba(185,79,200,0.15); }
+    .sg:nth-child(2), .sg:nth-child(4) { padding-left: 2rem; padding-right: 0; }
     .sg:nth-child(3) { border-right: 1px solid rgba(185,79,200,0.15); }
     .sg:nth-child(4) { }
     .sg h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 0.9rem; }
@@ -175,7 +176,7 @@
 
     /* CONTACT */
     .contact-box { text-align: center; max-width: 860px; margin: 0 auto; }
-    .contact-box .tagline { font-size: 1rem; color: #666; margin-bottom: 1.4rem; font-weight: 300; white-space: nowrap; }
+    .contact-box .tagline { font-size: 1rem; color: #666; margin-bottom: 1.4rem; font-weight: 300; white-space: normal; max-width: 600px; margin-left: auto; margin-right: auto; }
     .email-display { font-size: 1rem; color: #555; }
 
     /* BACK TO TOP */
@@ -198,6 +199,10 @@
 
     /* PROJECT GRID */
     .proj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .proj-card-full { grid-column: 1 / -1; min-height: 240px; }
+    .proj-card-full .proj-card-content { flex-direction: row; align-items: center; gap: 3rem; }
+    .proj-card-full .proj-card-desc { max-width: 600px; }
+    .proj-card-full .proj-card-footer { flex-direction: column; align-items: flex-start; margin-top: 0; }
     .proj-card {
       position: relative; border-radius: 16px; overflow: hidden; text-decoration: none;
       min-height: 280px; display: flex; flex-direction: column;
@@ -244,7 +249,7 @@
     .proj-card-skills { display: none; }
     .proj-card-cta { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; white-space: nowrap; padding: 0.45rem 1rem; border-radius: 30px; border: 1px solid rgba(185,79,200,0.5); color: #b94fc8; transition: all 0.2s; background: white; }
     .proj-card:hover .proj-card-cta { background: var(--gradient); color: white; border-color: transparent; }
-    @media(max-width:680px){ .proj-grid { grid-template-columns: 1fr; } .proj-card { min-height: 240px; } }
+    @media(max-width:680px){ .proj-grid { grid-template-columns: 1fr; } .proj-card { min-height: 240px; } .proj-card-full { grid-column: auto; } .proj-card-full .proj-card-content { flex-direction: column; } }
 
     /* RESPONSIVE */
     /* ── Large (≤1200px) ── */
@@ -257,7 +262,7 @@
     /* ── Medium (≤960px) ── */
     @media(max-width:960px){
       .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 2rem; }
-      .hero-img-wrap { order: -1; width: 260px !important; height: 260px !important; margin: 0 auto; }
+      .hero-img-wrap { order: -1; width: 220px !important; height: 220px !important; margin: 1.5rem auto 0; }
       .hero-name { white-space: normal; font-size: clamp(2.8rem, 8vw, 4.2rem); }
       .hero-pills, .hero-ctas { justify-content: center; }
       .hero-bio { margin: 0 auto 1.2rem; max-width: 100%; }
@@ -266,7 +271,7 @@
       .photo-ss { width: 100% !important; max-width: 400px; margin: 0 auto !important; }
       .inner { padding: 0 1.5rem; }
       .nav-inner { padding: 0.9rem 1.5rem; }
-      .impact-inner { gap: 1.2rem; }
+      .impact-inner { gap: 1.2rem; display: grid; grid-template-columns: 1fr 1fr; }
     }
     /* ── Small (≤680px) ── */
     @media(max-width:680px){
@@ -288,6 +293,7 @@
       .skills-grid { grid-template-columns: 1fr; }
       .sg:nth-child(1), .sg:nth-child(3) { border-right: none; border-bottom: 1px solid rgba(185,79,200,0.15); }
       .sg:nth-child(2) { border-bottom: 1px solid rgba(185,79,200,0.15); }
+    .sg:nth-child(2), .sg:nth-child(4) { padding-left: 2rem; padding-right: 0; }
       .photo-layout { grid-template-columns: 1fr; }
       .sa { width: 36px; height: 36px; font-size: 0.9rem; }
       .sd { width: 8px; height: 8px; }
@@ -349,8 +355,8 @@
 <div class="impact" id="impactStrip">
   <div class="impact-inner">
     <div>
-      <div class="impact-n grad"><span class="cu" data-t="XX" data-s="%" data-p="↑">↑XX%</span></div>
-      <div class="impact-l">Subscription growth<br/>after redesign</div>
+      <div class="impact-n grad"><span class="cu" data-t="1" data-s="M+" data-p="$">$1M+</span></div>
+      <div class="impact-l">Revenue from<br/>landing pages built</div>
     </div>
     <div>
       <div class="impact-n grad"><span class="cu" data-t="650" data-s="+">650+</span></div>
@@ -389,7 +395,7 @@
       </a>
 
       <!-- CARD 2: Landing Pages -->
-      <a href="https://mollycurtis.github.io/landingpages" class="proj-card" style="--card-accent:#b94fc8;">
+      <a href="https://mollycurtis.github.io/landingpages/" class="proj-card" style="--card-accent:#b94fc8;">
         <div class="proj-card-bg" style="background: linear-gradient(135deg, #f6f0ff 0%, #fdf0ff 100%);"></div>
         <div class="proj-card-content">
           <div class="proj-card-tag">Conversion &amp; UX</div>
@@ -402,25 +408,12 @@
       </a>
 
       <!-- CARD 3: Display Ads -->
-      <a href="https://mollycurtis.github.io/displayads" class="proj-card" style="--card-accent:#7b5ea7;">
+      <a href="https://mollycurtis.github.io/displayads" class="proj-card proj-card-full" style="--card-accent:#7b5ea7;">
         <div class="proj-card-bg" style="background: linear-gradient(135deg, #fff0f8 0%, #f8f0ff 100%);"></div>
         <div class="proj-card-content">
           <div class="proj-card-tag">Creative Production</div>
           <h3 class="proj-card-title">Display Ad Creation</h3>
           <p class="proj-card-desc">Scalable ad creative designed across multiple sizes and placements — built for consistency across paid campaigns and channels.</p>
-          <div class="proj-card-footer">
-<span class="proj-card-cta">View Work →</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- CARD 4: Social & Content -->
-      <a href="https://mollycurtis.github.io/social" class="proj-card" style="--card-accent:#c040c8;">
-        <div class="proj-card-bg" style="background: linear-gradient(135deg, #fdf0ff 0%, #fff0f8 100%);"></div>
-        <div class="proj-card-content">
-          <div class="proj-card-tag">Social &amp; Content</div>
-          <h3 class="proj-card-title">Social &amp; Campaign Content</h3>
-          <p class="proj-card-desc">Organic social content, web banners, and campaign visuals — created to engage audiences and keep brand presence consistent across channels.</p>
           <div class="proj-card-footer">
 <span class="proj-card-cta">View Work →</span>
           </div>
@@ -438,11 +431,11 @@
     <h2 class="st">My <span class="grad">Process</span></h2>
     <hr class="sdiv" />
     <div class="process-row">
-      <div class="ps"><div class="ps-dot"></div><div class="ps-n grad">01</div><h3>Understand the Goal</h3><p>Define campaign goals, audience, and metrics.</p></div>
-      <div class="ps"><div class="ps-dot"></div><div class="ps-n grad">02</div><h3>Identify Friction</h3><p>Find the gaps in the user journey costing conversions.</p></div>
-      <div class="ps"><div class="ps-dot"></div><div class="ps-n grad">03</div><h3>Design the Experience</h3><p>Build layouts and creative that make the next step obvious.</p></div>
-      <div class="ps"><div class="ps-dot"></div><div class="ps-n grad">04</div><h3>Launch &amp; Measure</h3><p>Ship it, track it with GA4, and see what's working.</p></div>
-      <div class="ps"><div class="ps-dot"></div><div class="ps-n grad">05</div><h3>Optimize &amp; Refine</h3><p>Use data and feedback to keep improving over time.</p></div>
+      <div class="ps"><div class="ps-dot"></div><div class="ps-n grad">01</div><h3>Understand the Goal</h3><p>Define the campaign goal, target audience, and success metrics.</p></div>
+      <div class="ps"><div class="ps-dot"></div><div class="ps-n grad">02</div><h3>Identify Friction</h3><p>Audit the existing experience and find where users drop off.</p></div>
+      <div class="ps"><div class="ps-dot"></div><div class="ps-n grad">03</div><h3>Design the Experience</h3><p>Design landing pages, ads, and creative that reduce friction.</p></div>
+      <div class="ps"><div class="ps-dot"></div><div class="ps-n grad">04</div><h3>Launch &amp; Measure</h3><p>Deploy, track with GA4, and identify what's performing.</p></div>
+      <div class="ps"><div class="ps-dot"></div><div class="ps-n grad">05</div><h3>Optimize &amp; Refine</h3><p>Iterate based on performance data and user behavior.</p></div>
     </div>
   </div>
 </section>
@@ -573,7 +566,7 @@
 
 <button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</button>
 
-  <script>    var cur=0, total=4;
+  <script>    var cur=0, total=3;
     function slideProject(dir){ cur=(cur+dir+total)%total; _move(); }
     function goToSlide(n){ cur=n; _move(); }
     function _move(){
