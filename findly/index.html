@@ -92,7 +92,7 @@ body{font-family:var(--sans);background:#f5ede0;color:#2c1a0e;overflow-x:hidden;
 @media(max-width:700px){.nav-pill{display:none}}
 .nav-link{font-family:var(--sans);font-size:clamp(.52rem,.7vw,.62rem);font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,237,224,.5);text-decoration:none;transition:color .2s;white-space:nowrap}
 .nav-link:hover{color:var(--orange)}
-@media(max-width:700px){.nav-center{display:none}}
+@media(max-width:700px){.nav-center{display:flex}.nav-link{font-size:clamp(.52rem,2.2vw,.62rem);letter-spacing:.08em}}
 .nav-right{display:flex;align-items:center;gap:clamp(12px,2vw,24px);justify-content:flex-end}
 .contents-btn{
   background:transparent;color:var(--cream);border:1px solid rgba(245,237,224,.2);
@@ -431,7 +431,7 @@ body{font-family:var(--sans);background:#f5ede0;color:#2c1a0e;overflow-x:hidden;
 /* IMAGERY */
 .mood-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:clamp(24px,3.5vw,40px)}
 .mood-cell{overflow:hidden;position:relative}
-.mood-inner{width:100%;min-height:clamp(120px,15vw,180px);position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(10px,1.5vw,14px)}
+.mood-inner{width:100%;min-height:clamp(200px,22vw,280px);position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(10px,1.5vw,14px)}
 .mood-inner img{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;object-fit:cover}
 .mood-label{font-family:var(--mono);font-size:clamp(.58rem,.74vw,.66rem);letter-spacing:.12em;text-transform:uppercase;color:rgba(245,237,224,.85);background:rgba(44,26,14,.55);padding:4px 9px;display:inline-block}
 .m1{background:linear-gradient(145deg,#3a2010,#6a3c1c)}
@@ -476,18 +476,7 @@ body{font-family:var(--sans);background:#f5ede0;color:#2c1a0e;overflow-x:hidden;
   height:100%;
   position:relative;overflow:hidden;
 }
-.mock-box-scene::before{
-  content:'';position:absolute;top:0;right:0;bottom:0;left:0;
-  background-image:
-    linear-gradient(45deg, rgba(90,51,24,.4) 25%, transparent 25%),
-    linear-gradient(-45deg, rgba(90,51,24,.4) 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, rgba(90,51,24,.4) 75%),
-    linear-gradient(-45deg, transparent 75%, rgba(90,51,24,.4) 75%);
-  background-size:16px 16px;
-  background-position:0 0, 0 8px, 8px -8px, -8px 0px;
-  background-color:var(--brown-deep);
-  opacity:.35;
-}
+.mock-box-scene::before{display:none}
 
 /* INSPO FORM scene */
 .mock-form-scene{
@@ -1173,12 +1162,12 @@ body{font-family:var(--sans);background:#f5ede0;color:#2c1a0e;overflow-x:hidden;
     <p style="font-family:var(--sans);font-size:clamp(.86rem,1.18vw,.96rem);font-weight:300;line-height:1.8;color:var(--brown-mid);max-width:640px;margin-bottom:clamp(28px,4vw,44px)">Photography looks like it was shot on a Saturday morning in someone's actual living room. Amber light, linen surfaces, things slightly out of place. If it looks like a catalogue, it's wrong for Findly.</p>
 
     <div class="mood-grid">
-      <div class="mood-cell"><div class="mood-inner" style="background:#1a1208;min-height:clamp(120px,15vw,180px)"><img src="3b3aa0e98d4ed4133a21065b36b28552.jpg" alt="Leopard print sofa, burl wood walls" style="position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;object-fit:cover;opacity:.85"/><span class="mood-label" style="position:relative;z-index:2">Burl wood + animal print</span></div></div>
-      <div class="mood-cell"><div class="mood-inner" style="background:#2a2010;min-height:clamp(120px,15vw,180px)"><img src="a029cb89ddb234a040ee2250810d4fc7.jpg" alt="Vintage MCM store with teak furniture and lamps" style="position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;object-fit:cover;opacity:.85"/><span class="mood-label" style="position:relative;z-index:2">The find at the source</span></div></div>
-      <div class="mood-cell"><div class="mood-inner" style="background:#1c1810;min-height:clamp(120px,15vw,180px)"><img src="708423329f1775e8ad5e7f2627580692.jpg" alt="Estate sale paintings stacked against wall" style="position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;object-fit:cover;opacity:.85"/><span class="mood-label" style="position:relative;z-index:2">Estate sale art wall</span></div></div>
-      <div class="mood-cell"><div class="mood-inner" style="background:#2c1808;min-height:clamp(120px,15vw,180px)"><img src="f249d2a9f38546724a406263d0c4cd69.jpg" alt="Flea market ceramics, gold frames, vintage objects" style="position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;object-fit:cover;opacity:.85"/><span class="mood-label" style="position:relative;z-index:2">Ceramics + gilt objects</span></div></div>
-      <div class="mood-cell"><div class="mood-inner" style="background:#1a1208;min-height:clamp(120px,15vw,180px)"><img src="edd85d71ecb3228a737f90a6dd92d77f.jpg" alt="MCM black cat figurines on teak dresser" style="position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;object-fit:cover;opacity:.85"/><span class="mood-label" style="position:relative;z-index:2">Sculptural MCM objects</span></div></div>
-      <div class="mood-cell"><div class="mood-inner" style="background:#3a2010;min-height:clamp(120px,15vw,180px)"><img src="20f4dc915b22f366ff33fd926970a811.jpg" alt="70s living room with glass block wall, velvet sofa" style="position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;object-fit:cover;opacity:.85"/><span class="mood-label" style="position:relative;z-index:2">70s amber warmth</span></div></div>
+      <div class="mood-cell"><div class="mood-inner" style="background:#1a1208;min-height:clamp(200px,22vw,280px)"><img src="3b3aa0e98d4ed4133a21065b36b28552.jpg" alt="Leopard print sofa, burl wood walls" style="position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;object-fit:cover;opacity:.85"/><span class="mood-label" style="position:relative;z-index:2">Burl wood + animal print</span></div></div>
+      <div class="mood-cell"><div class="mood-inner" style="background:#2a2010;min-height:clamp(200px,22vw,280px)"><img src="a029cb89ddb234a040ee2250810d4fc7.jpg" alt="Vintage MCM store with teak furniture and lamps" style="position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;object-fit:cover;opacity:.85"/><span class="mood-label" style="position:relative;z-index:2">The find at the source</span></div></div>
+      <div class="mood-cell"><div class="mood-inner" style="background:#1c1810;min-height:clamp(200px,22vw,280px)"><img src="708423329f1775e8ad5e7f2627580692.jpg" alt="Estate sale paintings stacked against wall" style="position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;object-fit:cover;opacity:.85"/><span class="mood-label" style="position:relative;z-index:2">Estate sale art wall</span></div></div>
+      <div class="mood-cell"><div class="mood-inner" style="background:#2c1808;min-height:clamp(200px,22vw,280px)"><img src="f249d2a9f38546724a406263d0c4cd69.jpg" alt="Flea market ceramics, gold frames, vintage objects" style="position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;object-fit:cover;opacity:.85"/><span class="mood-label" style="position:relative;z-index:2">Ceramics + gilt objects</span></div></div>
+      <div class="mood-cell"><div class="mood-inner" style="background:#1a1208;min-height:clamp(200px,22vw,280px)"><img src="edd85d71ecb3228a737f90a6dd92d77f.jpg" alt="MCM black cat figurines on teak dresser" style="position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;object-fit:cover;opacity:.85"/><span class="mood-label" style="position:relative;z-index:2">Sculptural MCM objects</span></div></div>
+      <div class="mood-cell"><div class="mood-inner" style="background:#3a2010;min-height:clamp(200px,22vw,280px)"><img src="20f4dc915b22f366ff33fd926970a811.jpg" alt="70s living room with glass block wall, velvet sofa" style="position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;object-fit:cover;opacity:.85"/><span class="mood-label" style="position:relative;z-index:2">70s amber warmth</span></div></div>
     </div>
 
     
