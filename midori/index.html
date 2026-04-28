@@ -404,22 +404,6 @@ body{font-family:var(--body);background:var(--forest);color:var(--cream);overflo
 .mockups-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
 @media(max-width:580px){.mockups-row{grid-template-columns:1fr}}
 
-/* ── CUP MOCKUP (photorealistic) ── */
-.mockup-cup-scene{
-  border-radius:16px;overflow:hidden;
-  background:linear-gradient(135deg,#1e3028 0%,#2a4a38 60%,#1a3028 100%);
-  padding:clamp(28px,4vw,44px) clamp(20px,3.5vw,36px);
-  display:flex;flex-direction:column;align-items:center;gap:clamp(14px,2vw,20px);
-  min-height:clamp(180px,22vw,260px);position:relative;overflow:hidden;
-}
-.cup-scene-bg{
-  position:absolute;inset:0;
-  background:radial-gradient(ellipse 70% 60% at 50% 80%,rgba(82,183,136,.12) 0%,transparent 60%);
-}
-/* realistic cup SVG */
-.cup-svg-wrap{position:relative;z-index:2;filter:drop-shadow(0 12px 28px rgba(0,0,0,.5))}
-.mockup-cup-label{position:relative;z-index:2;font-size:clamp(.58rem,.78vw,.66rem);letter-spacing:.16em;text-transform:uppercase;color:rgba(250,248,242,.4)}
-
 /* ── MENU MOCKUP ── */
 .mockup-menu-scene{
   border-radius:16px;overflow:hidden;
@@ -443,53 +427,6 @@ body{font-family:var(--body);background:var(--forest);color:var(--cream);overflo
 .mi-origin{font-size:clamp(.58rem,.76vw,.64rem);letter-spacing:.1em;text-transform:uppercase;color:var(--amber-d);display:block;margin-top:2px}
 .mi-desc{font-size:clamp(.64rem,.84vw,.7rem);font-weight:300;color:#8a8070;display:block;margin-top:3px;line-height:1.45}
 .mi-price{font-family:var(--display);font-size:clamp(.9rem,1.4vw,1.1rem);font-weight:400;font-style:italic;color:var(--ink);flex-shrink:0;margin-top:1px}
-
-/* ── SOCIAL MOCKUP ── */
-.mockup-social-scene{
-  border-radius:16px;overflow:hidden;
-  background:var(--forest);
-  display:flex;flex-direction:column;
-  min-height:clamp(180px,20vw,240px);position:relative;
-}
-.social-image-area{
-  flex:1;
-  background:linear-gradient(135deg,#1a3428 0%,#2a5a40 40%,#1e4030 100%);
-  position:relative;overflow:hidden;
-  display:flex;align-items:flex-end;justify-content:flex-start;
-  padding:clamp(14px,2vw,20px);min-height:clamp(130px,17vw,190px);
-}
-.social-image-area::after{
-  content:'';position:absolute;inset:0;
-  background:
-    radial-gradient(ellipse 50% 60% at 60% 40%,rgba(82,183,136,.18) 0%,transparent 55%),
-    linear-gradient(to top,rgba(26,58,42,.7) 0%,transparent 50%);
-}
-/* bowl illustration in social */
-.social-footer{padding:clamp(10px,1.5vw,14px) clamp(14px,2vw,20px);display:flex;align-items:center;justify-content:space-between;background:rgba(26,58,42,.6);backdrop-filter:blur(4px)}
-.social-handle{font-size:clamp(.62rem,.82vw,.7rem);letter-spacing:.12em;text-transform:uppercase;color:rgba(250,248,242,.5)}
-/* tiny red seal in social */
-.social-seal{width:8px;height:8px;border-radius:50%;background:var(--red);opacity:.8}
-
-/* ── BAG MOCKUP ── */
-.mockup-bag-scene{
-  border-radius:16px;overflow:hidden;
-  background:linear-gradient(145deg,#f0ebe0 0%,#e4ddd0 100%);
-  padding:clamp(24px,3.5vw,40px) clamp(20px,3vw,32px);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:clamp(12px,1.8vw,18px);
-  min-height:clamp(180px,20vw,240px);
-  position:relative;overflow:hidden;
-  box-shadow:inset 0 0 0 1px rgba(0,0,0,.06);
-}
-/* kraft paper texture lines */
-.mockup-bag-scene::before{
-  content:'';position:absolute;inset:0;
-  background-image:repeating-linear-gradient(90deg,rgba(0,0,0,.012) 0px,rgba(0,0,0,.012) 1px,transparent 1px,transparent 18px);
-}
-.bag-3d{position:relative;z-index:2;filter:drop-shadow(0 10px 24px rgba(0,0,0,.18))}
-.bag-mockup-note{position:relative;z-index:2;font-size:clamp(.6rem,.8vw,.68rem);letter-spacing:.14em;text-transform:uppercase;color:#a89880}
-
-/* patterns */
 
 /* ── DRAWER ── */
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;opacity:0;pointer-events:none;transition:opacity .3s}
@@ -575,8 +512,6 @@ body{font-family:var(--body);background:var(--forest);color:var(--cream);overflo
 </style>
 </head>
 <body>
-
-
 
 <!-- NAV -->
 <nav class="top-nav">
@@ -984,45 +919,14 @@ body{font-family:var(--body);background:var(--forest);color:var(--cream);overflo
       <p class="sec-sub">How Midori lives on cups, menus, packaging, and walls — where the brand becomes something you can hold.</p>
     </div>
 
-    <!-- MOCKUPS ROW 1: Social + Menu -->
+    <!-- MOCKUPS: Cup + Menu -->
     <div class="mockups-row" style="margin-bottom:14px">
 
-      <!-- SOCIAL — editorial post, dark, typographic -->
-      <div class="mockup-social-scene">
-        <div class="social-image-area">
-          <div style="position:absolute;inset:0;background:linear-gradient(145deg,#0c1c12 0%,#163024 40%,#1e4030 70%,#142a1e 100%)"></div>
-          <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 68% 28%,rgba(82,183,136,.1) 0%,transparent 65%)"></div>
-          <!-- ghost bowl mark, large, bottom-right -->
-          <div style="position:absolute;right:-10%;bottom:-10%;opacity:.08;pointer-events:none">
-            <svg width="180" height="180" viewBox="0 0 44 44" fill="none">
-              <ellipse cx="22" cy="22" rx="19" ry="19" stroke="#faf8f2" stroke-width=".9"/>
-              <ellipse cx="22" cy="26" rx="13" ry="8" stroke="#faf8f2" stroke-width="1.2"/>
-            </svg>
-          </div>
-          <!-- amber rule -->
-          <div style="position:absolute;top:clamp(16px,2.5vw,24px);left:clamp(16px,2.5vw,24px);width:24px;height:1.5px;background:var(--amber)"></div>
-          <!-- main type content -->
-          <div style="position:absolute;bottom:clamp(16px,2.5vw,24px);left:clamp(16px,2.5vw,24px);right:clamp(16px,2.5vw,24px);z-index:2">
-            <p style="font-family:var(--display);font-size:clamp(1.2rem,2.4vw,1.8rem);font-style:italic;font-weight:300;color:var(--cream);line-height:1.2;margin-bottom:8px">"stillness<br>in a cup"</p>
-            <div style="display:flex;justify-content:space-between;align-items:flex-end">
-              <span style="font-size:clamp(.52rem,.66vw,.6rem);letter-spacing:.2em;text-transform:uppercase;color:rgba(250,248,242,.38)">midori · nishio, aichi</span>
-              <span style="font-size:clamp(.52rem,.66vw,.6rem);letter-spacing:.16em;text-transform:uppercase;color:rgba(250,248,242,.28)">spring 2025</span>
-            </div>
-          </div>
-        </div>
-        <div class="social-footer">
-          <div style="display:flex;align-items:baseline;gap:5px">
-            <span style="font-family:var(--display);font-size:clamp(.78rem,1.2vw,.9rem);font-weight:600;font-style:italic;letter-spacing:.08em;color:var(--cream)">MIDORI</span>
-            <span style="font-family:var(--display);font-size:clamp(.5rem,.8vw,.6rem);font-weight:400;color:var(--red)">緑</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:8px">
-            <span class="social-handle">@midori.matcha</span>
-            <div class="social-seal"></div>
-          </div>
-        </div>
+      <!-- CUP — real photo mockup -->
+      <div class="mockup-cup-scene" style="padding:0;overflow:hidden;border-radius:16px;min-height:clamp(180px,22vw,260px)">
+        <img src="Mockup.png" alt="Midori takeaway cup" style="width:100%;height:100%;object-fit:cover;display:block">
       </div>
 
-      <!-- RETAIL BAG — properly proportioned, warm kraft -->
       <!-- MENU -->
       <div class="mockup-menu-scene">
         <div class="menu-top">
@@ -1033,7 +937,7 @@ body{font-family:var(--body);background:var(--forest);color:var(--cream);overflo
             </div>
             <span class="menu-season">Spring Menu — Nishio, Aichi</span>
           </div>
-
+      
         </div>
         <div class="menu-items">
           <div class="menu-item">
@@ -1070,177 +974,9 @@ body{font-family:var(--body);background:var(--forest);color:var(--cream);overflo
           </div>
         </div>
       </div>
+          </div>
+
     </div>
-
-    <!-- MOCKUPS ROW 2: Cup + Bag -->
-    <div class="mockups-row">
-
-      <!-- CUP — tall, dark scene, refined SVG -->
-      <div class="mockup-cup-scene">
-        <div class="cup-scene-bg"></div>
-        <div class="cup-svg-wrap">
-          <svg viewBox="0 0 110 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:clamp(80px,9vw,108px);height:auto;display:block">
-            <defs>
-              <linearGradient id="cupBody" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stop-color="#e8e0d0"/>
-                <stop offset="55%" stop-color="#f6f0e8"/>
-                <stop offset="100%" stop-color="#d8d0c0"/>
-              </linearGradient>
-              <linearGradient id="cupSide" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stop-color="#d0c8b8"/>
-                <stop offset="100%" stop-color="#c0b8a8"/>
-              </linearGradient>
-              <linearGradient id="sleeveG" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stop-color="#122418"/>
-                <stop offset="45%" stop-color="#1a3a2a"/>
-                <stop offset="100%" stop-color="#102010"/>
-              </linearGradient>
-              <linearGradient id="lidTop" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#eae2d6"/>
-                <stop offset="100%" stop-color="#d6cec0"/>
-              </linearGradient>
-            </defs>
-            <!-- shadow -->
-            <ellipse cx="55" cy="196" rx="34" ry="5" fill="rgba(0,0,0,.25)"/>
-            <!-- cup body — clean taper, wider base -->
-            <path d="M20 42 L14 178 Q14 186 24 187 L86 187 Q96 186 96 178 L90 42 Z" fill="url(#cupBody)" stroke="#cac0b0" stroke-width=".7"/>
-            <!-- right edge shading -->
-            <path d="M90 42 L96 178 Q96 186 88 187 L86 187 Q96 186 96 178 L90 42 Z" fill="rgba(0,0,0,.07)"/>
-            <!-- sleeve — covers middle third -->
-            <path d="M18 96 L16 152 Q16 156 22 157 L88 157 Q94 156 94 152 L92 96 Z" fill="url(#sleeveG)"/>
-            <!-- amber stripe top of sleeve -->
-            <rect x="16" y="96" width="78" height="1.8" fill="#D79A43" opacity=".8" rx=".9"/>
-            <!-- amber stripe bottom of sleeve -->
-            <rect x="16" y="152" width="78" height="1.8" fill="#D79A43" opacity=".6" rx=".9"/>
-            <!-- MIDORI — clean, centred -->
-            <text x="55" y="131" font-family="Georgia,serif" font-size="9.5" font-style="italic" font-weight="700" letter-spacing="3.5" fill="#faf8f2" text-anchor="middle" opacity=".94">MIDORI</text>
-            <!-- 緑 small red beneath -->
-            <text x="55" y="143" font-family="Georgia,serif" font-size="6.5" fill="#A23E2A" text-anchor="middle" opacity=".85">緑</text>
-            <!-- lid flat top -->
-            <ellipse cx="55" cy="31" rx="40" ry="10" fill="url(#lidTop)" stroke="#d0c8b8" stroke-width=".7"/>
-            <!-- lid side ring -->
-            <path d="M15 40 Q15 31 55 31 Q95 31 95 40 L93 45 Q93 48 55 48 Q17 48 17 45 Z" fill="#d8d0c2" stroke="#c8c0b0" stroke-width=".7"/>
-            <!-- drink opening -->
-            <path d="M40 30 Q55 24 70 30" stroke="#c8c0b0" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-            <!-- steam -->
-            <path d="M36 25 Q40 16 35 8" stroke="rgba(250,248,242,.18)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-            <path d="M55 22 Q59 13 54 5" stroke="rgba(250,248,242,.14)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-            <path d="M74 25 Q78 16 73 8" stroke="rgba(250,248,242,.11)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <span class="mockup-cup-label">Takeaway Cup</span>
-      </div>
-
-      <!-- RETAIL BAG — properly proportioned, warm kraft -->
-      <div class="mockup-bag-scene">
-        <div class="bag-3d">
-          <svg viewBox="0 0 130 170" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:clamp(96px,12vw,130px);height:auto;display:block">
-            <defs>
-              <linearGradient id="bagFront" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stop-color="#d4bc84"/>
-                <stop offset="60%" stop-color="#e2cc96"/>
-                <stop offset="100%" stop-color="#cbb878"/>
-              </linearGradient>
-              <linearGradient id="bagSide" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stop-color="#c4a868"/>
-                <stop offset="100%" stop-color="#b89858"/>
-              </linearGradient>
-            </defs>
-            <!-- bag shadow -->
-            <ellipse cx="68" cy="165" rx="44" ry="5" fill="rgba(0,0,0,.18)"/>
-            <!-- right side panel -->
-            <path d="M106 52 L110 157 Q110 163 103 164 L98 163 L102 52 Z" fill="url(#bagSide)"/>
-            <!-- main bag body -->
-            <path d="M24 52 L20 157 Q20 163 28 164 L103 164 Q111 163 110 157 L106 52 Z" fill="url(#bagFront)" stroke="#b8a060" stroke-width=".7"/>
-            <!-- fold line at top -->
-            <line x1="24" y1="52" x2="106" y2="52" stroke="#b09050" stroke-width=".8"/>
-            <!-- left handle -->
-            <path d="M40 52 Q36 30 50 26 Q64 22 66 44" stroke="#a88840" stroke-width="3.2" fill="none" stroke-linecap="round"/>
-            <!-- right handle -->
-            <path d="M66 44 Q68 22 82 26 Q96 30 92 52" stroke="#a88840" stroke-width="3.2" fill="none" stroke-linecap="round"/>
-            <!-- punch holes -->
-            <ellipse cx="43" cy="51" rx="5.5" ry="4" fill="#b89848"/>
-            <ellipse cx="89" cy="51" rx="5.5" ry="4" fill="#b89848"/>
-            <!-- cream label, well-proportioned -->
-            <rect x="30" y="75" width="70" height="66" rx="3" fill="#faf8f2" stroke="#e0d8c8" stroke-width=".7"/>
-            <!-- forest top bar -->
-            <rect x="30" y="75" width="70" height="5.5" fill="#1a3a2a" rx="2"/>
-            <!-- amber stripe beneath bar -->
-            <rect x="30" y="80.5" width="70" height="1.5" fill="#D79A43"/>
-            <!-- wordmark on label — centred, good scale -->
-            <text x="65" y="112" font-family="Georgia,serif" font-size="12" font-style="italic" font-weight="700" letter-spacing="3" fill="#111a14" text-anchor="middle">MIDORI</text>
-            <text x="65" y="124" font-family="Georgia,serif" font-size="8.5" fill="#A23E2A" text-anchor="middle" opacity=".88">緑</text>
-            <!-- hairline -->
-            <line x1="48" y1="131" x2="82" y2="131" stroke="#ddd5c4" stroke-width=".7"/>
-            <text x="65" y="138" font-family="Arial,sans-serif" font-size="5.5" letter-spacing="2.5" fill="#a89878" text-anchor="middle">CEREMONIAL MATCHA</text>
-          </svg>
-        </div>
-        <span class="bag-mockup-note">Retail Bag — Kraft &amp; Cream</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SECTION NAV FOOTER -->
-<nav class="section-nav" aria-label="Section navigation">
-  <div class="snav-inner">
-    <a class="snav-item" href="#intro">
-      <span class="snav-num">(01)</span>
-      <span class="snav-name">Introduction</span>
-    </a>
-    <a class="snav-item" href="#type">
-      <span class="snav-num">(04)</span>
-      <span class="snav-name">Typography</span>
-    </a>
-    <a class="snav-item" href="#logo">
-      <span class="snav-num">(02)</span>
-      <span class="snav-name">Logo</span>
-    </a>
-    <a class="snav-item" href="#imagery">
-      <span class="snav-num">(05)</span>
-      <span class="snav-name">Imagery</span>
-    </a>
-    <a class="snav-item" href="#colors">
-      <span class="snav-num">(03)</span>
-      <span class="snav-name">Colors</span>
-    </a>
-    <a class="snav-item" href="#assets">
-      <span class="snav-num">(06)</span>
-      <span class="snav-name">Applications</span>
-    </a>
-  </div>
-  <div class="snav-footer-row">
-    <div class="snav-logo">
-      <span class="snav-logo-word">MIDORI</span>
-      <span class="snav-logo-k">緑</span>
-    </div>
-    <a class="snav-back" href="#top">
-      <svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
-        <line x1="7" y1="12" x2="7" y2="2"/>
-        <polyline points="3,6 7,2 11,6"/>
-      </svg>
-      Back to top
-    </a>
-  </div>
-</nav>
-
-<!-- DRAWER -->
-<div class="overlay" id="overlay" onclick="toggleDrawer()"></div>
-<div class="drawer" id="drawer">
-  <div class="drawer-head">Contents</div>
-  <a class="d-item" href="#top" onclick="toggleDrawer()"><span class="d-num">00</span> Overview</a>
-  <a class="d-item" href="#intro" onclick="toggleDrawer()"><span class="d-num">01</span> Introduction</a>
-  <a class="d-item" href="#logo" onclick="toggleDrawer()"><span class="d-num">02</span> Logo</a>
-  <a class="d-item" href="#colors" onclick="toggleDrawer()"><span class="d-num">03</span> Colors</a>
-  <a class="d-item" href="#type" onclick="toggleDrawer()"><span class="d-num">04</span> Typography</a>
-  <a class="d-item" href="#imagery" onclick="toggleDrawer()"><span class="d-num">05</span> Imagery</a>
-  <a class="d-item" href="#assets" onclick="toggleDrawer()"><span class="d-num">06</span> Applications</a>
-  <div style="margin-top:auto;padding-top:24px;display:flex;flex-direction:column;gap:10px;border-top:1px solid rgba(255,255,255,.08);margin-top:24px">
-    <a href="https://mollycurtis.github.io/" style="display:flex;align-items:center;justify-content:center;padding:11px 16px;border-radius:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:rgba(250,248,242,.6);text-decoration:none;transition:background .2s,color .2s;" onmouseover="this.style.background='rgba(215,154,67,.12)';this.style.color='#D79A43'" onmouseout="this.style.background='rgba(255,255,255,.06)';this.style.color='rgba(250,248,242,.6)'">← Back to Portfolio</a>
-    <a href="https://mollycurtis.github.io/brandguide/" style="display:flex;align-items:center;justify-content:center;padding:11px 16px;border-radius:10px;background:rgba(215,154,67,.1);border:1px solid rgba(215,154,67,.22);font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#D79A43;text-decoration:none;transition:background .2s,color .2s;" onmouseover="this.style.background='#D79A43';this.style.color='#111a14'" onmouseout="this.style.background='rgba(215,154,67,.1)';this.style.color='#D79A43'">View More Brand Work →</a>
-  </div>
-</div>
-
 <!-- BOTTOM CTA -->
 <div style="background:var(--forest);padding:clamp(36px,5vw,56px) clamp(20px,5vw,44px);text-align:center;border-top:1px solid rgba(255,255,255,.08)">
   <a href="https://mollycurtis.github.io/brandguide/" style="display:inline-flex;align-items:center;gap:10px;padding:clamp(12px,1.8vw,16px) clamp(24px,3.5vw,36px);border-radius:100px;background:rgba(215,154,67,.1);border:1px solid rgba(215,154,67,.25);font-family:'Outfit',sans-serif;font-size:clamp(.72rem,1vw,.8rem);font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#D79A43;text-decoration:none;transition:background .2s,color .2s;" onmouseover="this.style.background='#D79A43';this.style.color='#111a14'" onmouseout="this.style.background='rgba(215,154,67,.1)';this.style.color='#D79A43'">View More Brand Work <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/></svg></a>
