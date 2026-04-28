@@ -134,12 +134,12 @@
 
     /* SKILLS */
     .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
-    .sg { padding: 1.8rem 0; padding-right: 2rem; }
+    .sg { padding: 1.8rem 2rem; }
     .sg:nth-child(2), .sg:nth-child(4) { padding-right: 0; padding-left: 2rem; }
     .skills-grid { }
     .sg:nth-child(1) { border-right: 1px solid rgba(185,79,200,0.15); border-bottom: 1px solid rgba(185,79,200,0.15); }
     .sg:nth-child(2) { border-bottom: 1px solid rgba(185,79,200,0.15); }
-    .sg:nth-child(2), .sg:nth-child(4) { padding-left: 2rem; padding-right: 0; }
+
     .sg:nth-child(3) { border-right: 1px solid rgba(185,79,200,0.15); }
     .sg:nth-child(4) { }
     .sg h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 0.9rem; }
@@ -198,58 +198,45 @@
 
 
     /* PROJECT GRID */
-    .proj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-    .proj-card-full { grid-column: 1 / -1; min-height: 240px; }
-    .proj-card-full .proj-card-content { flex-direction: row; align-items: center; gap: 3rem; }
-    .proj-card-full .proj-card-desc { max-width: 600px; }
-    .proj-card-full .proj-card-footer { flex-direction: column; align-items: flex-start; margin-top: 0; }
+    .proj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
     .proj-card {
-      position: relative; border-radius: 16px; overflow: hidden; text-decoration: none;
-      min-height: 280px; display: flex; flex-direction: column;
+      position: relative; border-radius: 14px; overflow: hidden; text-decoration: none;
+      min-height: 260px; display: flex; flex-direction: column;
+      background: white;
+      border: 1px solid rgba(185,79,200,0.1);
+      box-shadow: 0 2px 16px rgba(185,79,200,0.08);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 4px 24px rgba(185,79,200,0.1), 0 1px 8px rgba(0,0,0,0.06);
     }
-    .proj-card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(185,79,200,0.18), 0 4px 16px rgba(0,0,0,0.08); }
-    .proj-card-bg { position: absolute; inset: 0; z-index: 0; transition: transform 0.4s ease; }
-    .proj-card:hover .proj-card-bg { transform: scale(1.03); }
-
-    .proj-card-content { position: relative; z-index: 2; padding: 1.8rem 2rem; display: flex; flex-direction: column; flex: 1; }
-        .proj-card-tag {
-      display: block;
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: #b94fc8;
-      background: none;
-      border: none;
-      border-radius: 0;
-      padding: 0 0 0.55rem 0;
-      margin: 0 0 0.9rem 0;
-      width: fit-content;
+    .proj-card:hover { transform: translateY(-5px); box-shadow: 0 12px 36px rgba(185,79,200,0.15); }
+    .proj-card-bg { display: none; }
+    .proj-card-content { padding: 1.8rem; display: flex; flex-direction: column; flex: 1; }
+    .proj-card-tag {
+      display: block; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: #b94fc8;
+      padding-bottom: 0.5rem; margin-bottom: 0.85rem; width: fit-content;
       position: relative;
     }
     .proj-card-tag::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 28px;
-      height: 2.5px;
-      background: linear-gradient(90deg, #e8445a 0%, #b94fc8 100%);
-      border-radius: 2px;
+      content: ''; position: absolute; bottom: 0; left: 0;
+      width: 28px; height: 2.5px;
+      background: linear-gradient(90deg, #e8445a, #b94fc8); border-radius: 2px;
     }
     .proj-card-title {
-      font-family: 'Playfair Display', serif; font-size: 1.55rem;
+      font-family: 'Playfair Display', serif; font-size: 1.4rem;
       background: var(--gt); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-      line-height: 1.15; margin-bottom: 0.75rem;
+      line-height: 1.2; margin-bottom: 0.7rem;
     }
     .proj-card-desc { font-size: 0.85rem; color: #555; line-height: 1.7; flex: 1; font-weight: 300; }
-    .proj-card-footer { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 1.4rem; gap: 1rem; flex-wrap: wrap; }
-    .proj-card-skills { display: none; }
-    .proj-card-cta { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; white-space: nowrap; padding: 0.45rem 1rem; border-radius: 30px; border: 1px solid rgba(185,79,200,0.5); color: #b94fc8; transition: all 0.2s; background: white; }
+    .proj-card-footer { margin-top: 1.4rem; }
+    .proj-card-cta {
+      display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.07em;
+      text-transform: uppercase; padding: 0.45rem 1rem; border-radius: 30px;
+      border: 1px solid rgba(185,79,200,0.5); color: #b94fc8;
+      transition: all 0.2s; background: white;
+    }
     .proj-card:hover .proj-card-cta { background: var(--gradient); color: white; border-color: transparent; }
-    @media(max-width:680px){ .proj-grid { grid-template-columns: 1fr; } .proj-card { min-height: 240px; } .proj-card-full { grid-column: auto; } .proj-card-full .proj-card-content { flex-direction: column; } }
+    @media(max-width:860px) { .proj-grid { grid-template-columns: 1fr; } }
+
 
     /* RESPONSIVE */
     /* ── Large (≤1200px) ── */
@@ -261,6 +248,8 @@
     }
     /* ── Medium (≤960px) ── */
     @media(max-width:960px){
+      .process-row { display: grid !important; grid-template-columns: 1fr 1fr; gap: 1rem; }
+      .process-row::before { display: none; }
       .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 2rem; }
       .hero-img-wrap { order: -1; width: 220px !important; height: 220px !important; margin: 1.5rem auto 0; }
       .hero-name { white-space: normal; font-size: clamp(2.8rem, 8vw, 4.2rem); }
@@ -293,7 +282,7 @@
       .skills-grid { grid-template-columns: 1fr; }
       .sg:nth-child(1), .sg:nth-child(3) { border-right: none; border-bottom: 1px solid rgba(185,79,200,0.15); }
       .sg:nth-child(2) { border-bottom: 1px solid rgba(185,79,200,0.15); }
-    .sg:nth-child(2), .sg:nth-child(4) { padding-left: 2rem; padding-right: 0; }
+
       .photo-layout { grid-template-columns: 1fr; }
       .sa { width: 36px; height: 36px; font-size: 0.9rem; }
       .sd { width: 8px; height: 8px; }
@@ -408,7 +397,7 @@
       </a>
 
       <!-- CARD 3: Display Ads -->
-      <a href="https://mollycurtis.github.io/displayads" class="proj-card proj-card-full" style="--card-accent:#7b5ea7;">
+      <a href="https://mollycurtis.github.io/displayads" class="proj-card" style="--card-accent:#7b5ea7;">
         <div class="proj-card-bg" style="background: linear-gradient(135deg, #fff0f8 0%, #f8f0ff 100%);"></div>
         <div class="proj-card-content">
           <div class="proj-card-tag">Creative Production</div>
@@ -431,11 +420,12 @@
     <h2 class="st">My <span class="grad">Process</span></h2>
     <hr class="sdiv" />
     <div class="process-row">
-      <div class="ps"><div class="ps-dot"></div><div class="ps-n grad">01</div><h3>Understand the Goal</h3><p>Define the campaign goal, target audience, and success metrics.</p></div>
-      <div class="ps"><div class="ps-dot"></div><div class="ps-n grad">02</div><h3>Identify Friction</h3><p>Audit the existing experience and find where users drop off.</p></div>
-      <div class="ps"><div class="ps-dot"></div><div class="ps-n grad">03</div><h3>Design the Experience</h3><p>Design landing pages, ads, and creative that reduce friction.</p></div>
-      <div class="ps"><div class="ps-dot"></div><div class="ps-n grad">04</div><h3>Launch &amp; Measure</h3><p>Deploy, track with GA4, and identify what's performing.</p></div>
-      <div class="ps"><div class="ps-dot"></div><div class="ps-n grad">05</div><h3>Optimize &amp; Refine</h3><p>Iterate based on performance data and user behavior.</p></div>
+      <div class="ps"><div class="ps-dot"></div><div class="ps-n grad">01</div><h3>Understand the Goal</h3><p>Start with the business objective — who we're reaching, what action we want, and how success gets measured.</p></div>
+      <div class="ps"><div class="ps-dot"></div><div class="ps-n grad">02</div><h3>Find the Friction</h3><p>Audit the existing experience to find where users drop off, get confused, or lose momentum.</p></div>
+      <div class="ps"><div class="ps-dot"></div><div class="ps-n grad">03</div><h3>Design the Experience</h3><p>Build the page, ad, or creative with one job — make the next step feel obvious.</p></div>
+      <div class="ps"><div class="ps-dot"></div><div class="ps-n grad">04</div><h3>Launch &amp; Measure</h3><p>Deploy, set up GA4 tracking, and monitor performance from day one — not as an afterthought.</p></div>
+      <div class="ps"><div class="ps-dot"></div><div class="ps-n grad">05</div><h3>Optimize &amp; Refine</h3><p>Use data to improve. Small changes to copy, layout, or targeting can move the needle significantly.</p></div>
+      <div class="ps"><div class="ps-dot"></div><div class="ps-n grad">06</div><h3>Document &amp; Scale</h3><p>Capture what worked and why — then turn it into a repeatable system across campaigns and channels.</p></div>
     </div>
   </div>
 </section>
