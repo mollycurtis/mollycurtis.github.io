@@ -10,7 +10,7 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --black:#0a0805;
+  --black:#070604;
   --coal:#111008;
   --char:#1c1810;
   --red:#C8341A;
@@ -114,7 +114,7 @@ body::before{
 .hero-title em{font-family:var(--serif);font-style:italic;color:var(--red);font-size:.55em;vertical-align:middle;letter-spacing:.04em}
 .hero-tagline{
   color:var(--ink-mid);max-width:clamp(420px,52vw,640px);
-  font-size:clamp(.92rem,1.3vw,1.04rem);font-weight:300;line-height:1.75;
+  font-size:clamp(.92rem,1.3vw,1.04rem);font-weight:400;line-height:1.75;
   animation:fadeUp .85s cubic-bezier(.16,1,.3,1) .35s both;
 }
 .hero-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--red);margin-left:8px;vertical-align:middle;opacity:.9}
@@ -123,7 +123,6 @@ body::before{
 
 .grid-section{background:#1c1810;position:relative;z-index:1}
 .cards-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#2a2418}
-@media(max-width:480px){.cards-grid{grid-template-columns:1fr}}
 .card{background:var(--char);cursor:pointer;overflow:hidden;transition:transform .3s cubic-bezier(.16,1,.3,1);position:relative;z-index:1}
 .card:hover{transform:scale(1.018) translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,.6);z-index:3}
 .card-visual{height:clamp(150px,20vw,220px);display:grid;place-items:center;overflow:hidden;background:#161410}
@@ -170,7 +169,7 @@ body::before{
 .sec-dark .sec-title,.sec-coal .sec-title,.sec-char .sec-title{color:var(--cream)}
 .sec-cream .sec-title{color:var(--black)}
 .sec-title em{font-family:var(--serif);text-transform:none;font-style:italic;color:var(--red);letter-spacing:.02em;font-size:.9em}
-.sec-sub{font-size:clamp(.96rem,1.35vw,1.08rem);font-weight:300;line-height:1.7;max-width:560px;flex:1;min-width:260px;padding-top:.2em;padding-left:clamp(0px,2vw,24px)}
+.sec-sub{font-size:clamp(.96rem,1.35vw,1.08rem);font-weight:400;line-height:1.7;max-width:560px;flex:1;min-width:260px;padding-top:.2em;padding-left:clamp(0px,2vw,24px)}
 .sec-dark .sec-sub,.sec-coal .sec-sub,.sec-char .sec-sub{color:rgba(245,240,232,.55)}
 .sec-cream .sec-sub{color:#4a4038}
 
@@ -178,13 +177,13 @@ body::before{
 @media(max-width:640px){.intro-grid{grid-template-columns:1fr}}
 .intro-left h1{font-family:var(--display);font-size:clamp(2.4rem,6vw,4.4rem);letter-spacing:.04em;line-height:.95;color:var(--cream);text-transform:uppercase;margin-bottom:clamp(14px,2vw,22px)}
 .intro-left h1 span{color:var(--red)}
-.intro-left p{font-size:clamp(.96rem,1.3vw,1.06rem);font-weight:300;line-height:1.8;color:var(--ink-mid);margin-bottom:10px}
+.intro-left p{font-size:clamp(.96rem,1.3vw,1.06rem);font-weight:400;line-height:1.8;color:var(--ink-mid);margin-bottom:10px}
 .pills{display:flex;flex-wrap:wrap;gap:7px;margin-top:clamp(16px,2.5vw,24px)}
 .pill{padding:6px 13px;border-radius:0;font-family:var(--condensed);font-size:clamp(.6rem,.8vw,.68rem);font-weight:600;letter-spacing:.12em;text-transform:uppercase;border:1px solid rgba(200,52,26,.35);color:var(--red)}
 .vals{display:flex;flex-direction:column;gap:clamp(12px,1.8vw,16px)}
 .val{border-left:2px solid var(--gold);padding:4px 0 4px clamp(12px,2vw,18px)}
 .val h4{font-family:var(--condensed);font-size:clamp(1rem,1.5vw,1.2rem);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--cream);margin-bottom:4px}
-.val p{font-size:clamp(.84rem,1.1vw,.92rem);font-weight:300;line-height:1.65;color:var(--ink-mid)}
+.val p{font-size:clamp(.84rem,1.1vw,.92rem);font-weight:400;line-height:1.65;color:var(--ink-mid)}
 .tov{margin-top:clamp(40px,5vw,60px)}
 .tov-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
 @media(max-width:500px){.tov-grid{grid-template-columns:1fr}}
@@ -199,7 +198,7 @@ body::before{
 .logo-wm-large{display:flex;flex-direction:column;align-items:center;gap:3px;position:relative;z-index:1}
 .logo-wm-word{font-family:var(--display);font-size:clamp(2.6rem,8vw,5.4rem);letter-spacing:.12em;color:var(--cream);line-height:1;text-transform:uppercase}
 .logo-wm-tagline{font-family:var(--condensed);font-size:clamp(.72rem,.96vw,.84rem);letter-spacing:.22em;text-transform:uppercase;color:var(--red);text-align:center}
-.logo-primary-note{font-size:clamp(.9rem,1.2vw,1rem);font-weight:300;color:rgba(245,240,232,.65);max-width:420px;line-height:1.65;margin-left:auto;align-self:center;position:relative;z-index:1}
+.logo-primary-note{font-size:clamp(.9rem,1.2vw,1rem);font-weight:400;color:rgba(245,240,232,.65);max-width:420px;line-height:1.65;margin-left:auto;align-self:center;position:relative;z-index:1}
 .logo-bg-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px}
 .lbg{padding:clamp(18px,3vw,30px);display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:5px;min-height:clamp(90px,11vw,120px)}
 .lbg-word{font-family:var(--display);font-size:clamp(.9rem,2vw,1.5rem);letter-spacing:.12em;text-transform:uppercase}
@@ -236,7 +235,7 @@ body::before{
 .rule-dont{background:rgba(200,52,26,.06);border:1px solid rgba(200,52,26,.14)}
 .rule-tag{font-family:var(--condensed);font-size:clamp(.76rem,.98vw,.88rem);font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:9px;display:block}
 .rule-do .rule-tag{color:var(--gold)}.rule-dont .rule-tag{color:var(--red)}
-.rule p{font-size:clamp(.86rem,1.1vw,.94rem);font-weight:300;line-height:1.65;color:rgba(245,240,232,.65)}
+.rule p{font-size:clamp(.86rem,1.1vw,.94rem);font-weight:400;line-height:1.65;color:rgba(245,240,232,.65)}
 
 .palette{display:grid;grid-template-columns:repeat(6,1fr);gap:clamp(6px,1vw,10px);margin-bottom:clamp(22px,3vw,32px)}
 @media(max-width:640px){.palette{grid-template-columns:repeat(3,1fr)}}
@@ -257,7 +256,7 @@ body::before{
 .cn{padding:clamp(14px,2.2vw,20px);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06)}
 .cn-dot{width:10px;height:10px;margin-bottom:9px}
 .cn h5{font-family:var(--condensed);font-size:clamp(.82rem,1.06vw,.92rem);font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
-.cn p{font-size:clamp(.84rem,1.1vw,.92rem);font-weight:300;line-height:1.6;color:var(--ink-mid)}
+.cn p{font-size:clamp(.84rem,1.1vw,.92rem);font-weight:400;line-height:1.6;color:var(--ink-mid)}
 
 .type-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px}
 @media(max-width:580px){.type-grid{grid-template-columns:1fr}}
@@ -266,7 +265,7 @@ body::before{
 .type-big-nocta{font-family:var(--display);font-size:clamp(1.2rem,2.8vw,2rem);letter-spacing:.08em;text-transform:uppercase;color:var(--cream);line-height:1;margin-bottom:8px}
 .type-serif-demo{font-family:var(--serif);font-style:italic;font-size:clamp(1.1rem,2.4vw,1.8rem);color:var(--red);margin-bottom:8px;line-height:1.2}
 .type-body-nocta{font-family:var(--body);font-size:clamp(1rem,1.8vw,1.2rem);font-weight:400;color:var(--cream);margin-bottom:5px}
-.type-desc{font-size:clamp(.76rem,1vw,.82rem);font-weight:300;color:rgba(245,240,232,.55);line-height:1.65}
+.type-desc{font-size:clamp(.76rem,1vw,.82rem);font-weight:400;color:rgba(245,240,232,.55);line-height:1.65}
 .type-scale{border:1px solid rgba(255,255,255,.05);padding:clamp(22px,3.5vw,34px);background:var(--char)}
 .ts-row{display:flex;align-items:baseline;gap:clamp(12px,2vw,22px);padding:clamp(9px,1.4vw,12px) 0;border-bottom:1px solid rgba(255,255,255,.05)}
 .ts-row:last-child{border-bottom:none}
@@ -275,6 +274,7 @@ body::before{
 .moodboard{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:clamp(22px,3vw,32px)}
 @media(max-width:480px){.moodboard{grid-template-columns:1fr 1fr}}
 .mood-frame{overflow:hidden;position:relative;aspect-ratio:4/3}
+.mood-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .mf-label{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(10px,1.5vw,14px);background:linear-gradient(to top,rgba(0,0,0,.72) 0%,transparent 55%)}
 .mf-label span{font-family:var(--condensed);font-size:clamp(.56rem,.74vw,.64rem);letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.7)}
 .mf1{background:linear-gradient(150deg,#1a0808 0%,#3a1010 50%,#5a1c10 100%)}
@@ -288,7 +288,7 @@ body::before{
 .ir{padding:clamp(16px,2.5vw,22px);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06)}
 .ir-num{font-family:var(--display);font-size:clamp(1.4rem,2.8vw,2rem);color:var(--gold);line-height:1;margin-bottom:7px;display:block;letter-spacing:.06em}
 .ir h4{font-family:var(--condensed);font-size:clamp(.78rem,1vw,.88rem);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
-.ir p{font-size:clamp(.82rem,1.08vw,.9rem);font-weight:300;line-height:1.6;color:var(--ink-mid)}
+.ir p{font-size:clamp(.82rem,1.08vw,.9rem);font-weight:400;line-height:1.6;color:var(--ink-mid)}
 
 .mockups-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
 @media(max-width:580px){.mockups-row{grid-template-columns:1fr}}
@@ -320,7 +320,7 @@ body::before{
 .mn-item{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:clamp(7px,1.1vw,11px);border-bottom:1px solid rgba(0,0,0,.06)}
 .mn-item:last-child{border-bottom:none;padding-bottom:0}
 .mni-name{font-family:var(--condensed);font-size:clamp(.84rem,1.2vw,.96rem);font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--black);display:block}
-.mni-desc{font-size:clamp(.62rem,.82vw,.7rem);font-weight:300;color:#8a8070;display:block;margin-top:2px;line-height:1.4}
+.mni-desc{font-size:clamp(.62rem,.82vw,.7rem);font-weight:400;color:#8a8070;display:block;margin-top:2px;line-height:1.4}
 .mni-price{font-family:var(--display);font-size:clamp(1rem,1.6vw,1.2rem);letter-spacing:.04em;color:var(--red);flex-shrink:0;margin-top:1px}
 
 .mockup-flyer-scene{
@@ -441,7 +441,7 @@ body::before{
 @media(max-width:768px){
   .intro-grid,.type-grid,.logo-rules,.color-notes{grid-template-columns:1fr}
   .mockups-row{grid-template-columns:1fr}
-  .sec-header{flex-direction:column;gap:16px}
+  .sec-header{flex-direction:column;gap:16px;align-items:flex-start}
   .palette{grid-template-columns:repeat(3,1fr)}
   .misuse-grid{grid-template-columns:1fr 1fr}
   .clearspace-notes{grid-template-columns:1fr 1fr}
@@ -449,7 +449,6 @@ body::before{
   .img-rules{grid-template-columns:1fr}
 }
 @media(max-width:480px){
-  .cards-grid{grid-template-columns:1fr}
   .palette{grid-template-columns:1fr 1fr}
   .logo-bg-row{grid-template-columns:1fr}
   .moodboard{grid-template-columns:1fr 1fr}
@@ -457,6 +456,7 @@ body::before{
   .hero-title{font-size:clamp(56px,18vw,100px)}
   .sec-title{font-size:clamp(2rem,7vw,3.2rem)}
   .misuse-grid{grid-template-columns:1fr}
+  .sec-header .sec-title{text-align:left}
 }
 
 .reveal{opacity:0;transform:translateY(20px);transition:opacity .65s cubic-bezier(.16,1,.3,1),transform .65s cubic-bezier(.16,1,.3,1)}
@@ -474,7 +474,6 @@ body::before{
 <nav class="top-nav">
   <div class="nav-logo">
     <span class="nav-wordmark">NOCTA</span>
-    <span class="nav-tagline-small">Pizza After<br>Dark</span>
   </div>
   <a href="https://mollycurtis.github.io/brandguide/" target="_blank" class="nav-brand-work">View More Brand Work →</a>
   <button class="contents-btn" onclick="toggleDrawer()">
@@ -617,11 +616,11 @@ body::before{
       <div class="card-label"><span>Colors</span><span class="card-num">(03)</span></div>
     </div>
     <div class="card reveal" onclick="scrollToSection('imagery')">
-      <div class="card-visual" style="background:#0e0c08">
+      <div class="card-visual" style="background:#0e0c08;overflow:hidden;position:relative">
         <div style="position:relative;width:clamp(170px,24vw,240px);height:clamp(100px,14vw,150px)">
-          <div class="fi-frame fi1"></div>
-          <div class="fi-frame fi2"></div>
-          <div class="fi-frame fi3"></div>
+          <div class="fi-frame fi1" style="background:none;overflow:hidden"><img src="8b2ed9be4e1d9895b989d6095803978d.jpg" style="width:100%;height:100%;object-fit:cover;filter:brightness(.85)"/></div>
+          <div class="fi-frame fi2" style="background:none;overflow:hidden"><img src="71646357a0c172668978428986d65afa.jpg" style="width:100%;height:100%;object-fit:cover;filter:brightness(.9)"/></div>
+          <div class="fi-frame fi3" style="background:none;overflow:hidden"><img src="3e2fcf67da47e4c56ef8ea9b5393a98f.jpg" style="width:100%;height:100%;object-fit:cover;filter:brightness(.85)"/></div>
         </div>
       </div>
       <div class="card-label"><span>Imagery</span><span class="card-num">(05)</span></div>
@@ -746,9 +745,9 @@ body::before{
 <section class="sec sec-char" id="logo">
   <div class="wrap reveal">
     <div class="sec-label">02 — Logo</div>
-    <div class="sec-header" style="align-items:center">
-      <h2 class="sec-title">The <em>mark</em></h2>
-      <p class="sec-sub" style="max-width:500px;padding-left:0;margin-left:auto;flex:none;width:clamp(280px,42%,500px)">NOCTA in Bebas Neue — all-caps, tight, unmistakable. No symbol, no icon, no tagline required. The name carries its own weight.</p>
+    <div class="sec-header" style="align-items:center;gap:clamp(16px,3vw,40px)">
+      <h2 class="sec-title" style="flex-shrink:0">The <em>mark</em></h2>
+      <p class="sec-sub" style="max-width:600px;padding-left:0;margin-left:0;flex:1;min-width:220px">NOCTA in Bebas Neue — all-caps, tight, unmistakable. No symbol, no icon, no tagline required. The name carries its own weight.</p>
     </div>
 
     <div style="margin-bottom:8px;font-family:var(--condensed);font-size:clamp(.76rem,.98vw,.88rem);font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)">Primary — Wordmark</div>
@@ -911,7 +910,7 @@ body::before{
       <div class="ts-row"><span class="ts-lbl">Display XL</span><span style="font-family:'Bebas Neue',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);letter-spacing:.08em;color:var(--cream)">OPEN 8PM – 4AM EVERY NIGHT</span></div>
       <div class="ts-row"><span class="ts-lbl">Accent</span><span style="font-family:'DM Serif Display',serif;font-style:italic;font-size:clamp(1.1rem,2.2vw,1.6rem);color:var(--red)">"the pizza you need at 2am"</span></div>
       <div class="ts-row"><span class="ts-lbl">Heading</span><span style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(.96rem,1.8vw,1.2rem);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,240,232,.8)">Signature Pies — Wood Fired</span></div>
-      <div class="ts-row"><span class="ts-lbl">Body</span><span style="font-family:'Barlow',sans-serif;font-size:clamp(.92rem,1.4vw,1.04rem);font-weight:300;color:rgba(245,240,232,.65)">Fig, gorgonzola, prosciutto, walnut, honey — blistered in the wood oven at 800°F.</span></div>
+      <div class="ts-row"><span class="ts-lbl">Body</span><span style="font-family:'Barlow',sans-serif;font-size:clamp(.92rem,1.4vw,1.04rem);font-weight:400;color:rgba(245,240,232,.65)">Fig, gorgonzola, prosciutto, walnut, honey — blistered in the wood oven at 800°F.</span></div>
       <div class="ts-row"><span class="ts-lbl">Caption</span><span style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(.74rem,.96vw,.84rem);letter-spacing:.18em;text-transform:uppercase;color:rgba(245,240,232,.45)">Available nightly · Substitutions on request</span></div>
     </div>
   </div>
@@ -926,12 +925,12 @@ body::before{
     </div>
     <div class="sec-label" style="margin-bottom:10px">Moodboard Direction</div>
     <div class="moodboard">
-      <div class="mood-frame mf1"><div class="mf-label"><span>Wood fire & char</span></div></div>
-      <div class="mood-frame mf2"><div class="mf-label"><span>Hands shaping dough</span></div></div>
-      <div class="mood-frame mf3"><div class="mf-label"><span>Ingredient close-ups</span></div></div>
-      <div class="mood-frame mf4"><div class="mf-label"><span>Late-night street light</span></div></div>
-      <div class="mood-frame mf5"><div class="mf-label"><span>The after-dark crowd</span></div></div>
-      <div class="mood-frame mf6"><div class="mf-label"><span>First slice, hot steam</span></div></div>
+      <div class="mood-frame mf1" style="background:#0e0c08"><img src="8b2ed9be4e1d9895b989d6095803978d.jpg" style="width:100%;height:100%;object-fit:cover;display:block"/><div class="mf-label"><span>Wood fire & the oven</span></div></div>
+      <div class="mood-frame mf2" style="background:#0e0c08"><img src="71646357a0c172668978428986d65afa.jpg" style="width:100%;height:100%;object-fit:cover;display:block"/><div class="mf-label"><span>Hands shaping dough</span></div></div>
+      <div class="mood-frame mf3" style="background:#0e0c08"><img src="3e2fcf67da47e4c56ef8ea9b5393a98f.jpg" style="width:100%;height:100%;object-fit:cover;display:block"/><div class="mf-label"><span>The build — sauce & cheese</span></div></div>
+      <div class="mood-frame mf4" style="background:#0e0c08"><img src="f0307cd3cd7e69c3125827a23a746b22.jpg" style="width:100%;height:100%;object-fit:cover;display:block"/><div class="mf-label"><span>First slice, hot off the peel</span></div></div>
+      <div class="mood-frame mf5" style="background:#0e0c08"><img src="e7dfbe728721af62f7a8ddd5f1ec02c9.jpg" style="width:100%;height:100%;object-fit:cover;display:block"/><div class="mf-label"><span>The after-dark space</span></div></div>
+      <div class="mood-frame mf6" style="background:#0e0c08"><img src="ef2e7fa3ebf3bcee8f28e721a32bf8b6.jpg" style="width:100%;height:100%;object-fit:cover;display:block"/><div class="mf-label"><span>The box — ready to go</span></div></div>
     </div>
     <div class="img-rules">
       <div class="ir"><span class="ir-num">01</span><h4>Low & warm light</h4><p>Tungsten, fire, neon. Shadows are welcome. High contrast is on brand. Never use studio-bright overhead lighting.</p></div>
@@ -1063,74 +1062,6 @@ body::before{
       </div>
     </div>
 
-    <div class="mockups-row">
-
-      <div class="mockup-flyer-scene">
-        <div class="flyer-inner">
-          <div class="flyer-red-bar">
-            <span>NOCTA · PIZZA AFTER DARK · EST. EVERY NIGHT</span>
-          </div>
-          <div class="flyer-title">
-            OPEN TILL <span>4AM</span>
-          </div>
-          <div class="flyer-details">
-            <div class="flyer-detail-row">Wood-fired, nightly</div>
-            <div class="flyer-detail-row">8PM doors, last order 3:45</div>
-            <div class="flyer-detail-row">No reservations. Walk in.</div>
-            <div class="flyer-detail-row">nocta-pizza.com</div>
-          </div>
-          <div class="flyer-footer">
-            <span class="flyer-nocta">NOCTA</span>
-            <div class="flyer-stamp">
-              <span>LATE<br>NIGHT</span>
-            </div>
-          </div>
-        </div>
-        <span class="mockup-flyer-label">Street Flyer — Torn-edge print</span>
-      </div>
-
-      <div class="mockup-receipt-scene">
-        <div class="receipt-paper">
-          <div class="rp-header">
-            <div class="rp-brand">NOCTA</div>
-            <div class="rp-sub">PIZZA AFTER DARK</div>
-            <div class="rp-sub" style="margin-top:2px">8PM–4AM · TABLE 7 · ORDER #2247</div>
-          </div>
-          <div class="rp-row light"><span>03:12 AM, FRI</span><span>SERVER: MILO</span></div>
-          <hr class="rp-divider"/>
-          <div class="rp-row"><span>We Don't Do Lunch x1</span><span>$19.00</span></div>
-          <div class="rp-row"><span>Not Too Much x1</span><span>$22.00</span></div>
-          <div class="rp-row"><span>Pineapple x2</span><span>$42.00</span></div>
-          <div class="rp-row light"><span>House Red (glass)</span><span>$12.00</span></div>
-          <hr class="rp-divider"/>
-          <div class="rp-row"><span>Subtotal</span><span>$101.00</span></div>
-          <div class="rp-row light"><span>Tax (8.5%)</span><span>$8.59</span></div>
-          <div class="rp-row bold"><span>TOTAL</span><span>$109.59</span></div>
-          <hr class="rp-divider"/>
-          <div class="rp-row light"><span>VISA ····4821</span><span>APPROVED</span></div>
-          <div class="rp-barcode">
-
-            <div class="rp-bar" style="width:2px"></div><div class="rp-bar" style="width:1px;background:transparent"></div>
-            <div class="rp-bar" style="width:3px"></div><div class="rp-bar" style="width:2px;background:transparent"></div>
-            <div class="rp-bar" style="width:1px"></div><div class="rp-bar" style="width:1px;background:transparent"></div>
-            <div class="rp-bar" style="width:2px"></div><div class="rp-bar" style="width:3px;background:transparent"></div>
-            <div class="rp-bar" style="width:1px"></div><div class="rp-bar" style="width:1px;background:transparent"></div>
-            <div class="rp-bar" style="width:3px"></div><div class="rp-bar" style="width:1px;background:transparent"></div>
-            <div class="rp-bar" style="width:2px"></div><div class="rp-bar" style="width:2px;background:transparent"></div>
-            <div class="rp-bar" style="width:1px"></div><div class="rp-bar" style="width:1px;background:transparent"></div>
-            <div class="rp-bar" style="width:3px"></div><div class="rp-bar" style="width:2px;background:transparent"></div>
-            <div class="rp-bar" style="width:2px"></div><div class="rp-bar" style="width:1px;background:transparent"></div>
-            <div class="rp-bar" style="width:1px"></div><div class="rp-bar" style="width:3px;background:transparent"></div>
-            <div class="rp-bar" style="width:2px"></div><div class="rp-bar" style="width:1px;background:transparent"></div>
-            <div class="rp-bar" style="width:3px"></div><div class="rp-bar" style="width:2px;background:transparent"></div>
-            <div class="rp-bar" style="width:1px"></div>
-          </div>
-          <div class="rp-thanks">THANKS. SEE YOU AFTER DARK.</div>
-          <div class="rp-thanks" style="margin-top:3px;font-size:clamp(.4rem,.52vw,.46rem)">nocta-pizza.com</div>
-        </div>
-        <span class="mockup-receipt-label">Order Receipt — Thermal print</span>
-      </div>
-    </div>
   </div>
 </section>
 
