@@ -194,28 +194,33 @@ body{font-family:var(--sans);background:#f5ede0;color:#2c1a0e;overflow-x:hidden;
 .contents-strip{
   background:#ecddc8;
   border-top:2px solid #5c3318;
-  border-bottom:2px solid var(--brown-mid);
-  display:flex;overflow-x:auto;
+  border-bottom:2px solid #5c3318;
+  display:flex;overflow:hidden;
 }
 .cs-item{
-  flex:1;min-width:120px;
-  padding:clamp(24px,3.5vw,36px) clamp(16px,2.2vw,22px);
+  flex:1;min-width:0;
+  padding:clamp(20px,2.8vw,32px) clamp(8px,1.2vw,18px);
   border-right:1px solid rgba(44,26,14,.15);
   cursor:pointer;transition:background .18s;
-  display:flex;flex-direction:column;gap:6px;
+  display:flex;flex-direction:column;gap:5px;
   text-decoration:none;
 }
 .cs-item:last-child{border-right:none}
-.cs-item:hover{background:var(--orange)}
-.cs-item:hover .cs-num,.cs-item:hover .cs-name{color:var(--cream)}
-.cs-num{font-family:var(--mono);font-size:clamp(.58rem,.74vw,.66rem);letter-spacing:.16em;color:var(--orange);text-transform:uppercase}
+.cs-item:hover{background:#d4611a}
+.cs-item:hover .cs-num,.cs-item:hover .cs-name{color:#f5ede0}
+.cs-num{font-family:var(--mono);font-size:clamp(.48rem,.6vw,.56rem);letter-spacing:.12em;color:#d4611a;text-transform:uppercase}
 .cs-item:hover .cs-num{color:rgba(245,237,224,.7)}
-.cs-name{font-family:var(--sans);font-size:clamp(.88rem,1.18vw,1rem);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--brown-deep)}
+.cs-name{font-family:var(--sans);font-size:clamp(.62rem,.88vw,.82rem);font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#2c1a0e;line-height:1.2}
+@media(max-width:900px){
+  .cs-name{font-size:clamp(.58rem,.8vw,.72rem);letter-spacing:.05em}
+}
 @media(max-width:700px){
-  .contents-strip{display:grid;grid-template-columns:1fr 1fr;overflow-x:visible}
-  .cs-item{border-right:1px solid rgba(44,26,14,.15);border-bottom:1px solid rgba(44,26,14,.15)}
+  .contents-strip{display:grid;grid-template-columns:1fr 1fr;overflow:visible}
+  .cs-item{border-right:1px solid rgba(44,26,14,.15);border-bottom:1px solid rgba(44,26,14,.15);padding:clamp(16px,3.5vw,24px) clamp(14px,3.5vw,20px)}
+  .cs-name{font-size:clamp(.82rem,3vw,.92rem);letter-spacing:.08em}
+  .cs-num{font-size:clamp(.56rem,1.8vw,.62rem)}
   .cs-item:nth-child(2n){border-right:none}
-  .cs-item:nth-child(7){grid-column:1/-1;border-right:none}
+  .cs-item:nth-child(7){grid-column:1/-1;border-right:none;text-align:center;align-items:center}
 }
 
 /* SECTION STYLES */
@@ -426,7 +431,8 @@ body{font-family:var(--sans);background:#f5ede0;color:#2c1a0e;overflow-x:hidden;
 /* IMAGERY */
 .mood-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:clamp(24px,3.5vw,40px)}
 .mood-cell{overflow:hidden;position:relative}
-.mood-inner{width:100%;min-height:clamp(120px,15vw,180px);position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(10px,1.5vw,14px)}
+.mood-inner{width:100%;min-height:clamp(120px,15vw,180px);position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(10px,1.5vw,14px)}
+.mood-inner img{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;object-fit:cover}
 .mood-label{font-family:var(--mono);font-size:clamp(.58rem,.74vw,.66rem);letter-spacing:.12em;text-transform:uppercase;color:rgba(245,237,224,.85);background:rgba(44,26,14,.55);padding:4px 9px;display:inline-block}
 .m1{background:linear-gradient(145deg,#3a2010,#6a3c1c)}
 .m2{background:linear-gradient(145deg,#2e2818,#504028)}
@@ -1167,12 +1173,12 @@ body{font-family:var(--sans);background:#f5ede0;color:#2c1a0e;overflow-x:hidden;
     <p style="font-family:var(--sans);font-size:clamp(.86rem,1.18vw,.96rem);font-weight:300;line-height:1.8;color:var(--brown-mid);max-width:640px;margin-bottom:clamp(28px,4vw,44px)">Photography looks like it was shot on a Saturday morning in someone's actual living room. Amber light, linen surfaces, things slightly out of place. If it looks like a catalogue, it's wrong for Findly.</p>
 
     <div class="mood-grid">
-      <div class="mood-cell"><div class="mood-inner m1"><span class="mood-label">Afternoon amber light</span></div></div>
-      <div class="mood-cell"><div class="mood-inner m2"><span class="mood-label">Linen + ceramic close-up</span></div></div>
-      <div class="mood-cell"><div class="mood-inner m3"><span class="mood-label">Vintage teak detail</span></div></div>
-      <div class="mood-cell"><div class="mood-inner m4"><span class="mood-label">Open box, kraft paper</span></div></div>
-      <div class="mood-cell"><div class="mood-inner m5"><span class="mood-label">Layered textiles, floor</span></div></div>
-      <div class="mood-cell"><div class="mood-inner m6"><span class="mood-label">Object provenance tag</span></div></div>
+      <div class="mood-cell"><div class="mood-inner" style="background:#1a1208;min-height:clamp(120px,15vw,180px)"><img src="3b3aa0e98d4ed4133a21065b36b28552.jpg" alt="Leopard print sofa, burl wood walls" style="position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;object-fit:cover;opacity:.85"/><span class="mood-label" style="position:relative;z-index:2">Burl wood + animal print</span></div></div>
+      <div class="mood-cell"><div class="mood-inner" style="background:#2a2010;min-height:clamp(120px,15vw,180px)"><img src="a029cb89ddb234a040ee2250810d4fc7.jpg" alt="Vintage MCM store with teak furniture and lamps" style="position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;object-fit:cover;opacity:.85"/><span class="mood-label" style="position:relative;z-index:2">The find at the source</span></div></div>
+      <div class="mood-cell"><div class="mood-inner" style="background:#1c1810;min-height:clamp(120px,15vw,180px)"><img src="708423329f1775e8ad5e7f2627580692.jpg" alt="Estate sale paintings stacked against wall" style="position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;object-fit:cover;opacity:.85"/><span class="mood-label" style="position:relative;z-index:2">Estate sale art wall</span></div></div>
+      <div class="mood-cell"><div class="mood-inner" style="background:#2c1808;min-height:clamp(120px,15vw,180px)"><img src="f249d2a9f38546724a406263d0c4cd69.jpg" alt="Flea market ceramics, gold frames, vintage objects" style="position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;object-fit:cover;opacity:.85"/><span class="mood-label" style="position:relative;z-index:2">Ceramics + gilt objects</span></div></div>
+      <div class="mood-cell"><div class="mood-inner" style="background:#1a1208;min-height:clamp(120px,15vw,180px)"><img src="edd85d71ecb3228a737f90a6dd92d77f.jpg" alt="MCM black cat figurines on teak dresser" style="position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;object-fit:cover;opacity:.85"/><span class="mood-label" style="position:relative;z-index:2">Sculptural MCM objects</span></div></div>
+      <div class="mood-cell"><div class="mood-inner" style="background:#3a2010;min-height:clamp(120px,15vw,180px)"><img src="20f4dc915b22f366ff33fd926970a811.jpg" alt="70s living room with glass block wall, velvet sofa" style="position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;object-fit:cover;opacity:.85"/><span class="mood-label" style="position:relative;z-index:2">70s amber warmth</span></div></div>
     </div>
 
     
@@ -1193,162 +1199,20 @@ body{font-family:var(--sans);background:#f5ede0;color:#2c1a0e;overflow-x:hidden;
     <p style="font-family:var(--sans);font-size:clamp(.86rem,1.18vw,.96rem);font-weight:300;line-height:1.8;color:var(--brown-mid);max-width:640px;margin-bottom:clamp(28px,4vw,44px)">Where Findly lives — the box on your doorstep, the inspo form you fill out on a Sunday, the piece tag tied to a 1962 lamp, and the catalog card you keep on the shelf.</p>
 
     <div class="app-grid" style="align-items:stretch">
-      <!-- BOX MOCKUP -->
+      <!-- BOX MOCKUP — real photo -->
       <div>
-        <div class="mock-box-scene">
-          <div style="position:relative;z-index:2;filter:drop-shadow(0 16px 40px rgba(0,0,0,.6))">
-            <svg viewBox="0 0 260 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:clamp(200px,26vw,260px);height:auto;display:block">
-              <defs>
-                <linearGradient id="kraft-top" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#d4b880"/>
-                  <stop offset="100%" stop-color="#c4a060"/>
-                </linearGradient>
-                <linearGradient id="kraft-front" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#c4a060"/>
-                  <stop offset="100%" stop-color="#b09050"/>
-                </linearGradient>
-                <linearGradient id="kraft-side" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stop-color="#a87840"/>
-                  <stop offset="100%" stop-color="#8a6030"/>
-                </linearGradient>
-              </defs>
-              <ellipse cx="132" cy="196" rx="108" ry="5" fill="rgba(44,26,14,.3)"/>
-              <path d="M212 100 L234 88 L234 176 L212 188 Z" fill="url(#kraft-side)"/>
-              <rect x="18" y="100" width="194" height="88" fill="url(#kraft-front)"/>
-              <!-- orange stripe -->
-              <rect x="18" y="100" width="194" height="7" fill="#d4611a"/>
-              <!-- brand on front -->
-              <text x="115" y="152" font-family="Georgia,serif" font-size="22" font-weight="700" letter-spacing="5" fill="#2c1a0e" text-anchor="middle" opacity=".85">FINDLY</text>
-              <text x="115" y="166" font-family="Arial,sans-serif" font-size="5.5" letter-spacing="3" fill="rgba(44,26,14,.4)" text-anchor="middle">CURATED VINTAGE · HOME DÉCOR</text>
-              <!-- tier badge -->
-              <rect x="168" y="174" width="44" height="10" rx="1" fill="none" stroke="rgba(212,97,26,.5)" stroke-width=".8"/>
-              <text x="190" y="181" font-family="Arial,sans-serif" font-size="4.5" letter-spacing="1" fill="rgba(212,97,26,.7)" text-anchor="middle">THE ARCHIVE</text>
-              <!-- kraft texture lines -->
-              <line x1="18" y1="118" x2="212" y2="118" stroke="rgba(44,26,14,.06)" stroke-width="1"/>
-              <line x1="18" y1="136" x2="212" y2="136" stroke="rgba(44,26,14,.06)" stroke-width="1"/>
-              <line x1="18" y1="154" x2="212" y2="154" stroke="rgba(44,26,14,.06)" stroke-width="1"/>
-              <!-- LID -->
-              <rect x="18" y="12" width="194" height="90" rx="1" fill="url(#kraft-top)" stroke="#a07040" stroke-width="1"/>
-              <path d="M212 12 L234 0 L234 88 L212 102 Z" fill="#a07040"/>
-              <rect x="18" y="12" width="194" height="22" rx="1" fill="#d4611a"/>
-              <text x="115" y="27" font-family="Georgia,serif" font-size="11" font-weight="700" letter-spacing="3" fill="#f5ede0" text-anchor="middle">FINDLY</text>
-              <!-- large faint bg text on lid -->
-              <text x="115" y="85" font-family="Georgia,serif" font-size="40" font-weight="700" letter-spacing="6" fill="rgba(44,26,14,.06)" text-anchor="middle">FINDLY</text>
-              <text x="115" y="60" font-family="Arial,sans-serif" font-size="5.5" letter-spacing="3" fill="rgba(44,26,14,.3)" text-anchor="middle">CURATED VINTAGE · HOME DÉCOR</text>
-              <text x="115" y="73" font-family="Arial,sans-serif" font-size="7" fill="rgba(212,97,26,.4)" text-anchor="middle">✦</text>
-              <line x1="18" y1="38" x2="212" y2="38" stroke="rgba(44,26,14,.05)" stroke-width="1"/>
-              <line x1="18" y1="52" x2="212" y2="52" stroke="rgba(44,26,14,.04)" stroke-width="1"/>
-              <line x1="18" y1="66" x2="212" y2="66" stroke="rgba(44,26,14,.04)" stroke-width="1"/>
-              <line x1="18" y1="80" x2="212" y2="80" stroke="rgba(44,26,14,.04)" stroke-width="1"/>
-              <line x1="18" y1="100" x2="212" y2="100" stroke="#d4611a" stroke-width="1.5" opacity=".5"/>
-            </svg>
-          </div>
+        <div class="mock-box-scene" style="padding:0;background:#2c1a0e;overflow:hidden">
+          <img src="Mockup5.png" alt="Findly delivery box mockup" style="width:100%;height:100%;object-fit:cover;display:block;min-height:clamp(280px,30vw,400px)"/>
         </div>
-        <div class="app-label">Delivery Box — Kraft &amp; Burnt Orange</div>
+        <div class="app-label">Delivery Box — Mystery Vintage Box</div>
       </div>
 
-      <!-- INSPO FORM -->
+      <!-- INSPO FORM — real photo mockup -->
       <div>
-        <div class="mock-form-scene">
-          <div class="form-header">
-            <div class="form-title">Share Your Vision</div>
-            <div class="form-sub">Findly Inspo Board Submission</div>
-          </div>
-          <div class="form-field">
-            <div class="form-lbl">Describe your aesthetic</div>
-            <div class="form-input">Warm, organic, mid-century — earthy tones, texture, things that feel old…</div>
-          </div>
-          <div class="form-field">
-            <div class="form-lbl">Eras of interest</div>
-            <div class="form-input">1950s–1970s, maybe some 40s ceramics</div>
-          </div>
-          <div class="form-field">
-            <div class="form-lbl">Drop your inspo images</div>
-            <div class="form-grid">
-              <div class="form-cell fgc-1"></div>
-              <div class="form-cell fgc-2"></div>
-              <div class="form-cell fgc-3"></div>
-              <div class="form-cell fgc-add">+</div>
-            </div>
-          </div>
-          <button class="form-btn">Submit My Board →</button>
-          <span class="mock-form-label">Inspo Board Form — Digital</span>
+        <div class="mock-form-scene" style="padding:0;background:#ecddc8;overflow:hidden;border:none">
+          <img src="Mockup6.png" alt="Findly inspo board submission form" style="width:100%;height:100%;object-fit:cover;display:block;min-height:clamp(280px,30vw,400px)"/>
         </div>
         <div class="app-label">Inspo Board Submission — Web Form</div>
-      </div>
-    </div>
-
-    <div class="app-grid" style="margin-top:16px;align-items:stretch">
-      <!-- TAG + INSERT -->
-      <div>
-        <div class="mock-tag-scene">
-          <div style="position:relative;z-index:2;display:flex;align-items:flex-start;gap:clamp(14px,2.5vw,24px);flex-wrap:wrap;justify-content:center">
-            <!-- Hang tag -->
-            <div style="display:flex;flex-direction:column;align-items:center">
-              <div style="width:1px;height:clamp(20px,3vw,28px);background:rgba(245,237,224,.35);transform:rotate(6deg)"></div>
-              <div style="background:#f5ede0;width:min(140px,38vw);box-shadow:2px 2px 0 var(--orange);border-top:4px solid var(--orange)">
-                <div style="padding:clamp(10px,1.6vw,14px) clamp(10px,1.5vw,13px)">
-                  <span style="font-family:'Alfa Slab One',serif;font-size:clamp(.9rem,1.6vw,1.2rem);letter-spacing:.04em;color:var(--brown-deep);display:block;margin-bottom:2px">FINDLY</span>
-                  <span style="font-family:'DM Mono',monospace;font-size:clamp(.42rem,.54vw,.48rem);letter-spacing:.16em;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:clamp(8px,1.2vw,12px)">Archive · Tier 03</span>
-                  <hr style="border:none;border-top:1px dashed rgba(44,26,14,.2);margin-bottom:clamp(6px,1vw,9px)"/>
-                  <div style="font-family:'DM Mono',monospace;font-size:clamp(.4rem,.52vw,.46rem);color:var(--brown-mid);margin-bottom:3px;display:flex;justify-content:space-between"><span>Origin</span><span>Denmark, 1962</span></div>
-                  <div style="font-family:'DM Mono',monospace;font-size:clamp(.4rem,.52vw,.46rem);color:var(--brown-mid);margin-bottom:3px;display:flex;justify-content:space-between"><span>Material</span><span>Solid Teak</span></div>
-                  <div style="font-family:'DM Mono',monospace;font-size:clamp(.4rem,.52vw,.46rem);color:var(--brown-mid);margin-bottom:clamp(8px,1.2vw,12px);display:flex;justify-content:space-between"><span>Condition</span><span>Very Good</span></div>
-                  <hr style="border:none;border-top:1px dashed rgba(44,26,14,.2);margin-bottom:clamp(6px,1vw,10px)"/>
-                  <div style="text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(.52rem,.68vw,.62rem);color:var(--brown-mid);line-height:1.5">"Sixty years of<br>Sunday mornings."</div>
-                </div>
-              </div>
-            </div>
-            <!-- Stylist insert card -->
-            <div style="background:#f5ede0;padding:clamp(14px,2.2vw,20px) clamp(12px,1.8vw,16px);width:min(150px,40vw);box-shadow:3px 3px 0 rgba(44,26,14,.25);border-top:3px solid var(--green-d)">
-              <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(.9rem,1.6vw,1.2rem);font-weight:600;color:var(--brown-deep);margin-bottom:6px;line-height:1.2">A note from your curator.</div>
-              <p style="font-family:'Josefin Sans',sans-serif;font-size:clamp(.62rem,.82vw,.72rem);font-weight:300;color:var(--brown-mid);line-height:1.65;margin-bottom:10px">Your board said warm and layered, 60s leaning. This table has been sitting in a warehouse since 1988. We couldn't stop thinking about it.</p>
-              <div style="font-family:'DM Mono',monospace;font-size:clamp(.46rem,.6vw,.52rem);letter-spacing:.12em;text-transform:uppercase;color:var(--orange)">Findly · Archive</div>
-            </div>
-          </div>
-        </div>
-        <div class="app-label">Piece Tag &amp; Stylist Insert Card</div>
-      </div>
-
-      <!-- CATALOG CARD -->
-      <div>
-        <div class="mock-catalog-scene">
-          <!-- Zebra stripe top using SVG -->
-          <div style="position:absolute;top:0;left:0;right:0;height:8px;overflow:hidden">
-            <svg width="100%" height="8" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <pattern id="zebra-stripe" x="0" y="0" width="20" height="8" patternUnits="userSpaceOnUse">
-                  <rect width="10" height="8" fill="#8b4a20"/>
-                  <rect x="10" width="10" height="8" fill="#d4611a"/>
-                </pattern>
-              </defs>
-              <rect width="100%" height="8" fill="url(#zebra-stripe)"/>
-            </svg>
-          </div>
-          <div style="width:min(240px,88%);background:#f5ede0;box-shadow:4px 4px 0 var(--orange),8px 8px 0 rgba(212,97,26,.2);border:1px solid var(--cream3);padding:clamp(16px,2.8vw,24px)">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:clamp(10px,1.5vw,14px);padding-bottom:clamp(8px,1.2vw,12px);border-bottom:1px solid var(--cream3)">
-              <div>
-                <div style="font-family:'Alfa Slab One',serif;font-size:clamp(1rem,2vw,1.4rem);letter-spacing:.04em;color:var(--brown-deep)">FINDLY</div>
-                <div style="font-family:'DM Mono',monospace;font-size:clamp(.42rem,.54vw,.48rem);letter-spacing:.16em;text-transform:uppercase;color:var(--orange);margin-top:2px">Archive · March 2025</div>
-              </div>
-              <div style="width:clamp(28px,4vw,36px);height:clamp(28px,4vw,36px);border:1.5px solid var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center;transform:rotate(-10deg)">
-                <span style="font-family:'DM Mono',monospace;font-size:clamp(.36rem,.46vw,.42rem);letter-spacing:.08em;color:var(--orange);text-align:center;line-height:1.1;text-transform:uppercase">FIND<br>LY</span>
-              </div>
-            </div>
-            <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(.9rem,1.8vw,1.3rem);color:var(--brown-deep);line-height:1.25;margin-bottom:clamp(10px,1.5vw,14px)">"Your board said warm and layered. We went looking."</div>
-            <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:clamp(10px,1.5vw,14px)">
-              <div style="font-family:'DM Mono',monospace;font-size:clamp(.44rem,.58vw,.52rem);letter-spacing:.1em;color:var(--brown-mid);display:flex;align-items:center;gap:6px"><span style="color:var(--orange)">→</span>Teak side table, Denmark 1962</div>
-              <div style="font-family:'DM Mono',monospace;font-size:clamp(.44rem,.58vw,.52rem);letter-spacing:.1em;color:var(--brown-mid);display:flex;align-items:center;gap:6px"><span style="color:var(--orange)">→</span>Ceramic vessel, California 1968</div>
-              <div style="font-family:'DM Mono',monospace;font-size:clamp(.44rem,.58vw,.52rem);letter-spacing:.1em;color:var(--brown-mid);display:flex;align-items:center;gap:6px"><span style="color:var(--orange)">→</span>Woven throw, Portugal undated</div>
-              <div style="font-family:'DM Mono',monospace;font-size:clamp(.44rem,.58vw,.52rem);letter-spacing:.1em;color:var(--brown-mid);display:flex;align-items:center;gap:6px"><span style="color:var(--orange)">→</span>Brass lamp, Netherlands 1971</div>
-            </div>
-            <div style="border-top:1px dashed rgba(44,26,14,.15);padding-top:clamp(8px,1.2vw,12px);display:flex;justify-content:space-between;align-items:flex-end">
-              <span style="font-family:'Josefin Sans',sans-serif;font-size:clamp(.6rem,.78vw,.68rem);font-weight:300;color:rgba(44,26,14,.4)">findly.com</span>
-              <span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(.64rem,.84vw,.74rem);color:rgba(212,97,26,.6)">The find over the new.</span>
-            </div>
-          </div>
-        </div>
-        <div class="app-label">Lookbook Insert Card — Archive Tier</div>
       </div>
     </div>
   </div>
