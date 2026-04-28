@@ -175,8 +175,9 @@
     .ss-ph span { font-size: 0.78rem; color: #c0a8d0; font-style: italic; }
 
     /* CONTACT */
-    .contact-box { text-align: center; max-width: 860px; margin: 0 auto; }
-    .contact-box .tagline { font-size: 1rem; color: #666; margin-bottom: 1.4rem; font-weight: 300; white-space: normal; max-width: 600px; margin-left: auto; margin-right: auto; }
+    .contact-box { text-align: center; max-width: 960px; margin: 0 auto; }
+    .contact-box .tagline { font-size: 1rem; color: #666; margin-bottom: 1.4rem; font-weight: 300; white-space: nowrap; }
+    @media(max-width:680px){ .contact-box .tagline { white-space: normal; } }
     .email-display { font-size: 1rem; color: #555; }
 
     /* BACK TO TOP */
