@@ -27,7 +27,7 @@
   --body:'Outfit',sans-serif;
 }
 html{scroll-behavior:smooth}
-body{font-family:var(--body);background:var(--forest);color:var(--cream);overflow-x:hidden}
+body{font-family:var(--body);background:var(--forest);color:var(--cream);overflow-x:hidden;margin:0;padding:0}
 ::-webkit-scrollbar{width:4px}
 ::-webkit-scrollbar-track{background:var(--forest)}
 ::-webkit-scrollbar-thumb{background:var(--matcha);border-radius:2px}
@@ -200,6 +200,7 @@ body{font-family:var(--body);background:var(--forest);color:var(--cream);overflo
 
 /* ── SECTIONS ── */
 .sec{padding:clamp(48px,6vw,80px) clamp(20px,5vw,44px);position:relative;overflow:hidden}
+.sec-light{padding-bottom:clamp(48px,6vw,80px)}
 .sec-dark{background:var(--forest)}
 .sec-mid{background:var(--matcha)}
 .sec-light{background:var(--cream)}
@@ -974,11 +975,12 @@ body{font-family:var(--body);background:var(--forest);color:var(--cream);overflo
           </div>
         </div>
       </div>
-          </div>
-
     </div>
+  </div>
+</section>
+
 <!-- BOTTOM CTA -->
-<div style="background:var(--forest);padding:clamp(36px,5vw,56px) clamp(20px,5vw,44px);text-align:center;border-top:1px solid rgba(255,255,255,.08)">
+<div style="background:var(--forest);padding:clamp(36px,5vw,56px) clamp(20px,5vw,44px);text-align:center;border-top:1px solid rgba(255,255,255,.08);margin:0">
   <a href="https://mollycurtis.github.io/brandguide/" style="display:inline-flex;align-items:center;gap:10px;padding:clamp(12px,1.8vw,16px) clamp(24px,3.5vw,36px);border-radius:100px;background:rgba(215,154,67,.1);border:1px solid rgba(215,154,67,.25);font-family:'Outfit',sans-serif;font-size:clamp(.72rem,1vw,.8rem);font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#D79A43;text-decoration:none;transition:background .2s,color .2s;" onmouseover="this.style.background='#D79A43';this.style.color='#111a14'" onmouseout="this.style.background='rgba(215,154,67,.1)';this.style.color='#D79A43'">View More Brand Work <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/></svg></a>
 </div>
 
