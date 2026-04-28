@@ -252,34 +252,6 @@
     .card-cs3 .card-name { color: rgba(130,210,130,0.3); }
 
     /* Scroll spacer - makes page scrollable so sticky works */
-    .scroll-space { height: 300vh; background: white; position: relative; z-index: 5; border-top: 1px solid rgba(0,0,0,0.08); }
-    .scroll-space-inner {
-      position: sticky;
-      bottom: 0;
-      padding: 4rem 2.5rem;
-      text-align: center;
-    }
-    .scroll-space-inner p {
-      font-size: 0.8rem;
-      color: #aaa;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-    .scroll-space-inner a {
-      display: inline-block;
-      margin-top: 1rem;
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: #b94fc8;
-      text-decoration: none;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      border: 1.5px solid rgba(185,79,200,0.3);
-      padding: 0.6rem 1.4rem;
-      border-radius: 30px;
-      transition: all 0.2s;
-    }
-    .scroll-space-inner a:hover { background: #b94fc8; color: white; border-color: #b94fc8; }
 
     @media(max-width:600px) {
       .brand-card { padding: 1.5rem; }
@@ -419,13 +391,10 @@
 
 </div>
 
-<!-- Scroll space keeps the last card visible and gives room to read -->
-<div class="scroll-space">
-  <div class="scroll-space-inner">
-    <p>Brand Style Guides — Molly Curtis</p>
-    <a href="https://mollycurtis.github.io">← Back to Portfolio</a>
-  </div>
-</div>
+<footer style="background:white;border-top:1px solid rgba(0,0,0,0.08);padding:2.5rem 2.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;position:relative;z-index:70;">
+  <p style="font-size:0.78rem;color:#aaa;letter-spacing:0.1em;text-transform:uppercase;">Brand Style Guides — Molly Curtis</p>
+  <a href="https://mollycurtis.github.io" style="font-size:0.82rem;font-weight:600;color:#b94fc8;text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;border:1.5px solid rgba(185,79,200,0.3);padding:0.5rem 1.2rem;border-radius:30px;transition:all 0.2s;" onmouseover="this.style.background='#b94fc8';this.style.color='white'" onmouseout="this.style.background='transparent';this.style.color='#b94fc8'">← Back to Portfolio</a>
+</footer>
 
 </body>
 </html>
