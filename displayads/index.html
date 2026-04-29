@@ -168,7 +168,7 @@
     }
 
     .ad-set-desc {
-      font-size: 15px;
+      font-size: 16.5px;
       line-height: 1.75;
       color: #4a5566;
       margin-bottom: 36px;
@@ -176,7 +176,7 @@
 
     /* outcomes */
     .outcomes-label {
-      font-size: 10px;
+      font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.18em;
       text-transform: uppercase;
@@ -195,6 +195,7 @@
       border-radius: 10px;
       padding: 18px 16px;
       background: var(--white);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     }
 
     .outcome-arrow {
@@ -335,19 +336,89 @@
       to   { opacity: 1; transform: none; }
     }
 
+    /* ── LIGHTBOX ── */
+    .lightbox-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(0,0,0,0.85);
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      cursor: zoom-out;
+    }
+    .lightbox-overlay.active { display: flex; }
+    .lightbox-overlay img {
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 20px; right: 24px;
+      font-size: 28px;
+      color: white;
+      cursor: pointer;
+      line-height: 1;
+      font-weight: 300;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+    .lightbox-close:hover { opacity: 1; }
+    .ad-set-image {
+      cursor: zoom-in;
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       nav { padding: 18px 22px; }
       .page-header { padding: 52px 22px 40px; }
       .header-main { grid-template-columns: 1fr; gap: 16px; }
       .header-title { white-space: normal; }
-      .content-wrap { padding: 48px 22px 80px; gap: 72px; }
-      .ad-set-layout { grid-template-columns: 1fr; gap: 36px; }
-      .outcomes-grid { grid-template-columns: 1fr; gap: 10px; }
+      .content-wrap { padding: 48px 22px 80px; gap: 56px; }
+
+      /* always image on top, info below — regardless of desktop order */
+      .ad-set-layout {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        display: flex;
+        flex-direction: column;
+      }
+      /* force image first always on mobile */
+      .ad-set-image { order: -1 !important; }
+      .ad-set-info  { order: 1 !important; }
+
+      /* images full width, no crop */
+      .ad-set-image img {
+        min-height: unset !important;
+        object-fit: contain !important;
+        object-position: center !important;
+        background: var(--surface);
+      }
+
+      /* outcomes: 3 across, taller cards */
+      .outcomes-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+      }
+      .outcome-card {
+        padding: 16px 12px;
+      }
+
       .footer-links { grid-template-columns: 1fr; }
       .footer-link-item { padding: 1.2rem 1.4rem; border-bottom: 1px solid rgba(0,0,0,0.08); }
       .footer-link-item:last-child { border-bottom: none; }
       .site-footer { padding: 2.5rem 1.5rem 2rem; }
+    }
+
+    @media (max-width: 480px) {
+      .outcomes-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+      .outcome-card { padding: 14px 10px; }
+      .outcome-metric { font-size: 14px; }
+      .outcome-desc { font-size: 11.5px; }
     }
   </style>
 </head>
@@ -547,7 +618,14 @@
     </div>
   </footer>
 
+  <!-- LIGHTBOX -->
+  <div class="lightbox-overlay" id="lightbox">
+    <span class="lightbox-close" id="lightboxClose">&times;</span>
+    <img id="lightboxImg" src="" alt="" />
+  </div>
+
   <script>
+    // Scroll reveal
     const adSets = document.querySelectorAll('.ad-set');
     const obs = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -558,6 +636,31 @@
       });
     }, { threshold: 0.08 });
     adSets.forEach(a => obs.observe(a));
+
+    // Lightbox
+    const lightbox    = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    document.querySelectorAll('.ad-set-image').forEach(el => {
+      el.addEventListener('click', () => {
+        const img = el.querySelector('img');
+        if (!img) return;
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    lightbox.addEventListener('click', closeLightbox);
+    lightboxClose.addEventListener('click', (e) => { e.stopPropagation(); closeLightbox(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
   </script>
 
 </body>
