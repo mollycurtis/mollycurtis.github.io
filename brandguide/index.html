@@ -30,12 +30,12 @@ nav{
   border-bottom:1px solid rgba(0,0,0,0.07);
   text-align:left;
 }
-.hero-inner{display:flex;align-items:flex-end;gap:3rem;flex-wrap:wrap;}
+.hero-inner{display:flex;align-items:flex-end;gap:3rem;flex-wrap:wrap;justify-content:flex-start;}
 .hero-left{flex-shrink:0;}
 .hero-eyebrow{font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#999;margin-bottom:1rem;}
 .hero-title{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,3.4rem);font-weight:700;line-height:1.1;color:#111;margin-bottom:0;}
 .hero-sub{font-size:0.95rem;font-weight:300;line-height:1.75;color:#555;flex:1;min-width:200px;padding-bottom:0.35rem;}
-@media(max-width:680px){.hero-inner{flex-direction:column;gap:1rem;} .hero-sub{padding-bottom:0;} .hero-section{text-align:left;} .hero-left,.hero-sub{text-align:left;}}
+@media(max-width:680px){.hero-inner{flex-direction:column;gap:1rem;align-items:flex-start;} .hero-sub{padding-bottom:0;max-width:100%;} .hero-section{text-align:left;} .hero-left,.hero-sub,.hero-eyebrow,.hero-title{text-align:left;display:block;}}
 
 .brand-card{
   position:sticky;height:68vh;
@@ -150,7 +150,7 @@ nav{
 @media(max-width:680px){
   nav{padding:0.9rem 1.2rem;}
   .hero-section{padding:calc(54px + 2.5rem) 1.5rem 2.5rem;}
-  .brand-card{padding:1.5rem;height:68vh;}
+  .brand-card{padding:1.5rem;height:54vh;}
   .brand-card:nth-child(1){top:54px;}
   .brand-card:nth-child(2){top:82px;}
   .brand-card:nth-child(3){top:110px;}
@@ -308,7 +308,7 @@ nav{
   </div>
   <div class="footer-bottom">
     <span class="footer-credit">Brand Style Guides — Molly Curtis</span>
-    <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" class="footer-back"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:5px;"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>Back to top</a>
+    <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" class="footer-back">Back to top</a>
   </div>
 </footer>
 
