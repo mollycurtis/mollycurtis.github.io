@@ -537,27 +537,38 @@ body{font-family:var(--sans);background:#f5ede0;color:#2c1a0e;overflow-x:hidden;
 }
 
 /* FOOTER NAV */
+/* FOOTER */
 .footer-nav{
   background:#2c1a0e;
   border-top:3px solid #d4611a;
-  padding:clamp(36px,5vw,60px) clamp(20px,4vw,44px);
+  padding:clamp(28px,4vw,44px) clamp(20px,4vw,52px);
 }
-.fn-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,64px);align-items:start}
-@media(max-width:580px){.fn-inner{grid-template-columns:1fr}}
-.fn-brand{font-family:var(--display);font-size:clamp(2rem,5vw,3.8rem);color:var(--cream);letter-spacing:.04em;line-height:1;margin-bottom:10px}
-.fn-brand em{color:var(--orange)}
-.fn-tagline{font-family:var(--serif);font-style:italic;font-size:clamp(.9rem,1.5vw,1.1rem);color:rgba(245,237,224,.45);margin-bottom:clamp(18px,2.8vw,28px)}
-.fn-link{display:inline-flex;align-items:center;gap:10px;font-family:var(--sans);font-size:clamp(.8rem,1.1vw,.9rem);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);text-decoration:none;transition:color .2s}
-.fn-link:hover{color:var(--cream)}
-.fn-nav-list{display:flex;flex-direction:column;gap:4px}
-.fn-nav-item{display:flex;align-items:center;gap:12px;padding:clamp(9px,1.4vw,12px) 0;border-bottom:1px solid rgba(245,237,224,.06);text-decoration:none;transition:color .18s}
-.fn-nav-item:hover{color:var(--orange)}
-.fn-nav-num{font-family:var(--mono);font-size:clamp(.6rem,.78vw,.68rem);color:rgba(212,97,26,.55);letter-spacing:.06em}
-.fn-nav-name{font-family:var(--sans);font-size:clamp(.86rem,1.14vw,.96rem);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,237,224,.55);transition:color .18s}
-.fn-nav-item:hover .fn-nav-name{color:var(--orange)}
-.fn-back{margin-top:clamp(18px,2.8vw,28px);display:inline-flex;align-items:center;gap:8px;padding:clamp(9px,1.3vw,12px) clamp(18px,2.5vw,28px);background:var(--orange);font-family:var(--sans);font-size:clamp(.72rem,.92vw,.8rem);font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--cream);text-decoration:none;transition:background .2s}
-.fn-back:hover{background:var(--brown-warm)}
-.fn-credit{font-family:var(--mono);font-size:clamp(.6rem,.78vw,.68rem);letter-spacing:.14em;text-transform:uppercase;color:rgba(245,237,224,.25);margin-top:clamp(24px,3.5vw,36px);padding-top:clamp(16px,2.5vw,24px);border-top:1px solid rgba(245,237,224,.07)}
+.footer-inner{
+  max-width:1200px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+}
+.footer-brand-work{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--sans);font-size:clamp(.9rem,1.3vw,1.1rem);
+  font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(245,237,224,.7);text-decoration:none;transition:color .2s;
+}
+.footer-brand-work:hover{color:#d4611a}
+.footer-brand-work .arrow{color:#d4611a;font-size:1.1em}
+.footer-back{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:clamp(10px,1.4vw,13px) clamp(20px,2.8vw,32px);
+  background:#d4611a;
+  font-family:var(--sans);font-size:clamp(.72rem,.9vw,.82rem);
+  font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:#f5ede0;text-decoration:none;transition:background .2s;white-space:nowrap;
+}
+.footer-back:hover{background:#8b4a20}
+/* Mobile: stack back-to-top above brand work, centered */
+@media(max-width:900px){
+  .footer-inner{flex-direction:column;align-items:center;text-align:center;gap:20px}
+  .footer-back{order:-1}
+}
 
 /* OVERLAY / DRAWER */
 .overlay{position:fixed;top:0;right:0;bottom:0;left:0;background:rgba(44,26,14,.5);z-index:200;opacity:0;pointer-events:none;transition:opacity .3s}
@@ -1210,26 +1221,11 @@ body{font-family:var(--sans);background:#f5ede0;color:#2c1a0e;overflow-x:hidden;
 
 <!-- FOOTER NAV -->
 <footer class="footer-nav" id="nav-footer">
-  <div class="fn-inner">
-    <div>
-      <div class="fn-brand"><span style="color:var(--cream)">FIND</span><em style="color:var(--orange)">LY</em></div>
-      <div class="fn-tagline">"The find over the new."</div>
-      <a href="https://mollycurtis.github.io/brandguide/" target="_blank" class="fn-link">View More Brand Work →</a>
-      <br/>
-      <a href="#top" class="fn-back" style="margin-top:clamp(18px,2.8vw,28px)">↑ Back to top</a>
-    </div>
-    <div>
-      <div class="fn-nav-list">
-        <a class="fn-nav-item" href="#intro"><span class="fn-nav-num">01</span><span class="fn-nav-name">Introduction</span></a>
-        <a class="fn-nav-item" href="#how"><span class="fn-nav-num">02</span><span class="fn-nav-name">How It Works</span></a>
-        <a class="fn-nav-item" href="#logo"><span class="fn-nav-num">03</span><span class="fn-nav-name">Logo</span></a>
-        <a class="fn-nav-item" href="#colors"><span class="fn-nav-num">04</span><span class="fn-nav-name">Colors</span></a>
-        <a class="fn-nav-item" href="#type"><span class="fn-nav-num">05</span><span class="fn-nav-name">Typography</span></a>
-        <a class="fn-nav-item" href="#imagery"><span class="fn-nav-num">06</span><span class="fn-nav-name">Imagery</span></a>
-        <a class="fn-nav-item" href="#assets"><span class="fn-nav-num">07</span><span class="fn-nav-name">Applications</span></a>
-      </div>
-      <div class="fn-credit">Brand Identity Guidelines · Findly · Designed by Molly Curtis</div>
-    </div>
+  <div class="footer-inner">
+    <a href="https://mollycurtis.github.io/brandguide/" target="_blank" class="footer-brand-work">
+      View More Brand Work <span class="arrow">→</span>
+    </a>
+    <a href="#top" class="footer-back">↑ Back to Top</a>
   </div>
 </footer>
 
