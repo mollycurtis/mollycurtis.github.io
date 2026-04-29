@@ -340,24 +340,20 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9000;o
 .sf-dot{width:7px;height:7px;border-radius:50%;background:#4ade80;box-shadow:0 0 8px rgba(74,222,128,.6);flex-shrink:0}
 .sf-lt{font-family:var(--label);font-size:.4rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.38);font-weight:700}
 
-/* ── FOOTER — Image 5 style ── */
-.footer{background:var(--ember);padding:clamp(48px,7vw,80px) clamp(20px,4vw,52px) clamp(24px,3.5vw,40px)}
+/* ── FOOTER ── */
+.footer{background:var(--ember);padding:clamp(48px,7vw,80px) clamp(20px,4vw,52px) clamp(32px,4vw,52px)}
 .footer-in{max-width:1160px;margin:0 auto}
-.footer-brand{margin-bottom:clamp(32px,5vw,52px)}
-.footer-mark{font-family:var(--display);font-style:italic;font-size:clamp(1.8rem,4vw,3.2rem);color:var(--cream);font-weight:400;line-height:1}
-.footer-mark em{color:var(--gold);font-style:normal}
-.footer-tag{font-family:var(--label);font-size:.5rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,243,236,.22);margin-top:6px}
-.footer-nav{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid rgba(250,243,236,.1);margin-bottom:clamp(28px,4vw,48px)}
-.fn-i{display:flex;align-items:center;gap:clamp(16px,2.5vw,28px);padding:clamp(14px,2vw,20px) clamp(8px,1.2vw,14px);border-bottom:1px solid rgba(250,243,236,.07);text-decoration:none;transition:background .18s}
-.fn-i:nth-child(odd){border-right:1px solid rgba(250,243,236,.07)}
-.fn-i:hover{background:rgba(250,243,236,.04)}
-.fn-i:hover .fn-nm{color:var(--gold)}
-.fn-n{font-family:var(--display);font-style:italic;font-size:clamp(.78rem,1.1vw,.92rem);color:rgba(250,243,236,.2);font-weight:400;min-width:24px}
-.fn-nm{font-family:var(--label);font-size:clamp(.8rem,1.1vw,.9rem);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(250,243,236,.55);transition:color .18s}
-.footer-bot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;border-top:1px solid rgba(250,243,236,.07);padding-top:clamp(18px,2.5vw,26px)}
-.footer-note{font-size:.64rem;font-weight:300;color:rgba(250,243,236,.28)}
-.footer-back{display:flex;align-items:center;gap:8px;background:var(--gold);border:none;border-radius:100px;padding:12px 24px;text-decoration:none;font-family:var(--label);font-size:.62rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--ember);transition:all .2s;box-shadow:0 4px 20px rgba(245,192,122,.4)}
+/* desktop ≥901px: back-to-top right, brand work left — single row */
+.footer-end{display:flex;align-items:center;justify-content:space-between;gap:clamp(20px,3vw,40px)}
+.footer-brandwork{display:inline-flex;align-items:center;gap:16px;font-family:var(--label);font-size:clamp(1.1rem,2.8vw,2rem);font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--cream);text-decoration:none;transition:color .2s}
+.footer-brandwork:hover{color:var(--gold)}
+.footer-back{display:flex;align-items:center;gap:8px;background:var(--gold);border:none;border-radius:100px;padding:12px 24px;text-decoration:none;font-family:var(--label);font-size:.62rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--ember);transition:all .2s;box-shadow:0 4px 20px rgba(245,192,122,.4);flex-shrink:0}
 .footer-back:hover{background:var(--amber);color:#fff;box-shadow:0 4px 24px rgba(232,135,74,.5)}
+/* mobile ≤900px: stack centered — back-to-top above, brand work below */
+@media(max-width:900px){
+  .footer-end{flex-direction:column;align-items:center;text-align:center;gap:clamp(24px,4vw,36px)}
+  .footer-brandwork{justify-content:center}
+}
 
 /* DRAWER */
 .overlay{position:fixed;inset:0;background:rgba(26,14,10,.5);z-index:300;opacity:0;pointer-events:none;transition:opacity .3s}
@@ -829,31 +825,16 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9000;o
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-in">
-    <div class="footer-brand">
-      <div class="footer-mark">wander<em>.</em></div>
-      <div class="footer-tag">Solo travel for women &middot; Brand Guide 2026</div>
-    </div>
-    <div class="footer-nav">
-      <a class="fn-i" href="#intro"><span class="fn-n">(01)</span><span class="fn-nm">Introduction</span></a>
-      <a class="fn-i" href="#type"><span class="fn-n">(04)</span><span class="fn-nm">Typography</span></a>
-      <a class="fn-i" href="#logo"><span class="fn-n">(02)</span><span class="fn-nm">Logo</span></a>
-      <a class="fn-i" href="#imagery"><span class="fn-n">(05)</span><span class="fn-nm">Imagery</span></a>
-      <a class="fn-i" href="#colors"><span class="fn-n">(03)</span><span class="fn-nm">Colors</span></a>
-      <a class="fn-i" href="#assets"><span class="fn-n">(06)</span><span class="fn-nm">Applications</span></a>
-    </div>
-    <div class="footer-bot">
-      <span class="footer-note">&copy; 2026 wander. Brand identity system.</span>
+    <!-- desktop: back-to-top right-aligned in same row as brand work CTA -->
+    <!-- mobile: back-to-top stacks above, centered -->
+    <div class="footer-end">
+      <a href="https://mollycurtis.github.io/brandguide/" target="_blank" class="footer-brandwork">
+        View more brand work
+        <svg width="clamp(18px,2.5vw,28px)" height="clamp(18px,2.5vw,28px)" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="14" x2="24" y2="14"/><polyline points="16,6 24,14 16,22"/></svg>
+      </a>
       <a class="footer-back" href="#top">
         <svg width="11" height="11" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="7" y1="12" x2="7" y2="2"/><polyline points="3,6 7,2 11,6"/></svg>
         Back to top
-      </a>
-    </div>
-    <!-- big brand work CTA — very bottom, centered, statement size like Image 2 -->
-    <div style="text-align:center;padding:clamp(48px,7vw,80px) 0 clamp(16px,2vw,24px);border-top:1px solid rgba(250,243,236,.06);margin-top:clamp(24px,3.5vw,40px)">
-      <div style="font-family:var(--label);font-size:.52rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(250,243,236,.25);margin-bottom:16px">More work by Molly Curtis</div>
-      <a href="https://mollycurtis.github.io/brandguide/" target="_blank" style="display:inline-flex;align-items:center;gap:16px;font-family:var(--label);font-size:clamp(1.1rem,2.8vw,2rem);font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--cream);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--cream)'">
-        View more brand work
-        <svg width="clamp(18px,2.5vw,28px)" height="clamp(18px,2.5vw,28px)" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="14" x2="24" y2="14"/><polyline points="16,6 24,14 16,22"/></svg>
       </a>
     </div>
   </div>
