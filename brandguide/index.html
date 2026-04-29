@@ -38,7 +38,7 @@ nav{
 @media(max-width:680px){.hero-inner{flex-direction:column;gap:1rem;align-items:flex-start;} .hero-sub{padding-bottom:0;max-width:100%;} .hero-section{text-align:left;} .hero-left,.hero-sub,.hero-eyebrow,.hero-title{text-align:left;display:block;}}
 
 .brand-card{
-  position:sticky;height:68vh;
+  position:sticky;height:58vh;
   display:flex;flex-direction:column;justify-content:flex-start;
   padding:2rem 2.5rem;cursor:pointer;overflow:hidden;
   text-decoration:none;will-change:transform;
@@ -58,10 +58,10 @@ nav{
   display:flex;justify-content:space-between;align-items:flex-start;
   width:100%;margin-top:0.8rem;
 }
-.card-num{font-size:0.68rem;font-weight:700;letter-spacing:0.1em;opacity:0.75;font-family:'Outfit','DM Sans',sans-serif;}
-.card-type{font-size:0.68rem;font-weight:700;letter-spacing:0.1em;opacity:0.75;font-family:'Outfit','DM Sans',sans-serif;}
+.card-num{font-size:0.88rem;font-weight:700;letter-spacing:0.1em;opacity:0.75;font-family:'Outfit','DM Sans',sans-serif;}
+.card-type{font-size:0.88rem;font-weight:700;letter-spacing:0.1em;opacity:0.75;font-family:'Outfit','DM Sans',sans-serif;}
 .card-name{font-size:clamp(3rem,7vw,6.5rem);font-weight:700;line-height:1;letter-spacing:-0.02em;}
-.card-desc{font-size:0.82rem;font-weight:300;line-height:1.6;opacity:0.5;margin-top:0.5rem;max-width:480px;}
+.card-desc{font-size:0.9rem;font-weight:300;line-height:1.6;opacity:0.65;margin-top:0.55rem;max-width:520px;}
 .card-arrow{
   width:56px;height:56px;border:2px solid currentColor;border-radius:50%;
   display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-bottom:0.2rem;
@@ -91,7 +91,7 @@ nav{
 
 .card-wander{background:#1a0e0a;color:rgba(245,192,122,0.55);}
 .card-wander .card-name{color:#faf3ec;font-family:'Playfair Display',serif;font-style:italic;font-weight:400;letter-spacing:-0.01em;}
-.card-wander .card-type{font-family:'Syne',sans-serif;font-size:0.7rem;letter-spacing:0.16em;}
+.card-wander .card-type{font-family:'Syne',sans-serif;font-size:0.88rem;letter-spacing:0.16em;}
 .card-wander .card-num{font-family:'Syne',sans-serif;}
 .card-wander .card-desc{color:rgba(250,243,236,0.5);}
 .card-wander .card-row{border-bottom-color:rgba(212,80,58,0.25);}
@@ -101,7 +101,7 @@ nav{
 .card-cs1{background:#2c1a0e;color:rgba(212,97,26,0.65);}
 .card-cs1 .card-name{color:#f5ede0;font-family:'Alfa Slab One',serif;font-weight:400;letter-spacing:0.04em;}
 .card-cs1 .findly-ly{color:#d4611a;}
-.card-cs1 .card-type{font-family:'DM Mono',monospace;letter-spacing:0.18em;font-size:0.68rem;}
+.card-cs1 .card-type{font-family:'DM Mono',monospace;letter-spacing:0.18em;font-size:0.88rem;}
 .card-cs1 .card-num{font-family:'DM Mono',monospace;}
 .card-cs1 .card-desc{color:rgba(245,237,224,0.5);}
 .card-cs1 .card-row{border-bottom-color:rgba(212,97,26,0.3);}
@@ -151,6 +151,7 @@ nav{
   nav{padding:0.9rem 1.2rem;}
   .hero-section{padding:calc(54px + 2.5rem) 1.5rem 2.5rem;}
   .brand-card{padding:1.5rem;height:48vh;}
+  .card-num,.card-type{font-size:0.68rem !important;}
   .brand-card:nth-child(1){top:54px;}
   .brand-card:nth-child(2){top:82px;}
   .brand-card:nth-child(3){top:110px;}
