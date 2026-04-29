@@ -75,6 +75,7 @@ body::before{
   position:relative;min-height:88vh;
   display:flex;flex-direction:column;justify-content:flex-end;
   padding:0 clamp(20px,5vw,48px) clamp(48px,6vw,72px);overflow:hidden;
+  border-bottom:2px solid rgba(200,52,26,.25);
 }
 .hero-bg{
   position:absolute;inset:0;
@@ -945,7 +946,7 @@ body::before{
     <div class="sec-label">06 — Applications</div>
     <div class="sec-header">
       <h2 class="sec-title">Brand in the <em>streets</em></h2>
-      <p class="sec-sub">NOCTA lives on the wall, in the menu, in the heat of the moment — in late hours, passing glances, and places you recognize before you name them.</p>
+      <p class="sec-sub">NOCTA doesn't live on a website. It lives on the wall of a side street you walk down at 1AM, on the blade sign that catches your eye before you even read the name. It lives in the menu your server slides across a sticky table, in the steam that hits your face when the box opens. This is where the brand stops being a document and starts being a place — a temperature, a time of night, a feeling you recognize before you can name it.</p>
     </div>
 
     <div class="mockups-row">
@@ -1002,31 +1003,35 @@ body::before{
   </div>
 </section>
 
-<nav class="section-nav">
-  <div class="snav-inner">
-    <a class="snav-item" href="#intro"><span class="snav-num">(01)</span><span class="snav-name">Introduction</span></a>
-    <a class="snav-item" href="#type"><span class="snav-num">(04)</span><span class="snav-name">Typography</span></a>
-    <a class="snav-item" href="#logo"><span class="snav-num">(02)</span><span class="snav-name">Logo</span></a>
-    <a class="snav-item" href="#imagery"><span class="snav-num">(05)</span><span class="snav-name">Imagery</span></a>
-    <a class="snav-item" href="#colors"><span class="snav-num">(03)</span><span class="snav-name">Colors</span></a>
-    <a class="snav-item" href="#assets"><span class="snav-num">(06)</span><span class="snav-name">Applications</span></a>
-  </div>
-  <div class="snav-footer-row">
-    <span class="snav-logo">NOCTA</span>
-    <a class="snav-back" href="#top">
-      <svg width="14" height="18" viewBox="0 0 14 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M7 19 C3 19 1 16 1 13 C1 10 3 8 5 6 C5 9 6 10 7 10 C7 7 6 4 8 1 C9 4 11 6 13 9 C14 11 13 14 11 16 C10 17 9 18 7 19Z" fill="currentColor" opacity=".9"/>
-        <path d="M7 19 C5 19 4 17 4 15 C4 13 5 12 6 11 C6 13 6.5 14 7 14 C7.5 12 7 11 8 9 C9 11 10 13 10 15 C10 17 8.5 19 7 19Z" fill="var(--gold)" opacity=".85"/>
-      </svg>
-      Back to top
-    </a>
-  </div>
-</nav>
-
-<section style="background:var(--black);padding:clamp(48px,6vw,72px) clamp(20px,5vw,48px);border-top:1px solid rgba(255,255,255,.06);text-align:center">
-  <p style="font-family:var(--condensed);font-size:clamp(.64rem,.84vw,.74rem);letter-spacing:.22em;text-transform:uppercase;color:var(--ash);margin-bottom:16px">More work by Molly Curtis</p>
+<section style="background:var(--black);padding:clamp(48px,6vw,72px) clamp(20px,5vw,48px);border-top:1px solid rgba(255,255,255,.06);text-align:center;position:relative;display:flex;flex-direction:column;align-items:center;gap:24px">
+  <a class="snav-back footer-back-mobile" href="#top" style="display:none;justify-content:center;margin-bottom:24px">
+    <svg width="14" height="18" viewBox="0 0 14 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M7 19 C3 19 1 16 1 13 C1 10 3 8 5 6 C5 9 6 10 7 10 C7 7 6 4 8 1 C9 4 11 6 13 9 C14 11 13 14 11 16 C10 17 9 18 7 19Z" fill="currentColor" opacity=".9"/>
+      <path d="M7 19 C5 19 4 17 4 15 C4 13 5 12 6 11 C6 13 6.5 14 7 14 C7.5 12 7 11 8 9 C9 11 10 13 10 15 C10 17 8.5 19 7 19Z" fill="var(--gold)" opacity=".85"/>
+    </svg>
+    Back to top
+  </a>
   <a href="https://mollycurtis.github.io/brandguide/" target="_blank" style="display:inline-flex;align-items:center;gap:12px;font-family:var(--display);font-size:clamp(1.4rem,3vw,2.2rem);letter-spacing:.12em;text-transform:uppercase;color:var(--cream);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--cream)'">View More Brand Work <span style="font-family:var(--serif);font-style:italic;font-size:.7em;color:var(--red)">→</span></a>
+  <a class="snav-back footer-back-desktop" href="#top" style="position:absolute;right:clamp(20px,5vw,48px);top:50%;transform:translateY(-50%)">
+    <svg width="14" height="18" viewBox="0 0 14 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M7 19 C3 19 1 16 1 13 C1 10 3 8 5 6 C5 9 6 10 7 10 C7 7 6 4 8 1 C9 4 11 6 13 9 C14 11 13 14 11 16 C10 17 9 18 7 19Z" fill="currentColor" opacity=".9"/>
+      <path d="M7 19 C5 19 4 17 4 15 C4 13 5 12 6 11 C6 13 6.5 14 7 14 C7.5 12 7 11 8 9 C9 11 10 13 10 15 C10 17 8.5 19 7 19Z" fill="var(--gold)" opacity=".85"/>
+    </svg>
+    Back to top
+  </a>
 </section>
+<style>
+  @media(max-width:900px){
+    .footer-back-desktop{display:none!important}
+    .footer-back-mobile{display:inline-flex!important}
+  }
+  @media(min-width:901px){
+    .footer-back-mobile{display:none!important}
+    .footer-section{flex-direction:row;justify-content:center}
+  }
+</style>
+</section>
+
 
 <div class="overlay" id="overlay" onclick="toggleDrawer()"></div>
 <div class="drawer" id="drawer">
