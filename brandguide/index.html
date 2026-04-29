@@ -29,9 +29,12 @@ nav{
   background:white;padding:calc(54px + 4rem) 2.5rem 3.5rem;
   border-bottom:1px solid rgba(0,0,0,0.07);
 }
+.hero-inner{display:flex;align-items:flex-end;gap:3rem;flex-wrap:wrap;}
+.hero-left{flex-shrink:0;}
 .hero-eyebrow{font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#999;margin-bottom:1rem;}
-.hero-title{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,3.4rem);font-weight:700;line-height:1.1;color:#111;margin-bottom:1.1rem;}
-.hero-sub{font-size:0.95rem;font-weight:300;line-height:1.75;color:#555;max-width:520px;}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,3.4rem);font-weight:700;line-height:1.1;color:#111;margin-bottom:0;}
+.hero-sub{font-size:0.95rem;font-weight:300;line-height:1.75;color:#555;flex:1;min-width:200px;padding-bottom:0.35rem;}
+@media(max-width:680px){.hero-inner{flex-direction:column;gap:1rem;} .hero-sub{padding-bottom:0;}}
 
 .brand-card{
   position:sticky;height:82vh;
@@ -51,13 +54,13 @@ nav{
   width:100%;padding-bottom:0.9rem;border-bottom:1px solid rgba(255,255,255,0.18);
 }
 .card-row-bottom{
-  display:flex;justify-content:space-between;align-items:flex-end;
-  width:100%;margin-top:auto;padding-top:1rem;
+  display:flex;justify-content:space-between;align-items:flex-start;
+  width:100%;margin-top:0.8rem;
 }
 .card-num{font-size:0.68rem;font-weight:700;letter-spacing:0.1em;opacity:0.75;font-family:'Outfit','DM Sans',sans-serif;}
 .card-type{font-size:0.68rem;font-weight:700;letter-spacing:0.1em;opacity:0.75;font-family:'Outfit','DM Sans',sans-serif;}
 .card-name{font-size:clamp(3rem,7vw,6.5rem);font-weight:700;line-height:1;letter-spacing:-0.02em;}
-.card-desc{font-size:0.82rem;font-weight:300;line-height:1.6;opacity:0.5;margin-top:0.55rem;max-width:480px;}
+.card-desc{font-size:0.82rem;font-weight:300;line-height:1.6;opacity:0.5;margin-top:0.5rem;max-width:480px;}
 .card-arrow{
   width:56px;height:56px;border:2px solid currentColor;border-radius:50%;
   display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-bottom:0.2rem;
@@ -104,14 +107,14 @@ nav{
 .card-cs1 .card-arrow{border-color:rgba(212,97,26,0.55);color:#d4611a;border-radius:0;}
 .card-cs1:hover .card-arrow{background:rgba(212,97,26,0.2);}
 
-.card-cs2{background:#0f0f1a;color:rgba(185,130,210,0.3);cursor:default;}
-.card-cs2 .card-name{color:rgba(185,130,210,0.18);font-family:'DM Sans',sans-serif;font-weight:300;}
-.card-cs2 .card-type,.card-cs2 .card-num{opacity:0.35;}
-.card-cs2 .card-row{border-bottom-color:rgba(185,130,210,0.1);}
+.card-cs2{background:#0f0f1a;color:rgba(185,130,210,0.85);cursor:default;}
+.card-cs2 .card-name{color:rgba(185,130,210,0.75);font-family:'DM Sans',sans-serif;font-weight:300;}
+.card-cs2 .card-type,.card-cs2 .card-num{opacity:0.75;}
+.card-cs2 .card-row{border-bottom-color:rgba(185,130,210,0.3);}
 .coming-soon-tag{
   font-size:0.62rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;
-  opacity:0.45;padding:0.22rem 0.65rem;border:1px solid currentColor;
-  border-radius:20px;display:inline-block;margin-bottom:0.5rem;
+  padding:0.22rem 0.65rem;border:1px solid rgba(185,130,210,0.7);
+  border-radius:20px;display:inline-block;margin-bottom:0.5rem;color:rgba(185,130,210,0.9);
 }
 
 .footer-nav{
@@ -167,8 +170,12 @@ nav{
 
 <div class="hero-section">
   <p class="hero-eyebrow">Brand Identity Work</p>
-  <h1 class="hero-title">Brand Style Guides</h1>
-  <p class="hero-sub">A collection of brand identity systems — each built with its own visual language, typography, color palette, and usage guidelines.</p>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <h1 class="hero-title">Brand Style Guides</h1>
+    </div>
+    <p class="hero-sub">A collection of brand identity systems — each built with its own visual language, typography, color palette, and usage guidelines. Each one designed to function across digital, print, and brand touchpoints. Built to function across every brand touchpoint — from digital to print.</p>
+  </div>
 </div>
 
 <div class="cards-wrap" style="padding-top:0;">
@@ -192,12 +199,10 @@ nav{
         <span class="card-type">Matcha &amp; Wellness</span>
       </div>
       <div class="card-row-bottom">
-        <div>
-          <div class="card-name">Midori <span style="font-family:'Cormorant Garamond',serif;font-size:0.45em;font-weight:400;font-style:normal;color:#A23E2A;vertical-align:super;margin-left:4px;">緑</span></div>
-          <p class="card-desc">Matcha wellness brand focused on calm, ritual, and simplicity.</p>
-        </div>
+        <div class="card-name">Midori <span style="font-family:'Cormorant Garamond',serif;font-size:0.45em;font-weight:400;font-style:normal;color:#A23E2A;vertical-align:super;margin-left:4px;">緑</span></div>
         <div class="card-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
       </div>
+      <p class="card-desc">Matcha wellness brand focused on calm, ritual, and simplicity.</p>
     </div>
   </a>
 
@@ -214,12 +219,10 @@ nav{
         <span class="card-type">Pizza &amp; Food</span>
       </div>
       <div class="card-row-bottom">
-        <div>
-          <div class="card-name">Nocta</div>
-          <p class="card-desc">Bold, high-contrast identity for a modern late-night pizza concept.</p>
-        </div>
+        <div class="card-name">Nocta</div>
         <div class="card-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
       </div>
+      <p class="card-desc">Bold, high-contrast identity for a modern late-night pizza concept.</p>
     </div>
   </a>
 
@@ -234,12 +237,10 @@ nav{
         <span class="card-type">Women's Solo Travel</span>
       </div>
       <div class="card-row-bottom">
-        <div>
-          <div class="card-name">Wander</div>
-          <p class="card-desc">Editorial-inspired brand for a women's solo travel platform.</p>
-        </div>
+        <div class="card-name">Wander</div>
         <div class="card-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
       </div>
+      <p class="card-desc">Editorial-inspired brand for a women's solo travel platform.</p>
     </div>
   </a>
 
@@ -254,29 +255,24 @@ nav{
         <span class="card-type">Thrift &amp; Vintage</span>
       </div>
       <div class="card-row-bottom">
-        <div>
-          <div class="card-name"><span>FIND</span><span class="findly-ly">LY</span></div>
-          <p class="card-desc">Utility-driven identity for a thrifting and vintage home décor marketplace.</p>
-        </div>
+        <div class="card-name"><span>FIND</span><span class="findly-ly">LY</span></div>
         <div class="card-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
       </div>
+      <p class="card-desc">Utility-driven identity for a thrifting and vintage home décor marketplace.</p>
     </div>
   </a>
 
   <div class="brand-card card-cs2">
-    <div style="position:absolute;inset:0;background:#0f0f1a;pointer-events:none;z-index:1;"></div>
     <div class="card-inner">
       <div class="card-row">
         <span class="card-num">05</span>
         <span class="card-type">Personal Brand</span>
+        <span class="coming-soon-tag" style="opacity:1;color:rgba(185,130,210,0.9);border-color:rgba(185,130,210,0.6);font-size:0.58rem;">Coming Soon</span>
       </div>
       <div class="card-row-bottom">
-        <div>
-          <div class="coming-soon-tag">Coming Soon</div>
-          <div class="card-name">Photography Rebrand</div>
-          <p class="card-desc" style="color:rgba(185,130,210,0.3);">A personal brand refresh for molcurphotos.com — in progress.</p>
-        </div>
+        <div class="card-name">Photography Rebrand</div>
       </div>
+      <p class="card-desc" style="color:rgba(185,130,210,0.7);">Personal brand refresh — in progress.</p>
     </div>
   </div>
 
