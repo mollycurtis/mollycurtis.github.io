@@ -222,11 +222,118 @@
       color: rgba(211,240,248,0.8);
     }
 
-    /* Coming soon thumb */
+    /* Coming soon thumb (generic gray — no longer used but kept for fallback) */
     .card-thumb.cs-thumb {
       background: var(--surface);
       flex-direction: column;
       gap: 10px;
+    }
+
+    /* ── Branded coming-soon thumbs ── */
+    .branded-thumb-inner {
+      position: relative;
+      z-index: 2;
+      padding: 0;
+    }
+    .branded-thumb-title {
+      font-size: clamp(15px, 1.8vw, 22px);
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .branded-thumb-pills {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .branded-pill {
+      font-size: 10px;
+      font-weight: 500;
+      padding: 3px 11px;
+      border-radius: 20px;
+      border: 1px solid;
+    }
+
+    /* Product — warm beige / olive */
+    .card-thumb.thumb-product {
+      background: #2a2518;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-end;
+      padding: 22px 26px;
+      position: relative;
+      overflow: hidden;
+    }
+    .card-thumb.thumb-product::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 80% 20%, rgba(160,148,100,0.18) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 50% at 20% 80%, rgba(120,130,90,0.12) 0%, transparent 55%);
+    }
+    .card-thumb.thumb-product::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.35;
+    }
+
+    /* Lead Gen — deep navy AI-focused */
+    .card-thumb.thumb-leadgen {
+      background: #040f24;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-end;
+      padding: 22px 26px;
+      position: relative;
+      overflow: hidden;
+    }
+    .card-thumb.thumb-leadgen::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,105,165,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,105,165,0.08) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+    .card-thumb.thumb-leadgen::after {
+      content: '';
+      position: absolute;
+      right: -40px; top: -40px;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,180,220,0.18) 0%, transparent 70%);
+    }
+
+    /* Interactive — charcoal with pink-purple glow */
+    .card-thumb.thumb-interactive {
+      background: #0e0e12;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-end;
+      padding: 22px 26px;
+      position: relative;
+      overflow: hidden;
+    }
+    .card-thumb.thumb-interactive::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 75% 30%, rgba(185,79,200,0.22) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 25% 75%, rgba(232,68,90,0.15) 0%, transparent 55%);
+    }
+    .card-thumb.thumb-interactive::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(185,79,200,0.12) 0%, transparent 70%);
+      filter: blur(20px);
     }
     .cs-icon {
       width: 38px; height: 38px;
@@ -484,17 +591,21 @@
         </div>
       </a>
 
-      <!-- CARD 2 — Coming soon -->
+      <!-- CARD 2 — Product Page Redesign -->
       <a class="project-card coming-soon" href="#">
-        <div class="card-thumb cs-thumb">
-          <span class="cs-badge">Coming Soon</span>
-          <div class="cs-icon">
-            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        <div class="card-thumb thumb-product">
+          <span class="cs-badge" style="background:rgba(180,170,150,0.25);color:rgba(245,240,228,0.75);border:1px solid rgba(245,240,228,0.2);">Coming Soon</span>
+          <div class="branded-thumb-inner">
+            <div class="branded-thumb-title" style="font-family:'DM Sans',sans-serif;font-weight:700;color:#f5f0e4;">Product Page Redesign</div>
+            <div class="branded-thumb-pills">
+              <span class="branded-pill" style="border-color:rgba(160,155,120,0.4);color:rgba(245,240,210,0.75);">Ecommerce</span>
+              <span class="branded-pill" style="border-color:rgba(160,155,120,0.4);color:rgba(245,240,210,0.75);">Conversion</span>
+              <span class="branded-pill" style="border-color:rgba(160,155,120,0.4);color:rgba(245,240,210,0.75);">Product</span>
+            </div>
           </div>
-          <span class="cs-label">Coming soon</span>
         </div>
         <div class="card-body">
-          <p class="card-desc">Another landing page case study is on its way.</p>
+          <p class="card-desc">Simplified product messaging, clarified value, and improved purchase flow to drive conversions.</p>
           <div class="card-footer">
             <span class="card-client">—</span>
             <div class="card-arrow">
@@ -504,17 +615,21 @@
         </div>
       </a>
 
-      <!-- CARD 3 — Coming soon -->
+      <!-- CARD 3 — Lead Gen Hub -->
       <a class="project-card coming-soon" href="#">
-        <div class="card-thumb cs-thumb">
-          <span class="cs-badge">Coming Soon</span>
-          <div class="cs-icon">
-            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        <div class="card-thumb thumb-leadgen">
+          <span class="cs-badge" style="background:rgba(0,105,133,0.4);color:#a8dff0;border:1px solid rgba(168,223,240,0.2);">Coming Soon</span>
+          <div class="branded-thumb-inner">
+            <div class="branded-thumb-title" style="font-family:'Poppins',sans-serif;font-weight:700;color:#ffffff;">Lead Gen Hub</div>
+            <div class="branded-thumb-pills">
+              <span class="branded-pill" style="border-color:rgba(168,223,240,0.35);color:rgba(168,223,240,0.8);">Lead Generation</span>
+              <span class="branded-pill" style="border-color:rgba(168,223,240,0.35);color:rgba(168,223,240,0.8);">Content</span>
+              <span class="branded-pill" style="border-color:rgba(168,223,240,0.35);color:rgba(168,223,240,0.8);">UX</span>
+            </div>
           </div>
-          <span class="cs-label">Coming soon</span>
         </div>
         <div class="card-body">
-          <p class="card-desc">Another landing page case study is on its way.</p>
+          <p class="card-desc">Structured content and navigation to guide users from discovery to engagement and lead capture.</p>
           <div class="card-footer">
             <span class="card-client">—</span>
             <div class="card-arrow">
@@ -524,17 +639,21 @@
         </div>
       </a>
 
-      <!-- CARD 4 — Coming soon -->
+      <!-- CARD 4 — Interactive Web Experience -->
       <a class="project-card coming-soon" href="#">
-        <div class="card-thumb cs-thumb">
-          <span class="cs-badge">Coming Soon</span>
-          <div class="cs-icon">
-            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        <div class="card-thumb thumb-interactive">
+          <span class="cs-badge" style="background:rgba(185,79,200,0.25);color:rgba(230,180,255,0.8);border:1px solid rgba(230,180,255,0.15);">Coming Soon</span>
+          <div class="branded-thumb-inner">
+            <div class="branded-thumb-title" style="font-family:'DM Sans',sans-serif;font-weight:700;color:#ffffff;">Interactive Web Experience</div>
+            <div class="branded-thumb-pills">
+              <span class="branded-pill" style="border-color:rgba(200,130,255,0.35);color:rgba(220,170,255,0.8);">Interaction Design</span>
+              <span class="branded-pill" style="border-color:rgba(200,130,255,0.35);color:rgba(220,170,255,0.8);">Motion</span>
+              <span class="branded-pill" style="border-color:rgba(200,130,255,0.35);color:rgba(220,170,255,0.8);">Web</span>
+            </div>
           </div>
-          <span class="cs-label">Coming soon</span>
         </div>
         <div class="card-body">
-          <p class="card-desc">Another landing page case study is on its way.</p>
+          <p class="card-desc">Designed a scroll-based experience using motion and transitions to guide users through a product story.</p>
           <div class="card-footer">
             <span class="card-client">—</span>
             <div class="card-arrow">
