@@ -1,269 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Brand Style Guides — Molly Curtis</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Outfit:wght@300;400;500;600;700&family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Barlow+Condensed:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,700;1,900&family=Syne:wght@600;700;800&family=Alfa+Slab+One&family=Josefin+Sans:wght@300;400;600;700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'DM Sans', sans-serif; background: #0e0e0e; color: #111; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Brand Style Guides — Molly Curtis</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Outfit:wght@300;400;500;600;700&family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Barlow+Condensed:wght@400;500;600;700&family=Syne:wght@600;700;800&family=Alfa+Slab+One&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:#f5f5f3;color:#111;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
 
-    /* NAV */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 1rem 2.5rem;
-      background: white;
-      border-bottom: 1px solid rgba(0,0,0,0.1);
-      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-    }
-    .nav-logo {
-      font-size: 0.85rem; font-weight: 700; letter-spacing: 0.08em;
-      color: #111; text-decoration: none; text-transform: uppercase;
-    }
-    .nav-back {
-      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em;
-      color: #b94fc8; text-decoration: none; text-transform: uppercase;
-      transition: color 0.2s; border: 1.5px solid rgba(185,79,200,0.3);
-      padding: 0.4rem 1rem; border-radius: 30px;
-    }
-    .nav-back:hover { color: white; background: #b94fc8; border-color: #b94fc8; }
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1rem 2.5rem;background:white;
+  border-bottom:1px solid rgba(0,0,0,0.1);
+  box-shadow:0 2px 12px rgba(0,0,0,0.06);
+}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:#111;text-decoration:none;}
+.nav-back{
+  font-family:'DM Sans',sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:0.08em;
+  color:#111;text-decoration:none;text-transform:uppercase;
+  border:1.5px solid rgba(0,0,0,0.2);padding:0.4rem 1rem;border-radius:30px;transition:all 0.2s;
+}
+.nav-back:hover{background:#111;color:white;border-color:#111;}
 
-    /* CARDS STACK */
-    .cards-wrap {
-      padding-top: 54px;
-    }
+.hero-section{
+  background:white;padding:calc(54px + 4rem) 2.5rem 3.5rem;
+  border-bottom:1px solid rgba(0,0,0,0.07);
+}
+.hero-eyebrow{font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#999;margin-bottom:1rem;}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,3.4rem);font-weight:700;line-height:1.1;color:#111;margin-bottom:1.1rem;}
+.hero-sub{font-size:0.95rem;font-weight:300;line-height:1.75;color:#555;max-width:520px;}
 
-    .brand-card {
-      position: sticky;
-      height: 82vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      gap: 1rem;
-      padding: 2rem 2.5rem;
-      cursor: pointer;
-      overflow: hidden;
-      text-decoration: none;
-      transition: filter 0.3s;
-    }
+.brand-card{
+  position:sticky;height:82vh;
+  display:flex;flex-direction:column;justify-content:flex-start;
+  padding:2rem 2.5rem;cursor:pointer;overflow:hidden;
+  text-decoration:none;will-change:transform;
+}
+.brand-card:nth-child(1){top:54px;z-index:10;}
+.brand-card:nth-child(2){top:94px;z-index:20;}
+.brand-card:nth-child(3){top:134px;z-index:30;}
+.brand-card:nth-child(4){top:174px;z-index:40;}
+.brand-card:nth-child(5){top:214px;z-index:50;}
 
-    /* Each card gets a different top so they stack */
-    .brand-card:nth-child(1) { top: 54px; z-index: 10; }
-    .brand-card:nth-child(2) { top: 94px; z-index: 20; }
-    .brand-card:nth-child(3) { top: 134px; z-index: 30; }
-    .brand-card:nth-child(4) { top: 174px; z-index: 40; }
-    .brand-card:nth-child(5) { top: 214px; z-index: 50; }
-    .brand-card:nth-child(6) { top: 254px; z-index: 60; }
+.card-inner{position:relative;z-index:2;display:flex;flex-direction:column;height:100%;}
+.card-row{
+  display:flex;justify-content:space-between;align-items:center;
+  width:100%;padding-bottom:0.9rem;border-bottom:1px solid rgba(255,255,255,0.18);
+}
+.card-row-bottom{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  width:100%;margin-top:auto;padding-top:1rem;
+}
+.card-num{font-size:0.68rem;font-weight:700;letter-spacing:0.1em;opacity:0.75;font-family:'Outfit','DM Sans',sans-serif;}
+.card-type{font-size:0.68rem;font-weight:700;letter-spacing:0.1em;opacity:0.75;font-family:'Outfit','DM Sans',sans-serif;}
+.card-name{font-size:clamp(3rem,7vw,6.5rem);font-weight:700;line-height:1;letter-spacing:-0.02em;}
+.card-desc{font-size:0.82rem;font-weight:300;line-height:1.6;opacity:0.5;margin-top:0.55rem;max-width:480px;}
+.card-arrow{
+  width:56px;height:56px;border:2px solid currentColor;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-bottom:0.2rem;
+  transition:transform 0.35s cubic-bezier(0.34,1.56,0.64,1),background 0.25s;
+}
+.brand-card:hover .card-arrow{transform:rotate(45deg) scale(1.12);background:rgba(255,255,255,0.18);}
+.card-bg{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center;opacity:0;transition:opacity 0.5s ease;}
+.brand-card:hover .card-bg{opacity:1;}
+.card-overlay{position:absolute;inset:0;z-index:1;opacity:0;transition:opacity 0.5s ease;}
+.brand-card:hover .card-overlay{opacity:1;}
 
-    /* Card top row */
-    /* Card inner layout */
-    .card-inner {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      justify-content: flex-start;
-    }
-    .card-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-      padding-bottom: 0.9rem;
-      border-bottom: 1px solid rgba(255,255,255,0.18);
-    }
-    .card-row-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-      padding-top: 0.9rem;
-    }
-    .card-top { display: none; }
-    .card-top-right { display: none; }
-    .card-num {
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      opacity: 0.8;
-      font-family: 'Outfit', 'DM Sans', sans-serif;
-    }
-    .card-type {
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      opacity: 0.8;
-      font-family: 'Outfit', 'DM Sans', sans-serif;
-    }
+.card-midori{background:#1a3a2a;color:rgba(215,154,67,0.7);}
+.card-midori .card-name{color:#faf8f2;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;}
+.card-midori .card-desc{color:rgba(250,248,242,0.5);}
+.card-midori .card-row{border-bottom-color:rgba(215,154,67,0.25);}
+.card-midori .card-arrow{border-color:rgba(215,154,67,0.55);color:#D79A43;}
+.card-midori:hover .card-arrow{background:rgba(215,154,67,0.2);}
 
-    /* Card bottom row */
-    .card-bottom { display: none; }
-    .card-name {
-      font-size: clamp(3.5rem, 8vw, 7rem);
-      font-weight: 700;
-      line-height: 1;
-      letter-spacing: -0.02em;
-      transition: transform 0.4s ease;
-    }
+.card-nocta{background:#0a0805;color:rgba(200,52,26,0.6);}
+.card-nocta .card-name{color:#f5f0e8;font-family:'Bebas Neue',sans-serif;font-weight:400;letter-spacing:0.12em;font-style:normal;}
+.card-nocta .card-type{font-family:'Barlow Condensed',sans-serif;letter-spacing:0.18em;font-size:0.88rem;}
+.card-nocta .card-num{font-family:'Barlow Condensed',sans-serif;font-size:0.88rem;}
+.card-nocta .card-desc{color:rgba(245,240,232,0.5);}
+.card-nocta .card-row{border-bottom-color:rgba(200,52,26,0.3);}
+.card-nocta .card-arrow{border-color:rgba(200,52,26,0.55);color:#C8341A;border-radius:0;}
+.card-nocta:hover .card-arrow{background:rgba(200,52,26,0.2);}
 
+.card-wander{background:#1a0e0a;color:rgba(245,192,122,0.55);}
+.card-wander .card-name{color:#faf3ec;font-family:'Playfair Display',serif;font-style:italic;font-weight:400;letter-spacing:-0.01em;}
+.card-wander .card-type{font-family:'Syne',sans-serif;font-size:0.7rem;letter-spacing:0.16em;}
+.card-wander .card-num{font-family:'Syne',sans-serif;}
+.card-wander .card-desc{color:rgba(250,243,236,0.5);}
+.card-wander .card-row{border-bottom-color:rgba(212,80,58,0.25);}
+.card-wander .card-arrow{border-color:rgba(232,135,74,0.5);color:#e8874a;}
+.card-wander:hover .card-arrow{background:rgba(232,135,74,0.15);}
 
-    /* Arrow */
-    .card-arrow {
-      width: 60px;
-      height: 60px;
-      border: 2px solid currentColor;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.4rem;
-      flex-shrink: 0;
-      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), background 0.3s;
-      margin-bottom: 0.4rem;
-    }
-    .brand-card:hover .card-arrow {
-      transform: rotate(45deg) scale(1.08);
-      background: rgba(255,255,255,0.15);
-    }
+.card-cs1{background:#2c1a0e;color:rgba(212,97,26,0.65);}
+.card-cs1 .card-name{color:#f5ede0;font-family:'Alfa Slab One',serif;font-weight:400;letter-spacing:0.04em;}
+.card-cs1 .findly-ly{color:#d4611a;}
+.card-cs1 .card-type{font-family:'DM Mono',monospace;letter-spacing:0.18em;font-size:0.68rem;}
+.card-cs1 .card-num{font-family:'DM Mono',monospace;}
+.card-cs1 .card-desc{color:rgba(245,237,224,0.5);}
+.card-cs1 .card-row{border-bottom-color:rgba(212,97,26,0.3);}
+.card-cs1 .card-arrow{border-color:rgba(212,97,26,0.55);color:#d4611a;border-radius:0;}
+.card-cs1:hover .card-arrow{background:rgba(212,97,26,0.2);}
 
-    /* Background image fills the card */
-    .card-bg {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      background-size: cover;
-      background-position: center;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-    }
-    .brand-card:hover .card-bg { opacity: 1; }
+.card-cs2{background:#0f0f1a;color:rgba(185,130,210,0.3);cursor:default;}
+.card-cs2 .card-name{color:rgba(185,130,210,0.18);font-family:'DM Sans',sans-serif;font-weight:300;}
+.card-cs2 .card-type,.card-cs2 .card-num{opacity:0.35;}
+.card-cs2 .card-row{border-bottom-color:rgba(185,130,210,0.1);}
+.coming-soon-tag{
+  font-size:0.62rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;
+  opacity:0.45;padding:0.22rem 0.65rem;border:1px solid currentColor;
+  border-radius:20px;display:inline-block;margin-bottom:0.5rem;
+}
 
-    /* Overlay so text stays readable over bg image */
-    .card-overlay {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-    }
-    .brand-card:hover .card-overlay { opacity: 1; }
+.footer-nav{
+  position:relative;z-index:70;background:white;
+  border-top:1px solid rgba(0,0,0,0.08);padding:3.5rem 2.5rem 3rem;
+}
+.footer-label{font-size:0.68rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#999;margin-bottom:2rem;}
+.footer-links{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(0,0,0,0.08);border:1px solid rgba(0,0,0,0.08);}
+.footer-link{
+  background:white;padding:1.6rem 1.8rem;
+  display:flex;justify-content:space-between;align-items:center;
+  text-decoration:none;color:#111;transition:background 0.2s;
+}
+.footer-link:hover{background:#f5f5f3;}
+.fl-num{font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#bbb;display:block;margin-bottom:0.3rem;}
+.fl-name{font-family:'Playfair Display',serif;font-size:1.1rem;color:#111;}
+.fl-arrow{
+  width:40px;height:40px;border:1.5px solid rgba(0,0,0,0.15);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;color:#111;flex-shrink:0;
+  transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1),background 0.2s;
+}
+.footer-link:hover .fl-arrow{transform:rotate(45deg) scale(1.1);background:#111;color:white;border-color:#111;}
+.footer-bottom{margin-top:2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+.footer-credit{font-size:0.72rem;color:#bbb;letter-spacing:0.06em;}
+.footer-back{
+  font-size:0.72rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;
+  color:#111;text-decoration:none;border:1.5px solid rgba(0,0,0,0.2);
+  padding:0.4rem 1rem;border-radius:30px;transition:all 0.2s;
+}
+.footer-back:hover{background:#111;color:white;border-color:#111;}
 
-    /* Coming soon */
-    .coming-soon-tag {
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      opacity: 0.4;
-      padding: 0.25rem 0.7rem;
-      border: 1px solid currentColor;
-      border-radius: 20px;
-      margin-bottom: 0.6rem;
-      display: inline-block;
-    }
-
-    /* ── Individual brand colors ── */
-
-    /* MIDORI - matcha green */
-    .card-midori {
-      background: #1a3a2a;
-      color: rgba(215,154,67,0.7);
-    }
-    .card-midori .card-name {
-      color: #faf8f2;
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-weight: 300;
-    }
-    .card-midori .card-row { border-bottom-color: rgba(215,154,67,0.25); }
-    .card-midori .card-arrow { border-color: rgba(215,154,67,0.5); color: #D79A43; }
-    .card-midori:hover .card-arrow { background: rgba(215,154,67,0.15); }
-
-    /* NOCTA - late night red/black */
-    .card-nocta {
-      background: #0a0805;
-      color: rgba(200,52,26,0.6);
-    }
-    .card-nocta .card-name {
-      color: #f5f0e8;
-      font-family: 'Bebas Neue', sans-serif;
-      font-weight: 400;
-      letter-spacing: 0.12em;
-      font-style: normal;
-    }
-    .card-nocta .card-type { font-family: 'Barlow Condensed', sans-serif; letter-spacing: 0.18em; font-size: 0.88rem; }
-    .card-nocta .card-num { font-family: 'Barlow Condensed', sans-serif; font-size: 0.88rem; }
-    .card-nocta .card-row { border-bottom-color: rgba(200,52,26,0.25); }
-    .card-nocta .card-arrow { border-color: rgba(200,52,26,0.45); color: #C8341A; border-radius: 0; }
-    .card-nocta:hover .card-arrow { background: rgba(200,52,26,0.12); transform: rotate(45deg) scale(1.08); }
-
-    /* WANDER - warm sand */
-    .card-wander {
-      background: #1a0e0a;
-      color: rgba(245,192,122,0.55);
-    }
-    .card-wander .card-name {
-      color: #faf3ec;
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-weight: 400;
-      letter-spacing: -0.01em;
-    }
-    .card-wander .card-type { font-family: 'Syne', sans-serif; font-size: 0.7rem; letter-spacing: 0.16em; }
-    .card-wander .card-num { font-family: 'Syne', sans-serif; }
-    .card-wander .card-row { border-bottom-color: rgba(212,80,58,0.2); }
-    .card-wander .card-arrow { border-color: rgba(232,135,74,0.4); color: #e8874a; }
-    .card-wander:hover .card-arrow { background: rgba(232,135,74,0.1); transform: rotate(45deg) scale(1.08); }
-
-    /* FINDLY - vintage thrift */
-    .card-cs1 {
-      background: #2c1a0e;
-      color: rgba(212,97,26,0.65);
-    }
-    .card-cs1 .card-name {
-      color: #f5ede0;
-      font-family: 'Alfa Slab One', serif;
-      font-weight: 400;
-      letter-spacing: 0.04em;
-    }
-    .card-cs1 .card-name .findly-ly { color: #d4611a; }
-    .card-cs1 .card-type { font-family: 'DM Mono', monospace; letter-spacing: 0.18em; font-size: 0.68rem; }
-    .card-cs1 .card-num { font-family: 'DM Mono', monospace; }
-    .card-cs1 .card-row { border-bottom-color: rgba(212,97,26,0.25); }
-    .card-cs1 .card-arrow { border-color: rgba(212,97,26,0.45); color: #d4611a; border-radius: 0; }
-    .card-cs1:hover .card-arrow { background: rgba(212,97,26,0.12); transform: rotate(45deg) scale(1.08); }
-
-    /* CS2 - photography rebrand */
-    .card-cs2 {
-      background: #0f0f1a;
-      color: rgba(185,130,210,0.5);
-    }
-    .card-cs2 .card-name { color: rgba(185,130,210,0.3); }
-
-    /* CS3 - energy drink */
-    .card-cs3 {
-      background: #0a1a0a;
-      color: rgba(130,210,130,0.5);
-    }
-    .card-cs3 .card-name { color: rgba(130,210,130,0.3); }
-
-    /* Scroll spacer - makes page scrollable so sticky works */
-
-    @media(max-width:600px) {
-      .brand-card { padding: 1.5rem; }
-      .card-name { font-size: clamp(2.8rem, 12vw, 4.5rem); }
-      .brand-card:nth-child(2) { top: 28px; }
-      .brand-card:nth-child(3) { top: 56px; }
-      .brand-card:nth-child(4) { top: 84px; }
-      .brand-card:nth-child(5) { top: 112px; }
-      .brand-card:nth-child(6) { top: 140px; }
-      .card-arrow { width: 48px; height: 48px; font-size: 1.1rem; }
-    }
-  </style>
+@media(max-width:680px){
+  nav{padding:0.9rem 1.2rem;}
+  .hero-section{padding:calc(54px + 2.5rem) 1.5rem 2.5rem;}
+  .brand-card{padding:1.5rem;height:82vh;}
+  .brand-card:nth-child(1){top:54px;}
+  .brand-card:nth-child(2){top:82px;}
+  .brand-card:nth-child(3){top:110px;}
+  .brand-card:nth-child(4){top:138px;}
+  .brand-card:nth-child(5){top:166px;}
+  .card-arrow{width:44px;height:44px;}
+  .footer-links{grid-template-columns:1fr;}
+  .footer-nav{padding:2.5rem 1.5rem 2rem;}
+}
+</style>
 </head>
 <body>
 
@@ -272,13 +165,17 @@
   <a href="https://mollycurtis.github.io" class="nav-back">← Portfolio</a>
 </nav>
 
-<div class="cards-wrap">
+<div class="hero-section">
+  <p class="hero-eyebrow">Brand Identity Work</p>
+  <h1 class="hero-title">Brand Style Guides</h1>
+  <p class="hero-sub">A collection of brand identity systems — each built with its own visual language, typography, color palette, and usage guidelines.</p>
+</div>
 
-  <!-- 1. MIDORI -->
+<div class="cards-wrap" style="padding-top:0;">
+
   <a href="https://mollycurtis.github.io/midori" class="brand-card card-midori">
     <div class="card-bg" style="background-image:url('../midori-preview.jpg');"></div>
-    <div class="card-overlay" style="background:linear-gradient(to bottom, rgba(26,46,30,0.7), rgba(26,46,30,0.4));"></div>
-    <!-- Midori: vertical grid lines -->
+    <div class="card-overlay" style="background:linear-gradient(to bottom,rgba(26,46,30,0.7),rgba(26,46,30,0.4));"></div>
     <div style="position:absolute;inset:0;display:flex;pointer-events:none;z-index:1;">
       <span style="flex:1;border-right:1px solid rgba(255,255,255,0.035);"></span>
       <span style="flex:1;border-right:1px solid rgba(255,255,255,0.035);"></span>
@@ -288,7 +185,6 @@
       <span style="flex:1;border-right:1px solid rgba(255,255,255,0.035);"></span>
       <span style="flex:1;"></span>
     </div>
-    <!-- Midori: ghost kanji background -->
     <div style="position:absolute;right:-2%;bottom:-15%;font-family:'Cormorant Garamond',serif;font-size:clamp(160px,36vw,420px);font-weight:300;color:rgba(82,183,136,0.08);pointer-events:none;z-index:1;line-height:1;user-select:none;">緑</div>
     <div class="card-inner">
       <div class="card-row">
@@ -296,22 +192,21 @@
         <span class="card-type">Matcha &amp; Wellness</span>
       </div>
       <div class="card-row-bottom">
-        <div class="card-name">Midori <span style="font-family:'Cormorant Garamond',serif;font-size:0.45em;font-weight:400;font-style:normal;color:#A23E2A;vertical-align:super;margin-left:4px;">緑</span></div>
-        <div class="card-arrow"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+        <div>
+          <div class="card-name">Midori <span style="font-family:'Cormorant Garamond',serif;font-size:0.45em;font-weight:400;font-style:normal;color:#A23E2A;vertical-align:super;margin-left:4px;">緑</span></div>
+          <p class="card-desc">Matcha wellness brand focused on calm, ritual, and simplicity.</p>
+        </div>
+        <div class="card-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
       </div>
     </div>
   </a>
 
-  <!-- 2. NOCTA -->
   <a href="https://mollycurtis.github.io/nocta" class="brand-card card-nocta">
     <div class="card-bg" style="background-image:url('../nocta-preview.jpg');"></div>
-    <div class="card-overlay" style="background:linear-gradient(to bottom, rgba(26,10,0,0.7), rgba(26,10,0,0.4));"></div>
-    <!-- Nocta: radial red glow -->
-    <div style="position:absolute;inset:0;pointer-events:none;z-index:1;background:radial-gradient(ellipse 55% 60% at 75% 50%, rgba(200,52,26,0.14) 0%, transparent 60%), radial-gradient(ellipse 40% 40% at 20% 80%, rgba(212,168,50,0.05) 0%, transparent 55%);"></div>
-    <!-- Nocta: diagonal red rule lines from hero -->
-    <div style="position:absolute;width:200%;height:1px;background:linear-gradient(to right, transparent 0%, rgba(200,52,26,0.3) 30%, rgba(200,52,26,0.5) 50%, rgba(200,52,26,0.3) 70%, transparent 100%);top:38%;left:-50%;transform:rotate(-14deg);pointer-events:none;z-index:1;"></div>
-    <div style="position:absolute;width:200%;height:1px;background:linear-gradient(to right, transparent 0%, rgba(245,240,232,0.04) 40%, rgba(245,240,232,0.07) 50%, rgba(245,240,232,0.04) 60%, transparent 100%);top:55%;left:-50%;transform:rotate(-14deg);pointer-events:none;z-index:1;"></div>
-    <!-- Nocta: ghost NOCTA text background -->
+    <div class="card-overlay" style="background:linear-gradient(to bottom,rgba(26,10,0,0.7),rgba(26,10,0,0.4));"></div>
+    <div style="position:absolute;inset:0;pointer-events:none;z-index:1;background:radial-gradient(ellipse 55% 60% at 75% 50%,rgba(200,52,26,0.14) 0%,transparent 60%),radial-gradient(ellipse 40% 40% at 20% 80%,rgba(212,168,50,0.05) 0%,transparent 55%);"></div>
+    <div style="position:absolute;width:200%;height:1px;background:linear-gradient(to right,transparent 0%,rgba(200,52,26,0.3) 30%,rgba(200,52,26,0.5) 50%,rgba(200,52,26,0.3) 70%,transparent 100%);top:38%;left:-50%;transform:rotate(-14deg);pointer-events:none;z-index:1;"></div>
+    <div style="position:absolute;width:200%;height:1px;background:linear-gradient(to right,transparent 0%,rgba(245,240,232,0.04) 40%,rgba(245,240,232,0.07) 50%,rgba(245,240,232,0.04) 60%,transparent 100%);top:55%;left:-50%;transform:rotate(-14deg);pointer-events:none;z-index:1;"></div>
     <div style="position:absolute;font-family:'Bebas Neue',sans-serif;font-size:clamp(100px,22vw,320px);letter-spacing:-0.02em;color:rgba(245,240,232,0.022);pointer-events:none;z-index:1;top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;user-select:none;">NOCTA</div>
     <div class="card-inner">
       <div class="card-row">
@@ -319,54 +214,57 @@
         <span class="card-type">Pizza &amp; Food</span>
       </div>
       <div class="card-row-bottom">
-        <div class="card-name">Nocta</div>
-        <div class="card-arrow"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+        <div>
+          <div class="card-name">Nocta</div>
+          <p class="card-desc">Bold, high-contrast identity for a modern late-night pizza concept.</p>
+        </div>
+        <div class="card-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
       </div>
     </div>
   </a>
 
-  <!-- 3. WANDER -->
   <a href="https://mollycurtis.github.io/wander" class="brand-card card-wander">
     <div class="card-bg" style="background-image:url('../wander-preview.jpg');"></div>
-    <div class="card-overlay" style="background:linear-gradient(to bottom, rgba(42,31,14,0.7), rgba(42,31,14,0.4));"></div>
-    <!-- Wander: sunset gradient background from hero -->
+    <div class="card-overlay" style="background:linear-gradient(to bottom,rgba(42,31,14,0.7),rgba(42,31,14,0.4));"></div>
     <div style="position:absolute;inset:0;pointer-events:none;z-index:1;background:linear-gradient(175deg,#1a0e0a 0%,#2d1410 8%,#5a2018 18%,#8a3020 28%,#c4623a 42%,#d4803a 52%,#e8a050 60%,#e89060 68%,#c4623a 78%,#8a2840 88%,#2d1020 100%);opacity:0.55;"></div>
-    <!-- Wander: concentric ellipse rings from hero -->
-    <div style="position:absolute;inset:0;pointer-events:none;z-index:1;opacity:0.07;background:radial-gradient(ellipse 110% 75% at 50% 50%, transparent 22%,rgba(250,246,240,1) 22.4%,transparent 22.8%),radial-gradient(ellipse 110% 75% at 50% 50%, transparent 34%,rgba(250,246,240,1) 34.4%,transparent 34.8%),radial-gradient(ellipse 110% 75% at 50% 50%, transparent 46%,rgba(250,246,240,1) 46.4%,transparent 46.8%),radial-gradient(ellipse 110% 75% at 50% 50%, transparent 58%,rgba(250,246,240,1) 58.4%,transparent 58.8%),radial-gradient(ellipse 110% 75% at 50% 50%, transparent 70%,rgba(250,246,240,1) 70.4%,transparent 70.8%);"></div>
+    <div style="position:absolute;inset:0;pointer-events:none;z-index:1;opacity:0.07;background:radial-gradient(ellipse 110% 75% at 50% 50%,transparent 22%,rgba(250,246,240,1) 22.4%,transparent 22.8%),radial-gradient(ellipse 110% 75% at 50% 50%,transparent 34%,rgba(250,246,240,1) 34.4%,transparent 34.8%),radial-gradient(ellipse 110% 75% at 50% 50%,transparent 46%,rgba(250,246,240,1) 46.4%,transparent 46.8%),radial-gradient(ellipse 110% 75% at 50% 50%,transparent 58%,rgba(250,246,240,1) 58.4%,transparent 58.8%),radial-gradient(ellipse 110% 75% at 50% 50%,transparent 70%,rgba(250,246,240,1) 70.4%,transparent 70.8%);"></div>
     <div class="card-inner">
       <div class="card-row">
         <span class="card-num">03</span>
-        <span class="card-type">Women&apos;s Solo Travel</span>
+        <span class="card-type">Women's Solo Travel</span>
       </div>
       <div class="card-row-bottom">
-        <div class="card-name">Wander</div>
-        <div class="card-arrow"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+        <div>
+          <div class="card-name">Wander</div>
+          <p class="card-desc">Editorial-inspired brand for a women's solo travel platform.</p>
+        </div>
+        <div class="card-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
       </div>
     </div>
   </a>
 
-  <!-- 4. FINDLY -->
   <a href="https://mollycurtis.github.io/findly" class="brand-card card-cs1">
     <div class="card-bg" style="background-image:url('../findly-preview.jpg');"></div>
-    <div class="card-overlay" style="background:linear-gradient(to bottom, rgba(44,26,14,0.7), rgba(44,26,14,0.4));"></div>
-    <!-- Findly: tile pattern background from brand -->
+    <div class="card-overlay" style="background:linear-gradient(to bottom,rgba(44,26,14,0.7),rgba(44,26,14,0.4));"></div>
     <div style="position:absolute;inset:0;pointer-events:none;z-index:1;opacity:0.18;background-image:linear-gradient(45deg,#5c3318 25%,transparent 25%),linear-gradient(-45deg,#5c3318 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#5c3318 75%),linear-gradient(-45deg,transparent 75%,#5c3318 75%);background-size:32px 32px;background-position:0 0,0 16px,16px -16px,-16px 0px;background-color:#2c1a0e;"></div>
-    <!-- Findly: orange accent glow -->
-    <div style="position:absolute;inset:0;pointer-events:none;z-index:1;background:radial-gradient(ellipse 60% 50% at 80% 70%, rgba(212,97,26,0.15) 0%, transparent 60%);"></div>
+    <div style="position:absolute;inset:0;pointer-events:none;z-index:1;background:radial-gradient(ellipse 60% 50% at 80% 70%,rgba(212,97,26,0.15) 0%,transparent 60%);"></div>
     <div class="card-inner">
       <div class="card-row">
         <span class="card-num">04</span>
         <span class="card-type">Thrift &amp; Vintage</span>
       </div>
       <div class="card-row-bottom">
-        <div class="card-name"><span>FIND</span><span class="findly-ly">LY</span></div>
-        <div class="card-arrow"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+        <div>
+          <div class="card-name"><span>FIND</span><span class="findly-ly">LY</span></div>
+          <p class="card-desc">Utility-driven identity for a thrifting and vintage home décor marketplace.</p>
+        </div>
+        <div class="card-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
       </div>
     </div>
   </a>
 
-  <!-- 5. COMING SOON -->
-  <div class="brand-card card-cs2" style="cursor:default;">
+  <div class="brand-card card-cs2">
+    <div style="position:absolute;inset:0;background:#0f0f1a;pointer-events:none;z-index:1;"></div>
     <div class="card-inner">
       <div class="card-row">
         <span class="card-num">05</span>
@@ -376,14 +274,7 @@
         <div>
           <div class="coming-soon-tag">Coming Soon</div>
           <div class="card-name">Photography Rebrand</div>
-        </div>
-      </div>
-    </div>
-  </div>
-      <div class="card-row-bottom">
-        <div>
-          <div class="coming-soon-tag">Coming Soon</div>
-          <div class="card-name">Energy Drink</div>
+          <p class="card-desc" style="color:rgba(185,130,210,0.3);">A personal brand refresh for molcurphotos.com — in progress.</p>
         </div>
       </div>
     </div>
@@ -391,9 +282,35 @@
 
 </div>
 
-<footer style="background:white;border-top:1px solid rgba(0,0,0,0.08);padding:2.5rem 2.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;position:relative;z-index:70;">
-  <p style="font-size:0.78rem;color:#aaa;letter-spacing:0.1em;text-transform:uppercase;">Brand Style Guides — Molly Curtis</p>
-  <a href="https://mollycurtis.github.io" style="font-size:0.82rem;font-weight:600;color:#b94fc8;text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;border:1.5px solid rgba(185,79,200,0.3);padding:0.5rem 1.2rem;border-radius:30px;transition:all 0.2s;" onmouseover="this.style.background='#b94fc8';this.style.color='white'" onmouseout="this.style.background='transparent';this.style.color='#b94fc8'">← Back to Portfolio</a>
+<footer class="footer-nav">
+  <p class="footer-label">Explore More Work</p>
+  <div class="footer-links">
+    <a href="https://mollycurtis.github.io/landingpages/" class="footer-link">
+      <div>
+        <span class="fl-num">02</span>
+        <span class="fl-name">Landing Pages</span>
+      </div>
+      <div class="fl-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+    </a>
+    <a href="https://mollycurtis.github.io/displayads" class="footer-link">
+      <div>
+        <span class="fl-num">03</span>
+        <span class="fl-name">Ad Creative</span>
+      </div>
+      <div class="fl-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+    </a>
+    <a href="https://mollycurtis.github.io" class="footer-link">
+      <div>
+        <span class="fl-num">↩</span>
+        <span class="fl-name">Back to Portfolio</span>
+      </div>
+      <div class="fl-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+    </a>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-credit">Brand Style Guides — Molly Curtis</span>
+    <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" class="footer-back">↑ Back to top</a>
+  </div>
 </footer>
 
 </body>
