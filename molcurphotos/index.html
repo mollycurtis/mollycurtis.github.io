@@ -97,8 +97,9 @@ html, body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans
 .menu-item:hover .menu-word  { color:var(--accent); letter-spacing:.02em; }
 .menu-item:hover .menu-num   { color:var(--accent); }
 
-/* footer */
-.landing-footer {
+@media(max-width:768px){
+  .menu-word { font-size:clamp(48px,13vw,72px); }
+}
   padding:22px 48px;
   border-top:1px solid var(--border);
 }
@@ -317,7 +318,7 @@ html, body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans
 ══════════════════════════════ */
 #page-about { background:var(--bg); }
 .about-body { padding:52px 48px; max-width:1440px; margin:0 auto; width:100%; }
-.about-layout { display:grid; grid-template-columns:minmax(0,560px) 440px; gap:56px; align-items:start; justify-content:start; }
+.about-layout { display:grid; grid-template-columns:1fr 440px; gap:56px; align-items:start; }
 .about-carousel { position:relative; aspect-ratio:3/4; background:var(--bg2); overflow:hidden; width:100%; }
 .about-img { aspect-ratio:3/4; background:var(--bg2); display:flex; align-items:center; justify-content:center; overflow:hidden; }
 .about-img img { width:100%;height:100%;object-fit:cover; }
@@ -327,8 +328,8 @@ html, body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans
 .about-stat { display:flex; flex-direction:column; gap:10px; }
 .sn { font-family:'Cormorant Garamond',serif; font-size:clamp(28px,2.8vw,42px); font-weight:300; color:var(--text); line-height:1; letter-spacing:-.01em; }
 .sl { font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);line-height:1; }
-.about-h { font-family:'Cormorant Garamond',serif;font-size:clamp(20px,2.2vw,32px);font-weight:300;color:var(--text);line-height:1.25;margin:0 0 16px; }
-.about-p { font-size:14px;color:var(--muted);line-height:1.8;font-weight:300;margin-bottom:13px; }
+.about-h { font-family:'Cormorant Garamond',serif;font-size:clamp(20px,2.2vw,32px);font-weight:300;color:var(--text);line-height:1.25;margin:0 0 16px;max-width:520px; }
+.about-p { font-size:14px;color:var(--muted);line-height:1.8;font-weight:300;margin-bottom:13px;max-width:520px; }
 .phi-block { border-top:1px solid var(--border);margin-top:36px;padding-top:34px; }
 .phi-l { font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:13px; }
 .phi-q { font-family:'Cormorant Garamond',serif;font-size:clamp(17px,2.2vw,25px);font-weight:300;font-style:italic;color:var(--text);line-height:1.55; }
@@ -422,6 +423,33 @@ textarea.f-input { resize:vertical;min-height:100px; }
 .tcard { border:1px solid var(--border);padding:22px;background:rgba(245,242,238,.025);margin-bottom:12px; }
 .tcard-name { font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:300;color:var(--accent);margin-bottom:9px; }
 .tcard-text { font-size:13px;color:var(--muted);line-height:1.75;font-weight:300; }
+
+/* ══════════════════════════════
+   ZODIAC CAROUSEL
+══════════════════════════════ */
+.zodiac-carousel { position:relative; overflow:hidden; }
+.zodiac-track {
+  display:grid;
+  grid-template-columns:repeat(12, calc((100% - 12px) / 3));
+  gap:6px;
+  transition:transform .5s cubic-bezier(.4,0,.2,1);
+}
+.zodiac-slide { min-width:0; }
+.zodiac-controls {
+  display:flex; align-items:center; justify-content:center;
+  gap:20px; margin-top:24px;
+}
+.zodiac-btn {
+  background:none; border:1px solid var(--border);
+  color:var(--text); width:36px; height:36px;
+  border-radius:50%; cursor:pointer; font-size:14px;
+  display:flex; align-items:center; justify-content:center;
+  transition:border-color .2s, background .2s;
+}
+.zodiac-btn:hover { border-color:var(--text); background:rgba(245,242,238,.08); }
+.zodiac-dots { display:flex; gap:6px; }
+.zodiac-dot { width:6px; height:6px; border-radius:50%; background:rgba(245,242,238,.2); transition:background .3s, transform .3s; cursor:pointer; }
+.zodiac-dot.active { background:var(--text); transform:scale(1.3); }
 
 /* ══════════════════════════════
    ABOUT IMAGE CAROUSEL
@@ -666,19 +694,26 @@ textarea.f-input { resize:vertical;min-height:100px; }
         <div class="proj-title">The Zodiac Signs</div>
         <p class="proj-desc">I directed and created my own take on all twelve astrological signs with a fantastic team — one of the most creatively rewarding shoots I've done.</p>
       </div>
-      <div class="photo-grid" style="grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
-        <div class="photo-cell" style="aspect-ratio:2/3"><div class="photo-cell-ph">Aries</div></div>
-        <div class="photo-cell" style="aspect-ratio:2/3"><div class="photo-cell-ph">Taurus</div></div>
-        <div class="photo-cell" style="aspect-ratio:2/3"><div class="photo-cell-ph">Gemini</div></div>
-        <div class="photo-cell" style="aspect-ratio:2/3"><div class="photo-cell-ph">Cancer</div></div>
-        <div class="photo-cell" style="aspect-ratio:2/3"><div class="photo-cell-ph">Leo</div></div>
-        <div class="photo-cell" style="aspect-ratio:2/3"><div class="photo-cell-ph">Virgo</div></div>
-        <div class="photo-cell" style="aspect-ratio:2/3"><div class="photo-cell-ph">Libra</div></div>
-        <div class="photo-cell" style="aspect-ratio:2/3"><div class="photo-cell-ph">Scorpio</div></div>
-        <div class="photo-cell" style="aspect-ratio:2/3"><div class="photo-cell-ph">Sagittarius</div></div>
-        <div class="photo-cell" style="aspect-ratio:2/3"><div class="photo-cell-ph">Capricorn</div></div>
-        <div class="photo-cell" style="aspect-ratio:2/3"><div class="photo-cell-ph">Aquarius</div></div>
-        <div class="photo-cell" style="aspect-ratio:2/3"><div class="photo-cell-ph">Pisces</div></div>
+      <div class="zodiac-carousel" id="zodiacCarousel">
+        <div class="zodiac-track" id="zodiacTrack">
+          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><div class="photo-cell-ph">Aries</div></div></div>
+          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><div class="photo-cell-ph">Taurus</div></div></div>
+          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><div class="photo-cell-ph">Gemini</div></div></div>
+          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><div class="photo-cell-ph">Cancer</div></div></div>
+          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><div class="photo-cell-ph">Leo</div></div></div>
+          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><div class="photo-cell-ph">Virgo</div></div></div>
+          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><div class="photo-cell-ph">Libra</div></div></div>
+          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><div class="photo-cell-ph">Scorpio</div></div></div>
+          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><div class="photo-cell-ph">Sagittarius</div></div></div>
+          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><div class="photo-cell-ph">Capricorn</div></div></div>
+          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><div class="photo-cell-ph">Aquarius</div></div></div>
+          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><div class="photo-cell-ph">Pisces</div></div></div>
+        </div>
+        <div class="zodiac-controls">
+          <button class="zodiac-btn" id="zodiacPrev">←</button>
+          <div class="zodiac-dots" id="zodiacDots"></div>
+          <button class="zodiac-btn" id="zodiacNext">→</button>
+        </div>
       </div>
     </div>
     <div class="proj-block">
@@ -958,7 +993,42 @@ ptiles.forEach(tile => {
   setInterval(() => goTo(current + 1), 5000);
 })();
 
-// ── FAQ ACCORDION ────────────────────────────────────────────────
+// ── ZODIAC CAROUSEL ──────────────────────────────────────────────
+(function() {
+  const track    = document.getElementById('zodiacTrack');
+  const dotsWrap = document.getElementById('zodiacDots');
+  const prevBtn  = document.getElementById('zodiacPrev');
+  const nextBtn  = document.getElementById('zodiacNext');
+  if (!track) return;
+
+  const total    = 12;
+  const perPage  = 3;
+  const pages    = Math.ceil(total / perPage); // 4
+  let current    = 0;
+
+  // build dots
+  for (let i = 0; i < pages; i++) {
+    const d = document.createElement('div');
+    d.className = 'zodiac-dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(d);
+  }
+
+  function goTo(page) {
+    current = (page + pages) % pages;
+    // each slide is 1/3 of track width + gap
+    const slideW = track.parentElement.offsetWidth / perPage;
+    track.style.transform = `translateX(-${current * slideW * perPage + current * 6}px)`;
+    dotsWrap.querySelectorAll('.zodiac-dot').forEach((d, i) =>
+      d.classList.toggle('active', i === current));
+  }
+
+  prevBtn.addEventListener('click', () => goTo(current - 1));
+  nextBtn.addEventListener('click', () => goTo(current + 1));
+
+  // recalculate on resize
+  window.addEventListener('resize', () => goTo(current));
+})();
 function toggleFaq(btn) {
   const item   = btn.closest('.faq-item');
   const isOpen = item.classList.contains('open');
