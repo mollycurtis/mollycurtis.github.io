@@ -488,10 +488,14 @@ ABOUT PAGE — design system rebuild
   aspect-ratio:1/1;
   background:var(--bg2);
   overflow:hidden;
+  border-radius:12px;
 }
 .carousel-slide { position:absolute; inset:0; opacity:0; transition:opacity 1s ease; }
 .carousel-slide.active { opacity:1; }
-.carousel-slide img { width:100%; height:100%; object-fit:cover; display:block; }
+.carousel-slide img { width:100%; height:100%; object-fit:cover; object-position:center; display:block; }
+.carousel-slide:nth-child(1) img { object-position:center 30%; }
+.carousel-slide:nth-child(2) img,
+.carousel-slide:nth-child(4) img { object-position:center 15%; }
 .carousel-slide-ph { width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:rgba(245,242,238,.14); }
 .carousel-dots { position:absolute; bottom:16px; left:50%; transform:translateX(-50%); display:flex; gap:6px; z-index:3; }
 .carousel-dot { width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,.3); transition:background .3s, transform .3s; }
@@ -541,7 +545,7 @@ ABOUT PAGE — design system rebuild
 
   /* carousel centered */
   .about-main-grid { grid-template-columns:1fr; gap:32px; }
-  .about-carousel { max-width:100%; margin:0 auto; width:100%; aspect-ratio:4/3; }
+  .about-carousel { max-width:100%; margin:0 auto; width:100%; aspect-ratio:3/4; }
 
   /* experience + philosophy: center labels, left align body text */
   .exp-phi-row { grid-template-columns:1fr; gap:32px; padding-top:28px; }
@@ -1481,7 +1485,7 @@ ptiles.forEach(tile => {
     slides[current].classList.add('active');
     dots[current].classList.add('active');
   }
-  setInterval(() => goTo(current + 1), 5000);
+  setInterval(() => goTo(current + 1), 8000);
 })();
 
 // ── ZODIAC CAROUSEL ──────────────────────────────────────────────
