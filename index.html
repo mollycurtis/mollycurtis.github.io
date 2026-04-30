@@ -237,14 +237,11 @@
     @media(max-width:860px) { .proj-grid { grid-template-columns: 1fr; } }
 
     /* RESPONSIVE */
-    /* ── Large (≤1200px) ── */
     @media(max-width:1200px){
       .hero-inner { gap: 3rem; }
-
       .process-row { flex-wrap: wrap; }
       .process-row::before { display: none; }
     }
-    /* ── Medium (≤960px) ── */
     @media(max-width:960px){
       .process-row { display: grid !important; grid-template-columns: 1fr 1fr; gap: 1rem; }
       .process-row::before { display: none; }
@@ -260,7 +257,6 @@
       .nav-inner { padding: 0.9rem 1.5rem; }
       .impact-inner { gap: 1.2rem; display: grid; grid-template-columns: 1fr 1fr; }
     }
-    /* ── Small (≤680px) ── */
     @media(max-width:680px){
       .nav-links li:not(:last-child):not(:nth-last-child(2)):not(:nth-last-child(3)) { display: none; }
       .nav-links a { font-size: 0.7rem; }
@@ -280,13 +276,11 @@
       .skills-grid { grid-template-columns: 1fr; }
       .sg:nth-child(1), .sg:nth-child(3) { border-right: none; border-bottom: 1px solid rgba(185,79,200,0.15); }
       .sg:nth-child(2) { border-bottom: 1px solid rgba(185,79,200,0.15); }
-
       .photo-layout { grid-template-columns: 1fr; }
       .sa { width: 36px; height: 36px; font-size: 0.9rem; }
       .sd { width: 8px; height: 8px; }
       .sd.active { width: 20px; }
     }
-    /* ── Extra Small (≤400px) ── */
     @media(max-width:400px){
       .hero-name { font-size: 2.2rem; }
       .nav-links li:not(:last-child):not(:nth-last-child(2)) { display: none; }
@@ -341,19 +335,19 @@
   <div class="impact-inner">
     <div>
       <div class="impact-n grad"><span class="cu" data-t="1" data-s="M+" data-p="$">$1M+</span></div>
-      <div class="impact-l">Revenue from<br/>landing pages built</div>
+      <div class="impact-l">Attributed<br/>Revenue</div>
     </div>
     <div>
       <div class="impact-n grad"><span class="cu" data-t="650" data-s="+">650+</span></div>
-      <div class="impact-l">Landing Pages<br/>Designed</div>
+      <div class="impact-l">Pages Designed<br/>&amp; Optimized</div>
     </div>
     <div>
       <div class="impact-n grad"><span class="cu" data-t="80" data-s="+">80+</span></div>
-      <div class="impact-l">Campaigns across<br/>paid &amp; organic</div>
+      <div class="impact-l">Campaigns<br/>Executed</div>
     </div>
     <div>
-      <div class="impact-n grad"><span class="cu" data-t="1000" data-s="+">1K+</span></div>
-      <div class="impact-l">Organic followers<br/>in under a year</div>
+      <div class="impact-n grad"><span class="cu" data-t="400" data-s="K+">400K+</span></div>
+      <div class="impact-l">Sessions<br/>Driven</div>
     </div>
   </div>
 </div>
@@ -365,7 +359,6 @@
     <hr class="sdiv" />
     <div class="proj-grid">
 
-
       <a href="https://mollycurtis.github.io/brandguide" class="proj-card" style="--card-accent:#e8445a;">
         <div class="proj-card-bg" style="background: linear-gradient(135deg, #fdf6ff 0%, #f8eeff 100%);"></div>
         <div class="proj-card-content">
@@ -373,11 +366,10 @@
           <h3 class="proj-card-title">Brand Style Guides</h3>
           <p class="proj-card-desc">Full brand identity systems: typography, color, visual language, and usage guidelines built intentionally from concept to final deliverable.</p>
           <div class="proj-card-footer">
-<span class="proj-card-cta">View Brand Guides →</span>
+            <span class="proj-card-cta">View Brand Guides →</span>
           </div>
         </div>
       </a>
-
 
       <a href="https://mollycurtis.github.io/landingpages/" class="proj-card" style="--card-accent:#b94fc8;">
         <div class="proj-card-bg" style="background: linear-gradient(135deg, #f6f0ff 0%, #fdf0ff 100%);"></div>
@@ -386,11 +378,10 @@
           <h3 class="proj-card-title">Landing Pages</h3>
           <p class="proj-card-desc">Conversion-focused landing pages built for paid, email, and organic campaigns: designed to reduce friction and drive action.</p>
           <div class="proj-card-footer">
-<span class="proj-card-cta">See Landing Pages →</span>
+            <span class="proj-card-cta">See Landing Pages →</span>
           </div>
         </div>
       </a>
-
 
       <a href="https://mollycurtis.github.io/displayads" class="proj-card" style="--card-accent:#7b5ea7;">
         <div class="proj-card-bg" style="background: linear-gradient(135deg, #fff0f8 0%, #f8f0ff 100%);"></div>
@@ -399,7 +390,7 @@
           <h3 class="proj-card-title">Display Ad Creation</h3>
           <p class="proj-card-desc">Scalable ad creative designed across multiple sizes and placements: built for consistency across paid campaigns and channels.</p>
           <div class="proj-card-footer">
-<span class="proj-card-cta">Explore Ad Creatives →</span>
+            <span class="proj-card-cta">Explore Ad Creatives →</span>
           </div>
         </div>
       </a>
@@ -430,7 +421,6 @@
     <h2 class="st">Skills &amp; <span class="grad">Expertise</span></h2>
     <p style="font-size:0.95rem;color:#666;font-weight:300;margin-bottom:1.8rem;font-style:italic;">A blend of design, marketing, and performance-focused skills.</p>
     <hr class="sdiv" />
-
     <div class="skills-grid">
       <div class="sg">
         <h3>Design &amp; Creation</h3>
@@ -608,7 +598,6 @@
       if(ss){
         var dotsEl=document.getElementById('ssDots'),idx=0;
         var imgs=Array.prototype.slice.call(ss.querySelectorAll('img'));
-        // Set all to absolute fill, first one active
         imgs.forEach(function(img,i){
           img.style.position='absolute'; img.style.top='0'; img.style.left='0';
           img.style.width='100%'; img.style.height='100%'; img.style.objectFit='cover';
