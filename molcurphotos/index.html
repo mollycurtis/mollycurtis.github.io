@@ -317,7 +317,7 @@ html, body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans
 ══════════════════════════════ */
 #page-about { background:var(--bg); }
 .about-body { padding:52px 48px; max-width:1440px; margin:0 auto; width:100%; }
-.about-layout { display:grid; grid-template-columns:1fr 440px; gap:56px; align-items:start; }
+.about-layout { display:grid; grid-template-columns:minmax(0,560px) 440px; gap:56px; align-items:start; justify-content:start; }
 .about-carousel { position:relative; aspect-ratio:3/4; background:var(--bg2); overflow:hidden; width:100%; }
 .about-img { aspect-ratio:3/4; background:var(--bg2); display:flex; align-items:center; justify-content:center; overflow:hidden; }
 .about-img img { width:100%;height:100%;object-fit:cover; }
@@ -358,13 +358,13 @@ html, body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans
 .faqs-body { padding:52px 48px; max-width:1440px; margin:0 auto; width:100%; }
 .faqs-hero {
   font-family:'Cormorant Garamond',serif;
-  font-size:clamp(36px,5vw,80px);
+  font-size:clamp(28px,3.8vw,58px);
   font-weight:300; color:var(--text);
-  line-height:1; margin-bottom:52px; letter-spacing:-.01em;
+  line-height:1; margin-bottom:48px; letter-spacing:-.01em;
   white-space:nowrap;
 }
-@media(max-width:640px){
-  .faqs-hero { white-space:normal; font-size:clamp(36px,10vw,60px); }
+@media(max-width:700px){
+  .faqs-hero { white-space:normal; font-size:clamp(36px,9vw,52px); }
 }
 .faq-grid { display:grid; grid-template-columns:1fr 1fr; gap:0 64px; align-items:start; }
 .faq-col { display:flex; flex-direction:column; }
@@ -406,7 +406,10 @@ html, body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans
 }
 @media(max-width:700px){ .contact-hero { white-space:normal; font-size:clamp(36px,10vw,60px); } }
 .contact-grid { display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start; }
-.contact-right-inner { position:sticky; top:28px; }
+.contact-right-inner { position:sticky; top:0; }
+@media(max-width:768px){
+  .contact-right-inner { position:static; }
+}
 .f-label { font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:8px;font-family:'DM Sans',sans-serif; }
 .f-input { width:100%;background:rgba(245,242,238,.04);border:1px solid var(--border);color:var(--text);padding:13px 15px;font-family:'DM Sans',sans-serif;font-size:14px;outline:none;margin-bottom:18px;transition:border-color .2s; }
 .f-input:focus { border-color:rgba(245,242,238,.35); }
@@ -618,9 +621,9 @@ textarea.f-input { resize:vertical;min-height:100px; }
           <div class="about-stat"><div class="sn">MN · WI</div><div class="sl">Based Worldwide</div></div>
         </div>
         <h2 class="about-h">Molly Curtis is a nationally published photographer based in the Midwest.</h2>
-        <p class="about-p">With over seven years of experience in portraits, editorial, weddings, and events, Molly approaches every shoot with intention and a genuine love for the craft. She holds a BBA in Marketing from UW–Eau Claire, which informs how she thinks about visual storytelling.</p>
-        <p class="about-p">Published in 30+ magazines, her work is defined by one idea: every image should feel like it means something.</p>
-        <p class="about-p">When she's not shooting, you'll find her thrifting, decorating, or listening to music. She has a cat named Milo, travels whenever she can, and has Japan on the list for 2027.</p>
+        <p class="about-p">With over seven years of experience across portraits, editorial, weddings, and events, Molly brings a refined, detail-driven approach to her work. She holds a BBA in Marketing and has worked as a digital marketing specialist for the past three years, shaping how she approaches visual storytelling and brand-focused imagery.</p>
+        <p class="about-p">Off camera: she enjoys thrifting, decorating, and listening to music. She has a cat named Milo, and loves to travel — with her first solo trip to Japan planned for 2027.</p>
+        <a href="https://mollycurtis.github.io/" target="_blank" style="display:inline-flex;align-items:center;gap:8px;margin-top:20px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(91,143,212,.3);padding-bottom:3px;transition:border-color .2s,color .2s;font-family:'DM Sans',sans-serif;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='rgba(91,143,212,.3)'">View Marketing Work →</a>
         <div class="soc-row">
           <a class="soc-a" href="https://www.instagram.com/molcurphotos/" target="_blank">Instagram</a>
           <a class="soc-a" href="https://www.facebook.com/molcurphotos" target="_blank">Facebook</a>
@@ -704,7 +707,7 @@ textarea.f-input { resize:vertical;min-height:100px; }
     <div class="page-nav-close-wrap"><button class="page-close" onclick="closePage('faqs')">✕</button></div>
   </nav>
   <div class="faqs-body">
-    <div class="faqs-hero">Frequently<br>Asked</div>
+    <div class="faqs-hero">Frequently Asked</div>
     <div class="faq-grid">
       <!-- Column 1 -->
       <div class="faq-col">
@@ -764,9 +767,9 @@ textarea.f-input { resize:vertical;min-height:100px; }
     <div class="page-nav-close-wrap"><button class="page-close" onclick="closePage('contact')">✕</button></div>
   </nav>
   <div class="contact-body">
-    <div class="contact-hero">Get In Touch</div>
     <div class="contact-grid">
       <div>
+        <div class="contact-hero">Get In Touch</div>
         <label class="f-label">Your Name</label>
         <input class="f-input" type="text" placeholder="Full name">
         <label class="f-label">Email</label>
