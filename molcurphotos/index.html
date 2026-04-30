@@ -248,7 +248,8 @@ PORTFOLIO — full-bleed tiles
   position:relative; overflow:hidden; cursor:pointer;
   display:flex; align-items:flex-end;
   padding:24px 26px;
-  will-change:transform,opacity;
+  will-change:transform, opacity;
+  transform:translateZ(0);
   transition:filter .35s;
   text-decoration:none;
   pointer-events:none;
@@ -384,9 +385,16 @@ SHARED BOOK CTA BLOCK
   white-space:nowrap;
 }
 @media(max-width:700px){
-  .book-cta-headline { white-space:normal; font-size:clamp(22px,6vw,32px); }
+  .book-cta-headline { white-space:normal; font-size:clamp(20px,5.5vw,28px); }
 }
-.book-cta-sub {
+@media(max-width:582px){
+  .book-cta-block { flex-direction:column; align-items:center; padding:24px 20px; text-align:center; }
+  .book-cta-left { max-width:100%; }
+  .book-cta-eyebrow { text-align:center; }
+  .book-cta-headline { font-size:clamp(18px,5vw,24px); text-align:center; }
+  .book-cta-sub { text-align:center; }
+  .book-cta-btn { align-self:center; }
+}.book-cta-sub {
   font-size:14px; color:var(--muted); margin-top:10px;
   line-height:1.7; white-space:nowrap;
 }
@@ -508,13 +516,70 @@ ABOUT PAGE — design system rebuild
 /* mobile stacking */
 @media(max-width:900px) {
   .about-body { padding:28px 20px; }
+
+  /* pill centered */
   .about-pill-row { display:flex; justify-content:center; }
-  .about-stats { gap:28px; justify-content:center; }
-  .about-stat { align-items:center; }
+
+  /* stats: all on one line, smaller */
+  .about-stats { gap:0; justify-content:space-between; flex-wrap:nowrap; margin-bottom:20px; }
+  .about-stat { align-items:center; flex:1; }
+  .sn { font-size:clamp(22px,6vw,32px); }
+  .sl { font-size:9px; letter-spacing:.14em; }
+
+  /* heading + body copy: left aligned */
+  .about-h { text-align:left; }
+  .about-p { text-align:left; }
+
+  /* marketing/social row: left aligned */
+  .marketing-social-row { justify-content:flex-start; }
+
+  /* carousel centered */
   .about-main-grid { grid-template-columns:1fr; gap:32px; }
   .about-carousel { max-width:100%; margin:0 auto; width:100%; aspect-ratio:4/3; }
+
+  /* experience + philosophy: center labels, left align body text */
   .exp-phi-row { grid-template-columns:1fr; gap:32px; padding-top:28px; }
   .phi-block { border-top:1px solid var(--border); padding-top:28px; }
+  .exp-label { text-align:center; }
+  .exp-headline { text-align:center; }
+  .exp-list li { text-align:left; }
+  .phi-l { text-align:center; }
+  .phi-q { text-align:center; }
+}
+
+/* contact mobile centering */
+@media(max-width:768px) {
+  /* info row */
+  .contact-info-mobile { justify-content:center; gap:32px; }
+  .ci-label { text-align:center; }
+  .ci-val { text-align:center; }
+
+  /* heading + sub centered */
+  .contact-hero { text-align:center; white-space:normal; }
+  .contact-sub { text-align:center; }
+
+  /* form labels left, inputs full width — keep as is */
+
+  /* submit row centered */
+  .f-submit-row { justify-content:center; }
+
+  /* what happens next */
+  .what-next-mobile .what-next-label { text-align:center; }
+  .what-next-steps li { text-align:left; }
+
+  /* testimonials heading centered, card content left */
+  .tcard-heading { text-align:center; }
+  .tcard-name { text-align:left; }
+  .tcard-text { text-align:left; }
+
+  /* center the about CTA block on mobile */
+  .about-body .book-cta-block { align-items:center; text-align:center; }
+  .about-body .book-cta-eyebrow { text-align:center; }
+  .about-body .book-cta-headline { text-align:center; }
+  .about-body .book-cta-sub { text-align:center; }
+  .about-body .book-cta-btn { align-self:center; }
+
+  .view-portfolio-link { width:100%; text-align:center; border-bottom:none; padding-bottom:0; }
 }
 
 
@@ -571,6 +636,18 @@ FAQs PAGE
 .faq-a a { color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(201,169,110,.3);transition:border-color .2s; }
 .faq-a a:hover { border-color:var(--accent); }
 .faq-item.open .faq-a { max-height:600px;padding-bottom:22px; }
+
+.contact-faq-pill { margin-bottom:28px; }
+@media(max-width:768px){ .contact-faq-pill { text-align:center; } }
+.contact-faq-btn {
+  display:inline-flex; align-items:center; gap:8px;
+  background:none; border:1px solid var(--border);
+  color:var(--muted); padding:8px 18px; border-radius:999px;
+  font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+  font-family:'DM Sans',sans-serif; cursor:pointer;
+  transition:border-color .2s, color .2s;
+}
+.contact-faq-btn:hover { border-color:var(--accent); color:var(--accent); }
 
 /* ══════════════════════════════
 CONTACT PAGE
@@ -995,7 +1072,6 @@ RESPONSIVE — global
     <div class="exp-phi-row">
       <div class="exp-block">
         <span class="exp-label">The Experience</span>
-        <div class="exp-headline">This isn't just show up and smile.</div>
         <ul class="exp-list">
           <li>Guided posing throughout your session so you always feel confident and natural</li>
           <li>Intentionally styled shoots with mood, light, and location chosen to match your vision</li>
@@ -1097,11 +1173,10 @@ RESPONSIVE — global
   <div class="faqs-body">
     <div class="faqs-hero">Frequently Asked</div>
     <div class="faq-grid">
-      <!-- Column 1 -->
       <div class="faq-col">
         <div class="faq-item">
           <button class="faq-q" onclick="toggleFaq(this)">How do I book a session? <span class="faq-icon">+</span></button>
-          <div class="faq-a">Reach out via the <a href="#" onclick="closePage('faqs');openPage('contact');return false;">contact form</a>, email, or <a href="https://www.instagram.com/molcurphotos/" target="_blank">Instagram</a> to start discussing details and find a time that works for both of us. To secure your session, a deposit is required upfront with the remainder due on the day of the shoot. I'll send a confirmation a few days in advance to make sure everything runs smoothly.</div>
+          <div class="faq-a">Reach out via the <a href="#" onclick="closePage('faqs');openPage('contact');return false;">contact form</a>, email, or <a href="https://www.instagram.com/molcurphotos/" target="_blank">Instagram</a> to start discussing details and find a time that works for both of us. To secure your session, a deposit is required upfront with the remainder due on the day of the shoot. I'll send a confirmation a few days in advance to make sure everything runs smoothly.<br><br>Email: molcur9284@gmail.com</div>
         </div>
         <div class="faq-item">
           <button class="faq-q" onclick="toggleFaq(this)">What are your rates? <span class="faq-icon">+</span></button>
@@ -1109,30 +1184,21 @@ RESPONSIVE — global
         </div>
         <div class="faq-item">
           <button class="faq-q" onclick="toggleFaq(this)">How long until I receive my edits? <span class="faq-icon">+</span></button>
-          <div class="faq-a">Turnaround typically ranges from one week to six weeks depending on the session. I aim to deliver the best results and will keep you updated throughout the process so you're never left wondering. The wait is always worth it!</div>
+          <div class="faq-a">Turnaround typically ranges from two weeks to six weeks depending on the session. I aim to deliver the best results and will keep you updated throughout the process so you're never left wondering. The wait is always worth it!</div>
         </div>
         <div class="faq-item">
           <button class="faq-q" onclick="toggleFaq(this)">Can I buy more photos after I receive my gallery? <span class="faq-icon">+</span></button>
           <div class="faq-a">Absolutely! Just let me know after you receive your photos. I archive sessions 2–4 weeks after delivery, so reach out within that window and I can pull additional images for you.</div>
         </div>
-        <div class="faq-item">
-          <button class="faq-q" onclick="toggleFaq(this)">Do you do collaborations? <span class="faq-icon">+</span></button>
-          <div class="faq-a">I collaborate occasionally with models I've worked with for a while, typically when there's a specific creative concept or a mutual portfolio-building goal. If you have a unique idea in mind, feel free to reach out and we can talk through the possibilities.</div>
-        </div>
       </div>
-      <!-- Column 2 -->
       <div class="faq-col">
         <div class="faq-item">
           <button class="faq-q" onclick="toggleFaq(this)">What if I need to reschedule? <span class="faq-icon">+</span></button>
-          <div class="faq-a">Life happens — I get it. I ask for as much notice as possible (ideally 48 hours) if you need to reschedule. We'll find a new time that works. Cancellations with less than 24 hours' notice may incur a cancellation fee.</div>
+          <div class="faq-a">Life happens — I get it. I ask for as much notice as possible (ideally 48 hours) if you need to reschedule and we'll find a new time that works. Please note that deposits are non-refundable, so if you need to cancel entirely, your deposit will not be returned.</div>
         </div>
         <div class="faq-item">
           <button class="faq-q" onclick="toggleFaq(this)">Do you travel for sessions? <span class="faq-icon">+</span></button>
           <div class="faq-a">Yes! I'm based in Minnesota and Wisconsin but available for projects worldwide. Travel fees may apply depending on location — reach out and we can discuss the details.</div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q" onclick="toggleFaq(this)">Do you do videography? <span class="faq-icon">+</span></button>
-          <div class="faq-a">Not at this time, but it's a goal for the future! If you need video work, I'm happy to recommend talented videographers in the Midwest.</div>
         </div>
         <div class="faq-item">
           <button class="faq-q" onclick="toggleFaq(this)">What gear do you use? <span class="faq-icon">+</span></button>
@@ -1144,8 +1210,6 @@ RESPONSIVE — global
         </div>
       </div>
     </div>
-
-    <!-- Book CTA at bottom of FAQs -->
     <div class="book-cta-block" style="margin-top:52px">
       <div class="book-cta-left">
         <div class="book-cta-eyebrow">Still have questions?</div>
@@ -1179,6 +1243,9 @@ RESPONSIVE — global
             <div class="ci-label">Availability</div>
             <div class="ci-val">Now booking 2026</div>
           </div>
+        </div>
+        <div class="contact-faq-pill">
+          <button class="contact-faq-btn" onclick="closePage('contact');openPage('faqs')">Have questions first? View FAQs →</button>
         </div>
         <div class="contact-hero">Get In Touch</div>
         <p class="contact-sub">Share what you have in mind and I'll take it from there.</p>
@@ -1323,16 +1390,29 @@ function applyAnim(p) {
 function resetPortfolioAnim() { applyAnim(0); }
 
 let scrollAttached = false;
+let rafPending = false;
+
 function attachPortfolioScroll() {
   if (scrollAttached) return;
   scrollAttached = true;
   const pageEl = document.getElementById('page-portfolio');
-  pageEl.addEventListener('scroll', () => {
-    const area = document.getElementById('portfolio-scroll-area');
-    const max  = area.scrollHeight - pageEl.clientHeight;
-    const raw  = max > 0 ? Math.min(pageEl.scrollTop / max, 1) : 0;
-    applyAnim(eio(raw));
-  }, { passive: true });
+
+  function onScroll() {
+    if (rafPending) return;
+    rafPending = true;
+    requestAnimationFrame(() => {
+      rafPending = false;
+      const area = document.getElementById('portfolio-scroll-area');
+      if (!area) return;
+      const max = area.scrollHeight - pageEl.clientHeight;
+      const raw = max > 0 ? Math.min(pageEl.scrollTop / max, 1) : 0;
+      applyAnim(eio(raw));
+    });
+  }
+
+  pageEl.addEventListener('scroll', onScroll, { passive: true });
+  // Also handle touch devices that may fire touchmove instead of scroll
+  pageEl.addEventListener('touchmove', onScroll, { passive: true });
 }
 
 resetPortfolioAnim();
