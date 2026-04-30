@@ -417,40 +417,45 @@ SHARED BOOK CTA BLOCK
 ABOUT PAGE — design system rebuild
 ══════════════════════════════ */
 #page-about { background:var(--bg); }
-.about-body { padding:48px; max-width:1440px; margin:0 auto; width:100%; }
+.about-body { padding:40px 48px 48px; max-width:1440px; margin:0 auto; width:100%; }
 
-/* pill row */
-.about-pill-row { margin-bottom:32px; }
+/* pill row — inside left col now, so this is just a spacer reset */
+.about-pill-row { margin-bottom:20px; }
 
 /* availability strip */
 .avail-strip {
   display:inline-flex; align-items:center; gap:10px;
   border:1px solid rgba(76,186,122,.25);
   background:rgba(76,186,122,.06);
-  padding:8px 18px; border-radius:999px;
+  padding:7px 16px; border-radius:999px;
 }
 .avail-strip-dot { width:7px; height:7px; border-radius:50%; background:#4cba7a; animation:pulse-dot 1.8s ease-in-out infinite; }
 .avail-strip-text { font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:rgba(76,186,122,.9); }
 
 /* stats */
-.about-stats { display:flex; gap:56px; margin-bottom:32px; flex-wrap:wrap; align-items:flex-start; }
-.about-stat { display:flex; flex-direction:column; gap:8px; }
-.sn { font-family:'Cormorant Garamond',serif; font-size:clamp(32px,3vw,48px); font-weight:300; color:var(--text); line-height:1; letter-spacing:-.01em; }
+.about-stats { display:flex; gap:40px; margin-bottom:24px; flex-wrap:wrap; align-items:flex-start; }
+.about-stat { display:flex; flex-direction:column; gap:6px; }
+.sn { font-family:'Cormorant Garamond',serif; font-size:clamp(28px,2.6vw,42px); font-weight:300; color:var(--text); line-height:1; letter-spacing:-.01em; }
 .sl { font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--accent); line-height:1; }
 
-/* ROW 1: copy left / carousel right */
+/* ROW 1: true 50/50 — left col has pill+stats+copy, right col is carousel */
 .about-main-grid {
   display:grid;
-  grid-template-columns:1fr 380px;
-  gap:56px;
+  grid-template-columns:1fr 1fr;
+  gap:48px;
   align-items:center;
-  margin-bottom:48px;
+  margin-bottom:40px;
 }
-.about-copy { display:flex; flex-direction:column; gap:16px; max-width:480px; }
-.about-h { font-family:'Cormorant Garamond',serif; font-size:clamp(22px,2.2vw,32px); font-weight:400; color:var(--text); line-height:1.25; margin:0; }
-.about-p { font-size:15px; color:var(--muted); line-height:1.85; font-weight:300; margin:0; }
+.about-copy { display:flex; flex-direction:column; gap:14px; }
+.about-h {
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(28px,3vw,44px);
+  font-weight:400; color:var(--text);
+  line-height:1.2; margin:0;
+}
+.about-p { font-size:15px; color:var(--muted); line-height:1.8; font-weight:300; margin:0; }
 
-.marketing-social-row { display:flex; align-items:center; gap:20px; flex-wrap:wrap; margin-top:4px; }
+.marketing-social-row { display:flex; align-items:center; gap:28px; flex-wrap:wrap; margin-top:8px; }
 .marketing-link {
   display:inline-flex; align-items:center; gap:8px;
   font-size:12px; letter-spacing:.16em; text-transform:uppercase;
@@ -466,14 +471,13 @@ ABOUT PAGE — design system rebuild
 .soc-a:hover { color:var(--accent); }
 .soc-a svg { width:20px; height:20px; fill:currentColor; }
 
-/* carousel */
+/* carousel — fills full right column height */
 .about-carousel {
   position:relative;
-  aspect-ratio:2/3;
+  width:100%;
+  aspect-ratio:1/1;
   background:var(--bg2);
   overflow:hidden;
-  width:100%;
-  min-height:420px;
 }
 .carousel-slide { position:absolute; inset:0; opacity:0; transition:opacity 1s ease; }
 .carousel-slide.active { opacity:1; }
@@ -491,7 +495,7 @@ ABOUT PAGE — design system rebuild
   align-items:center;
   border-top:1px solid var(--border);
   padding-top:40px;
-  margin-bottom:48px;
+  margin-bottom:40px;
 }
 .exp-block { border-top:none; margin-top:0; padding-top:0; }
 .phi-block  { border-top:none; margin-top:0; padding-top:0; }
@@ -511,10 +515,10 @@ ABOUT PAGE — design system rebuild
   .about-pill-row { display:flex; justify-content:center; }
   .about-stats { gap:28px; justify-content:center; }
   .about-stat { align-items:center; }
-  .about-main-grid { grid-template-columns:1fr; gap:36px; }
-  .about-carousel { max-width:480px; margin:0 auto; width:100%; }
-  .exp-phi-row { grid-template-columns:1fr; gap:36px; padding-top:32px; }
-  .phi-block { border-top:1px solid var(--border); padding-top:32px; }
+  .about-main-grid { grid-template-columns:1fr; gap:32px; }
+  .about-carousel { max-width:100%; margin:0 auto; width:100%; aspect-ratio:4/3; }
+  .exp-phi-row { grid-template-columns:1fr; gap:32px; padding-top:28px; }
+  .phi-block { border-top:1px solid var(--border); padding-top:28px; }
 }
 
 
@@ -872,24 +876,20 @@ RESPONSIVE — global
   </nav>
   <div class="about-body">
 
-    <!-- Pill -->
-    <div class="about-pill-row">
-      <div class="avail-strip">
-        <div class="avail-strip-dot"></div>
-        <span class="avail-strip-text">Now booking 2026</span>
-      </div>
-    </div>
-
-    <!-- Stats -->
-    <div class="about-stats">
-      <div class="about-stat"><div class="sn">7+</div><div class="sl">Years of Experience</div></div>
-      <div class="about-stat"><div class="sn">30+</div><div class="sl">Publications</div></div>
-      <div class="about-stat"><div class="sn">MN · WI</div><div class="sl">Based Worldwide</div></div>
-    </div>
-
-    <!-- ROW 1: Copy left / Carousel right -->
+    <!-- ROW 1: Left col has pill+stats+copy / Right col is carousel -->
     <div class="about-main-grid">
       <div class="about-copy">
+        <div class="about-pill-row">
+          <div class="avail-strip">
+            <div class="avail-strip-dot"></div>
+            <span class="avail-strip-text">Now booking 2026</span>
+          </div>
+        </div>
+        <div class="about-stats">
+          <div class="about-stat"><div class="sn">7+</div><div class="sl">Years of Experience</div></div>
+          <div class="about-stat"><div class="sn">30+</div><div class="sl">Publications</div></div>
+          <div class="about-stat"><div class="sn">MN · WI</div><div class="sl">Based Worldwide</div></div>
+        </div>
         <h2 class="about-h">Molly Curtis is a nationally published photographer based in the Midwest.</h2>
         <p class="about-p">With over seven years of experience across portraits, editorial, weddings, and events, Molly brings a refined, detail-driven approach to her work. She holds a BBA in Marketing and has worked as a digital marketing specialist for the past three years, shaping how she approaches visual storytelling and brand-focused imagery.</p>
         <p class="about-p">Off camera: she enjoys thrifting, decorating, and listening to music. She has a cat named Milo, and loves to travel — with her first solo trip to Japan planned for 2027.</p>
