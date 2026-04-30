@@ -60,8 +60,8 @@ LANDING
 
 .book-btn {
   font-size:12px; letter-spacing:.16em; text-transform:uppercase;
-  color:var(--bg); background:var(--text);
-  border:none; padding:13px 28px;
+  color:var(--text); background:transparent;
+  border:1px solid var(--accent); padding:13px 28px;
   border-radius:999px;
   cursor:pointer; font-family:'DM Sans',sans-serif;
   transition:background .25s, color .25s;
@@ -216,15 +216,15 @@ SHARED PAGE SYSTEM
   flex:1; display:flex; justify-content:flex-end;
 }
 .page-close {
-  background:rgba(245,242,238,.12);
-  border:1px solid rgba(245,242,238,.4);
+  background:transparent;
+  border:1px solid var(--accent);
   color:var(--text); width:42px; height:42px;
   border-radius:50%; cursor:pointer; font-size:16px;
   display:flex; align-items:center; justify-content:center;
   transition:border-color .2s, background .2s;
   font-weight:400;
 }
-.page-close:hover { border-color:var(--text); background:rgba(245,242,238,.22); }
+.page-close:hover { background:rgba(201,169,110,.15); border-color:var(--accent); }
 
 /* ══════════════════════════════
 PORTFOLIO — full-bleed tiles
@@ -394,19 +394,15 @@ SHARED BOOK CTA BLOCK
 .book-cta-btn {
   flex-shrink:0;
   font-size:12px; letter-spacing:.18em; text-transform:uppercase;
-  color:var(--bg); background:var(--text);
-  border:none; padding:18px 40px;
+  color:var(--text); background:transparent;
+  border:1px solid var(--accent); padding:18px 40px;
   border-radius:999px; cursor:pointer;
   font-family:'DM Sans',sans-serif;
   transition:background .25s, color .25s;
   white-space:nowrap;
   display:flex; align-items:center; gap:10px;
 }
-.book-cta-btn::after {
-  content:'→';
-  font-size:14px;
-  transition:transform .25s var(--ease);
-}
+.book-cta-btn::after { content:'→'; font-size:14px; transition:transform .25s var(--ease); }
 .book-cta-btn:hover { background:var(--accent); color:var(--bg); }
 .book-cta-btn:hover::after { transform:translateX(4px); }
 @media(max-width:700px){
@@ -581,6 +577,7 @@ CONTACT PAGE
 ══════════════════════════════ */
 #page-contact { background:var(--bg); }
 .contact-body { padding:48px; max-width:1440px; margin:0 auto; width:100%; }
+
 .contact-hero {
   font-family:'Cormorant Garamond',serif;
   font-size:clamp(36px,4.5vw,68px);
@@ -592,50 +589,77 @@ CONTACT PAGE
 @media(max-width:700px){ .contact-hero { white-space:normal; font-size:clamp(36px,10vw,60px); } }
 
 .contact-sub {
-  font-size:14px; color:var(--muted); line-height:1.7;
-  margin-bottom:36px; max-width:520px;
+  color:var(--muted); line-height:1.7;
+  margin-bottom:28px;
   font-style:italic; font-family:'Cormorant Garamond',serif;
   font-size:18px; font-weight:300;
 }
 
-.contact-grid { display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start; }
-.contact-right-inner { position:sticky; top:0; }
-@media(max-width:768px){ .contact-right-inner { position:static; } }
+.contact-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:56px;
+  align-items:start;
+}
+.contact-left { display:flex; flex-direction:column; }
+.contact-right-inner { position:sticky; top:24px; }
+
 .f-label { font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:8px;font-family:'DM Sans',sans-serif; }
 .f-input { width:100%;background:rgba(245,242,238,.04);border:1px solid var(--border);color:var(--text);padding:13px 15px;font-family:'DM Sans',sans-serif;font-size:14px;outline:none;margin-bottom:18px;transition:border-color .2s; }
 .f-input:focus { border-color:rgba(245,242,238,.35); }
 .f-input::placeholder { color:rgba(245,242,238,.2); }
 textarea.f-input { resize:vertical;min-height:100px; }
-.f-btn { background:var(--text);color:var(--bg);border:none;padding:14px 36px;font-family:'DM Sans',sans-serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;border-radius:999px;transition:background .2s; }
-.f-btn:hover { background:var(--accent); }
+.f-btn {
+  background:transparent;
+  color:var(--text);
+  border:1px solid var(--accent);
+  padding:14px 36px;
+  font-family:'DM Sans',sans-serif;
+  font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+  cursor:pointer;border-radius:999px;
+  transition:background .2s, color .2s;
+  align-self:flex-start;
+}
+.f-btn:hover { background:var(--accent); color:var(--bg); }
 
 /* What happens next */
-.what-next {
-  margin-top:24px;
-  border-top:1px solid var(--border);
-  padding-top:20px;
-}
+.what-next { margin-top:24px; border-top:1px solid var(--border); padding-top:20px; }
 .what-next-label { font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:16px; }
 .what-next-steps { list-style:none; display:flex; flex-direction:column; gap:10px; }
-.what-next-steps li {
-  display:flex; align-items:flex-start; gap:12px;
-  font-size:13px; color:var(--muted); line-height:1.6;
-}
-.wn-num {
-  flex-shrink:0; width:20px; height:20px;
-  border:1px solid var(--border);
-  border-radius:50%; display:flex; align-items:center; justify-content:center;
-  font-size:10px; color:var(--accent); margin-top:1px;
-}
+.what-next-steps li { display:flex; align-items:baseline; gap:12px; font-size:13px; color:var(--muted); line-height:1.6; }
+.wn-num { flex-shrink:0; width:20px; height:20px; border:1px solid var(--border); border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-size:10px; color:var(--accent); }
+.wn-bold { font-weight:600; color:var(--text); }
 
-.ci-info-row {
-  display:flex; gap:40px; margin-bottom:8px; flex-wrap:wrap;
-}
+.ci-info-row { display:flex; gap:40px; margin-bottom:0; flex-wrap:wrap; }
 .ci-label { font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:8px; }
 .ci-val { font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;color:var(--text);margin-bottom:0; }
-.tcard { border:1px solid var(--border);padding:22px;background:rgba(245,242,238,.025);margin-bottom:12px; }
-.tcard-name { font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:300;color:var(--accent);margin-bottom:9px; }
+
+.tcard-heading { font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:300;color:var(--text);margin-bottom:18px;margin-top:28px;letter-spacing:.01em; }
+.tcard { border:1px solid var(--border);padding:20px;background:rgba(245,242,238,.025);margin-bottom:10px; }
+.tcard-name { font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;color:var(--accent);margin-bottom:8px; }
 .tcard-text { font-size:13px;color:var(--muted);line-height:1.75;font-weight:300; }
+
+.view-portfolio-link {
+  display:inline-flex; align-items:center; gap:8px;
+  margin-top:24px;
+  font-size:12px; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--accent); text-decoration:none;
+  border-bottom:1px solid rgba(201,169,110,.3);
+  padding-bottom:3px;
+  transition:border-color .2s, color .2s;
+  font-family:'DM Sans',sans-serif;
+  background:none; border-top:none; border-left:none; border-right:none;
+  cursor:pointer;
+}
+.view-portfolio-link:hover { border-bottom-color:var(--accent); }
+
+/* mobile contact stack order */
+@media(max-width:768px){
+  .contact-grid { grid-template-columns:1fr; gap:36px; }
+  .contact-right { order:-1; }
+  .contact-right-inner { position:static; }
+  .contact-body { padding:24px 20px; }
+}
 
 /* ══════════════════════════════
 ZODIAC CAROUSEL
@@ -1093,11 +1117,12 @@ RESPONSIVE — global
     <div class="page-nav-close-wrap"><button class="page-close" onclick="closePage('contact')">✕</button></div>
   </nav>
   <div class="contact-body">
-    <div class="contact-hero">Get In Touch</div>
-    <p class="contact-sub">Share what you have in mind and I'll take it from there.</p>
-
     <div class="contact-grid">
-      <div>
+
+      <!-- LEFT: title + form -->
+      <div class="contact-left">
+        <div class="contact-hero">Get In Touch</div>
+        <p class="contact-sub">Share what you have in mind and I'll take it from there.</p>
         <label class="f-label">Your Name</label>
         <input class="f-input" type="text" placeholder="Full name">
         <label class="f-label">Email</label>
@@ -1111,9 +1136,9 @@ RESPONSIVE — global
         <button class="f-btn">Send Inquiry</button>
       </div>
 
-      <div>
+      <!-- RIGHT: info + what's next + testimonials -->
+      <div class="contact-right">
         <div class="contact-right-inner">
-          <!-- Based In + Availability side by side -->
           <div class="ci-info-row">
             <div>
               <div class="ci-label">Based In</div>
@@ -1125,18 +1150,17 @@ RESPONSIVE — global
             </div>
           </div>
 
-          <!-- What happens next -->
           <div class="what-next">
             <div class="what-next-label">What happens next</div>
             <ul class="what-next-steps">
-              <li><span class="wn-num">1</span>I'll reply within <strong style="color:var(--text);font-weight:500">48 hours</strong> to confirm availability and ask a few quick questions</li>
+              <li><span class="wn-num">1</span>I'll reply within <strong class="wn-bold">48 hours</strong> to confirm availability and ask a few quick questions</li>
               <li><span class="wn-num">2</span>We'll nail down your concept, location, and session details together</li>
               <li><span class="wn-num">3</span>A deposit locks in your date — then we shoot</li>
               <li><span class="wn-num">4</span>Your gallery lands in your inbox, ready to download and share</li>
             </ul>
           </div>
 
-          <div style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:300;color:var(--text);margin-bottom:18px;margin-top:32px;letter-spacing:.01em">What clients say</div>
+          <div class="tcard-heading">What clients say</div>
           <div class="tcard">
             <div class="tcard-name">Rebeka</div>
             <p class="tcard-text">"Molly has a unique ability to capture the essence of the moment, resulting in high-quality images that truly speak volumes. I highly recommend her for any photography needs — you won't be disappointed!"</p>
@@ -1149,8 +1173,11 @@ RESPONSIVE — global
             <div class="tcard-name">Samantha — Glam by Sam</div>
             <p class="tcard-text">"Quick with edits, fast to give you a sneak peek, and incredibly professional. I recommend Molly 100% for any photography needs!"</p>
           </div>
+
+          <button class="view-portfolio-link" onclick="closePage('contact');openPage('portfolio')">View Portfolio →</button>
         </div>
       </div>
+
     </div>
   </div>
 </div>
