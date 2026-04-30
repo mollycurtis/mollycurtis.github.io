@@ -46,20 +46,22 @@ LANDING
   .home-brand { font-size:20px; }
   .top-nav { padding:18px 20px; }
   .top-nav-socials { gap:14px; }
-  .top-nav-socials svg { width:16px; height:16px; }
+  .top-nav-socials svg { width:18px; height:18px; }
+  .book-btn { font-size:11px; padding:10px 20px; }
+  .footer-cta { font-size:11px; }
 }
-.top-nav-socials { display:flex; gap:18px; align-items:center; }
+.top-nav-socials { display:flex; gap:22px; align-items:center; }
 .top-nav-socials a {
   color:var(--muted); text-decoration:none; transition:color .25s;
   display:flex; align-items:center;
 }
 .top-nav-socials a:hover { color:var(--accent); }
-.top-nav-socials svg { width:18px; height:18px; fill:currentColor; }
+.top-nav-socials svg { width:24px; height:24px; fill:currentColor; }
 
 .book-btn {
-  font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+  font-size:12px; letter-spacing:.16em; text-transform:uppercase;
   color:var(--bg); background:var(--text);
-  border:none; padding:11px 24px;
+  border:none; padding:13px 28px;
   border-radius:999px;
   cursor:pointer; font-family:'DM Sans',sans-serif;
   transition:background .25s, color .25s;
@@ -117,9 +119,9 @@ LANDING
 /* Landing tagline */
 .landing-tagline {
   text-align:center;
-  margin-bottom:12px;
+  margin-bottom:16px;
   font-family:'Cormorant Garamond',serif;
-  font-size:clamp(13px,1.4vw,18px);
+  font-size:clamp(15px,1.6vw,22px);
   font-style:italic;
   color:var(--muted);
   letter-spacing:.04em;
@@ -133,20 +135,20 @@ LANDING
   align-items:center;
   justify-content:center;
   gap:8px;
-  margin-top:18px;
+  margin-top:32px;
 }
 .avail-dot {
-  width:7px; height:7px; border-radius:50%;
+  width:8px; height:8px; border-radius:50%;
   background:#4cba7a;
-  box-shadow:0 0 0 0 rgba(76,186,122,.5);
-  animation:pulse-dot 2.2s ease-in-out infinite;
+  box-shadow:0 0 0 0 rgba(76,186,122,.6);
+  animation:pulse-dot 1.8s ease-in-out infinite;
 }
 @keyframes pulse-dot {
-  0%,100%{ box-shadow:0 0 0 0 rgba(76,186,122,.4); }
-  50%     { box-shadow:0 0 0 6px rgba(76,186,122,0); }
+  0%,100%{ box-shadow:0 0 0 0 rgba(76,186,122,.5); }
+  50%     { box-shadow:0 0 0 8px rgba(76,186,122,0); }
 }
 .avail-text {
-  font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+  font-size:10px; letter-spacing:.16em; text-transform:uppercase;
   color:var(--muted);
 }
 
@@ -159,7 +161,7 @@ LANDING
 }
 .footer-copy { font-size:11px; letter-spacing:.12em; color:var(--muted); }
 .footer-cta {
-  font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+  font-size:13px; letter-spacing:.14em; text-transform:uppercase;
   color:var(--muted); cursor:pointer; background:none; border:none;
   font-family:'DM Sans',sans-serif;
   transition:color .2s;
@@ -386,7 +388,7 @@ SHARED BOOK CTA BLOCK
 }
 .book-cta-sub {
   font-size:13px; color:var(--muted); margin-top:10px;
-  line-height:1.7; max-width:480px;
+  line-height:1.7; max-width:360px;
 }
 .book-cta-btn {
   flex-shrink:0;
@@ -395,10 +397,17 @@ SHARED BOOK CTA BLOCK
   border:none; padding:16px 36px;
   border-radius:999px; cursor:pointer;
   font-family:'DM Sans',sans-serif;
-  transition:background .25s, color .25s;
+  transition:background .25s, color .25s, gap .25s;
   white-space:nowrap;
+  display:flex; align-items:center; gap:10px;
+}
+.book-cta-btn::after {
+  content:'→';
+  font-size:14px;
+  transition:transform .25s var(--ease);
 }
 .book-cta-btn:hover { background:var(--accent); color:var(--bg); }
+.book-cta-btn:hover::after { transform:translateX(4px); }
 @media(max-width:700px){
   .book-cta-block { flex-direction:column; align-items:flex-start; padding:24px 20px; }
 }
@@ -432,13 +441,26 @@ ABOUT PAGE
 .about-stat { display:flex; flex-direction:column; gap:10px; }
 .sn { font-family:'Cormorant Garamond',serif; font-size:clamp(28px,2.8vw,42px); font-weight:300; color:var(--text); line-height:1; letter-spacing:-.01em; }
 .sl { font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);line-height:1; }
-.about-h { font-family:'Cormorant Garamond',serif;font-size:clamp(30px,3.8vw,52px);font-weight:400;color:var(--text);line-height:1.2;margin:0 0 16px;max-width:520px; }
+.about-h { font-family:'Cormorant Garamond',serif;font-size:clamp(22px,2.2vw,32px);font-weight:400;color:var(--text);line-height:1.2;margin:0 0 16px;max-width:520px; }
 .about-p { font-size:14px;color:var(--muted);line-height:1.8;font-weight:300;margin-bottom:13px;max-width:520px; }
 
-/* experience section */
-.exp-block {
+/* experience + philosophy side by side on desktop */
+.exp-phi-row {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
   border-top:1px solid var(--border);
-  margin-top:24px; padding-top:24px;
+  margin-top:24px;
+  padding-top:24px;
+}
+@media(max-width:900px){
+  .exp-phi-row { grid-template-columns:1fr; gap:0; }
+  .phi-block { border-top:1px solid var(--border); margin-top:24px; padding-top:24px; }
+}
+
+.exp-block {
+  border-top:none;
+  margin-top:0; padding-top:0;
 }
 .exp-label { font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:20px; }
 .exp-headline {
@@ -462,7 +484,7 @@ ABOUT PAGE
   margin-top:11px;
 }
 
-.phi-block { border-top:1px solid var(--border);margin-top:24px;padding-top:24px; }
+.phi-block { border-top:none; margin-top:0; padding-top:0; }
 .phi-l { font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:13px; }
 .phi-q { font-family:'Cormorant Garamond',serif;font-size:clamp(17px,2.2vw,25px);font-weight:300;font-style:italic;color:var(--text);line-height:1.55; }
 .soc-row { display:flex;gap:18px;align-items:center; }
@@ -509,7 +531,7 @@ FAQs PAGE
   font-family:'Cormorant Garamond',serif;
   font-size:clamp(28px,3.8vw,58px);
   font-weight:300; color:var(--text);
-  line-height:1; margin-bottom:32px; letter-spacing:-.01em;
+  line-height:1; margin-bottom:44px; letter-spacing:-.01em;
   white-space:nowrap;
 }
 @media(max-width:700px){ .faqs-hero { white-space:normal; font-size:clamp(36px,9vw,52px); } }
@@ -573,9 +595,9 @@ textarea.f-input { resize:vertical;min-height:100px; }
 
 /* What happens next */
 .what-next {
-  margin-top:28px;
+  margin-top:24px;
   border-top:1px solid var(--border);
-  padding-top:24px;
+  padding-top:20px;
 }
 .what-next-label { font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:16px; }
 .what-next-steps { list-style:none; display:flex; flex-direction:column; gap:10px; }
@@ -590,8 +612,11 @@ textarea.f-input { resize:vertical;min-height:100px; }
   font-size:10px; color:var(--accent); margin-top:1px;
 }
 
+.ci-info-row {
+  display:flex; gap:40px; margin-bottom:8px; flex-wrap:wrap;
+}
 .ci-label { font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:8px; }
-.ci-val { font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;color:var(--text);margin-bottom:28px; }
+.ci-val { font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;color:var(--text);margin-bottom:0; }
 .tcard { border:1px solid var(--border);padding:22px;background:rgba(245,242,238,.025);margin-bottom:12px; }
 .tcard-name { font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:300;color:var(--accent);margin-bottom:9px; }
 .tcard-text { font-size:13px;color:var(--muted);line-height:1.75;font-weight:300; }
@@ -708,7 +733,7 @@ RESPONSIVE
   </nav>
 
   <div class="hero-menu">
-    <p class="landing-tagline">I make people feel seen. Then I photograph it.</p>
+    <p class="landing-tagline" style="margin-top:-24px">I make people feel seen. Then I photograph them.</p>
     <button class="menu-item" onclick="openPage('portfolio')">
       <span class="menu-num">01</span><span class="menu-word">Portfolio</span>
     </button>
@@ -862,21 +887,23 @@ RESPONSIVE
           </div>
         </div>
 
-        <!-- THE EXPERIENCE SECTION -->
-        <div class="exp-block">
-          <div class="exp-label">The Experience</div>
-          <div class="exp-headline">This isn't just show up and smile.</div>
-          <ul class="exp-list">
-            <li>Guided posing throughout your session so you always feel confident and natural</li>
-            <li>Intentionally styled shoots with mood, light, and location chosen to match your vision</li>
-            <li>A collaborative process from inquiry to gallery so you always know what comes next</li>
-            <li>Edits that feel like you, not a filter. Consistent, refined, and true to the moment</li>
-          </ul>
-        </div>
+        <div class="exp-phi-row">
+          <!-- THE EXPERIENCE SECTION -->
+          <div class="exp-block">
+            <div class="exp-label">The Experience</div>
+            <div class="exp-headline">This isn't just show up and smile.</div>
+            <ul class="exp-list">
+              <li>Guided posing throughout your session so you always feel confident and natural</li>
+              <li>Intentionally styled shoots with mood, light, and location chosen to match your vision</li>
+              <li>A collaborative process from inquiry to gallery so you always know what comes next</li>
+              <li>Edits that feel like you, not a filter. Consistent, refined, and true to the moment</li>
+            </ul>
+          </div>
 
-        <div class="phi-block">
-          <div class="phi-l">Philosophy</div>
-          <p class="phi-q">"Each photograph is a metaphor, transforming the ordinary into the extraordinary. Photography is a meaningful conversation between the photographer, the subject, and future generations."</p>
+          <div class="phi-block">
+            <div class="phi-l">Philosophy</div>
+            <p class="phi-q">"Each photograph is a metaphor, transforming the ordinary into the extraordinary. Photography is a meaningful conversation between the photographer, the subject, and future generations."</p>
+          </div>
         </div>
       </div>
 
@@ -1032,7 +1059,7 @@ RESPONSIVE
     </div>
 
     <!-- Book CTA at bottom of FAQs -->
-    <div class="book-cta-block">
+    <div class="book-cta-block" style="margin-top:52px">
       <div class="book-cta-left">
         <div class="book-cta-eyebrow">Still have questions?</div>
         <div class="book-cta-headline">Just ask — I'm an open book.</div>
@@ -1067,29 +1094,34 @@ RESPONSIVE
         <label class="f-label">Message</label>
         <textarea class="f-input" placeholder="Tell me about your vision — vibe, location ideas, or anything specific you have in mind."></textarea>
         <button class="f-btn">Send Inquiry</button>
-
-        <!-- What happens next -->
-        <div class="what-next">
-          <div class="what-next-label">What happens next</div>
-          <ul class="what-next-steps">
-            <li><span class="wn-num">1</span>I'll reply within 48 hours to confirm availability and ask a few quick questions</li>
-            <li><span class="wn-num">2</span>We'll nail down your concept, location, and session details together</li>
-            <li><span class="wn-num">3</span>A deposit locks in your date — then we shoot</li>
-            <li><span class="wn-num">4</span>Your gallery lands in your inbox, ready to download and share</li>
-          </ul>
-        </div>
       </div>
 
       <div>
         <div class="contact-right-inner">
-          <div class="ci-label">Based In</div>
-          <div class="ci-val">Minnesota & Wisconsin</div>
-          <div class="ci-label">Availability</div>
-          <div class="ci-val">Now booking 2026 sessions worldwide</div>
-          <div class="ci-label">Response Time</div>
-          <div class="ci-val" style="margin-bottom:36px">Within 48 hours</div>
+          <!-- Based In + Availability side by side -->
+          <div class="ci-info-row">
+            <div>
+              <div class="ci-label">Based In</div>
+              <div class="ci-val">Minnesota &amp; Wisconsin</div>
+            </div>
+            <div>
+              <div class="ci-label">Availability</div>
+              <div class="ci-val">Now booking 2026 worldwide</div>
+            </div>
+          </div>
 
-          <div style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:300;color:var(--text);margin-bottom:18px;margin-top:8px;letter-spacing:.01em">What clients say</div>
+          <!-- What happens next -->
+          <div class="what-next">
+            <div class="what-next-label">What happens next</div>
+            <ul class="what-next-steps">
+              <li><span class="wn-num">1</span>I'll reply within <strong style="color:var(--text);font-weight:500">48 hours</strong> to confirm availability and ask a few quick questions</li>
+              <li><span class="wn-num">2</span>We'll nail down your concept, location, and session details together</li>
+              <li><span class="wn-num">3</span>A deposit locks in your date — then we shoot</li>
+              <li><span class="wn-num">4</span>Your gallery lands in your inbox, ready to download and share</li>
+            </ul>
+          </div>
+
+          <div style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:300;color:var(--text);margin-bottom:18px;margin-top:32px;letter-spacing:.01em">What clients say</div>
           <div class="tcard">
             <div class="tcard-name">Rebeka</div>
             <p class="tcard-text">"Molly has a unique ability to capture the essence of the moment, resulting in high-quality images that truly speak volumes. I highly recommend her for any photography needs — you won't be disappointed!"</p>
