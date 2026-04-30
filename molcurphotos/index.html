@@ -143,27 +143,36 @@ html, body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans
 /* ══════════════════════════════
    PORTFOLIO — full-bleed tiles
 ══════════════════════════════ */
-#page-portfolio { background:var(--bg); }
+#page-portfolio {
+  background:var(--bg);
+  overflow-y:auto;
+  display:flex;
+  flex-direction:column;
+}
 
-#portfolio-scroll-area { height:500vh; position:relative; }
+/* tall scroll container */
+#portfolio-scroll-area {
+  height:500vh;
+  position:relative;
+  flex-shrink:0;
+}
 
 #portfolio-stage {
   position:sticky; top:0;
-  height:100vh;
-  display:flex; align-items:center; justify-content:center;
+  display:flex; flex-direction:column;
   overflow:hidden;
+  /* height set by JS */
 }
 
-/* Full-bleed grid — 0 gap, 100vw × calc(100vh - nav) */
+/* Full-bleed grid */
 #tile-grid {
   display:grid;
   grid-template-columns: 2fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   gap:0;
-  width:100vw;
-  height:calc(100vh - 61px); /* subtract nav height */
-  position:absolute;
-  top:0; left:0;
+  width:100%;
+  flex:1;
+  min-height:0;
 }
 
 .ptile {
@@ -660,10 +669,19 @@ function openPage(id) {
   document.body.style.overflow = 'hidden';
   openStack.push(id);
   if (id === 'portfolio') {
-    resetPortfolioAnim();
-    setTimeout(attachPortfolioScroll, 50);
+    setTimeout(() => {
+      setPortfolioStageHeight();
+      resetPortfolioAnim();
+      attachPortfolioScroll();
+    }, 50);
   }
 }
+
+window.addEventListener('resize', () => {
+  if (document.getElementById('page-portfolio').classList.contains('open')) {
+    setPortfolioStageHeight();
+  }
+});
 
 function closePage(id) {
   const el = document.getElementById('page-' + id);
@@ -727,6 +745,14 @@ function attachPortfolioScroll() {
     const raw  = max > 0 ? Math.min(pageEl.scrollTop / max, 1) : 0;
     applyAnim(eio(raw));
   }, { passive: true });
+}
+
+function setPortfolioStageHeight() {
+  const pageEl  = document.getElementById('page-portfolio');
+  const navEl   = pageEl ? pageEl.querySelector('.page-nav') : null;
+  const stageEl = document.getElementById('portfolio-stage');
+  if (!stageEl || !navEl) return;
+  stageEl.style.height = (window.innerHeight - navEl.offsetHeight) + 'px';
 }
 
 resetPortfolioAnim();
