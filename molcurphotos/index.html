@@ -146,32 +146,30 @@ html, body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans
 #page-portfolio {
   background:var(--bg);
   overflow-y:auto;
-  display:flex;
-  flex-direction:column;
 }
 
-/* tall scroll container */
 #portfolio-scroll-area {
   height:500vh;
   position:relative;
-  flex-shrink:0;
 }
 
 #portfolio-stage {
-  position:sticky; top:0;
-  display:flex; flex-direction:column;
+  position:sticky;
+  top:0;
+  height:100dvh;
   overflow:hidden;
-  /* height set by JS */
+  display:grid;
+  grid-template-rows:auto 1fr;
 }
 
-/* Full-bleed grid */
+/* Full-bleed grid fills remaining height after nav */
 #tile-grid {
   display:grid;
   grid-template-columns: 2fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   gap:0;
   width:100%;
-  flex:1;
+  height:100%;
   min-height:0;
 }
 
@@ -418,13 +416,13 @@ textarea.f-input { resize:vertical;min-height:110px; }
 
 <!-- ══════════ PORTFOLIO PAGE ══════════ -->
 <div class="page" id="page-portfolio">
-  <nav class="page-nav">
-    <button class="page-nav-brand" onclick="closePage('portfolio')">molcurphotos</button>
-    <span class="page-nav-title">Portfolio</span>
-    <button class="page-close" onclick="closePage('portfolio')">✕</button>
-  </nav>
   <div id="portfolio-scroll-area">
     <div id="portfolio-stage">
+      <nav class="page-nav" style="position:relative;top:auto">
+        <button class="page-nav-brand" onclick="closePage('portfolio')">molcurphotos</button>
+        <span class="page-nav-title">Portfolio</span>
+        <button class="page-close" onclick="closePage('portfolio')">✕</button>
+      </nav>
       <div id="portfolio-intro">
         <h1>Portfolio</h1>
         <p>Scroll to explore</p>
@@ -670,18 +668,13 @@ function openPage(id) {
   openStack.push(id);
   if (id === 'portfolio') {
     setTimeout(() => {
-      setPortfolioStageHeight();
       resetPortfolioAnim();
       attachPortfolioScroll();
     }, 50);
   }
 }
 
-window.addEventListener('resize', () => {
-  if (document.getElementById('page-portfolio').classList.contains('open')) {
-    setPortfolioStageHeight();
-  }
-});
+window.addEventListener('resize', () => {});
 
 function closePage(id) {
   const el = document.getElementById('page-' + id);
@@ -745,14 +738,6 @@ function attachPortfolioScroll() {
     const raw  = max > 0 ? Math.min(pageEl.scrollTop / max, 1) : 0;
     applyAnim(eio(raw));
   }, { passive: true });
-}
-
-function setPortfolioStageHeight() {
-  const pageEl  = document.getElementById('page-portfolio');
-  const navEl   = pageEl ? pageEl.querySelector('.page-nav') : null;
-  const stageEl = document.getElementById('portfolio-stage');
-  if (!stageEl || !navEl) return;
-  stageEl.style.height = (window.innerHeight - navEl.offsetHeight) + 'px';
 }
 
 resetPortfolioAnim();
