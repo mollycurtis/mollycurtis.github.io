@@ -57,16 +57,18 @@ html, body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans
   flex:1;
   display:flex; flex-direction:column;
   align-items:center; justify-content:center;
-  padding:0 48px;
+  padding:0 24px;
   min-height:0;
 }
 .menu-item {
-  display:flex; align-items:baseline; gap:16px;
+  display:inline-flex; align-items:baseline; gap:14px;
   cursor:pointer; padding:0;
   position:relative;
-  width:100%; max-width:600px;
+  /* width fits content, not full page */
+  width:auto;
   background:none; border:none; text-align:left;
 }
+/* separator lines only span the text, not the page */
 .menu-item::after {
   content:''; position:absolute;
   bottom:0; left:0; right:0;
@@ -79,21 +81,24 @@ html, body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans
 }
 .menu-num {
   font-family:'DM Sans',sans-serif;
-  font-size:12px; letter-spacing:.14em;
-  color:var(--muted); min-width:30px;
+  font-size:11px; letter-spacing:.14em;
+  color:var(--muted); min-width:26px;
   transition:color .3s;
   flex-shrink:0;
 }
 .menu-word {
   font-family:'Cormorant Garamond',serif;
-  font-size:clamp(52px,8.5vh,110px);
+  font-size:clamp(56px,9.5vh,120px);
   font-weight:300; color:var(--text);
-  line-height:1.06; letter-spacing:-.01em;
+  line-height:1.05; letter-spacing:-.01em;
   transition:color .3s, letter-spacing .4s var(--ease);
-  padding:2px 0;
+  padding:1px 0;
 }
 .menu-item:hover .menu-word  { color:var(--accent); letter-spacing:.02em; }
 .menu-item:hover .menu-num   { color:var(--accent); }
+@media(max-width:768px){
+  .menu-word { font-size:clamp(44px,12vw,80px); }
+}
 
 /* footer */
 .landing-footer {
@@ -117,24 +122,30 @@ html, body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans
 
 .page-nav {
   position:sticky; top:0;
-  display:flex; align-items:center; justify-content:space-between;
+  display:flex; align-items:center;
   padding:20px 48px;
   z-index:10;
   border-bottom:1px solid var(--border);
   background:var(--bg);
+  /* contain the absolute-position title */
+  isolation:isolate;
+}
+/* the title uses fixed viewport centering since sticky creates a new stacking context */
+.page-nav-title {
+  font-size:11px; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--muted);
+  position:absolute; left:0; right:0;
+  text-align:center; pointer-events:none;
 }
 .page-nav-brand {
   font-family:'Cormorant Garamond',serif;
   font-size:20px; font-weight:300; letter-spacing:.08em;
   color:var(--text); cursor:pointer;
   background:none; border:none;
-  flex:1;
+  flex:1; text-align:left;
 }
-.page-nav-title {
-  font-size:11px; letter-spacing:.18em; text-transform:uppercase;
-  color:var(--muted);
-  position:absolute; left:50%; transform:translateX(-50%);
-  pointer-events:none;
+.page-nav-close-wrap {
+  flex:1; display:flex; justify-content:flex-end;
 }
 .page-close {
   background:rgba(245,242,238,.12);
@@ -309,15 +320,15 @@ html, body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans
 ══════════════════════════════ */
 #page-about { background:var(--bg); }
 .about-body { padding:52px 48px; max-width:1440px; margin:0 auto; width:100%; }
-.about-layout { display:grid; grid-template-columns:1fr 420px; gap:72px; align-items:start; }
+.about-layout { display:grid; grid-template-columns:1fr 380px; gap:64px; align-items:start; }
 .about-img { aspect-ratio:3/4; background:var(--bg2); display:flex; align-items:center; justify-content:center; overflow:hidden; }
 .about-img img { width:100%;height:100%;object-fit:cover; }
 .about-img-ph { font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(245,242,238,.14); }
 /* stats row */
-.about-stats { display:flex; gap:56px; margin-bottom:36px; flex-wrap:wrap; align-items:flex-end; }
-.about-stat { display:flex; flex-direction:column; }
-.sn { font-family:'Cormorant Garamond',serif; font-size:clamp(32px,3.5vw,52px); font-weight:300; color:var(--text); line-height:1; letter-spacing:-.01em; }
-.sl { font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-top:6px; }
+.about-stats { display:flex; gap:60px; margin-bottom:40px; flex-wrap:wrap; align-items:flex-start; }
+.about-stat { display:flex; flex-direction:column; gap:8px; }
+.sn { font-family:'Cormorant Garamond',serif; font-size:clamp(28px,3vw,46px); font-weight:300; color:var(--text); line-height:1; letter-spacing:-.01em; }
+.sl { font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);line-height:1; }
 .about-h { font-family:'Cormorant Garamond',serif;font-size:clamp(22px,2.8vw,38px);font-weight:300;color:var(--text);line-height:1.2;margin:0 0 16px; }
 .about-p { font-size:14px;color:var(--muted);line-height:1.8;font-weight:300;margin-bottom:13px; }
 .phi-block { border-top:1px solid var(--border);margin-top:36px;padding-top:34px; }
@@ -447,6 +458,7 @@ textarea.f-input { resize:vertical;min-height:100px; }
 /* ══════════════════════════════
    RESPONSIVE
 ══════════════════════════════ */
+/* FAQs stay 2 col down to 900px */
 @media(max-width:900px){
   .faq-grid { grid-template-columns:1fr; gap:0; }
   .faq-item:first-child { border-top:none; }
@@ -467,6 +479,7 @@ textarea.f-input { resize:vertical;min-height:100px; }
   .ptile-family    { display:none; }
   .cat-body,.about-body,.proj-body,.faqs-body,.contact-body { padding:32px 20px; }
   .photo-grid { grid-template-columns:repeat(2,1fr); }
+  .cat-header { grid-template-columns:1fr !important; gap:12px; }
 }
 </style>
 </head>
@@ -510,10 +523,10 @@ textarea.f-input { resize:vertical;min-height:100px; }
 <div class="page" id="page-portfolio">
   <div id="portfolio-scroll-area">
     <div id="portfolio-stage">
-      <nav class="page-nav" style="position:relative;top:auto">
+      <nav class="page-nav" style="position:sticky;top:0">
         <button class="page-nav-brand" onclick="closePage('portfolio')">molcurphotos</button>
         <span class="page-nav-title">Portfolio</span>
-        <button class="page-close" onclick="closePage('portfolio')">✕</button>
+        <div class="page-nav-close-wrap"><button class="page-close" onclick="closePage('portfolio')">✕</button></div>
       </nav>
       <div id="tile-grid-wrap" style="position:relative;flex:1;min-height:0;overflow:hidden;">
         <div id="portfolio-intro">
@@ -567,7 +580,7 @@ textarea.f-input { resize:vertical;min-height:100px; }
   <nav class="page-nav">
     <button class="page-nav-brand" onclick="closePage('category')">molcurphotos</button>
     <span class="page-nav-title" id="cat-nav-title"></span>
-    <button class="page-close" onclick="closePage('category')">✕</button>
+    <div class="page-nav-close-wrap"><button class="page-close" onclick="closePage('category')">✕</button></div>
   </nav>
   <div class="cat-body">
     <button class="back-btn" onclick="closePage('category')">← Back to Portfolio</button>
@@ -584,7 +597,7 @@ textarea.f-input { resize:vertical;min-height:100px; }
   <nav class="page-nav">
     <button class="page-nav-brand" onclick="closePage('about')">molcurphotos</button>
     <span class="page-nav-title">About</span>
-    <button class="page-close" onclick="closePage('about')">✕</button>
+    <div class="page-nav-close-wrap"><button class="page-close" onclick="closePage('about')">✕</button></div>
   </nav>
   <div class="about-body">
     <div class="about-layout">
@@ -595,9 +608,9 @@ textarea.f-input { resize:vertical;min-height:100px; }
           <div class="about-stat"><div class="sn">MN · WI</div><div class="sl">Based Worldwide</div></div>
         </div>
         <h2 class="about-h">Molly Curtis is a nationally published photographer based in the Midwest.</h2>
-        <p class="about-p">With over seven years of experience spanning portraits, editorial, weddings, events, and everything in between, Molly brings a sharp creative eye and a calm, collaborative energy to every shoot. She holds a BBA in Marketing from University of Wisconsin – Eau Claire, which shapes how she thinks about visual storytelling and connecting with an audience.</p>
-        <p class="about-p">Published in 30+ magazines, Molly has built her style around one idea: every image should feel intentional. Whether she's directing a high-concept editorial or capturing a candid family moment, she approaches each session with patience, precision, and a genuine love for the craft.</p>
-        <p class="about-p">When she's not behind the lens, you'll find her thrifting for hidden gems, rearranging her apartment with Milo (her cat), exploring new places, or listening to music — literally always. She loves to travel and has Japan on the horizon for 2027.</p>
+        <p class="about-p">With over seven years of experience in portraits, editorial, weddings, and events, Molly brings a sharp creative eye to every shoot. She holds a BBA in Marketing from UW–Eau Claire, shaping her approach to visual storytelling.</p>
+        <p class="about-p">Published in 30+ magazines, her style is built on one idea: every image should feel intentional.</p>
+        <p class="about-p">Off camera: thrifting, decorating, traveling (Japan 2027 is locked in), music 24/7, and hanging with her cat Milo.</p>
         <p class="about-p" style="color:rgba(245,242,238,.25);font-size:13px">Based in Minnesota &amp; Wisconsin — available for projects worldwide.</p>
         <div class="soc-row">
           <a class="soc-a" href="https://www.instagram.com/molcurphotos/" target="_blank">Instagram</a>
@@ -609,7 +622,20 @@ textarea.f-input { resize:vertical;min-height:100px; }
           <p class="phi-q">"Each photograph is a metaphor, transforming the ordinary into the extraordinary. Photography is a meaningful conversation between the photographer, the subject, and future generations."</p>
         </div>
       </div>
-      <div class="about-img"><div class="about-img-ph">Add Your Photo</div></div>
+      <div class="about-carousel" id="aboutCarousel">
+        <div class="carousel-slide active"><div class="carousel-slide-ph">Add Photo 1</div></div>
+        <div class="carousel-slide"><div class="carousel-slide-ph">Add Photo 2</div></div>
+        <div class="carousel-slide"><div class="carousel-slide-ph">Add Photo 3</div></div>
+        <div class="carousel-slide"><div class="carousel-slide-ph">Add Photo 4</div></div>
+        <div class="carousel-slide"><div class="carousel-slide-ph">Add Photo 5</div></div>
+        <div class="carousel-dots">
+          <div class="carousel-dot active"></div>
+          <div class="carousel-dot"></div>
+          <div class="carousel-dot"></div>
+          <div class="carousel-dot"></div>
+          <div class="carousel-dot"></div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -619,7 +645,7 @@ textarea.f-input { resize:vertical;min-height:100px; }
   <nav class="page-nav">
     <button class="page-nav-brand" onclick="closePage('projects')">molcurphotos</button>
     <span class="page-nav-title">Projects</span>
-    <button class="page-close" onclick="closePage('projects')">✕</button>
+    <div class="page-nav-close-wrap"><button class="page-close" onclick="closePage('projects')">✕</button></div>
   </nav>
   <div class="proj-body">
     <div class="proj-block">
@@ -662,7 +688,7 @@ textarea.f-input { resize:vertical;min-height:100px; }
   <nav class="page-nav">
     <button class="page-nav-brand" onclick="closePage('faqs')">molcurphotos</button>
     <span class="page-nav-title">FAQs</span>
-    <button class="page-close" onclick="closePage('faqs')">✕</button>
+    <div class="page-nav-close-wrap"><button class="page-close" onclick="closePage('faqs')">✕</button></div>
   </nav>
   <div class="faqs-body">
     <div class="faqs-hero">Frequently<br>Asked</div>
@@ -722,7 +748,7 @@ textarea.f-input { resize:vertical;min-height:100px; }
   <nav class="page-nav">
     <button class="page-nav-brand" onclick="closePage('contact')">molcurphotos</button>
     <span class="page-nav-title">Contact</span>
-    <button class="page-close" onclick="closePage('contact')">✕</button>
+    <div class="page-nav-close-wrap"><button class="page-close" onclick="closePage('contact')">✕</button></div>
   </nav>
   <div class="contact-body">
     <div class="contact-hero">Get<br>In Touch</div>
@@ -854,6 +880,7 @@ function attachPortfolioScroll() {
 resetPortfolioAnim();
 
 // ── CATEGORY OPEN ────────────────────────────────────────────────
+const CAT_ORDER = ['portraits','senior','weddings','business','events','family'];
 const CAT = {
   portraits:{ sub:'Capturing personality, mood, and the essence of every individual — from editorial fashion to intimate personal sessions.', count:8 },
   senior:   { sub:'Celebrating milestones with stunning imagery that captures this once-in-a-lifetime chapter.', count:6 },
@@ -863,22 +890,59 @@ const CAT = {
   family:   { sub:'Authentic, joyful moments that will be treasured for generations to come.', count:6 },
 };
 
+function openCategory(cat) {
+  const d = CAT[cat];
+  if (!d) return;
+  const label = cat.charAt(0).toUpperCase() + cat.slice(1);
+  const idx   = CAT_ORDER.indexOf(cat);
+  const nextCat = CAT_ORDER[(idx + 1) % CAT_ORDER.length];
+  const nextLabel = nextCat.charAt(0).toUpperCase() + nextCat.slice(1);
+
+  document.getElementById('cat-nav-title').textContent = label;
+  document.getElementById('cat-hero-text').textContent = label;
+  document.getElementById('cat-sub-text').textContent  = d.sub;
+  document.getElementById('cat-photo-grid').innerHTML  =
+    Array(d.count).fill(0).map(() =>
+      `<div class="photo-cell"><div class="photo-cell-ph">Add Photo</div></div>`
+    ).join('');
+
+  // next genre nav
+  const existing = document.getElementById('next-genre-nav');
+  if (existing) existing.remove();
+  const nextNav = document.createElement('div');
+  nextNav.id = 'next-genre-nav';
+  nextNav.className = 'next-genre';
+  nextNav.innerHTML = `
+    <span class="next-genre-label">Next</span>
+    <button class="next-genre-link" onclick="openCategory('${nextCat}')">
+      ${nextLabel} <span class="next-genre-arrow">→</span>
+    </button>`;
+  document.querySelector('.cat-body').appendChild(nextNav);
+
+  // scroll category page to top
+  const catPage = document.getElementById('page-category');
+  catPage.scrollTop = 0;
+  openPage('category');
+}
+
 ptiles.forEach(tile => {
-  tile.addEventListener('click', () => {
-    const cat = tile.dataset.cat;
-    const d   = CAT[cat];
-    if (!d) return;
-    const label = cat.charAt(0).toUpperCase() + cat.slice(1);
-    document.getElementById('cat-nav-title').textContent = label;
-    document.getElementById('cat-hero-text').textContent = label;
-    document.getElementById('cat-sub-text').textContent  = d.sub;
-    document.getElementById('cat-photo-grid').innerHTML  =
-      Array(d.count).fill(0).map(() =>
-        `<div class="photo-cell"><div class="photo-cell-ph">Add Photo</div></div>`
-      ).join('');
-    openPage('category');
-  });
+  tile.addEventListener('click', () => openCategory(tile.dataset.cat));
 });
+
+// ── ABOUT CAROUSEL ───────────────────────────────────────────────
+(function() {
+  const slides = document.querySelectorAll('#aboutCarousel .carousel-slide');
+  const dots   = document.querySelectorAll('#aboutCarousel .carousel-dot');
+  let current = 0;
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = n % slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+  }
+  setInterval(() => goTo(current + 1), 5000);
+})();
 
 // ── FAQ ACCORDION ────────────────────────────────────────────────
 function toggleFaq(btn) {
