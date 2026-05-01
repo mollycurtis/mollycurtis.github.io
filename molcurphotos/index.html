@@ -367,9 +367,8 @@ CATEGORY PAGE
   width:100%;
   height:auto;
   display:block;
-  transition:opacity .4s ease, transform .6s var(--ease);
+  transition:opacity .4s ease;
 }
-.pg-item:hover img { transform:scale(1.04); }
 /* remove unused grid span classes */
 .pg-tall, .pg-wide { }
 
@@ -1518,46 +1517,61 @@ function openCategory(cat) {
       const imgs = cell.dataset.imgs.split(',');
       if (imgs.length < 2) return;
 
-      // Build a slider wrapper with all images stacked
       const wrapper = document.createElement('div');
       wrapper.style.cssText = 'position:relative;width:100%;overflow:hidden;';
 
-      // Create all img elements, stacked absolutely, first one relative to set height
+      // First image stays in flow to set height, rest are preloaded hidden
       const imgEls = imgs.map((src, i) => {
         const img = document.createElement('img');
         img.src = src;
         img.alt = 'Portrait';
-        img.style.cssText = i === 0
-          ? 'width:100%;display:block;'
-          : 'width:100%;display:block;position:absolute;top:0;left:100%;height:100%;object-fit:cover;';
+        if (i === 0) {
+          img.style.cssText = 'width:100%;display:block;';
+        } else {
+          img.style.cssText = 'width:100%;display:block;position:absolute;top:0;left:100%;height:100%;object-fit:cover;';
+        }
         wrapper.appendChild(img);
         return img;
       });
 
-      // Clear cell and add wrapper
       cell.innerHTML = '';
       cell.appendChild(wrapper);
 
       let idx = 0;
+      let animating = false;
+
       setInterval(() => {
+        if (animating) return;
+        animating = true;
+
         const next = (idx + 1) % imgs.length;
 
-        // Slide current out left, next in from right
-        imgEls[idx].style.cssText += 'position:absolute;top:0;left:0;height:100%;object-fit:cover;transition:left .5s cubic-bezier(.4,0,.2,1);';
-        imgEls[next].style.left = '100%';
-        imgEls[next].style.transition = 'none';
+        // Lock wrapper height before going absolute
+        wrapper.style.height = wrapper.offsetHeight + 'px';
+
+        // Make current absolute so it can slide out
+        imgEls[idx].style.cssText = 'width:100%;display:block;position:absolute;top:0;left:0;height:100%;object-fit:cover;transition:left .55s cubic-bezier(.4,0,.2,1);';
+
+        // Position next just off-screen right, no transition yet
+        imgEls[next].style.cssText = 'width:100%;display:block;position:absolute;top:0;left:100%;height:100%;object-fit:cover;';
 
         requestAnimationFrame(() => {
           requestAnimationFrame(() => {
+            // Slide both simultaneously
             imgEls[idx].style.left = '-100%';
-            imgEls[next].style.cssText = imgEls[next].style.cssText + 'transition:left .5s cubic-bezier(.4,0,.2,1);';
+            imgEls[next].style.cssText = 'width:100%;display:block;position:absolute;top:0;left:0;height:100%;object-fit:cover;transition:left .55s cubic-bezier(.4,0,.2,1);';
             imgEls[next].style.left = '0%';
-            // After transition, make next the new "base"
+
             setTimeout(() => {
-              imgEls[next].style.cssText = 'width:100%;display:block;position:absolute;top:0;left:0;height:100%;object-fit:cover;';
+              // Reset: next becomes the static base image
+              imgEls[next].style.cssText = 'width:100%;display:block;';
+              // Send old back off-screen right silently
               imgEls[idx].style.cssText = 'width:100%;display:block;position:absolute;top:0;left:100%;height:100%;object-fit:cover;';
+              // Release locked height
+              wrapper.style.height = '';
               idx = next;
-            }, 520);
+              animating = false;
+            }, 580);
           });
         });
       }, 5000);
