@@ -373,8 +373,7 @@ CATEGORY PAGE
 .pg-tall, .pg-wide { }
 
 @media(max-width:768px){
-  #cat-photo-grid { columns: 1; }
-  #cat-photo-grid .pg-item img { width:100%; height:auto; display:block; }
+  #cat-photo-grid { columns: 2; column-gap:0; }
 }
 .photo-grid {
   display:grid;
@@ -389,12 +388,7 @@ CATEGORY PAGE
 .photo-cell:hover img { transform:scale(1.04); }
 .photo-cell-ph { font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(245,242,238,.14);font-family:'DM Sans',sans-serif; }
 
-@media(max-width:768px){
-  #cat-photo-grid { grid-template-columns: repeat(2,1fr); grid-auto-rows:240px; }
-  .pg-wide { grid-column: span 2; }
-  .pg-tall { grid-row: span 1; }
-  .photo-grid { grid-template-columns:repeat(2,1fr); }
-}
+
 
 /* ══════════════════════════════
 SHARED BOOK CTA BLOCK
@@ -1524,21 +1518,20 @@ function openCategory(cat) {
 
       // Build slides exactly like the about carousel
       const container = document.createElement('div');
-      container.style.cssText = 'position:relative;width:100%;';
+      container.style.cssText = 'position:relative;width:100%;overflow:hidden;';
 
-      // First image in normal flow to set height
+      // First image in normal flow to set natural height
       const baseImg = document.createElement('img');
       baseImg.src = imgs[0];
       baseImg.style.cssText = 'width:100%;height:auto;display:block;visibility:hidden;';
       container.appendChild(baseImg);
 
-      // All slides absolutely positioned on top
+      // All slides absolutely positioned on top — NO lazy loading so they preload
       const slides = imgs.map((src, i) => {
         const slide = document.createElement('div');
         slide.style.cssText = `position:absolute;inset:0;opacity:${i===0?1:0};transition:opacity 1s ease;`;
         const img = document.createElement('img');
         img.src = src;
-        img.loading = "lazy";
         img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
         slide.appendChild(img);
         container.appendChild(slide);
