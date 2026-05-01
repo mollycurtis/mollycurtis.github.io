@@ -1482,22 +1482,29 @@ function openCategory(cat) {
 
   if (cat === 'portraits') {
     document.getElementById('cat-photo-grid').innerHTML = `
-      <div class="pg-item pg-tall"><img src="portraits/tatumn3.jpg" alt="Portrait"></div>
-      <div class="pg-item pg-set" data-imgs="portraits/melisa1.jpg,portraits/melisa2.jpg,portraits/melisa4.jpg"><img src="portraits/melisa1.jpg" alt="Portrait"></div>
-      <div class="pg-item pg-wide"><img src="portraits/serena1.jpg" alt="Portrait"></div>
-      <div class="pg-item pg-set" data-imgs="portraits/eleanor1-bw.jpg,portraits/eleanor4-bw.jpg"><img src="portraits/eleanor1-bw.jpg" alt="Portrait"></div>
-      <div class="pg-item pg-tall"><img src="portraits/bola2.jpg" alt="Portrait"></div>
-      <div class="pg-item pg-set" data-imgs="portraits/alexa1.jpg,portraits/alexa4.jpg"><img src="portraits/alexa1.jpg" alt="Portrait"></div>
-      <div class="pg-item pg-wide"><img src="portraits/rebeka2.jpg" alt="Portrait"></div>
-      <div class="pg-item pg-set" data-imgs="portraits/gabby1.jpg,portraits/gabby4.jpg"><img src="portraits/gabby1.jpg" alt="Portrait"></div>
-      <div class="pg-item pg-tall"><img src="portraits/dystine4.jpg" alt="Portrait"></div>
-      <div class="pg-item pg-set" data-imgs="portraits/iztla5.jpg,portraits/chy2.jpg"><img src="portraits/iztla5.jpg" alt="Portrait"></div>
-      <div class="pg-item pg-wide"><img src="portraits/bailie8.jpg" alt="Portrait"></div>
-      <div class="pg-item"><img src="portraits/emily4-bw.jpg" alt="Portrait"></div>
-      <div class="pg-item pg-wide"><img src="portraits/tat4.jpg" alt="Portrait"></div>
-      <div class="pg-item"><img src="portraits/meley6.jpg" alt="Portrait"></div>
+      <div class="pg-item pg-tall pg-set" data-imgs="portraits/tatumn3.jpg,portraits/tatumn5.jpg"><img src="portraits/tatumn3.jpg" alt="Portrait"></div>
+      <div class="pg-item pg-set" data-imgs="portraits/melisa1.jpg,portraits/melisa2.jpg,portraits/melisa3.jpg,portraits/melisa4.jpg"><img src="portraits/melisa1.jpg" alt="Portrait"></div>
+      <div class="pg-item"><img src="portraits/caitdoty.jpg" alt="Portrait"></div>
+      <div class="pg-item pg-wide pg-set" data-imgs="portraits/bailie8.jpg,portraits/bailie9.jpg,portraits/bailie4.jpg"><img src="portraits/bailie8.jpg" alt="Portrait"></div>
+      <div class="pg-item"><img src="portraits/bola2.jpg" alt="Portrait"></div>
+      <div class="pg-item pg-tall pg-set" data-imgs="portraits/alexa1.jpg,portraits/alexa2.jpg,portraits/alexa4.jpg,portraits/alexa6.jpg"><img src="portraits/alexa1.jpg" alt="Portrait"></div>
+      <div class="pg-item pg-set" data-imgs="portraits/rebeka2.jpg,portraits/rebeka6.jpg"><img src="portraits/rebeka2.jpg" alt="Portrait"></div>
+      <div class="pg-item"><img src="portraits/serena1.jpg" alt="Portrait"></div>
+      <div class="pg-item pg-wide pg-set" data-imgs="portraits/gabby1.jpg,portraits/gabby4.jpg,portraits/gabby2.jpg"><img src="portraits/gabby1.jpg" alt="Portrait"></div>
+      <div class="pg-item"><img src="portraits/dystine4.jpg" alt="Portrait"></div>
+      <div class="pg-item pg-tall pg-set" data-imgs="portraits/eleanor1-bw.jpg,portraits/eleanor4-bw.jpg"><img src="portraits/eleanor1-bw.jpg" alt="Portrait"></div>
+      <div class="pg-item pg-set" data-imgs="portraits/emily4-bw.jpg,portraits/emily1.jpg,portraits/emily1_1_.jpg"><img src="portraits/emily4-bw.jpg" alt="Portrait"></div>
+      <div class="pg-item"><img src="portraits/darah3.jpg" alt="Portrait"></div>
+      <div class="pg-item pg-wide pg-set" data-imgs="portraits/iztla5.jpg,portraits/chy2.jpg"><img src="portraits/iztla5.jpg" alt="Portrait"></div>
+      <div class="pg-item"><img src="portraits/tat4.jpg" alt="Portrait"></div>
+      <div class="pg-item pg-tall"><img src="portraits/tavish4-bw.jpg" alt="Portrait"></div>
+      <div class="pg-item pg-set" data-imgs="portraits/meley5.jpg,portraits/meley6.jpg"><img src="portraits/meley5.jpg" alt="Portrait"></div>
+      <div class="pg-item"><img src="portraits/bola4.jpg" alt="Portrait"></div>
+      <div class="pg-item pg-wide"><img src="portraits/madison6-.jpg" alt="Portrait"></div>
+      <div class="pg-item"><img src="portraits/iztla1.jpg" alt="Portrait"></div>
+      <div class="pg-item"><img src="portraits/gabby1_1_.jpg" alt="Portrait"></div>
+      <div class="pg-item"><img src="portraits/dystine10.jpg" alt="Portrait"></div>
     `;
-    // init silent auto-cycling sets
     document.querySelectorAll('.pg-set').forEach(cell => {
       const imgs = cell.dataset.imgs.split(',');
       const imgEl = cell.querySelector('img');
