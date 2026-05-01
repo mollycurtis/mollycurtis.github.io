@@ -345,12 +345,10 @@ CATEGORY PAGE
   .cat-header { grid-template-columns:1fr; gap:16px; }
   .cat-sub { max-width:100%; }
 }
-/* Portrait masonry grid — full bleed */
+/* Portrait masonry grid — full bleed, natural aspect ratios */
 #cat-photo-grid {
-  display:grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 340px;
-  gap:0;
+  columns: 3;
+  column-gap: 0;
   width:100vw;
   position:relative;
   left:50%;
@@ -358,24 +356,25 @@ CATEGORY PAGE
   margin-top:36px;
 }
 .pg-item {
+  break-inside: avoid;
   overflow:hidden;
   position:relative;
   background:var(--bg2);
+  display:block;
+  margin-bottom:0;
 }
 .pg-item img {
-  width:100%; height:100%;
-  object-fit:cover;
+  width:100%;
+  height:auto;
   display:block;
   transition:opacity .4s ease, transform .6s var(--ease);
 }
 .pg-item:hover img { transform:scale(1.04); }
-.pg-tall { grid-row: span 2; }
-.pg-wide { grid-column: span 2; }
+/* remove unused grid span classes */
+.pg-tall, .pg-wide { }
 
 @media(max-width:768px){
-  #cat-photo-grid { grid-template-columns: repeat(2,1fr); grid-auto-rows:260px; }
-  .pg-wide { grid-column: span 2; }
-  .pg-tall { grid-row: span 1; }
+  #cat-photo-grid { columns: 2; }
 }
 .photo-grid {
   display:grid;
@@ -1164,7 +1163,7 @@ RESPONSIVE — global
         <div class="zodiac-track" id="zodiacTrack">
           <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><img src="aries1.jpg" alt="Aries" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
           <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><img src="taurus1.jpg" alt="Taurus" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
-          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><img src="gemini1.jpg" alt="Gemini" style="width:100%;height:100%;object-fit:cover;object-position:right center;display:block;"></div></div>
+          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><img src="gemini1.jpg" alt="Gemini" style="width:100%;height:100%;object-fit:cover;object-position:70% center;display:block;"></div></div>
           <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><img src="cancer1.jpg" alt="Cancer" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
           <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><img src="leo1.jpg" alt="Leo" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
           <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><img src="virgo1.jpg" alt="Virgo" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
@@ -1490,41 +1489,76 @@ function openCategory(cat) {
 
   if (cat === 'portraits') {
     document.getElementById('cat-photo-grid').innerHTML = `
-      <div class="pg-item pg-tall pg-set" data-imgs="tatumn3.jpg,tatumn5.jpg"><img src="tatumn3.jpg" alt="Portrait"></div>
-      <div class="pg-item pg-set" data-imgs="melisa1.jpg,melisa2.jpg,melisa3.jpg,melisa4.jpg"><img src="melisa1.jpg" alt="Portrait"></div>
+      <div class="pg-item pg-set" data-imgs="tatumn3.jpg,tatumn5.jpg"><img src="tatumn3.jpg" alt="Portrait"></div>
       <div class="pg-item"><img src="caitdoty.jpg" alt="Portrait"></div>
-      <div class="pg-item pg-wide pg-set" data-imgs="bailie8.jpg,bailie9.jpg,bailie4.jpg"><img src="bailie8.jpg" alt="Portrait"></div>
       <div class="pg-item"><img src="bola2.jpg" alt="Portrait"></div>
-      <div class="pg-item pg-tall pg-set" data-imgs="alexa1.jpg,alexa2.jpg,alexa4.jpg,alexa6.jpg"><img src="alexa1.jpg" alt="Portrait"></div>
-      <div class="pg-item pg-set" data-imgs="rebeka2.jpg,rebeka6.jpg"><img src="rebeka2.jpg" alt="Portrait"></div>
+      <div class="pg-item pg-set" data-imgs="melisa1.jpg,melisa2.jpg,melisa3.jpg,melisa4.jpg"><img src="melisa1.jpg" alt="Portrait"></div>
       <div class="pg-item"><img src="serena1.jpg" alt="Portrait"></div>
-      <div class="pg-item pg-wide pg-set" data-imgs="gabby1.jpg,gabby4.jpg,gabby2.jpg"><img src="gabby1.jpg" alt="Portrait"></div>
       <div class="pg-item"><img src="dystine4.jpg" alt="Portrait"></div>
-      <div class="pg-item pg-tall pg-set" data-imgs="eleanor1-bw.jpg,eleanor4-bw.jpg"><img src="eleanor1-bw.jpg" alt="Portrait"></div>
-      <div class="pg-item pg-set" data-imgs="emily4-bw.jpg,emily1.jpg,emily1_1_.jpg"><img src="emily4-bw.jpg" alt="Portrait"></div>
+      <div class="pg-item pg-set" data-imgs="rebeka2.jpg,rebeka6.jpg"><img src="rebeka2.jpg" alt="Portrait"></div>
       <div class="pg-item"><img src="darah3.jpg" alt="Portrait"></div>
-      <div class="pg-item pg-wide pg-set" data-imgs="iztla5.jpg,chy2.jpg"><img src="iztla5.jpg" alt="Portrait"></div>
-      <div class="pg-item"><img src="tat4.jpg" alt="Portrait"></div>
-      <div class="pg-item pg-tall"><img src="tavish4-bw.jpg" alt="Portrait"></div>
-      <div class="pg-item pg-set" data-imgs="meley5.jpg,meley6.jpg"><img src="meley5.jpg" alt="Portrait"></div>
-      <div class="pg-item"><img src="bola4.jpg" alt="Portrait"></div>
-      <div class="pg-item pg-wide"><img src="madison6-.jpg" alt="Portrait"></div>
       <div class="pg-item"><img src="iztla1.jpg" alt="Portrait"></div>
-      <div class="pg-item"><img src="gabby1_1_.jpg" alt="Portrait"></div>
+      <div class="pg-item pg-set" data-imgs="alexa1.jpg,alexa2.jpg,alexa4.jpg,alexa6.jpg"><img src="alexa1.jpg" alt="Portrait"></div>
+      <div class="pg-item"><img src="tat4.jpg" alt="Portrait"></div>
+      <div class="pg-item"><img src="tavish4-bw.jpg" alt="Portrait"></div>
+      <div class="pg-item pg-set" data-imgs="gabby1.jpg,gabby4.jpg,gabby2.jpg"><img src="gabby1.jpg" alt="Portrait"></div>
       <div class="pg-item"><img src="dystine10.jpg" alt="Portrait"></div>
+      <div class="pg-item"><img src="bola4.jpg" alt="Portrait"></div>
+      <div class="pg-item pg-set" data-imgs="emily4-bw.jpg,emily1.jpg,emily1_1_.jpg"><img src="emily4-bw.jpg" alt="Portrait"></div>
+      <div class="pg-item"><img src="madison6-.jpg" alt="Portrait"></div>
+      <div class="pg-item"><img src="gabby1_1_.jpg" alt="Portrait"></div>
+      <div class="pg-item pg-set" data-imgs="bailie8.jpg,bailie9.jpg,bailie4.jpg"><img src="bailie8.jpg" alt="Portrait"></div>
+      <div class="pg-item pg-set" data-imgs="iztla5.jpg,chy2.jpg"><img src="iztla5.jpg" alt="Portrait"></div>
+      <div class="pg-item pg-set" data-imgs="eleanor1-bw.jpg,eleanor4-bw.jpg"><img src="eleanor1-bw.jpg" alt="Portrait"></div>
+      <div class="pg-item pg-set" data-imgs="meley5.jpg,meley6.jpg"><img src="meley5.jpg" alt="Portrait"></div>
     `;
     document.querySelectorAll('.pg-set').forEach(cell => {
       const imgs = cell.dataset.imgs.split(',');
-      const imgEl = cell.querySelector('img');
+      if (imgs.length < 2) return;
+
+      // Build a slider wrapper with all images stacked
+      const wrapper = document.createElement('div');
+      wrapper.style.cssText = 'position:relative;width:100%;overflow:hidden;';
+
+      // Create all img elements, stacked absolutely, first one relative to set height
+      const imgEls = imgs.map((src, i) => {
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = 'Portrait';
+        img.style.cssText = i === 0
+          ? 'width:100%;display:block;'
+          : 'width:100%;display:block;position:absolute;top:0;left:100%;height:100%;object-fit:cover;';
+        wrapper.appendChild(img);
+        return img;
+      });
+
+      // Clear cell and add wrapper
+      cell.innerHTML = '';
+      cell.appendChild(wrapper);
+
       let idx = 0;
       setInterval(() => {
-        imgEl.style.opacity = '0';
-        setTimeout(() => {
-          idx = (idx + 1) % imgs.length;
-          imgEl.src = imgs[idx];
-          imgEl.style.opacity = '1';
-        }, 400);
-      }, 3000);
+        const next = (idx + 1) % imgs.length;
+
+        // Slide current out left, next in from right
+        imgEls[idx].style.cssText += 'position:absolute;top:0;left:0;height:100%;object-fit:cover;transition:left .5s cubic-bezier(.4,0,.2,1);';
+        imgEls[next].style.left = '100%';
+        imgEls[next].style.transition = 'none';
+
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            imgEls[idx].style.left = '-100%';
+            imgEls[next].style.cssText = imgEls[next].style.cssText + 'transition:left .5s cubic-bezier(.4,0,.2,1);';
+            imgEls[next].style.left = '0%';
+            // After transition, make next the new "base"
+            setTimeout(() => {
+              imgEls[next].style.cssText = 'width:100%;display:block;position:absolute;top:0;left:0;height:100%;object-fit:cover;';
+              imgEls[idx].style.cssText = 'width:100%;display:block;position:absolute;top:0;left:100%;height:100%;object-fit:cover;';
+              idx = next;
+            }, 520);
+          });
+        });
+      }, 5000);
     });
   } else {
     document.getElementById('cat-photo-grid').innerHTML =
