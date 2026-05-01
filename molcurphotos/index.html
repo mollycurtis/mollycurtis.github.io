@@ -369,8 +369,9 @@ CATEGORY PAGE
   display:block;
   transition:opacity .4s ease;
 }
-/* remove unused grid span classes */
-.pg-tall, .pg-wide { }
+/* force rebeka-ca set to portrait aspect so horizontal ca3 crops correctly */
+.pg-set[data-imgs*="rebeka-ca"] { aspect-ratio: unset; }
+.pg-set[data-imgs*="rebeka-ca"] img { object-fit:cover; object-position:center; }
 
 @media(max-width:768px){
   #cat-photo-grid { columns: 2; column-gap:0; }
@@ -1078,7 +1079,7 @@ RESPONSIVE — global
         <div class="about-stats">
           <div class="about-stat"><div class="sn">7+ Years</div><div class="sl">of Experience</div></div>
           <div class="about-stat"><div class="sn">30+</div><div class="sl">Publications</div></div>
-          <div class="about-stat"><div class="sn">MN · WI</div><div class="sl">Based Worldwide</div></div>
+          <div class="about-stat"><div class="sn">MN · WI</div><div class="sl">Based in the Midwest</div></div>
         </div>
         <h2 class="about-h">Molly Curtis is a nationally published photographer based in the Midwest.</h2>
         <p class="about-p">With over seven years of experience across portraits, editorial, weddings, and events, Molly brings a refined, detail-driven approach to her work. She holds a BBA in Marketing and has worked as a digital marketing specialist for the past three years, shaping how she approaches visual storytelling and brand-focused imagery.</p>
@@ -1152,7 +1153,7 @@ RESPONSIVE — global
       <div class="proj-num">Project 01</div>
       <div class="proj-header">
         <div class="proj-title">The Zodiac Signs</div>
-        <p class="proj-desc">I directed and created my own take on all twelve astrological signs with a fantastic team — one of the most creatively rewarding shoots I've done.</p>
+        <p class="proj-desc">I directed and created my own take on all twelve astrological signs with a fantastic team. It was one of the most creatively rewarding shoots I've done.</p>
       </div>
       <div class="zodiac-carousel" id="zodiacCarousel">
         <div class="zodiac-track" id="zodiacTrack">
@@ -1181,7 +1182,7 @@ RESPONSIVE — global
       <div class="proj-num">Project 02</div>
       <div class="proj-header">
         <div class="proj-title">Street Photography</div>
-        <p class="proj-desc">Candid moments and the raw energy of everyday life — no direction, just instinct.</p>
+        <p class="proj-desc">Candid moments and the raw energy of everyday life. No direction, just instinct.</p>
       </div>
       <div class="photo-grid">
         <div class="photo-cell"><div class="photo-cell-ph">Add Photo</div></div>
@@ -1198,7 +1199,7 @@ RESPONSIVE — global
       <div class="book-cta-left">
         <div class="book-cta-eyebrow">Have a concept in mind?</div>
         <div class="book-cta-headline">Let's build something ambitious together.</div>
-        <p class="book-cta-sub">Portraits, editorial, events, collaborations — if you have an idea, let's talk about it.</p>
+        <p class="book-cta-sub">Portraits, editorial, events, collaborations. If you have an idea, let's talk about it.</p>
       </div>
       <button class="book-cta-btn" onclick="closePage('projects');openPage('contact')">Start a Conversation</button>
     </div>
@@ -1222,7 +1223,7 @@ RESPONSIVE — global
         </div>
         <div class="faq-item">
           <button class="faq-q" onclick="toggleFaq(this)">What are your rates? <span class="faq-icon">+</span></button>
-          <div class="faq-a">Every session is unique — rates are tailored to your specific needs, concept, location, and whether a studio is required. Reach out and I'll provide a personalized quote based on what you're looking for.</div>
+          <div class="faq-a">Every session is unique. Rates are tailored to your specific needs, concept, location, and whether a studio is required. Reach out and I'll provide a personalized quote based on what you're looking for.</div>
         </div>
         <div class="faq-item">
           <button class="faq-q" onclick="toggleFaq(this)">How long until I receive my edits? <span class="faq-icon">+</span></button>
@@ -1236,19 +1237,19 @@ RESPONSIVE — global
       <div class="faq-col">
         <div class="faq-item">
           <button class="faq-q" onclick="toggleFaq(this)">What if I need to reschedule? <span class="faq-icon">+</span></button>
-          <div class="faq-a">Life happens — I get it. I ask for as much notice as possible (ideally 48 hours) if you need to reschedule and we'll find a new time that works. Please note that deposits are non-refundable, so if you need to cancel entirely, your deposit will not be returned.</div>
+          <div class="faq-a">Life happens, I get it. I ask for as much notice as possible (ideally 48 hours) if you need to reschedule and we'll find a new time that works. Please note that deposits are non-refundable, so if you need to cancel entirely, your deposit will not be returned.</div>
         </div>
         <div class="faq-item">
           <button class="faq-q" onclick="toggleFaq(this)">Do you travel for sessions? <span class="faq-icon">+</span></button>
-          <div class="faq-a">Yes! I'm based in Minnesota and Wisconsin but available for projects worldwide. Travel fees may apply depending on location — reach out and we can discuss the details.</div>
+          <div class="faq-a">Yes! I'm based in Minnesota and Wisconsin but available for projects nationally. Travel fees may apply depending on location, so reach out and we can discuss the details.</div>
         </div>
         <div class="faq-item">
           <button class="faq-q" onclick="toggleFaq(this)">What gear do you use? <span class="faq-icon">+</span></button>
-          <div class="faq-a">I shoot with a Sony A7RII full-frame mirrorless camera with an assortment of lenses — my current favorite being the ZEISS 50mm f/1.4. I'm also getting into film photography, so you might catch me sneaking in a spontaneous film shot during your session.</div>
+          <div class="faq-a">I shoot with a Sony A7RII full-frame mirrorless camera with an assortment of lenses. My current favorite being the ZEISS 50mm f/1.4. I'm also getting into film photography, so you might catch me sneaking in a spontaneous film shot during your session.</div>
         </div>
         <div class="faq-item">
           <button class="faq-q" onclick="toggleFaq(this)">Do you send back RAW files? <span class="faq-icon">+</span></button>
-          <div class="faq-a">All sessions are shot and edited in RAW for optimal quality, but final galleries are delivered as high-resolution JPEGs. RAW files are available for an additional fee — just ask!</div>
+          <div class="faq-a">All sessions are shot and edited in RAW for optimal quality, but final galleries are delivered as high-resolution JPEGs. RAW files are available for an additional fee if needed.</div>
         </div>
       </div>
     </div>
@@ -1315,7 +1316,7 @@ RESPONSIVE — global
           <ul class="what-next-steps">
             <li><span class="wn-num">1</span>I'll reply within 48 hours to confirm availability and ask a few quick questions</li>
             <li><span class="wn-num">2</span>We'll nail down your concept, location, and session details together</li>
-            <li><span class="wn-num">3</span>A deposit locks in your date — then we shoot</li>
+            <li><span class="wn-num">3</span>A deposit locks in your date, then we shoot</li>
             <li><span class="wn-num">4</span>Your gallery lands in your inbox, ready to download and share</li>
           </ul>
         </div>
@@ -1342,7 +1343,7 @@ RESPONSIVE — global
             <ul class="what-next-steps">
               <li><span class="wn-num">1</span>I'll reply within 48 hours to confirm availability and ask a few quick questions</li>
               <li><span class="wn-num">2</span>We'll nail down your concept, location, and session details together</li>
-              <li><span class="wn-num">3</span>A deposit locks in your date — then we shoot</li>
+              <li><span class="wn-num">3</span>A deposit locks in your date, then we shoot</li>
               <li><span class="wn-num">4</span>Your gallery lands in your inbox, ready to download and share</li>
             </ul>
           </div>
@@ -1489,14 +1490,20 @@ function openCategory(cat) {
       <div class="pg-item"><img src="bola2.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item pg-set" data-imgs="melisa1.jpg,melisa2.jpg"><img src="melisa1.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item"><img src="serena1.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img src="alexalee.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-set" data-imgs="alexa-dunes1.jpg,alexa-dunes2.jpg"><img src="alexa-dunes1.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item"><img src="dystine4.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item"><img src="melisa3.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item pg-set" data-imgs="rebeka2.jpg,rebeka6.jpg"><img src="rebeka2.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img src="sesamae.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item"><img src="darah3.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item"><img src="melisa4.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-set" data-imgs="rebeka-ca1.jpg,rebeka-ca2.jpg,rebeka-ca3.jpg"><img src="rebeka-ca1.jpg" alt="Portrait" loading="lazy" style="object-fit:cover;object-position:center;"></div>
       <div class="pg-item"><img src="tavish4-bw.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item pg-set" data-imgs="alexa1.jpg,alexa4.jpg,alexa6.jpg"><img src="alexa1.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item"><img src="alexa2.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img src="eva.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-set" data-imgs="Annette-studio1.jpg,Annette-studio2.jpg"><img src="Annette-studio1.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item"><img src="tat4.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item"><img src="bola4.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item"><img src="gabby4.jpg" alt="Portrait" loading="lazy"></div>
@@ -1505,34 +1512,37 @@ function openCategory(cat) {
       <div class="pg-item"><img src="madison6-.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item"><img src="emily4-bw.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item pg-set" data-imgs="eleanor1-bw.jpg,eleanor4-bw.jpg"><img src="eleanor1-bw.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img src="megan.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item"><img src="emily1.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item"><img src="meley5.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item pg-set" data-imgs="bailie8.jpg,bailie9.jpg,bailie4.jpg"><img src="bailie8.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img src="liv.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img src="tatumnn.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-set" data-imgs="tatumn-airbnb1.jpg,tatumn-airbnb2.jpg"><img src="tatumn-airbnb1.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item"><img src="iztla5.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item"><img src="meley6.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item"><img src="chy2.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item"><img src="emily1%281%29.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img src="meganeric.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img src="portfolio-portraits.jpg" alt="Portrait" loading="lazy"></div>
     `;
     document.querySelectorAll('.pg-set').forEach(cell => {
       const imgs = cell.dataset.imgs.split(',');
       if (imgs.length < 2) return;
 
-      // Build slides exactly like the about carousel
       const container = document.createElement('div');
       container.style.cssText = 'position:relative;width:100%;overflow:hidden;';
 
-      // First image in normal flow to set natural height
       const baseImg = document.createElement('img');
       baseImg.src = imgs[0];
       baseImg.style.cssText = 'width:100%;height:auto;display:block;visibility:hidden;';
       container.appendChild(baseImg);
 
-      // All slides absolutely positioned on top — NO lazy loading so they preload
       const slides = imgs.map((src, i) => {
         const slide = document.createElement('div');
         slide.style.cssText = `position:absolute;inset:0;opacity:${i===0?1:0};transition:opacity 1s ease;`;
         const img = document.createElement('img');
-        img.src = src;
+        if (i === 0) { img.src = src; } else { img.dataset.src = src; }
         img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
         slide.appendChild(img);
         container.appendChild(slide);
@@ -1543,6 +1553,21 @@ function openCategory(cat) {
       cell.appendChild(container);
 
       let idx = 0;
+      let loaded = false;
+
+      const obs = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting && !loaded) {
+          loaded = true;
+          slides.forEach((slide, i) => {
+            if (i === 0) return;
+            const img = slide.querySelector('img');
+            if (img.dataset.src) { img.src = img.dataset.src; }
+          });
+          obs.disconnect();
+        }
+      }, { rootMargin: '300px' });
+      obs.observe(cell);
+
       setInterval(() => {
         slides[idx].style.opacity = '0';
         idx = (idx + 1) % slides.length;
@@ -1556,17 +1581,15 @@ function openCategory(cat) {
       ).join('');
   }
 
-    // On mobile, make landscape images span full width
-    if (window.innerWidth <= 768) {
-      document.querySelectorAll('#cat-photo-grid .pg-item img').forEach(img => {
-        const check = () => {
-          if (img.naturalWidth > img.naturalHeight) {
-            img.closest('.pg-item').classList.add('pg-landscape');
-          }
-        };
-        img.complete ? check() : img.addEventListener('load', check);
-      });
-    }
+  // On mobile, make landscape images span full width
+  if (window.innerWidth <= 768) {
+    document.querySelectorAll('#cat-photo-grid .pg-item').forEach(item => {
+      const img = item.querySelector('img');
+      if (!img) return;
+      const check = () => { if (img.naturalWidth > img.naturalHeight) item.classList.add('pg-landscape'); };
+      img.complete && img.naturalWidth ? check() : img.addEventListener('load', check);
+    });
+  }
   const placeholder = document.getElementById('next-genre-placeholder');
   placeholder.innerHTML = `
     <div class="next-genre">
