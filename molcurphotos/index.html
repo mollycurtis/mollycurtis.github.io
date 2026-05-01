@@ -1506,19 +1506,20 @@ function openCategory(cat) {
       <div class="pg-item"><img src="dystine10.jpg" alt="Portrait"></div>
       <div class="pg-item"><img src="iztla1.jpg" alt="Portrait"></div>
       <div class="pg-item"><img src="madison6-.jpg" alt="Portrait"></div>
-      <div class="pg-item pg-set" data-imgs="emily4-bw.jpg,emily1.jpg,emily1%281%29.jpg"><img src="emily4-bw.jpg" alt="Portrait"></div>
+      <div class="pg-item"><img src="emily4-bw.jpg" alt="Portrait"></div>
       <div class="pg-item pg-set" data-imgs="eleanor1-bw.jpg,eleanor4-bw.jpg"><img src="eleanor1-bw.jpg" alt="Portrait"></div>
-      <div class="pg-item"><img src="chy2.jpg" alt="Portrait"></div>
+      <div class="pg-item"><img src="emily1.jpg" alt="Portrait"></div>
       <div class="pg-item"><img src="meley5.jpg" alt="Portrait"></div>
       <div class="pg-item pg-set" data-imgs="bailie8.jpg,bailie9.jpg,bailie4.jpg"><img src="bailie8.jpg" alt="Portrait"></div>
       <div class="pg-item"><img src="iztla5.jpg" alt="Portrait"></div>
-      <div class="pg-item pg-set" data-imgs="meley6.jpg,dystine10.jpg"><img src="meley6.jpg" alt="Portrait"></div>
+      <div class="pg-item"><img src="meley6.jpg" alt="Portrait"></div>
+      <div class="pg-item"><img src="chy2.jpg" alt="Portrait"></div>
+      <div class="pg-item"><img src="emily1%281%29.jpg" alt="Portrait"></div>
     `;
     document.querySelectorAll('.pg-set').forEach(cell => {
       const imgs = cell.dataset.imgs.split(',');
       if (imgs.length < 2) return;
 
-      // Preload all images as a stack, crossfade between them
       const stack = document.createElement('div');
       stack.style.cssText = 'position:relative;width:100%;';
 
@@ -1529,7 +1530,7 @@ function openCategory(cat) {
         if (i === 0) {
           img.style.cssText = 'width:100%;display:block;';
         } else {
-          img.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s ease;';
+          img.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s ease;';
         }
         stack.appendChild(img);
       });
@@ -1539,23 +1540,36 @@ function openCategory(cat) {
 
       const imgEls = Array.from(stack.querySelectorAll('img'));
       let idx = 0;
+      let timer = null;
 
-      setInterval(() => {
-        const next = (idx + 1) % imgs.length;
-        // Fade next in on top
-        imgEls[next].style.opacity = '1';
-        setTimeout(() => {
-          // After fade completes, reset: make next the base, hide others
-          imgEls.forEach((el, i) => {
-            if (i === next) {
-              el.style.cssText = 'width:100%;display:block;';
-            } else {
-              el.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s ease;';
-            }
-          });
-          idx = next;
-        }, 450);
-      }, 5000);
+      function startTimer() {
+        if (timer) return;
+        timer = setInterval(() => {
+          const next = (idx + 1) % imgs.length;
+          imgEls[next].style.opacity = '1';
+          setTimeout(() => {
+            imgEls.forEach((el, i) => {
+              if (i === next) {
+                el.style.cssText = 'width:100%;display:block;';
+              } else {
+                el.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s ease;';
+              }
+            });
+            idx = next;
+          }, 550);
+        }, 5000);
+      }
+
+      function stopTimer() {
+        clearInterval(timer);
+        timer = null;
+      }
+
+      // Only animate when visible
+      const observer = new IntersectionObserver(entries => {
+        entries[0].isIntersecting ? startTimer() : stopTimer();
+      }, { threshold: 0.1 });
+      observer.observe(cell);
     });
   } else {
     document.getElementById('cat-photo-grid').innerHTML =
