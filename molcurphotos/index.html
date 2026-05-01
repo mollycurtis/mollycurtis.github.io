@@ -245,7 +245,7 @@ PORTFOLIO — full-bleed tiles
 
 #tile-grid {
   display:grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 2fr;
   grid-template-rows: 1fr 1fr;
   gap:0; width:100%; height:100%;
 }
@@ -290,10 +290,9 @@ PORTFOLIO — full-bleed tiles
 
 .ptile-portraits { grid-column:1; grid-row:1/3; background:#1e1512; }
 .ptile-senior    { grid-column:2; grid-row:1;   background:#121a16; }
-.ptile-weddings  { grid-column:3/5; grid-row:1; background:#1a1410; }
+.ptile-weddings  { grid-column:3; grid-row:1;   background:#1a1410; }
 .ptile-business  { grid-column:2; grid-row:2;   background:#121520; }
 .ptile-events    { grid-column:3; grid-row:2;   background:#1a1218; }
-.ptile-family    { grid-column:4; grid-row:2;   background:#141a12; }
 
 #portfolio-intro {
   position:absolute; top:50%; left:50%;
@@ -906,7 +905,6 @@ RESPONSIVE — global
   .ptile-weddings  { grid-column:2;   grid-row:2; }
   .ptile-business  { grid-column:1;   grid-row:3; }
   .ptile-events    { grid-column:2;   grid-row:3; }
-  .ptile-family    { display:none; }
   .cat-body,.about-body,.faqs-body,.contact-body,.proj-body { padding:24px 20px; }
   .photo-grid { grid-template-columns:repeat(2,1fr); }
   .cat-header { grid-template-columns:1fr !important; gap:12px; }
@@ -994,7 +992,7 @@ RESPONSIVE — global
         </div>
         <div id="tile-grid">
           <div class="ptile ptile-portraits" data-cat="portraits">
-            <div class="ptile-bg"></div>
+            <div class="ptile-bg" style="background-image:url(portfolio-portraits.jpg)"></div>
             <span class="ptile-num">01</span>
             <span class="ptile-label">Portraits</span>
           </div>
@@ -1017,11 +1015,6 @@ RESPONSIVE — global
             <div class="ptile-bg"></div>
             <span class="ptile-num">05</span>
             <span class="ptile-label">Events</span>
-          </div>
-          <div class="ptile ptile-family" data-cat="family">
-            <div class="ptile-bg"></div>
-            <span class="ptile-num">06</span>
-            <span class="ptile-label">Family</span>
           </div>
         </div>
       </div>
@@ -1461,14 +1454,13 @@ function attachPortfolioScroll() {
 resetPortfolioAnim();
 
 // ── CATEGORY OPEN ────────────────────────────────────────────────
-const CAT_ORDER = ['portraits','senior','weddings','business','events','family'];
+const CAT_ORDER = ['portraits','senior','weddings','business','events'];
 const CAT = {
   portraits:{ sub:'Capturing personality, mood, and the essence of every individual — from editorial fashion to intimate personal sessions.', count:8 },
   senior:   { sub:'Celebrating milestones with stunning imagery that captures this once-in-a-lifetime chapter.', count:6 },
   weddings: { sub:'Every love story is unique. Molly documents the emotion, details, and joy of your most important day.', count:8 },
   business: { sub:'Headshots and brand photography that make a strong first impression and elevate your professional presence.', count:6 },
   events:   { sub:'From corporate gatherings to intimate celebrations, every event deserves to be remembered beautifully.', count:6 },
-  family:   { sub:'Authentic, joyful moments that will be treasured for generations to come.', count:6 },
 };
 
 function openCategory(cat) {
@@ -1524,7 +1516,6 @@ function openCategory(cat) {
       <div class="pg-item"><img src="chy2.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item"><img src="emily1%281%29.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item"><img src="meganeric.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img src="portfolio-portraits.jpg" alt="Portrait" loading="lazy"></div>
     `;
     document.querySelectorAll('.pg-set').forEach(cell => {
       const imgs = cell.dataset.imgs.split(',');
