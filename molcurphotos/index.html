@@ -373,7 +373,7 @@ CATEGORY PAGE
 .pg-tall, .pg-wide { }
 
 @media(max-width:768px){
-  #cat-photo-grid { columns: 2; }
+  #cat-photo-grid { columns: 1; }
   #cat-photo-grid .pg-item img { width:100%; height:auto; display:block; }
 }
 .photo-grid {
@@ -1529,7 +1529,7 @@ function openCategory(cat) {
       // First image in normal flow to set height
       const baseImg = document.createElement('img');
       baseImg.src = imgs[0];
-      baseImg.style.cssText = 'width:100%;display:block;visibility:hidden;';
+      baseImg.style.cssText = 'width:100%;height:auto;display:block;visibility:hidden;';
       container.appendChild(baseImg);
 
       // All slides absolutely positioned on top
