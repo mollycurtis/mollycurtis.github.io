@@ -1520,16 +1520,37 @@ function openCategory(cat) {
     document.querySelectorAll('.pg-set').forEach(cell => {
       const imgs = cell.dataset.imgs.split(',');
       if (imgs.length < 2) return;
-      const imgEl = cell.querySelector('img');
-      imgEl.style.transition = 'opacity 0.4s ease';
+
+      // Build slides exactly like the about carousel
+      const container = document.createElement('div');
+      container.style.cssText = 'position:relative;width:100%;';
+
+      // First image in normal flow to set height
+      const baseImg = document.createElement('img');
+      baseImg.src = imgs[0];
+      baseImg.style.cssText = 'width:100%;display:block;visibility:hidden;';
+      container.appendChild(baseImg);
+
+      // All slides absolutely positioned on top
+      const slides = imgs.map((src, i) => {
+        const slide = document.createElement('div');
+        slide.style.cssText = `position:absolute;inset:0;opacity:${i===0?1:0};transition:opacity 1s ease;`;
+        const img = document.createElement('img');
+        img.src = src;
+        img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
+        slide.appendChild(img);
+        container.appendChild(slide);
+        return slide;
+      });
+
+      cell.innerHTML = '';
+      cell.appendChild(container);
+
       let idx = 0;
       setInterval(() => {
-        idx = (idx + 1) % imgs.length;
-        imgEl.style.opacity = '0';
-        setTimeout(() => {
-          imgEl.src = imgs[idx];
-          imgEl.style.opacity = '1';
-        }, 400);
+        slides[idx].style.opacity = '0';
+        idx = (idx + 1) % slides.length;
+        slides[idx].style.opacity = '1';
       }, 5000);
     });
   } else {
