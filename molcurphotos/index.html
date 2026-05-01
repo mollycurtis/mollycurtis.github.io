@@ -1520,66 +1520,17 @@ function openCategory(cat) {
     document.querySelectorAll('.pg-set').forEach(cell => {
       const imgs = cell.dataset.imgs.split(',');
       if (imgs.length < 2) return;
-
-      const stack = document.createElement('div');
-      stack.style.cssText = 'position:relative;width:100%;';
-
-      // All images stacked, only current visible
-      const imgEls = imgs.map((src, i) => {
-        const img = document.createElement('img');
-        img.src = src;
-        img.alt = 'Portrait';
-        img.style.cssText = i === 0
-          ? 'width:100%;display:block;position:relative;z-index:1;'
-          : 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;z-index:0;transition:none;';
-        stack.appendChild(img);
-        return img;
-      });
-
-      cell.innerHTML = '';
-      cell.appendChild(stack);
-
+      const imgEl = cell.querySelector('img');
+      imgEl.style.transition = 'opacity 0.4s ease';
       let idx = 0;
-      let timer = null;
-
-      function advance() {
-        const prev = idx;
-        const next = (idx + 1) % imgs.length;
-
-        // Bring next layer up, start fade in
-        imgEls[next].style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;z-index:2;transition:opacity .6s ease;';
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            imgEls[next].style.opacity = '1';
-          });
-        });
-
+      setInterval(() => {
+        idx = (idx + 1) % imgs.length;
+        imgEl.style.opacity = '0';
         setTimeout(() => {
-          // next is now fully visible — reset all layers
-          imgEls.forEach((el, i) => {
-            if (i === next) {
-              el.style.cssText = 'width:100%;display:block;position:relative;z-index:1;';
-            } else {
-              el.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;z-index:0;transition:none;';
-            }
-          });
-          idx = next;
-        }, 680);
-      }
-
-      function startTimer() {
-        if (timer) return;
-        timer = setInterval(advance, 5000);
-      }
-      function stopTimer() {
-        clearInterval(timer);
-        timer = null;
-      }
-
-      const observer = new IntersectionObserver(entries => {
-        entries[0].isIntersecting ? startTimer() : stopTimer();
-      }, { threshold: 0.1 });
-      observer.observe(cell);
+          imgEl.src = imgs[idx];
+          imgEl.style.opacity = '1';
+        }, 400);
+      }, 5000);
     });
   } else {
     document.getElementById('cat-photo-grid').innerHTML =
