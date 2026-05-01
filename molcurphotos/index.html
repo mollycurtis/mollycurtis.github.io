@@ -1502,12 +1502,11 @@ function openCategory(cat) {
       <div class="pg-item pg-set" data-imgs="alexa1.jpg,alexa2.jpg,alexa4.jpg,alexa6.jpg"><img src="alexa1.jpg" alt="Portrait"></div>
       <div class="pg-item"><img src="tat4.jpg" alt="Portrait"></div>
       <div class="pg-item"><img src="bola4.jpg" alt="Portrait"></div>
-      <div class="pg-item pg-set" data-imgs="gabby1.jpg,gabby4.jpg,gabby2.jpg"><img src="gabby1.jpg" alt="Portrait"></div>
+      <div class="pg-item"><img src="gabby4.jpg" alt="Portrait"></div>
       <div class="pg-item"><img src="dystine10.jpg" alt="Portrait"></div>
-      <div class="pg-item"><img src="gabby1(1).jpg" alt="Portrait"></div>
-      <div class="pg-item pg-set" data-imgs="emily4-bw.jpg,emily1.jpg,emily1(1).jpg"><img src="emily4-bw.jpg" alt="Portrait"></div>
       <div class="pg-item"><img src="iztla1.jpg" alt="Portrait"></div>
       <div class="pg-item"><img src="madison6-.jpg" alt="Portrait"></div>
+      <div class="pg-item pg-set" data-imgs="emily4-bw.jpg,emily1.jpg,emily1(1).jpg"><img src="emily4-bw.jpg" alt="Portrait"></div>
       <div class="pg-item pg-set" data-imgs="eleanor1-bw.jpg,eleanor4-bw.jpg"><img src="eleanor1-bw.jpg" alt="Portrait"></div>
       <div class="pg-item"><img src="chy2.jpg" alt="Portrait"></div>
       <div class="pg-item"><img src="meley5.jpg" alt="Portrait"></div>
@@ -1552,7 +1551,7 @@ function openCategory(cat) {
         wrapper.style.height = wrapper.offsetHeight + 'px';
 
         // Make current absolute so it can slide out
-        imgEls[idx].style.cssText = 'width:100%;display:block;position:absolute;top:0;left:0;height:100%;object-fit:cover;transition:left .55s cubic-bezier(.4,0,.2,1);';
+        imgEls[idx].style.cssText = 'width:100%;display:block;position:absolute;top:0;left:0;height:100%;object-fit:cover;transition:left .28s cubic-bezier(.4,0,.2,1);';
 
         // Position next just off-screen right, no transition yet
         imgEls[next].style.cssText = 'width:100%;display:block;position:absolute;top:0;left:100%;height:100%;object-fit:cover;';
@@ -1561,7 +1560,7 @@ function openCategory(cat) {
           requestAnimationFrame(() => {
             // Slide both simultaneously
             imgEls[idx].style.left = '-100%';
-            imgEls[next].style.cssText = 'width:100%;display:block;position:absolute;top:0;left:0;height:100%;object-fit:cover;transition:left .55s cubic-bezier(.4,0,.2,1);';
+            imgEls[next].style.cssText = 'width:100%;display:block;position:absolute;top:0;left:0;height:100%;object-fit:cover;transition:left .28s cubic-bezier(.4,0,.2,1);';
             imgEls[next].style.left = '0%';
 
             setTimeout(() => {
@@ -1573,7 +1572,7 @@ function openCategory(cat) {
               wrapper.style.height = '';
               idx = next;
               animating = false;
-            }, 580);
+            }, 300);
           });
         });
       }, 5000);
