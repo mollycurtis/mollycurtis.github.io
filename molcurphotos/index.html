@@ -374,6 +374,7 @@ CATEGORY PAGE
 
 @media(max-width:768px){
   #cat-photo-grid { columns: 2; column-gap:0; }
+  #cat-photo-grid .pg-item.pg-landscape { column-span: all; }
 }
 .photo-grid {
   display:grid;
@@ -1555,7 +1556,17 @@ function openCategory(cat) {
       ).join('');
   }
 
-  // next genre nav
+    // On mobile, make landscape images span full width
+    if (window.innerWidth <= 768) {
+      document.querySelectorAll('#cat-photo-grid .pg-item img').forEach(img => {
+        const check = () => {
+          if (img.naturalWidth > img.naturalHeight) {
+            img.closest('.pg-item').classList.add('pg-landscape');
+          }
+        };
+        img.complete ? check() : img.addEventListener('load', check);
+      });
+    }
   const placeholder = document.getElementById('next-genre-placeholder');
   placeholder.innerHTML = `
     <div class="next-genre">
