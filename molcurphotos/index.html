@@ -1499,7 +1499,8 @@ function openCategory(cat) {
       <div class="pg-item"><img src="darah3.jpg" alt="Portrait"></div>
       <div class="pg-item"><img src="melisa4.jpg" alt="Portrait"></div>
       <div class="pg-item"><img src="tavish4-bw.jpg" alt="Portrait"></div>
-      <div class="pg-item pg-set" data-imgs="alexa1.jpg,alexa2.jpg,alexa4.jpg,alexa6.jpg"><img src="alexa1.jpg" alt="Portrait"></div>
+      <div class="pg-item pg-set" data-imgs="alexa1.jpg,alexa4.jpg,alexa6.jpg"><img src="alexa1.jpg" alt="Portrait"></div>
+      <div class="pg-item"><img src="alexa2.jpg" alt="Portrait"></div>
       <div class="pg-item"><img src="tat4.jpg" alt="Portrait"></div>
       <div class="pg-item"><img src="bola4.jpg" alt="Portrait"></div>
       <div class="pg-item"><img src="gabby4.jpg" alt="Portrait"></div>
@@ -1523,49 +1524,58 @@ function openCategory(cat) {
       const stack = document.createElement('div');
       stack.style.cssText = 'position:relative;width:100%;';
 
-      imgs.forEach((src, i) => {
+      // All images stacked, only current visible
+      const imgEls = imgs.map((src, i) => {
         const img = document.createElement('img');
         img.src = src;
         img.alt = 'Portrait';
-        if (i === 0) {
-          img.style.cssText = 'width:100%;display:block;';
-        } else {
-          img.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s ease;';
-        }
+        img.style.cssText = i === 0
+          ? 'width:100%;display:block;position:relative;z-index:1;'
+          : 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;z-index:0;transition:none;';
         stack.appendChild(img);
+        return img;
       });
 
       cell.innerHTML = '';
       cell.appendChild(stack);
 
-      const imgEls = Array.from(stack.querySelectorAll('img'));
       let idx = 0;
       let timer = null;
 
-      function startTimer() {
-        if (timer) return;
-        timer = setInterval(() => {
-          const next = (idx + 1) % imgs.length;
-          imgEls[next].style.opacity = '1';
-          setTimeout(() => {
-            imgEls.forEach((el, i) => {
-              if (i === next) {
-                el.style.cssText = 'width:100%;display:block;';
-              } else {
-                el.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s ease;';
-              }
-            });
-            idx = next;
-          }, 550);
-        }, 5000);
+      function advance() {
+        const prev = idx;
+        const next = (idx + 1) % imgs.length;
+
+        // Bring next layer up, start fade in
+        imgEls[next].style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;z-index:2;transition:opacity .6s ease;';
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            imgEls[next].style.opacity = '1';
+          });
+        });
+
+        setTimeout(() => {
+          // next is now fully visible — reset all layers
+          imgEls.forEach((el, i) => {
+            if (i === next) {
+              el.style.cssText = 'width:100%;display:block;position:relative;z-index:1;';
+            } else {
+              el.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;z-index:0;transition:none;';
+            }
+          });
+          idx = next;
+        }, 680);
       }
 
+      function startTimer() {
+        if (timer) return;
+        timer = setInterval(advance, 5000);
+      }
       function stopTimer() {
         clearInterval(timer);
         timer = null;
       }
 
-      // Only animate when visible
       const observer = new IntersectionObserver(entries => {
         entries[0].isIntersecting ? startTimer() : stopTimer();
       }, { threshold: 0.1 });
