@@ -374,6 +374,7 @@ CATEGORY PAGE
 
 @media(max-width:768px){
   #cat-photo-grid { columns: 2; }
+  #cat-photo-grid .pg-item img { width:100%; height:auto; display:block; }
 }
 .photo-grid {
   display:grid;
@@ -1488,34 +1489,34 @@ function openCategory(cat) {
 
   if (cat === 'portraits') {
     document.getElementById('cat-photo-grid').innerHTML = `
-      <div class="pg-item pg-set" data-imgs="tatumn3.jpg,tatumn5.jpg"><img src="tatumn3.jpg" alt="Portrait"></div>
-      <div class="pg-item"><img src="caitdoty.jpg" alt="Portrait"></div>
-      <div class="pg-item"><img src="bola2.jpg" alt="Portrait"></div>
-      <div class="pg-item pg-set" data-imgs="melisa1.jpg,melisa2.jpg"><img src="melisa1.jpg" alt="Portrait"></div>
-      <div class="pg-item"><img src="serena1.jpg" alt="Portrait"></div>
-      <div class="pg-item"><img src="dystine4.jpg" alt="Portrait"></div>
-      <div class="pg-item"><img src="melisa3.jpg" alt="Portrait"></div>
-      <div class="pg-item pg-set" data-imgs="rebeka2.jpg,rebeka6.jpg"><img src="rebeka2.jpg" alt="Portrait"></div>
-      <div class="pg-item"><img src="darah3.jpg" alt="Portrait"></div>
-      <div class="pg-item"><img src="melisa4.jpg" alt="Portrait"></div>
-      <div class="pg-item"><img src="tavish4-bw.jpg" alt="Portrait"></div>
-      <div class="pg-item pg-set" data-imgs="alexa1.jpg,alexa4.jpg,alexa6.jpg"><img src="alexa1.jpg" alt="Portrait"></div>
-      <div class="pg-item"><img src="alexa2.jpg" alt="Portrait"></div>
-      <div class="pg-item"><img src="tat4.jpg" alt="Portrait"></div>
-      <div class="pg-item"><img src="bola4.jpg" alt="Portrait"></div>
-      <div class="pg-item"><img src="gabby4.jpg" alt="Portrait"></div>
-      <div class="pg-item"><img src="dystine10.jpg" alt="Portrait"></div>
-      <div class="pg-item"><img src="iztla1.jpg" alt="Portrait"></div>
-      <div class="pg-item"><img src="madison6-.jpg" alt="Portrait"></div>
-      <div class="pg-item"><img src="emily4-bw.jpg" alt="Portrait"></div>
-      <div class="pg-item pg-set" data-imgs="eleanor1-bw.jpg,eleanor4-bw.jpg"><img src="eleanor1-bw.jpg" alt="Portrait"></div>
-      <div class="pg-item"><img src="emily1.jpg" alt="Portrait"></div>
-      <div class="pg-item"><img src="meley5.jpg" alt="Portrait"></div>
-      <div class="pg-item pg-set" data-imgs="bailie8.jpg,bailie9.jpg,bailie4.jpg"><img src="bailie8.jpg" alt="Portrait"></div>
-      <div class="pg-item"><img src="iztla5.jpg" alt="Portrait"></div>
-      <div class="pg-item"><img src="meley6.jpg" alt="Portrait"></div>
-      <div class="pg-item"><img src="chy2.jpg" alt="Portrait"></div>
-      <div class="pg-item"><img src="emily1%281%29.jpg" alt="Portrait"></div>
+      <div class="pg-item pg-set" data-imgs="tatumn3.jpg,tatumn5.jpg"><img src="tatumn3.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img src="caitdoty.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img src="bola2.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-set" data-imgs="melisa1.jpg,melisa2.jpg"><img src="melisa1.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img src="serena1.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img src="dystine4.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img src="melisa3.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-set" data-imgs="rebeka2.jpg,rebeka6.jpg"><img src="rebeka2.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img src="darah3.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img src="melisa4.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img src="tavish4-bw.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-set" data-imgs="alexa1.jpg,alexa4.jpg,alexa6.jpg"><img src="alexa1.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img src="alexa2.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img src="tat4.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img src="bola4.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img src="gabby4.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img src="dystine10.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img src="iztla1.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img src="madison6-.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img src="emily4-bw.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-set" data-imgs="eleanor1-bw.jpg,eleanor4-bw.jpg"><img src="eleanor1-bw.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img src="emily1.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img src="meley5.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-set" data-imgs="bailie8.jpg,bailie9.jpg,bailie4.jpg"><img src="bailie8.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img src="iztla5.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img src="meley6.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img src="chy2.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img src="emily1%281%29.jpg" alt="Portrait" loading="lazy"></div>
     `;
     document.querySelectorAll('.pg-set').forEach(cell => {
       const imgs = cell.dataset.imgs.split(',');
@@ -1537,6 +1538,7 @@ function openCategory(cat) {
         slide.style.cssText = `position:absolute;inset:0;opacity:${i===0?1:0};transition:opacity 1s ease;`;
         const img = document.createElement('img');
         img.src = src;
+        img.loading = "lazy";
         img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
         slide.appendChild(img);
         container.appendChild(slide);
