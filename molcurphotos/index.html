@@ -333,7 +333,7 @@ CATEGORY PAGE
 .cat-body { padding:48px; max-width:1440px; margin:0 auto; width:100%; }
 .cat-header {
   display:grid; grid-template-columns: auto 1fr;
-  gap:40px; align-items:end; margin-bottom:36px;
+  gap:40px; align-items:end; margin-bottom:0;
 }
 .cat-hero {
   font-family:'Cormorant Garamond',serif;
@@ -345,13 +345,17 @@ CATEGORY PAGE
   .cat-header { grid-template-columns:1fr; gap:16px; }
   .cat-sub { max-width:100%; }
 }
-/* Portrait masonry grid */
+/* Portrait masonry grid — full bleed */
 #cat-photo-grid {
   display:grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 320px;
-  gap:4px;
-  width:100%;
+  grid-auto-rows: 340px;
+  gap:0;
+  width:100vw;
+  position:relative;
+  left:50%;
+  transform:translateX(-50%);
+  margin-top:36px;
 }
 .pg-item {
   overflow:hidden;
@@ -368,7 +372,11 @@ CATEGORY PAGE
 .pg-tall { grid-row: span 2; }
 .pg-wide { grid-column: span 2; }
 
-/* placeholder grid for other categories */
+@media(max-width:768px){
+  #cat-photo-grid { grid-template-columns: repeat(2,1fr); grid-auto-rows:260px; }
+  .pg-wide { grid-column: span 2; }
+  .pg-tall { grid-row: span 1; }
+}
 .photo-grid {
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
@@ -1482,28 +1490,28 @@ function openCategory(cat) {
 
   if (cat === 'portraits') {
     document.getElementById('cat-photo-grid').innerHTML = `
-      <div class="pg-item pg-tall pg-set" data-imgs="portraits/tatumn3.jpg,portraits/tatumn5.jpg"><img src="portraits/tatumn3.jpg" alt="Portrait"></div>
-      <div class="pg-item pg-set" data-imgs="portraits/melisa1.jpg,portraits/melisa2.jpg,portraits/melisa3.jpg,portraits/melisa4.jpg"><img src="portraits/melisa1.jpg" alt="Portrait"></div>
-      <div class="pg-item"><img src="portraits/caitdoty.jpg" alt="Portrait"></div>
-      <div class="pg-item pg-wide pg-set" data-imgs="portraits/bailie8.jpg,portraits/bailie9.jpg,portraits/bailie4.jpg"><img src="portraits/bailie8.jpg" alt="Portrait"></div>
-      <div class="pg-item"><img src="portraits/bola2.jpg" alt="Portrait"></div>
-      <div class="pg-item pg-tall pg-set" data-imgs="portraits/alexa1.jpg,portraits/alexa2.jpg,portraits/alexa4.jpg,portraits/alexa6.jpg"><img src="portraits/alexa1.jpg" alt="Portrait"></div>
-      <div class="pg-item pg-set" data-imgs="portraits/rebeka2.jpg,portraits/rebeka6.jpg"><img src="portraits/rebeka2.jpg" alt="Portrait"></div>
-      <div class="pg-item"><img src="portraits/serena1.jpg" alt="Portrait"></div>
-      <div class="pg-item pg-wide pg-set" data-imgs="portraits/gabby1.jpg,portraits/gabby4.jpg,portraits/gabby2.jpg"><img src="portraits/gabby1.jpg" alt="Portrait"></div>
-      <div class="pg-item"><img src="portraits/dystine4.jpg" alt="Portrait"></div>
-      <div class="pg-item pg-tall pg-set" data-imgs="portraits/eleanor1-bw.jpg,portraits/eleanor4-bw.jpg"><img src="portraits/eleanor1-bw.jpg" alt="Portrait"></div>
-      <div class="pg-item pg-set" data-imgs="portraits/emily4-bw.jpg,portraits/emily1.jpg,portraits/emily1_1_.jpg"><img src="portraits/emily4-bw.jpg" alt="Portrait"></div>
-      <div class="pg-item"><img src="portraits/darah3.jpg" alt="Portrait"></div>
-      <div class="pg-item pg-wide pg-set" data-imgs="portraits/iztla5.jpg,portraits/chy2.jpg"><img src="portraits/iztla5.jpg" alt="Portrait"></div>
-      <div class="pg-item"><img src="portraits/tat4.jpg" alt="Portrait"></div>
-      <div class="pg-item pg-tall"><img src="portraits/tavish4-bw.jpg" alt="Portrait"></div>
-      <div class="pg-item pg-set" data-imgs="portraits/meley5.jpg,portraits/meley6.jpg"><img src="portraits/meley5.jpg" alt="Portrait"></div>
-      <div class="pg-item"><img src="portraits/bola4.jpg" alt="Portrait"></div>
-      <div class="pg-item pg-wide"><img src="portraits/madison6-.jpg" alt="Portrait"></div>
-      <div class="pg-item"><img src="portraits/iztla1.jpg" alt="Portrait"></div>
-      <div class="pg-item"><img src="portraits/gabby1_1_.jpg" alt="Portrait"></div>
-      <div class="pg-item"><img src="portraits/dystine10.jpg" alt="Portrait"></div>
+      <div class="pg-item pg-tall pg-set" data-imgs="tatumn3.jpg,tatumn5.jpg"><img src="tatumn3.jpg" alt="Portrait"></div>
+      <div class="pg-item pg-set" data-imgs="melisa1.jpg,melisa2.jpg,melisa3.jpg,melisa4.jpg"><img src="melisa1.jpg" alt="Portrait"></div>
+      <div class="pg-item"><img src="caitdoty.jpg" alt="Portrait"></div>
+      <div class="pg-item pg-wide pg-set" data-imgs="bailie8.jpg,bailie9.jpg,bailie4.jpg"><img src="bailie8.jpg" alt="Portrait"></div>
+      <div class="pg-item"><img src="bola2.jpg" alt="Portrait"></div>
+      <div class="pg-item pg-tall pg-set" data-imgs="alexa1.jpg,alexa2.jpg,alexa4.jpg,alexa6.jpg"><img src="alexa1.jpg" alt="Portrait"></div>
+      <div class="pg-item pg-set" data-imgs="rebeka2.jpg,rebeka6.jpg"><img src="rebeka2.jpg" alt="Portrait"></div>
+      <div class="pg-item"><img src="serena1.jpg" alt="Portrait"></div>
+      <div class="pg-item pg-wide pg-set" data-imgs="gabby1.jpg,gabby4.jpg,gabby2.jpg"><img src="gabby1.jpg" alt="Portrait"></div>
+      <div class="pg-item"><img src="dystine4.jpg" alt="Portrait"></div>
+      <div class="pg-item pg-tall pg-set" data-imgs="eleanor1-bw.jpg,eleanor4-bw.jpg"><img src="eleanor1-bw.jpg" alt="Portrait"></div>
+      <div class="pg-item pg-set" data-imgs="emily4-bw.jpg,emily1.jpg,emily1_1_.jpg"><img src="emily4-bw.jpg" alt="Portrait"></div>
+      <div class="pg-item"><img src="darah3.jpg" alt="Portrait"></div>
+      <div class="pg-item pg-wide pg-set" data-imgs="iztla5.jpg,chy2.jpg"><img src="iztla5.jpg" alt="Portrait"></div>
+      <div class="pg-item"><img src="tat4.jpg" alt="Portrait"></div>
+      <div class="pg-item pg-tall"><img src="tavish4-bw.jpg" alt="Portrait"></div>
+      <div class="pg-item pg-set" data-imgs="meley5.jpg,meley6.jpg"><img src="meley5.jpg" alt="Portrait"></div>
+      <div class="pg-item"><img src="bola4.jpg" alt="Portrait"></div>
+      <div class="pg-item pg-wide"><img src="madison6-.jpg" alt="Portrait"></div>
+      <div class="pg-item"><img src="iztla1.jpg" alt="Portrait"></div>
+      <div class="pg-item"><img src="gabby1_1_.jpg" alt="Portrait"></div>
+      <div class="pg-item"><img src="dystine10.jpg" alt="Portrait"></div>
     `;
     document.querySelectorAll('.pg-set').forEach(cell => {
       const imgs = cell.dataset.imgs.split(',');
