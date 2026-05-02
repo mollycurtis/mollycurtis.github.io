@@ -104,9 +104,9 @@ LANDING
 }
 .menu-word {
   font-family:'Cormorant Garamond',serif;
-  font-size:clamp(36px, min(7.5vw, 9vh), 100px);
+  font-size:clamp(28px, 9vh, 120px);
   font-weight:300; color:var(--text);
-  line-height:1.05; letter-spacing:-.01em;
+  line-height:1; letter-spacing:-.01em;
   transition:color .3s, letter-spacing .4s var(--ease);
   padding:0;
 }
@@ -120,9 +120,9 @@ LANDING
 /* Landing tagline */
 .landing-tagline {
   text-align:center;
-  margin-bottom:24px;
+  margin-bottom:3vh;
   font-family:'Cormorant Garamond',serif;
-  font-size:clamp(15px,1.4vw,20px);
+  font-size:clamp(13px,1.6vh,20px);
   font-style:italic;
   color:var(--muted);
   letter-spacing:.04em;
@@ -136,7 +136,7 @@ LANDING
   align-items:center;
   justify-content:center;
   gap:8px;
-  margin-top:40px;
+  margin-top:4vh;
 }
 .avail-dot {
   width:8px; height:8px; border-radius:50%;
@@ -730,9 +730,8 @@ RESPONSIVE — global
 }
 @media(min-width:769px){ .footer-socials-mobile { display:none; } }
 @media(max-width:768px){
-  .menu-word { font-size:clamp(40px,11vw,68px); }
-  .landing-tagline { margin-bottom:28px; margin-top:-8px; }
-  .landing-avail { margin-top:52px; }
+  .landing-tagline { margin-bottom:10px; margin-top:0; }
+  .landing-avail { margin-top:16px; }
   .top-nav { padding:18px 20px; }
   .landing-footer { padding:16px 20px; }
   .footer-descriptor { display:none; }
@@ -752,6 +751,7 @@ RESPONSIVE — global
   .top-nav-socials svg { width:18px; height:18px; }
   .footer-cta { font-size:11px; }
 }
+
 </style>
 </head>
 <body>
