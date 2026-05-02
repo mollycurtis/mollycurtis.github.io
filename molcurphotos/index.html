@@ -416,7 +416,7 @@ SHARED BOOK CTA BLOCK
 }
 .book-cta-headline {
   font-family:'Cormorant Garamond',serif;
-  font-size:clamp(26px,2.8vw,42px);
+  font-size:clamp(22px,3.5vh,42px);
   font-weight:300; color:var(--text);
   line-height:1.1; letter-spacing:-.01em;
   white-space:nowrap;
@@ -471,15 +471,15 @@ ABOUT PAGE
 .avail-strip-text { font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:rgba(76,186,122,.9); }
 .about-stats { display:flex; gap:40px; margin-bottom:24px; flex-wrap:wrap; align-items:flex-start; }
 .about-stat { display:flex; flex-direction:column; gap:6px; }
-.sn { font-family:'Cormorant Garamond',serif; font-size:clamp(28px,2.6vw,42px); font-weight:300; color:var(--text); line-height:1; letter-spacing:-.01em; }
-.sl { font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--accent); line-height:1; }
+.sn { font-family:'Cormorant Garamond',serif; font-size:clamp(24px,3.5vh,42px); font-weight:300; color:var(--text); line-height:1; letter-spacing:-.01em; }
+.sl { font-size:clamp(9px,1.2vh,11px); letter-spacing:.18em; text-transform:uppercase; color:var(--accent); line-height:1; }
 .about-main-grid {
   display:grid; grid-template-columns:1fr 1fr;
   gap:48px; align-items:center; margin-bottom:40px;
 }
 .about-copy { display:flex; flex-direction:column; gap:14px; }
-.about-h { font-family:'Cormorant Garamond',serif; font-size:clamp(28px,3vw,44px); font-weight:400; color:var(--text); line-height:1.2; margin:0; }
-.about-p { font-size:15px; color:var(--muted); line-height:1.8; font-weight:300; margin:0; }
+.about-h { font-family:'Cormorant Garamond',serif; font-size:clamp(24px,3.5vh,44px); font-weight:400; color:var(--text); line-height:1.2; margin:0; }
+.about-p { font-size:clamp(13px,1.6vh,16px); color:var(--muted); line-height:1.8; font-weight:300; margin:0; }
 .marketing-social-row { display:flex; align-items:center; gap:28px; flex-wrap:wrap; margin-top:8px; }
 .marketing-link {
   display:inline-flex; align-items:center; gap:8px;
@@ -512,12 +512,12 @@ ABOUT PAGE
 .exp-block { border-top:none; margin-top:0; padding-top:0; }
 .phi-block  { border-top:none; margin-top:0; padding-top:0; }
 .exp-label { font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); margin-bottom:16px; display:block; }
-.exp-headline { font-family:'Cormorant Garamond',serif; font-size:clamp(20px,2vw,28px); font-weight:300; color:var(--text); line-height:1.25; margin-bottom:20px; }
+.exp-headline { font-family:'Cormorant Garamond',serif; font-size:clamp(18px,2.5vh,28px); font-weight:300; color:var(--text); line-height:1.25; margin-bottom:20px; }
 .exp-list { list-style:none; display:flex; flex-direction:column; gap:16px; }
-.exp-list li { display:flex; align-items:flex-start; gap:14px; font-size:15px; color:var(--muted); line-height:1.7; font-weight:300; }
+.exp-list li { display:flex; align-items:flex-start; gap:14px; font-size:clamp(13px,1.6vh,15px); color:var(--muted); line-height:1.7; font-weight:300; }
 .exp-list li::before { content:''; flex-shrink:0; width:18px; height:1px; background:var(--accent); margin-top:12px; }
 .phi-l { font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); margin-bottom:16px; display:block; }
-.phi-q { font-family:'Cormorant Garamond',serif; font-size:clamp(18px,2vw,26px); font-weight:300; font-style:italic; color:var(--text); line-height:1.65; }
+.phi-q { font-family:'Cormorant Garamond',serif; font-size:clamp(16px,2.2vh,26px); font-weight:300; font-style:italic; color:var(--text); line-height:1.65; }
 
 @media(max-width:900px) {
   .about-body { padding:28px 20px; }
@@ -568,8 +568,8 @@ PROJECTS PAGE
 .proj-block { margin-bottom:52px; }
 .proj-num { font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:13px; }
 .proj-header { display:grid; grid-template-columns:auto 1fr; gap:48px; align-items:end; margin-bottom:36px; }
-.proj-title { font-family:'Cormorant Garamond',serif;font-size:clamp(40px,5.5vw,72px);font-weight:300;color:var(--text);line-height:1;letter-spacing:-.01em; }
-.proj-desc { font-size:14px;color:var(--muted);line-height:1.8;font-weight:300;padding-bottom:4px; }
+.proj-title { font-family:'Cormorant Garamond',serif;font-size:clamp(36px,6vh,72px);font-weight:300;color:var(--text);line-height:1;letter-spacing:-.01em; }
+.proj-desc { font-size:clamp(13px,1.6vh,14px);color:var(--muted);line-height:1.8;font-weight:300;padding-bottom:4px; }
 @media(max-width:768px){
   .proj-header { grid-template-columns:1fr; gap:12px; }
   .proj-body { padding:32px 20px; }
@@ -582,7 +582,7 @@ FAQs PAGE
 .faqs-body { padding:48px; max-width:1440px; margin:0 auto; width:100%; }
 .faqs-hero {
   font-family:'Cormorant Garamond',serif;
-  font-size:clamp(28px,3.8vw,58px);
+  font-size:clamp(28px,5vh,58px);
   font-weight:300; color:var(--text);
   line-height:1; margin-bottom:44px; letter-spacing:-.01em; white-space:nowrap;
 }
@@ -595,7 +595,7 @@ FAQs PAGE
   display:flex;align-items:center;justify-content:space-between;
   padding:20px 0; cursor:pointer;
   font-family:'Cormorant Garamond',serif;
-  font-size:clamp(16px,1.6vw,22px);font-weight:300;
+  font-size:clamp(15px,1.8vh,22px);font-weight:300;
   color:var(--text);letter-spacing:.01em;
   background:none;border:none;width:100%;text-align:left;transition:color .2s;
 }
@@ -630,12 +630,12 @@ CONTACT PAGE
 .contact-body { padding:48px; max-width:1440px; margin:0 auto; width:100%; }
 .contact-hero {
   font-family:'Cormorant Garamond',serif;
-  font-size:clamp(36px,4.5vw,68px);
+  font-size:clamp(32px,6vh,68px);
   font-weight:300;color:var(--text);
   line-height:1;letter-spacing:-.01em; margin-bottom:8px; white-space:nowrap;
 }
 @media(max-width:700px){ .contact-hero { white-space:normal; font-size:clamp(36px,10vw,60px); } }
-.contact-sub { color:var(--muted); line-height:1.7; margin-bottom:28px; font-style:italic; font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:300; }
+.contact-sub { color:var(--muted); line-height:1.7; margin-bottom:28px; font-style:italic; font-family:'Cormorant Garamond',serif; font-size:clamp(15px,2vh,18px); font-weight:300; }
 .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; }
 .contact-left { display:flex; flex-direction:column; }
 .contact-right-inner { position:sticky; top:24px; }
