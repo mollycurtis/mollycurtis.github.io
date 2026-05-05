@@ -21,34 +21,27 @@
 
 html, body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; min-height:100vh; }
 
-/* NAV */
 .site-nav {
   display:flex; align-items:center; justify-content:space-between;
-  padding:20px 48px;
-  border-bottom:1px solid var(--border);
+  padding:20px 48px; border-bottom:1px solid var(--border);
   position:sticky; top:0; background:var(--bg); z-index:10;
 }
 .nav-brand {
-  font-family:'Cormorant Garamond',serif;
-  font-size:26px; font-weight:300; font-style:italic;
-  letter-spacing:.04em; color:var(--text);
+  font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:300;
+  font-style:italic; letter-spacing:.04em; color:var(--text);
   text-decoration:none; transition:color .2s;
 }
 .nav-brand:hover { color:var(--accent); }
 .nav-back {
   font-size:11px; letter-spacing:.16em; text-transform:uppercase;
-  color:var(--muted); text-decoration:none;
-  transition:color .2s; font-family:'DM Sans',sans-serif;
+  color:var(--muted); text-decoration:none; transition:color .2s;
 }
 .nav-back:hover { color:var(--text); }
 
-/* HERO */
 .journal-hero {
   padding:64px 48px 48px;
   border-bottom:1px solid var(--border);
-  display:flex; align-items:flex-end; justify-content:space-between; gap:40px;
 }
-.journal-hero-left {}
 .journal-eyebrow {
   font-size:11px; letter-spacing:.22em; text-transform:uppercase;
   color:var(--accent); margin-bottom:16px; display:block;
@@ -56,49 +49,29 @@ html, body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans
 .journal-title {
   font-family:'Cormorant Garamond',serif;
   font-size:clamp(52px,8vw,100px);
-  font-weight:300; letter-spacing:-.02em;
-  line-height:.95; color:var(--text);
+  font-weight:300; letter-spacing:-.02em; line-height:.95; color:var(--text);
 }
 .journal-sub {
-  font-size:15px; color:var(--muted); font-weight:300;
-  line-height:1.7; max-width:420px;
-  font-family:'Cormorant Garamond',serif;
-  font-style:italic; font-size:18px;
-  margin-top:20px;
-}
-.journal-count {
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(72px,10vw,130px);
-  font-weight:300; color:rgba(201,169,110,.12);
-  line-height:1; letter-spacing:-.02em;
-  flex-shrink:0; align-self:flex-end;
+  font-family:'Cormorant Garamond',serif; font-style:italic;
+  font-size:18px; color:var(--muted); font-weight:300;
+  line-height:1.7; margin-top:20px; white-space:nowrap;
 }
 
-/* POSTS GRID */
-.posts-wrap {
-  padding:0 48px 80px;
-}
+.posts-wrap { padding:0 48px 80px; }
 
 .posts-grid {
   display:grid;
   grid-template-columns:repeat(auto-fill, minmax(340px,1fr));
-  gap:0;
-  border-left:1px solid var(--border);
+  gap:0; border-left:1px solid var(--border);
 }
 
 .post-card {
-  border-right:1px solid var(--border);
-  border-bottom:1px solid var(--border);
-  padding:36px 32px;
-  text-decoration:none;
-  display:block;
-  position:relative;
-  transition:background .25s;
-  overflow:hidden;
+  border-right:1px solid var(--border); border-bottom:1px solid var(--border);
+  padding:36px 32px; text-decoration:none; display:block;
+  position:relative; transition:background .25s; overflow:hidden;
 }
 .post-card::before {
-  content:'';
-  position:absolute; top:0; left:0; right:0; height:2px;
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
   background:linear-gradient(to right, var(--accent), transparent);
   opacity:0; transition:opacity .3s;
 }
@@ -106,22 +79,13 @@ html, body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans
 .post-card:hover::before { opacity:1; }
 
 .post-card:first-child {
-  grid-column:1/-1;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:48px;
-  align-items:center;
-  padding:48px;
+  grid-column:1/-1; display:grid;
+  grid-template-columns:1fr 1fr; gap:48px;
+  align-items:center; padding:48px;
 }
 
-.post-meta {
-  display:flex; align-items:center; gap:16px;
-  margin-bottom:18px;
-}
-.post-date {
-  font-size:11px; letter-spacing:.16em; text-transform:uppercase;
-  color:var(--muted);
-}
+.post-meta { display:flex; align-items:center; gap:16px; margin-bottom:18px; }
+.post-date { font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); }
 .post-tag {
   font-size:10px; letter-spacing:.14em; text-transform:uppercase;
   color:var(--accent); border:1px solid rgba(201,169,110,.3);
@@ -129,70 +93,47 @@ html, body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans
 }
 
 .post-title {
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(22px,2.2vw,32px);
-  font-weight:300; color:var(--text);
-  line-height:1.2; letter-spacing:-.01em;
-  margin-bottom:14px;
-  transition:color .2s;
+  font-family:'Cormorant Garamond',serif; font-size:clamp(22px,2.2vw,32px);
+  font-weight:300; color:var(--text); line-height:1.2;
+  letter-spacing:-.01em; margin-bottom:14px; transition:color .2s;
 }
 .post-card:hover .post-title { color:var(--accent); }
-
-.post-card:first-child .post-title {
-  font-size:clamp(32px,3.5vw,52px);
-}
+.post-card:first-child .post-title { font-size:clamp(32px,3.5vw,52px); }
 
 .post-excerpt {
   font-size:14px; color:var(--muted);
-  line-height:1.8; font-weight:300;
-  margin-bottom:24px;
+  line-height:1.8; font-weight:300; margin-bottom:24px;
 }
 
 .post-read {
   font-size:11px; letter-spacing:.18em; text-transform:uppercase;
-  color:var(--accent); display:inline-flex; align-items:center; gap:8px;
-  transition:gap .25s var(--ease);
+  color:var(--accent); display:inline-flex; align-items:center; gap:10px;
+  border:1px solid rgba(201,169,110,.4); padding:10px 20px; border-radius:999px;
+  transition:background .25s, color .25s, gap .25s var(--ease);
 }
-.post-card:hover .post-read { gap:14px; }
+.post-card:hover .post-read { background:var(--accent); color:var(--bg); gap:14px; }
 
-/* featured post visual */
 .post-featured-visual {
-  aspect-ratio:4/3;
-  background:var(--bg2);
-  border:1px solid var(--border);
-  display:flex; align-items:center; justify-content:center;
-  position:relative; overflow:hidden;
+  aspect-ratio:4/3; background:var(--bg2);
+  border:1px solid var(--border); overflow:hidden; position:relative;
 }
-.post-featured-visual::after {
-  content:'';
-  position:absolute; inset:0;
-  background:linear-gradient(135deg, rgba(201,169,110,.08) 0%, transparent 60%);
-}
-.post-visual-num {
-  font-family:'Cormorant Garamond',serif;
-  font-size:120px; font-weight:300;
-  color:rgba(201,169,110,.15); line-height:1;
-  letter-spacing:-.04em;
-}
+.post-featured-visual svg { width:100%; height:100%; display:block; }
 
-/* FOOTER */
 .journal-footer {
-  border-top:1px solid var(--border);
-  padding:28px 48px;
+  border-top:1px solid var(--border); padding:28px 48px;
   display:flex; align-items:center; justify-content:space-between;
 }
 .footer-copy { font-size:11px; letter-spacing:.12em; color:var(--muted); }
 .footer-back {
   font-size:12px; letter-spacing:.16em; text-transform:uppercase;
   color:var(--muted); text-decoration:none; transition:color .2s;
-  font-family:'DM Sans',sans-serif;
 }
 .footer-back:hover { color:var(--accent); }
 
 @media(max-width:768px) {
   .site-nav { padding:16px 20px; }
-  .journal-hero { padding:40px 20px 36px; flex-direction:column; gap:0; }
-  .journal-count { display:none; }
+  .journal-hero { padding:40px 20px 36px; }
+  .journal-sub { white-space:normal; }
   .posts-wrap { padding:0 20px 60px; }
   .posts-grid { border-left:none; }
   .post-card { border-left:1px solid var(--border); padding:28px 20px; }
@@ -210,34 +151,64 @@ html, body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans
 </nav>
 
 <div class="journal-hero">
-  <div class="journal-hero-left">
-    <span class="journal-eyebrow">molcurphotos</span>
-    <h1 class="journal-title">Journal</h1>
-    <p class="journal-sub">Thoughts on photography, creativity, and the business of making images.</p>
-  </div>
-  <div class="journal-count">05</div>
+  <span class="journal-eyebrow">molcurphotos</span>
+  <h1 class="journal-title">Journal</h1>
+  <p class="journal-sub">Thoughts on photography, creativity, and the business of making images.</p>
 </div>
 
 <div class="posts-wrap">
   <div class="posts-grid">
 
-    <!-- Post 1 — Featured -->
-    <a class="post-card" href="crediting-photographers.html">
+    <!-- FEATURED -->
+    <a class="post-card" href="modeling-portfolio.html">
       <div>
         <div class="post-meta">
-          <span class="post-date">Jan 31, 2024</span>
-          <span class="post-tag">Industry</span>
+          <span class="post-date">Dec 16, 2023</span>
+          <span class="post-tag">Models</span>
         </div>
-        <h2 class="post-title">The Importance of Crediting Photographers and All Creators</h2>
-        <p class="post-excerpt">As photographers, we've all experienced that moment — scrolling social media and finding our own work posted without credit. Here's why crediting creators matters more than you might think.</p>
+        <h2 class="post-title">Modeling Portfolio: 10 Photos That Every Model Needs</h2>
+        <p class="post-excerpt">A strong portfolio is your most important marketing tool as a model. Here's a breakdown of the essential shots you need to showcase versatility and land more work.</p>
         <span class="post-read">Read More →</span>
       </div>
       <div class="post-featured-visual">
-        <span class="post-visual-num">01</span>
+        <img src="../Annette-studio2.jpg" alt="Editorial portrait by Molly Curtis" style="width:100%;height:100%;object-fit:cover;object-position:center;">
       </div>
     </a>
 
     <!-- Post 2 -->
+    <a class="post-card" href="what-to-wear-portrait-session.html">
+      <div class="post-meta">
+        <span class="post-date">Mar 12, 2026</span>
+        <span class="post-tag">Style Guide</span>
+      </div>
+      <h2 class="post-title">What to Wear for Your Portrait Session in Minnesota</h2>
+      <p class="post-excerpt">Outfit choices can make or break a portrait session. Here's exactly what to wear — and what to avoid — so your photos look timeless.</p>
+      <span class="post-read">Read More →</span>
+    </a>
+
+    <!-- Post 3 -->
+    <a class="post-card" href="best-locations-portrait-photos-minnesota.html">
+      <div class="post-meta">
+        <span class="post-date">Feb 4, 2026</span>
+        <span class="post-tag">Locations</span>
+      </div>
+      <h2 class="post-title">Best Locations for Portrait Photos in Minnesota</h2>
+      <p class="post-excerpt">From Minnehaha Falls to the riverfront in Eau Claire, these are my go-to portrait locations across Minnesota and Wisconsin.</p>
+      <span class="post-read">Read More →</span>
+    </a>
+
+    <!-- Post 4 -->
+    <a class="post-card" href="crediting-photographers.html">
+      <div class="post-meta">
+        <span class="post-date">Jan 31, 2024</span>
+        <span class="post-tag">Industry</span>
+      </div>
+      <h2 class="post-title">The Importance of Crediting Photographers and All Creators</h2>
+      <p class="post-excerpt">As photographers, we've all experienced finding our own work posted without credit. Here's why crediting creators matters more than you might think.</p>
+      <span class="post-read">Read More →</span>
+    </a>
+
+    <!-- Post 5 -->
     <a class="post-card" href="ai-photography.html">
       <div class="post-meta">
         <span class="post-date">Jan 9, 2024</span>
@@ -248,7 +219,7 @@ html, body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans
       <span class="post-read">Read More →</span>
     </a>
 
-    <!-- Post 3 -->
+    <!-- Post 6 -->
     <a class="post-card" href="marketing-photography-business.html">
       <div class="post-meta">
         <span class="post-date">Dec 29, 2023</span>
@@ -259,18 +230,7 @@ html, body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans
       <span class="post-read">Read More →</span>
     </a>
 
-    <!-- Post 4 -->
-    <a class="post-card" href="modeling-portfolio.html">
-      <div class="post-meta">
-        <span class="post-date">Dec 16, 2023</span>
-        <span class="post-tag">Models</span>
-      </div>
-      <h2 class="post-title">Modeling Portfolio: 10 Photos That Every Model Needs</h2>
-      <p class="post-excerpt">Refreshing your modeling portfolio? Here's a breakdown of the essential shots every model needs to showcase versatility and land more work.</p>
-      <span class="post-read">Read More →</span>
-    </a>
-
-    <!-- Post 5 -->
+    <!-- Post 7 -->
     <a class="post-card" href="struggling-with-inspiration.html">
       <div class="post-meta">
         <span class="post-date">Dec 16, 2023</span>
