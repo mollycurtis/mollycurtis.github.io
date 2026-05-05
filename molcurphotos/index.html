@@ -264,16 +264,19 @@ PORTFOLIO — full-bleed tiles
 .ptile:hover { filter:brightness(1.18); }
 .ptile::before {
   content:''; position:absolute; inset:0;
-  background:linear-gradient(to top, rgba(0,0,0,.7) 0%, rgba(0,0,0,.05) 55%);
+  background:linear-gradient(to top, rgba(0,0,0,.85) 0%, rgba(0,0,0,.15) 55%);
   z-index:1; transition:opacity .35s;
 }
-.ptile:hover::before { opacity:.55; }
+.ptile:hover::before { opacity:.6; }
 .ptile-bg {
   position:absolute; inset:0;
   background-size:cover; background-position:center;
-  transition:transform .6s var(--ease);
+  transition:transform .6s var(--ease), filter .4s var(--ease);
+  filter:grayscale(100%);
 }
-.ptile:hover .ptile-bg { transform:scale(1.05); }
+.ptile-portraits .ptile-bg { filter:grayscale(0%); }
+.ptile:hover .ptile-bg { transform:scale(1.05); filter:grayscale(0%); }
+.ptile-portraits:hover .ptile-bg { filter:grayscale(0%); }
 .ptile-label {
   position:relative; z-index:2;
   font-family:'Cormorant Garamond',serif;
@@ -281,6 +284,7 @@ PORTFOLIO — full-bleed tiles
   font-weight:300; color:white;
   letter-spacing:.02em; line-height:1;
   transition:letter-spacing .35s var(--ease);
+  text-shadow: 0 2px 12px rgba(0,0,0,.6);
 }
 .ptile:hover .ptile-label { letter-spacing:.06em; }
 .ptile-num {
@@ -839,17 +843,17 @@ RESPONSIVE — global
             <span class="ptile-label">Portraits</span>
           </div>
           <div class="ptile ptile-senior" data-cat="senior">
-            <div class="ptile-bg"></div>
+            <div class="ptile-bg" style="background-image:url(maddie2.jpg)"></div>
             <span class="ptile-num">02</span>
             <span class="ptile-label">Senior</span>
           </div>
           <div class="ptile ptile-weddings" data-cat="weddings">
-            <div class="ptile-bg"></div>
+            <div class="ptile-bg" style="background-image:url(DSC01700.JPG)"></div>
             <span class="ptile-num">03</span>
             <span class="ptile-label">Weddings</span>
           </div>
           <div class="ptile ptile-business" data-cat="business">
-            <div class="ptile-bg"></div>
+            <div class="ptile-bg" style="background-image:url(sarah-headshot2.jpg)"></div>
             <span class="ptile-num">04</span>
             <span class="ptile-label">Business</span>
           </div>
