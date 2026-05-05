@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Importance of Crediting Photographers — molcurphotos Journal</title>
+<meta name="description" content="As photographers, we've all experienced finding our work posted without credit. Here's why crediting creators matters more than you might think.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; -webkit-font-smoothing:antialiased; }
+:root {
+  --bg:#111111; --bg2:#171717; --text:#f5f2ee;
+  --muted:rgba(245,242,238,0.38); --accent:#c9a96e;
+  --border:rgba(245,242,238,0.1); --ease:cubic-bezier(.4,0,.2,1);
+}
+html,body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; min-height:100vh; }
+
+.site-nav {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:20px 48px; border-bottom:1px solid var(--border);
+  position:sticky; top:0; background:var(--bg); z-index:10;
+}
+.nav-brand { font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:300; font-style:italic; letter-spacing:.04em; color:var(--text); text-decoration:none; transition:color .2s; }
+.nav-brand:hover { color:var(--accent); }
+.nav-back { font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color .2s; }
+.nav-back:hover { color:var(--text); }
+
+.post-hero {
+  max-width:760px; margin:0 auto;
+  padding:64px 48px 0;
+}
+.post-tag {
+  font-size:10px; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--accent); border:1px solid rgba(201,169,110,.3);
+  padding:4px 12px; border-radius:999px; display:inline-block; margin-bottom:24px;
+}
+.post-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(36px,5vw,64px);
+  font-weight:300; color:var(--text);
+  line-height:1.1; letter-spacing:-.02em; margin-bottom:24px;
+}
+.post-byline {
+  display:flex; align-items:center; gap:20px;
+  padding:20px 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+  margin-bottom:48px;
+}
+.byline-name { font-size:13px; color:var(--text); font-weight:400; }
+.byline-date { font-size:12px; color:var(--muted); }
+.byline-dot { width:3px; height:3px; border-radius:50%; background:var(--border); }
+
+.post-body {
+  max-width:760px; margin:0 auto;
+  padding:0 48px 80px;
+}
+.post-body p {
+  font-size:17px; color:rgba(245,242,238,.8);
+  line-height:1.9; font-weight:300; margin-bottom:28px;
+}
+.post-body h2 {
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(22px,2.5vw,32px);
+  font-weight:300; color:var(--text);
+  line-height:1.2; margin:48px 0 16px;
+  letter-spacing:-.01em;
+}
+.post-body blockquote {
+  border-left:2px solid var(--accent);
+  padding:4px 0 4px 24px; margin:36px 0;
+}
+.post-body blockquote p {
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px; font-style:italic;
+  color:var(--text); margin-bottom:0; line-height:1.6;
+}
+.post-body ul { margin:0 0 28px 0; padding-left:0; list-style:none; display:flex; flex-direction:column; gap:10px; }
+.post-body ul li { display:flex; align-items:baseline; gap:12px; font-size:16px; color:rgba(245,242,238,.75); line-height:1.7; font-weight:300; }
+.post-body ul li::before { content:''; flex-shrink:0; width:16px; height:1px; background:var(--accent); margin-top:12px; }
+
+.post-divider { border:none; border-top:1px solid var(--border); margin:48px 0; }
+
+.post-nav {
+  max-width:760px; margin:0 auto;
+  padding:0 48px 48px;
+  display:flex; justify-content:space-between; align-items:center;
+  border-top:1px solid var(--border); padding-top:40px;
+}
+.post-nav-link { font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color .2s; }
+.post-nav-link:hover { color:var(--accent); }
+
+.site-footer { border-top:1px solid var(--border); padding:24px 48px; display:flex; align-items:center; justify-content:space-between; }
+.footer-copy { font-size:11px; letter-spacing:.12em; color:var(--muted); }
+.footer-back { font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color .2s; }
+.footer-back:hover { color:var(--accent); }
+
+@media(max-width:768px) {
+  .site-nav { padding:16px 20px; }
+  .post-hero { padding:40px 20px 0; }
+  .post-body { padding:0 20px 60px; }
+  .post-nav { padding:32px 20px 40px; }
+  .site-footer { padding:20px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="../" class="nav-brand">molcurphotos</a>
+  <a href="index.html" class="nav-back">← Journal</a>
+</nav>
+
+<div class="post-hero">
+  <span class="post-tag">Industry</span>
+  <h1 class="post-title">The Importance of Crediting Photographers and All Creators</h1>
+  <div class="post-byline">
+    <span class="byline-name">Molly Curtis</span>
+    <span class="byline-dot"></span>
+    <span class="byline-date">January 31, 2024</span>
+  </div>
+</div>
+
+<div class="post-body">
+  <p>As photographers, we've all experienced that moment when we stumble upon a photo of our own work while casually scrolling through social media, and then notice there's no credit. No mention of our name or business anywhere in the post. That initial feeling of happiness seeing our work posted turns into confusion. If you're a photographer or creator, you probably know the exact feeling.</p>
+
+  <p>It's important to clarify that this post is not about blaming anyone — it's about educating those who have posted photos without giving credit to a photographer or creator. This is often due to lack of awareness and forgetfulness. The best way to think of it: this is how we market ourselves. Here are some reasons why crediting is so important:</p>
+
+  <h2>Your Photos Are Our Artwork</h2>
+  <p>Imagine being a painter, with your artwork displayed in a museum or gallery. Now imagine standing in a crowd, silently observing people admiring your work — but your name is nowhere to be found. This is a feeling shared by photographers when it comes to each and every photo we deliver to our clients. We've invested countless hours in training, learning, capturing, and editing to offer you photographs that resonate with you. Our work is our artwork.</p>
+
+  <h2>Referrals Are the Root of Our Business</h2>
+  <p>Within the photography world, relationships form our profession. When people seek a photographer, they often begin by looking through their friends' social media photos. People want someone they can trust and whose work resonates with them. The act of crediting us not only makes it easier for others to discover our work — it's a huge part of how new clients find their way to our services. It creates a sense of connection and trust, reinforcing photographers wanting to work with that client again.</p>
+
+  <h2>It's Just the Respectful Thing To Do</h2>
+  <p>To put it simply, crediting the photos you share is just the respectful act to do. When you look through a magazine, every photo you encounter is shown with the name of the photographer. It's an industry standard and a practice that supports giving credit to an artist when their work is put to use. As photographers, we don't expect lengthy paragraphs each time you share our photos. All we want is acknowledgment — to respect our work enough to add our name in the caption or tag us.</p>
+
+  <blockquote><p>"I paid for the photos so I don't need to credit you."</p></blockquote>
+
+  <p>Some might argue that paying for a service means they don't need to credit the creator. But crediting goes beyond the transactional nature of business. It's about recognizing and acknowledging the artistic efforts put into each photo. Regardless of payment, showing appreciation by crediting the work fosters a sense of collaboration and respect among all parties involved. It's a simple act that goes a long way in building professional relationships.</p>
+
+  <hr class="post-divider">
+
+  <p><strong style="color:var(--text);font-weight:500;">Photographers:</strong> Be patient with your clients. They may occasionally forget to credit you, but it's essential to approach this situation with understanding rather than frustration.</p>
+
+  <p><strong style="color:var(--text);font-weight:500;">Models:</strong> Photographers notice when you never credit photographers, makeup and hair artists, studios, or other creators. This could potentially give photographers a reason not to want to work with you.</p>
+
+  <p>Crediting photographers isn't just about courtesy — it's a fundamental practice that shows respect for the creators and the dedication they invest in their work. When you're uncertain about the usage rights of the photos you share, it's always important to ask the photographer what they expect. In most cases, photographers are thrilled to have their work showcased, and taking a moment to give credit is a great way to form a professional relationship.</p>
+</div>
+
+<div class="post-nav">
+  <a href="index.html" class="post-nav-link">← All Posts</a>
+  <a href="ai-photography.html" class="post-nav-link">Next Post →</a>
+</div>
+
+<footer class="site-footer">
+  <span class="footer-copy">© 2026 Molly Curtis</span>
+  <a href="../" class="footer-back">← molcurphotos</a>
+</footer>
+
+</body>
+</html>
