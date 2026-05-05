@@ -41,6 +41,9 @@ html, body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans
 .journal-hero {
   padding:64px 48px 48px;
   border-bottom:1px solid var(--border);
+  max-width:1100px;
+  margin:0 auto;
+  width:100%;
 }
 .journal-eyebrow {
   font-size:11px; letter-spacing:.22em; text-transform:uppercase;
@@ -57,12 +60,13 @@ html, body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans
   line-height:1.7; margin-top:20px; white-space:nowrap;
 }
 
-.posts-wrap { padding:0 48px 80px; }
+.posts-wrap { padding:0 48px 80px; max-width:1100px; margin:0 auto; }
 
 .posts-grid {
   display:grid;
-  grid-template-columns:repeat(auto-fill, minmax(340px,1fr));
-  gap:0; border-left:1px solid var(--border);
+  grid-template-columns:repeat(3, 1fr);
+  gap:0;
+  border-left:1px solid var(--border);
 }
 
 .post-card {
@@ -117,6 +121,8 @@ html, body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans
   aspect-ratio:3/4; background:var(--bg2);
   border:1px solid var(--border); overflow:hidden; position:relative;
   max-height:380px; width:auto; justify-self:center;
+  border-radius:8px;
+}
 }
 .post-featured-visual svg { width:100%; height:100%; display:block; }
 
@@ -133,10 +139,10 @@ html, body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans
 
 @media(max-width:768px) {
   .site-nav { padding:16px 20px; }
-  .journal-hero { padding:40px 20px 36px; }
+  .journal-hero { padding:40px 20px 36px; max-width:100%; }
   .journal-sub { white-space:normal; }
-  .posts-wrap { padding:0 20px 60px; }
-  .posts-grid { border-left:none; }
+  .posts-wrap { padding:0 20px 60px; max-width:100%; }
+  .posts-grid { grid-template-columns:1fr; border-left:none; }
   .post-card { border-left:1px solid var(--border); padding:28px 20px; }
   .post-card:first-child { grid-template-columns:1fr; gap:24px; padding:28px 20px; }
   .post-featured-visual { display:none; }
