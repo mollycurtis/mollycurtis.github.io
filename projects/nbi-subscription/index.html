@@ -215,7 +215,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 64px;
-      align-items: start;
+      align-items: center;
     }
 
     /* ── BEFORE — side-by-side on desktop ── */
@@ -509,6 +509,60 @@
       .results-row { grid-template-columns: 1fr; }
       .conclusion { padding: 36px 26px; }
     }
+    /* ── LIGHTBOX ── */
+    .img-trigger {
+      display: block;
+      cursor: zoom-in;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: box-shadow 0.2s;
+    }
+    .img-trigger:hover {
+      box-shadow: 0 6px 28px rgba(9,34,84,0.18);
+    }
+    .img-trigger .img-block {
+      border: none;
+      border-radius: 0;
+      margin: 0;
+    }
+
+    .lightbox-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: rgba(9,34,84,0.88);
+      backdrop-filter: blur(6px);
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      cursor: zoom-out;
+    }
+    .lightbox-overlay.open {
+      display: flex;
+    }
+    .lightbox-img {
+      max-width: 92vw;
+      max-height: 88vh;
+      border-radius: 10px;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+      display: block;
+    }
+    .lightbox-close {
+      position: fixed;
+      top: 20px;
+      right: 28px;
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.7);
+      font-size: 32px;
+      line-height: 1;
+      cursor: pointer;
+      transition: color 0.15s;
+      z-index: 1000;
+    }
+    .lightbox-close:hover { color: #fff; }
   </style>
 </head>
 <body>
@@ -569,10 +623,12 @@
       <div class="before-layout">
 
         <div class="before-image-col">
-          <div class="img-block">
-            <img src="/projects/nbi-subscription/Before-Subscription.PNG" alt="NBI subscription page before redesign" />
-            <div class="img-caption">Before — state selector, buried billing toggle, spreadsheet-style comparison table</div>
-          </div>
+          <a class="img-trigger" onclick="openLightbox('/projects/nbi-subscription/Before-Subscription.PNG')" href="javascript:void(0)" aria-label="View full size: before screenshot">
+            <div class="img-block">
+              <img src="/projects/nbi-subscription/Before-Subscription.PNG" alt="NBI subscription page before redesign" />
+              <div class="img-caption">Before — state selector, buried billing toggle, spreadsheet-style comparison table</div>
+            </div>
+          </a>
         </div>
 
         <div class="before-copy-col">
@@ -665,10 +721,12 @@
         </div>
 
         <div class="process-image-col">
-          <div class="img-block">
-            <img src="/projects/nbi-subscription/After-Subscription.PNG" alt="NBI subscription page after redesign" />
-            <div class="img-caption">After — prominent billing toggle, large pricing, expandable plan details, animated social proof, sticky CTA</div>
-          </div>
+          <a class="img-trigger" onclick="openLightbox('/projects/nbi-subscription/After-Subscription.PNG')" href="javascript:void(0)" aria-label="View full size: after screenshot">
+            <div class="img-block">
+              <img src="/projects/nbi-subscription/After-Subscription.PNG" alt="NBI subscription page after redesign" />
+              <div class="img-caption">After — prominent billing toggle, large pricing, expandable plan details, animated social proof, sticky CTA</div>
+            </div>
+          </a>
         </div>
 
       </div>
@@ -722,6 +780,12 @@
     </a>
   </div>
 
+  <!-- LIGHTBOX -->
+  <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">×</button>
+    <img class="lightbox-img" id="lightbox-img" src="" alt="Full size preview" onclick="event.stopPropagation()" />
+  </div>
+
   <script>
     const sections = document.querySelectorAll('.section');
     const observer = new IntersectionObserver((entries) => {
@@ -733,6 +797,19 @@
       });
     }, { threshold: 0.08 });
     sections.forEach(s => observer.observe(s));
+
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeLightbox();
+    });
   </script>
 
 </body>
