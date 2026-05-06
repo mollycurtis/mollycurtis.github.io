@@ -66,14 +66,14 @@
     }
     .nav-back:hover { color: var(--teal-dark); }
 
-    /* ── HERO — narrower than sections ── */
+    /* ── HERO — shorter height ── */
     .hero {
       margin-top: 57px;
       position: relative;
       width: 100%;
-      height: 38vw;
-      max-height: 380px;
-      min-height: 220px;
+      height: 28vw;
+      max-height: 290px;
+      min-height: 200px;
       overflow: hidden;
       background: var(--navy);
     }
@@ -99,7 +99,7 @@
     /* hero inner — matches main sections width */
     .hero-inner {
       position: relative;
-      max-width: 1180px;
+      max-width: 1300px;
       margin: 0 auto;
       padding: 0 56px;
       height: 100%;
@@ -165,16 +165,16 @@
       .hero-title { white-space: normal; }
     }
 
-    /* ── MAIN — wider than before ── */
+    /* ── MAIN — wider ── */
     main {
-      max-width: 1180px;
+      max-width: 1300px;
       margin: 0 auto;
       padding: 0 56px 0;
     }
 
     /* ── SECTION BASE ── */
     .section {
-      padding: 80px 0 0;
+      padding: 56px 0 0;
       opacity: 0;
       transform: translateY(24px);
       transition: opacity 0.65s ease, transform 0.65s ease;
@@ -224,7 +224,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 48px;
-      align-items: start;
+      align-items: center;
       margin-top: 40px;
     }
 
@@ -303,7 +303,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 48px;
-      align-items: start;
+      align-items: center;
       margin-top: 40px;
     }
 
@@ -324,6 +324,7 @@
       border-bottom: 1px solid var(--border);
     }
     .step:first-child { border-top: 1px solid var(--border); }
+    .step:last-child { border-bottom: none; }
     .step-num {
       font-size: 13px;
       font-weight: 700;
@@ -372,7 +373,7 @@
 
     /* ── CONCLUSION ── */
     .conclusion {
-      margin-top: 80px;
+      margin-top: 56px;
       padding: 52px 60px;
       background: var(--navy);
       border-radius: 14px;
@@ -417,11 +418,11 @@
     .divider {
       height: 1px;
       background: var(--border);
-      margin-top: 80px;
+      margin-top: 56px;
     }
 
     .grad-divider {
-      margin-top: 80px;
+      margin-top: 56px;
       height: 1px;
       background: linear-gradient(90deg,
         transparent 0%,
@@ -709,7 +710,7 @@
   </main>
 
   <!-- GRADIENT DIVIDER -->
-  <div style="max-width:1180px; margin:0 auto; padding:0 56px;">
+  <div style="max-width:1300px; margin:0 auto; padding:0 56px;">
     <div class="grad-divider"></div>
   </div>
 
