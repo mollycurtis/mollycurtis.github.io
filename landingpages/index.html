@@ -6,7 +6,7 @@
   <title>Landing Pages — Molly Curtis</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=Poppins:wght@300;400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet" />
 
   <style>
     :root {
@@ -133,13 +133,9 @@
       transition: opacity 0.55s ease, transform 0.55s ease, box-shadow 0.3s ease;
     }
     .project-card.visible { opacity: 1; transform: none; }
-    .project-card:not(.coming-soon):hover {
+    .project-card:hover {
       box-shadow: 0 16px 52px rgba(0,0,0,0.09);
       transform: translateY(-4px);
-    }
-    .project-card.coming-soon {
-      opacity: 0.4 !important;
-      pointer-events: none;
     }
 
     /* ── CARD THUMBNAIL ── */
@@ -153,7 +149,7 @@
       justify-content: center;
     }
 
-    /* NBI branded thumb */
+    /* ── NBI thumb ── */
     .card-thumb.nbi {
       background: #092254;
       flex-direction: column;
@@ -222,23 +218,17 @@
       color: rgba(211,240,248,0.8);
     }
 
-    /* Coming soon thumb (generic gray — no longer used but kept for fallback) */
-    .card-thumb.cs-thumb {
-      background: var(--surface);
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    /* ── Branded coming-soon thumbs ── */
+    /* ── Shared branded thumb base ── */
     .branded-thumb-inner {
       position: relative;
       z-index: 2;
       padding: 0;
     }
     .branded-thumb-title {
-      font-size: clamp(15px, 1.8vw, 22px);
+      font-size: clamp(18px, 2.4vw, 26px);
+      font-weight: 700;
       line-height: 1.2;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
     .branded-thumb-pills {
       display: flex;
@@ -246,20 +236,117 @@
       flex-wrap: wrap;
     }
     .branded-pill {
-      font-size: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
       font-weight: 500;
-      padding: 3px 11px;
+      padding: 4px 12px;
       border-radius: 20px;
       border: 1px solid;
     }
+    .thumb-badge {
+      position: absolute;
+      top: 14px; left: 14px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 13px;
+      border-radius: 20px;
+      backdrop-filter: blur(8px);
+      z-index: 2;
+    }
 
-    /* Product — warm beige / olive */
-    .card-thumb.thumb-product {
-      background: #2a2518;
+    /* ── AI Learning Hub thumb — deep crimson/red + grid lines ── */
+    .card-thumb.thumb-ai {
+      background: #180808;
       flex-direction: column;
       align-items: flex-start;
       justify-content: flex-end;
-      padding: 22px 26px;
+      padding: 24px 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .card-thumb.thumb-ai::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(200,40,40,0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200,40,40,0.07) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+    .card-thumb.thumb-ai::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 75% 60% at 80% 18%, rgba(200,40,40,0.28) 0%, transparent 58%),
+        radial-gradient(ellipse 50% 50% at 15% 85%, rgba(160,30,30,0.18) 0%, transparent 55%);
+    }
+    .thumb-ai-glow { display: none; }
+
+    /* ── Marketing Conference thumb — near-black + dot grid ── */
+    .card-thumb.thumb-signal {
+      background: #0c0c0c;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-end;
+      padding: 24px 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .card-thumb.thumb-signal::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(180,255,80,0.18) 1px, transparent 1px);
+      background-size: 22px 22px;
+    }
+    .card-thumb.thumb-signal::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 55% at 78% 20%, rgba(180,255,80,0.14) 0%, transparent 55%),
+        radial-gradient(ellipse 45% 45% at 18% 82%, rgba(140,220,60,0.08) 0%, transparent 55%);
+    }
+
+    /* ── Photography thumb — molcurphotos brand: dark + gold ── */
+    .card-thumb.thumb-photo {
+      background: #111111;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-end;
+      padding: 24px 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .card-thumb.thumb-photo::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 55% at 80% 15%, rgba(201,169,110,0.18) 0%, transparent 58%),
+        radial-gradient(ellipse 45% 45% at 15% 85%, rgba(201,169,110,0.1) 0%, transparent 55%);
+    }
+    /* subtle noise texture for film feel */
+    .card-thumb.thumb-photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    /* ── Product Page thumb — editorial serif feel, off-white/ink ── */
+    .card-thumb.thumb-product {
+      background: #f7f4ef;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-end;
+      padding: 24px 28px;
       position: relative;
       overflow: hidden;
     }
@@ -268,103 +355,16 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse 80% 60% at 80% 20%, rgba(160,148,100,0.18) 0%, transparent 60%),
-        radial-gradient(ellipse 50% 50% at 20% 80%, rgba(120,130,90,0.12) 0%, transparent 55%);
+        radial-gradient(ellipse 70% 55% at 85% 15%, rgba(180,155,110,0.22) 0%, transparent 55%),
+        radial-gradient(ellipse 40% 40% at 15% 85%, rgba(150,130,90,0.12) 0%, transparent 55%);
     }
     .card-thumb.thumb-product::after {
       content: '';
       position: absolute;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      opacity: 0.35;
-    }
-
-    /* Lead Gen — deep navy AI-focused */
-    .card-thumb.thumb-leadgen {
-      background: #040f24;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: flex-end;
-      padding: 22px 26px;
-      position: relative;
-      overflow: hidden;
-    }
-    .card-thumb.thumb-leadgen::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(0,105,165,0.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,105,165,0.08) 1px, transparent 1px);
-      background-size: 32px 32px;
-    }
-    .card-thumb.thumb-leadgen::after {
-      content: '';
-      position: absolute;
-      right: -40px; top: -40px;
-      width: 200px; height: 200px;
+      right: 28px; top: 22px;
+      width: 60px; height: 60px;
+      border: 1.5px solid rgba(100,80,50,0.15);
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(0,180,220,0.18) 0%, transparent 70%);
-    }
-
-    /* Interactive — charcoal with pink-purple glow */
-    .card-thumb.thumb-interactive {
-      background: #0e0e12;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: flex-end;
-      padding: 22px 26px;
-      position: relative;
-      overflow: hidden;
-    }
-    .card-thumb.thumb-interactive::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 60% 50% at 75% 30%, rgba(185,79,200,0.22) 0%, transparent 60%),
-        radial-gradient(ellipse 40% 40% at 25% 75%, rgba(232,68,90,0.15) 0%, transparent 55%);
-    }
-    .card-thumb.thumb-interactive::after {
-      content: '';
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 160px; height: 160px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(185,79,200,0.12) 0%, transparent 70%);
-      filter: blur(20px);
-    }
-    .cs-icon {
-      width: 38px; height: 38px;
-      border-radius: 8px;
-      border: 2px dashed var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .cs-icon svg {
-      width: 16px; height: 16px;
-      stroke: var(--muted);
-      fill: none;
-      stroke-width: 1.5;
-    }
-    .cs-label {
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--muted);
-    }
-    .cs-badge {
-      position: absolute;
-      top: 14px; right: 14px;
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 4px 12px;
-      border-radius: 20px;
-      background: var(--border);
-      color: var(--muted);
     }
 
     /* ── CARD BODY ── */
@@ -389,37 +389,62 @@
       color: var(--body);
       opacity: 0.65;
     }
+
+    /* ── STRONGER ARROW CTA ── */
     .card-arrow {
-      width: 30px; height: 30px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--dark);
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      padding: 7px 10px 7px 14px;
+      border-radius: 30px;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s, color 0.2s;
+    }
+    .card-arrow-icon {
+      width: 26px; height: 26px;
       border-radius: 50%;
-      border: 1px solid var(--border);
+      background: var(--dark);
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+      flex-shrink: 0;
+      transition: transform 0.2s;
     }
-    .project-card:not(.coming-soon):hover .card-arrow {
+    .card-arrow-icon svg {
+      width: 12px; height: 12px;
+      stroke: var(--white);
+      fill: none;
+      stroke-width: 2.5;
+    }
+    .project-card:hover .card-arrow {
       background: var(--dark);
       border-color: var(--dark);
+      color: var(--white);
+    }
+    .project-card:hover .card-arrow-icon {
+      background: rgba(255,255,255,0.2);
       transform: translate(2px, -2px);
     }
-    .card-arrow svg {
-      width: 13px; height: 13px;
-      stroke: var(--muted);
-      fill: none;
-      stroke-width: 2;
-      transition: stroke 0.2s;
-    }
-    .project-card:not(.coming-soon):hover .card-arrow svg { stroke: var(--white); }
 
-    /* ── FOOTER — exact match to brand guide hub ── */
+    /* Per-card hover accent colors */
+    .card-nbi:hover .card-arrow       { background: #0069a5; border-color: #0069a5; color: #fff; }
+    .card-summit:hover .card-arrow    { background: #5a8a1a; border-color: #5a8a1a; color: #fff; }
+    .card-photo:hover .card-arrow     { background: #7a5c28; border-color: #7a5c28; color: #fff; }
+    .card-ai:hover .card-arrow        { background: #8b2020; border-color: #8b2020; color: #fff; }
+
+    /* ── FOOTER ── */
     .site-footer {
       margin-top: 100px;
       border-top: 1px solid rgba(0,0,0,0.08);
       padding: 3.5rem 2.5rem 3rem;
       background: white;
     }
-
     .footer-explore-label {
       font-size: 0.68rem;
       font-weight: 700;
@@ -428,7 +453,6 @@
       color: #999;
       margin-bottom: 2rem;
     }
-
     .footer-links {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -436,7 +460,6 @@
       background: rgba(0,0,0,0.08);
       border: 1px solid rgba(0,0,0,0.08);
     }
-
     .footer-link-item {
       background: white;
       padding: 1.6rem 1.8rem;
@@ -446,10 +469,8 @@
       text-decoration: none;
       color: #111;
       transition: background 0.2s;
-      border-right: none;
     }
     .footer-link-item:hover { background: #f5f5f3; }
-
     .footer-link-meta {
       display: flex;
       flex-direction: column;
@@ -494,11 +515,8 @@
       fill: none;
       stroke-width: 2;
     }
-
     .footer-bottom {
       margin-top: 2rem;
-      padding: 0;
-      border-top: none;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -538,11 +556,9 @@
       .header-title { white-space: normal; }
       .grid-wrap { padding: 40px 22px 0; }
       .project-grid { grid-template-columns: 1fr; gap: 20px; }
-      .footer-explore-label { padding: 32px 22px 16px; }
       .footer-links { grid-template-columns: 1fr; }
-      .footer-link-item { padding: 22px 22px; border-right: none; border-bottom: 1px solid var(--border); }
-      .footer-link-item:last-child { border-bottom: none; }
-      .footer-bottom { padding: 18px 22px; }
+      .footer-link-item { padding: 22px; }
+      .footer-bottom { padding: 18px 0; }
     }
   </style>
 </head>
@@ -567,8 +583,8 @@
   <div class="grid-wrap">
     <div class="project-grid">
 
-      <!-- CARD 1 — NBI Subscription (live) -->
-      <a class="project-card" href="https://mollycurtis.github.io/projects/nbi-subscription/">
+      <!-- CARD 1 — NBI Subscription -->
+      <a class="project-card card-nbi" href="https://mollycurtis.github.io/projects/nbi-subscription/">
         <div class="card-thumb nbi">
           <span class="nbi-thumb-badge">NBI · 2025</span>
           <div class="nbi-thumb-inner">
@@ -585,79 +601,91 @@
           <div class="card-footer">
             <span class="card-client">National Business Institute</span>
             <div class="card-arrow">
-              <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+              View Case Study
+              <div class="card-arrow-icon">
+                <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+              </div>
             </div>
           </div>
         </div>
       </a>
 
-      <!-- CARD 2 — Product Page Redesign -->
-      <a class="project-card coming-soon" href="#">
-        <div class="card-thumb thumb-product">
-          <span class="cs-badge" style="background:rgba(180,170,150,0.25);color:rgba(245,240,228,0.75);border:1px solid rgba(245,240,228,0.2);">Coming Soon</span>
-          <div class="branded-thumb-inner">
-            <div class="branded-thumb-title" style="font-family:'DM Sans',sans-serif;font-weight:700;color:#f5f0e4;">Product Page Redesign</div>
+      <a class="project-card card-summit" href="#">
+        <div class="card-thumb thumb-signal">
+          <span class="thumb-badge" style="background:rgba(160,255,60,0.12);color:rgba(190,255,100,0.95);border:1px solid rgba(190,255,100,0.2);">2026</span>
+          <div class="branded-thumb-inner" style="position:relative;z-index:2;">
+            <div class="branded-thumb-title" style="font-family:'DM Sans',sans-serif;font-weight:600;color:#ffffff;letter-spacing:-0.02em;">Marketing Summit</div>
             <div class="branded-thumb-pills">
-              <span class="branded-pill" style="border-color:rgba(160,155,120,0.4);color:rgba(245,240,210,0.75);">Ecommerce</span>
-              <span class="branded-pill" style="border-color:rgba(160,155,120,0.4);color:rgba(245,240,210,0.75);">Conversion</span>
-              <span class="branded-pill" style="border-color:rgba(160,155,120,0.4);color:rgba(245,240,210,0.75);">Product</span>
+              <span class="branded-pill" style="border-color:rgba(180,255,80,0.3);color:rgba(190,255,100,0.85);">Registration</span>
+              <span class="branded-pill" style="border-color:rgba(180,255,80,0.3);color:rgba(190,255,100,0.85);">Event Page</span>
+              <span class="branded-pill" style="border-color:rgba(180,255,80,0.3);color:rgba(190,255,100,0.85);">Conversion</span>
             </div>
           </div>
         </div>
         <div class="card-body">
-          <p class="card-desc">Simplified product messaging, clarified value, and improved purchase flow to drive conversions.</p>
+          <p class="card-desc">A marketing conference landing page — designed to drive registrations through urgency, social proof, and a clear speaker-first hierarchy.</p>
           <div class="card-footer">
-            <span class="card-client">—</span>
+            <span class="card-client">Marketing Summit</span>
             <div class="card-arrow">
-              <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+              View Case Study
+              <div class="card-arrow-icon">
+                <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+              </div>
             </div>
           </div>
         </div>
       </a>
 
-      <!-- CARD 3 — Lead Gen Hub -->
-      <a class="project-card coming-soon" href="#">
-        <div class="card-thumb thumb-leadgen">
-          <span class="cs-badge" style="background:rgba(0,105,133,0.4);color:#a8dff0;border:1px solid rgba(168,223,240,0.2);">Coming Soon</span>
+      <!-- CARD 3 — Photography Portfolio -->
+      <a class="project-card card-photo" href="https://mollycurtis.github.io/molcurphotos/">
+        <div class="card-thumb thumb-photo">
+          <span class="thumb-badge" style="background:rgba(201,169,110,0.18);color:rgba(201,169,110,0.95);border:1px solid rgba(201,169,110,0.25);">Personal · 2026</span>
           <div class="branded-thumb-inner">
-            <div class="branded-thumb-title" style="font-family:'Poppins',sans-serif;font-weight:700;color:#ffffff;">Lead Gen Hub</div>
+            <div class="branded-thumb-title" style="font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:300;font-size:clamp(22px,2.8vw,34px);color:#f5f2ee;letter-spacing:0.02em;">molcurphotos</div>
             <div class="branded-thumb-pills">
-              <span class="branded-pill" style="border-color:rgba(168,223,240,0.35);color:rgba(168,223,240,0.8);">Lead Generation</span>
-              <span class="branded-pill" style="border-color:rgba(168,223,240,0.35);color:rgba(168,223,240,0.8);">Content</span>
-              <span class="branded-pill" style="border-color:rgba(168,223,240,0.35);color:rgba(168,223,240,0.8);">UX</span>
+              <span class="branded-pill" style="border-color:rgba(201,169,110,0.35);color:rgba(201,169,110,0.85);">Photography</span>
+              <span class="branded-pill" style="border-color:rgba(201,169,110,0.35);color:rgba(201,169,110,0.85);">Portfolio</span>
+              <span class="branded-pill" style="border-color:rgba(201,169,110,0.35);color:rgba(201,169,110,0.85);">Web Design</span>
             </div>
           </div>
         </div>
         <div class="card-body">
-          <p class="card-desc">Structured content and navigation to guide users from discovery to engagement and lead capture.</p>
+          <p class="card-desc">A full photography portfolio site — built to showcase my freelance work with a focus on clean presentation and a strong visual identity.</p>
           <div class="card-footer">
-            <span class="card-client">—</span>
+            <span class="card-client">Molly Curtis Photography</span>
             <div class="card-arrow">
-              <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+              View Site
+              <div class="card-arrow-icon">
+                <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+              </div>
             </div>
           </div>
         </div>
       </a>
 
-      <!-- CARD 4 — Interactive Web Experience -->
-      <a class="project-card coming-soon" href="#">
-        <div class="card-thumb thumb-interactive">
-          <span class="cs-badge" style="background:rgba(185,79,200,0.25);color:rgba(230,180,255,0.8);border:1px solid rgba(230,180,255,0.15);">Coming Soon</span>
-          <div class="branded-thumb-inner">
-            <div class="branded-thumb-title" style="font-family:'DM Sans',sans-serif;font-weight:700;color:#ffffff;">Interactive Web Experience</div>
+      <!-- CARD 4 — AI Learning Hub -->
+      <a class="project-card card-ai" href="https://nbi-sems.com/pages/ai-learning-hub">
+        <div class="card-thumb thumb-ai">
+          <div class="thumb-ai-glow"></div>
+          <span class="thumb-badge" style="background:rgba(180,30,30,0.35);color:rgba(255,160,160,0.95);border:1px solid rgba(255,160,160,0.2);z-index:2;position:absolute;">NBI · 2026</span>
+          <div class="branded-thumb-inner" style="position:relative;z-index:2;">
+            <div class="branded-thumb-title" style="font-family:'Poppins',sans-serif;color:#ffe8e8;">Lead Magnet Hub</div>
             <div class="branded-thumb-pills">
-              <span class="branded-pill" style="border-color:rgba(200,130,255,0.35);color:rgba(220,170,255,0.8);">Interaction Design</span>
-              <span class="branded-pill" style="border-color:rgba(200,130,255,0.35);color:rgba(220,170,255,0.8);">Motion</span>
-              <span class="branded-pill" style="border-color:rgba(200,130,255,0.35);color:rgba(220,170,255,0.8);">Web</span>
+              <span class="branded-pill" style="border-color:rgba(220,80,80,0.35);color:rgba(255,160,160,0.85);">Content Strategy</span>
+              <span class="branded-pill" style="border-color:rgba(220,80,80,0.35);color:rgba(255,160,160,0.85);">Page Design</span>
+              <span class="branded-pill" style="border-color:rgba(220,80,80,0.35);color:rgba(255,160,160,0.85);">Lead Gen</span>
             </div>
           </div>
         </div>
         <div class="card-body">
-          <p class="card-desc">Designed a scroll-based experience using motion and transitions to guide users through a product story.</p>
+          <p class="card-desc">Built a multi-section hub for NBI's AI learning offerings — combining free courses, CLE courses, quizzes, blog content, and more into one page designed to capture and convert at every stage.</p>
           <div class="card-footer">
-            <span class="card-client">—</span>
+            <span class="card-client">National Business Institute</span>
             <div class="card-arrow">
-              <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+              View Case Study
+              <div class="card-arrow-icon">
+                <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+              </div>
             </div>
           </div>
         </div>
@@ -700,7 +728,10 @@
     </div>
     <div class="footer-bottom">
       <span class="footer-bottom-left">Landing Pages · Molly Curtis</span>
-      <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" class="footer-back-top"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:4px;margin-bottom:1px;"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>Back to top</a>
+      <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" class="footer-back-top">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:4px;margin-bottom:1px;"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+        Back to top
+      </a>
     </div>
   </footer>
 
