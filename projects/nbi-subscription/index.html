@@ -22,7 +22,6 @@
       --muted:     #7a8fa8;
       --text:      #1a2a3a;
       --font:      'Poppins', sans-serif;
-      /* gradient ending at a noticeably lighter blue */
       --title-grad: linear-gradient(90deg, #092254 0%, #1B3666 50%, #2196c9 100%);
     }
 
@@ -67,14 +66,14 @@
     }
     .nav-back:hover { color: var(--teal-dark); }
 
-    /* ── HERO ── */
+    /* ── HERO — narrower than sections ── */
     .hero {
       margin-top: 57px;
       position: relative;
       width: 100%;
       height: 38vw;
-      max-height: 420px;
-      min-height: 240px;
+      max-height: 380px;
+      min-height: 220px;
       overflow: hidden;
       background: var(--navy);
     }
@@ -97,7 +96,15 @@
       opacity: 0.1;
     }
 
-    /* top-left deliverable */
+    /* hero inner — matches main sections width */
+    .hero-inner {
+      position: relative;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 56px;
+      height: 100%;
+    }
+
     .hero-top-left {
       position: absolute;
       top: 28px;
@@ -126,7 +133,6 @@
       margin-bottom: 4px;
     }
 
-    /* top-right year */
     .hero-top-right {
       position: absolute;
       top: 28px;
@@ -141,7 +147,6 @@
       color: rgba(255,255,255,0.9);
     }
 
-    /* bottom-left title */
     .hero-bottom {
       position: absolute;
       bottom: 36px;
@@ -160,9 +165,9 @@
       .hero-title { white-space: normal; }
     }
 
-    /* ── MAIN ── */
+    /* ── MAIN — wider than before ── */
     main {
-      max-width: 1040px;
+      max-width: 1180px;
       margin: 0 auto;
       padding: 0 56px 0;
     }
@@ -185,7 +190,6 @@
       margin-bottom: 12px;
     }
 
-    /* gradient section titles — 1.5x bigger than before (was clamp 22/34, now 24/38) */
     .section-title {
       font-size: clamp(24px, 3.2vw, 38px);
       font-weight: 700;
@@ -214,17 +218,38 @@
       align-items: start;
     }
 
-    /* ── PROBLEMS ── */
+    /* ── BEFORE — side-by-side on desktop ── */
+    /* image LEFT, pain-points RIGHT */
+    .before-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+      margin-top: 40px;
+    }
+
+    .before-image-col {
+      position: sticky;
+      top: 80px; /* accounts for nav */
+    }
+
+    .before-copy-col {}
+
+    /* intro copy above the two-col layout */
+    .before-intro {
+      margin-bottom: 0;
+    }
+
+    /* ── PROBLEMS GRID — now single col inside the right col ── */
     .problems-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-top: 36px;
+      gap: 14px;
     }
     .problem-card {
       background: var(--surface);
       border-radius: 10px;
-      padding: 22px;
+      padding: 20px;
       border-top: 3px solid var(--border);
       transition: border-color 0.2s;
     }
@@ -243,19 +268,18 @@
     }
     .problem-title {
       font-weight: 600;
-      font-size: 14px;
+      font-size: 13.5px;
       margin-bottom: 6px;
       color: var(--navy);
     }
     .problem-desc {
-      font-size: 13px;
+      font-size: 12.5px;
       line-height: 1.65;
       color: #4a6275;
     }
 
     /* ── IMAGE BLOCKS ── */
     .img-block {
-      margin-top: 36px;
       border-radius: 10px;
       overflow: hidden;
       border: 1px solid var(--border);
@@ -273,13 +297,30 @@
       border-top: 1px solid var(--border);
     }
 
+    /* ── PROCESS — side-by-side on desktop ── */
+    /* copy LEFT, image RIGHT */
+    .process-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+      margin-top: 40px;
+    }
+
+    .process-copy-col {}
+
+    .process-image-col {
+      position: sticky;
+      top: 80px;
+    }
+
     /* ── STEPS ── */
-    .steps { margin-top: 36px; }
+    .steps { margin-top: 0; }
     .step {
       display: grid;
-      grid-template-columns: 52px 1fr;
-      gap: 24px;
-      padding: 26px 0;
+      grid-template-columns: 46px 1fr;
+      gap: 20px;
+      padding: 22px 0;
       border-bottom: 1px solid var(--border);
     }
     .step:first-child { border-top: 1px solid var(--border); }
@@ -292,12 +333,12 @@
     }
     .step-content h4 {
       font-weight: 600;
-      font-size: 14.5px;
+      font-size: 14px;
       margin-bottom: 6px;
       color: var(--navy);
     }
     .step-content p {
-      font-size: 14px;
+      font-size: 13.5px;
       line-height: 1.7;
       color: #4a6275;
     }
@@ -357,7 +398,6 @@
       margin-bottom: 14px;
       position: relative;
     }
-    /* conclusion title also 1.5x bigger (was clamp 18/28, now 20/32) */
     .conclusion-title {
       font-size: clamp(20px, 2.8vw, 32px);
       font-weight: 700;
@@ -373,14 +413,13 @@
       font-weight: 300;
     }
 
-    /* ── PLAIN DIVIDER ── */
+    /* ── DIVIDERS ── */
     .divider {
       height: 1px;
       background: var(--border);
       margin-top: 80px;
     }
 
-    /* ── GRADIENT DIVIDER (above footer CTA) ── */
     .grad-divider {
       margin-top: 80px;
       height: 1px;
@@ -436,6 +475,28 @@
     }
 
     /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      /* before section: stack */
+      .before-layout {
+        grid-template-columns: 1fr;
+      }
+      .before-image-col {
+        position: static;
+        /* image goes second on mobile — reorder */
+        order: 2;
+      }
+      .before-copy-col {
+        order: 1;
+      }
+      /* process section: stack */
+      .process-layout {
+        grid-template-columns: 1fr;
+      }
+      .process-image-col {
+        position: static;
+      }
+    }
+
     @media (max-width: 768px) {
       nav { padding: 16px 20px; }
       main { padding: 0 20px 0; }
@@ -456,30 +517,27 @@
     <a href="https://mollycurtis.github.io/landingpages/" class="nav-back">← Landing Pages</a>
   </nav>
 
-  <!-- HERO -->
+  <!-- HERO — narrower via hero-inner -->
   <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-top-left">
+        <div class="hero-meta-label">Deliverable</div>
+        <div>
+          <span class="hero-tag">Landing Page</span>
+          <span class="hero-tag">UX Strategy</span>
+          <span class="hero-tag">Copywriting</span>
+        </div>
+      </div>
 
-    <!-- top-left: deliverable -->
-    <div class="hero-top-left">
-      <div class="hero-meta-label">Deliverable</div>
-      <div>
-        <span class="hero-tag">Landing Page</span>
-        <span class="hero-tag">UX Strategy</span>
-        <span class="hero-tag">Copywriting</span>
+      <div class="hero-top-right">
+        <div class="hero-meta-label">Year</div>
+        <div class="hero-year-value">2025</div>
+      </div>
+
+      <div class="hero-bottom">
+        <h1 class="hero-title">NBI Subscription Page Redesign</h1>
       </div>
     </div>
-
-    <!-- top-right: year -->
-    <div class="hero-top-right">
-      <div class="hero-meta-label">Year</div>
-      <div class="hero-year-value">2025</div>
-    </div>
-
-    <!-- bottom-left: title -->
-    <div class="hero-bottom">
-      <h1 class="hero-title">NBI Subscription Page Redesign</h1>
-    </div>
-
   </div>
 
   <main>
@@ -504,44 +562,53 @@
     <section class="section" id="problem">
       <div class="section-eyebrow">The Before</div>
       <h2 class="section-title">Six friction points killing the conversion.</h2>
-      <p class="section-body">The original page broke down on execution. Here's what I flagged before touching a single pixel.</p>
+      <p class="section-body before-intro">The original page broke down on execution. Here's what I flagged before touching a single pixel.</p>
 
-      <div class="problems-grid">
-        <div class="problem-card">
-          <div class="problem-num">1</div>
-          <div class="problem-title">Pointless state selector</div>
-          <div class="problem-desc">A dropdown filtering by state — but the difference was only a handful of courses. Not a deciding factor for anyone, just noise that added an unnecessary decision.</div>
-        </div>
-        <div class="problem-card">
-          <div class="problem-num">2</div>
-          <div class="problem-title">Hidden billing toggle</div>
-          <div class="problem-desc">The monthly/annual toggle was visually buried, leading to constant customer service calls from people who didn't realize annual billing existed.</div>
-        </div>
-        <div class="problem-card">
-          <div class="problem-num">3</div>
-          <div class="problem-title">Tiny, forgettable pricing</div>
-          <div class="problem-desc">Prices were tucked into a dense comparison table in small gray font. On a $99–$129/month page, pricing needs to be the hero — not an afterthought.</div>
-        </div>
-        <div class="problem-card">
-          <div class="problem-num">4</div>
-          <div class="problem-title">Spreadsheet-style hero</div>
-          <div class="problem-desc">The above-the-fold section looked like a feature matrix. Row after row of checkmarks with no emotional reason for a visitor to care.</div>
-        </div>
-        <div class="problem-card">
-          <div class="problem-num">5</div>
-          <div class="problem-title">Marketing mush mid-page</div>
-          <div class="problem-desc">Generic benefit statements that read like filler. Nothing specific or memorable that moved a visitor closer to subscribing.</div>
-        </div>
-        <div class="problem-card">
-          <div class="problem-num">6</div>
-          <div class="problem-title">Zero social proof</div>
-          <div class="problem-desc">No testimonials, no logos, no names behind any claim. Visitors were expected to convert on product copy alone.</div>
-        </div>
-      </div>
+      <!-- side-by-side: image left, cards right -->
+      <div class="before-layout">
 
-      <div class="img-block">
-        <img src="/projects/nbi-subscription/Before-Subscription.PNG" alt="NBI subscription page before redesign" />
-        <div class="img-caption">Before — state selector, buried billing toggle, spreadsheet-style comparison table</div>
+        <div class="before-image-col">
+          <div class="img-block">
+            <img src="/projects/nbi-subscription/Before-Subscription.PNG" alt="NBI subscription page before redesign" />
+            <div class="img-caption">Before — state selector, buried billing toggle, spreadsheet-style comparison table</div>
+          </div>
+        </div>
+
+        <div class="before-copy-col">
+          <div class="problems-grid">
+            <div class="problem-card">
+              <div class="problem-num">1</div>
+              <div class="problem-title">Pointless state selector</div>
+              <div class="problem-desc">A dropdown filtering by state — but the difference was only a handful of courses. Not a deciding factor for anyone, just noise that added an unnecessary decision.</div>
+            </div>
+            <div class="problem-card">
+              <div class="problem-num">2</div>
+              <div class="problem-title">Hidden billing toggle</div>
+              <div class="problem-desc">The monthly/annual toggle was visually buried, leading to constant customer service calls from people who didn't realize annual billing existed.</div>
+            </div>
+            <div class="problem-card">
+              <div class="problem-num">3</div>
+              <div class="problem-title">Tiny, forgettable pricing</div>
+              <div class="problem-desc">Prices were tucked into a dense comparison table in small gray font. On a $99–$129/month page, pricing needs to be the hero — not an afterthought.</div>
+            </div>
+            <div class="problem-card">
+              <div class="problem-num">4</div>
+              <div class="problem-title">Spreadsheet-style hero</div>
+              <div class="problem-desc">The above-the-fold section looked like a feature matrix. Row after row of checkmarks with no emotional reason for a visitor to care.</div>
+            </div>
+            <div class="problem-card">
+              <div class="problem-num">5</div>
+              <div class="problem-title">Marketing mush mid-page</div>
+              <div class="problem-desc">Generic benefit statements that read like filler. Nothing specific or memorable that moved a visitor closer to subscribing.</div>
+            </div>
+            <div class="problem-card">
+              <div class="problem-num">6</div>
+              <div class="problem-title">Zero social proof</div>
+              <div class="problem-desc">No testimonials, no logos, no names behind any claim. Visitors were expected to convert on product copy alone.</div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -553,47 +620,56 @@
       <h2 class="section-title">Identify. Simplify. Build.</h2>
       <p class="section-body">I spotted the problem, connected it to business impact, proposed the redesign, and built it myself.</p>
 
-      <div class="steps">
-        <div class="step">
-          <div class="step-num">01</div>
-          <div class="step-content">
-            <h4>Audit & root cause analysis</h4>
-            <p>I mapped every element against what a visitor needs to convert: clear pricing, a confident value statement, and social proof. Anything that didn't serve those three goals was a candidate for removal.</p>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">02</div>
-          <div class="step-content">
-            <h4>Reduce decisions, increase clarity</h4>
-            <p>I removed the state selector entirely and redesigned the billing toggle as a prominent, clearly labeled visual switcher. Pricing moved front-and-center at a size that actually commands attention.</p>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">03</div>
-          <div class="step-content">
-            <h4>Simplify the plan comparison</h4>
-            <p>Replaced the spreadsheet table with a clean card layout focused on key differentiators. I also added an expandable dropdown on the All Inclusive card — a circle + icon reveals the full list of what's included in the OnDemand pass, so visitors can see everything they get without the page getting cluttered.</p>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">04</div>
-          <div class="step-content">
-            <h4>Replace filler copy with real credibility</h4>
-            <p>The generic benefits section came out. In its place: real firm logos in an animated scrolling bar, animated counters on the three key stats (40+ years, 100K+ reviews, 1,000+ new courses/year), and testimonials with actual names attached.</p>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">05</div>
-          <div class="step-content">
-            <h4>Layer in UX details that do real work</h4>
-            <p>Added a sticky CTA that appears as visitors scroll toward the bottom of the page, giving them a direct path back up to subscribe without having to scroll all the way back. Small detail — measurable impact.</p>
-          </div>
-        </div>
-      </div>
+      <!-- side-by-side: copy left, image right -->
+      <div class="process-layout">
 
-      <div class="img-block" style="margin-top:36px;">
-        <img src="/projects/nbi-subscription/After-Subscription.PNG" alt="NBI subscription page after redesign" />
-        <div class="img-caption">After — prominent billing toggle, large pricing, expandable plan details, animated social proof, sticky CTA</div>
+        <div class="process-copy-col">
+          <div class="steps">
+            <div class="step">
+              <div class="step-num">01</div>
+              <div class="step-content">
+                <h4>Audit & root cause analysis</h4>
+                <p>I mapped every element against what a visitor needs to convert: clear pricing, a confident value statement, and social proof. Anything that didn't serve those three goals was a candidate for removal.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">02</div>
+              <div class="step-content">
+                <h4>Reduce decisions, increase clarity</h4>
+                <p>I removed the state selector entirely and redesigned the billing toggle as a prominent, clearly labeled visual switcher. Pricing moved front-and-center at a size that actually commands attention.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">03</div>
+              <div class="step-content">
+                <h4>Simplify the plan comparison</h4>
+                <p>Replaced the spreadsheet table with a clean card layout focused on key differentiators. I also added an expandable dropdown on the All Inclusive card — a circle + icon reveals the full list of what's included in the OnDemand pass, so visitors can see everything they get without the page getting cluttered.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">04</div>
+              <div class="step-content">
+                <h4>Replace filler copy with real credibility</h4>
+                <p>The generic benefits section came out. In its place: real firm logos in an animated scrolling bar, animated counters on the three key stats (40+ years, 100K+ reviews, 1,000+ new courses/year), and testimonials with actual names attached.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">05</div>
+              <div class="step-content">
+                <h4>Layer in UX details that do real work</h4>
+                <p>Added a sticky CTA that appears as visitors scroll toward the bottom of the page, giving them a direct path back up to subscribe without having to scroll all the way back. Small detail — measurable impact.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="process-image-col">
+          <div class="img-block">
+            <img src="/projects/nbi-subscription/After-Subscription.PNG" alt="NBI subscription page after redesign" />
+            <div class="img-caption">After — prominent billing toggle, large pricing, expandable plan details, animated social proof, sticky CTA</div>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -633,7 +709,7 @@
   </main>
 
   <!-- GRADIENT DIVIDER -->
-  <div style="max-width:1040px; margin:0 auto; padding:0 56px;">
+  <div style="max-width:1180px; margin:0 auto; padding:0 56px;">
     <div class="grad-divider"></div>
   </div>
 
