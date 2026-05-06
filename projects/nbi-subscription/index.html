@@ -374,6 +374,7 @@
     /* ── CONCLUSION ── */
     .conclusion {
       margin-top: 56px;
+      max-width: 1100px;
       padding: 52px 60px;
       background: var(--navy);
       border-radius: 14px;
@@ -476,38 +477,70 @@
     }
 
     /* ── RESPONSIVE ── */
+
+    /* Tablet: 960px — stack side-by-side layouts */
     @media (max-width: 960px) {
-      /* before section: stack */
+      main { padding: 0 36px 0; }
+      .hero-inner { padding: 0 36px; }
+      .hero-top-left { left: 36px; }
+      .hero-top-right { right: 36px; }
+      .hero-bottom { left: 36px; }
+
       .before-layout {
         grid-template-columns: 1fr;
+        margin-top: 32px;
       }
-      .before-image-col {
-        position: static;
-        /* image goes second on mobile — reorder */
-        order: 2;
-      }
-      .before-copy-col {
-        order: 1;
-      }
-      /* process section: stack */
+      .before-image-col { position: static; order: 2; }
+      .before-copy-col { order: 1; }
+
       .process-layout {
         grid-template-columns: 1fr;
+        margin-top: 32px;
       }
-      .process-image-col {
-        position: static;
-      }
+      .process-image-col { position: static; }
     }
 
-    @media (max-width: 768px) {
-      nav { padding: 16px 20px; }
-      main { padding: 0 20px 0; }
-      .hero-top-left { left: 20px; top: 20px; }
-      .hero-top-right { right: 20px; top: 20px; }
-      .hero-bottom { left: 20px; bottom: 24px; }
-      .objective-layout { grid-template-columns: 1fr; gap: 24px; }
+    /* Mid-tablet: problems grid 1-col */
+    @media (max-width: 700px) {
       .problems-grid { grid-template-columns: 1fr; }
-      .results-row { grid-template-columns: 1fr; }
-      .conclusion { padding: 36px 26px; }
+    }
+
+    /* Mobile: 768px */
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; }
+      .nav-logo { font-size: 12px; }
+      .nav-back { font-size: 11px; letter-spacing: 0.04em; }
+
+      main { padding: 0 20px 0; }
+
+      .hero { min-height: 180px; }
+      .hero-inner { padding: 0 20px; }
+      .hero-top-left { left: 20px; top: 18px; }
+      .hero-top-right { right: 20px; top: 18px; }
+      .hero-bottom { left: 20px; bottom: 22px; }
+      .hero-title {
+        white-space: normal;
+        font-size: clamp(20px, 5.5vw, 30px);
+      }
+
+      .section { padding: 40px 0 0; }
+      .objective-layout { grid-template-columns: 1fr; gap: 16px; }
+      .before-layout, .process-layout { margin-top: 24px; gap: 28px; }
+      .problems-grid { grid-template-columns: 1fr; gap: 12px; }
+      .results-row { grid-template-columns: 1fr; gap: 12px; }
+      .result-card { padding: 28px 14px; }
+
+      .conclusion { padding: 32px 24px; max-width: 100%; margin-top: 40px; }
+      .divider { margin-top: 40px; }
+      .grad-divider { margin-top: 40px; }
+      .grad-divider-wrap { padding: 0 20px !important; }
+      .footer-cta { padding: 40px 0 64px; }
+    }
+
+    /* Small phones: 480px */
+    @media (max-width: 480px) {
+      .hero-tag { font-size: 10px; padding: 2px 9px; }
+      .hero-top-right { display: none; } /* hide year on tiny screens — saves space */
     }
     /* ── LIGHTBOX ── */
     .img-trigger {
@@ -737,7 +770,7 @@
     <!-- RESULTS -->
     <section class="section" id="results">
       <div class="section-eyebrow">Outcome</div>
-      <h2 class="section-title">The page finally did its job.</h2>
+      <h2 class="section-title">The page did its job.</h2>
       <p class="section-body">After launch, the data confirmed what the design logic predicted — less friction, more conversions. Bounce rate dropped, subscription volume increased, and customer service saw fewer billing confusion calls almost immediately. Stripping out the noise and making the page easier to read turned out to be more effective than anything that had been on it before.</p>
 
       <div class="results-row">
@@ -768,7 +801,7 @@
   </main>
 
   <!-- GRADIENT DIVIDER -->
-  <div style="max-width:1300px; margin:0 auto; padding:0 56px;">
+  <div class="grad-divider-wrap" style="max-width:1300px; margin:0 auto; padding:0 56px;">
     <div class="grad-divider"></div>
   </div>
 
