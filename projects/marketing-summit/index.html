@@ -71,14 +71,14 @@
     main { max-width: 1300px; margin: 0 auto; padding: 0 56px; }
 
     /* SECTIONS */
-    .section { padding: 72px 0 0; opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .section { padding: 56px 0 0; opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
     .section.visible { opacity: 1; transform: none; }
     .eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--lime-dim); margin-bottom: 14px; }
-    .section-title { font-size: clamp(26px, 3.5vw, 46px); font-weight: 700; line-height: 1.1; letter-spacing: -0.025em; color: var(--dark); margin-bottom: 20px; }
+    .section-title { font-size: clamp(24px, 3.2vw, 42px); font-weight: 700; line-height: 1.1; letter-spacing: -0.025em; color: var(--dark); margin-bottom: 20px; }
     .section-title em { font-style: italic; font-weight: 300; color: var(--lime-dim); }
     .body-text { font-size: 15px; line-height: 1.75; color: #4a4a42; }
     .body-text p + p { margin-top: 14px; }
-    .divider { height: 1px; background: var(--border); margin-top: 72px; }
+    .divider { height: 1px; background: var(--border); margin-top: 56px; }
 
     /* CONTEXT STRIP */
     .context-strip { background: var(--dark); position: relative; overflow: hidden; opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
@@ -107,19 +107,20 @@
     .problem-list { margin-top: 28px; }
     .problem-item { display: grid; grid-template-columns: 36px 1fr; gap: 18px; padding: 22px 0; border-bottom: 1px solid var(--border); }
     .problem-item:first-child { border-top: 1px solid var(--border); }
+    .problem-item:last-child { border-bottom: none; }
     .problem-n { font-size: 11px; font-weight: 700; color: var(--lime-dim); letter-spacing: 0.08em; padding-top: 3px; }
     .problem-title { font-size: 14.5px; font-weight: 600; color: var(--dark); margin-bottom: 5px; }
     .problem-desc { font-size: 13.5px; line-height: 1.65; color: #5a5a50; }
 
     /* BEFORE / AFTER — screenshot style, no browser frame */
     .ba-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px; align-items: start; }
-    .ba-screenshot { border-radius: 8px; overflow: hidden; border: 1px solid var(--border); height: 540px; overflow: hidden; }
+    .ba-screenshot { border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
     .ba-screenshot.after-shot { border-color: rgba(180,240,80,0.25); }
     .ba-label { display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 0 0 12px; color: var(--muted); }
     .ba-caption { text-align: center; font-size: 12px; font-style: italic; color: var(--muted); margin-top: 14px; }
 
     /* BEFORE PAGE */
-    .before-page { background: #fff; height: 540px; overflow: hidden; }
+    .before-page { background: #fff; }
     .before-nav-fake { display: flex; align-items: center; justify-content: space-between; padding: 11px 22px; border-bottom: 1px solid #eee; }
     .before-logo { font-size: 12px; font-weight: 700; color: #0052a3; }
     .before-nav-links { display: flex; gap: 12px; }
@@ -133,7 +134,7 @@
     .before-speakers-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 7px; }
     .before-sp-card { border: 1px solid #e8e8e8; border-radius: 3px; padding: 9px; display: flex; align-items: center; gap: 8px; }
     .before-sp-av {
-      width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+      width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
       background-size: cover; background-position: center top;
     }
     .before-sp-info {}
@@ -147,14 +148,14 @@
     .before-urgency { font-size: 9px; color: #c00; margin-top: 6px; }
 
     /* AFTER PAGE */
-    .after-page { background: #0c0c0c; height: 540px; overflow: hidden; }
+    .after-page { background: #0c0c0c; }
     .after-topbar { display: flex; align-items: center; justify-content: space-between; padding: 11px 22px; border-bottom: 1px solid rgba(255,255,255,0.06); }
     .after-logo { font-size: 12px; font-weight: 700; color: #fff; letter-spacing: -0.01em; }
     .after-nav-links { display: flex; gap: 14px; }
     .after-nav-links span { font-size: 9px; color: rgba(255,255,255,0.3); }
     .after-cta-nav { font-size: 9px; font-weight: 700; background: #b4f050; color: #0c0c0c; padding: 5px 11px; border-radius: 4px; }
     .after-hero-s {
-      position: relative; overflow: hidden; padding: 26px 22px 20px;
+      position: relative; overflow: hidden; padding: 18px 22px 16px;
       border-bottom: 1px solid rgba(255,255,255,0.05);
     }
     .after-hero-s::before {
@@ -174,9 +175,9 @@
     .after-btn-row { display: flex; gap: 7px; }
     .after-btn-p { background: #b4f050; color: #0c0c0c; font-size: 8px; font-weight: 700; padding: 6px 13px; border-radius: 4px; }
     .after-btn-s { border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.4); font-size: 8px; padding: 6px 10px; border-radius: 4px; }
-    .after-stats-row { display: flex; gap: 18px; margin-top: 14px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.06); }
-    .after-sn { font-size: 14px; font-weight: 700; color: #b4f050; letter-spacing: -0.02em; }
-    .after-sl { font-size: 8px; color: rgba(255,255,255,0.22); text-transform: uppercase; letter-spacing: 0.1em; }
+    .after-stats-row { display: flex; gap: 14px; }
+    .after-sn { font-size: 13px; font-weight: 700; color: #b4f050; letter-spacing: -0.02em; }
+    .after-sl { font-size: 7px; color: rgba(255,255,255,0.22); text-transform: uppercase; letter-spacing: 0.1em; }
     .after-urg { display: flex; align-items: center; justify-content: space-between; padding: 9px 22px; background: rgba(180,240,80,0.05); border-bottom: 1px solid rgba(180,240,80,0.1); flex-wrap: wrap; gap: 8px; }
     .after-urg-l { display: flex; align-items: center; gap: 7px; }
     .after-udot { width: 6px; height: 6px; border-radius: 50%; background: #b4f050; }
@@ -187,11 +188,11 @@
     .after-sec-label { font-size: 8px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.18); margin-bottom: 9px; }
     .after-sp-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 7px; }
     .after-sp { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 6px; padding: 10px 9px; }
-    .after-sp-av { width: 32px; height: 32px; border-radius: 50%; margin-bottom: 6px; position: relative; overflow: hidden; background-size: cover; background-position: center top; }
+    .after-sp-av { width: 36px; height: 36px; border-radius: 50%; margin-bottom: 6px; position: relative; overflow: hidden; background-size: cover; background-position: center top; }
     .after-sp-name { font-size: 9px; font-weight: 600; color: #fff; margin-bottom: 1px; }
     .after-sp-co { font-size: 8px; color: rgba(255,255,255,0.28); margin-bottom: 6px; }
     .after-sp-tag { font-size: 7px; font-weight: 600; padding: 2px 6px; border-radius: 10px; background: rgba(180,240,80,0.1); border: 1px solid rgba(180,240,80,0.2); color: #b4f050; display: inline-block; }
-    .after-price-s { padding: 14px 22px; }
+    .after-price-s { padding: 10px 22px 14px; }
     .after-price-row { display: grid; grid-template-columns: 1fr 1.15fr 1fr; gap: 7px; }
     .after-pc { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 6px; padding: 11px 9px; text-align: center; }
     .after-pc.feat { background: rgba(180,240,80,0.06); border-color: rgba(180,240,80,0.22); }
@@ -225,15 +226,15 @@
     .decision-body { font-size: 13px; line-height: 1.6; color: #5a5a50; }
 
     /* OUTCOME STRIP */
-    .outcome-strip { margin-top: 72px; background: var(--dark); position: relative; overflow: hidden; }
+    .outcome-strip { margin-top: 56px; background: var(--dark); position: relative; overflow: hidden; }
     .outcome-strip::before {
       content: ''; position: absolute; inset: 0;
       background-image: radial-gradient(circle, rgba(180,240,80,0.07) 1px, transparent 1px);
       background-size: 20px 20px;
     }
-    .outcome-inner { position: relative; z-index: 1; max-width: 1300px; margin: 0 auto; padding: 64px 56px; }
+    .outcome-inner { position: relative; z-index: 1; max-width: 1300px; margin: 0 auto; padding: 56px; }
     .outcome-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(180,240,80,0.6); margin-bottom: 20px; }
-    .outcome-title { font-size: clamp(22px, 2.8vw, 38px); font-weight: 700; color: var(--white); letter-spacing: -0.025em; margin-bottom: 40px; line-height: 1.15; white-space: nowrap; }
+    .outcome-title { font-size: clamp(16px, 2.2vw, 32px); font-weight: 700; color: var(--white); letter-spacing: -0.025em; margin-bottom: 40px; line-height: 1.15; white-space: nowrap; }
     .outcome-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
     .outcome-item { padding: 32px 40px 32px 0; border-right: 1px solid rgba(255,255,255,0.07); }
     .outcome-item:last-child { border-right: none; padding-right: 0; padding-left: 40px; }
@@ -242,7 +243,7 @@
     .outcome-l { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.6; font-weight: 300; }
 
     /* TAKEAWAY */
-    .takeaway { margin: 72px auto 0; max-width: 1000px; padding: 56px 64px; background: var(--dark); border-radius: 14px; position: relative; overflow: hidden; }
+    .takeaway { margin: 56px auto 0; max-width: 1000px; padding: 56px 64px; background: var(--dark); border-radius: 14px; position: relative; overflow: hidden; text-align: center; }
     .takeaway::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(180,240,80,0.08) 1px, transparent 1px); background-size: 20px 20px; }
     .takeaway::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 50% 60% at 85% 30%, rgba(180,240,80,0.09) 0%, transparent 55%); }
     .takeaway-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(180,240,80,0.6); margin-bottom: 16px; position: relative; z-index: 1; }
@@ -250,7 +251,7 @@
     .takeaway-body { font-size: 15px; line-height: 1.8; color: rgba(255,255,255,0.55); font-weight: 300; position: relative; z-index: 1; }
 
     /* GRAD DIVIDER + FOOTER */
-    .grad-divider { margin-top: 72px; height: 1px; background: linear-gradient(90deg, transparent 0%, #0c0c0c 20%, #7ab830 70%, transparent 100%); opacity: 0.35; }
+    .grad-divider { margin-top: 56px; height: 1px; background: linear-gradient(90deg, transparent 0%, #0c0c0c 20%, #7ab830 70%, transparent 100%); opacity: 0.35; }
     .footer-cta { padding: 56px 0 100px; text-align: center; }
     .footer-cta-eyebrow { font-size: 12px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
     .footer-cta-link { display: inline-flex; align-items: center; gap: 10px; font-size: clamp(22px, 3vw, 36px); font-weight: 700; color: var(--dark); text-decoration: none; letter-spacing: -0.02em; transition: color 0.2s, gap 0.2s; }
@@ -265,29 +266,44 @@
       nav { padding: 16px 28px; }
       .hero-inner, main { padding-left: 28px; padding-right: 28px; }
       .context-inner, .outcome-inner { padding-left: 28px; padding-right: 28px; }
-      .context-inner { grid-template-columns: 1fr; gap: 32px; }
-      .context-col { border-right: none; padding: 0; }
+      .context-inner { grid-template-columns: 1fr 1fr; gap: 28px; }
+      .context-col:last-child { padding-left: 28px; }
+      .context-col:nth-child(2) { padding-left: 28px; }
       .ba-layout { grid-template-columns: 1fr; }
-      .two-col { grid-template-columns: 1fr; gap: 32px; }
-      .strategy-layout { grid-template-columns: 1fr; gap: 36px; }
+      .two-col { grid-template-columns: 1fr; gap: 28px; }
+      .strategy-layout { grid-template-columns: 1fr; gap: 32px; }
       .strategy-nav { position: static; }
-      .decision-row { grid-template-columns: 1fr; }
-      .outcome-grid { grid-template-columns: 1fr; }
-      .outcome-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); padding: 24px 0; }
-      .outcome-item:last-child { border-bottom: none; }
-      .outcome-item:nth-child(2) { padding-left: 0; }
+      .decision-row { grid-template-columns: 1fr 1fr; }
+      .outcome-grid { grid-template-columns: 1fr 1fr; }
+      .outcome-item:nth-child(3) { border-right: none; grid-column: 1 / -1; border-bottom: none; border-top: 1px solid rgba(255,255,255,0.07); }
+      .outcome-item { border-right: 1px solid rgba(255,255,255,0.07); padding: 24px 28px 24px 0; }
+      .outcome-item:nth-child(2) { padding-left: 28px; border-right: none; }
       .takeaway { padding: 40px 32px; max-width: 100%; }
     }
     @media (max-width: 768px) {
       nav { padding: 14px 20px; }
       .hero-inner, main { padding-left: 20px; padding-right: 20px; }
       .context-inner, .outcome-inner { padding-left: 20px; padding-right: 20px; }
-      .hero { padding: 56px 0 48px; }
-      .section { padding: 48px 0 0; }
-      .divider { margin-top: 48px; }
+      .hero { padding: 48px 0 40px; }
+      .section { padding: 40px 0 0; }
+      .divider { margin-top: 40px; }
+      .outcome-strip { margin-top: 40px; }
+      .outcome-title { white-space: normal; font-size: clamp(20px, 5vw, 28px); }
+      .context-inner { grid-template-columns: 1fr; gap: 24px; }
+      .context-col { border-right: none; padding: 0; }
       .after-sp-row { grid-template-columns: 1fr 1fr; }
       .after-price-row { grid-template-columns: 1fr; }
       .before-speakers-grid { grid-template-columns: 1fr 1fr; }
+      .decision-row { grid-template-columns: 1fr; }
+      .outcome-grid { grid-template-columns: 1fr; }
+      .outcome-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); padding: 20px 0; }
+      .outcome-item:last-child { border-bottom: none; }
+      .outcome-item:nth-child(2) { padding-left: 0; border-right: none; }
+      .outcome-item:nth-child(3) { border-top: none; grid-column: auto; }
+    }
+    @media (max-width: 480px) {
+      .hero-title { font-size: clamp(28px, 8vw, 44px); }
+      .ba-screenshot, .before-page, .after-page { height: 560px; }
     }
   </style>
 </head>
@@ -326,6 +342,8 @@
     </div>
   </div>
 
+  <div style="height:3px;background:linear-gradient(90deg,transparent 0%,rgba(180,240,80,0.5) 30%,rgba(180,240,80,0.8) 50%,rgba(180,240,80,0.5) 70%,transparent 100%);"></div>
+
   <div class="context-strip" id="context">
     <div class="context-inner">
       <div class="context-col">
@@ -334,14 +352,14 @@
         <div class="context-desc">A two-day conference bringing together marketers, brand strategists, and digital creatives from across the industry.</div>
       </div>
       <div class="context-col">
-        <div class="context-num" style="font-size:clamp(28px,3.5vw,48px);">18</div>
+        <div class="context-num">12</div>
         <div class="context-label">Featured Speakers</div>
-        <div class="context-desc">Practitioners from companies including Notion, Linear, and Figma — people actively doing the work, not just talking about it.</div>
+        <div class="context-desc">Practitioners from Notion, Linear, and Figma — doing the work, not just talking about it.</div>
       </div>
       <div class="context-col">
         <div class="context-num">2–5%</div>
         <div class="context-label">Industry Avg. Conversion</div>
-        <div class="context-desc">Event pages are one of the hardest conversion tasks in marketing. The goal was a page built to push well above that baseline.</div>
+        <div class="context-desc">Event pages are one of the hardest conversion tasks in marketing — this page was built to push well above it.</div>
       </div>
     </div>
   </div>
@@ -352,11 +370,11 @@
       <div class="two-col">
         <div>
           <div class="eyebrow">The Brief</div>
-          <h2 class="section-title">Build a registration page that converts before someone reads the agenda.</h2>
+          <h2 class="section-title">A page that converts before someone reads the agenda.</h2>
         </div>
         <div class="body-text">
-          <p>Marketing Summit is a two-day conference for working marketers. The brief was direct: design a registration page that converts visitors into paid attendees — and does it fast, before they have a reason to leave.</p>
-          <p>The real challenge wasn't the design. It was figuring out the right sequence — what does a visitor need to believe before they'll commit time and money to something they haven't experienced yet?</p>
+          <p>Marketing Summit is a two-day conference for working marketers. The brief: build a registration page that converts visitors into paid attendees, fast.</p>
+          <p>The real challenge wasn't the design — it was sequence. What does a visitor need to believe before committing time and money to something they haven't experienced yet?</p>
         </div>
       </div>
     </section>
@@ -366,8 +384,8 @@
     <section class="section" id="problems">
       <div class="eyebrow">What Wasn't Working</div>
       <h2 class="section-title">Four decisions quietly killing registrations.</h2>
-      <p class="body-text">Before designing anything new, I audited the original page against what a visitor actually needs to convert — and flagged every element working against that goal.</p>
-      <div class="problem-list">
+      <p class="body-text" style="margin-bottom:0;">Before designing anything new, I audited the original page against what a visitor actually needs to convert — and flagged every element working against that goal.</p>
+      <div class="problem-list" style="margin-top:20px;">
         <div class="problem-item">
           <div class="problem-n">01</div>
           <div>
@@ -427,21 +445,21 @@
                 <div class="before-section-title">Speakers</div>
                 <div class="before-speakers-grid">
                   <div class="before-sp-card">
-                    <div class="before-sp-av" style="background: linear-gradient(160deg, #c8a882 0%, #a07850 40%, #6b4e30 100%);"></div>
+                    <div class="before-sp-av" style="background:url('https://images.unsplash.com/photo-1560250097-0b93528c311a?w=80&h=80&fit=crop&crop=face') center/cover no-repeat;"></div>
                     <div class="before-sp-info">
                       <div class="before-sp-name">Jordan Reeves</div>
                       <div class="before-sp-co">Notion</div>
                     </div>
                   </div>
                   <div class="before-sp-card">
-                    <div class="before-sp-av" style="background: linear-gradient(160deg, #d4a89a 0%, #b07868 40%, #7a4840 100%);"></div>
+                    <div class="before-sp-av" style="background:url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&h=80&fit=crop&crop=face') center/cover no-repeat;"></div>
                     <div class="before-sp-info">
                       <div class="before-sp-name">Priya Mehta</div>
                       <div class="before-sp-co">Linear</div>
                     </div>
                   </div>
                   <div class="before-sp-card">
-                    <div class="before-sp-av" style="background: linear-gradient(160deg, #b8c8d4 0%, #8a9eac 40%, #5a6e7a 100%);"></div>
+                    <div class="before-sp-av" style="background:url('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face') center/cover no-repeat;"></div>
                     <div class="before-sp-info">
                       <div class="before-sp-name">Cam Elsworth</div>
                       <div class="before-sp-co">Figma</div>
@@ -477,15 +495,17 @@
                 <div class="after-hi">
                   <div class="after-badge">Early Bird Ends Friday</div>
                   <div class="after-h1">The conference built for marketers who <span>actually ship.</span></div>
-                  <div class="after-sub">Two days. 18 speakers. Minneapolis — Sept 12–13, 2026.</div>
-                  <div class="after-btn-row">
-                    <div class="after-btn-p">Register Now</div>
-                    <div class="after-btn-s">View Full Agenda →</div>
-                  </div>
-                  <div class="after-stats-row">
-                    <div><div class="after-sn">800+</div><div class="after-sl">Attendees</div></div>
-                    <div><div class="after-sn">18</div><div class="after-sl">Speakers</div></div>
-                    <div><div class="after-sn">94%</div><div class="after-sl">Would Return</div></div>
+                  <div class="after-sub">Two days. 12 speakers. Minneapolis — Sept 12–13, 2026.</div>
+                  <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:nowrap;">
+                    <div style="display:flex;gap:7px;align-items:center;">
+                      <div class="after-btn-p">Register Now</div>
+                      <div class="after-btn-s">View Full Agenda →</div>
+                    </div>
+                    <div class="after-stats-row">
+                      <div><div class="after-sn">800+</div><div class="after-sl">Attendees</div></div>
+                      <div><div class="after-sn">12</div><div class="after-sl">Speakers</div></div>
+                      <div><div class="after-sn">94%</div><div class="after-sl">Return</div></div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -500,19 +520,19 @@
                 <div class="after-sec-label">Featured Speakers</div>
                 <div class="after-sp-row">
                   <div class="after-sp">
-                    <div class="after-sp-av" style="background: linear-gradient(160deg, #c8a882 0%, #a07850 40%, #6b4e30 100%);"></div>
+                    <div class="after-sp-av" style="background:url('https://images.unsplash.com/photo-1560250097-0b93528c311a?w=80&h=80&fit=crop&crop=face') center/cover no-repeat;"></div>
                     <div class="after-sp-name">Jordan Reeves</div>
                     <div class="after-sp-co">VP Marketing, Notion</div>
                     <div class="after-sp-tag">Brand Strategy</div>
                   </div>
                   <div class="after-sp">
-                    <div class="after-sp-av" style="background: linear-gradient(160deg, #d4a89a 0%, #b07868 40%, #7a4840 100%);"></div>
+                    <div class="after-sp-av" style="background:url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&h=80&fit=crop&crop=face') center/cover no-repeat;"></div>
                     <div class="after-sp-name">Priya Mehta</div>
                     <div class="after-sp-co">Head of Growth, Linear</div>
                     <div class="after-sp-tag">Growth & SEO</div>
                   </div>
                   <div class="after-sp">
-                    <div class="after-sp-av" style="background: linear-gradient(160deg, #b8c8d4 0%, #8a9eac 40%, #5a6e7a 100%);"></div>
+                    <div class="after-sp-av" style="background:url('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face') center/cover no-repeat;"></div>
                     <div class="after-sp-name">Cam Elsworth</div>
                     <div class="after-sp-co">Creative Director, Figma</div>
                     <div class="after-sp-tag">Creative Direction</div>
@@ -553,7 +573,7 @@
 
     <section class="section" id="strategy">
       <div class="eyebrow">Strategy</div>
-      <h2 class="section-title">Sequence the page around the visitor's decision — not the organizer's information.</h2>
+      <h2 class="section-title">Visitor's decision first, organizer's info second.</h2>
       <div class="strategy-layout">
         <div class="strategy-nav">
           <div class="strategy-nav-item"><span class="s-num">01</span><span class="s-label">Lead with outcome</span></div>
@@ -566,27 +586,27 @@
           <div class="strategy-block">
             <div class="strategy-block-num">01 — Headline</div>
             <div class="strategy-block-title">Lead with outcome, not logistics</div>
-            <div class="strategy-block-body">The headline doesn't say "A two-day marketing conference." It says what you'll leave with — actionable ideas from practitioners actively shipping. Dates and venue appear below the fold, after the visitor already wants to attend. The first question a visitor asks is "is this worth my time?" — and that question needs an answer in the first ten seconds or they're gone.</div>
+            <div class="strategy-block-body">The headline says what you'll leave with — not that it's a two-day conference. Dates and venue appear after the visitor already wants to attend. "Is this worth my time?" needs an answer in ten seconds or they're gone.</div>
           </div>
           <div class="strategy-block">
             <div class="strategy-block-num">02 — Page Sequence</div>
             <div class="strategy-block-title">Move speakers directly below the hero</div>
-            <div class="strategy-block-body">Speaker names are the most persuasive content on an event page — more persuasive than any copy. Moving them immediately below the hero puts the strongest argument in front of visitors while attention is highest. Topic tags on each speaker card ("Brand Strategy," "Growth & SEO") let visitors self-identify before they've read a single agenda item.</div>
+            <div class="strategy-block-body">Speaker names are the most persuasive content on an event page. Moving them below the hero puts the strongest argument in front while attention is highest. Topic tags let visitors self-identify before they've read a single agenda item.</div>
           </div>
           <div class="strategy-block">
             <div class="strategy-block-num">03 — Pricing</div>
             <div class="strategy-block-title">Anchor VIP as the expected choice</div>
-            <div class="strategy-block-body">The original pricing table presented all three tiers equally — which creates a comparison problem. The redesign makes VIP visually dominant with a "Most Popular" label, using anchoring to shift the default. Visitors evaluate General and Team relative to VIP, rather than scanning for the minimum. The Team tier is separated by use case rather than price so buyers self-select without comparison paralysis.</div>
+            <div class="strategy-block-body">The original table showed all three tiers equally — a comparison problem. Making VIP visually dominant shifts the default: visitors evaluate General and Team relative to VIP instead of scanning for the minimum.</div>
           </div>
           <div class="strategy-block">
             <div class="strategy-block-num">04 — Urgency</div>
             <div class="strategy-block-title">Real deadline, visible at two decision moments</div>
-            <div class="strategy-block-body">The early bird deadline and remaining seat count appear in the hero and again immediately above pricing — the two moments when a visitor is closest to committing. The countdown is tied to a real date. Fake urgency destroys the credibility of everything else on the page; real urgency closes registrations.</div>
+            <div class="strategy-block-body">The early bird deadline appears in the hero and again above pricing — the two moments a visitor is closest to committing. Tied to a real date, not a reset timer. Fake urgency destroys everything else on the page.</div>
           </div>
           <div class="strategy-block">
             <div class="strategy-block-num">05 — Social Proof</div>
-            <div class="strategy-block-title">Testimonials that answer objections, not just compliments</div>
-            <div class="strategy-block-body">Generic "great event!" testimonials don't convert. The testimonials used address specific objections a skeptical visitor might have: "Will I actually learn anything actionable?" and "Is the networking worth it?" Proof that answers a doubt is more persuasive than proof that reaffirms a decision someone hasn't made yet.</div>
+            <div class="strategy-block-title">Testimonials that answer objections</div>
+            <div class="strategy-block-body">Generic praise doesn't convert. The testimonials here address real doubts: "Will I learn anything actionable?" and "Is the networking worth it?" Proof that answers a doubt beats proof that celebrates a decision not yet made.</div>
           </div>
         </div>
       </div>
@@ -627,7 +647,7 @@
   <div class="outcome-strip section" id="outcome">
     <div class="outcome-inner">
       <div class="outcome-eyebrow">What the Redesign Delivers</div>
-      <div class="outcome-title">A page with the right argument,<br>in the right order.</div>
+      <div class="outcome-title">A page with the right argument, in the right order.</div>
       <div class="outcome-grid">
         <div class="outcome-item">
           <div class="outcome-n">Speaker-first</div>
@@ -635,7 +655,7 @@
         </div>
         <div class="outcome-item">
           <div class="outcome-n">Clarity</div>
-          <div class="outcome-l">Three tiers with clear visual hierarchy. Visitors self-select without comparison paralysis. The right choice feels obvious, not pressured.</div>
+          <div class="outcome-l">Three tiers, clear hierarchy. Visitors self-select without paralysis — the right choice feels obvious and low-risk.</div>
         </div>
         <div class="outcome-item">
           <div class="outcome-n">Real urgency</div>
