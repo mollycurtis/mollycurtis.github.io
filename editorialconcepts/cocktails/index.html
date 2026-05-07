@@ -151,23 +151,23 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
 .menu-label { font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--text-muted); }
 
 /* scroll track — height = viewport minus sticky header */
-.track-outer { height: calc(90vh - 48px); overflow: hidden; }
+.track-outer { height: calc(90vh - 48px); overflow: hidden; position: relative; }
 
 .track {
   display: flex; height: 100%;
-  overflow-x: hidden; overflow-y: hidden;
-  scroll-behavior: smooth;
-  padding-bottom: 54px; /* dots */
+  overflow: hidden;
+  padding-bottom: 54px;
 }
 
 .track-inner {
   display: flex; align-items: stretch;
-  padding-left: 80px;
+  transition: transform 0.28s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
 }
 
 /* ── CARD ── */
 .card {
-  width: var(--card-w); flex-shrink: 0;
+  width: var(--card-w); flex-shrink: 0; overflow: hidden;
   display: flex; flex-direction: column;
   padding: 2rem 1.75rem 1.5rem;
   border-right: 0.5px solid var(--rule);
@@ -175,6 +175,7 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
   transition: opacity 0.4s;
 }
 .card:last-child { border-right: none; }
+.card:first-child { margin-left: 0; }
 
 
 .drink-header { padding-bottom: 0.9rem; border-bottom: 0.5px solid var(--rule); margin-bottom: 0.9rem; }
@@ -192,7 +193,7 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
 .drink-tag { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1rem; }
 
 .drink-photo { flex: 1; min-height: 0; max-height: 340px; display: flex; align-items: flex-end; justify-content: center; overflow: hidden; margin-bottom: 0.75rem; }
-.drink-photo img { width: 100%; max-height: 100%; object-fit: contain; object-position: center bottom; display: block; }
+.drink-photo img { width: auto; max-width: 100%; max-height: 100%; object-fit: contain; object-position: center bottom; display: block; }
 .empty-photo { opacity: 0.1; display: flex; align-items: flex-end; justify-content: center; width: 60%; height: 110px; }
 
 .price-row { display: flex; justify-content: space-between; align-items: baseline; padding-top: 0.75rem; border-top: 0.5px solid var(--rule); margin-top: auto; }
@@ -232,8 +233,8 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
 
 @media (max-width: 600px) {
   :root { --card-w: 88vw; }
-  .arrow { display: none; }
-  .track-inner { padding: 0 6vw; }
+
+
   .track-outer { height: calc(75vh - 48px); }
 }
 @media (max-width: 600px) and (max-height: 700px) {
@@ -241,6 +242,28 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
 }
 @media (min-width: 900px)  { :root { --card-w: 360px; } }
 @media (min-width: 1200px) { :root { --card-w: 400px; } }
+
+.mobile-nav-btn {
+  display: none;
+  background: none;
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  width: 32px; height: 32px;
+  color: var(--text); cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  align-items: center; justify-content: center;
+  transition: all 0.2s;
+}
+.mobile-nav-btn:hover { background: var(--text); color: var(--parchment); }
+.dots-inner { display: flex; align-items: center; gap: 7px; }
+@media (max-width: 600px) {
+  .mobile-nav-btn { display: flex; align-items: center; }
+}
+
+@media (max-width: 600px) {
+  .arrow { display: none; }
+}
 </style>
 </head>
 <body>
@@ -284,9 +307,18 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
   <button class="arrow arrow-right" id="arrowR" onclick="go(1)"  aria-label="Next">
     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
   </button>
+
 </section>
 
-<div class="dots-bar" id="dots"></div>
+<div class="dots-bar" id="dots">
+  <button class="mobile-nav-btn" id="mobilePrev" onclick="go(-1)">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+  </button>
+  <div class="dots-inner" id="dotsInner"></div>
+  <button class="mobile-nav-btn" id="mobileNext" onclick="go(1)">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+  </button>
+</div>
 
 <script>
 const cocktails = [
@@ -297,11 +329,12 @@ const cocktails = [
 ];
 
 const TOTAL = cocktails.length;
-const track = document.getElementById('track');
 const inner = document.getElementById('trackInner');
 const dots  = document.getElementById('dots');
+  const dotsInner = document.getElementById('dotsInner') || dots;
 let cur = 0;
 
+// Build cards
 cocktails.forEach((c, i) => {
   const sliders = c.sliders.map(s=>`
     <div class="s-row"><span class="s-label">${s.l}</span>
@@ -310,70 +343,57 @@ cocktails.forEach((c, i) => {
     ? `<div class="drink-photo"><img src="${c.img}" alt="${c.name}" loading="lazy"></div>`
     : `<div class="drink-photo"><div class="empty-photo"><svg width="44" height="64" viewBox="0 0 44 64" fill="none"><ellipse cx="22" cy="57" rx="12" ry="4" fill="#a89878" opacity="0.4"/><path d="M10 57 Q10 26 22 17 Q34 26 34 57" fill="#c0b090" opacity="0.3"/></svg></div></div>`;
   const card = document.createElement('div');
-  card.className = 'card'; card.dataset.i = i;
+  card.className = 'card';
+  card.dataset.i = i;
   card.innerHTML = `<div class="drink-header"><p class="drink-name">${c.name}</p><p class="drink-oz">${c.oz}</p></div>
     <p class="drink-ingredients">${c.ingredients}</p>
-    ${sliders?`<div class="sliders">${sliders}</div>`:''}
+    ${sliders ? `<div class="sliders">${sliders}</div>` : ''}
     <p class="drink-tag">${c.tag}</p>${photo}
     <div class="price-row"><span class="serve-note">${c.serve}</span><span class="price">${c.price}</span></div>`;
   inner.appendChild(card);
 
   const d = document.createElement('button');
-  d.className = 'dot-btn' + (i===0?' active':'');
+  d.className = 'dot-btn' + (i===0 ? ' active' : '');
   d.onclick = () => goTo(i);
-  dots.appendChild(d);
+  (document.getElementById("dotsInner") || dots).appendChild(d);
 });
 
-function cw() { return inner.querySelector('.card')?.offsetWidth || 340; }
 function goTo(idx) {
-  idx = Math.max(0, Math.min(TOTAL-1, idx));
+  idx = Math.max(0, Math.min(TOTAL - 1, idx));
   cur = idx;
-  const target = Math.max(0, idx * cw() - 80); // 80px = left padding offset
-  // animate manually so it works reliably on first click
-  const start = track.scrollLeft;
-  const diff = target - start;
-  const duration = 220;
-  let startTime = null;
-  function ease(t) { return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; }
-  function step(ts) {
-    if (!startTime) startTime = ts;
-    const elapsed = ts - startTime;
-    const progress = Math.min(elapsed / duration, 1);
-    track.scrollLeft = start + diff * ease(progress);
-    if (progress < 1) requestAnimationFrame(step);
-  }
-  requestAnimationFrame(step);
+  const cardW = inner.querySelector('.card').offsetWidth;
+  inner.style.transform = `translateX(${-idx * cardW}px)`;
   updateUI();
 }
-function go(d) { goTo(cur + d); }
+
+function go(dir) { goTo(cur + dir); }
 
 function updateUI() {
-  document.querySelectorAll('.dot-btn').forEach((d,i) => d.classList.toggle('active', i===cur));
-  // no dimming
-
-  document.getElementById('arrowL').disabled = cur === 0;
-  document.getElementById('arrowR').disabled = cur === TOTAL-1;
+  document.querySelectorAll('.dot-btn').forEach((d, i) => d.classList.toggle('active', i === cur));
+  if (window.innerWidth > 600) {
+    document.getElementById('arrowL').disabled = cur === 0;
+    document.getElementById('arrowR').disabled = cur === TOTAL - 1;
+  }
+  const mp = document.getElementById('mobilePrev');
+  const mn = document.getElementById('mobileNext');
+  if (mp) mp.style.opacity = cur === 0 ? '0.25' : '1';
+  if (mn) mn.style.opacity = cur === TOTAL-1 ? '0.25' : '1';
 }
 
-let t;
-track.addEventListener('scroll', () => {
-  clearTimeout(t);
-  t = setTimeout(() => {
-    const off = (track.offsetWidth - cw()) / 2;
-    cur = Math.max(0, Math.min(TOTAL-1, Math.round((track.scrollLeft + off) / cw())));
-    updateUI();
-  }, 60);
-});
-
-
+// Touch swipe
+let tx = 0;
+document.getElementById('track').addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+document.getElementById('track').addEventListener('touchend', e => {
+  const diff = tx - e.changedTouches[0].clientX;
+  if (Math.abs(diff) > 40) go(diff > 0 ? 1 : -1);
+}, { passive: true });
 
 // Keyboard
-document.addEventListener('keydown', e=>{
-  if(e.key==='ArrowRight') go(1);
-  if(e.key==='ArrowLeft')  go(-1);
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight') go(1);
+  if (e.key === 'ArrowLeft')  go(-1);
 });
 
-// Show arrows+dots only when menu is in view
 // Show dots when menu in view
 const obs = new IntersectionObserver(entries => {
   dots.classList.toggle('show', entries[0].isIntersecting);
