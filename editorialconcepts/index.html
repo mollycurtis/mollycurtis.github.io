@@ -5,18 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Visual Concepts — Molly Curtis</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --grad-start: #e8445a;
-    --grad-mid: #b94fc8;
-    --grad-end: #7b5ea7;
     --off-white: #f5f3ef;
     --ink: #0e0c0a;
-    --muted: rgba(255,255,255,0.45);
-    --panel-transition: 0.72s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --ease-cinema: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
   html { scroll-behavior: smooth; }
@@ -26,10 +22,10 @@
     color: var(--off-white);
     font-family: 'DM Sans', sans-serif;
     overflow-x: hidden;
-    cursor: default;
+    -webkit-font-smoothing: antialiased;
   }
 
-  /* ── GRAIN OVERLAY ── */
+  /* ── GRAIN ── */
   body::before {
     content: '';
     position: fixed;
@@ -37,32 +33,27 @@
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
     pointer-events: none;
     z-index: 9999;
-    opacity: 0.35;
+    opacity: 0.32;
     mix-blend-mode: overlay;
   }
 
   /* ── NAV ── */
   nav {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+    top: 0; left: 0; right: 0;
     z-index: 100;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1.5rem 3rem;
-    mix-blend-mode: normal;
   }
-
   nav::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, rgba(14,12,10,0.7) 0%, transparent 100%);
+    background: linear-gradient(to bottom, rgba(14,12,10,0.75) 0%, transparent 100%);
     pointer-events: none;
   }
-
   .nav-logo {
     font-family: 'Playfair Display', serif;
     font-size: 1rem;
@@ -73,16 +64,15 @@
     position: relative;
     z-index: 1;
   }
-
   .nav-back {
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: rgba(245,243,239,0.5);
+    color: rgba(245,243,239,0.45);
     text-decoration: none;
     position: relative;
     z-index: 1;
-    transition: color 0.3s;
+    transition: color 0.4s;
   }
   .nav-back:hover { color: var(--off-white); }
 
@@ -96,37 +86,36 @@
     position: relative;
     overflow: hidden;
   }
-
   .hero-bg {
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse 60% 50% at 80% 30%, rgba(185,79,200,0.12) 0%, transparent 65%),
-      radial-gradient(ellipse 40% 60% at 20% 70%, rgba(123,94,167,0.1) 0%, transparent 65%),
-      radial-gradient(ellipse 80% 40% at 50% 100%, rgba(232,68,90,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 55% 45% at 70% 20%, rgba(160,130,90,0.06) 0%, transparent 65%),
+      radial-gradient(ellipse 40% 55% at 18% 75%, rgba(100,85,70,0.05) 0%, transparent 65%),
       #0e0c0a;
     z-index: 0;
   }
-
-  /* Decorative line */
   .hero::after {
     content: '';
     position: absolute;
     left: 3rem;
-    top: 40%;
+    top: 38%;
     width: 1px;
-    height: 120px;
-    background: linear-gradient(to bottom, transparent, rgba(245,243,239,0.2), transparent);
+    height: 100px;
+    background: linear-gradient(to bottom, transparent, rgba(245,243,239,0.15), transparent);
   }
-
-  .hero-content { position: relative; z-index: 1; max-width: 700px; }
-
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
   .hero-eyebrow {
-    font-size: 0.68rem;
-    letter-spacing: 0.35em;
+    font-size: 0.67rem;
+    letter-spacing: 0.38em;
     text-transform: uppercase;
-    color: rgba(245,243,239,0.4);
-    margin-bottom: 1.25rem;
+    color: rgba(245,243,239,0.35);
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -136,9 +125,13 @@
     display: inline-block;
     width: 28px;
     height: 1px;
-    background: rgba(245,243,239,0.3);
+    background: rgba(245,243,239,0.25);
   }
-
+  .hero-title-row {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
   .hero-title {
     font-family: 'Playfair Display', serif;
     font-size: clamp(3.5rem, 8vw, 6.5rem);
@@ -146,24 +139,20 @@
     line-height: 1.0;
     letter-spacing: -0.02em;
     color: var(--off-white);
-    margin-bottom: 1.75rem;
+    flex-shrink: 0;
   }
-  .hero-title em {
-    font-style: italic;
-    background: linear-gradient(135deg, var(--grad-start), var(--grad-mid), var(--grad-end));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
+  .hero-title em { font-style: italic; opacity: 0.55; }
   .hero-body {
-    font-size: 0.95rem;
+    font-size: 0.88rem;
     font-weight: 300;
     line-height: 1.75;
-    color: rgba(245,243,239,0.5);
-    max-width: 460px;
+    color: rgba(245,243,239,0.45);
+    max-width: 300px;
   }
-
+  @media (min-width: 900px) {
+    .hero-title-row { flex-direction: row; align-items: center; gap: 3rem; }
+    .hero-body { max-width: 270px; }
+  }
   .hero-scroll {
     position: absolute;
     bottom: 2.5rem;
@@ -175,144 +164,115 @@
     z-index: 1;
   }
   .hero-scroll span {
-    font-size: 0.62rem;
-    letter-spacing: 0.25em;
+    font-size: 0.6rem;
+    letter-spacing: 0.28em;
     text-transform: uppercase;
-    color: rgba(245,243,239,0.3);
+    color: rgba(245,243,239,0.25);
     writing-mode: vertical-rl;
   }
   .scroll-line {
     width: 1px;
-    height: 48px;
-    background: linear-gradient(to bottom, rgba(245,243,239,0.3), transparent);
-    animation: scrollPulse 2s ease-in-out infinite;
+    height: 44px;
+    background: linear-gradient(to bottom, rgba(245,243,239,0.25), transparent);
+    animation: scrollPulse 2.5s ease-in-out infinite;
   }
   @keyframes scrollPulse {
-    0%, 100% { opacity: 0.4; transform: scaleY(1); }
-    50% { opacity: 1; transform: scaleY(1.15); }
+    0%, 100% { opacity: 0.35; }
+    50% { opacity: 0.9; }
   }
 
-  /* ── PANELS SECTION ── */
-  .panels-wrapper {
-    position: relative;
-  }
+  /* ── PANELS ── */
+  .panels-container { display: flex; flex-direction: column; }
 
-  .panels-container {
-    display: flex;
-    flex-direction: column;
-  }
-
-  /* ── INDIVIDUAL PANEL ── */
   .panel {
     position: relative;
-    height: 38vh;
-    min-height: 280px;
+    height: 46vh;
+    min-height: 320px;
     overflow: hidden;
-    cursor: pointer;
-    transition: height var(--panel-transition), filter var(--panel-transition);
     text-decoration: none;
     display: block;
+    cursor: pointer;
   }
 
-  /* Desktop hover states */
-  @media (hover: hover) {
-    .panels-container:has(.panel:hover) .panel {
-      height: 22vh;
-      min-height: 180px;
-    }
-    .panels-container:has(.panel:hover) .panel:hover {
-      height: 58vh;
-      min-height: 420px;
-    }
-    .panels-container:has(.panel:hover) .panel:not(:hover) .panel-overlay {
-      background: rgba(14,12,10,0.65);
-    }
-    .panels-container:has(.panel:hover) .panel:not(:hover) .panel-meta,
-    .panels-container:has(.panel:hover) .panel:not(:hover) .panel-cta {
-      opacity: 0.3;
-    }
-    .panel:hover .panel-bg {
-      transform: scale(1.04);
-    }
-    .panel:hover .panel-title {
-      letter-spacing: -0.01em;
-    }
-    .panel:hover .panel-cta {
-      opacity: 1 !important;
-      transform: translateX(6px);
-    }
-    .panel:hover .panel-divider {
-      width: 52px;
-    }
-  }
-
-  /* Panel BG */
+  /* BG — subtle drift on hover, no height change */
   .panel-bg {
     position: absolute;
-    inset: 0;
+    inset: -5%;
     background-size: cover;
     background-position: center;
-    transition: transform 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: transform 2s var(--ease-cinema);
     will-change: transform;
   }
+  .panel:hover .panel-bg { transform: scale(1.045) translateY(-0.5%); }
 
-  /* Cocktail BG */
-  .panel--cocktail .panel-bg {
-    background:
-      radial-gradient(ellipse 55% 60% at 75% 40%, rgba(180,110,40,0.25) 0%, transparent 60%),
-      radial-gradient(ellipse 40% 50% at 20% 60%, rgba(100,60,20,0.2) 0%, transparent 55%),
-      linear-gradient(160deg, #1a0f05 0%, #2a1a08 35%, #0e0c0a 100%);
-  }
-  .panel--cocktail .panel-accent-line { background: linear-gradient(90deg, #c8943a, #e8b86a, transparent); }
-
-  /* Fragrance BG */
-  .panel--fragrance .panel-bg {
-    background:
-      radial-gradient(ellipse 50% 70% at 80% 30%, rgba(160,140,180,0.15) 0%, transparent 60%),
-      radial-gradient(ellipse 35% 45% at 15% 65%, rgba(100,80,140,0.12) 0%, transparent 55%),
-      linear-gradient(140deg, #0c0c12 0%, #14101e 50%, #0a0a0e 100%);
-  }
-  .panel--fragrance .panel-accent-line { background: linear-gradient(90deg, #9b8fc0, #c4b8e0, transparent); }
-
-  /* Skincare BG */
-  .panel--skincare .panel-bg {
-    background:
-      radial-gradient(ellipse 60% 50% at 60% 40%, rgba(220,210,200,0.08) 0%, transparent 60%),
-      radial-gradient(ellipse 40% 60% at 25% 70%, rgba(200,185,170,0.06) 0%, transparent 55%),
-      linear-gradient(150deg, #111010 0%, #181614 50%, #0e0e0d 100%);
-  }
-  .panel--skincare .panel-accent-line { background: linear-gradient(90deg, #b8a898, #d4c8bc, transparent); }
-
-  /* Hotel BG */
-  .panel--hotel .panel-bg {
-    background:
-      radial-gradient(ellipse 55% 55% at 70% 35%, rgba(180,140,80,0.15) 0%, transparent 60%),
-      radial-gradient(ellipse 40% 50% at 20% 70%, rgba(140,100,60,0.1) 0%, transparent 55%),
-      linear-gradient(145deg, #0e0b06 0%, #1a1408 50%, #0a0906 100%);
-  }
-  .panel--hotel .panel-accent-line { background: linear-gradient(90deg, #b89458, #d4b47a, transparent); }
-
-  /* Panel overlay */
+  /* Overlay */
   .panel-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(14,12,10,0.35);
-    transition: background var(--panel-transition);
+    transition: background 1.4s var(--ease-cinema);
     z-index: 1;
   }
+  .panel--cocktail .panel-overlay  { background: rgba(14,12,10,0.28); }
+  .panel--fragrance .panel-overlay { background: rgba(14,12,10,0.35); }
+  .panel--skincare .panel-overlay  { background: rgba(14,12,10,0.32); }
+  .panel--hotel .panel-overlay     { background: rgba(14,12,10,0.30); }
 
-  /* Accent line at top of each panel */
-  .panel-accent-line {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    z-index: 3;
-    opacity: 0.6;
+  /* Neighbor dim — very restrained */
+  @media (hover: hover) {
+    .panels-container:has(.panel:hover) .panel:not(:hover) .panel-overlay {
+      background: rgba(14,12,10,0.55) !important;
+    }
+    .panels-container:has(.panel:hover) .panel:not(:hover) .panel-inner {
+      opacity: 0.45;
+    }
+    .panel:hover .panel-overlay { background: rgba(14,12,10,0.16) !important; }
+    .panel:hover .panel-cta { opacity: 1; transform: translateX(4px); }
+    .panel:hover .panel-divider { width: 44px; }
   }
 
-  /* Panel inner layout */
+  /* Accent line */
+  .panel-accent-line {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    z-index: 3;
+    opacity: 0.45;
+  }
+
+  /* BG palettes */
+  .panel--cocktail .panel-bg {
+    background:
+      radial-gradient(ellipse 55% 65% at 72% 38%, rgba(185,115,35,0.28) 0%, transparent 62%),
+      radial-gradient(ellipse 42% 52% at 18% 62%, rgba(110,65,18,0.22) 0%, transparent 58%),
+      linear-gradient(158deg, #1c1005 0%, #2e1c08 40%, #0e0c0a 100%);
+  }
+  .panel--cocktail .panel-accent-line { background: linear-gradient(90deg, #c8943a 0%, #e8b860 40%, transparent 100%); }
+
+  .panel--fragrance .panel-bg {
+    background:
+      radial-gradient(ellipse 52% 72% at 78% 28%, rgba(155,138,175,0.16) 0%, transparent 62%),
+      radial-gradient(ellipse 38% 48% at 14% 68%, rgba(95,78,135,0.13) 0%, transparent 58%),
+      linear-gradient(138deg, #0c0c13 0%, #15101f 52%, #0a0a0f 100%);
+  }
+  .panel--fragrance .panel-accent-line { background: linear-gradient(90deg, #9b8fc0 0%, #c4b8df 40%, transparent 100%); }
+
+  .panel--skincare .panel-bg {
+    background:
+      radial-gradient(ellipse 62% 52% at 58% 38%, rgba(218,208,198,0.09) 0%, transparent 62%),
+      radial-gradient(ellipse 42% 62% at 22% 72%, rgba(198,183,168,0.07) 0%, transparent 58%),
+      linear-gradient(148deg, #121110 0%, #191714 52%, #0f0e0d 100%);
+  }
+  .panel--skincare .panel-accent-line { background: linear-gradient(90deg, #b8a898 0%, #d4c8bc 40%, transparent 100%); }
+
+  .panel--hotel .panel-bg {
+    background:
+      radial-gradient(ellipse 58% 58% at 68% 32%, rgba(185,145,78,0.17) 0%, transparent 62%),
+      radial-gradient(ellipse 42% 52% at 18% 72%, rgba(142,102,58,0.12) 0%, transparent 58%),
+      linear-gradient(143deg, #100d06 0%, #1c1508 52%, #0b0904 100%);
+  }
+  .panel--hotel .panel-accent-line { background: linear-gradient(90deg, #b89458 0%, #d4b47a 40%, transparent 100%); }
+
+  /* Inner layout */
   .panel-inner {
     position: relative;
     z-index: 2;
@@ -321,45 +281,23 @@
     flex-direction: column;
     justify-content: space-between;
     padding: 2.25rem 3rem 2rem;
+    transition: opacity 1.2s var(--ease-cinema);
   }
-
   .panel-top { display: flex; justify-content: space-between; align-items: flex-start; }
   .panel-bottom { display: flex; justify-content: space-between; align-items: flex-end; }
 
-  .panel-meta {
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-    transition: opacity var(--panel-transition);
-  }
-
+  .panel-meta { display: flex; flex-direction: column; gap: 0.3rem; }
   .panel-number {
-    font-size: 0.6rem;
-    letter-spacing: 0.3em;
+    font-size: 0.58rem;
+    letter-spacing: 0.32em;
     text-transform: uppercase;
-    color: rgba(245,243,239,0.3);
+    color: rgba(245,243,239,0.28);
   }
-
   .panel-label {
-    font-size: 0.65rem;
-    letter-spacing: 0.25em;
+    font-size: 0.63rem;
+    letter-spacing: 0.24em;
     text-transform: uppercase;
-    color: rgba(245,243,239,0.45);
-  }
-
-  .panel-status {
-    font-size: 0.6rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    padding: 0.3rem 0.7rem;
-    border: 1px solid rgba(245,243,239,0.15);
-    color: rgba(245,243,239,0.35);
-    transition: opacity var(--panel-transition);
-  }
-
-  .panel-status--live {
-    border-color: rgba(232,68,90,0.4);
-    color: rgba(232,68,90,0.7);
+    color: rgba(245,243,239,0.38);
   }
 
   .panel-title {
@@ -367,111 +305,167 @@
     font-size: clamp(2rem, 4vw, 3.5rem);
     font-weight: 400;
     color: var(--off-white);
-    line-height: 1.1;
+    line-height: 1.08;
     letter-spacing: -0.02em;
-    transition: letter-spacing 0.6s ease;
   }
-  .panel-title em {
-    font-style: italic;
-    opacity: 0.75;
-  }
+  .panel-title em { font-style: italic; opacity: 0.7; }
 
   .panel-tagline {
-    font-size: 0.82rem;
+    font-size: 0.8rem;
     font-weight: 300;
-    color: rgba(245,243,239,0.45);
-    max-width: 320px;
-    line-height: 1.6;
-    margin-top: 0.6rem;
+    color: rgba(245,243,239,0.4);
+    max-width: 520px;
+    line-height: 1.62;
+    margin-top: 0.55rem;
   }
+  @media (min-width: 1200px) { .panel-tagline { max-width: 600px; } }
 
   .panel-divider {
-    width: 32px;
+    width: 28px;
     height: 1px;
-    background: rgba(245,243,239,0.25);
+    background: rgba(245,243,239,0.2);
     margin-top: 1rem;
-    transition: width 0.6s ease;
+    transition: width 1.4s var(--ease-cinema);
   }
 
   .panel-cta {
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
+    font-size: 0.62rem;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: rgba(245,243,239,0.5);
+    color: rgba(245,243,239,0.42);
     display: flex;
     align-items: center;
     gap: 0.6rem;
-    transition: opacity var(--panel-transition), transform 0.4s ease;
+    opacity: 0.55;
+    transition: opacity 1.2s var(--ease-cinema), transform 0.9s var(--ease-cinema);
   }
-  .panel-cta svg {
-    width: 16px;
-    height: 16px;
-    opacity: 0.6;
-  }
+  .panel-cta svg { width: 15px; height: 15px; }
 
-  /* Coming soon overlay */
-  .panel--coming-soon {
-    pointer-events: none;
+  /* ── EXPLORE FOOTER NAV ── */
+  .explore-section {
+    background: var(--ink);
+    border-top: 1px solid rgba(245,243,239,0.07);
+    padding: 3.5rem 3rem 0;
   }
-  .panel--coming-soon .panel-overlay {
-    background: rgba(14,12,10,0.6);
+  .explore-label {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245,243,239,0.28);
+    margin-bottom: 2rem;
   }
+  .explore-links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(245,243,239,0.08);
+    border: 1px solid rgba(245,243,239,0.08);
+  }
+  .explore-link {
+    background: var(--ink);
+    padding: 1.6rem 1.8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+    color: var(--off-white);
+    transition: background 0.3s;
+  }
+  .explore-link:hover { background: rgba(245,243,239,0.04); }
+  .explore-link-meta { display: flex; flex-direction: column; gap: 4px; }
+  .explore-link-num {
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(245,243,239,0.22);
+  }
+  .explore-link-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 400;
+    color: var(--off-white);
+    line-height: 1.1;
+  }
+  .explore-link-arrow {
+    width: 38px; height: 38px;
+    border: 1px solid rgba(245,243,239,0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), background 0.25s, border-color 0.25s;
+  }
+  .explore-link:hover .explore-link-arrow {
+    transform: rotate(45deg) scale(1.08);
+    background: rgba(245,243,239,0.1);
+    border-color: rgba(245,243,239,0.3);
+  }
+  .explore-link-arrow svg { width: 14px; height: 14px; stroke: var(--off-white); fill: none; stroke-width: 1.8; }
 
   /* ── FOOTER ── */
   footer {
-    padding: 3rem;
-    border-top: 1px solid rgba(245,243,239,0.06);
+    background: var(--ink);
+    padding: 2rem 3rem 2.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-
   .footer-copy {
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    color: rgba(245,243,239,0.2);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    color: rgba(245,243,239,0.18);
   }
-
-  .footer-back {
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
+  .footer-back-top {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     color: rgba(245,243,239,0.3);
     text-decoration: none;
-    transition: color 0.3s;
+    border: 1px solid rgba(245,243,239,0.15);
+    padding: 0.4rem 1rem;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: all 0.25s;
   }
-  .footer-back:hover { color: var(--off-white); }
+  .footer-back-top:hover { background: rgba(245,243,239,0.06); color: var(--off-white); border-color: rgba(245,243,239,0.28); }
 
   /* ── FADE IN ── */
   .fade-in {
     opacity: 0;
-    transform: translateY(18px);
-    animation: fadeUp 1s ease forwards;
+    transform: translateY(16px);
+    animation: fadeUp 1.1s var(--ease-cinema) forwards;
   }
   .fade-in:nth-child(1) { animation-delay: 0.1s; }
-  .fade-in:nth-child(2) { animation-delay: 0.25s; }
-  .fade-in:nth-child(3) { animation-delay: 0.4s; }
-
-  @keyframes fadeUp {
-    to { opacity: 1; transform: translateY(0); }
-  }
+  .fade-in:nth-child(2) { animation-delay: 0.28s; }
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
 
   /* ── MOBILE ── */
   @media (max-width: 767px) {
     nav { padding: 1.25rem 1.5rem; }
     .hero { padding: 0 1.5rem 4rem; min-height: 90vh; }
     .hero::after { display: none; }
-    .hero-title { font-size: clamp(2.8rem, 11vw, 4rem); }
-    .panel { height: 44vh; min-height: 300px; }
-    .panel-inner { padding: 1.75rem 1.5rem 1.5rem; }
-    .panel-title { font-size: clamp(1.75rem, 6vw, 2.5rem); }
-    footer { padding: 2rem 1.5rem; flex-direction: column; gap: 1rem; text-align: center; }
     .hero-scroll { display: none; }
+    .hero-title { font-size: clamp(2.8rem, 11vw, 4rem); }
+    .panel { height: 50vh; min-height: 300px; }
+    .panel-inner { padding: 1.75rem 1.5rem 1.5rem; }
+    .panel-title { font-size: clamp(1.8rem, 6.5vw, 2.5rem); }
+    .explore-section { padding: 2.5rem 1.5rem 0; }
+    .explore-links { grid-template-columns: 1fr; }
+    .explore-link { padding: 1.2rem 1.4rem; border-bottom: 1px solid rgba(245,243,239,0.07); }
+    .explore-link:last-child { border-bottom: none; }
+    footer { padding: 1.5rem; flex-direction: column; gap: 1rem; text-align: center; }
   }
-
   @media (min-width: 768px) and (max-width: 1199px) {
     .hero { padding: 0 2rem 4rem; }
     .panel-inner { padding: 2rem 2rem 1.75rem; }
+    .explore-section { padding: 3rem 2rem 0; }
+    footer { padding: 1.75rem 2rem 2rem; }
   }
 </style>
 </head>
@@ -488,8 +482,10 @@
   <div class="hero-bg"></div>
   <div class="hero-content">
     <p class="hero-eyebrow fade-in">Visual Concepts</p>
-    <h1 class="hero-title fade-in">Visual<br><em>Concepts</em></h1>
-    <p class="hero-body fade-in">A curated collection of immersive visual explorations blending luxury branding, hospitality-inspired storytelling, editorial presentation, and cinematic digital experiences.</p>
+    <div class="hero-title-row fade-in">
+      <h1 class="hero-title">Visual<br><em>Concepts</em></h1>
+      <p class="hero-body">A curated collection of immersive visual explorations blending luxury branding, hospitality-inspired storytelling, editorial presentation, and cinematic digital experiences.</p>
+    </div>
   </div>
   <div class="hero-scroll">
     <span>Scroll</span>
@@ -501,7 +497,7 @@
 <section class="panels-wrapper">
   <div class="panels-container">
 
-    <!-- 01 — COCKTAIL (LIVE) -->
+    <!-- 01 — COCKTAIL -->
     <a href="./cocktails/index.html" class="panel panel--cocktail">
       <div class="panel-bg"></div>
       <div class="panel-overlay"></div>
@@ -510,28 +506,25 @@
         <div class="panel-top">
           <div class="panel-meta">
             <span class="panel-number">01</span>
-            <span class="panel-label">Editorial · Hospitality</span>
+            <span class="panel-label">Hospitality · Print & Digital</span>
           </div>
-          <span class="panel-status panel-status--live">Live</span>
         </div>
         <div class="panel-bottom">
           <div>
-            <h2 class="panel-title">Cocktail<br><em>Concept</em></h2>
-            <p class="panel-tagline">A curated menu system for an upscale bar program — editorial typography meets cinematic nightlife.</p>
+            <h2 class="panel-title">Cocktail<br><em>Menu</em></h2>
+            <p class="panel-tagline">A curated menu system for an upscale bar program — Baskerville typography meets dark amber nightlife.</p>
             <div class="panel-divider"></div>
           </div>
           <div class="panel-cta">
             <span>Enter</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </div>
         </div>
       </div>
     </a>
 
-    <!-- 02 — FRAGRANCE (COMING SOON) -->
-    <div class="panel panel--fragrance panel--coming-soon">
+    <!-- 02 — FRAGRANCE -->
+    <a href="./fragrance/index.html" class="panel panel--fragrance">
       <div class="panel-bg"></div>
       <div class="panel-overlay"></div>
       <div class="panel-accent-line"></div>
@@ -539,25 +532,25 @@
         <div class="panel-top">
           <div class="panel-meta">
             <span class="panel-number">02</span>
-            <span class="panel-label">Editorial · Luxury</span>
+            <span class="panel-label">Luxury · Brand Identity</span>
           </div>
-          <span class="panel-status">In Progress</span>
         </div>
         <div class="panel-bottom">
           <div>
-            <h2 class="panel-title">Fragrance<br><em>Concept</em></h2>
-            <p class="panel-tagline">Soft black, glass reflections, and moody luxury — a sensory visual language for a high-end fragrance house.</p>
+            <h2 class="panel-title">Fragrance<br><em>Campaign</em></h2>
+            <p class="panel-tagline">Soft black, glass reflections, moody luxury — a sensory visual language for a high-end fragrance brand.</p>
             <div class="panel-divider"></div>
           </div>
-          <div class="panel-cta" style="opacity:0.2;">
-            <span>Soon</span>
+          <div class="panel-cta">
+            <span>Enter</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </div>
         </div>
       </div>
-    </div>
+    </a>
 
-    <!-- 03 — SKINCARE (COMING SOON) -->
-    <div class="panel panel--skincare panel--coming-soon">
+    <!-- 03 — SKINCARE -->
+    <a href="./skincare/index.html" class="panel panel--skincare">
       <div class="panel-bg"></div>
       <div class="panel-overlay"></div>
       <div class="panel-accent-line"></div>
@@ -565,25 +558,25 @@
         <div class="panel-top">
           <div class="panel-meta">
             <span class="panel-number">03</span>
-            <span class="panel-label">Editorial · Beauty</span>
+            <span class="panel-label">Beauty · Brand Identity</span>
           </div>
-          <span class="panel-status">In Progress</span>
         </div>
         <div class="panel-bottom">
           <div>
-            <h2 class="panel-title">Skincare<br><em>Concept</em></h2>
-            <p class="panel-tagline">Diffused whites, muted neutrals, and clean minimalism — a visual system for a considered skincare brand.</p>
+            <h2 class="panel-title">Skincare<br><em>Brand</em></h2>
+            <p class="panel-tagline">Diffused whites, muted neutrals, clean minimalism — a considered visual system for a modern skincare label.</p>
             <div class="panel-divider"></div>
           </div>
-          <div class="panel-cta" style="opacity:0.2;">
-            <span>Soon</span>
+          <div class="panel-cta">
+            <span>Enter</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </div>
         </div>
       </div>
-    </div>
+    </a>
 
-    <!-- 04 — HOTEL (COMING SOON) -->
-    <div class="panel panel--hotel panel--coming-soon">
+    <!-- 04 — HOTEL -->
+    <a href="./hotel/index.html" class="panel panel--hotel">
       <div class="panel-bg"></div>
       <div class="panel-overlay"></div>
       <div class="panel-accent-line"></div>
@@ -591,30 +584,67 @@
         <div class="panel-top">
           <div class="panel-meta">
             <span class="panel-number">04</span>
-            <span class="panel-label">Editorial · Hospitality</span>
+            <span class="panel-label">Hospitality · World-Building</span>
           </div>
-          <span class="panel-status">In Progress</span>
         </div>
         <div class="panel-bottom">
           <div>
-            <h2 class="panel-title">Hotel<br><em>Concept</em></h2>
-            <p class="panel-tagline">Warm architecture, cinematic interiors, and quiet grandeur — a world-building exercise in hospitality identity.</p>
+            <h2 class="panel-title">Hotel<br><em>Identity</em></h2>
+            <p class="panel-tagline">Warm architecture, cinematic interiors, quiet grandeur — a world-building exercise in luxury hospitality identity.</p>
             <div class="panel-divider"></div>
           </div>
-          <div class="panel-cta" style="opacity:0.2;">
-            <span>Soon</span>
+          <div class="panel-cta">
+            <span>Enter</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </div>
         </div>
       </div>
-    </div>
+    </a>
 
   </div>
 </section>
 
+<!-- EXPLORE MORE WORK -->
+<div class="explore-section">
+  <p class="explore-label">Explore More Work</p>
+  <div class="explore-links">
+    <a href="https://mollycurtis.github.io/brandguide/" class="explore-link">
+      <div class="explore-link-meta">
+        <span class="explore-link-num">01</span>
+        <span class="explore-link-name">Brand Style Guides</span>
+      </div>
+      <div class="explore-link-arrow">
+        <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+      </div>
+    </a>
+    <a href="https://mollycurtis.github.io/landingpages/" class="explore-link">
+      <div class="explore-link-meta">
+        <span class="explore-link-num">02</span>
+        <span class="explore-link-name">Landing Pages</span>
+      </div>
+      <div class="explore-link-arrow">
+        <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+      </div>
+    </a>
+    <a href="https://mollycurtis.github.io/" class="explore-link">
+      <div class="explore-link-meta">
+        <span class="explore-link-num">00</span>
+        <span class="explore-link-name">Back to Portfolio</span>
+      </div>
+      <div class="explore-link-arrow">
+        <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+      </div>
+    </a>
+  </div>
+</div>
+
 <!-- FOOTER -->
 <footer>
-  <span class="footer-copy">© 2025 Molly Curtis — Visual Concepts Archive</span>
-  <a href="https://mollycurtis.github.io" class="footer-back">← Return to Portfolio</a>
+  <span class="footer-copy">Visual Concepts — Molly Curtis</span>
+  <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" class="footer-back-top">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+    Back to top
+  </a>
 </footer>
 
 </body>
