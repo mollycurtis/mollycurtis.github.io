@@ -59,11 +59,11 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
 .nav-logo {
   font-family: 'Cormorant Garamond', serif;
   font-size: 0.95rem; letter-spacing: 0.06em;
-  color: rgba(238,232,216,0.42); text-decoration: none;
+  color: rgba(238,232,216,0.75); text-decoration: none;
 }
 .nav-back {
   font-size: 0.6rem; letter-spacing: 0.24em; text-transform: uppercase;
-  color: rgba(238,232,216,0.22); text-decoration: none; transition: color 0.3s;
+  color: rgba(238,232,216,0.55); text-decoration: none; transition: color 0.3s;
 }
 .nav-back:hover { color: rgba(238,232,216,0.6); }
 
@@ -104,6 +104,7 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
 
 .hero-right {
   flex: 1;
+  max-width: 480px;
 }
 .hero-desc {
   font-size: 0.88rem; font-weight: 300; line-height: 1.75;
@@ -160,12 +161,11 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
   overflow-x: hidden; overflow-y: hidden;
   scroll-behavior: smooth;
   padding-bottom: 54px; /* dots */
-  pointer-events: none;
 }
 
 .track-inner {
   display: flex; align-items: stretch;
-  padding: 0;
+  padding-left: 80px;
 }
 
 /* ── CARD ── */
@@ -204,20 +204,18 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
 
 /* ── ARROWS — only inside menu ── */
 .arrow {
-  position: fixed; top: calc(50% + 24px); transform: translateY(-50%);
-  z-index: 200; width: 52px; height: 52px;
+  position: absolute; top: 50%; transform: translateY(-50%);
+  z-index: 300; width: 52px; height: 52px;
   border: 1px solid var(--text); border-radius: 50%;
   background: var(--parchment); color: var(--text);
   cursor: pointer; display: flex; align-items: center; justify-content: center;
-  transition: all 0.22s, opacity 0.3s;
+  transition: background 0.22s, color 0.22s;
   box-shadow: 0 4px 20px rgba(0,0,0,0.18);
-  opacity: 0; pointer-events: none;
 }
-.arrow.show { opacity: 1; pointer-events: auto; }
 .arrow:hover { background: var(--text); color: var(--parchment); }
-.arrow:disabled { opacity: 0.2 !important; cursor: default; }
-.arrow:disabled:hover { background: var(--parchment); color: var(--text); }
-.arrow-left  { left: 1.5rem; }
+.arrow:disabled { opacity: 0.25; cursor: default; }
+.arrow:disabled:hover { background: var(--parchment); color: var(--text); border-color: var(--text); }
+.arrow-left  { left: 1rem; }
 .arrow-right { right: 1.5rem; }
 
 /* ── DOTS ── */
@@ -228,7 +226,6 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
   z-index: 100; opacity: 0; pointer-events: none; transition: opacity 0.4s;
 }
 .dots-bar.show { opacity: 1; pointer-events: auto; }
-.dot-btn { pointer-events: auto; }
 .dot-btn {
   width: 6px; height: 6px; border-radius: 50%;
   background: #bfaf98; border: none; cursor: pointer; padding: 0;
@@ -275,7 +272,7 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
 </section>
 
 <!-- MENU -->
-<section class="menu" id="menu">
+<section class="menu" id="menu" style="position:relative;">
   <div class="menu-header">
     <span class="menu-num" id="numLeft">1</span>
     <span class="menu-label">Cocktails</span>
@@ -286,14 +283,13 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
       <div class="track-inner" id="trackInner"></div>
     </div>
   </div>
+  <button class="arrow arrow-left"  id="arrowL" onclick="go(-1)" aria-label="Previous">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+  </button>
+  <button class="arrow arrow-right" id="arrowR" onclick="go(1)"  aria-label="Next">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </button>
 </section>
-
-<button class="arrow arrow-left"  id="arrowL" onclick="go(-1)" aria-label="Previous">
-  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-</button>
-<button class="arrow arrow-right" id="arrowR" onclick="go(1)"  aria-label="Next">
-  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-</button>
 
 <div class="dots-bar" id="dots"></div>
 
@@ -370,12 +366,10 @@ document.addEventListener('keydown', e=>{
 });
 
 // Show arrows+dots only when menu is in view
+// Show dots when menu in view
 const obs = new IntersectionObserver(entries => {
-  const show = entries[0].isIntersecting;
-  document.getElementById('arrowL').classList.toggle('show', show);
-  document.getElementById('arrowR').classList.toggle('show', show);
-  dots.classList.toggle('show', show);
-}, { threshold: 0.2 });
+  dots.classList.toggle('show', entries[0].isIntersecting);
+}, { threshold: 0.05 });
 obs.observe(document.getElementById('menu'));
 
 updateUI();
