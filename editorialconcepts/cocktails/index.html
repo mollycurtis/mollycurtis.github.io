@@ -196,14 +196,14 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
 
 .drink-tag { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1rem; }
 
-.drink-photo { flex: 1; min-height: 0; max-height: 340px; display: flex; align-items: flex-end; justify-content: center; overflow: hidden; margin-bottom: 0.75rem; }
+.drink-photo { flex: 1; min-height: 0; max-height: 380px; display: flex; align-items: flex-end; justify-content: center; overflow: hidden; margin-top: 0.5rem; margin-bottom: 0.5rem; }
 .drink-photo img {
   width: auto; max-width: 100%; max-height: 100%;
   object-fit: contain; object-position: center bottom; display: block;
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
+  -webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 .empty-photo { opacity: 0.1; display: flex; align-items: flex-end; justify-content: center; width: 60%; height: 110px; }
 
@@ -333,10 +333,15 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
 
 <script>
 const cocktails = [
-  { name:'Controlled Chaos', oz:'3.25 oz.', ingredients:'Vodka, Elderflower Liqueur, Fresh Grapefruit Juice, Lime Juice, Honey Syrup, Chili Flake, Fresh Rosemary', sliders:[{l:'Level',v:62},{l:'Heat',v:72},{l:'Floral',v:55}], tag:'Spicy · Floral · Bright', img:'chaos.svg', serve:'Rosemary garnish', price:'$17' },
-  { name:'Sage Smash', oz:'3.25 oz.', ingredients:'Bourbon, Fresh Lemon Juice, Maple Syrup, Blackberries, Fresh Sage, Angostura Bitters, Sparkling Water', sliders:[{l:'Level',v:75},{l:'Tart',v:65},{l:'Herb',v:58}], tag:'Deep · Herbal · Slightly Tart', img:'smash.svg', serve:'Sage leaf', price:'$18' },
-  { name:'Dark Matter', oz:'3.5 oz.', ingredients:'Dark Rum, Fresh Espresso, Coffee Liqueur, Coconut Cream, Simple Syrup, Sea Salt', sliders:[{l:'Level',v:70},{l:'Bold',v:85},{l:'Creamy',v:60}], tag:'Creamy · Bold Coffee · Tropical', img:'espresso.svg', serve:'3 Espresso beans', price:'$19' },
-  ...Array(9).fill(null).map(()=>({ name:'Coming Soon', oz:'—', ingredients:'Recipe coming soon.', sliders:[], tag:'· · ·', img:'', serve:'—', price:'$—' }))
+  { name:'Controlled Chaos', oz:'3.25 oz.', ingredients:'Vodka, Elderflower Liqueur, Grapefruit Juice, Lime Juice, Honey Syrup, Chili Flake, Rosemary',          sliders:[{l:'Level',v:62},{l:'Heat',v:72},{l:'Floral',v:55}],  tag:'Spicy · Floral · Bright',            img:'chaos.svg',       serve:'Rosemary garnish',    price:'$18' },
+  { name:'Sage Smash',       oz:'3.25 oz.', ingredients:'Bourbon, Lemon Juice, Maple Syrup, Blackberries, Fresh Sage, Angostura Bitters, Sparkling Water',       sliders:[{l:'Level',v:75},{l:'Tart',v:65},{l:'Herb',v:58}],    tag:'Deep · Herbal · Slightly Tart',      img:'smash.svg',       serve:'Sage leaf',           price:'$19' },
+  { name:'Dark Matter',      oz:'3.5 oz.',  ingredients:'Dark Rum, Espresso, Coffee Liqueur, Coconut Cream, Simple Syrup, Sea Salt',                             sliders:[{l:'Level',v:70},{l:'Bold',v:85},{l:'Creamy',v:60}],  tag:'Creamy · Bold Coffee · Tropical',    img:'espresso.svg',    serve:'3 Espresso beans',    price:'$20' },
+  { name:'Golden Hour',      oz:'3.25 oz.', ingredients:'Vanilla Vodka, Pear Liqueur, Lemon Juice, Half & Half, Cardamom Bitters, Egg Whites',                   sliders:[{l:'Rich',v:78},{l:'Sweet',v:65},{l:'Spice',v:35}],   tag:'Silky · Aromatic · Dessert-Forward', img:'pear.svg',        serve:'Cardamom dust',       price:'$19' },
+  { name:'Matcha Mirage',    oz:'3.25 oz.', ingredients:'White Rum, Matcha Powder, Lime Juice, Simple Syrup, Coconut Cream, Soda Water, Salt',                   sliders:[{l:'Fresh',v:70},{l:'Earthy',v:60},{l:'Citrus',v:55}],tag:'Tropical · Earthy · Light',           img:'matcha.svg',      serve:'Toasted coconut',     price:'$18' },
+  { name:'Penicillin',       oz:'3.5 oz.',  ingredients:'Blended Scotch, Lemon Juice, Honey Ginger Syrup, Islay Scotch, Aroma Spray',                           sliders:[{l:'Smoke',v:72},{l:'Citrus',v:65},{l:'Heat',v:50}],  tag:'Smoky · Medicinal · Complex',        img:'penicillin.svg',  serve:'Lemon twist',         price:'$22' },
+  { name:'Still Waters',     oz:'3.0 oz.',  ingredients:'Vodka or Gin, Elderflower, Cucumber, Lime Juice, Simple Syrup, Soda Water',                             sliders:[{l:'Fresh',v:80},{l:'Floral',v:72},{l:'Light',v:68}], tag:'Crisp · Floral · Refreshing',        img:'elderflower.svg', serve:'Cucumber slice',      price:'$18' },
+  { name:'Velvet Underground',oz:'3.25 oz.', ingredients:'Whiskey, Lemon Juice, Cherry Syrup, Balsamic Vinegar, Egg White, Bitters',                             sliders:[{l:'Tart',v:75},{l:'Depth',v:68},{l:'Smoke',v:40}],   tag:'Bold · Tangy · Velvety',             img:'cherry.svg',      serve:'Luxardo cherry',      price:'$20' },
+  { name:'Peach Reverie',    oz:'3.5 oz.',  ingredients:'Bourbon, Peach Purée, Muddled Peach, Lemon Juice, Thyme Honey Syrup, Egg Whites, Bitters, Soda Water', sliders:[{l:'Fruity',v:82},{l:'Floral',v:60},{l:'Warm',v:55}], tag:'Sun-Warmed · Herbaceous · Smooth',   img:'peach.svg',       serve:'Torched peach slices', price:'$19' },
 ];
 
 const TOTAL = cocktails.length;
@@ -377,7 +382,7 @@ function goTo(idx) {
   updateUI();
 }
 
-function go(dir) { goTo(cur + dir); }
+function go(dir) { if (dir > 0 && cur >= TOTAL - 1) return; if (dir < 0 && cur <= 0) return; goTo(cur + dir); }
 
 function updateUI() {
   document.querySelectorAll('.dot-btn').forEach((d, i) => d.classList.toggle('active', i === cur));
