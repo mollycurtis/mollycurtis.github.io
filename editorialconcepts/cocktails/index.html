@@ -54,7 +54,7 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
 
 .hero-nav {
   position: relative; z-index: 5;
-  display: flex; justify-content: space-between; align-items: center;
+  display: flex; justify-content: center; align-items: center;
 }
 .nav-logo {
   font-family: 'Cormorant Garamond', serif;
@@ -86,7 +86,7 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
 .hero-eyebrow {
   display: flex; align-items: center; gap: 0.75rem;
   font-size: 0.58rem; letter-spacing: 0.4em; text-transform: uppercase;
-  color: rgba(200,169,110,0.5); margin-bottom: 0.9rem;
+  color: rgba(200,169,110,0.85); margin-bottom: 0.9rem;
   font-family: 'Barlow', sans-serif; font-weight: 300;
 }
 .hero-eyebrow::before {
@@ -104,7 +104,6 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
 
 .hero-right {
   flex: 1;
-  max-width: 480px;
 }
 .hero-desc {
   font-size: 0.88rem; font-weight: 300; line-height: 1.75;
@@ -144,13 +143,11 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
 
 .menu-header {
   position: sticky; top: 0; z-index: 50;
-  display: flex; justify-content: space-between; align-items: center;
+  display: flex; justify-content: center; align-items: center;
   padding: 1.1rem 2rem;
   border-bottom: 0.5px solid var(--rule);
   background: var(--parchment);
 }
-.menu-num { font-size: 11px; letter-spacing: 0.2em; color: var(--text-muted); min-width: 30px; }
-.menu-num.r { text-align: right; }
 .menu-label { font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--text-muted); }
 
 /* scroll track — height = viewport minus sticky header */
@@ -261,7 +258,7 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
       <h1 class="hero-title">Cocktail Menu</h1>
     </div>
     <div class="hero-right">
-      <p class="hero-desc">Created as an exploration of immersive hospitality design, this concept combines luxury-inspired art direction, cocktail culture, and cinematic visual storytelling into an interactive editorial experience.</p>
+      <p class="hero-desc">Inspired by previous experience in hospitality and bartending, this concept explores cocktail storytelling through cinematic presentation, editorial-inspired layouts, and immersive visual direction.</p>
     </div>
   </div>
 
@@ -274,9 +271,7 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
 <!-- MENU -->
 <section class="menu" id="menu" style="position:relative;">
   <div class="menu-header">
-    <span class="menu-num" id="numLeft">1</span>
     <span class="menu-label">Cocktails</span>
-    <span class="menu-num r" id="numRight">12</span>
   </div>
   <div class="track-outer">
     <div class="track" id="track">
@@ -333,8 +328,21 @@ function cw() { return inner.querySelector('.card')?.offsetWidth || 340; }
 function goTo(idx) {
   idx = Math.max(0, Math.min(TOTAL-1, idx));
   cur = idx;
-  const off = (track.offsetWidth - cw()) / 2;
-  track.scrollTo({ left: Math.max(0, idx * cw() - off), behavior:'smooth' });
+  const target = Math.max(0, idx * cw() - 80); // 80px = left padding offset
+  // animate manually so it works reliably on first click
+  const start = track.scrollLeft;
+  const diff = target - start;
+  const duration = 220;
+  let startTime = null;
+  function ease(t) { return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; }
+  function step(ts) {
+    if (!startTime) startTime = ts;
+    const elapsed = ts - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    track.scrollLeft = start + diff * ease(progress);
+    if (progress < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
   updateUI();
 }
 function go(d) { goTo(cur + d); }
@@ -342,7 +350,7 @@ function go(d) { goTo(cur + d); }
 function updateUI() {
   document.querySelectorAll('.dot-btn').forEach((d,i) => d.classList.toggle('active', i===cur));
   // no dimming
-  document.getElementById('numLeft').textContent = cur + 1;
+
   document.getElementById('arrowL').disabled = cur === 0;
   document.getElementById('arrowR').disabled = cur === TOTAL-1;
 }
