@@ -27,7 +27,7 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding: 2rem 3rem 3rem;
+  padding: 2rem clamp(2rem, 5vw, 5rem) 3rem;
   min-height: 38vh;
   position: relative;
   overflow: hidden;
@@ -55,6 +55,8 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
 .hero-nav {
   position: relative; z-index: 5;
   display: flex; justify-content: space-between; align-items: center;
+  max-width: 1400px;
+  width: 100%;
 }
 .nav-logo {
   font-family: 'Cormorant Garamond', serif;
@@ -72,9 +74,9 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 3rem;
+  gap: clamp(2rem, 4vw, 4rem);
   margin-top: 2.5rem;
-  max-width: 1400px;
+  max-width: 1200px;
   animation: fadeUp 1.2s cubic-bezier(0.25,0.46,0.45,0.94) 0.2s both;
 }
 .hero-eyebrow {
@@ -100,7 +102,7 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
 
 .hero-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(4rem, 9vw, 8rem);
+  font-size: clamp(3.5rem, 7vw, 6.5rem);
   font-weight: 300; line-height: 0.92;
   letter-spacing: -0.02em;
   color: rgba(238,232,216,0.95);
@@ -108,6 +110,7 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
 
 .hero-right {
   flex: 1;
+  max-width: 560px;
 }
 .hero-desc {
   font-size: 0.88rem; font-weight: 300; line-height: 1.75;
@@ -148,7 +151,7 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
 .menu-header {
   position: sticky; top: 0; z-index: 50;
   display: flex; justify-content: center; align-items: center;
-  padding: 1.1rem 2rem;
+  padding: 1.1rem clamp(1.5rem, 4vw, 3rem);
   border-bottom: 0.5px solid var(--rule);
   background: var(--parchment);
 }
@@ -167,7 +170,6 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
   display: flex; align-items: stretch;
   transition: transform 0.28s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   will-change: transform;
-  flex-shrink: 0;
 }
 
 /* ── CARD ── */
@@ -253,6 +255,8 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
 }
 @media (min-width: 900px)  { :root { --card-w: 360px; } }
 @media (min-width: 1200px) { :root { --card-w: 400px; } }
+@media (min-width: 1600px) { :root { --card-w: 430px; } }
+@media (min-width: 2000px) { :root { --card-w: 460px; } }
 
 .mobile-nav-btn {
   display: none;
@@ -385,15 +389,26 @@ function goTo(idx) {
 function go(dir) { if (dir > 0 && cur >= TOTAL - 1) return; if (dir < 0 && cur <= 0) return; goTo(cur + dir); }
 
 function setTrackWidth() {
-  const cardW = inner.querySelector('.card')?.offsetWidth || 0;
-  inner.style.width = (cardW * TOTAL) + 'px';
-  inner.style.minWidth = (cardW * TOTAL) + 'px';
+  const card = inner.querySelector('.card');
+  if (!card) return;
+  const cardW = card.offsetWidth;
+  const totalWidth = cardW * TOTAL;
+  inner.style.width = `${totalWidth}px`;
+  inner.style.minWidth = `${totalWidth}px`;
+  inner.style.maxWidth = `${totalWidth}px`;
 }
 
-function updateUI() {
+function updateUI(maxIndexOverride) {
+  const cardW = inner.querySelector('.card')?.offsetWidth || 1;
+  const totalWidth = inner.scrollWidth;
+  const viewportWidth = document.getElementById('track').offsetWidth;
+  const maxIndex = maxIndexOverride ?? Math.ceil((totalWidth - viewportWidth) / cardW);
+
   document.querySelectorAll('.dot-btn').forEach((d, i) => d.classList.toggle('active', i === cur));
-  const atEnd = cur === TOTAL - 1;
-  const atStart = cur === 0;
+
+  const atStart = cur <= 0;
+  const atEnd = cur >= maxIndex;
+
   if (window.innerWidth > 600) {
     document.getElementById('arrowL').disabled = atStart;
     document.getElementById('arrowR').disabled = atEnd;
