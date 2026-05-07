@@ -24,11 +24,11 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
 
 /* ── HERO ── */
 .hero {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 2rem 3rem 3.5rem;
+  justify-content: flex-start;
+  padding: 2rem 3rem 3rem;
+  min-height: 42vh;
   position: relative;
   overflow: hidden;
   background:
@@ -70,9 +70,10 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
 .hero-body {
   position: relative; z-index: 5;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
-  gap: 4rem;
+  gap: 3rem;
+  margin-top: 4rem;
   animation: fadeUp 1.2s cubic-bezier(0.25,0.46,0.45,0.94) 0.2s both;
 }
 @keyframes fadeUp {
@@ -102,13 +103,12 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
 }
 
 .hero-right {
-  max-width: 280px;
+  max-width: 420px;
   flex-shrink: 0;
-  padding-bottom: 0.4rem;
 }
 .hero-desc {
-  font-size: 0.83rem; font-weight: 300; line-height: 1.8;
-  color: rgba(238,232,216,0.35);
+  font-size: 0.88rem; font-weight: 300; line-height: 1.75;
+  color: rgba(238,232,216,0.42);
   font-family: 'Barlow', sans-serif;
 }
 
@@ -129,10 +129,10 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
 @keyframes scrollPulse { 0%,100%{opacity:0.3} 50%{opacity:1} }
 
 @media (max-width: 700px) {
-  .hero { padding: 1.5rem 1.5rem 2.5rem; }
-  .hero-body { flex-direction: column; gap: 1.5rem; }
-  .hero-right { max-width: 100%; }
-  .hero-title { font-size: clamp(3.2rem, 13vw, 5rem); }
+  .hero { padding: 1.5rem 1.5rem 2rem; }
+  .hero-body { flex-direction: column; gap: 1.2rem; margin-top: 1.5rem; }
+  .hero-right { max-width: 100%; padding-top: 0; }
+  .hero-title { font-size: clamp(3rem, 12vw, 4.5rem); }
   .hero-scroll { display: none; }
 }
 
@@ -168,7 +168,7 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
 
 .track-inner {
   display: flex; align-items: stretch;
-  padding: 0 calc(50vw - var(--card-w) / 2);
+  padding: 0;
 }
 
 /* ── CARD ── */
@@ -181,7 +181,7 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
   transition: opacity 0.4s;
 }
 .card:last-child { border-right: none; }
-.card.dim { opacity: 0.3; }
+
 
 .drink-header { padding-bottom: 0.9rem; border-bottom: 0.5px solid var(--rule); margin-bottom: 0.9rem; }
 .drink-name { font-family: 'Libre Baskerville', serif; font-weight: 700; font-size: 20px; line-height: 1.15; color: var(--text); margin-bottom: 5px; }
@@ -197,8 +197,8 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
 
 .drink-tag { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1rem; }
 
-.drink-photo { flex: 1; min-height: 0; max-height: 190px; display: flex; align-items: flex-end; justify-content: center; overflow: hidden; margin-bottom: 0.75rem; }
-.drink-photo img { max-width: 78%; max-height: 100%; object-fit: contain; object-position: center bottom; display: block; }
+.drink-photo { flex: 1; min-height: 0; max-height: 280px; display: flex; align-items: flex-end; justify-content: center; overflow: hidden; margin-bottom: 0.75rem; }
+.drink-photo img { width: 90%; max-height: 100%; object-fit: contain; object-position: center bottom; display: block; }
 .empty-photo { opacity: 0.1; display: flex; align-items: flex-end; justify-content: center; width: 60%; height: 110px; }
 
 .price-row { display: flex; justify-content: space-between; align-items: baseline; padding-top: 0.75rem; border-top: 0.5px solid var(--rule); margin-top: auto; }
@@ -343,7 +343,7 @@ function go(d) { goTo(cur + d); }
 
 function updateUI() {
   document.querySelectorAll('.dot-btn').forEach((d,i) => d.classList.toggle('active', i===cur));
-  document.querySelectorAll('.card').forEach((c,i) => c.classList.toggle('dim', Math.abs(i-cur)>1));
+  // no dimming
   document.getElementById('numLeft').textContent = cur + 1;
   document.getElementById('arrowL').disabled = cur === 0;
   document.getElementById('arrowR').disabled = cur === TOTAL-1;
