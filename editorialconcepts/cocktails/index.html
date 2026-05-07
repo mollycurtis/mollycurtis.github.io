@@ -71,7 +71,7 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
   position: relative; z-index: 5;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 3rem;
   margin-top: 4rem;
   animation: fadeUp 1.2s cubic-bezier(0.25,0.46,0.45,0.94) 0.2s both;
@@ -103,8 +103,7 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
 }
 
 .hero-right {
-  max-width: 420px;
-  flex-shrink: 0;
+  flex: 1;
 }
 .hero-desc {
   font-size: 0.88rem; font-weight: 300; line-height: 1.75;
@@ -154,17 +153,15 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
 .menu-label { font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--text-muted); }
 
 /* scroll track — height = viewport minus sticky header */
-.track-outer { height: calc(100vh - 48px); overflow: hidden; }
+.track-outer { height: calc(90vh - 48px); overflow: hidden; }
 
 .track {
   display: flex; height: 100%;
-  overflow-x: auto; overflow-y: hidden;
-  scroll-behavior: smooth; -webkit-overflow-scrolling: touch;
-  scrollbar-width: none; cursor: grab; user-select: none;
+  overflow-x: hidden; overflow-y: hidden;
+  scroll-behavior: smooth;
   padding-bottom: 54px; /* dots */
+  pointer-events: none;
 }
-.track::-webkit-scrollbar { display: none; }
-.track.dragging { cursor: grabbing; scroll-behavior: auto; }
 
 .track-inner {
   display: flex; align-items: stretch;
@@ -197,8 +194,8 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
 
 .drink-tag { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1rem; }
 
-.drink-photo { flex: 1; min-height: 0; max-height: 280px; display: flex; align-items: flex-end; justify-content: center; overflow: hidden; margin-bottom: 0.75rem; }
-.drink-photo img { width: 90%; max-height: 100%; object-fit: contain; object-position: center bottom; display: block; }
+.drink-photo { flex: 1; min-height: 0; max-height: 340px; display: flex; align-items: flex-end; justify-content: center; overflow: hidden; margin-bottom: 0.75rem; }
+.drink-photo img { width: 100%; max-height: 100%; object-fit: contain; object-position: center bottom; display: block; }
 .empty-photo { opacity: 0.1; display: flex; align-items: flex-end; justify-content: center; width: 60%; height: 110px; }
 
 .price-row { display: flex; justify-content: space-between; align-items: baseline; padding-top: 0.75rem; border-top: 0.5px solid var(--rule); margin-top: auto; }
@@ -208,20 +205,20 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
 /* ── ARROWS — only inside menu ── */
 .arrow {
   position: fixed; top: calc(50% + 24px); transform: translateY(-50%);
-  z-index: 200; width: 40px; height: 40px;
-  border: 0.5px solid var(--rule); border-radius: 50%;
-  background: var(--parchment); color: var(--text-muted);
+  z-index: 200; width: 52px; height: 52px;
+  border: 1px solid var(--text); border-radius: 50%;
+  background: var(--parchment); color: var(--text);
   cursor: pointer; display: flex; align-items: center; justify-content: center;
   transition: all 0.22s, opacity 0.3s;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.18);
   opacity: 0; pointer-events: none;
 }
 .arrow.show { opacity: 1; pointer-events: auto; }
-.arrow:hover { background: var(--text); color: var(--parchment); border-color: var(--text); }
-.arrow:disabled { opacity: 0.18 !important; cursor: default; }
-.arrow:disabled:hover { background: var(--parchment); color: var(--text-muted); border-color: var(--rule); }
-.arrow-left  { left: 1.25rem; }
-.arrow-right { right: 1.25rem; }
+.arrow:hover { background: var(--text); color: var(--parchment); }
+.arrow:disabled { opacity: 0.2 !important; cursor: default; }
+.arrow:disabled:hover { background: var(--parchment); color: var(--text); }
+.arrow-left  { left: 1.5rem; }
+.arrow-right { right: 1.5rem; }
 
 /* ── DOTS ── */
 .dots-bar {
@@ -231,6 +228,7 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
   z-index: 100; opacity: 0; pointer-events: none; transition: opacity 0.4s;
 }
 .dots-bar.show { opacity: 1; pointer-events: auto; }
+.dot-btn { pointer-events: auto; }
 .dot-btn {
   width: 6px; height: 6px; border-radius: 50%;
   background: #bfaf98; border: none; cursor: pointer; padding: 0;
@@ -242,6 +240,10 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
   :root { --card-w: 88vw; }
   .arrow { display: none; }
   .track-inner { padding: 0 6vw; }
+  .track-outer { height: calc(75vh - 48px); }
+}
+@media (max-width: 600px) and (max-height: 700px) {
+  .track-outer { height: calc(70vh - 48px); }
 }
 @media (min-width: 900px)  { :root { --card-w: 360px; } }
 @media (min-width: 1200px) { :root { --card-w: 400px; } }
@@ -359,15 +361,7 @@ track.addEventListener('scroll', () => {
   }, 60);
 });
 
-// Drag
-let drag=false, dx=0, sx=0;
-track.addEventListener('mousedown', e=>{ drag=true; dx=e.clientX; sx=track.scrollLeft; track.classList.add('dragging'); });
-document.addEventListener('mousemove', e=>{ if(drag) track.scrollLeft=sx-(e.clientX-dx); });
-document.addEventListener('mouseup', ()=>{
-  if(!drag) return; drag=false; track.classList.remove('dragging');
-  const off=(track.offsetWidth-cw())/2;
-  goTo(Math.round((track.scrollLeft+off)/cw()));
-});
+
 
 // Keyboard
 document.addEventListener('keydown', e=>{
