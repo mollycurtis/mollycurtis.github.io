@@ -114,11 +114,11 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
 
 .hero-right {
   flex: 1;
-  max-width: 500px;
+  max-width: 580px;
   margin-left: 2vw;
 }
 .hero-desc {
-  font-size: 0.95rem; font-weight: 300; line-height: 1.85;
+  font-size: 1rem; font-weight: 300; line-height: 1.9;
   color: rgba(238,232,216,0.42);
   font-family: 'Barlow', sans-serif;
 }
@@ -141,8 +141,10 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
 
 @media (max-width: 700px) {
   .hero { padding: 4rem 1.5rem 2.5rem; min-height: 55vh; justify-content: center; }
-  .hero-body { flex-direction: column; gap: 0.9rem; }
-  .hero-right { max-width: 100%; margin-left: 0; }
+  .hero-body { flex-direction: column; align-items: flex-start; text-align: left; gap: 0.9rem; }
+  .hero-bottom { align-items: flex-start; text-align: left; }
+  .hero-left, .hero-right { width: 100%; text-align: left; max-width: 100%; margin-left: 0; }
+  .hero-title, .hero-desc, .hero-eyebrow { text-align: left; }
   .hero-title { font-size: clamp(2.6rem, 11vw, 4rem); }
   .hero-scroll { display: none; }
   .hero-nav { top: 1rem; left: 1.5rem; right: 1.5rem; }
@@ -291,7 +293,7 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
   display: flex; flex-direction: column;
   gap: 0;
   width: 100%;
-  margin-top: 2rem;
+  margin-top: 0.5rem;
   text-align: left;
   align-items: flex-start;
 }
