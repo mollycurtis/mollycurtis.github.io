@@ -3,459 +3,387 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cocktails</title>
+<title>Cocktail Menu</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Barlow:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
   --parchment: #eee8d8;
+  --ink: #0a0806;
   --rule: #a89878;
   --text: #1a1510;
   --text-mid: #3a2e20;
   --text-muted: #8a7a62;
   --card-w: 340px;
-  --card-gap: 0px;
 }
 
-html, body {
-  height: 100%;
-  background: #eee8d8;
-  font-family: 'Barlow', sans-serif;
-  color: var(--text);
-  overflow: hidden;
-}
+html { scroll-behavior: smooth; }
+body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
 
-/* ── HEADER ── */
-.page-header {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
-  padding: 1.5rem 2.5rem 1.25rem;
+  padding: 2rem 3rem 3.5rem;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 65% 50% at 60% 40%, rgba(140,75,15,0.15) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 35% at 15% 70%, rgba(90,45,10,0.1) 0%, transparent 65%),
+    linear-gradient(170deg, #100c06 0%, #0a0806 50%, #080604 100%);
+}
+
+/* grain */
+.hero::before {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none;
+  opacity: 0.28; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+}
+
+/* vignette */
+.hero::after {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 90% 80% at 50% 50%, transparent 35%, rgba(5,3,2,0.65) 100%);
+}
+
+.hero-nav {
+  position: relative; z-index: 5;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.95rem; letter-spacing: 0.06em;
+  color: rgba(238,232,216,0.42); text-decoration: none;
+}
+.nav-back {
+  font-size: 0.6rem; letter-spacing: 0.24em; text-transform: uppercase;
+  color: rgba(238,232,216,0.22); text-decoration: none; transition: color 0.3s;
+}
+.nav-back:hover { color: rgba(238,232,216,0.6); }
+
+.hero-body {
+  position: relative; z-index: 5;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 4rem;
+  animation: fadeUp 1.2s cubic-bezier(0.25,0.46,0.45,0.94) 0.2s both;
+}
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(20px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+.hero-left {}
+
+.hero-eyebrow {
+  display: flex; align-items: center; gap: 0.75rem;
+  font-size: 0.58rem; letter-spacing: 0.4em; text-transform: uppercase;
+  color: rgba(200,169,110,0.5); margin-bottom: 0.9rem;
+  font-family: 'Barlow', sans-serif; font-weight: 300;
+}
+.hero-eyebrow::before {
+  content: ''; width: 28px; height: 0.5px;
+  background: rgba(200,169,110,0.35); display: inline-block;
+}
+
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(4rem, 9vw, 8rem);
+  font-weight: 300; line-height: 0.92;
+  letter-spacing: -0.02em;
+  color: rgba(238,232,216,0.95);
+}
+
+.hero-right {
+  max-width: 280px;
+  flex-shrink: 0;
+  padding-bottom: 0.4rem;
+}
+.hero-desc {
+  font-size: 0.83rem; font-weight: 300; line-height: 1.8;
+  color: rgba(238,232,216,0.35);
+  font-family: 'Barlow', sans-serif;
+}
+
+/* scroll cue */
+.hero-scroll {
+  position: absolute; bottom: 2.5rem; right: 3rem; z-index: 5;
+  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+}
+.hero-scroll span {
+  font-size: 0.5rem; letter-spacing: 0.38em; text-transform: uppercase;
+  color: rgba(238,232,216,0.16); writing-mode: vertical-rl;
+}
+.scroll-line {
+  width: 1px; height: 44px;
+  background: linear-gradient(to bottom, rgba(200,169,110,0.28), transparent);
+  animation: scrollPulse 2.8s ease-in-out infinite;
+}
+@keyframes scrollPulse { 0%,100%{opacity:0.3} 50%{opacity:1} }
+
+@media (max-width: 700px) {
+  .hero { padding: 1.5rem 1.5rem 2.5rem; }
+  .hero-body { flex-direction: column; gap: 1.5rem; }
+  .hero-right { max-width: 100%; }
+  .hero-title { font-size: clamp(3.2rem, 13vw, 5rem); }
+  .hero-scroll { display: none; }
+}
+
+/* ── MENU ── */
+.menu {
+  background: var(--parchment);
+  position: relative;
+}
+
+.menu-header {
+  position: sticky; top: 0; z-index: 50;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.1rem 2rem;
   border-bottom: 0.5px solid var(--rule);
   background: var(--parchment);
 }
-.page-num {
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  color: var(--text-muted);
-  min-width: 40px;
-}
-.page-num.right { text-align: right; }
-.page-section {
-  font-size: 11px;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
+.menu-num { font-size: 11px; letter-spacing: 0.2em; color: var(--text-muted); min-width: 30px; }
+.menu-num.r { text-align: right; }
+.menu-label { font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--text-muted); }
 
-/* ── SCROLL TRACK ── */
-.track-wrap {
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  padding-top: 62px; /* header height */
-  padding-bottom: 64px; /* dots height */
-  overflow: hidden;
-}
+/* scroll track — height = viewport minus sticky header */
+.track-outer { height: calc(100vh - 48px); overflow: hidden; }
 
 .track {
-  display: flex;
-  height: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  cursor: grab;
-  user-select: none;
+  display: flex; height: 100%;
+  overflow-x: auto; overflow-y: hidden;
+  scroll-behavior: smooth; -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; cursor: grab; user-select: none;
+  padding-bottom: 54px; /* dots */
 }
 .track::-webkit-scrollbar { display: none; }
 .track.dragging { cursor: grabbing; scroll-behavior: auto; }
 
-/* Left/right padding so first/last card centered-ish */
 .track-inner {
-  display: flex;
-  align-items: stretch;
+  display: flex; align-items: stretch;
   padding: 0 calc(50vw - var(--card-w) / 2);
-  gap: 0;
 }
 
-/* ── COCKTAIL CARD ── */
+/* ── CARD ── */
 .card {
-  width: var(--card-w);
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
+  width: var(--card-w); flex-shrink: 0;
+  display: flex; flex-direction: column;
   padding: 2rem 1.75rem 1.5rem;
   border-right: 0.5px solid var(--rule);
+  background: var(--parchment);
   transition: opacity 0.4s;
 }
 .card:last-child { border-right: none; }
+.card.dim { opacity: 0.3; }
 
-/* Fade cards that are far from center */
-.card.dim { opacity: 0.35; }
+.drink-header { padding-bottom: 0.9rem; border-bottom: 0.5px solid var(--rule); margin-bottom: 0.9rem; }
+.drink-name { font-family: 'Libre Baskerville', serif; font-weight: 700; font-size: 20px; line-height: 1.15; color: var(--text); margin-bottom: 5px; }
+.drink-oz { font-size: 11px; color: var(--text-muted); letter-spacing: 0.1em; }
+.drink-ingredients { font-size: 13px; font-weight: 300; color: var(--text-mid); line-height: 1.65; margin-bottom: 1.1rem; }
 
-.drink-header {
-  padding-bottom: 1rem;
-  border-bottom: 0.5px solid var(--rule);
-  margin-bottom: 1rem;
-}
-.drink-name {
-  font-family: 'Libre Baskerville', serif;
-  font-weight: 700;
-  font-size: 21px;
-  line-height: 1.15;
-  color: var(--text);
-  margin-bottom: 6px;
-}
-.drink-oz {
-  font-size: 11px;
-  color: var(--text-muted);
-  letter-spacing: 0.1em;
-}
-.drink-ingredients {
-  font-size: 13px;
-  font-weight: 300;
-  color: var(--text-mid);
-  line-height: 1.65;
-  margin-bottom: 1.2rem;
-}
-
-.sliders {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 1.2rem;
-}
-.s-row { display: flex; align-items: center; gap: 10px; }
-.s-label {
-  font-size: 9px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  width: 38px;
-  flex-shrink: 0;
-}
+.sliders { display: flex; flex-direction: column; gap: 9px; margin-bottom: 1.1rem; }
+.s-row { display: flex; align-items: center; gap: 9px; }
+.s-label { font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); width: 38px; flex-shrink: 0; }
 .s-track { flex: 1; height: 1px; background: #bfaf98; position: relative; }
 .s-fill { position: absolute; left: 0; top: 0; height: 100%; background: #2a201a; }
-.s-dot {
-  position: absolute; top: 50%;
-  transform: translate(-50%, -50%);
-  width: 8px; height: 8px; border-radius: 50%;
-  background: #2a201a;
-  border: 2px solid var(--parchment);
-  outline: 1px solid #2a201a;
-}
+.s-dot { position: absolute; top: 50%; transform: translate(-50%,-50%); width: 8px; height: 8px; border-radius: 50%; background: #2a201a; border: 2px solid var(--parchment); outline: 1px solid #2a201a; }
 
-.drink-tag {
-  font-size: 9px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: 1.2rem;
-}
+.drink-tag { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1rem; }
 
-.drink-photo {
-  flex: 1;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  overflow: hidden;
-  min-height: 0;
-  max-height: 220px;
-  margin-bottom: 0.75rem;
-}
-.drink-photo img {
-  max-width: 80%;
-  max-height: 100%;
-  object-fit: contain;
-  object-position: center bottom;
-  display: block;
-}
-.empty-photo {
-  width: 60%; height: 140px;
-  display: flex; align-items: flex-end; justify-content: center;
-  opacity: 0.12;
-}
+.drink-photo { flex: 1; min-height: 0; max-height: 190px; display: flex; align-items: flex-end; justify-content: center; overflow: hidden; margin-bottom: 0.75rem; }
+.drink-photo img { max-width: 78%; max-height: 100%; object-fit: contain; object-position: center bottom; display: block; }
+.empty-photo { opacity: 0.1; display: flex; align-items: flex-end; justify-content: center; width: 60%; height: 110px; }
 
-.price-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding-top: 0.75rem;
-  border-top: 0.5px solid var(--rule);
-  margin-top: auto;
-}
-.price {
-  font-family: 'Libre Baskerville', serif;
-  font-size: 17px;
-  color: var(--text);
-}
-.serve-note {
-  font-size: 9px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
+.price-row { display: flex; justify-content: space-between; align-items: baseline; padding-top: 0.75rem; border-top: 0.5px solid var(--rule); margin-top: auto; }
+.price { font-family: 'Libre Baskerville', serif; font-size: 17px; color: var(--text); }
+.serve-note { font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
 
-/* ── ARROW BUTTONS ── */
+/* ── ARROWS — only inside menu ── */
 .arrow {
-  position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 200;
-  width: 42px; height: 42px;
-  border: 0.5px solid var(--rule);
-  border-radius: 50%;
-  background: var(--parchment);
-  color: var(--text-muted);
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  transition: all 0.2s;
+  position: fixed; top: calc(50% + 24px); transform: translateY(-50%);
+  z-index: 200; width: 40px; height: 40px;
+  border: 0.5px solid var(--rule); border-radius: 50%;
+  background: var(--parchment); color: var(--text-muted);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: all 0.22s, opacity 0.3s;
   box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  opacity: 0; pointer-events: none;
 }
+.arrow.show { opacity: 1; pointer-events: auto; }
 .arrow:hover { background: var(--text); color: var(--parchment); border-color: var(--text); }
-.arrow:disabled { opacity: 0.2; cursor: default; }
+.arrow:disabled { opacity: 0.18 !important; cursor: default; }
 .arrow:disabled:hover { background: var(--parchment); color: var(--text-muted); border-color: var(--rule); }
-.arrow-left  { left: 1.5rem; }
-.arrow-right { right: 1.5rem; }
+.arrow-left  { left: 1.25rem; }
+.arrow-right { right: 1.25rem; }
 
 /* ── DOTS ── */
 .dots-bar {
-  position: fixed;
-  bottom: 0; left: 0; right: 0;
-  height: 56px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  background: var(--parchment);
-  border-top: 0.5px solid var(--rule);
-  z-index: 100;
+  position: fixed; bottom: 0; left: 0; right: 0; height: 52px;
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  background: var(--parchment); border-top: 0.5px solid var(--rule);
+  z-index: 100; opacity: 0; pointer-events: none; transition: opacity 0.4s;
 }
+.dots-bar.show { opacity: 1; pointer-events: auto; }
 .dot-btn {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: #bfaf98;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  transition: all 0.3s;
-  flex-shrink: 0;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #bfaf98; border: none; cursor: pointer; padding: 0;
+  transition: all 0.28s;
 }
-.dot-btn.active {
-  background: var(--text);
-  width: 20px;
-  border-radius: 3px;
-}
+.dot-btn.active { background: var(--text); width: 18px; border-radius: 3px; }
 
-/* ── MOBILE ── */
 @media (max-width: 600px) {
   :root { --card-w: 88vw; }
-  .page-header { padding: 1.1rem 1.25rem 1rem; }
   .arrow { display: none; }
   .track-inner { padding: 0 6vw; }
 }
-@media (min-width: 900px) {
-  :root { --card-w: 360px; }
-}
-@media (min-width: 1200px) {
-  :root { --card-w: 400px; }
-}
+@media (min-width: 900px)  { :root { --card-w: 360px; } }
+@media (min-width: 1200px) { :root { --card-w: 400px; } }
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
-<div class="page-header">
-  <span class="page-num" id="numLeft">1</span>
-  <span class="page-section">Cocktails</span>
-  <span class="page-num right" id="numRight">12</span>
-</div>
+<!-- HERO -->
+<section class="hero">
+  <nav class="hero-nav">
+    <a href="https://mollycurtis.github.io" class="nav-logo">Molly Curtis</a>
+    <a href="https://mollycurtis.github.io/visualconcepts/" class="nav-back">← Visual Concepts</a>
+  </nav>
 
-<!-- ARROWS -->
-<button class="arrow arrow-left" id="arrowLeft" onclick="scroll(-1)" aria-label="Previous">
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-</button>
-<button class="arrow arrow-right" id="arrowRight" onclick="scroll(1)" aria-label="Next">
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-</button>
-
-<!-- SCROLL TRACK -->
-<div class="track-wrap">
-  <div class="track" id="track">
-    <div class="track-inner" id="trackInner"></div>
+  <div class="hero-body">
+    <div class="hero-left">
+      <p class="hero-eyebrow">Visual Concept · Hospitality</p>
+      <h1 class="hero-title">Cocktail Menu</h1>
+    </div>
+    <div class="hero-right">
+      <p class="hero-desc">Created as an exploration of immersive hospitality design, this concept combines luxury-inspired art direction, cocktail culture, and cinematic visual storytelling into an interactive editorial experience.</p>
+    </div>
   </div>
-</div>
 
-<!-- DOTS -->
-<div class="dots-bar" id="dotsBar"></div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu" id="menu">
+  <div class="menu-header">
+    <span class="menu-num" id="numLeft">1</span>
+    <span class="menu-label">Cocktails</span>
+    <span class="menu-num r" id="numRight">12</span>
+  </div>
+  <div class="track-outer">
+    <div class="track" id="track">
+      <div class="track-inner" id="trackInner"></div>
+    </div>
+  </div>
+</section>
+
+<button class="arrow arrow-left"  id="arrowL" onclick="go(-1)" aria-label="Previous">
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+</button>
+<button class="arrow arrow-right" id="arrowR" onclick="go(1)"  aria-label="Next">
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+</button>
+
+<div class="dots-bar" id="dots"></div>
 
 <script>
 const cocktails = [
-  {
-    name: 'Controlled Chaos', oz: '3.25 oz.',
-    ingredients: 'Vodka, Elderflower Liqueur, Fresh Grapefruit Juice, Lime Juice, Honey Syrup, Chili Flake, Fresh Rosemary',
-    sliders: [{l:'Level',v:62},{l:'Heat',v:72},{l:'Floral',v:55}],
-    tag: 'Spicy · Floral · Bright',
-    img: 'chaos.svg', serve: 'Rosemary garnish', price: '$17'
-  },
-  {
-    name: 'Sage Smash', oz: '3.25 oz.',
-    ingredients: 'Bourbon, Fresh Lemon Juice, Maple Syrup, Blackberries, Fresh Sage, Angostura Bitters, Sparkling Water',
-    sliders: [{l:'Level',v:75},{l:'Tart',v:65},{l:'Herb',v:58}],
-    tag: 'Deep · Herbal · Slightly Tart',
-    img: 'smash.svg', serve: 'Sage leaf', price: '$18'
-  },
-  {
-    name: 'Dark Matter', oz: '3.5 oz.',
-    ingredients: 'Dark Rum, Fresh Espresso, Coffee Liqueur, Coconut Cream, Simple Syrup, Sea Salt',
-    sliders: [{l:'Level',v:70},{l:'Bold',v:85},{l:'Creamy',v:60}],
-    tag: 'Creamy · Bold Coffee · Tropical',
-    img: 'espresso.svg', serve: '3 Espresso beans', price: '$19'
-  },
-  // Placeholders — fill in as you add more
-  { name: 'Coming Soon', oz: '—', ingredients: 'Recipe coming soon.', sliders: [], tag: '· · ·', img: '', serve: '—', price: '$—' },
-  { name: 'Coming Soon', oz: '—', ingredients: 'Recipe coming soon.', sliders: [], tag: '· · ·', img: '', serve: '—', price: '$—' },
-  { name: 'Coming Soon', oz: '—', ingredients: 'Recipe coming soon.', sliders: [], tag: '· · ·', img: '', serve: '—', price: '$—' },
-  { name: 'Coming Soon', oz: '—', ingredients: 'Recipe coming soon.', sliders: [], tag: '· · ·', img: '', serve: '—', price: '$—' },
-  { name: 'Coming Soon', oz: '—', ingredients: 'Recipe coming soon.', sliders: [], tag: '· · ·', img: '', serve: '—', price: '$—' },
-  { name: 'Coming Soon', oz: '—', ingredients: 'Recipe coming soon.', sliders: [], tag: '· · ·', img: '', serve: '—', price: '$—' },
-  { name: 'Coming Soon', oz: '—', ingredients: 'Recipe coming soon.', sliders: [], tag: '· · ·', img: '', serve: '—', price: '$—' },
-  { name: 'Coming Soon', oz: '—', ingredients: 'Recipe coming soon.', sliders: [], tag: '· · ·', img: '', serve: '—', price: '$—' },
-  { name: 'Coming Soon', oz: '—', ingredients: 'Recipe coming soon.', sliders: [], tag: '· · ·', img: '', serve: '—', price: '$—' },
+  { name:'Controlled Chaos', oz:'3.25 oz.', ingredients:'Vodka, Elderflower Liqueur, Fresh Grapefruit Juice, Lime Juice, Honey Syrup, Chili Flake, Fresh Rosemary', sliders:[{l:'Level',v:62},{l:'Heat',v:72},{l:'Floral',v:55}], tag:'Spicy · Floral · Bright', img:'chaos.svg', serve:'Rosemary garnish', price:'$17' },
+  { name:'Sage Smash', oz:'3.25 oz.', ingredients:'Bourbon, Fresh Lemon Juice, Maple Syrup, Blackberries, Fresh Sage, Angostura Bitters, Sparkling Water', sliders:[{l:'Level',v:75},{l:'Tart',v:65},{l:'Herb',v:58}], tag:'Deep · Herbal · Slightly Tart', img:'smash.svg', serve:'Sage leaf', price:'$18' },
+  { name:'Dark Matter', oz:'3.5 oz.', ingredients:'Dark Rum, Fresh Espresso, Coffee Liqueur, Coconut Cream, Simple Syrup, Sea Salt', sliders:[{l:'Level',v:70},{l:'Bold',v:85},{l:'Creamy',v:60}], tag:'Creamy · Bold Coffee · Tropical', img:'espresso.svg', serve:'3 Espresso beans', price:'$19' },
+  ...Array(9).fill(null).map(()=>({ name:'Coming Soon', oz:'—', ingredients:'Recipe coming soon.', sliders:[], tag:'· · ·', img:'', serve:'—', price:'$—' }))
 ];
 
 const TOTAL = cocktails.length;
-const track  = document.getElementById('track');
-const inner  = document.getElementById('trackInner');
-const dots   = document.getElementById('dotsBar');
+const track = document.getElementById('track');
+const inner = document.getElementById('trackInner');
+const dots  = document.getElementById('dots');
+let cur = 0;
 
-// Build cards
 cocktails.forEach((c, i) => {
-  const sliders = c.sliders.map(s => `
-    <div class="s-row">
-      <span class="s-label">${s.l}</span>
-      <div class="s-track"><div class="s-fill" style="width:${s.v}%"></div><div class="s-dot" style="left:${s.v}%"></div></div>
-    </div>`).join('');
-
+  const sliders = c.sliders.map(s=>`
+    <div class="s-row"><span class="s-label">${s.l}</span>
+    <div class="s-track"><div class="s-fill" style="width:${s.v}%"></div><div class="s-dot" style="left:${s.v}%"></div></div></div>`).join('');
   const photo = c.img
     ? `<div class="drink-photo"><img src="${c.img}" alt="${c.name}" loading="lazy"></div>`
-    : `<div class="drink-photo"><div class="empty-photo">
-        <svg width="48" height="70" viewBox="0 0 48 70" fill="none">
-          <ellipse cx="24" cy="62" rx="14" ry="5" fill="#a89878" opacity="0.4"/>
-          <path d="M10 62 Q10 28 24 18 Q38 28 38 62" fill="#c0b090" opacity="0.35"/>
-        </svg></div></div>`;
-
+    : `<div class="drink-photo"><div class="empty-photo"><svg width="44" height="64" viewBox="0 0 44 64" fill="none"><ellipse cx="22" cy="57" rx="12" ry="4" fill="#a89878" opacity="0.4"/><path d="M10 57 Q10 26 22 17 Q34 26 34 57" fill="#c0b090" opacity="0.3"/></svg></div></div>`;
   const card = document.createElement('div');
-  card.className = 'card';
-  card.dataset.index = i;
-  card.innerHTML = `
-    <div class="drink-header">
-      <p class="drink-name">${c.name}</p>
-      <p class="drink-oz">${c.oz}</p>
-    </div>
+  card.className = 'card'; card.dataset.i = i;
+  card.innerHTML = `<div class="drink-header"><p class="drink-name">${c.name}</p><p class="drink-oz">${c.oz}</p></div>
     <p class="drink-ingredients">${c.ingredients}</p>
-    ${sliders ? `<div class="sliders">${sliders}</div>` : ''}
-    <p class="drink-tag">${c.tag}</p>
-    ${photo}
-    <div class="price-row">
-      <span class="serve-note">${c.serve}</span>
-      <span class="price">${c.price}</span>
-    </div>`;
+    ${sliders?`<div class="sliders">${sliders}</div>`:''}
+    <p class="drink-tag">${c.tag}</p>${photo}
+    <div class="price-row"><span class="serve-note">${c.serve}</span><span class="price">${c.price}</span></div>`;
   inner.appendChild(card);
 
-  // Dot
-  const dot = document.createElement('button');
-  dot.className = 'dot-btn' + (i === 0 ? ' active' : '');
-  dot.setAttribute('aria-label', `Go to ${c.name}`);
-  dot.onclick = () => scrollToCard(i);
-  dots.appendChild(dot);
+  const d = document.createElement('button');
+  d.className = 'dot-btn' + (i===0?' active':'');
+  d.onclick = () => goTo(i);
+  dots.appendChild(d);
 });
 
-// ── SCROLL LOGIC ──
-let currentIndex = 0;
-
-function getCardWidth() {
-  const card = inner.querySelector('.card');
-  if (!card) return 340;
-  return card.offsetWidth;
-}
-
-function scrollToCard(idx) {
-  idx = Math.max(0, Math.min(TOTAL - 1, idx));
-  currentIndex = idx;
-  const cardW = getCardWidth();
-  const centerOffset = (track.offsetWidth - cardW) / 2;
-  const scrollX = idx * cardW - centerOffset;
-  track.scrollTo({ left: Math.max(0, scrollX), behavior: 'smooth' });
+function cw() { return inner.querySelector('.card')?.offsetWidth || 340; }
+function goTo(idx) {
+  idx = Math.max(0, Math.min(TOTAL-1, idx));
+  cur = idx;
+  const off = (track.offsetWidth - cw()) / 2;
+  track.scrollTo({ left: Math.max(0, idx * cw() - off), behavior:'smooth' });
   updateUI();
 }
-
-function scroll(dir) { scrollToCard(currentIndex + dir); }
+function go(d) { goTo(cur + d); }
 
 function updateUI() {
-  // Dots
-  document.querySelectorAll('.dot-btn').forEach((d, i) => {
-    d.classList.toggle('active', i === currentIndex);
-  });
-  // Header numbers
-  document.getElementById('numLeft').textContent = currentIndex + 1;
-  document.getElementById('numRight').textContent = TOTAL;
-  // Arrow states
-  document.getElementById('arrowLeft').disabled  = currentIndex === 0;
-  document.getElementById('arrowRight').disabled = currentIndex === TOTAL - 1;
-  // Dim far cards
-  document.querySelectorAll('.card').forEach((card, i) => {
-    card.classList.toggle('dim', Math.abs(i - currentIndex) > 1);
-  });
+  document.querySelectorAll('.dot-btn').forEach((d,i) => d.classList.toggle('active', i===cur));
+  document.querySelectorAll('.card').forEach((c,i) => c.classList.toggle('dim', Math.abs(i-cur)>1));
+  document.getElementById('numLeft').textContent = cur + 1;
+  document.getElementById('arrowL').disabled = cur === 0;
+  document.getElementById('arrowR').disabled = cur === TOTAL-1;
 }
 
-// Detect which card is centered while free-scrolling
-let scrollTimer;
+let t;
 track.addEventListener('scroll', () => {
-  clearTimeout(scrollTimer);
-  scrollTimer = setTimeout(() => {
-    const cardW = getCardWidth();
-    const centerOffset = (track.offsetWidth - cardW) / 2;
-    const idx = Math.round((track.scrollLeft + centerOffset) / cardW);
-    currentIndex = Math.max(0, Math.min(TOTAL - 1, idx));
+  clearTimeout(t);
+  t = setTimeout(() => {
+    const off = (track.offsetWidth - cw()) / 2;
+    cur = Math.max(0, Math.min(TOTAL-1, Math.round((track.scrollLeft + off) / cw())));
     updateUI();
   }, 60);
 });
 
-// ── DRAG TO SCROLL ──
-let isDragging = false, dragStartX = 0, scrollStartX = 0;
-track.addEventListener('mousedown', e => {
-  isDragging = true; dragStartX = e.clientX; scrollStartX = track.scrollLeft;
-  track.classList.add('dragging');
-});
-document.addEventListener('mousemove', e => {
-  if (!isDragging) return;
-  track.scrollLeft = scrollStartX - (e.clientX - dragStartX);
-});
-document.addEventListener('mouseup', () => {
-  if (!isDragging) return;
-  isDragging = false;
-  track.classList.remove('dragging');
-  // Snap to nearest after drag
-  const cardW = getCardWidth();
-  const centerOffset = (track.offsetWidth - cardW) / 2;
-  const idx = Math.round((track.scrollLeft + centerOffset) / cardW);
-  scrollToCard(idx);
+// Drag
+let drag=false, dx=0, sx=0;
+track.addEventListener('mousedown', e=>{ drag=true; dx=e.clientX; sx=track.scrollLeft; track.classList.add('dragging'); });
+document.addEventListener('mousemove', e=>{ if(drag) track.scrollLeft=sx-(e.clientX-dx); });
+document.addEventListener('mouseup', ()=>{
+  if(!drag) return; drag=false; track.classList.remove('dragging');
+  const off=(track.offsetWidth-cw())/2;
+  goTo(Math.round((track.scrollLeft+off)/cw()));
 });
 
 // Keyboard
-document.addEventListener('keydown', e => {
-  if (e.key === 'ArrowRight') scroll(1);
-  if (e.key === 'ArrowLeft')  scroll(-1);
+document.addEventListener('keydown', e=>{
+  if(e.key==='ArrowRight') go(1);
+  if(e.key==='ArrowLeft')  go(-1);
 });
 
-// Init
+// Show arrows+dots only when menu is in view
+const obs = new IntersectionObserver(entries => {
+  const show = entries[0].isIntersecting;
+  document.getElementById('arrowL').classList.toggle('show', show);
+  document.getElementById('arrowR').classList.toggle('show', show);
+  dots.classList.toggle('show', show);
+}, { threshold: 0.2 });
+obs.observe(document.getElementById('menu'));
+
 updateUI();
 </script>
 </body>
