@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visual Concepts — Molly Curtis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --grad-start: #e8445a;
+    --grad-mid: #b94fc8;
+    --grad-end: #7b5ea7;
+    --off-white: #f5f3ef;
+    --ink: #0e0c0a;
+    --muted: rgba(255,255,255,0.45);
+    --panel-transition: 0.72s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--ink);
+    color: var(--off-white);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* ── GRAIN OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.35;
+    mix-blend-mode: overlay;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3rem;
+    mix-blend-mode: normal;
+  }
+
+  nav::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(14,12,10,0.7) 0%, transparent 100%);
+    pointer-events: none;
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    color: var(--off-white);
+    text-decoration: none;
+    opacity: 0.85;
+    position: relative;
+    z-index: 1;
+  }
+
+  .nav-back {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245,243,239,0.5);
+    text-decoration: none;
+    position: relative;
+    z-index: 1;
+    transition: color 0.3s;
+  }
+  .nav-back:hover { color: var(--off-white); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 3rem 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 80% 30%, rgba(185,79,200,0.12) 0%, transparent 65%),
+      radial-gradient(ellipse 40% 60% at 20% 70%, rgba(123,94,167,0.1) 0%, transparent 65%),
+      radial-gradient(ellipse 80% 40% at 50% 100%, rgba(232,68,90,0.06) 0%, transparent 60%),
+      #0e0c0a;
+    z-index: 0;
+  }
+
+  /* Decorative line */
+  .hero::after {
+    content: '';
+    position: absolute;
+    left: 3rem;
+    top: 40%;
+    width: 1px;
+    height: 120px;
+    background: linear-gradient(to bottom, transparent, rgba(245,243,239,0.2), transparent);
+  }
+
+  .hero-content { position: relative; z-index: 1; max-width: 700px; }
+
+  .hero-eyebrow {
+    font-size: 0.68rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: rgba(245,243,239,0.4);
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 28px;
+    height: 1px;
+    background: rgba(245,243,239,0.3);
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.5rem, 8vw, 6.5rem);
+    font-weight: 400;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    color: var(--off-white);
+    margin-bottom: 1.75rem;
+  }
+  .hero-title em {
+    font-style: italic;
+    background: linear-gradient(135deg, var(--grad-start), var(--grad-mid), var(--grad-end));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-body {
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.75;
+    color: rgba(245,243,239,0.5);
+    max-width: 460px;
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 2.5rem;
+    right: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 1;
+  }
+  .hero-scroll span {
+    font-size: 0.62rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(245,243,239,0.3);
+    writing-mode: vertical-rl;
+  }
+  .scroll-line {
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(to bottom, rgba(245,243,239,0.3), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.15); }
+  }
+
+  /* ── PANELS SECTION ── */
+  .panels-wrapper {
+    position: relative;
+  }
+
+  .panels-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── INDIVIDUAL PANEL ── */
+  .panel {
+    position: relative;
+    height: 38vh;
+    min-height: 280px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: height var(--panel-transition), filter var(--panel-transition);
+    text-decoration: none;
+    display: block;
+  }
+
+  /* Desktop hover states */
+  @media (hover: hover) {
+    .panels-container:has(.panel:hover) .panel {
+      height: 22vh;
+      min-height: 180px;
+    }
+    .panels-container:has(.panel:hover) .panel:hover {
+      height: 58vh;
+      min-height: 420px;
+    }
+    .panels-container:has(.panel:hover) .panel:not(:hover) .panel-overlay {
+      background: rgba(14,12,10,0.65);
+    }
+    .panels-container:has(.panel:hover) .panel:not(:hover) .panel-meta,
+    .panels-container:has(.panel:hover) .panel:not(:hover) .panel-cta {
+      opacity: 0.3;
+    }
+    .panel:hover .panel-bg {
+      transform: scale(1.04);
+    }
+    .panel:hover .panel-title {
+      letter-spacing: -0.01em;
+    }
+    .panel:hover .panel-cta {
+      opacity: 1 !important;
+      transform: translateX(6px);
+    }
+    .panel:hover .panel-divider {
+      width: 52px;
+    }
+  }
+
+  /* Panel BG */
+  .panel-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition: transform 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+  }
+
+  /* Cocktail BG */
+  .panel--cocktail .panel-bg {
+    background:
+      radial-gradient(ellipse 55% 60% at 75% 40%, rgba(180,110,40,0.25) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 50% at 20% 60%, rgba(100,60,20,0.2) 0%, transparent 55%),
+      linear-gradient(160deg, #1a0f05 0%, #2a1a08 35%, #0e0c0a 100%);
+  }
+  .panel--cocktail .panel-accent-line { background: linear-gradient(90deg, #c8943a, #e8b86a, transparent); }
+
+  /* Fragrance BG */
+  .panel--fragrance .panel-bg {
+    background:
+      radial-gradient(ellipse 50% 70% at 80% 30%, rgba(160,140,180,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse 35% 45% at 15% 65%, rgba(100,80,140,0.12) 0%, transparent 55%),
+      linear-gradient(140deg, #0c0c12 0%, #14101e 50%, #0a0a0e 100%);
+  }
+  .panel--fragrance .panel-accent-line { background: linear-gradient(90deg, #9b8fc0, #c4b8e0, transparent); }
+
+  /* Skincare BG */
+  .panel--skincare .panel-bg {
+    background:
+      radial-gradient(ellipse 60% 50% at 60% 40%, rgba(220,210,200,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 60% at 25% 70%, rgba(200,185,170,0.06) 0%, transparent 55%),
+      linear-gradient(150deg, #111010 0%, #181614 50%, #0e0e0d 100%);
+  }
+  .panel--skincare .panel-accent-line { background: linear-gradient(90deg, #b8a898, #d4c8bc, transparent); }
+
+  /* Hotel BG */
+  .panel--hotel .panel-bg {
+    background:
+      radial-gradient(ellipse 55% 55% at 70% 35%, rgba(180,140,80,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 50% at 20% 70%, rgba(140,100,60,0.1) 0%, transparent 55%),
+      linear-gradient(145deg, #0e0b06 0%, #1a1408 50%, #0a0906 100%);
+  }
+  .panel--hotel .panel-accent-line { background: linear-gradient(90deg, #b89458, #d4b47a, transparent); }
+
+  /* Panel overlay */
+  .panel-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(14,12,10,0.35);
+    transition: background var(--panel-transition);
+    z-index: 1;
+  }
+
+  /* Accent line at top of each panel */
+  .panel-accent-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    z-index: 3;
+    opacity: 0.6;
+  }
+
+  /* Panel inner layout */
+  .panel-inner {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2.25rem 3rem 2rem;
+  }
+
+  .panel-top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .panel-bottom { display: flex; justify-content: space-between; align-items: flex-end; }
+
+  .panel-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    transition: opacity var(--panel-transition);
+  }
+
+  .panel-number {
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(245,243,239,0.3);
+  }
+
+  .panel-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(245,243,239,0.45);
+  }
+
+  .panel-status {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    border: 1px solid rgba(245,243,239,0.15);
+    color: rgba(245,243,239,0.35);
+    transition: opacity var(--panel-transition);
+  }
+
+  .panel-status--live {
+    border-color: rgba(232,68,90,0.4);
+    color: rgba(232,68,90,0.7);
+  }
+
+  .panel-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 400;
+    color: var(--off-white);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    transition: letter-spacing 0.6s ease;
+  }
+  .panel-title em {
+    font-style: italic;
+    opacity: 0.75;
+  }
+
+  .panel-tagline {
+    font-size: 0.82rem;
+    font-weight: 300;
+    color: rgba(245,243,239,0.45);
+    max-width: 320px;
+    line-height: 1.6;
+    margin-top: 0.6rem;
+  }
+
+  .panel-divider {
+    width: 32px;
+    height: 1px;
+    background: rgba(245,243,239,0.25);
+    margin-top: 1rem;
+    transition: width 0.6s ease;
+  }
+
+  .panel-cta {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245,243,239,0.5);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    transition: opacity var(--panel-transition), transform 0.4s ease;
+  }
+  .panel-cta svg {
+    width: 16px;
+    height: 16px;
+    opacity: 0.6;
+  }
+
+  /* Coming soon overlay */
+  .panel--coming-soon {
+    pointer-events: none;
+  }
+  .panel--coming-soon .panel-overlay {
+    background: rgba(14,12,10,0.6);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 3rem;
+    border-top: 1px solid rgba(245,243,239,0.06);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-copy {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    color: rgba(245,243,239,0.2);
+  }
+
+  .footer-back {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245,243,239,0.3);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .footer-back:hover { color: var(--off-white); }
+
+  /* ── FADE IN ── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(18px);
+    animation: fadeUp 1s ease forwards;
+  }
+  .fade-in:nth-child(1) { animation-delay: 0.1s; }
+  .fade-in:nth-child(2) { animation-delay: 0.25s; }
+  .fade-in:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 767px) {
+    nav { padding: 1.25rem 1.5rem; }
+    .hero { padding: 0 1.5rem 4rem; min-height: 90vh; }
+    .hero::after { display: none; }
+    .hero-title { font-size: clamp(2.8rem, 11vw, 4rem); }
+    .panel { height: 44vh; min-height: 300px; }
+    .panel-inner { padding: 1.75rem 1.5rem 1.5rem; }
+    .panel-title { font-size: clamp(1.75rem, 6vw, 2.5rem); }
+    footer { padding: 2rem 1.5rem; flex-direction: column; gap: 1rem; text-align: center; }
+    .hero-scroll { display: none; }
+  }
+
+  @media (min-width: 768px) and (max-width: 1199px) {
+    .hero { padding: 0 2rem 4rem; }
+    .panel-inner { padding: 2rem 2rem 1.75rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="https://mollycurtis.github.io" class="nav-logo">Molly Curtis</a>
+  <a href="https://mollycurtis.github.io" class="nav-back">← Portfolio</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow fade-in">Visual Concepts</p>
+    <h1 class="hero-title fade-in">Visual<br><em>Concepts</em></h1>
+    <p class="hero-body fade-in">A curated collection of immersive visual explorations blending luxury branding, hospitality-inspired storytelling, editorial presentation, and cinematic digital experiences.</p>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- PANELS -->
+<section class="panels-wrapper">
+  <div class="panels-container">
+
+    <!-- 01 — COCKTAIL (LIVE) -->
+    <a href="./cocktails/index.html" class="panel panel--cocktail">
+      <div class="panel-bg"></div>
+      <div class="panel-overlay"></div>
+      <div class="panel-accent-line"></div>
+      <div class="panel-inner">
+        <div class="panel-top">
+          <div class="panel-meta">
+            <span class="panel-number">01</span>
+            <span class="panel-label">Editorial · Hospitality</span>
+          </div>
+          <span class="panel-status panel-status--live">Live</span>
+        </div>
+        <div class="panel-bottom">
+          <div>
+            <h2 class="panel-title">Cocktail<br><em>Concept</em></h2>
+            <p class="panel-tagline">A curated menu system for an upscale bar program — editorial typography meets cinematic nightlife.</p>
+            <div class="panel-divider"></div>
+          </div>
+          <div class="panel-cta">
+            <span>Enter</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </a>
+
+    <!-- 02 — FRAGRANCE (COMING SOON) -->
+    <div class="panel panel--fragrance panel--coming-soon">
+      <div class="panel-bg"></div>
+      <div class="panel-overlay"></div>
+      <div class="panel-accent-line"></div>
+      <div class="panel-inner">
+        <div class="panel-top">
+          <div class="panel-meta">
+            <span class="panel-number">02</span>
+            <span class="panel-label">Editorial · Luxury</span>
+          </div>
+          <span class="panel-status">In Progress</span>
+        </div>
+        <div class="panel-bottom">
+          <div>
+            <h2 class="panel-title">Fragrance<br><em>Concept</em></h2>
+            <p class="panel-tagline">Soft black, glass reflections, and moody luxury — a sensory visual language for a high-end fragrance house.</p>
+            <div class="panel-divider"></div>
+          </div>
+          <div class="panel-cta" style="opacity:0.2;">
+            <span>Soon</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 03 — SKINCARE (COMING SOON) -->
+    <div class="panel panel--skincare panel--coming-soon">
+      <div class="panel-bg"></div>
+      <div class="panel-overlay"></div>
+      <div class="panel-accent-line"></div>
+      <div class="panel-inner">
+        <div class="panel-top">
+          <div class="panel-meta">
+            <span class="panel-number">03</span>
+            <span class="panel-label">Editorial · Beauty</span>
+          </div>
+          <span class="panel-status">In Progress</span>
+        </div>
+        <div class="panel-bottom">
+          <div>
+            <h2 class="panel-title">Skincare<br><em>Concept</em></h2>
+            <p class="panel-tagline">Diffused whites, muted neutrals, and clean minimalism — a visual system for a considered skincare brand.</p>
+            <div class="panel-divider"></div>
+          </div>
+          <div class="panel-cta" style="opacity:0.2;">
+            <span>Soon</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 04 — HOTEL (COMING SOON) -->
+    <div class="panel panel--hotel panel--coming-soon">
+      <div class="panel-bg"></div>
+      <div class="panel-overlay"></div>
+      <div class="panel-accent-line"></div>
+      <div class="panel-inner">
+        <div class="panel-top">
+          <div class="panel-meta">
+            <span class="panel-number">04</span>
+            <span class="panel-label">Editorial · Hospitality</span>
+          </div>
+          <span class="panel-status">In Progress</span>
+        </div>
+        <div class="panel-bottom">
+          <div>
+            <h2 class="panel-title">Hotel<br><em>Concept</em></h2>
+            <p class="panel-tagline">Warm architecture, cinematic interiors, and quiet grandeur — a world-building exercise in hospitality identity.</p>
+            <div class="panel-divider"></div>
+          </div>
+          <div class="panel-cta" style="opacity:0.2;">
+            <span>Soon</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-copy">© 2025 Molly Curtis — Visual Concepts Archive</span>
+  <a href="https://mollycurtis.github.io" class="footer-back">← Return to Portfolio</a>
+</footer>
+
+</body>
+</html>
