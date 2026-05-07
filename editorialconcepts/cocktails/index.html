@@ -167,6 +167,7 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
   display: flex; align-items: stretch;
   transition: transform 0.28s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   will-change: transform;
+  flex-shrink: 0;
 }
 
 /* ── CARD ── */
@@ -383,16 +384,24 @@ function goTo(idx) {
 
 function go(dir) { if (dir > 0 && cur >= TOTAL - 1) return; if (dir < 0 && cur <= 0) return; goTo(cur + dir); }
 
+function setTrackWidth() {
+  const cardW = inner.querySelector('.card')?.offsetWidth || 0;
+  inner.style.width = (cardW * TOTAL) + 'px';
+  inner.style.minWidth = (cardW * TOTAL) + 'px';
+}
+
 function updateUI() {
   document.querySelectorAll('.dot-btn').forEach((d, i) => d.classList.toggle('active', i === cur));
+  const atEnd = cur === TOTAL - 1;
+  const atStart = cur === 0;
   if (window.innerWidth > 600) {
-    document.getElementById('arrowL').disabled = cur === 0;
-    document.getElementById('arrowR').disabled = cur === TOTAL - 1;
+    document.getElementById('arrowL').disabled = atStart;
+    document.getElementById('arrowR').disabled = atEnd;
   }
   const mp = document.getElementById('mobilePrev');
   const mn = document.getElementById('mobileNext');
-  if (mp) mp.style.opacity = cur === 0 ? '0.25' : '1';
-  if (mn) mn.style.opacity = cur === TOTAL-1 ? '0.25' : '1';
+  if (mp) mp.style.opacity = atStart ? '0.25' : '1';
+  if (mn) mn.style.opacity = atEnd ? '0.25' : '1';
 }
 
 // Touch swipe
@@ -416,6 +425,8 @@ const obs = new IntersectionObserver(entries => {
 obs.observe(document.getElementById('menu'));
 
 updateUI();
+setTrackWidth();
+window.addEventListener('resize', () => { setTrackWidth(); goTo(cur); });
 </script>
 </body>
 </html>
