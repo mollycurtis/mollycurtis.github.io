@@ -26,9 +26,9 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
 .hero {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  padding: 2rem clamp(2rem, 5vw, 5rem) 3rem;
-  min-height: 38vh;
+  justify-content: flex-end;
+  padding: 2rem clamp(2rem, 5vw, 5rem) 3.5rem;
+  min-height: 42vh;
   position: relative;
   overflow: hidden;
   background:
@@ -53,10 +53,11 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
 }
 
 .hero-nav {
-  position: relative; z-index: 5;
+  position: absolute;
+  top: 2rem; left: clamp(2rem, 5vw, 5rem); right: clamp(2rem, 5vw, 5rem);
+  z-index: 5;
   display: flex; justify-content: space-between; align-items: center;
-  max-width: 1400px;
-  width: 100%;
+  width: auto;
 }
 .nav-logo {
   font-family: 'Cormorant Garamond', serif;
@@ -75,8 +76,8 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
   align-items: center;
   justify-content: flex-start;
   gap: clamp(2rem, 4vw, 4rem);
-  margin-top: 2.5rem;
-  max-width: 1200px;
+  max-width: 1300px;
+  width: 100%;
   animation: fadeUp 1.2s cubic-bezier(0.25,0.46,0.45,0.94) 0.2s both;
 }
 .hero-eyebrow {
@@ -92,8 +93,9 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
 .hero-eyebrow {
   display: flex; align-items: center; gap: 0.75rem;
   font-size: 0.58rem; letter-spacing: 0.4em; text-transform: uppercase;
-  color: rgba(200,169,110,0.85); margin-bottom: 0.9rem;
+  color: rgba(200,169,110,0.85); margin-bottom: 0.8rem;
   font-family: 'Barlow', sans-serif; font-weight: 300;
+  position: relative; z-index: 5;
 }
 .hero-eyebrow::before {
   content: ''; width: 28px; height: 0.5px;
@@ -110,7 +112,8 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
 
 .hero-right {
   flex: 1;
-  max-width: 560px;
+  max-width: 620px;
+  margin-left: 4vw;
 }
 .hero-desc {
   font-size: 0.88rem; font-weight: 300; line-height: 1.75;
@@ -135,11 +138,12 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
 @keyframes scrollPulse { 0%,100%{opacity:0.3} 50%{opacity:1} }
 
 @media (max-width: 700px) {
-  .hero { padding: 1.25rem 1.5rem 1.75rem; min-height: 0; }
-  .hero-body { flex-direction: column; gap: 0.9rem; margin-top: 1.2rem; }
-  .hero-right { max-width: 100%; }
+  .hero { padding: 4rem 1.5rem 2rem; min-height: 0; justify-content: flex-end; }
+  .hero-body { flex-direction: column; gap: 0.9rem; }
+  .hero-right { max-width: 100%; margin-left: 0; }
   .hero-title { font-size: clamp(2.6rem, 11vw, 4rem); }
   .hero-scroll { display: none; }
+  .hero-nav { top: 1rem; left: 1.5rem; right: 1.5rem; }
 }
 
 /* ── MENU ── */
@@ -279,6 +283,13 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
 @media (max-width: 600px) {
   .arrow { display: none; }
 }
+
+.hero-bottom {
+  position: relative; z-index: 5;
+  display: flex; flex-direction: column;
+  gap: 0;
+  width: 100%;
+}
 </style>
 </head>
 <body>
@@ -290,13 +301,15 @@ body { background: var(--ink); font-family: 'Barlow', sans-serif; overflow-x: hi
     <a href="https://mollycurtis.github.io/visualconcepts/" class="nav-back">← Visual Concepts</a>
   </nav>
 
-  <div class="hero-body">
-    <div class="hero-left">
-      <p class="hero-eyebrow">Visual Concept · Hospitality</p>
-      <h1 class="hero-title">Cocktail Menu</h1>
-    </div>
-    <div class="hero-right">
-      <p class="hero-desc">Inspired by previous experience in hospitality and bartending, this concept explores cocktail storytelling through cinematic presentation, editorial-inspired layouts, and immersive visual direction.</p>
+  <div class="hero-bottom">
+    <p class="hero-eyebrow">Visual Concept · Hospitality</p>
+    <div class="hero-body">
+      <div class="hero-left">
+        <h1 class="hero-title">Cocktail Menu</h1>
+      </div>
+      <div class="hero-right">
+        <p class="hero-desc">Inspired by previous experience in hospitality and bartending, this concept explores cocktail storytelling through cinematic presentation, editorial-inspired layouts, and immersive visual direction.</p>
+      </div>
     </div>
   </div>
 
