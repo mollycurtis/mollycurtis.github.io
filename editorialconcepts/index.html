@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Visual Concepts — Molly Curtis</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
     --off-white: #f5f3ef;
     --ink: #0e0c0a;
-    --ease-cinema: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
   html { scroll-behavior: smooth; }
@@ -41,17 +41,19 @@
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
-    z-index: 100;
+    z-index: 200;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1.5rem 3rem;
+    pointer-events: none;
   }
+  nav > * { pointer-events: auto; }
   nav::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, rgba(14,12,10,0.75) 0%, transparent 100%);
+    background: linear-gradient(to bottom, rgba(14,12,10,0.7) 0%, transparent 100%);
     pointer-events: none;
   }
   .nav-logo {
@@ -78,11 +80,11 @@
 
   /* ── HERO ── */
   .hero {
-    min-height: 100vh;
+    min-height: 70vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding: 0 3rem 5rem;
+    padding: 0 3rem 4rem;
     position: relative;
     overflow: hidden;
   }
@@ -147,11 +149,11 @@
     font-weight: 300;
     line-height: 1.75;
     color: rgba(245,243,239,0.45);
-    max-width: 300px;
+    max-width: 420px;
   }
   @media (min-width: 900px) {
     .hero-title-row { flex-direction: row; align-items: center; gap: 3rem; }
-    .hero-body { max-width: 270px; }
+    .hero-body { max-width: 380px; }
   }
   .hero-scroll {
     position: absolute;
@@ -181,165 +183,212 @@
     50% { opacity: 0.9; }
   }
 
-  /* ── PANELS ── */
-  .panels-container { display: flex; flex-direction: column; }
+  /* ── CONCEPT PANELS — full 100vh scenes ── */
+  .concepts-section { position: relative; }
 
-  .panel {
+  .concept-panel {
     position: relative;
-    height: 46vh;
-    min-height: 320px;
+    height: 75vh;
+    min-height: 480px;
+    width: 100%;
     overflow: hidden;
+    display: flex;
+    align-items: flex-end;
     text-decoration: none;
-    display: block;
-    cursor: pointer;
   }
 
-  /* BG — subtle drift on hover, no height change */
-  .panel-bg {
+  /* BG gradient layer */
+  .concept-bg {
     position: absolute;
     inset: -5%;
     background-size: cover;
     background-position: center;
-    transition: transform 2s var(--ease-cinema);
+    transition: transform 1.4s var(--ease);
     will-change: transform;
+    z-index: 0;
   }
-  .panel:hover .panel-bg { transform: scale(1.045) translateY(-0.5%); }
+  .concept-panel:hover .concept-bg { transform: scale(1.07) translateY(-0.6%); }
 
   /* Overlay */
-  .panel-overlay {
+  .concept-overlay {
     position: absolute;
     inset: 0;
-    transition: background 1.4s var(--ease-cinema);
     z-index: 1;
+    transition: background 0.7s var(--ease);
   }
-  .panel--cocktail .panel-overlay  { background: rgba(14,12,10,0.28); }
-  .panel--fragrance .panel-overlay { background: rgba(14,12,10,0.35); }
-  .panel--skincare .panel-overlay  { background: rgba(14,12,10,0.32); }
-  .panel--hotel .panel-overlay     { background: rgba(14,12,10,0.30); }
+  .concept-panel--cocktail .concept-overlay  { background: linear-gradient(to top, rgba(14,10,4,0.92) 0%, rgba(14,10,4,0.35) 50%, rgba(14,10,4,0.15) 100%); }
+  .concept-panel--fragrance .concept-overlay { background: linear-gradient(to top, rgba(8,8,16,0.94) 0%, rgba(8,8,16,0.38) 50%, rgba(8,8,16,0.15) 100%); }
+  .concept-panel--skincare .concept-overlay  { background: linear-gradient(to top, rgba(10,10,10,0.93) 0%, rgba(10,10,10,0.36) 50%, rgba(10,10,10,0.15) 100%); }
+  .concept-panel--hotel .concept-overlay     { background: linear-gradient(to top, rgba(10,8,4,0.93) 0%, rgba(10,8,4,0.36) 50%, rgba(10,8,4,0.15) 100%); }
 
-  /* Neighbor dim — very restrained */
+  /* Hover — brighten active, heavily dim neighbors */
   @media (hover: hover) {
-    .panels-container:has(.panel:hover) .panel:not(:hover) .panel-overlay {
-      background: rgba(14,12,10,0.55) !important;
+    .concepts-section:has(.concept-panel:hover) .concept-panel:not(:hover) .concept-overlay {
+      background: rgba(14,12,10,0.85) !important;
     }
-    .panels-container:has(.panel:hover) .panel:not(:hover) .panel-inner {
-      opacity: 0.45;
+    .concepts-section:has(.concept-panel:hover) .concept-panel:not(:hover) .concept-inner {
+      opacity: 0.2;
     }
-    .panel:hover .panel-overlay { background: rgba(14,12,10,0.16) !important; }
-    .panel:hover .panel-cta { opacity: 1; transform: translateX(4px); }
-    .panel:hover .panel-divider { width: 44px; }
+    .concept-panel:hover .concept-overlay { background: rgba(14,12,10,0.04) !important; }
+    .concept-panel:hover .concept-inner { opacity: 1; }
+    .concept-panel:hover .concept-cta { opacity: 1; transform: translateX(12px); }
+    .concept-panel:hover .concept-divider { width: 64px; opacity: 0.6; }
+    .concept-panel:hover .concept-title { letter-spacing: -0.025em; }
+    .concept-panel:hover .concept-number { opacity: 0.8; }
   }
 
-  /* Accent line */
-  .panel-accent-line {
+  /* Accent top line */
+  .concept-accent {
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 1px;
     z-index: 3;
-    opacity: 0.45;
+    opacity: 0.4;
   }
+  .concept-panel--cocktail .concept-accent  { background: linear-gradient(90deg, #c8943a 0%, #e8b860 35%, transparent 100%); }
+  .concept-panel--fragrance .concept-accent { background: linear-gradient(90deg, #9b8fc0 0%, #c4b8df 35%, transparent 100%); }
+  .concept-panel--skincare .concept-accent  { background: linear-gradient(90deg, #b8a898 0%, #d4c8bc 35%, transparent 100%); }
+  .concept-panel--hotel .concept-accent     { background: linear-gradient(90deg, #b89458 0%, #d4b47a 35%, transparent 100%); }
 
   /* BG palettes */
-  .panel--cocktail .panel-bg {
+  .concept-panel--cocktail .concept-bg {
     background:
       radial-gradient(ellipse 55% 65% at 72% 38%, rgba(185,115,35,0.28) 0%, transparent 62%),
       radial-gradient(ellipse 42% 52% at 18% 62%, rgba(110,65,18,0.22) 0%, transparent 58%),
+      radial-gradient(ellipse 30% 40% at 50% 80%, rgba(200,130,40,0.12) 0%, transparent 55%),
       linear-gradient(158deg, #1c1005 0%, #2e1c08 40%, #0e0c0a 100%);
   }
-  .panel--cocktail .panel-accent-line { background: linear-gradient(90deg, #c8943a 0%, #e8b860 40%, transparent 100%); }
-
-  .panel--fragrance .panel-bg {
+  .concept-panel--fragrance .concept-bg {
     background:
-      radial-gradient(ellipse 52% 72% at 78% 28%, rgba(155,138,175,0.16) 0%, transparent 62%),
-      radial-gradient(ellipse 38% 48% at 14% 68%, rgba(95,78,135,0.13) 0%, transparent 58%),
+      radial-gradient(ellipse 52% 72% at 78% 28%, rgba(155,138,175,0.18) 0%, transparent 62%),
+      radial-gradient(ellipse 38% 48% at 14% 68%, rgba(95,78,135,0.14) 0%, transparent 58%),
+      radial-gradient(ellipse 35% 50% at 55% 75%, rgba(120,100,160,0.1) 0%, transparent 55%),
       linear-gradient(138deg, #0c0c13 0%, #15101f 52%, #0a0a0f 100%);
   }
-  .panel--fragrance .panel-accent-line { background: linear-gradient(90deg, #9b8fc0 0%, #c4b8df 40%, transparent 100%); }
-
-  .panel--skincare .panel-bg {
+  .concept-panel--skincare .concept-bg {
     background:
-      radial-gradient(ellipse 62% 52% at 58% 38%, rgba(218,208,198,0.09) 0%, transparent 62%),
-      radial-gradient(ellipse 42% 62% at 22% 72%, rgba(198,183,168,0.07) 0%, transparent 58%),
+      radial-gradient(ellipse 62% 52% at 58% 38%, rgba(218,208,198,0.1) 0%, transparent 62%),
+      radial-gradient(ellipse 42% 62% at 22% 72%, rgba(198,183,168,0.08) 0%, transparent 58%),
+      radial-gradient(ellipse 35% 45% at 75% 75%, rgba(210,198,185,0.07) 0%, transparent 55%),
       linear-gradient(148deg, #121110 0%, #191714 52%, #0f0e0d 100%);
   }
-  .panel--skincare .panel-accent-line { background: linear-gradient(90deg, #b8a898 0%, #d4c8bc 40%, transparent 100%); }
-
-  .panel--hotel .panel-bg {
+  .concept-panel--hotel .concept-bg {
     background:
-      radial-gradient(ellipse 58% 58% at 68% 32%, rgba(185,145,78,0.17) 0%, transparent 62%),
-      radial-gradient(ellipse 42% 52% at 18% 72%, rgba(142,102,58,0.12) 0%, transparent 58%),
+      radial-gradient(ellipse 58% 58% at 68% 32%, rgba(185,145,78,0.2) 0%, transparent 62%),
+      radial-gradient(ellipse 42% 52% at 18% 72%, rgba(142,102,58,0.14) 0%, transparent 58%),
+      radial-gradient(ellipse 35% 50% at 50% 80%, rgba(165,125,65,0.1) 0%, transparent 55%),
       linear-gradient(143deg, #100d06 0%, #1c1508 52%, #0b0904 100%);
   }
-  .panel--hotel .panel-accent-line { background: linear-gradient(90deg, #b89458 0%, #d4b47a 40%, transparent 100%); }
 
-  /* Inner layout */
-  .panel-inner {
+  /* Inner content */
+  .concept-inner {
     position: relative;
     z-index: 2;
-    height: 100%;
+    width: 100%;
+    padding: 4rem 3rem;
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
-    padding: 2.25rem 3rem 2rem;
-    transition: opacity 1.2s var(--ease-cinema);
+    align-items: flex-end;
+    transition: opacity 0.7s var(--ease);
   }
-  .panel-top { display: flex; justify-content: space-between; align-items: flex-start; }
-  .panel-bottom { display: flex; justify-content: space-between; align-items: flex-end; }
 
-  .panel-meta { display: flex; flex-direction: column; gap: 0.3rem; }
-  .panel-number {
-    font-size: 0.58rem;
-    letter-spacing: 0.32em;
-    text-transform: uppercase;
-    color: rgba(245,243,239,0.28);
+  .concept-left { display: flex; flex-direction: column; gap: 1rem; }
+
+  .concept-meta {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 0.5rem;
   }
-  .panel-label {
-    font-size: 0.63rem;
+  .concept-number {
+    font-size: 0.58rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: rgba(245,243,239,0.3);
+    transition: opacity 0.8s var(--ease);
+  }
+  .concept-label {
+    font-size: 0.62rem;
     letter-spacing: 0.24em;
     text-transform: uppercase;
-    color: rgba(245,243,239,0.38);
+    color: rgba(245,243,239,0.35);
+  }
+  .concept-label::before {
+    content: '—';
+    margin-right: 0.6rem;
+    opacity: 0.4;
   }
 
-  .panel-title {
+  .concept-title {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-size: clamp(3.5rem, 7vw, 7rem);
     font-weight: 400;
     color: var(--off-white);
-    line-height: 1.08;
-    letter-spacing: -0.02em;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    transition: letter-spacing 0.8s var(--ease);
   }
-  .panel-title em { font-style: italic; opacity: 0.7; }
+  .concept-title em { font-style: italic; opacity: 0.65; }
 
-  .panel-tagline {
-    font-size: 0.8rem;
+  .concept-tagline {
+    font-size: 0.82rem;
     font-weight: 300;
-    color: rgba(245,243,239,0.4);
+    color: rgba(245,243,239,0.38);
     max-width: 520px;
-    line-height: 1.62;
-    margin-top: 0.55rem;
+    line-height: 1.65;
+    margin-top: 0.25rem;
   }
-  @media (min-width: 1200px) { .panel-tagline { max-width: 600px; } }
+  @media (min-width: 1200px) { .concept-tagline { max-width: 600px; } }
 
-  .panel-divider {
+  .concept-divider {
     width: 28px;
     height: 1px;
     background: rgba(245,243,239,0.2);
-    margin-top: 1rem;
-    transition: width 1.4s var(--ease-cinema);
+    margin-top: 0.75rem;
+    transition: width 1.4s var(--ease);
   }
 
-  .panel-cta {
+  /* Right side — CTA */
+  .concept-right { flex-shrink: 0; padding-bottom: 0.2rem; }
+  .concept-cta {
     font-size: 0.62rem;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: rgba(245,243,239,0.42);
+    color: rgba(245,243,239,0.4);
     display: flex;
     align-items: center;
     gap: 0.6rem;
-    opacity: 0.55;
-    transition: opacity 1.2s var(--ease-cinema), transform 0.9s var(--ease-cinema);
+    opacity: 0.5;
+    transition: opacity 1.2s var(--ease), transform 0.9s var(--ease);
   }
-  .panel-cta svg { width: 15px; height: 15px; }
+  .concept-cta svg { width: 16px; height: 16px; }
+
+  /* Panel counter — fixed right side */
+  .panel-counter {
+    position: fixed;
+    right: 2.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 150;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+  .panel-counter.visible { opacity: 1; }
+  .counter-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgba(245,243,239,0.2);
+    transition: background 0.5s ease, transform 0.5s ease;
+    cursor: default;
+  }
+  .counter-dot.active {
+    background: rgba(245,243,239,0.7);
+    transform: scale(1.4);
+  }
 
   /* ── EXPLORE FOOTER NAV ── */
   .explore-section {
@@ -435,11 +484,11 @@
   }
   .footer-back-top:hover { background: rgba(245,243,239,0.06); color: var(--off-white); border-color: rgba(245,243,239,0.28); }
 
-  /* ── FADE IN ── */
+  /* ── FADE IN HERO ── */
   .fade-in {
     opacity: 0;
     transform: translateY(16px);
-    animation: fadeUp 1.1s var(--ease-cinema) forwards;
+    animation: fadeUp 1.1s var(--ease) forwards;
   }
   .fade-in:nth-child(1) { animation-delay: 0.1s; }
   .fade-in:nth-child(2) { animation-delay: 0.28s; }
@@ -448,13 +497,15 @@
   /* ── MOBILE ── */
   @media (max-width: 767px) {
     nav { padding: 1.25rem 1.5rem; }
-    .hero { padding: 0 1.5rem 4rem; min-height: 90vh; }
+    .hero { padding: 0 1.5rem 3rem; min-height: 60vh; }
     .hero::after { display: none; }
     .hero-scroll { display: none; }
     .hero-title { font-size: clamp(2.8rem, 11vw, 4rem); }
-    .panel { height: 50vh; min-height: 300px; }
-    .panel-inner { padding: 1.75rem 1.5rem 1.5rem; }
-    .panel-title { font-size: clamp(1.8rem, 6.5vw, 2.5rem); }
+    .concept-panel { height: 100vh; }
+    .concept-inner { padding: 2.5rem 1.5rem; flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+    .concept-title { font-size: clamp(2.8rem, 10vw, 4rem); }
+    .concept-tagline { max-width: 100%; }
+    .panel-counter { display: none; }
     .explore-section { padding: 2.5rem 1.5rem 0; }
     .explore-links { grid-template-columns: 1fr; }
     .explore-link { padding: 1.2rem 1.4rem; border-bottom: 1px solid rgba(245,243,239,0.07); }
@@ -463,22 +514,32 @@
   }
   @media (min-width: 768px) and (max-width: 1199px) {
     .hero { padding: 0 2rem 4rem; }
-    .panel-inner { padding: 2rem 2rem 1.75rem; }
+    .concept-inner { padding: 3.5rem 2rem; }
+    .concept-title { font-size: clamp(3rem, 6vw, 5.5rem); }
     .explore-section { padding: 3rem 2rem 0; }
     footer { padding: 1.75rem 2rem 2rem; }
+    .panel-counter { right: 1.5rem; }
   }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
+<!-- FIXED NAV -->
 <nav>
   <a href="https://mollycurtis.github.io" class="nav-logo">Molly Curtis</a>
   <a href="https://mollycurtis.github.io" class="nav-back">← Portfolio</a>
 </nav>
 
+<!-- FIXED PANEL COUNTER (visible during concepts section) -->
+<div class="panel-counter" id="panelCounter">
+  <div class="counter-dot active" data-index="0"></div>
+  <div class="counter-dot" data-index="1"></div>
+  <div class="counter-dot" data-index="2"></div>
+  <div class="counter-dot" data-index="3"></div>
+</div>
+
 <!-- HERO -->
-<section class="hero">
+<section class="hero" id="hero">
   <div class="hero-bg"></div>
   <div class="hero-content">
     <p class="hero-eyebrow fade-in">Visual Concepts</p>
@@ -493,115 +554,105 @@
   </div>
 </section>
 
-<!-- PANELS -->
-<section class="panels-wrapper">
-  <div class="panels-container">
+<!-- CONCEPT PANELS -->
+<section class="concepts-section" id="conceptsSection">
 
-    <!-- 01 — COCKTAIL -->
-    <a href="./cocktails/index.html" class="panel panel--cocktail">
-      <div class="panel-bg"></div>
-      <div class="panel-overlay"></div>
-      <div class="panel-accent-line"></div>
-      <div class="panel-inner">
-        <div class="panel-top">
-          <div class="panel-meta">
-            <span class="panel-number">01</span>
-            <span class="panel-label">Hospitality · Print & Digital</span>
-          </div>
+  <!-- 01 — COCKTAIL -->
+  <a href="./cocktails/index.html" class="concept-panel concept-panel--cocktail" data-panel="0">
+    <div class="concept-bg"></div>
+    <div class="concept-overlay"></div>
+    <div class="concept-accent"></div>
+    <div class="concept-inner">
+      <div class="concept-left">
+        <div class="concept-meta">
+          <span class="concept-number">01</span>
+          <span class="concept-label">Hospitality · Print & Digital</span>
         </div>
-        <div class="panel-bottom">
-          <div>
-            <h2 class="panel-title">Cocktail<br><em>Menu</em></h2>
-            <p class="panel-tagline">A curated menu system for an upscale bar program — Baskerville typography meets dark amber nightlife.</p>
-            <div class="panel-divider"></div>
-          </div>
-          <div class="panel-cta">
-            <span>Enter</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </div>
+        <h2 class="concept-title">Cocktail<br><em>Menu</em></h2>
+        <p class="concept-tagline">A curated menu system for an upscale bar program — Baskerville typography meets dark amber nightlife.</p>
+        <div class="concept-divider"></div>
+      </div>
+      <div class="concept-right">
+        <div class="concept-cta">
+          <span>Enter</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </div>
       </div>
-    </a>
+    </div>
+  </a>
 
-    <!-- 02 — FRAGRANCE -->
-    <a href="./fragrance/index.html" class="panel panel--fragrance">
-      <div class="panel-bg"></div>
-      <div class="panel-overlay"></div>
-      <div class="panel-accent-line"></div>
-      <div class="panel-inner">
-        <div class="panel-top">
-          <div class="panel-meta">
-            <span class="panel-number">02</span>
-            <span class="panel-label">Luxury · Brand Identity</span>
-          </div>
+  <!-- 02 — FRAGRANCE -->
+  <a href="./fragrance/index.html" class="concept-panel concept-panel--fragrance" data-panel="1">
+    <div class="concept-bg"></div>
+    <div class="concept-overlay"></div>
+    <div class="concept-accent"></div>
+    <div class="concept-inner">
+      <div class="concept-left">
+        <div class="concept-meta">
+          <span class="concept-number">02</span>
+          <span class="concept-label">Luxury · Brand Identity</span>
         </div>
-        <div class="panel-bottom">
-          <div>
-            <h2 class="panel-title">Fragrance<br><em>Campaign</em></h2>
-            <p class="panel-tagline">Soft black, glass reflections, moody luxury — a sensory visual language for a high-end fragrance brand.</p>
-            <div class="panel-divider"></div>
-          </div>
-          <div class="panel-cta">
-            <span>Enter</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </div>
+        <h2 class="concept-title">Fragrance<br><em>Campaign</em></h2>
+        <p class="concept-tagline">Soft black, glass reflections, moody luxury — a sensory visual language for a high-end fragrance brand.</p>
+        <div class="concept-divider"></div>
+      </div>
+      <div class="concept-right">
+        <div class="concept-cta">
+          <span>Enter</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </div>
       </div>
-    </a>
+    </div>
+  </a>
 
-    <!-- 03 — SKINCARE -->
-    <a href="./skincare/index.html" class="panel panel--skincare">
-      <div class="panel-bg"></div>
-      <div class="panel-overlay"></div>
-      <div class="panel-accent-line"></div>
-      <div class="panel-inner">
-        <div class="panel-top">
-          <div class="panel-meta">
-            <span class="panel-number">03</span>
-            <span class="panel-label">Beauty · Brand Identity</span>
-          </div>
+  <!-- 03 — SKINCARE -->
+  <a href="./skincare/index.html" class="concept-panel concept-panel--skincare" data-panel="2">
+    <div class="concept-bg"></div>
+    <div class="concept-overlay"></div>
+    <div class="concept-accent"></div>
+    <div class="concept-inner">
+      <div class="concept-left">
+        <div class="concept-meta">
+          <span class="concept-number">03</span>
+          <span class="concept-label">Beauty · Brand Identity</span>
         </div>
-        <div class="panel-bottom">
-          <div>
-            <h2 class="panel-title">Skincare<br><em>Brand</em></h2>
-            <p class="panel-tagline">Diffused whites, muted neutrals, clean minimalism — a considered visual system for a modern skincare label.</p>
-            <div class="panel-divider"></div>
-          </div>
-          <div class="panel-cta">
-            <span>Enter</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </div>
+        <h2 class="concept-title">Skincare<br><em>Brand</em></h2>
+        <p class="concept-tagline">Diffused whites, muted neutrals, clean minimalism — a visual system for a modern skincare label.</p>
+        <div class="concept-divider"></div>
+      </div>
+      <div class="concept-right">
+        <div class="concept-cta">
+          <span>Enter</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </div>
       </div>
-    </a>
+    </div>
+  </a>
 
-    <!-- 04 — HOTEL -->
-    <a href="./hotel/index.html" class="panel panel--hotel">
-      <div class="panel-bg"></div>
-      <div class="panel-overlay"></div>
-      <div class="panel-accent-line"></div>
-      <div class="panel-inner">
-        <div class="panel-top">
-          <div class="panel-meta">
-            <span class="panel-number">04</span>
-            <span class="panel-label">Hospitality · World-Building</span>
-          </div>
+  <!-- 04 — HOTEL -->
+  <a href="./hotel/index.html" class="concept-panel concept-panel--hotel" data-panel="3">
+    <div class="concept-bg"></div>
+    <div class="concept-overlay"></div>
+    <div class="concept-accent"></div>
+    <div class="concept-inner">
+      <div class="concept-left">
+        <div class="concept-meta">
+          <span class="concept-number">04</span>
+          <span class="concept-label">Hospitality · World-Building</span>
         </div>
-        <div class="panel-bottom">
-          <div>
-            <h2 class="panel-title">Hotel<br><em>Identity</em></h2>
-            <p class="panel-tagline">Warm architecture, cinematic interiors, quiet grandeur — a world-building exercise in luxury hospitality identity.</p>
-            <div class="panel-divider"></div>
-          </div>
-          <div class="panel-cta">
-            <span>Enter</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </div>
+        <h2 class="concept-title">Hotel<br><em>Identity</em></h2>
+        <p class="concept-tagline">Warm architecture, cinematic interiors, quiet grandeur — a world-building exercise in hospitality identity.</p>
+        <div class="concept-divider"></div>
+      </div>
+      <div class="concept-right">
+        <div class="concept-cta">
+          <span>Enter</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </div>
       </div>
-    </a>
+    </div>
+  </a>
 
-  </div>
 </section>
 
 <!-- EXPLORE MORE WORK -->
@@ -646,6 +697,60 @@
     Back to top
   </a>
 </footer>
+
+<script>
+  // Panel counter dots
+  const counter = document.getElementById('panelCounter');
+  const panels = document.querySelectorAll('.concept-panel');
+  const dots = document.querySelectorAll('.counter-dot');
+  const conceptsSection = document.getElementById('conceptsSection');
+  const hero = document.getElementById('hero');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.target === conceptsSection) {
+        if (entry.isIntersecting) {
+          counter.classList.add('visible');
+        } else {
+          counter.classList.remove('visible');
+        }
+      }
+    });
+  }, { threshold: 0.05 });
+
+  observer.observe(conceptsSection);
+
+  // Track which panel is most in view
+  const panelObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+        const idx = entry.target.dataset.panel;
+        dots.forEach(d => d.classList.remove('active'));
+        dots[idx]?.classList.add('active');
+      }
+    });
+  }, { threshold: 0.5 });
+
+  panels.forEach(p => panelObserver.observe(p));
+
+  // Subtle parallax on panel BGs
+  const panelBgs = document.querySelectorAll('.concept-bg');
+
+  function onScroll() {
+    const scrollY = window.scrollY;
+    panelBgs.forEach((bg, i) => {
+      const panel = panels[i];
+      const rect = panel.getBoundingClientRect();
+      const inView = rect.top < window.innerHeight && rect.bottom > 0;
+      if (inView) {
+        const progress = -rect.top / window.innerHeight;
+        bg.style.transform = `translateY(${progress * 4}%) scale(1.05)`;
+      }
+    });
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+</script>
 
 </body>
 </html>
