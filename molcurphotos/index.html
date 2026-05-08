@@ -351,8 +351,9 @@ CATEGORY PAGE
 }
 /* Portrait masonry grid — full bleed, natural aspect ratios */
 #cat-photo-grid {
-  columns: 3;
-  column-gap: 0;
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:0;
   width:100vw;
   position:relative;
   left:50%;
@@ -360,12 +361,10 @@ CATEGORY PAGE
   margin-top:36px;
 }
 .pg-item {
-  break-inside: avoid;
   overflow:hidden;
   position:relative;
   background:var(--bg2);
   display:block;
-  margin-bottom:0;
 }
 .pg-item img {
   width:100%;
@@ -373,33 +372,30 @@ CATEGORY PAGE
   display:block;
   transition:opacity .4s ease;
 }
+.pg-wide {
+  grid-column: span 2;
+}
+.pg-wide img {
+  width:100%;
+  height:auto;
+  display:block;
+  transition:opacity .4s ease;
+}
 .pg-landscape {
-  column-span: all;
+  grid-column: span 3;
 }
 .pg-landscape img {
   width:100%;
   height:auto;
-  max-height:70vh;
-  object-fit:cover;
   display:block;
-}
-.pg-featured {
-  break-inside:avoid;
-}
-.pg-featured img {
-  width:100%;
-  min-height:600px;
-  object-fit:cover;
-  object-position:center top;
-  display:block;
-  transition:opacity .4s ease;
 }
 .pg-set[data-imgs*="rebeka-ca"] { aspect-ratio: unset; }
 .pg-set[data-imgs*="rebeka-ca"] img { object-fit:cover; object-position:center; }
 
 @media(max-width:768px){
-  #cat-photo-grid { columns: 2; column-gap:0; }
-  #cat-photo-grid .pg-item.pg-landscape { column-span: all; }
+  #cat-photo-grid { grid-template-columns: repeat(2, 1fr); }
+  .pg-wide { grid-column: span 2; }
+  .pg-landscape { grid-column: span 2; }
 }
 .photo-grid {
   display:grid;
@@ -1270,8 +1266,8 @@ function openCategory(cat) {
   if (cat === 'portraits') {
     document.getElementById('cat-photo-grid').innerHTML = `
       <div class="pg-item pg-set" data-imgs="tatumn3.jpg,tatumn5.jpg"><img decoding="async" src="tatumn3.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-featured"><img decoding="async" src="caitdoty.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-featured"><img decoding="async" src="bola2.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-wide"><img decoding="async" src="caitdoty.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-wide"><img decoding="async" src="bola2.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item pg-set" data-imgs="melisa1.jpg,melisa2.jpg"><img decoding="async" src="melisa1.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="serena1.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="alexalee.jpg" alt="Portrait" loading="lazy"></div>
@@ -1290,22 +1286,22 @@ function openCategory(cat) {
       <div class="pg-item pg-set" data-imgs="Annette-studio1.jpg,Annette-studio2.jpg"><img decoding="async" src="Annette-studio1.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="tat4.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="bola4.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-featured"><img decoding="async" src="gabby4.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-wide"><img decoding="async" src="gabby4.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="dystine10.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="iztla1.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="madison6-.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="emily4-bw.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item pg-set" data-imgs="eleanor1-bw.jpg,eleanor4-bw.jpg"><img decoding="async" src="eleanor1-bw.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-featured"><img decoding="async" src="megan.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-featured"><img decoding="async" src="emily1.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-featured"><img decoding="async" src="meley5.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-wide"><img decoding="async" src="megan.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-wide"><img decoding="async" src="emily1.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-wide"><img decoding="async" src="meley5.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item pg-set" data-imgs="bailie8.jpg,bailie9.jpg,bailie4.jpg"><img decoding="async" src="bailie8.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-featured"><img decoding="async" src="liv.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-wide"><img decoding="async" src="liv.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="tatumnn.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item pg-set" data-imgs="tatumn-airbnb1.jpg,tatumn-airbnb2.jpg"><img decoding="async" src="tatumn-airbnb1.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-featured"><img decoding="async" src="iztla5.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-wide"><img decoding="async" src="iztla5.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="meley6.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-featured"><img decoding="async" src="chy2.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-wide"><img decoding="async" src="chy2.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="emily1%281%29.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="meganeric.jpg" alt="Portrait" loading="lazy"></div>
     `;
