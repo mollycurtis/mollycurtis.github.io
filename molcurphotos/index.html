@@ -351,8 +351,11 @@ CATEGORY PAGE
 }
 /* Portrait masonry grid — full bleed, natural aspect ratios */
 #cat-photo-grid {
-  columns: 3;
-  column-gap: 0;
+  display:grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: 120px;
+  grid-auto-flow: dense;
+  gap:0;
   width:100vw;
   position:relative;
   left:50%;
@@ -360,26 +363,50 @@ CATEGORY PAGE
   margin-top:36px;
 }
 .pg-item {
-  break-inside: avoid;
   overflow:hidden;
   position:relative;
   background:var(--bg2);
-  display:block;
-  margin-bottom:0;
 }
 .pg-item img {
   width:100%;
-  height:auto;
+  height:100%;
+  object-fit:cover;
+  object-position:center top;
   display:block;
   transition:opacity .4s ease;
 }
-.pg-landscape { column-span: all; }
-.pg-landscape img { width:100%; height:auto; object-fit:cover; display:block; }
-.pg-set[data-imgs*="rebeka-ca"] img { object-fit:cover; object-position:center; }
+
+/* Size classes */
+.pg-small  { grid-column: span 4; grid-row: span 3; }
+.pg-medium { grid-column: span 4; grid-row: span 4; }
+.pg-large  { grid-column: span 6; grid-row: span 5; }
+.pg-tall   { grid-column: span 3; grid-row: span 6; }
+.pg-wide   { grid-column: span 8; grid-row: span 4; }
+
+/* Slideshow sets keep aspect ratio stable */
+.pg-set {
+  position:relative;
+}
+.pg-set > div {
+  position:absolute;
+  inset:0;
+}
+.pg-set > div img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.pg-set[data-imgs*="rebeka-ca"] img { object-position:center; }
 
 @media(max-width:768px){
-  #cat-photo-grid { columns: 2; column-gap:0; }
-  #cat-photo-grid .pg-item.pg-landscape { column-span: all; }
+  #cat-photo-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 180px;
+  }
+  .pg-small, .pg-medium, .pg-tall { grid-column: span 1; grid-row: span 2; }
+  .pg-large, .pg-wide { grid-column: span 2; grid-row: span 2; }
 }
 .photo-grid {
   display:grid;
@@ -1249,45 +1276,45 @@ function openCategory(cat) {
   document.getElementById('cat-sub-text').textContent = d.sub;
   if (cat === 'portraits') {
     document.getElementById('cat-photo-grid').innerHTML = `
-      <div class="pg-item pg-set" data-imgs="tatumn3.jpg,tatumn5.jpg"><img decoding="async" src="tatumn3.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="caitdoty.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="bola2.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-set" data-imgs="melisa1.jpg,melisa2.jpg"><img decoding="async" src="melisa1.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="serena1.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="alexalee.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-set" data-imgs="alexa-dunes1.jpg,alexa-dunes2.jpg"><img decoding="async" src="alexa-dunes1.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="dystine4.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="melisa3.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-set" data-imgs="rebeka2.jpg,rebeka6.jpg"><img decoding="async" src="rebeka2.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="sesamae.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="darah3.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="melisa4.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-set" data-imgs="rebeka-ca1.jpg,rebeka-ca2.jpg,rebeka-ca3.jpg"><img decoding="async" src="rebeka-ca1.jpg" alt="Portrait" loading="lazy" style="object-fit:cover;object-position:center;"></div>
-      <div class="pg-item"><img decoding="async" src="tavish4-bw.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-set" data-imgs="alexa1.jpg,alexa4.jpg,alexa6.jpg"><img decoding="async" src="alexa1.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="alexa2.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="eva.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-set" data-imgs="Annette-studio1.jpg,Annette-studio2.jpg"><img decoding="async" src="Annette-studio1.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="tat4.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="bola4.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="gabby4.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="dystine10.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="iztla1.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="madison6-.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="emily4-bw.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-set" data-imgs="eleanor1-bw.jpg,eleanor4-bw.jpg"><img decoding="async" src="eleanor1-bw.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="megan.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="emily1.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="meley5.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-set" data-imgs="bailie8.jpg,bailie9.jpg,bailie4.jpg"><img decoding="async" src="bailie8.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="liv.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="tatumnn.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-set" data-imgs="tatumn-airbnb1.jpg,tatumn-airbnb2.jpg"><img decoding="async" src="tatumn-airbnb1.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="iztla5.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="meley6.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="chy2.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="emily1%281%29.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="meganeric.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-large pg-set" data-imgs="tatumn3.jpg,tatumn5.jpg"><img decoding="async" src="tatumn3.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-tall"><img decoding="async" src="caitdoty.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-tall"><img decoding="async" src="bola2.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-medium pg-set" data-imgs="melisa1.jpg,melisa2.jpg"><img decoding="async" src="melisa1.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-small"><img decoding="async" src="serena1.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-small"><img decoding="async" src="alexalee.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-wide pg-set" data-imgs="alexa-dunes1.jpg,alexa-dunes2.jpg"><img decoding="async" src="alexa-dunes1.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-small"><img decoding="async" src="dystine4.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-medium"><img decoding="async" src="melisa3.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-large pg-set" data-imgs="rebeka2.jpg,rebeka6.jpg"><img decoding="async" src="rebeka2.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-small"><img decoding="async" src="sesamae.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-small"><img decoding="async" src="darah3.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-small"><img decoding="async" src="melisa4.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-large pg-set" data-imgs="rebeka-ca1.jpg,rebeka-ca2.jpg,rebeka-ca3.jpg"><img decoding="async" src="rebeka-ca1.jpg" alt="Portrait" loading="lazy" style="object-fit:cover;object-position:center;"></div>
+      <div class="pg-item pg-medium"><img decoding="async" src="tavish4-bw.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-large pg-set" data-imgs="alexa1.jpg,alexa4.jpg,alexa6.jpg"><img decoding="async" src="alexa1.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-small"><img decoding="async" src="alexa2.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-medium"><img decoding="async" src="eva.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-wide pg-set" data-imgs="Annette-studio1.jpg,Annette-studio2.jpg"><img decoding="async" src="Annette-studio1.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-small"><img decoding="async" src="tat4.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-small"><img decoding="async" src="bola4.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-large"><img decoding="async" src="gabby4.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-small"><img decoding="async" src="dystine10.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-small"><img decoding="async" src="iztla1.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-small"><img decoding="async" src="madison6-.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-medium"><img decoding="async" src="emily4-bw.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-large pg-set" data-imgs="eleanor1-bw.jpg,eleanor4-bw.jpg"><img decoding="async" src="eleanor1-bw.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-tall"><img decoding="async" src="megan.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-tall"><img decoding="async" src="emily1.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-large"><img decoding="async" src="meley5.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-wide pg-set" data-imgs="bailie8.jpg,bailie9.jpg,bailie4.jpg"><img decoding="async" src="bailie8.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-tall"><img decoding="async" src="liv.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-small"><img decoding="async" src="tatumnn.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-medium pg-set" data-imgs="tatumn-airbnb1.jpg,tatumn-airbnb2.jpg"><img decoding="async" src="tatumn-airbnb1.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-tall"><img decoding="async" src="iztla5.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-small"><img decoding="async" src="meley6.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-tall"><img decoding="async" src="chy2.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-small"><img decoding="async" src="emily1%281%29.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-medium"><img decoding="async" src="meganeric.jpg" alt="Portrait" loading="lazy"></div>
     `;
     document.querySelectorAll('.pg-set').forEach(cell => {
       const imgs = cell.dataset.imgs.split(',');
