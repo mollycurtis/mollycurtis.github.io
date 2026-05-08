@@ -166,7 +166,7 @@
       gap: clamp(2rem, 4vw, 4rem);
     }
     .hero-title { flex: 0 0 auto; }
-    .hero-body  { flex: 1 1 0; max-width: 420px; }
+    .hero-body  { flex: 1 1 auto; max-width: 500px; }
   }
   .hero-title {
     font-family: 'Playfair Display', serif;
@@ -182,7 +182,6 @@
     font-weight: 300;
     line-height: 1.72;
     color: rgba(245,243,239,0.45);
-    max-width: 380px;
   }
   .hero-scroll {
     position: absolute;
@@ -259,10 +258,10 @@
   .concept-panel--skincare  .concept-overlay { background: linear-gradient(to top, rgba(10,10,10,0.93) 0%, rgba(10,10,10,0.55) 55%, rgba(10,10,10,0.42) 100%); }
   .concept-panel--hotel     .concept-overlay { background: linear-gradient(to top, rgba(10,8,4,0.93)  0%, rgba(10,8,4,0.55)  55%, rgba(10,8,4,0.42)  100%); }
 
-  /* Inactive panels — grayed out, not clickable */
   .concept-panel--inactive {
     pointer-events: none;
     cursor: default;
+    display: block;
   }
   .concept-panel--inactive .concept-bg {
     filter: grayscale(0.7) brightness(0.55);
@@ -327,18 +326,17 @@
 
   /* Inner layout */
   .concept-inner {
-    position: relative;
+    position: absolute;
+    inset: 0;
     z-index: 2;
-    width: 100%;
-    padding: var(--space-xl) var(--gutter);
+    padding: var(--space-lg) var(--gutter);
     display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    max-width: var(--max-content);
+    flex-direction: column;
+    justify-content: flex-end;
     transition: opacity 0.7s var(--ease);
   }
 
-  .concept-left { display: flex; flex-direction: column; gap: var(--space-sm); }
+  .concept-left { display: flex; flex-direction: column; gap: var(--space-sm); max-width: 640px; }
 
   .concept-meta {
     display: flex;
@@ -380,7 +378,7 @@
     font-size: clamp(0.75rem, 1vw, 0.82rem);
     font-weight: 300;
     color: rgba(245,243,239,0.38);
-    max-width: min(520px, 50vw);
+    max-width: 560px;
     line-height: 1.65;
   }
 
@@ -391,8 +389,11 @@
     transition: width 1.4s var(--ease), opacity 1.4s var(--ease);
   }
 
-  /* Coming soon badge */
+  /* Coming soon badge — top right of panel */
   .concept-soon {
+    position: absolute;
+    top: var(--space-lg);
+    right: var(--gutter);
     font-size: clamp(0.55rem, 0.75vw, 0.6rem);
     letter-spacing: 0.22em;
     text-transform: uppercase;
@@ -400,12 +401,15 @@
     border: 1px solid rgba(210, 175, 110, 0.35);
     background: rgba(210, 175, 110, 0.07);
     padding: 0.35rem 0.85rem;
-    align-self: flex-start;
-    margin-top: 0.5rem;
+    z-index: 3;
   }
 
-  /* CTA */
-  .concept-right { flex-shrink: 0; padding-bottom: 0.15rem; }
+  /* CTA — absolute bottom right */
+  .concept-right {
+    position: absolute;
+    bottom: var(--space-lg);
+    right: var(--gutter);
+  }
   .concept-cta {
     font-size: clamp(0.58rem, 0.8vw, 0.65rem);
     letter-spacing: 0.22em;
@@ -662,6 +666,7 @@
     <div class="concept-bg"></div>
     <div class="concept-overlay"></div>
     <div class="concept-accent"></div>
+    <span class="concept-soon">In Development</span>
     <div class="concept-inner">
       <div class="concept-left">
         <div class="concept-meta">
@@ -671,7 +676,6 @@
         <h2 class="concept-title">Skincare<br><em>Brand</em></h2>
         <p class="concept-tagline">Diffused whites, muted neutrals, clean minimalism — a visual system for a modern skincare label.</p>
         <div class="concept-divider"></div>
-        <span class="concept-soon">In Development</span>
       </div>
     </div>
   </div>
@@ -681,6 +685,7 @@
     <div class="concept-bg"></div>
     <div class="concept-overlay"></div>
     <div class="concept-accent"></div>
+    <span class="concept-soon">In Development</span>
     <div class="concept-inner">
       <div class="concept-left">
         <div class="concept-meta">
@@ -690,7 +695,6 @@
         <h2 class="concept-title">Hotel<br><em>Identity</em></h2>
         <p class="concept-tagline">Warm architecture, cinematic interiors, quiet grandeur — a world-building exercise in hospitality identity.</p>
         <div class="concept-divider"></div>
-        <span class="concept-soon">In Development</span>
       </div>
     </div>
   </div>
