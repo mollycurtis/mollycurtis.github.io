@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <title>molcurphotos</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -370,6 +372,16 @@ CATEGORY PAGE
   height:auto;
   display:block;
   transition:opacity .4s ease;
+}
+.pg-landscape {
+  column-span: all;
+}
+.pg-landscape img {
+  width:100%;
+  height:auto;
+  max-height:70vh;
+  object-fit:cover;
+  display:block;
 }
 .pg-set[data-imgs*="rebeka-ca"] { aspect-ratio: unset; }
 .pg-set[data-imgs*="rebeka-ca"] img { object-fit:cover; object-position:center; }
@@ -921,11 +933,11 @@ RESPONSIVE — global
         </div>
       </div>
       <div class="about-carousel" id="aboutCarousel">
-        <div class="carousel-slide active"><img src="molly1.jpg" alt="Molly Curtis" style="object-position:center 30%"></div>
-        <div class="carousel-slide"><img src="molly2.JPG" alt="Molly Curtis" style="object-position:center 15%"></div>
-        <div class="carousel-slide"><img src="molly3.jpg" alt="Molly Curtis" style="object-position:center"></div>
-        <div class="carousel-slide"><img src="molly4.JPG" alt="Molly Curtis" style="object-position:center 15%"></div>
-        <div class="carousel-slide"><img src="molly5.JPG" alt="Molly Curtis" style="object-position:center"></div>
+        <div class="carousel-slide active"><img decoding="async" src="molly1.jpg" alt="Molly Curtis" style="object-position:center 30%"></div>
+        <div class="carousel-slide"><img decoding="async" src="molly2.JPG" alt="Molly Curtis" style="object-position:center 15%"></div>
+        <div class="carousel-slide"><img decoding="async" src="molly3.jpg" alt="Molly Curtis" style="object-position:center"></div>
+        <div class="carousel-slide"><img decoding="async" src="molly4.JPG" alt="Molly Curtis" style="object-position:center 15%"></div>
+        <div class="carousel-slide"><img decoding="async" src="molly5.JPG" alt="Molly Curtis" style="object-position:center"></div>
         <div class="carousel-dots">
           <div class="carousel-dot active"></div>
           <div class="carousel-dot"></div>
@@ -977,18 +989,18 @@ RESPONSIVE — global
       </div>
       <div class="zodiac-carousel" id="zodiacCarousel">
         <div class="zodiac-track" id="zodiacTrack">
-          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><img src="aries1.jpg" alt="Aries" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
-          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><img src="taurus1.jpg" alt="Taurus" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
-          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><img src="gemini1.jpg" alt="Gemini" style="width:100%;height:100%;object-fit:cover;object-position:70% center;display:block;"></div></div>
-          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><img src="cancer1.jpg" alt="Cancer" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
-          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><img src="leo1.jpg" alt="Leo" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
-          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><img src="virgo1.jpg" alt="Virgo" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
-          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><img src="libra-1.jpg" alt="Libra" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
-          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><img src="scorpio1.jpg" alt="Scorpio" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
-          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><img src="sagittarius1.jpg" alt="Sagittarius" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
-          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><img src="capricorn1.jpg" alt="Capricorn" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
-          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><img src="aquarius1.jpg" alt="Aquarius" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
-          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><img src="pisces1.jpg" alt="Pisces" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
+          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><img decoding="async" src="aries1.jpg" alt="Aries" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
+          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><img decoding="async" src="taurus1.jpg" alt="Taurus" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
+          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><img decoding="async" src="gemini1.jpg" alt="Gemini" style="width:100%;height:100%;object-fit:cover;object-position:70% center;display:block;"></div></div>
+          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><img decoding="async" src="cancer1.jpg" alt="Cancer" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
+          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><img decoding="async" src="leo1.jpg" alt="Leo" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
+          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><img decoding="async" src="virgo1.jpg" alt="Virgo" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
+          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><img decoding="async" src="libra-1.jpg" alt="Libra" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
+          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><img decoding="async" src="scorpio1.jpg" alt="Scorpio" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
+          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><img decoding="async" src="sagittarius1.jpg" alt="Sagittarius" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
+          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><img decoding="async" src="capricorn1.jpg" alt="Capricorn" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
+          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><img decoding="async" src="aquarius1.jpg" alt="Aquarius" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
+          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><img decoding="async" src="pisces1.jpg" alt="Pisces" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
         </div>
         <div class="zodiac-controls">
           <button class="zodiac-btn" id="zodiacPrev">←</button>
@@ -1246,45 +1258,45 @@ function openCategory(cat) {
   document.getElementById('cat-sub-text').textContent = d.sub;
   if (cat === 'portraits') {
     document.getElementById('cat-photo-grid').innerHTML = `
-      <div class="pg-item pg-set" data-imgs="tatumn3.jpg,tatumn5.jpg"><img src="tatumn3.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img src="caitdoty.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img src="bola2.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-set" data-imgs="melisa1.jpg,melisa2.jpg"><img src="melisa1.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img src="serena1.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img src="alexalee.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-set" data-imgs="alexa-dunes1.jpg,alexa-dunes2.jpg"><img src="alexa-dunes1.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img src="dystine4.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img src="melisa3.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-set" data-imgs="rebeka2.jpg,rebeka6.jpg"><img src="rebeka2.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img src="sesamae.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img src="darah3.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img src="melisa4.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-set" data-imgs="rebeka-ca1.jpg,rebeka-ca2.jpg,rebeka-ca3.jpg"><img src="rebeka-ca1.jpg" alt="Portrait" loading="lazy" style="object-fit:cover;object-position:center;"></div>
-      <div class="pg-item"><img src="tavish4-bw.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-set" data-imgs="alexa1.jpg,alexa4.jpg,alexa6.jpg"><img src="alexa1.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img src="alexa2.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img src="eva.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-set" data-imgs="Annette-studio1.jpg,Annette-studio2.jpg"><img src="Annette-studio1.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img src="tat4.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img src="bola4.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img src="gabby4.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img src="dystine10.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img src="iztla1.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img src="madison6-.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img src="emily4-bw.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-set" data-imgs="eleanor1-bw.jpg,eleanor4-bw.jpg"><img src="eleanor1-bw.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img src="megan.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img src="emily1.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img src="meley5.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-set" data-imgs="bailie8.jpg,bailie9.jpg,bailie4.jpg"><img src="bailie8.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img src="liv.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img src="tatumnn.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-set" data-imgs="tatumn-airbnb1.jpg,tatumn-airbnb2.jpg"><img src="tatumn-airbnb1.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img src="iztla5.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img src="meley6.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img src="chy2.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img src="emily1%281%29.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img src="meganeric.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-set" data-imgs="tatumn3.jpg,tatumn5.jpg"><img decoding="async" src="tatumn3.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-landscape"><img decoding="async" src="caitdoty.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-landscape"><img decoding="async" src="bola2.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-set" data-imgs="melisa1.jpg,melisa2.jpg"><img decoding="async" src="melisa1.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="serena1.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="alexalee.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-set" data-imgs="alexa-dunes1.jpg,alexa-dunes2.jpg"><img decoding="async" src="alexa-dunes1.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="dystine4.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="melisa3.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-set" data-imgs="rebeka2.jpg,rebeka6.jpg"><img decoding="async" src="rebeka2.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="sesamae.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="darah3.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="melisa4.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-set" data-imgs="rebeka-ca1.jpg,rebeka-ca2.jpg,rebeka-ca3.jpg"><img decoding="async" src="rebeka-ca1.jpg" alt="Portrait" loading="lazy" style="object-fit:cover;object-position:center;"></div>
+      <div class="pg-item"><img decoding="async" src="tavish4-bw.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-set" data-imgs="alexa1.jpg,alexa4.jpg,alexa6.jpg"><img decoding="async" src="alexa1.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="alexa2.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="eva.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-set" data-imgs="Annette-studio1.jpg,Annette-studio2.jpg"><img decoding="async" src="Annette-studio1.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="tat4.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="bola4.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-landscape"><img decoding="async" src="gabby4.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="dystine10.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="iztla1.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="madison6-.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="emily4-bw.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-set" data-imgs="eleanor1-bw.jpg,eleanor4-bw.jpg"><img decoding="async" src="eleanor1-bw.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-landscape"><img decoding="async" src="megan.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-landscape"><img decoding="async" src="emily1.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-landscape"><img decoding="async" src="meley5.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-set" data-imgs="bailie8.jpg,bailie9.jpg,bailie4.jpg"><img decoding="async" src="bailie8.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-landscape"><img decoding="async" src="liv.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="tatumnn.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-set" data-imgs="tatumn-airbnb1.jpg,tatumn-airbnb2.jpg"><img decoding="async" src="tatumn-airbnb1.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-landscape"><img decoding="async" src="iztla5.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="meley6.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item pg-landscape"><img decoding="async" src="chy2.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="emily1%281%29.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="meganeric.jpg" alt="Portrait" loading="lazy"></div>
     `;
     document.querySelectorAll('.pg-set').forEach(cell => {
       const imgs = cell.dataset.imgs.split(',');
@@ -1328,32 +1340,32 @@ function openCategory(cat) {
     });
   } else if (cat === 'events') {
     document.getElementById('cat-photo-grid').innerHTML = `
-      <div class="pg-item"><img src="IMG_1922.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img src="IMG_1923.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img src="IMG_1924.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img src="IMG_1925.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img src="IMG_1926.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img src="IMG_1927.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img src="IMG_1928.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img src="IMG_1929.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img src="IMG_1930.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img src="IMG_1934.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img src="IMG_1935.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img src="IMG_1936.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img src="IMG_1937.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img src="IMG_1938.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img src="IMG_1939.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img src="IMG_1940.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img src="IMG_1941.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img src="IMG_1942.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img src="IMG_1943.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img src="IMG_1944.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img src="IMG_1945.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img src="IMG_1946.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img src="IMG_1947.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img src="IMG_1948.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img src="IMG_1949.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img src="IMG_1950.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="IMG_1922.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="IMG_1923.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="IMG_1924.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="IMG_1925.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="IMG_1926.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="IMG_1927.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="IMG_1928.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="IMG_1929.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="IMG_1930.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="IMG_1934.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="IMG_1935.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="IMG_1936.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="IMG_1937.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="IMG_1938.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="IMG_1939.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="IMG_1940.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="IMG_1941.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="IMG_1942.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="IMG_1943.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="IMG_1944.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="IMG_1945.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="IMG_1946.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="IMG_1947.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="IMG_1948.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="IMG_1949.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="IMG_1950.jpeg" alt="Event" loading="lazy"></div>
     `;
   } else {
     document.getElementById('cat-photo-grid').innerHTML =
