@@ -25,6 +25,12 @@
   --ivory-dim:   #a89880;
   --smoke:       #7a7060;
 
+  /* plum undertones */
+  --plum-deep:   #140d18;
+  --plum-mid:    #1a1020;
+  --plum-warm:   #211326;
+  --plum-rich:   #2a1830;
+
   --sp-xs:  0.5rem;
   --sp-sm:  1rem;
   --sp-md:  2rem;
@@ -80,7 +86,7 @@ img, svg { display: block; }
   position: fixed;
   width: 260px; height: 260px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(200,148,58,0.09) 0%, transparent 68%);
+  background: radial-gradient(circle, rgba(200,148,58,0.07) 0%, rgba(42,24,48,0.04) 50%, transparent 68%);
   pointer-events: none;
   z-index: 9998;
   transform: translate(-50%,-50%);
@@ -89,51 +95,64 @@ img, svg { display: block; }
 }
 
 /* ─────────────────────────────────────────────
-   NAV
+   META NAV (portfolio back-links)
 ───────────────────────────────────────────── */
-nav {
+.meta-nav {
   position: fixed;
   top: 0; left: 0; right: 0;
-  z-index: 100;
+  z-index: 200;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: clamp(1.25rem,2.5vw,2rem) clamp(1.5rem,5vw,3.5rem);
+  padding: 0.65rem clamp(1.5rem,5vw,3.5rem);
+  background: rgba(6,5,10,0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(154,122,82,0.07);
 }
 
-.nav-logo-group { display: flex; flex-direction: column; align-items: flex-start; gap: 0.1rem; }
-
-.nav-logo {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 300;
-  font-size: clamp(1rem,1.5vw,1.25rem);
-  letter-spacing: 0.55em;
-  color: var(--ivory);
-  text-transform: uppercase;
-  line-height: 1;
-}
-
-.nav-logo-ar {
-  font-size: clamp(0.7rem,1vw,0.85rem);
-  color: var(--amber-dim);
-  letter-spacing: 0.05em;
-  line-height: 1;
-  opacity: 0.7;
-}
-
-.nav-links { display: flex; gap: clamp(1.5rem,3vw,3rem); list-style: none; }
-
-.nav-links a {
-  font-size: 0.6rem;
+.meta-nav a {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.52rem;
+  font-weight: 200;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--ivory-dim);
   text-decoration: none;
-  transition: color 0.4s;
+  transition: color 0.35s;
 }
 
-.nav-links a:hover { color: var(--ivory); }
-@media (max-width: 600px) { .nav-links { display: none; } }
+.meta-nav a:hover { color: var(--ivory); }
+
+.meta-nav .meta-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: normal;
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  font-weight: 300;
+  color: var(--ivory-dim);
+  text-decoration: none;
+}
+
+.meta-nav .meta-back {
+  margin-left: auto;
+}
+
+.meta-nav .meta-back::before {
+  content: '← ';
+  letter-spacing: 0.05em;
+}
+
+/* ─────────────────────────────────────────────
+   NAV
+───────────────────────────────────────────── */
+
+
+
+
+
+
+@media (max-width: 600px) {  }
 
 /* ─────────────────────────────────────────────
    CONTAINERS
@@ -158,10 +177,11 @@ nav {
 .hero-bg {
   position: absolute; inset: 0;
   background:
-    radial-gradient(ellipse 65% 55% at 55% 38%, rgba(48,32,18,0.88) 0%, transparent 62%),
-    radial-gradient(ellipse 45% 45% at 18% 72%, rgba(40,26,12,0.72) 0%, transparent 55%),
-    radial-gradient(ellipse 38% 38% at 82% 82%, rgba(200,148,58,0.07) 0%, transparent 52%),
-    linear-gradient(168deg, #06050a 0%, #100e0b 38%, #0d0906 100%);
+    radial-gradient(ellipse 65% 55% at 55% 38%, rgba(40,24,14,0.88) 0%, transparent 62%),
+    radial-gradient(ellipse 50% 50% at 18% 72%, rgba(26,16,32,0.75) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 40% at 82% 82%, rgba(200,148,58,0.06) 0%, transparent 52%),
+    radial-gradient(ellipse 35% 35% at 10% 20%, rgba(42,24,48,0.45) 0%, transparent 55%),
+    linear-gradient(168deg, #06050a 0%, #110d14 38%, #0d0906 100%);
 }
 
 .hero-grain {
@@ -405,7 +425,7 @@ nav {
   transition: background 0.5s ease;
 }
 
-.note-block:hover { background: var(--cacao); }
+.note-block:hover { background: #1c1418; }
 
 .note-tier {
   font-size: 0.52rem;
@@ -533,7 +553,7 @@ nav {
 .sensory-section::before {
   content: '';
   position: absolute; inset: 0;
-  background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(42,26,10,0.5) 0%, transparent 70%);
+  background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(30,16,38,0.55) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -615,164 +635,28 @@ nav {
 /* ─────────────────────────────────────────────
    OUTRO
 ───────────────────────────────────────────── */
-.outro-section {
-  padding: var(--sp-xl) 0 var(--sp-lg);
-  text-align: center;
-  position: relative;
-  border-top: 1px solid rgba(154,122,82,0.1);
-  overflow: hidden;
-}
 
-.outro-section::before {
-  content: '';
-  position: absolute;
-  top: -1px; left: 50%;
-  transform: translateX(-50%);
-  width: 280px; height: 1px;
-  background: radial-gradient(ellipse at 50%, var(--amber-dim), transparent);
-}
 
 /* Background Arabic texture in outro */
-.outro-ar-bg {
-  position: absolute;
-  bottom: -10%;
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: 'Noto Naskh Arabic', serif;
-  font-size: clamp(20rem,42vw,40rem);
-  line-height: 1;
-  color: var(--amber);
-  opacity: 0.02;
-  filter: blur(22px);
-  user-select: none;
-  pointer-events: none;
-  white-space: nowrap;
-}
 
-.outro-wordmark {
-  position: relative;
-  z-index: 1;
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 300;
-  font-style: normal;
-  font-size: clamp(3rem,9vw,7rem);
-  line-height: 0.9;
-  letter-spacing: 0.22em;
-  color: var(--ivory);
-  margin-bottom: 0.6rem;
-}
 
-.outro-wordmark-ar {
-  position: relative;
-  z-index: 1;
-  display: block;
-  font-size: clamp(1.2rem,2.8vw,2rem);
-  color: var(--amber-dim);
-  letter-spacing: 0.06em;
-  margin-bottom: clamp(1rem,2vw,1.5rem);
-  opacity: 0.65;
-}
 
-.outro-tagline {
-  position: relative; z-index: 1;
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-weight: 300;
-  font-size: clamp(1rem,2vw,1.4rem);
-  color: var(--ivory-dim);
-  letter-spacing: 0.1em;
-  margin-bottom: clamp(2rem,4vw,3.5rem);
-}
 
-.outro-copy {
-  position: relative; z-index: 1;
-  font-size: clamp(0.58rem,1vw,0.68rem);
-  letter-spacing: 0.2em;
-  color: var(--ivory-dim);
-  line-height: 2.5;
-  max-width: 480px;
-  margin: 0 auto clamp(2.5rem,5vw,4rem);
-}
 
-.btn-discover {
-  position: relative; z-index: 1;
-  display: inline-block;
-  padding: 1.1rem 3.2rem;
-  border: 1px solid rgba(200,148,58,0.28);
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.58rem;
-  font-weight: 200;
-  letter-spacing: 0.45em;
-  text-transform: uppercase;
-  color: var(--ivory);
-  text-decoration: none;
-  background: transparent;
-  cursor: none;
-  transition: border-color 0.45s, background 0.45s;
-  overflow: hidden;
-}
 
-.btn-discover::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: rgba(200,148,58,0.05);
-  transform: translateX(-100%);
-  transition: transform 0.55s ease;
-}
 
-.btn-discover:hover::before { transform: none; }
-.btn-discover:hover { border-color: rgba(200,148,58,0.45); }
 
 /* ─────────────────────────────────────────────
    FOOTER
 ───────────────────────────────────────────── */
-footer {
-  padding: clamp(1.5rem,3vw,3rem) clamp(1.5rem,5vw,3.5rem);
-  border-top: 1px solid rgba(154,122,82,0.07);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-  max-width: var(--max-site);
-  margin: 0 auto;
-}
 
-.footer-brand-group { display: flex; flex-direction: column; gap: 0.2rem; }
 
-.footer-brand {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(0.85rem,1.2vw,1rem);
-  letter-spacing: 0.45em;
-  color: var(--ivory-dim);
-}
 
-.footer-brand-ar {
-  font-size: clamp(0.6rem,0.9vw,0.75rem);
-  color: var(--amber-dim);
-  opacity: 0.4;
-  letter-spacing: 0.06em;
-}
 
-.footer-copy {
-  font-size: 0.52rem;
-  letter-spacing: 0.2em;
-  color: var(--smoke);
-  text-align: right;
-}
 
-/* Arabic micro-detail in footer center */
-.footer-ar-center {
-  font-size: clamp(0.62rem,0.9vw,0.75rem);
-  color: var(--amber-dim);
-  opacity: 0.3;
-  letter-spacing: 0.06em;
-  text-align: center;
-}
 
 @media (max-width: 600px) {
-  footer { flex-direction: column; text-align: center; }
-  .footer-copy, .footer-brand-group { text-align: center; align-items: center; }
-}
+    .footer-copy, }
 
 /* ─────────────────────────────────────────────
    ANIMATIONS
@@ -787,6 +671,53 @@ footer {
   50%     { opacity: 0.7; }
 }
 
+
+/* ─────────────────────────────────────────────
+   MOBILE SPACING + PHOTO GRID
+───────────────────────────────────────────── */
+@media (max-width: 600px) {
+  :root {
+    --sp-2xl: 5rem;
+    --sp-xl:  3.5rem;
+    --sp-lg:  2.5rem;
+  }
+
+  .ar-divider { padding: 1.2rem clamp(1.5rem,5vw,3.5rem); }
+  .notes-section { padding: 4rem 0 3rem; }
+  .sensory-section { padding: 4rem 0; }
+  .sensory-quote { margin-bottom: 2.5rem; }
+  .notes-header { margin-bottom: 2.5rem; }
+  .campaign-section { padding: 2rem 0; }
+  .campaign-header { padding: 0 0 1.5rem; }
+}
+
+/* ─────────────────────────────────────────────
+   MOBILE: CURSOR GLOW OFF
+───────────────────────────────────────────── */
+@media (max-width: 820px) {
+  .cursor, .cursor-glow { display: none; }
+  body { cursor: auto; }
+}
+
+/* ─────────────────────────────────────────────
+   MOBILE: CAMPAIGN IMAGES ALL SAME SIZE, STACKED
+───────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .campaign-mosaic {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .mosaic-cell,
+  .mosaic-cell.mosaic-tall {
+    grid-row: unset;
+    grid-column: unset;
+    width: 100%;
+    height: clamp(260px, 72vw, 380px);
+  }
+}
+
 </style>
 </head>
 <body>
@@ -795,18 +726,13 @@ footer {
 <div class="cursor" id="cursor"></div>
 <div class="cursor-glow" id="cursorGlow"></div>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-logo-group">
-    <div class="nav-logo">SAHAR</div>
-    <div class="nav-logo-ar ar">سَحَر</div>
-  </div>
-  <ul class="nav-links">
-    <li><a href="#notes">The Scent</a></li>
-    <li><a href="#campaign">Campaign</a></li>
-    <li><a href="#acquire">Acquire</a></li>
-  </ul>
-</nav>
+<!-- META NAV -->
+<div class="meta-nav">
+  <a href="https://mollycurtis.github.io/" class="meta-name">Molly Curtis</a>
+  <a href="https://mollycurtis.github.io/editorialconcepts/" class="meta-back">Visual Concepts</a>
+</div>
+
+
 
 <!-- ══════════════════════════════════════════
      HERO
@@ -1015,46 +941,9 @@ footer {
   </div>
 </section>
 
-<!-- Arabic divider -->
-<div class="ar-divider" aria-hidden="true">
-  <div class="ar-divider-line"></div>
-  <span class="ar-divider-text ar">اقْتَنِ سَحَر</span>
-  <div class="ar-divider-line"></div>
-</div>
 
-<!-- ══════════════════════════════════════════
-     OUTRO / ACQUIRE
-══════════════════════════════════════════ -->
-<section class="outro-section" id="acquire">
-  <!-- Background Arabic atmospheric text -->
-  <div class="outro-ar-bg ar" aria-hidden="true">سَحَر</div>
 
-  <div class="content-wrap">
-    
-    <h2 class="outro-wordmark">SAHAR</h2>
-    <span class="outro-wordmark-ar ar">سَحَر</span>
-    <p class="outro-tagline">The hour before dawn.</p>
-    <p class="outro-copy">
-      100 ml · Eau de Parfum<br>
-      Cardamom · Saffron · Roasted Almond<br>
-      Pistachio Cream · Vanilla Bean · Tonka<br>
-      Amber Resin · Sandalwood · Cashmere Musk
-    </p>
-    <a href="#" class="btn-discover">Acquire — $320</a>
-  </div>
-</section>
 
-<!-- ══════════════════════════════════════════
-     FOOTER
-══════════════════════════════════════════ -->
-<footer>
-  <div class="footer-brand-group">
-    <div class="footer-brand">SAHAR</div>
-    <div class="footer-brand-ar ar">سَحَر · عِطْر</div>
-  </div>
-  <div class="footer-ar-center ar">السَّاعَةُ قَبْلَ الفَجْر</div>
-  <div class="footer-copy">© 2025 SAHAR Parfums · All rights reserved</div>
-</footer>
 
 <!-- ══════════════════════════════════════════
      SCRIPTS
