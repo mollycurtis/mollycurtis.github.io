@@ -295,33 +295,6 @@ img, svg { display: block; }
   letter-spacing: 0.08em;
 }
 
-.hero-scroll {
-  position: absolute;
-  bottom: clamp(1.5rem,3vw,2.5rem);
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.7rem;
-  opacity: 0;
-  animation: fadeUp 1s ease forwards 1.7s;
-}
-
-.hero-scroll span {
-  font-size: 0.52rem;
-  letter-spacing: 0.38em;
-  text-transform: uppercase;
-  color: var(--smoke);
-}
-
-.scroll-line {
-  width: 1px;
-  height: 52px;
-  background: linear-gradient(to bottom, var(--smoke), transparent);
-  animation: scrollPulse 2.2s ease-in-out infinite;
-}
-
 /* ─────────────────────────────────────────────
    SECTION LABELS + TITLES
 ───────────────────────────────────────────── */
@@ -666,8 +639,6 @@ img, svg { display: block; }
   to   { opacity: 1; transform: none; }
 }
 
-@keyframes scrollPulse {
-  0%,100% { opacity: 0.25; }
   50%     { opacity: 0.7; }
 }
 
@@ -928,10 +899,6 @@ img, svg { display: block; }
     <p class="hero-ar-phrase ar">السَّاعَةُ قَبْلَ الفَجْر</p>
   </div>
 
-  <div class="hero-scroll">
-    <span>Scroll</span>
-    <div class="scroll-line"></div>
-  </div>
 </section>
 
 <!-- Arabic editorial divider -->
