@@ -369,29 +369,17 @@ CATEGORY PAGE
 }
 .pg-item img {
   width:100%;
-  height:350px;
-  object-fit:cover;
-  display:block;
-  transition:opacity .4s ease;
-}
-.pg-big img {
-  width:100%;
-  height:520px;
-  object-fit:cover;
-  object-position:center top;
+  height:auto;
   display:block;
   transition:opacity .4s ease;
 }
 .pg-landscape { column-span: all; }
-.pg-landscape img { width:100%; height:400px; object-fit:cover; display:block; }
+.pg-landscape img { width:100%; height:auto; object-fit:cover; display:block; }
 .pg-set[data-imgs*="rebeka-ca"] img { object-fit:cover; object-position:center; }
 
 @media(max-width:768px){
   #cat-photo-grid { columns: 2; column-gap:0; }
-  .pg-item img { height:220px; }
-  .pg-big img { height:320px; }
-  .pg-landscape { column-span: all; }
-  .pg-landscape img { height:280px; }
+  #cat-photo-grid .pg-item.pg-landscape { column-span: all; }
 }
 .photo-grid {
   display:grid;
@@ -1262,8 +1250,8 @@ function openCategory(cat) {
   if (cat === 'portraits') {
     document.getElementById('cat-photo-grid').innerHTML = `
       <div class="pg-item pg-set" data-imgs="tatumn3.jpg,tatumn5.jpg"><img decoding="async" src="tatumn3.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-big"><img decoding="async" src="caitdoty.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-big"><img decoding="async" src="bola2.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="caitdoty.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="bola2.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item pg-set" data-imgs="melisa1.jpg,melisa2.jpg"><img decoding="async" src="melisa1.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="serena1.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="alexalee.jpg" alt="Portrait" loading="lazy"></div>
@@ -1282,22 +1270,22 @@ function openCategory(cat) {
       <div class="pg-item pg-set" data-imgs="Annette-studio1.jpg,Annette-studio2.jpg"><img decoding="async" src="Annette-studio1.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="tat4.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="bola4.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-big"><img decoding="async" src="gabby4.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="gabby4.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="dystine10.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="iztla1.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="madison6-.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="emily4-bw.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item pg-set" data-imgs="eleanor1-bw.jpg,eleanor4-bw.jpg"><img decoding="async" src="eleanor1-bw.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-big"><img decoding="async" src="megan.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-big"><img decoding="async" src="emily1.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-big"><img decoding="async" src="meley5.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="megan.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="emily1.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="meley5.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item pg-set" data-imgs="bailie8.jpg,bailie9.jpg,bailie4.jpg"><img decoding="async" src="bailie8.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-big"><img decoding="async" src="liv.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="liv.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="tatumnn.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item pg-set" data-imgs="tatumn-airbnb1.jpg,tatumn-airbnb2.jpg"><img decoding="async" src="tatumn-airbnb1.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-big"><img decoding="async" src="iztla5.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="iztla5.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="meley6.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-big"><img decoding="async" src="chy2.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="chy2.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="emily1%281%29.jpg" alt="Portrait" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="meganeric.jpg" alt="Portrait" loading="lazy"></div>
     `;
