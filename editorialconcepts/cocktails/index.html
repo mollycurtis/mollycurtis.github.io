@@ -174,7 +174,7 @@ body {
 @media (max-width: 700px) {
   .hero {
     min-height: clamp(240px, 48vh, 400px);
-    padding: clamp(3.5rem, 9vh, 5.5rem) 1.5rem clamp(1.5rem, 4vh, 2.5rem);
+    padding: clamp(4.5rem, 11vh, 6.5rem) 1.5rem clamp(1.5rem, 4vh, 2.5rem);
     justify-content: center;
   }
   .hero-nav { top: 1rem; left: 1.25rem; right: 1.25rem; }
@@ -306,7 +306,7 @@ body {
 
 .drink-tag {
   font-size: 7.5px; letter-spacing: 0.22em; text-transform: uppercase;
-  color: var(--text-muted); margin-bottom: var(--sp-1);
+  color: var(--text-muted); margin-bottom: 0;
   flex-shrink: 0; opacity: 0.75;
   font-family: 'Barlow', sans-serif;
 }
@@ -396,18 +396,19 @@ body {
 
 /* ── BREAKPOINTS ── */
 @media (max-width: 600px) {
-  :root { --card-w: 91vw; }
+  :root { --card-w: 100vw; }
   .arrow { display: none; }
   .mobile-nav-btn { display: flex; align-items: center; }
-  .card { padding: 1.5rem 1.3rem 1.2rem; }
+  .card { padding: 1.5rem 1.5rem 1.2rem; border-right: none; }
   .track-outer { height: calc(78vh - 44px); }
-  .drink-photo { height: 210px; max-height: none; flex: none; }
-  .drink-photo img { width: 92%; max-height: 210px; }
+  .drink-photo { height: 240px; max-height: none; flex: none; margin-top: 0; margin-bottom: var(--sp-1); }
+  .drink-photo img { width: 96%; max-height: 240px; }
 }
 @media (max-width: 600px) and (max-height: 700px) {
   .track-outer { height: calc(72vh - 44px); }
-  .drink-photo { height: 175px; }
-  .drink-photo img { max-height: 175px; }
+  .drink-photo { height: 195px; }
+  .drink-photo img { max-height: 195px; width: 94%; }
+  .drink-tag { margin-bottom: 0; }
 }
 @media (min-width: 601px) and (max-width: 900px)   { :root { --card-w: 340px; } }
 @media (min-width: 901px) and (max-width: 1199px)  { :root { --card-w: 358px; } }
@@ -503,7 +504,7 @@ cocktails.forEach((c, i) => {
   card.className = 'card';
   card.dataset.i = i;
   // Drinks that need elevated image positioning
-  if ([4, 6, 8].includes(i)) card.classList.add('card--raise-img');
+  if ([4, 6, 7, 8].includes(i)) card.classList.add('card--raise-img');
   card.innerHTML = `<div class="drink-header"><p class="drink-name">${c.name}</p><p class="drink-oz">${c.oz}</p></div>
     <p class="drink-ingredients">${c.ingredients}</p>
     ${sliders ? `<div class="sliders">${sliders}</div>` : ''}
