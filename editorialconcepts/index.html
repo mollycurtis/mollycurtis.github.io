@@ -61,10 +61,6 @@
     align-items: center;
     padding: var(--space-md) var(--gutter);
     pointer-events: none;
-    max-width: var(--max-page);
-    margin: 0 auto;
-    left: 50%;
-    transform: translateX(-50%);
     width: 100%;
   }
   /* Nav background gradient — full width */
@@ -105,8 +101,6 @@
     padding: 0 var(--gutter) var(--space-xl);
     position: relative;
     overflow: hidden;
-    max-width: var(--max-page);
-    margin: 0 auto;
     width: 100%;
   }
   /* Hero bg stretches full width */
@@ -161,15 +155,13 @@
   }
   @media (min-width: 860px) {
     .hero-title-row {
-      display: grid;
-      grid-template-columns: auto 1fr;
+      display: flex;
+      flex-direction: row;
       align-items: center;
-      gap: 0;
+      gap: 3rem;
     }
-    .hero-body {
-      padding-left: clamp(3rem, 6vw, 7rem);
-      max-width: 380px;
-    }
+    .hero-title { flex-shrink: 0; }
+    .hero-body  { flex: 1; }
   }
   .hero-title {
     font-family: 'Playfair Display', serif;
@@ -217,8 +209,6 @@
   /* ── CONCEPTS SECTION ── */
   .concepts-section {
     position: relative;
-    max-width: var(--max-page);
-    margin: 0 auto;
     width: 100%;
   }
 
@@ -457,11 +447,9 @@
     background: var(--ink);
     border-top: 1px solid rgba(245,243,239,0.07);
     padding: var(--space-2xl) var(--gutter) 0;
-    max-width: var(--max-page);
-    margin: 0 auto;
     width: 100%;
   }
-  .explore-inner { max-width: var(--max-content); margin: 0 auto; }
+  .explore-inner { width: 100%; }
   .explore-label {
     font-size: clamp(0.6rem, 0.85vw, 0.68rem);
     font-weight: 600;
@@ -522,18 +510,12 @@
   .explore-link-arrow svg { width: 13px; height: 13px; stroke: var(--off-white); fill: none; stroke-width: 1.8; }
 
   /* ── FOOTER ── */
-  .footer-wrap {
-    max-width: var(--max-page);
-    margin: 0 auto;
-    width: 100%;
-  }
+  .footer-wrap { width: 100%; }
   footer {
     padding: var(--space-lg) var(--gutter) var(--space-xl);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: var(--max-content);
-    margin: 0 auto;
   }
   .footer-copy {
     font-size: clamp(0.6rem, 0.85vw, 0.68rem);
