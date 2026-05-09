@@ -7,7 +7,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-
   <style>
     :root {
       --dark:    #111114;
@@ -20,417 +19,99 @@
       --font-display: 'Playfair Display', Georgia, serif;
       --font-body:    'DM Sans', sans-serif;
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body {
-      font-family: var(--font-body);
-      background: var(--white);
-      color: var(--dark);
-      -webkit-font-smoothing: antialiased;
-    }
+    body { font-family: var(--font-body); background: var(--white); color: var(--dark); -webkit-font-smoothing: antialiased; }
 
-    /* ── NAV ── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 20px 56px;
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-logo {
-      font-family: var(--font-display);
-      font-size: 15px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      text-decoration: none;
-      color: var(--dark);
-    }
-    .nav-back {
-      font-family: var(--font-body);
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      color: #111;
-      text-decoration: none;
-      text-transform: uppercase;
-      border: 1.5px solid rgba(0,0,0,0.2);
-      padding: 0.4rem 1rem;
-      border-radius: 30px;
-      transition: all 0.2s;
-    }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 20px 56px; background: rgba(255,255,255,0.95); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
+    .nav-logo { font-family: var(--font-display); font-size: 15px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; color: var(--dark); }
+    .nav-back { font-family: var(--font-body); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; color: #111; text-decoration: none; text-transform: uppercase; border: 1.5px solid rgba(0,0,0,0.2); padding: 0.4rem 1rem; border-radius: 30px; transition: all 0.2s; }
     .nav-back:hover { background: #111; color: white; border-color: #111; }
 
-    /* ── PAGE HEADER ── */
-    .page-header {
-      margin-top: 61px;
-      max-width: var(--max);
-      margin-left: auto;
-      margin-right: auto;
-      padding: 64px 56px 52px;
-      border-bottom: 1px solid var(--border);
-      animation: fadeUp 0.7s 0.1s both;
-    }
-    .header-eyebrow {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 20px;
-    }
-    .header-main {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 64px;
-      align-items: start;
-    }
-    .header-title {
-      font-family: var(--font-display);
-      font-size: clamp(36px, 4.5vw, 62px);
-      font-weight: 700;
-      line-height: 1.0;
-      color: var(--dark);
-      white-space: nowrap;
-    }
-    .header-desc {
-      font-size: 15px;
-      line-height: 1.7;
-      color: var(--muted);
-      max-width: 640px;
-      padding-top: 8px;
-    }
+    .page-header { margin-top: 61px; max-width: var(--max); margin-left: auto; margin-right: auto; padding: 64px 56px 52px; border-bottom: 1px solid var(--border); animation: fadeUp 0.7s 0.1s both; }
+    .header-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
+    .header-main { display: grid; grid-template-columns: auto 1fr; gap: 64px; align-items: start; }
+    .header-title { font-family: var(--font-display); font-size: clamp(36px, 4.5vw, 62px); font-weight: 700; line-height: 1.0; color: var(--dark); white-space: nowrap; }
+    .header-desc { font-size: 15px; line-height: 1.7; color: var(--muted); max-width: 640px; padding-top: 8px; }
 
-    /* ── MAIN CONTENT ── */
-    .content-wrap {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 72px 56px 100px;
-      display: flex;
-      flex-direction: column;
-      gap: 72px;
-    }
+    .content-wrap { max-width: var(--max); margin: 0 auto; padding: 72px 56px 100px; display: flex; flex-direction: column; gap: 72px; }
 
-    /* ── AD SET BLOCK ── */
-    .ad-set {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.65s ease, transform 0.65s ease;
-    }
+    .ad-set { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
     .ad-set.visible { opacity: 1; transform: none; }
-
-    .ad-set-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 56px;
-      align-items: start;
-    }
-
-    /* left: image */
-    .ad-set-image {
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      background: var(--surface);
-    }
-    .ad-set-image img {
-      width: 100%;
-      display: block;
-      min-height: 420px;
-      object-fit: cover;
-      object-position: top;
-    }
-
-    /* right: info */
+    .ad-set-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+    .ad-set-image { border-radius: 12px; overflow: hidden; border: 1px solid var(--border); background: var(--surface); cursor: zoom-in; }
+    .ad-set-image img { width: 100%; display: block; min-height: 420px; object-fit: cover; object-position: top; }
     .ad-set-info { padding-top: 8px; }
-
-    .ad-set-num {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 12px;
-    }
-
-    .ad-set-title {
-      font-family: var(--font-display);
-      font-size: clamp(22px, 2.6vw, 34px);
-      font-weight: 700;
-      line-height: 1.15;
-      margin-bottom: 16px;
-    }
-
-    .ad-set-desc {
-      font-size: 16.5px;
-      line-height: 1.75;
-      color: #4a5566;
-      margin-bottom: 36px;
-    }
-
-    /* outcomes */
-    .outcomes-label {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 14px;
-    }
-
-    .outcomes-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-    }
-
-    .outcome-card {
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 18px 16px;
-      background: var(--white);
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    }
-
-    .outcome-arrow {
-      font-size: 21px;
-      font-weight: 900;
-      line-height: 1;
-      margin-bottom: 6px;
-    }
-    .outcome-arrow.up   { color: #22a05a; }
+    .ad-set-num { font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+    .ad-set-title { font-family: var(--font-display); font-size: clamp(22px, 2.6vw, 34px); font-weight: 700; line-height: 1.15; margin-bottom: 16px; }
+    .ad-set-desc { font-size: 16.5px; line-height: 1.75; color: #4a5566; margin-bottom: 36px; }
+    .outcomes-label { font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+    .outcomes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .outcome-card { border: 1px solid var(--border); border-radius: 10px; padding: 18px 16px; background: var(--white); box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+    .outcome-arrow { font-size: 21px; font-weight: 900; line-height: 1; margin-bottom: 6px; }
+    .outcome-arrow.up { color: #22a05a; }
     .outcome-arrow.down { color: #90909e; }
+    .outcome-metric { font-size: 17px; font-weight: 700; color: var(--dark); margin-bottom: 5px; }
+    .outcome-desc { font-size: 13.5px; line-height: 1.55; color: var(--muted); }
+    .section-rule { height: 1px; background: var(--border); }
 
-    .outcome-metric {
-      font-size: 17px;
-      font-weight: 700;
-      color: var(--dark);
-      margin-bottom: 5px;
-    }
-
-    .outcome-desc {
-      font-size: 13.5px;
-      line-height: 1.55;
-      color: var(--muted);
-    }
-
-    /* ── DIVIDER ── */
-    .section-rule {
-      height: 1px;
-      background: var(--border);
-    }
-
-    /* ── FOOTER ── */
-    .site-footer {
-      margin-top: 0;
-      border-top: 1px solid rgba(0,0,0,0.08);
-      padding: 3.5rem 2.5rem 3rem;
-      background: white;
-    }
-    .footer-explore-label {
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #999;
-      margin-bottom: 2rem;
-    }
-    .footer-links {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: rgba(0,0,0,0.08);
-      border: 1px solid rgba(0,0,0,0.08);
-    }
-    .footer-link-item {
-      background: white;
-      padding: 1.6rem 1.8rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      text-decoration: none;
-      color: #111;
-      transition: background 0.2s;
-    }
+    .site-footer { margin-top: 0; border-top: 1px solid rgba(0,0,0,0.08); padding: 3.5rem 2.5rem 3rem; background: white; }
+    .footer-explore-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #999; margin-bottom: 2rem; }
+    .footer-links { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(0,0,0,0.08); border: 1px solid rgba(0,0,0,0.08); }
+    .footer-link-item { background: white; padding: 1.6rem 1.8rem; display: flex; justify-content: space-between; align-items: center; text-decoration: none; color: #111; transition: background 0.2s; }
     .footer-link-item:hover { background: #f5f5f3; }
-    .footer-link-meta {
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
-    .footer-link-num {
-      font-size: 0.62rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: #bbb;
-      display: block;
-      margin-bottom: 0.3rem;
-    }
-    .footer-link-name {
-      font-family: var(--font-display);
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: #111;
-      line-height: 1.1;
-    }
-    .footer-link-arrow {
-      width: 40px; height: 40px;
-      border: 1.5px solid rgba(0,0,0,0.15);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #111;
-      flex-shrink: 0;
-      transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), background 0.2s;
-    }
-    .footer-link-item:hover .footer-link-arrow {
-      transform: rotate(45deg) scale(1.1);
-      background: #111;
-      color: white;
-      border-color: #111;
-    }
-    .footer-link-arrow svg {
-      width: 16px; height: 16px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 2;
-    }
-    .footer-bottom {
-      margin-top: 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-    .footer-credit {
-      font-size: 0.72rem;
-      color: #bbb;
-      letter-spacing: 0.06em;
-    }
-    .footer-back-top {
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #111;
-      text-decoration: none;
-      border: 1.5px solid rgba(0,0,0,0.2);
-      padding: 0.4rem 1rem;
-      border-radius: 30px;
-      transition: all 0.2s;
-    }
+    .footer-link-meta { display: flex; flex-direction: column; gap: 3px; }
+    .footer-link-num { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #bbb; display: block; margin-bottom: 0.3rem; }
+    .footer-link-name { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: #111; line-height: 1.1; }
+    .footer-link-arrow { width: 40px; height: 40px; border: 1.5px solid rgba(0,0,0,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #111; flex-shrink: 0; transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), background 0.2s; }
+    .footer-link-item:hover .footer-link-arrow { transform: rotate(45deg) scale(1.1); background: #111; color: white; border-color: #111; }
+    .footer-link-arrow svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; }
+    .footer-bottom { margin-top: 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-credit { font-size: 0.72rem; color: #bbb; letter-spacing: 0.06em; }
+    .footer-back-top { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #111; text-decoration: none; border: 1.5px solid rgba(0,0,0,0.2); padding: 0.4rem 1rem; border-radius: 30px; transition: all 0.2s; }
     .footer-back-top:hover { background: #111; color: white; border-color: #111; }
 
-    /* ── ANIMATIONS ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(18px); }
-      to   { opacity: 1; transform: none; }
-    }
-
-    /* ── LIGHTBOX ── */
-    .lightbox-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 1000;
-      background: rgba(0,0,0,0.85);
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      cursor: zoom-out;
-    }
+    .lightbox-overlay { display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.85); align-items: center; justify-content: center; padding: 24px; cursor: zoom-out; }
     .lightbox-overlay.active { display: flex; }
-    .lightbox-overlay img {
-      max-width: 90vw;
-      max-height: 90vh;
-      object-fit: contain;
-      border-radius: 8px;
-      box-shadow: 0 24px 80px rgba(0,0,0,0.5);
-    }
-    .lightbox-close {
-      position: absolute;
-      top: 20px; right: 24px;
-      font-size: 28px;
-      color: white;
-      cursor: pointer;
-      line-height: 1;
-      font-weight: 300;
-      opacity: 0.8;
-      transition: opacity 0.2s;
-    }
+    .lightbox-overlay img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 8px; box-shadow: 0 24px 80px rgba(0,0,0,0.5); }
+    .lightbox-close { position: absolute; top: 20px; right: 24px; font-size: 28px; color: white; cursor: pointer; line-height: 1; font-weight: 300; opacity: 0.8; transition: opacity 0.2s; }
     .lightbox-close:hover { opacity: 1; }
-    .ad-set-image {
-      cursor: zoom-in;
-    }
 
-    /* ── RESPONSIVE ── */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+
     @media (max-width: 900px) {
       nav { padding: 18px 22px; }
       .page-header { padding: 52px 22px 40px; }
       .header-main { grid-template-columns: 1fr; gap: 16px; }
       .header-title { white-space: normal; }
       .content-wrap { padding: 48px 22px 80px; gap: 56px; }
-
-      /* always image on top, info below — regardless of desktop order */
-      .ad-set-layout {
-        grid-template-columns: 1fr;
-        gap: 28px;
-        display: flex;
-        flex-direction: column;
-      }
-      /* force image first always on mobile */
+      .ad-set-layout { grid-template-columns: 1fr; gap: 28px; display: flex; flex-direction: column; }
       .ad-set-image { order: -1 !important; }
-      .ad-set-info  { order: 1 !important; }
-
-      /* images full width, no crop */
-      .ad-set-image img {
-        min-height: unset !important;
-        object-fit: contain !important;
-        object-position: center !important;
-        background: var(--surface);
-      }
-
-      /* outcomes: 3 across, taller cards */
-      .outcomes-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
-      }
-      .outcome-card {
-        padding: 16px 12px;
-      }
-
-      .footer-links { grid-template-columns: 1fr; }
+      .ad-set-info { order: 1 !important; }
+      .ad-set-image img { min-height: unset !important; object-fit: contain !important; object-position: center !important; background: var(--surface); }
+      .outcomes-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+      .outcome-card { padding: 16px 12px; }
+      .footer-links { grid-template-columns: 1fr 1fr; }
       .footer-link-item { padding: 1.2rem 1.4rem; border-bottom: 1px solid rgba(0,0,0,0.08); }
       .footer-link-item:last-child { border-bottom: none; }
       .site-footer { padding: 2.5rem 1.5rem 2rem; }
     }
-
     @media (max-width: 480px) {
       .outcomes-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
       .outcome-card { padding: 14px 10px; }
       .outcome-metric { font-size: 14px; }
       .outcome-desc { font-size: 11.5px; }
+      .footer-links { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
   <nav>
     <a href="https://mollycurtis.github.io" class="nav-logo">Molly Curtis</a>
-    <a href="https://mollycurtis.github.io" class="nav-back">← Portfolio</a>
+    <a href="https://mollycurtis.github.io" class="nav-back">&#8592; Portfolio</a>
   </nav>
 
-  <!-- PAGE HEADER -->
   <div class="page-header">
     <div class="header-eyebrow">Ad Creative Work</div>
     <div class="header-main">
@@ -439,10 +120,8 @@
     </div>
   </div>
 
-  <!-- CONTENT -->
   <div class="content-wrap">
 
-    <!-- AD SET 1 — Subscription Promo -->
     <div class="ad-set" id="ad1">
       <div class="ad-set-layout">
         <div class="ad-set-image">
@@ -454,21 +133,9 @@
           <p class="ad-set-desc">Pricing-focused campaign designed to drive immediate conversions by simplifying the offer and clearly communicating value across all placements. Messaging prioritized <strong>monthly pricing</strong>, <strong>savings</strong>, and <strong>clarity</strong> to remove hesitation and make the decision feel straightforward.</p>
           <div class="outcomes-label">Outcomes</div>
           <div class="outcomes-grid">
-            <div class="outcome-card">
-              <div class="outcome-arrow down">↓</div>
-              <div class="outcome-metric">Friction</div>
-              <div class="outcome-desc">Pricing clarity reduced hesitation and improved decision-making</div>
-            </div>
-            <div class="outcome-card">
-              <div class="outcome-arrow up">↑</div>
-              <div class="outcome-metric">Subs</div>
-              <div class="outcome-desc">Stronger value messaging increased subscription intent</div>
-            </div>
-            <div class="outcome-card">
-              <div class="outcome-arrow down">↓</div>
-              <div class="outcome-metric">Drop-Off</div>
-              <div class="outcome-desc">Simplified layouts kept users engaged across ad formats</div>
-            </div>
+            <div class="outcome-card"><div class="outcome-arrow down">&#8595;</div><div class="outcome-metric">Friction</div><div class="outcome-desc">Pricing clarity reduced hesitation and improved decision-making</div></div>
+            <div class="outcome-card"><div class="outcome-arrow up">&#8593;</div><div class="outcome-metric">Subs</div><div class="outcome-desc">Stronger value messaging increased subscription intent</div></div>
+            <div class="outcome-card"><div class="outcome-arrow down">&#8595;</div><div class="outcome-metric">Drop-Off</div><div class="outcome-desc">Simplified layouts kept users engaged across ad formats</div></div>
           </div>
         </div>
       </div>
@@ -476,7 +143,6 @@
 
     <div class="section-rule"></div>
 
-    <!-- AD SET 2 — AI Lead Gen -->
     <div class="ad-set" id="ad2">
       <div class="ad-set-layout">
         <div class="ad-set-info">
@@ -485,21 +151,9 @@
           <p class="ad-set-desc">Lead generation campaign built to capture attention quickly and drive engagement through <strong>bold, high-contrast messaging</strong>. Creative focused on a strong <strong>educational hook</strong> and <strong>clear value proposition</strong> to encourage clicks and increase form submissions.</p>
           <div class="outcomes-label">Outcomes</div>
           <div class="outcomes-grid">
-            <div class="outcome-card">
-              <div class="outcome-arrow up">↑</div>
-              <div class="outcome-metric">CTR</div>
-              <div class="outcome-desc">Headline-driven creative increased engagement in-feed</div>
-            </div>
-            <div class="outcome-card">
-              <div class="outcome-arrow up">↑</div>
-              <div class="outcome-metric">Leads</div>
-              <div class="outcome-desc">Clear value proposition improved signup rates</div>
-            </div>
-            <div class="outcome-card">
-              <div class="outcome-arrow down">↓</div>
-              <div class="outcome-metric">Scroll Past</div>
-              <div class="outcome-desc">Simplified layouts stopped users and drove attention</div>
-            </div>
+            <div class="outcome-card"><div class="outcome-arrow up">&#8593;</div><div class="outcome-metric">CTR</div><div class="outcome-desc">Headline-driven creative increased engagement in-feed</div></div>
+            <div class="outcome-card"><div class="outcome-arrow up">&#8593;</div><div class="outcome-metric">Leads</div><div class="outcome-desc">Clear value proposition improved signup rates</div></div>
+            <div class="outcome-card"><div class="outcome-arrow down">&#8595;</div><div class="outcome-metric">Scroll Past</div><div class="outcome-desc">Simplified layouts stopped users and drove attention</div></div>
           </div>
         </div>
         <div class="ad-set-image">
@@ -510,7 +164,6 @@
 
     <div class="section-rule"></div>
 
-    <!-- AD SET 3 — NBI Applied New Product -->
     <div class="ad-set" id="ad3">
       <div class="ad-set-layout">
         <div class="ad-set-image">
@@ -522,21 +175,9 @@
           <p class="ad-set-desc">Campaign introducing a new product with messaging focused on <strong>clarity</strong>, <strong>differentiation</strong>, and immediate understanding. Creative was designed to quickly communicate what the product is, why it matters, and how it <strong>stands apart</strong>.</p>
           <div class="outcomes-label">Outcomes</div>
           <div class="outcomes-grid">
-            <div class="outcome-card">
-              <div class="outcome-arrow up">↑</div>
-              <div class="outcome-metric">Awareness</div>
-              <div class="outcome-desc">Clear product positioning improved recognition</div>
-            </div>
-            <div class="outcome-card">
-              <div class="outcome-arrow up">↑</div>
-              <div class="outcome-metric">Engagement</div>
-              <div class="outcome-desc">Focused messaging drove stronger initial interaction</div>
-            </div>
-            <div class="outcome-card">
-              <div class="outcome-arrow down">↓</div>
-              <div class="outcome-metric">Confusion</div>
-              <div class="outcome-desc">Simplified structure made the product easier to understand</div>
-            </div>
+            <div class="outcome-card"><div class="outcome-arrow up">&#8593;</div><div class="outcome-metric">Awareness</div><div class="outcome-desc">Clear product positioning improved recognition</div></div>
+            <div class="outcome-card"><div class="outcome-arrow up">&#8593;</div><div class="outcome-metric">Engagement</div><div class="outcome-desc">Focused messaging drove stronger initial interaction</div></div>
+            <div class="outcome-card"><div class="outcome-arrow down">&#8595;</div><div class="outcome-metric">Confusion</div><div class="outcome-desc">Simplified structure made the product easier to understand</div></div>
           </div>
         </div>
       </div>
@@ -544,7 +185,6 @@
 
     <div class="section-rule"></div>
 
-    <!-- AD SET 4 — State Specific Deadline -->
     <div class="ad-set" id="ad4">
       <div class="ad-set-layout">
         <div class="ad-set-info">
@@ -553,21 +193,9 @@
           <p class="ad-set-desc"><strong>Urgency-driven campaign</strong> built around compliance deadlines to prompt immediate action and increase conversions. Messaging emphasized <strong>time sensitivity</strong> and <strong>clear next steps</strong> to reduce delays and drive faster decision-making.</p>
           <div class="outcomes-label">Outcomes</div>
           <div class="outcomes-grid">
-            <div class="outcome-card">
-              <div class="outcome-arrow up">↑</div>
-              <div class="outcome-metric">Conversions</div>
-              <div class="outcome-desc">Deadline-driven messaging pushed faster decisions</div>
-            </div>
-            <div class="outcome-card">
-              <div class="outcome-arrow up">↑</div>
-              <div class="outcome-metric">CTR</div>
-              <div class="outcome-desc">Urgency improved click-through rates</div>
-            </div>
-            <div class="outcome-card">
-              <div class="outcome-arrow down">↓</div>
-              <div class="outcome-metric">Delay</div>
-              <div class="outcome-desc">Clear timelines reduced procrastination</div>
-            </div>
+            <div class="outcome-card"><div class="outcome-arrow up">&#8593;</div><div class="outcome-metric">Conversions</div><div class="outcome-desc">Deadline-driven messaging pushed faster decisions</div></div>
+            <div class="outcome-card"><div class="outcome-arrow up">&#8593;</div><div class="outcome-metric">CTR</div><div class="outcome-desc">Urgency improved click-through rates</div></div>
+            <div class="outcome-card"><div class="outcome-arrow down">&#8595;</div><div class="outcome-metric">Delay</div><div class="outcome-desc">Clear timelines reduced procrastination</div></div>
           </div>
         </div>
         <div class="ad-set-image">
@@ -576,9 +204,8 @@
       </div>
     </div>
 
-  </div><!-- /content-wrap -->
+  </div>
 
-  <!-- FOOTER -->
   <footer class="site-footer">
     <p class="footer-explore-label">Explore More Work</p>
     <div class="footer-links">
@@ -587,27 +214,28 @@
           <span class="footer-link-num">01</span>
           <span class="footer-link-name">Brand Style Guides</span>
         </div>
-        <div class="footer-link-arrow">
-          <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-        </div>
+        <div class="footer-link-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
       </a>
       <a href="https://mollycurtis.github.io/landingpages/" class="footer-link-item">
         <div class="footer-link-meta">
           <span class="footer-link-num">02</span>
           <span class="footer-link-name">Landing Pages</span>
         </div>
-        <div class="footer-link-arrow">
-          <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        <div class="footer-link-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+      </a>
+      <a href="https://mollycurtis.github.io/editorialconcepts/" class="footer-link-item">
+        <div class="footer-link-meta">
+          <span class="footer-link-num">03</span>
+          <span class="footer-link-name">Visual Concepts</span>
         </div>
+        <div class="footer-link-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
       </a>
       <a href="https://mollycurtis.github.io/" class="footer-link-item">
         <div class="footer-link-meta">
           <span class="footer-link-num">00</span>
           <span class="footer-link-name">Back to Portfolio</span>
         </div>
-        <div class="footer-link-arrow">
-          <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-        </div>
+        <div class="footer-link-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
       </a>
     </div>
     <div class="footer-bottom">
@@ -618,50 +246,34 @@
     </div>
   </footer>
 
-  <!-- LIGHTBOX -->
   <div class="lightbox-overlay" id="lightbox">
     <span class="lightbox-close" id="lightboxClose">&times;</span>
     <img id="lightboxImg" src="" alt="" />
   </div>
 
   <script>
-    // Scroll reveal
     const adSets = document.querySelectorAll('.ad-set');
     const obs = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          obs.unobserve(entry.target);
-        }
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); obs.unobserve(entry.target); }
       });
     }, { threshold: 0.08 });
     adSets.forEach(a => obs.observe(a));
 
-    // Lightbox
-    const lightbox    = document.getElementById('lightbox');
+    const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImg');
     const lightboxClose = document.getElementById('lightboxClose');
-
     document.querySelectorAll('.ad-set-image').forEach(el => {
       el.addEventListener('click', () => {
-        const img = el.querySelector('img');
-        if (!img) return;
-        lightboxImg.src = img.src;
-        lightboxImg.alt = img.alt;
-        lightbox.classList.add('active');
-        document.body.style.overflow = 'hidden';
+        const img = el.querySelector('img'); if (!img) return;
+        lightboxImg.src = img.src; lightboxImg.alt = img.alt;
+        lightbox.classList.add('active'); document.body.style.overflow = 'hidden';
       });
     });
-
-    function closeLightbox() {
-      lightbox.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-
+    function closeLightbox() { lightbox.classList.remove('active'); document.body.style.overflow = ''; }
     lightbox.addEventListener('click', closeLightbox);
     lightboxClose.addEventListener('click', (e) => { e.stopPropagation(); closeLightbox(); });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
   </script>
-
 </body>
 </html>
