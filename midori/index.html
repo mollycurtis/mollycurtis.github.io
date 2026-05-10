@@ -21,7 +21,7 @@
   --cream2:#f7f3ea;
   --ink:#111a14;
   --red:#A23E2A;
-      --ink-mid:rgba(250,248,242,.62);
+  --ink-mid:rgba(250,248,242,.62);
   --ink-low:rgba(250,248,242,.38);
   --display:'Cormorant Garamond',serif;
   --body:'Outfit',sans-serif;
@@ -41,7 +41,6 @@ body{font-family:var(--body);background:var(--forest);color:var(--cream);overflo
   backdrop-filter:blur(4px);
 }
 .nav-logo{display:flex;align-items:center;gap:clamp(10px,1.5vw,16px);flex-wrap:nowrap}
-/* WORDMARK LOGO */
 .nav-wordmark-wrap{display:flex;align-items:baseline;gap:6px}
 .nav-word{
   font-family:var(--display);font-size:clamp(1.1rem,2vw,1.4rem);
@@ -110,7 +109,6 @@ body{font-family:var(--body);background:var(--forest);color:var(--cream);overflo
   font-size:clamp(.82rem,1.2vw,.92rem);font-weight:300;line-height:1.75;
   animation:fadeUp .85s cubic-bezier(.16,1,.3,1) .35s both;
 }
-/* red seal dot in hero */
 .hero-seal{
   display:inline-block;width:clamp(6px,1vw,8px);height:clamp(6px,1vw,8px);
   border-radius:50%;background:var(--red);margin-left:8px;vertical-align:middle;opacity:.8;
@@ -136,11 +134,9 @@ body{font-family:var(--body);background:var(--forest);color:var(--cream);overflo
 }
 .card-num{font-size:clamp(.68rem,.9vw,.78rem);font-weight:400;color:#b0a898}
 
-/* card vis: intro rings */
 .vis-intro{position:relative;width:clamp(110px,15vw,160px);height:clamp(110px,15vw,160px);display:grid;place-items:center}
 .intro-ic{position:relative;z-index:5;display:grid;place-items:center}
 
-/* card vis: logo */
 .vis-logo-card{width:100%;height:100%;display:grid;place-items:center;background:#faf8f2}
 .logo-preview-card{display:flex;flex-direction:column;align-items:center;gap:clamp(6px,1vw,10px);position:relative;padding:clamp(16px,3vw,24px) clamp(20px,4vw,32px)}
 .lp-corner{position:absolute;width:9px;height:9px}
@@ -154,7 +150,6 @@ body{font-family:var(--body);background:var(--forest);color:var(--cream);overflo
 .lp-kanji{font-family:var(--display);font-size:clamp(.7rem,1.2vw,.95rem);font-weight:400;color:var(--red)}
 .lp-sub{font-size:clamp(.5rem,.7vw,.58rem);letter-spacing:.28em;text-transform:uppercase;color:#a89880}
 
-/* card vis: colors swatch tool */
 .vis-colors-tilt{transform:rotate(-18deg);transition:transform .4s cubic-bezier(.16,1,.3,1)}
 .card:hover .vis-colors-tilt{transform:rotate(-9deg) scale(1.05)}
 .swatch-tool{background:#fff;border-radius:22px;box-shadow:0 10px 30px rgba(0,0,0,.11);padding:clamp(10px,1.5vw,13px) clamp(12px,1.8vw,15px) clamp(9px,1.3vw,11px);display:flex;flex-direction:column;gap:6px;width:clamp(110px,15vw,144px)}
@@ -165,7 +160,6 @@ body{font-family:var(--body);background:var(--forest);color:var(--cream);overflo
 .sw-dots{display:flex;gap:7px;justify-content:center;padding-top:2px}
 .sw-dot{width:clamp(16px,2.2vw,22px);height:clamp(16px,2.2vw,22px);border-radius:50%}
 
-/* card vis: type */
 .vis-type-card{
   font-family:var(--display);font-size:clamp(2rem,5vw,3.4rem);
   font-weight:300;font-style:italic;color:var(--ink);letter-spacing:.02em;
@@ -174,7 +168,6 @@ body{font-family:var(--body);background:var(--forest);color:var(--cream);overflo
 }
 .card:hover .vis-type-card{letter-spacing:.08em}
 
-/* card vis: imagery */
 .vis-imagery-card{position:relative;width:clamp(160px,22vw,228px);height:clamp(110px,15vw,162px);display:grid;place-items:center}
 .m-photo{
   position:absolute;width:clamp(80px,11vw,118px);height:clamp(66px,9vw,98px);
@@ -216,7 +209,6 @@ body{font-family:var(--body);background:var(--forest);color:var(--cream);overflo
 .sec-light .sec-label,.sec-cream .sec-label{color:var(--amber-d)}
 .sec-light .sec-label::after,.sec-cream .sec-label::after{content:'';flex:1;height:1px;background:rgba(0,0,0,.1)}
 
-/* red seal used sparsely at section heads */
 .sec-seal{
   width:clamp(7px,1vw,9px);height:clamp(7px,1vw,9px);border-radius:50%;
   background:var(--red);flex-shrink:0;opacity:.75;
@@ -257,8 +249,6 @@ body{font-family:var(--body);background:var(--forest);color:var(--cream);overflo
 .val{border-left:2px solid var(--amber);padding:4px 0 4px clamp(12px,2vw,18px)}
 .val h4{font-family:var(--display);font-size:clamp(1rem,1.5vw,1.15rem);font-style:italic;color:var(--cream);margin-bottom:4px}
 .val p{font-size:clamp(.8rem,1.05vw,.9rem);font-weight:300;line-height:1.65;color:var(--ink-low)}
-/* tiny red seal on intro values */
-.val::before{content:'';display:none}
 
 .tov{margin-top:clamp(40px,5vw,60px)}
 .tov-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
@@ -270,7 +260,6 @@ body{font-family:var(--body);background:var(--forest);color:var(--cream);overflo
 .tov-avoid{font-size:clamp(.72rem,.95vw,.8rem);color:rgba(200,80,80,.65);text-decoration:line-through;margin-top:6px;padding-left:12px}
 
 /* ── 02 LOGO ── */
-/* PRIMARY: WORDMARK */
 .logo-primary-box{
   padding:clamp(24px,3.5vw,40px) clamp(24px,4vw,44px);
   background:var(--cream2);border-radius:18px;margin-bottom:12px;
@@ -290,9 +279,6 @@ body{font-family:var(--body);background:var(--forest);color:var(--cream);overflo
   max-width:380px;line-height:1.6;margin-left:auto;align-self:center;padding-top:0;
 }
 
-/* logo on different bgs */
-
-/* clear space */
 .clearspace-box{background:var(--cream2);border-radius:16px;overflow:hidden;padding:clamp(24px,4vw,40px);border:1px solid rgba(0,0,0,.06);margin-bottom:12px}
 .clearspace-title{font-size:clamp(.6rem,.8vw,.68rem);font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--amber-d);margin-bottom:clamp(20px,3vw,32px)}
 .clearspace-demo{
@@ -317,7 +303,6 @@ body{font-family:var(--body);background:var(--forest);color:var(--cream);overflo
 .cs-note-label{font-size:clamp(.58rem,.75vw,.64rem);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--amber-d);margin-bottom:5px}
 .cs-note p{font-size:clamp(.7rem,.9vw,.76rem);font-weight:300;line-height:1.5;color:#6a6058}
 
-/* misuse */
 .misuse-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px}
 @media(max-width:640px){.misuse-grid{grid-template-columns:1fr 1fr}}
 .misuse-tile{border-radius:12px;overflow:hidden;border:1px solid rgba(162,62,42,.2)}
@@ -326,7 +311,6 @@ body{font-family:var(--body);background:var(--forest);color:var(--cream);overflo
 .misuse-label{padding:10px 12px;background:#faf8f2}
 .misuse-label p{font-size:clamp(.62rem,.8vw,.68rem);font-weight:300;color:#b84040;line-height:1.45}
 
-/* logo rules */
 .logo-rules{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 @media(max-width:500px){.logo-rules{grid-template-columns:1fr}}
 .rule{border-radius:14px;padding:clamp(18px,2.5vw,24px) clamp(20px,3vw,26px)}
@@ -348,7 +332,6 @@ body{font-family:var(--body);background:var(--forest);color:var(--cream);overflo
 .sw-hex{font-size:clamp(.58rem,.76vw,.66rem);color:rgba(255,255,255,.45);margin-top:3px;font-family:monospace;letter-spacing:.04em}
 .sw-role{font-size:clamp(.54rem,.7vw,.62rem);color:rgba(184,196,204,.8);margin-top:3px;letter-spacing:.04em}
 
-/* color ratio */
 .color-ratio{margin-bottom:clamp(24px,3.5vw,36px)}
 .ratio-bar{display:flex;height:clamp(28px,4vw,38px);border-radius:100px;overflow:hidden;margin:14px 0;box-shadow:0 0 0 1px rgba(255,255,255,.18)}
 .rb-seg{display:flex;align-items:center;justify-content:center;font-size:clamp(.52rem,.68vw,.6rem);font-weight:600;color:rgba(255,255,255,.72);letter-spacing:.06em}
@@ -363,7 +346,6 @@ body{font-family:var(--body);background:var(--forest);color:var(--cream);overflo
 .cn h5{font-size:clamp(.64rem,.86vw,.72rem);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--cream);margin-bottom:5px}
 .cn p{font-size:clamp(.72rem,.96vw,.78rem);font-weight:300;line-height:1.6;color:var(--ink-low)}
 
-/* red in palette */
 .swatch-red .sw-info{background:rgba(162,62,42,.15);border-top:1px solid rgba(162,62,42,.2)}
 
 /* ── 04 TYPOGRAPHY ── */
@@ -401,11 +383,9 @@ body{font-family:var(--body);background:var(--forest);color:var(--cream);overflo
 .ir p{font-size:clamp(.7rem,.92vw,.76rem);font-weight:300;line-height:1.6;color:var(--ink-low)}
 
 /* ── 06 APPLICATIONS ── */
-/* Real mockups */
 .mockups-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;align-items:stretch}
 @media(max-width:580px){.mockups-row{grid-template-columns:1fr}}
 
-/* ── MENU MOCKUP ── */
 .mockup-menu-scene{
   border-radius:16px;overflow:hidden;
   background:var(--cream2);
@@ -429,7 +409,7 @@ body{font-family:var(--body);background:var(--forest);color:var(--cream);overflo
 .mi-desc{font-size:clamp(.64rem,.84vw,.7rem);font-weight:300;color:#8a8070;display:block;margin-top:3px;line-height:1.45}
 .mi-price{font-family:var(--display);font-size:clamp(.9rem,1.4vw,1.1rem);font-weight:400;font-style:italic;color:var(--ink);flex-shrink:0;margin-top:1px}
 
-/* ── DRAWER ── */
+/* ── OVERLAY / DRAWER ── */
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;opacity:0;pointer-events:none;transition:opacity .3s}
 .overlay.open{opacity:1;pointer-events:all}
 .drawer{
@@ -456,60 +436,7 @@ body{font-family:var(--body);background:var(--forest);color:var(--cream);overflo
 .card:nth-child(5).reveal{transition-delay:.24s}
 .card:nth-child(6).reveal{transition-delay:.30s}
 
-/* ── SECTION NAV FOOTER ── */
-.section-nav{
-  background:var(--forest);
-  border-top:1px solid rgba(255,255,255,.1);
-  padding:clamp(32px,4vw,52px) clamp(20px,5vw,44px);
-}
-.snav-inner{
-  max-width:1200px;margin:0 auto;
-  display:grid;grid-template-columns:1fr 1fr;
-  border-top:1px solid rgba(255,255,255,.1);
-  margin-bottom:0;
-}
-.snav-item{
-  display:flex;align-items:center;gap:clamp(12px,1.8vw,18px);
-  padding:clamp(14px,2vw,20px) clamp(8px,1.5vw,16px);
-  border-bottom:1px solid rgba(255,255,255,.1);
-  text-decoration:none;
-  transition:background .2s;
-}
-.snav-item:nth-child(odd){border-right:1px solid rgba(255,255,255,.1)}
-.snav-item:hover{background:rgba(255,255,255,.04)}
-.snav-item:hover .snav-name{color:var(--cream)}
-.snav-num{
-  font-family:var(--body);font-size:clamp(.62rem,.8vw,.7rem);
-  font-weight:400;letter-spacing:.06em;color:var(--slate);
-  white-space:nowrap;
-}
-.snav-name{
-  font-family:var(--body);font-size:clamp(.88rem,1.2vw,1rem);
-  font-weight:600;color:rgba(250,248,242,.65);
-  transition:color .2s;
-}
-.snav-footer-row{
-  max-width:1200px;margin:0 auto;
-  display:flex;align-items:center;justify-content:space-between;
-  padding-top:clamp(18px,2.5vw,28px);flex-wrap:wrap;gap:12px;
-}
-.snav-logo{display:flex;align-items:baseline;gap:7px}
-.snav-logo-word{font-family:var(--display);font-size:clamp(.9rem,1.3vw,1.05rem);font-weight:600;font-style:italic;letter-spacing:.1em;color:rgba(250,248,242,.45)}
-.snav-logo-k{font-family:var(--display);font-size:clamp(.58rem,.85vw,.72rem);font-weight:400;color:var(--red);opacity:.6}
-.snav-back{
-  display:flex;align-items:center;gap:7px;
-  padding:clamp(9px,1.2vw,12px) clamp(16px,2vw,22px);
-  background:rgba(215,154,67,.1);border:1px solid rgba(215,154,67,.22);
-  border-radius:100px;text-decoration:none;
-  font-family:var(--body);font-size:clamp(.68rem,.88vw,.76rem);
-  font-weight:500;color:var(--amber);
-  transition:background .2s,color .2s;white-space:nowrap;
-}
-.snav-back:hover{background:var(--amber);color:var(--ink)}
-@media(max-width:580px){
-  .snav-inner{grid-template-columns:1fr}
-  .snav-item:nth-child(odd){border-right:none}
-}
+/* ── FOOTER ── */
 .back-to-top-btn{
   display:flex;align-items:center;gap:6px;
   font-family:'Outfit',sans-serif;font-size:clamp(.6rem,.78vw,.68rem);
@@ -518,12 +445,48 @@ body{font-family:var(--body);background:var(--forest);color:var(--cream);overflo
   position:absolute;right:clamp(20px,5vw,44px);
 }
 @media(max-width:900px){
-  .back-to-top-btn{
-    position:static;
-    order:-1;
-    margin-bottom:16px;
-  }
+  .back-to-top-btn{position:static;order:-1;margin-bottom:16px;}
   #bottom-cta-wrap{flex-direction:column;align-items:center}
+}
+
+/* ══════════════════════════════
+   MOBILE MICROTYPE REFINEMENT
+   Subtly increases readability of
+   tiny uppercase labels on phones
+   without disrupting hierarchy
+   ══════════════════════════════ */
+@media(max-width:600px){
+  /* Section labels */
+  .sec-label { font-size:.65rem; letter-spacing:.18em; }
+  /* Swatch metadata */
+  .sw-name  { font-size:.72rem; }
+  .sw-hex   { font-size:.64rem; }
+  .sw-role  { font-size:.6rem;  }
+  /* Color ratio labels */
+  .crl { font-size:.66rem; }
+  /* Color note headings */
+  .cn h5 { font-size:.68rem; }
+  /* Tone of voice caption */
+  .tov-caption { font-size:.64rem; }
+  /* Clear space note labels */
+  .cs-note-label { font-size:.63rem; }
+  /* Logo misuse labels */
+  .misuse-label p { font-size:.66rem; }
+  /* Rule tags (Do / Don't) */
+  .rule-tag { font-size:.66rem; }
+  /* Type scale labels */
+  .ts-lbl { font-size:.62rem; letter-spacing:.12em; }
+  /* Imagery rule headings */
+  .ir h4 { font-size:.74rem; }
+  /* Moodboard captions */
+  .mf-label span { font-size:.62rem; }
+  /* Menu origin + season */
+  .mi-origin  { font-size:.62rem; }
+  .menu-season{ font-size:.58rem; }
+  /* Hero eyebrow */
+  .hero-eyebrow { font-size:.62rem; }
+  /* Drawer head */
+  .drawer-head { font-size:.64rem; }
 }
 </style>
 </head>
@@ -558,14 +521,13 @@ body{font-family:var(--body);background:var(--forest);color:var(--cream);overflo
     <div class="hero-title-wrap">
       <h1 class="hero-title">Midori <span class="hero-title-kanji">緑</span></h1>
     </div>
-    <p class="hero-tagline">The art of the perfect cup. A brand built on stillness, craft, and the quiet beauty of ceremonial matcha.<span class="hero-seal"></span></p>
+    <p class="hero-tagline">A brand built on stillness, craft, and the quiet beauty of ceremonial matcha.<span class="hero-seal"></span></p>
   </div>
 </section>
 
 <!-- CARD GRID -->
 <section class="grid-section" id="contents">
   <div class="cards-grid">
-    <!-- 01 -->
     <div class="card reveal" onclick="scrollToSection('intro')">
       <div class="card-visual">
         <div class="vis-intro">
@@ -576,7 +538,6 @@ body{font-family:var(--body);background:var(--forest);color:var(--cream);overflo
       </div>
       <div class="card-label"><span>Introduction</span><span class="card-num">(01)</span></div>
     </div>
-    <!-- 02 -->
     <div class="card reveal" onclick="scrollToSection('logo')">
       <div class="card-visual">
         <div class="vis-logo-card">
@@ -588,13 +549,11 @@ body{font-family:var(--body);background:var(--forest);color:var(--cream);overflo
               <span class="lp-word">MIDORI</span>
               <span class="lp-kanji">緑</span>
             </div>
-
           </div>
         </div>
       </div>
       <div class="card-label"><span>Logo</span><span class="card-num">(02)</span></div>
     </div>
-    <!-- 03 -->
     <div class="card reveal" onclick="scrollToSection('colors')">
       <div class="card-visual">
         <div class="vis-colors-tilt">
@@ -618,14 +577,12 @@ body{font-family:var(--body);background:var(--forest);color:var(--cream);overflo
       </div>
       <div class="card-label"><span>Colors</span><span class="card-num">(03)</span></div>
     </div>
-    <!-- 04 -->
     <div class="card reveal" onclick="scrollToSection('type')">
       <div class="card-visual" style="background:#f4f0e6;overflow:hidden">
         <div class="vis-type-card">Aa Bb Cc</div>
       </div>
       <div class="card-label"><span>Typography</span><span class="card-num">(04)</span></div>
     </div>
-    <!-- 05 -->
     <div class="card reveal" onclick="scrollToSection('imagery')">
       <div class="card-visual">
         <div class="vis-imagery-card">
@@ -636,20 +593,15 @@ body{font-family:var(--body);background:var(--forest);color:var(--cream);overflo
       </div>
       <div class="card-label"><span>Imagery</span><span class="card-num">(05)</span></div>
     </div>
-    <!-- 06 APPLICATIONS — fixed grid layout -->
     <div class="card reveal" onclick="scrollToSection('assets')">
       <div class="card-visual">
-        <div style="display:flex;align-items:center;justify-content:center;width:100%;padding:0 20px">          <!-- Menu card silhouette -->
+        <div style="display:flex;align-items:center;justify-content:center;width:100%;padding:0 20px">
           <svg width="76" height="88" viewBox="0 0 76 88" fill="none" style="flex-shrink:0">
-            <!-- card -->
             <rect x="2" y="2" width="72" height="84" rx="5" fill="#faf8f2" stroke="#e0d8cc" stroke-width="1"/>
-            <!-- top bar forest -->
             <rect x="2" y="2" width="72" height="8" rx="5" fill="#1a3a2a"/>
             <rect x="2" y="7" width="72" height="3" fill="#1a3a2a"/>
-            <!-- brand name -->
             <text x="38" y="22" font-family="Georgia,serif" font-size="6" font-style="italic" font-weight="700" letter-spacing="1.5" fill="#111a14" text-anchor="middle">MIDORI</text>
             <line x1="10" y1="26" x2="66" y2="26" stroke="#e0d8cc" stroke-width=".8"/>
-            <!-- menu items -->
             <rect x="10" y="31" width="32" height="2.5" rx="1" fill="#1a3a2a" opacity=".7"/>
             <rect x="10" y="36" width="22" height="1.5" rx=".75" fill="#D79A43" opacity=".6"/>
             <rect x="10" y="40" width="38" height="1.5" rx=".75" fill="#ccc4b4"/>
@@ -659,7 +611,6 @@ body{font-family:var(--body);background:var(--forest);color:var(--cream);overflo
             <rect x="10" y="63" width="30" height="2.5" rx="1" fill="#1a3a2a" opacity=".7"/>
             <rect x="10" y="68" width="18" height="1.5" rx=".75" fill="#D79A43" opacity=".6"/>
             <rect x="10" y="72" width="40" height="1.5" rx=".75" fill="#ccc4b4"/>
-            <!-- prices -->
             <text x="62" y="34" font-family="Georgia,serif" font-size="5" fill="#1a3a2a" text-anchor="middle" opacity=".6">¥ 6</text>
             <text x="62" y="50" font-family="Georgia,serif" font-size="5" fill="#1a3a2a" text-anchor="middle" opacity=".6">¥ 9</text>
             <text x="62" y="66" font-family="Georgia,serif" font-size="5" fill="#1a3a2a" text-anchor="middle" opacity=".6">¥ 7</text>
@@ -737,8 +688,6 @@ body{font-family:var(--body);background:var(--forest);color:var(--cream);overflo
       <h2 class="sec-title">The <em>mark</em> of Midori</h2>
       <p class="sec-sub">One wordmark. MIDORI set in Cormorant Garamond italic, with 緑 in Seal red as a permanent signature detail. No symbol. No icon. Just the name — and what it means.</p>
     </div>
-
-    <!-- WORDMARK DISPLAY -->
     <div style="margin-bottom:8px;font-size:clamp(.58rem,.78vw,.66rem);font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--amber-d)">Primary — Wordmark</div>
     <div class="logo-primary-box">
       <div class="logo-wm-large">
@@ -747,8 +696,6 @@ body{font-family:var(--body);background:var(--forest);color:var(--cream);overflo
       </div>
       <p class="logo-primary-note">The 緑 kanji is always red, always proportioned consistently to the wordmark, always present — a signature, not decoration.</p>
     </div>
-
-    <!-- ON DIFFERENT BACKGROUNDS -->
     <div style="margin-bottom:10px;font-size:clamp(.58rem,.78vw,.66rem);font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--amber-d)">Usage on backgrounds</div>
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px">
       <div style="background:var(--cream2);border-radius:14px;padding:clamp(20px,3vw,32px);display:flex;align-items:center;justify-content:center;gap:8px;min-height:clamp(100px,12vw,130px)">
@@ -764,8 +711,6 @@ body{font-family:var(--body);background:var(--forest);color:var(--cream);overflo
         <span style="font-family:var(--display);font-size:clamp(.6rem,1.1vw,.85rem);font-weight:400;color:#A23E2A">緑</span>
       </div>
     </div>
-
-    <!-- Clear space -->
     <div class="clearspace-box">
       <div class="clearspace-title">Clear Space &amp; Minimum Size</div>
       <div class="clearspace-demo">
@@ -786,8 +731,6 @@ body{font-family:var(--body);background:var(--forest);color:var(--cream);overflo
         <div class="cs-note"><div class="cs-note-label">Clear space</div><p>Always maintain 1× the cap-height on all four sides. No exceptions.</p></div>
       </div>
     </div>
-
-    <!-- Incorrect usage -->
     <div>
       <div style="font-size:clamp(.6rem,.8vw,.68rem);font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin-bottom:12px">Incorrect Usage</div>
       <div class="misuse-grid">
@@ -817,7 +760,6 @@ body{font-family:var(--body);background:var(--forest);color:var(--cream);overflo
         </div>
       </div>
     </div>
-
     <div class="logo-rules" style="margin-top:12px">
       <div class="rule rule-do"><span class="rule-tag">✓ Do</span><p>Maintain clear space. Lock proportions. Use only on approved backgrounds. Always include 緑 in red at the correct size ratio.</p></div>
       <div class="rule rule-dont"><span class="rule-tag">✗ Don't</span><p>Never stretch, rotate, or recolor the wordmark. Never place on competing patterns or use 緑 in any color other than red or cream.</p></div>
@@ -841,8 +783,6 @@ body{font-family:var(--body);background:var(--forest);color:var(--cream);overflo
       <div class="swatch swatch-red"><div class="sw-block" style="background:#A23E2A"></div><div class="sw-info"><div class="sw-name">Seal</div><div class="sw-hex">#A23E2A</div><div class="sw-role">緑 detail only</div></div></div>
       <div class="swatch"><div class="sw-block" style="background:#faf8f2;border-bottom:1px solid rgba(0,0,0,.07)"></div><div class="sw-info" style="background:rgba(200,190,180,.5)"><div class="sw-name" style="color:#2a3a30">Cream</div><div class="sw-hex" style="color:#7a7060">#FAF8F2</div><div class="sw-role" style="color:#8a8a7a">Light bg / type</div></div></div>
     </div>
-
-    <!-- ratio bar -->
     <div class="color-ratio">
       <div class="sec-label" style="margin-bottom:0">Usage Ratio</div>
       <div class="ratio-bar">
@@ -861,7 +801,6 @@ body{font-family:var(--body);background:var(--forest);color:var(--cream);overflo
         <span class="crl"><span class="crl-dot" style="background:#A23E2A"></span>Seal — sparingly</span>
       </div>
     </div>
-
     <div class="color-notes">
       <div class="cn"><div class="cn-dot" style="background:#D79A43"></div><h5>Amber is the accent</h5><p>All CTAs, active states, key highlights. The single warm note in a cool-green world. Never as a full background.</p></div>
       <div class="cn"><div class="cn-dot" style="background:#A23E2A"></div><h5>Seal is a detail</h5><p>Used only on 緑, tiny signature dots, and packaging seals. Never for buttons, links, or UI states. You notice it second — not first.</p></div>
@@ -934,16 +873,10 @@ body{font-family:var(--body);background:var(--forest);color:var(--cream);overflo
       <h2 class="sec-title">Brand in the <em>world</em></h2>
       <p class="sec-sub">How Midori lives on cups, menus, packaging, and walls — where the brand becomes something you can hold.</p>
     </div>
-
-    <!-- MOCKUPS: Cup + Menu -->
     <div class="mockups-row" style="margin-bottom:14px">
-
-      <!-- CUP — real photo mockup -->
       <div class="mockup-cup-scene" style="padding:0;overflow:hidden;border-radius:16px;min-height:100%;height:100%;align-self:stretch">
         <img src="MidoriCup.png" alt="Midori takeaway cup" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;min-height:400px">
       </div>
-
-      <!-- MENU -->
       <div class="mockup-menu-scene">
         <div class="menu-top">
           <div class="menu-brand-block">
@@ -953,7 +886,6 @@ body{font-family:var(--body);background:var(--forest);color:var(--cream);overflo
             </div>
             <span class="menu-season">Spring Menu — Nishio, Aichi</span>
           </div>
-      
         </div>
         <div class="menu-items">
           <div class="menu-item">
