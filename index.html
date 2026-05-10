@@ -352,31 +352,46 @@
           <p>Open to roles, collaborations, and creative marketing opportunities. Feel free to reach out and I'll get back to you soon.</p>
         </div>
 
-        <div>
-          <label class="pp-label">Your Name</label>
-          <input class="pp-input" type="text" placeholder="Full name" />
+        <!-- Success state (hidden until submission) -->
+        <div id="pp-success" style="display:none; text-align:center; padding:2.5rem 1rem;">
+          <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,rgba(232,68,90,0.1),rgba(185,79,200,0.15));display:flex;align-items:center;justify-content:center;margin:0 auto 1.2rem;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#b94fc8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <p style="font-family:'Playfair Display',serif;font-size:1.2rem;color:#1a1a1a;margin-bottom:0.5rem;">Message sent.</p>
+          <p style="font-size:0.88rem;color:#888;font-weight:300;line-height:1.7;">Thanks for reaching out — I'll get back to you soon.</p>
+          <button onclick="closeProjectPanel()" class="btn btn-outline" style="margin-top:1.6rem;font-size:0.75rem;">Close</button>
         </div>
-        <div>
-          <label class="pp-label">Email</label>
-          <input class="pp-input" type="email" placeholder="your@email.com" />
-        </div>
-        <div>
-          <label class="pp-label">Company or Role</label>
-          <input class="pp-input" type="text" placeholder="Where are you reaching out from?" />
-        </div>
-        <div>
-          <label class="pp-label">What's the Opportunity?</label>
-          <input class="pp-input" type="text" placeholder="Role, collaboration, creative project..." />
-        </div>
-        <div>
-          <label class="pp-label">Anything Else</label>
-          <textarea class="pp-input" placeholder="Share context, timeline, or anything that helps me understand the fit."></textarea>
-        </div>
-        <button class="btn btn-grad pp-submit" onclick="closeProjectPanel()">Send Message</button>
-        <div class="pp-avail" style="margin-top:0.3rem;">
-          <div class="pp-avail-dot"></div>
-          <span class="pp-avail-text">molcur9284@gmail.com</span>
-        </div>
+
+        <!-- Form -->
+        <form id="pp-form" action="https://formspree.io/f/mzdokgor" method="POST">
+          <div style="display:flex;flex-direction:column;gap:1rem;">
+            <div>
+              <label class="pp-label">Your Name</label>
+              <input class="pp-input" type="text" name="name" placeholder="Full name" required />
+            </div>
+            <div>
+              <label class="pp-label">Email</label>
+              <input class="pp-input" type="email" name="email" placeholder="your@email.com" required />
+            </div>
+            <div>
+              <label class="pp-label">Company or Role</label>
+              <input class="pp-input" type="text" name="company_or_role" placeholder="Where are you reaching out from?" />
+            </div>
+            <div>
+              <label class="pp-label">What's the Opportunity?</label>
+              <input class="pp-input" type="text" name="opportunity" placeholder="Role, collaboration, creative project..." />
+            </div>
+            <div>
+              <label class="pp-label">Anything Else</label>
+              <textarea class="pp-input" name="message" placeholder="Share context, timeline, or anything that helps me understand the fit."></textarea>
+            </div>
+            <button type="submit" class="btn btn-grad pp-submit">Send Message</button>
+            <div class="pp-avail" style="margin-top:0;">
+              <div class="pp-avail-dot"></div>
+              <span class="pp-avail-text">molcur9284@gmail.com</span>
+            </div>
+          </div>
+        </form>
       </div>
 
     </div>
@@ -675,15 +690,10 @@
       <div class="pf-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
     </a>
   </div>
-  <div class="pf-bottom">
-    <span class="pf-credit">&copy; 2026 Molly Curtis</span>
-    <button class="pf-back" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:4px;margin-bottom:1px;"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>Back to Top
-    </button>
-  </div>
+
 </div>
 
-<footer>Molly Curtis &mdash; Portfolio 2026</footer>
+<footer>&copy; 2026 Molly Curtis</footer>
 
 <button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</button>
 
@@ -696,8 +706,43 @@
   function closeProjectPanel() {
     document.getElementById('project-panel').classList.remove('open');
     document.body.style.overflow = '';
+    /* Reset form and success state after panel closes */
+    setTimeout(function(){
+      var form = document.getElementById('pp-form');
+      var success = document.getElementById('pp-success');
+      if(form) { form.reset(); form.style.display = ''; }
+      if(success) { success.style.display = 'none'; }
+    }, 500);
   }
   document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeProjectPanel(); });
+
+  /* ── Formspree async submit ── */
+  document.addEventListener('DOMContentLoaded', function(){
+    var form = document.getElementById('pp-form');
+    if(!form) return;
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var btn = form.querySelector('button[type="submit"]');
+      if(btn){ btn.textContent = 'Sending...'; btn.disabled = true; }
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(function(res){
+        if(res.ok){
+          form.style.display = 'none';
+          var success = document.getElementById('pp-success');
+          if(success) success.style.display = 'block';
+        } else {
+          if(btn){ btn.textContent = 'Send Message'; btn.disabled = false; }
+          alert('Something went wrong. Please email molcur9284@gmail.com directly.');
+        }
+      }).catch(function(){
+        if(btn){ btn.textContent = 'Send Message'; btn.disabled = false; }
+        alert('Something went wrong. Please email molcur9284@gmail.com directly.');
+      });
+    });
+  });
 
   window.onload = function(){
     /* ── Photo slideshow ── */
