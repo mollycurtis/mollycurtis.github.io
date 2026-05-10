@@ -35,7 +35,12 @@ nav{
 .hero-eyebrow{font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#999;margin-bottom:1rem;}
 .hero-title{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,3.4rem);font-weight:700;line-height:1.1;color:#111;margin-bottom:0;}
 .hero-sub{font-size:0.95rem;font-weight:300;line-height:1.75;color:#555;flex:1;min-width:200px;padding-bottom:0.35rem;}
-@media(max-width:680px){.hero-inner{flex-direction:column;gap:1rem;align-items:flex-start;} .hero-sub{padding-bottom:0;max-width:100%;} .hero-section{text-align:left;} .hero-left,.hero-sub,.hero-eyebrow,.hero-title{text-align:left;display:block;}}
+@media(max-width:860px){
+  .hero-inner{flex-direction:column;gap:1.2rem;align-items:flex-start;}
+  .hero-left{flex-shrink:0;width:100%;}
+  .hero-sub{padding-bottom:0;max-width:100%;flex:none;width:100%;font-size:0.92rem;line-height:1.72;}
+  .hero-section{text-align:left;}
+}
 
 .brand-card{
   position:sticky;height:58vh;
@@ -43,11 +48,11 @@ nav{
   padding:2rem 2.5rem;cursor:pointer;overflow:hidden;
   text-decoration:none;will-change:transform;
 }
+/* 4 cards now — rebalanced offsets */
 .brand-card:nth-child(1){top:54px;z-index:10;}
 .brand-card:nth-child(2){top:94px;z-index:20;}
 .brand-card:nth-child(3){top:134px;z-index:30;}
 .brand-card:nth-child(4){top:174px;z-index:40;}
-.brand-card:nth-child(5){top:214px;z-index:50;}
 
 .card-inner{position:relative;z-index:2;display:flex;flex-direction:column;height:100%;}
 .card-row{
@@ -113,16 +118,6 @@ nav{
 .card-cs1 .card-arrow{border-color:rgba(212,97,26,0.55);color:#d4611a;border-radius:0;}
 .card-cs1:hover .card-arrow{background:rgba(212,97,26,0.2);}
 
-.card-cs2{background:#0f0f1a;color:rgba(185,130,210,0.85);cursor:default;}
-.card-cs2 .card-name{color:rgba(185,130,210,0.75);font-family:'DM Sans',sans-serif;font-weight:300;}
-.card-cs2 .card-type,.card-cs2 .card-num{opacity:0.75;}
-.card-cs2 .card-row{border-bottom-color:rgba(185,130,210,0.3);}
-.coming-soon-tag{
-  font-size:0.62rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;
-  padding:0.22rem 0.65rem;border:1px solid rgba(185,130,210,0.7);
-  border-radius:20px;display:inline-block;margin-bottom:0.5rem;color:rgba(185,130,210,0.9);
-}
-
 .footer-nav{
   position:relative;z-index:70;background:white;
   border-top:1px solid rgba(0,0,0,0.08);padding:3.5rem 2.5rem 3rem;
@@ -143,8 +138,7 @@ nav{
   transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1),background 0.2s;
 }
 .footer-link:hover .fl-arrow{transform:rotate(45deg) scale(1.1);background:#111;color:white;border-color:#111;}
-.footer-bottom{margin-top:2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
-.footer-credit{font-size:0.72rem;color:#bbb;letter-spacing:0.06em;}
+.footer-bottom{margin-top:2rem;display:flex;justify-content:flex-end;align-items:center;}
 .footer-back{
   font-size:0.72rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;
   color:#111;text-decoration:none;border:1.5px solid rgba(0,0,0,0.2);
@@ -155,13 +149,13 @@ nav{
 @media(max-width:680px){
   nav{padding:0.9rem 1.2rem;}
   .hero-section{padding:calc(54px + 2.5rem) 1.5rem 2.5rem;}
-  .brand-card{padding:1.5rem;height:48vh;}
+  /* Mobile: slightly taller cards for better spacing */
+  .brand-card{padding:1.5rem;min-height:380px;height:52vh;}
   .card-num,.card-type{font-size:0.68rem !important;}
   .brand-card:nth-child(1){top:54px;}
   .brand-card:nth-child(2){top:82px;}
   .brand-card:nth-child(3){top:110px;}
   .brand-card:nth-child(4){top:138px;}
-  .brand-card:nth-child(5){top:166px;}
   .card-arrow{width:44px;height:44px;}
   .footer-links{grid-template-columns:1fr;}
   .footer-nav{padding:2.5rem 1.5rem 2rem;}
@@ -181,7 +175,7 @@ nav{
     <div class="hero-left">
       <h1 class="hero-title">Brand Style Guides</h1>
     </div>
-    <p class="hero-sub">A collection of brand identity systems — each built with its own visual language, typography, color palette, and usage guidelines. Each one designed to function across digital, print, and brand touchpoints. Built to function across every brand touchpoint — from digital to print.</p>
+    <p class="hero-sub">Brand identity systems built through typography, color, visual storytelling, and strategic brand direction, designed to translate across digital, print, and campaign experiences while maintaining a cohesive and intentional brand presence.</p>
   </div>
 </div>
 
@@ -269,22 +263,6 @@ nav{
     </div>
   </a>
 
-  <div class="brand-card card-cs2">
-    <div class="card-inner">
-      <div class="card-row">
-        <span class="card-num">05</span>
-        <span class="card-type">Personal Brand</span>
-      </div>
-      <div class="card-row-bottom">
-        <div>
-          <div class="coming-soon-tag">Coming Soon</div>
-          <div class="card-name">Photography Rebrand</div>
-        </div>
-      </div>
-      <p class="card-desc" style="color:rgba(185,130,210,0.7);">Personal brand refresh — in progress.</p>
-    </div>
-  </div>
-
 </div>
 
 <footer class="footer-nav">
@@ -308,7 +286,6 @@ nav{
     </a>
   </div>
   <div class="footer-bottom">
-    <span class="footer-credit">Brand Style Guides — Molly Curtis</span>
     <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" class="footer-back"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:4px;margin-bottom:1px;"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>Back to top</a>
   </div>
 </footer>
