@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<title>STATIC™ — Recovery for the Overstimulated</title>
+<title>STATIC™</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
@@ -13,12 +13,11 @@
 
 :root{
     --bg:#06070a;
-    --panel:rgba(255,255,255,.06);
+    --panel:rgba(255,255,255,.05);
     --border:rgba(255,255,255,.08);
-    --text:#f4f6f8;
-    --muted:#98a0aa;
-    --chrome:linear-gradient(135deg,#ffffff,#7f8b97,#d8dde3,#646c75);
-    --blue:#8ec5ff;
+    --text:#f3f5f7;
+    --muted:#9ca4af;
+    --blue:#8fc7ff;
 }
 
 *{
@@ -27,8 +26,13 @@
     box-sizing:border-box;
 }
 
+html{
+    scroll-behavior:smooth;
+}
+
 body{
-    background:radial-gradient(circle at top,#10131a 0%,#06070a 55%);
+    background:
+    radial-gradient(circle at top,#101521 0%,#06070a 55%);
     color:var(--text);
     font-family:'Inter',sans-serif;
     overflow-x:hidden;
@@ -41,9 +45,9 @@ body::before{
     background:
     linear-gradient(rgba(255,255,255,.015) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255,255,255,.015) 1px, transparent 1px);
-    background-size:80px 80px;
+    background-size:70px 70px;
+    opacity:.15;
     pointer-events:none;
-    opacity:.2;
 }
 
 section{
@@ -51,41 +55,41 @@ section{
     position:relative;
 }
 
+.blur{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(140px);
+    opacity:.3;
+    pointer-events:none;
+}
+
+.blur-1{
+    width:550px;
+    height:550px;
+    background:#7eb8ff;
+    top:-150px;
+    right:-120px;
+}
+
+.blur-2{
+    width:420px;
+    height:420px;
+    background:#ffffff;
+    bottom:-120px;
+    left:-120px;
+    opacity:.12;
+}
+
 .hero{
     min-height:100vh;
     display:flex;
     align-items:center;
-    position:relative;
     overflow:hidden;
-}
-
-.blur-orb{
-    position:absolute;
-    border-radius:50%;
-    filter:blur(120px);
-    opacity:.25;
-}
-
-.orb-1{
-    width:500px;
-    height:500px;
-    background:#7aa9ff;
-    top:-100px;
-    right:-120px;
-}
-
-.orb-2{
-    width:350px;
-    height:350px;
-    background:#ffffff;
-    bottom:-120px;
-    left:-100px;
-    opacity:.12;
 }
 
 .hero-grid{
     display:grid;
-    grid-template-columns:1.2fr .8fr;
+    grid-template-columns:1.1fr .9fr;
     gap:5rem;
     width:100%;
     position:relative;
@@ -93,34 +97,33 @@ section{
 }
 
 .eyebrow{
-    color:var(--muted);
-    letter-spacing:.25em;
+    color:#7e8792;
     text-transform:uppercase;
+    letter-spacing:.25em;
     font-size:.72rem;
-    margin-bottom:1.2rem;
+    margin-bottom:1rem;
 }
 
 .hero h1{
     font-family:'Oswald',sans-serif;
     font-size:clamp(4rem,10vw,8rem);
-    line-height:.92;
-    font-weight:500;
+    line-height:.9;
     text-transform:uppercase;
+    font-weight:500;
     margin-bottom:2rem;
 }
 
 .rotating-wrap{
-    height:1.1em;
-    overflow:hidden;
     display:inline-block;
+    overflow:hidden;
+    height:1.1em;
     vertical-align:bottom;
-    position:relative;
 }
 
 .rotating{
     display:flex;
     flex-direction:column;
-    animation:flipWords 12s infinite;
+    animation:rotateWords 12s infinite;
 }
 
 .rotating span{
@@ -130,220 +133,346 @@ section{
     color:#dbe8ff;
 }
 
-@keyframes flipWords{
-    0%,18%{transform:translateY(0);}
-    20%,38%{transform:translateY(-1.1em);}
-    40%,58%{transform:translateY(-2.2em);}
-    60%,78%{transform:translateY(-3.3em);}
-    80%,98%{transform:translateY(-4.4em);}
-    100%{transform:translateY(0);}
+@keyframes rotateWords{
+    0%,18%{transform:translateY(0)}
+    20%,38%{transform:translateY(-1.1em)}
+    40%,58%{transform:translateY(-2.2em)}
+    60%,78%{transform:translateY(-3.3em)}
+    80%,98%{transform:translateY(-4.4em)}
+    100%{transform:translateY(0)}
 }
 
 .hero-copy{
     max-width:580px;
+    color:#afb7c1;
+    line-height:1.9;
     font-size:1.05rem;
-    line-height:1.8;
-    color:#b7bec8;
 }
 
-.glass-card{
-    background:var(--panel);
-    border:1px solid var(--border);
-    backdrop-filter:blur(22px);
-    border-radius:30px;
-    padding:2rem;
-    box-shadow:
-    0 0 40px rgba(255,255,255,.04),
-    inset 0 0 0 1px rgba(255,255,255,.02);
-}
-
-.diagnostic-panel{
-    display:flex;
-    flex-direction:column;
-    gap:1.4rem;
-}
-
-.panel-label{
-    font-size:.7rem;
-    text-transform:uppercase;
-    letter-spacing:.25em;
-    color:#7e8792;
-}
-
-.custom-select{
-    width:100%;
-    padding:1rem 1.2rem;
+.glass{
     background:rgba(255,255,255,.04);
     border:1px solid rgba(255,255,255,.08);
-    border-radius:18px;
-    color:white;
-    font-size:1rem;
-    outline:none;
-    appearance:none;
+    backdrop-filter:blur(25px);
+    border-radius:34px;
+    padding:2rem;
+    position:relative;
+    overflow:hidden;
+    box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.02),
+    0 0 80px rgba(255,255,255,.04);
 }
 
-.status-output{
-    margin-top:1rem;
-    padding-top:1rem;
+.glass::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg,rgba(255,255,255,.12),transparent);
+    opacity:.08;
+    pointer-events:none;
+}
+
+.chrome-orb{
+    width:320px;
+    height:320px;
+    border-radius:50%;
+    background:
+    radial-gradient(circle at 30% 30%,#ffffff,#8f98a4 25%,#2d3138 55%,#ffffff 85%);
+    position:absolute;
+    right:-60px;
+    bottom:-70px;
+    opacity:.55;
+    filter:blur(2px);
+    animation:float 7s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%,100%{transform:translateY(0px)}
+    50%{transform:translateY(-18px)}
+}
+
+.custom-dropdown{
+    position:relative;
+    margin-top:1.5rem;
+}
+
+.dropdown-trigger{
+    width:100%;
+    padding:1.2rem 1.3rem;
+    border-radius:20px;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.08);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    cursor:pointer;
+    transition:.35s ease;
+    position:relative;
+    z-index:3;
+}
+
+.dropdown-trigger:hover{
+    border-color:#8ec5ff;
+    transform:translateY(-2px);
+    box-shadow:0 0 40px rgba(142,197,255,.15);
+}
+
+.dropdown-trigger span{
+    font-size:1rem;
+}
+
+.dropdown-arrow{
+    transition:.35s ease;
+}
+
+.dropdown.open .dropdown-arrow{
+    transform:rotate(180deg);
+}
+
+.dropdown-menu{
+    position:absolute;
+    top:110%;
+    width:100%;
+    background:rgba(12,15,20,.95);
+    border:1px solid rgba(255,255,255,.08);
+    backdrop-filter:blur(30px);
+    border-radius:24px;
+    overflow:hidden;
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(10px);
+    transition:.35s ease;
+    z-index:10;
+}
+
+.dropdown.open .dropdown-menu{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+}
+
+.dropdown-option{
+    padding:1rem 1.3rem;
+    cursor:pointer;
+    transition:.25s ease;
+    border-bottom:1px solid rgba(255,255,255,.04);
+}
+
+.dropdown-option:hover{
+    background:rgba(142,197,255,.08);
+    padding-left:1.8rem;
+}
+
+.status{
+    margin-top:2rem;
+    padding-top:1.5rem;
     border-top:1px solid rgba(255,255,255,.08);
 }
 
-.status-output h3{
-    font-size:1.5rem;
-    margin-bottom:.6rem;
+.status h3{
+    font-size:1.6rem;
+    margin-bottom:.7rem;
 }
 
-.status-output p{
-    color:#9ea6b0;
-    line-height:1.7;
+.status p{
+    color:#aab2bc;
+    line-height:1.8;
 }
 
 .section-title{
     font-family:'Oswald',sans-serif;
-    font-size:clamp(2.5rem,5vw,5rem);
+    font-size:clamp(2.8rem,6vw,6rem);
     text-transform:uppercase;
+    line-height:.92;
     margin-bottom:2rem;
-    line-height:.95;
 }
 
 .section-copy{
-    max-width:760px;
-    color:#adb5bf;
+    max-width:720px;
     line-height:1.9;
-    font-size:1rem;
+    color:#afb6bf;
 }
 
-.pressure-grid{
+.visual-section{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:4rem;
+    align-items:center;
+}
+
+.chrome-vessel{
+    height:700px;
+    border-radius:40px;
+    position:relative;
+    overflow:hidden;
+    background:
+    radial-gradient(circle at top,#1b2130 0%,#090b10 65%);
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.chrome-vessel::before{
+    content:"";
+    width:320px;
+    height:520px;
+    border-radius:200px;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    background:
+    radial-gradient(circle at 30% 30%,#ffffff,#9299a3 25%,#2f343b 55%,#ffffff 88%);
+    box-shadow:
+    inset 0 0 30px rgba(255,255,255,.35),
+    0 0 120px rgba(255,255,255,.08);
+    animation:float 8s ease-in-out infinite;
+}
+
+.scan-ui{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+}
+
+.scan-line{
+    position:absolute;
+    left:10%;
+    width:80%;
+    height:1px;
+    background:rgba(142,197,255,.3);
+}
+
+.scan-line:nth-child(1){top:25%}
+.scan-line:nth-child(2){top:50%}
+.scan-line:nth-child(3){top:75%}
+
+.metric-grid{
     margin-top:4rem;
     display:grid;
     grid-template-columns:repeat(3,1fr);
     gap:1.5rem;
 }
 
-.metric-card{
+.metric{
+    padding:2rem;
+    border-radius:28px;
     background:rgba(255,255,255,.03);
     border:1px solid rgba(255,255,255,.06);
-    border-radius:26px;
-    padding:2rem;
-    min-height:240px;
-    position:relative;
-    overflow:hidden;
-}
-
-.metric-card::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:linear-gradient(180deg,rgba(255,255,255,.08),transparent);
-    opacity:.08;
-}
-
-.metric-card h4{
-    font-size:1rem;
-    margin-bottom:1rem;
-    text-transform:uppercase;
-    letter-spacing:.15em;
 }
 
 .metric-number{
     font-family:'Oswald',sans-serif;
     font-size:4rem;
     margin-bottom:1rem;
-    background:var(--chrome);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
+    color:#dce7f6;
 }
 
-.protocol-grid{
-    margin-top:5rem;
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:1.5rem;
-}
-
-.protocol{
-    border-radius:30px;
-    padding:2rem;
-    background:rgba(255,255,255,.04);
-    border:1px solid rgba(255,255,255,.07);
-    min-height:320px;
-    position:relative;
-    overflow:hidden;
-}
-
-.protocol h3{
-    font-family:'Oswald',sans-serif;
-    font-size:2rem;
-    margin-bottom:1rem;
-}
-
-.protocol p{
-    color:#aab1bb;
+.metric p{
+    color:#aeb5be;
     line-height:1.7;
 }
 
-.protocol::after{
-    content:"";
-    position:absolute;
-    width:200px;
-    height:200px;
-    background:radial-gradient(circle,rgba(255,255,255,.18),transparent 70%);
-    right:-80px;
-    top:-80px;
+.campaign-grid{
+    margin-top:5rem;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1.5rem;
 }
 
-.final-cta{
+.poster{
+    height:520px;
+    border-radius:32px;
+    overflow:hidden;
+    position:relative;
+    background:
+    radial-gradient(circle at top,#172031 0%,#090b10 60%);
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.poster::before{
+    content:"STATIC™";
+    position:absolute;
+    top:40px;
+    left:40px;
+    font-size:3rem;
+    font-family:'Oswald',sans-serif;
+    color:#f3f5f7;
+}
+
+.poster::after{
+    content:"RECOVERY PROTOCOL";
+    position:absolute;
+    bottom:40px;
+    left:40px;
+    letter-spacing:.3em;
+    font-size:.7rem;
+    color:#88909a;
+}
+
+.poster-orb{
+    width:220px;
+    height:220px;
+    border-radius:50%;
+    background:
+    radial-gradient(circle at 30% 30%,#ffffff,#8d97a2 30%,#2b3037 60%,#ffffff 90%);
+    position:absolute;
+    bottom:90px;
+    right:40px;
+}
+
+.final{
     text-align:center;
     padding:10rem 7vw;
 }
 
-.final-cta h2{
+.final h2{
     font-family:'Oswald',sans-serif;
-    font-size:clamp(3rem,6vw,6rem);
+    font-size:clamp(3rem,7vw,7rem);
+    line-height:.9;
     text-transform:uppercase;
-    margin-bottom:1.5rem;
+    margin-bottom:2rem;
 }
 
-.final-cta p{
+.final p{
     max-width:720px;
     margin:auto;
     line-height:1.9;
-    color:#a9b1ba;
+    color:#afb7c1;
 }
 
-.cta-button{
-    margin-top:3rem;
+.button{
     display:inline-flex;
-    align-items:center;
-    justify-content:center;
+    margin-top:3rem;
     padding:1rem 2rem;
     border-radius:999px;
-    border:1px solid rgba(255,255,255,.1);
-    background:rgba(255,255,255,.06);
-    backdrop-filter:blur(20px);
-    color:white;
     text-decoration:none;
+    color:white;
+    border:1px solid rgba(255,255,255,.08);
+    background:rgba(255,255,255,.05);
     transition:.35s ease;
 }
 
-.cta-button:hover{
+.button:hover{
     transform:translateY(-4px);
-    background:rgba(255,255,255,.1);
+    box-shadow:0 0 40px rgba(255,255,255,.08);
 }
 
-@media(max-width:950px){
+@media(max-width:1000px){
 
-.hero-grid{
+.hero-grid,
+.visual-section{
     grid-template-columns:1fr;
 }
 
-.pressure-grid,
-.protocol-grid{
+.metric-grid,
+.campaign-grid{
     grid-template-columns:1fr;
 }
 
 .hero h1{
-    font-size:4.5rem;
+    font-size:4.8rem;
+}
+
+.chrome-vessel{
+    height:500px;
 }
 
 section{
@@ -354,18 +483,19 @@ section{
 
 </style>
 </head>
+
 <body>
 
 <section class="hero">
 
-<div class="blur-orb orb-1"></div>
-<div class="blur-orb orb-2"></div>
+<div class="blur blur-1"></div>
+<div class="blur blur-2"></div>
 
 <div class="hero-grid">
 
 <div>
 
-<div class="eyebrow">STATIC™ / Recovery Protocol</div>
+<div class="eyebrow">STATIC™ / Recovery System</div>
 
 <h1>
 Recovery<br>
@@ -382,32 +512,44 @@ for the
 </h1>
 
 <p class="hero-copy">
-STATIC™ is a conceptual skincare experience designed for the overstimulated generation — blending digital burnout, sensory recovery, emotional design, and futuristic wellness into an immersive editorial campaign world.
+STATIC™ is a conceptual skincare campaign experience designed for the overstimulated generation — blending emotional recovery, digital fatigue, biometric-inspired design, and immersive beauty storytelling into a cinematic recovery system.
 </p>
 
 </div>
 
-<div class="glass-card diagnostic-panel">
+<div class="glass">
 
-<div>
-<div class="panel-label">Current State</div>
+<div class="eyebrow">Current State</div>
 
-<select class="custom-select" id="stateSelect">
-<option>Overstimulated</option>
-<option>Sleep Deprived</option>
-<option>Burnt Out</option>
-<option>Mentally Foggy</option>
-<option>Hyperconnected</option>
-<option>Running on Empty</option>
-</select>
+<div class="custom-dropdown dropdown" id="dropdown">
+
+<div class="dropdown-trigger" id="dropdownTrigger">
+<span id="selectedText">Sleep Deprived</span>
+<div class="dropdown-arrow">⌄</div>
 </div>
 
-<div class="status-output">
-<h3 id="statusTitle">Recovery Protocol: RESET</h3>
+<div class="dropdown-menu">
+
+<div class="dropdown-option">Overstimulated</div>
+<div class="dropdown-option">Sleep Deprived</div>
+<div class="dropdown-option">Burnt Out</div>
+<div class="dropdown-option">Mentally Foggy</div>
+<div class="dropdown-option">Hyperconnected</div>
+<div class="dropdown-option">Running on Empty</div>
+
+</div>
+
+</div>
+
+<div class="status">
+<h3 id="statusTitle">Recovery Protocol: Sleep Mode</h3>
+
 <p id="statusCopy">
-Elevated cortisol detected. Begin recovery sequence with overnight barrier support and sensory reduction protocols.
+Low recovery cycles detected. Prioritize overnight hydration, inflammation repair, cooling barrier support, and deep recovery hydration systems.
 </p>
 </div>
+
+<div class="chrome-orb"></div>
 
 </div>
 
@@ -416,36 +558,51 @@ Elevated cortisol detected. Begin recovery sequence with overnight barrier suppo
 </section>
 
 <section>
+
+<div class="visual-section">
+
+<div>
 
 <div class="eyebrow">Skin Under Pressure</div>
 
 <h2 class="section-title">
-Designed for<br>
-modern exhaustion
+Built for skin<br>
+under pressure
 </h2>
 
 <p class="section-copy">
-STATIC™ reframes skincare as emotional recovery infrastructure for digitally fatigued lives. The visual system blends biometric-inspired interfaces, cinematic motion, chrome textures, and immersive diagnostics to create a future-facing recovery experience instead of a traditional beauty brand.
+STATIC™ reframes skincare as recovery infrastructure for digitally exhausted lives. Instead of promoting perfection, the brand explores stress, overstimulation, blue light fatigue, and emotional depletion through immersive editorial storytelling and futuristic beauty direction.
 </p>
 
-<div class="pressure-grid">
+</div>
 
-<div class="metric-card">
-<h4>Blue Light Exposure</h4>
+<div class="chrome-vessel">
+
+<div class="scan-ui">
+<div class="scan-line"></div>
+<div class="scan-line"></div>
+<div class="scan-line"></div>
+</div>
+
+</div>
+
+</div>
+
+<div class="metric-grid">
+
+<div class="metric">
 <div class="metric-number">12H</div>
-<p>Continuous exposure disrupting recovery cycles, hydration retention, and overnight repair.</p>
+<p>Average continuous screen exposure disrupting overnight skin recovery cycles.</p>
 </div>
 
-<div class="metric-card">
-<h4>Notification Density</h4>
+<div class="metric">
 <div class="metric-number">247</div>
-<p>Constant digital interruption contributing to emotional fatigue and elevated skin stress.</p>
+<p>Daily digital interruptions contributing to elevated stress and inflammation.</p>
 </div>
 
-<div class="metric-card">
-<h4>Recovery Window</h4>
+<div class="metric">
 <div class="metric-number">4%</div>
-<p>Minimal uninterrupted recovery time remaining within high-stimulation environments.</p>
+<p>Uninterrupted recovery time remaining in high-stimulation environments.</p>
 </div>
 
 </div>
@@ -454,50 +611,34 @@ STATIC™ reframes skincare as emotional recovery infrastructure for digitally f
 
 <section>
 
-<div class="eyebrow">Recovery Modes</div>
+<div class="eyebrow">Campaign Visuals</div>
 
 <h2 class="section-title">
-Recovery systems,<br>
-not products
+Recovery becomes<br>
+the campaign
 </h2>
 
-<div class="protocol-grid">
+<div class="campaign-grid">
 
-<div class="protocol">
-<h3>RESET</h3>
-<p>
-A deep overnight recovery protocol designed to reduce visible stress fatigue and restore skin barrier stability.
-</p>
+<div class="poster">
+<div class="poster-orb"></div>
 </div>
 
-<div class="protocol">
-<h3>BUFFER</h3>
-<p>
-Daily environmental protection against overstimulation, screen fatigue, and urban exposure.
-</p>
+<div class="poster">
+<div class="poster-orb"></div>
 </div>
 
-<div class="protocol">
-<h3>RECOVER</h3>
-<p>
-Hydration-focused recovery treatment supporting depleted skin under chronic stress conditions.
-</p>
-</div>
-
-<div class="protocol">
-<h3>SLEEP MODE</h3>
-<p>
-A slow-release nighttime ritual engineered for recovery during disrupted sleep cycles.
-</p>
+<div class="poster">
+<div class="poster-orb"></div>
 </div>
 
 </div>
 
 </section>
 
-<section class="final-cta">
+<section class="final">
 
-<div class="eyebrow">STATIC™ Campaign System</div>
+<div class="eyebrow">STATIC™ / Final Sequence</div>
 
 <h2>
 Recovery starts<br>
@@ -505,60 +646,88 @@ when the noise stops
 </h2>
 
 <p>
-A conceptual campaign experience exploring digital fatigue, emotional recovery, immersive UX systems, and futuristic skincare storytelling through cinematic visual direction and interactive brand design.
+An immersive conceptual skincare campaign exploring digital burnout, emotional recovery, cinematic beauty direction, and futuristic wellness systems for the always-online generation.
 </p>
 
-<a href="#" class="cta-button">Enter Recovery Mode</a>
+<a href="#" class="button">Enter Recovery Mode</a>
 
 </section>
 
 <script>
 
-const stateSelect = document.getElementById('stateSelect');
-const statusTitle = document.getElementById('statusTitle');
-const statusCopy = document.getElementById('statusCopy');
+const dropdown = document.getElementById('dropdown');
+const trigger = document.getElementById('dropdownTrigger');
+const selectedText = document.getElementById('selectedText');
+
+const title = document.getElementById('statusTitle');
+const copy = document.getElementById('statusCopy');
+
+trigger.addEventListener('click',()=>{
+    dropdown.classList.toggle('open');
+});
 
 const states = {
-    "Overstimulated":{
-        title:"Recovery Protocol: RESET",
-        copy:"Elevated cortisol detected. Begin recovery sequence with overnight barrier support and sensory reduction protocols."
-    },
-    "Sleep Deprived":{
-        title:"Recovery Protocol: SLEEP MODE",
-        copy:"Low recovery cycles detected. Prioritize overnight hydration and slow-release barrier repair."
-    },
-    "Burnt Out":{
-        title:"Recovery Protocol: RECOVER",
-        copy:"Visible stress fatigue identified. Activate deep hydration and anti-inflammatory support systems."
-    },
-    "Mentally Foggy":{
-        title:"Recovery Protocol: BUFFER",
-        copy:"Environmental overload detected. Deploy protective daytime recovery shielding."
-    },
-    "Hyperconnected":{
-        title:"Recovery Protocol: SIGNAL REDUCTION",
-        copy:"High notification exposure detected. Transition interface into reduced sensory stimulation mode."
-    },
-    "Running on Empty":{
-        title:"Recovery Protocol: FULL RESET",
-        copy:"Critical depletion state identified. Immediate overnight recovery sequence recommended."
-    }
+
+"Overstimulated":{
+title:"Recovery Protocol: Reset",
+copy:"Elevated stress detected. Begin overnight recovery treatment with cooling hydration and barrier stabilization."
+},
+
+"Sleep Deprived":{
+title:"Recovery Protocol: Sleep Mode",
+copy:"Low recovery cycles detected. Prioritize overnight hydration, inflammation repair, cooling barrier support, and deep recovery hydration systems."
+},
+
+"Burnt Out":{
+title:"Recovery Protocol: Recover",
+copy:"Critical fatigue indicators detected. Activate deep moisture restoration and overnight stress repair sequence."
+},
+
+"Mentally Foggy":{
+title:"Recovery Protocol: Buffer",
+copy:"Environmental overload identified. Introduce lightweight daytime defense against screen fatigue and irritation."
+},
+
+"Hyperconnected":{
+title:"Recovery Protocol: Signal Reduction",
+copy:"High notification exposure detected. Transition into reduced stimulation recovery sequence."
+},
+
+"Running on Empty":{
+title:"Recovery Protocol: Full Reset",
+copy:"Severe depletion detected. Immediate barrier restoration and overnight recovery protocols recommended."
+}
+
 };
 
-stateSelect.addEventListener('change', function(){
+document.querySelectorAll('.dropdown-option').forEach(option=>{
 
-    const current = states[this.value];
+option.addEventListener('click',()=>{
 
-    statusTitle.style.opacity = 0;
-    statusCopy.style.opacity = 0;
+const value = option.innerText;
 
-    setTimeout(()=>{
-        statusTitle.textContent = current.title;
-        statusCopy.textContent = current.copy;
-        statusTitle.style.opacity = 1;
-        statusCopy.style.opacity = 1;
-    },200);
+selectedText.innerText = value;
 
+title.style.opacity = 0;
+copy.style.opacity = 0;
+
+setTimeout(()=>{
+title.innerText = states[value].title;
+copy.innerText = states[value].copy;
+title.style.opacity = 1;
+copy.style.opacity = 1;
+},200);
+
+dropdown.classList.remove('open');
+
+});
+
+});
+
+window.addEventListener('click',(e)=>{
+if(!dropdown.contains(e.target)){
+dropdown.classList.remove('open');
+}
 });
 
 </script>
