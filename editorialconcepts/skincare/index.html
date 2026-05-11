@@ -12,12 +12,12 @@
 <style>
 
 :root{
-    --bg:#06070a;
+    --bg:#05070b;
     --panel:rgba(255,255,255,.05);
     --border:rgba(255,255,255,.08);
-    --text:#f3f5f7;
-    --muted:#9ca4af;
-    --blue:#8fc7ff;
+    --text:#f5f7fa;
+    --muted:#9ea7b2;
+    --blue:#8ec5ff;
 }
 
 *{
@@ -26,13 +26,9 @@
     box-sizing:border-box;
 }
 
-html{
-    scroll-behavior:smooth;
-}
-
 body{
     background:
-    radial-gradient(circle at top,#101521 0%,#06070a 55%);
+    radial-gradient(circle at top,#101521 0%,#05070b 55%);
     color:var(--text);
     font-family:'Inter',sans-serif;
     overflow-x:hidden;
@@ -46,7 +42,7 @@ body::before{
     linear-gradient(rgba(255,255,255,.015) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255,255,255,.015) 1px, transparent 1px);
     background-size:70px 70px;
-    opacity:.15;
+    opacity:.12;
     pointer-events:none;
 }
 
@@ -59,15 +55,15 @@ section{
     position:absolute;
     border-radius:50%;
     filter:blur(140px);
-    opacity:.3;
+    opacity:.25;
     pointer-events:none;
 }
 
 .blur-1{
     width:550px;
     height:550px;
-    background:#7eb8ff;
-    top:-150px;
+    background:#7db8ff;
+    top:-180px;
     right:-120px;
 }
 
@@ -75,9 +71,9 @@ section{
     width:420px;
     height:420px;
     background:#ffffff;
-    bottom:-120px;
+    bottom:-180px;
     left:-120px;
-    opacity:.12;
+    opacity:.08;
 }
 
 .hero{
@@ -88,19 +84,19 @@ section{
 }
 
 .hero-grid{
+    width:100%;
     display:grid;
     grid-template-columns:1.1fr .9fr;
     gap:5rem;
-    width:100%;
     position:relative;
     z-index:2;
 }
 
 .eyebrow{
-    color:#7e8792;
-    text-transform:uppercase;
-    letter-spacing:.25em;
     font-size:.72rem;
+    text-transform:uppercase;
+    letter-spacing:.28em;
+    color:#818a96;
     margin-bottom:1rem;
 }
 
@@ -109,14 +105,14 @@ section{
     font-size:clamp(4rem,10vw,8rem);
     line-height:.9;
     text-transform:uppercase;
-    font-weight:500;
     margin-bottom:2rem;
+    font-weight:500;
 }
 
 .rotating-wrap{
-    display:inline-block;
-    overflow:hidden;
     height:1.1em;
+    overflow:hidden;
+    display:inline-block;
     vertical-align:bottom;
 }
 
@@ -130,7 +126,7 @@ section{
     height:1.1em;
     display:flex;
     align-items:center;
-    color:#dbe8ff;
+    color:#dce8ff;
 }
 
 @keyframes rotateWords{
@@ -144,7 +140,7 @@ section{
 
 .hero-copy{
     max-width:580px;
-    color:#afb7c1;
+    color:#b0b8c2;
     line-height:1.9;
     font-size:1.05rem;
 }
@@ -152,9 +148,9 @@ section{
 .glass{
     background:rgba(255,255,255,.04);
     border:1px solid rgba(255,255,255,.08);
-    backdrop-filter:blur(25px);
     border-radius:34px;
     padding:2rem;
+    backdrop-filter:blur(25px);
     position:relative;
     overflow:hidden;
     box-shadow:
@@ -166,28 +162,8 @@ section{
     content:"";
     position:absolute;
     inset:0;
-    background:linear-gradient(180deg,rgba(255,255,255,.12),transparent);
+    background:linear-gradient(180deg,rgba(255,255,255,.1),transparent);
     opacity:.08;
-    pointer-events:none;
-}
-
-.chrome-orb{
-    width:320px;
-    height:320px;
-    border-radius:50%;
-    background:
-    radial-gradient(circle at 30% 30%,#ffffff,#8f98a4 25%,#2d3138 55%,#ffffff 85%);
-    position:absolute;
-    right:-60px;
-    bottom:-70px;
-    opacity:.55;
-    filter:blur(2px);
-    animation:float 7s ease-in-out infinite;
-}
-
-@keyframes float{
-    0%,100%{transform:translateY(0px)}
-    50%{transform:translateY(-18px)}
 }
 
 .custom-dropdown{
@@ -198,41 +174,27 @@ section{
 .dropdown-trigger{
     width:100%;
     padding:1.2rem 1.3rem;
-    border-radius:20px;
-    background:rgba(255,255,255,.05);
+    border-radius:22px;
     border:1px solid rgba(255,255,255,.08);
+    background:rgba(255,255,255,.05);
     display:flex;
     justify-content:space-between;
     align-items:center;
     cursor:pointer;
     transition:.35s ease;
-    position:relative;
-    z-index:3;
 }
 
 .dropdown-trigger:hover{
     border-color:#8ec5ff;
+    box-shadow:0 0 40px rgba(142,197,255,.12);
     transform:translateY(-2px);
-    box-shadow:0 0 40px rgba(142,197,255,.15);
-}
-
-.dropdown-trigger span{
-    font-size:1rem;
-}
-
-.dropdown-arrow{
-    transition:.35s ease;
-}
-
-.dropdown.open .dropdown-arrow{
-    transform:rotate(180deg);
 }
 
 .dropdown-menu{
     position:absolute;
-    top:110%;
     width:100%;
-    background:rgba(12,15,20,.95);
+    top:110%;
+    background:rgba(12,15,20,.96);
     border:1px solid rgba(255,255,255,.08);
     backdrop-filter:blur(30px);
     border-radius:24px;
@@ -252,9 +214,9 @@ section{
 
 .dropdown-option{
     padding:1rem 1.3rem;
+    border-bottom:1px solid rgba(255,255,255,.04);
     cursor:pointer;
     transition:.25s ease;
-    border-bottom:1px solid rgba(255,255,255,.04);
 }
 
 .dropdown-option:hover{
@@ -269,27 +231,27 @@ section{
 }
 
 .status h3{
-    font-size:1.6rem;
+    font-size:1.5rem;
     margin-bottom:.7rem;
 }
 
 .status p{
-    color:#aab2bc;
+    color:#adb5bf;
     line-height:1.8;
 }
 
 .section-title{
     font-family:'Oswald',sans-serif;
     font-size:clamp(2.8rem,6vw,6rem);
-    text-transform:uppercase;
     line-height:.92;
+    text-transform:uppercase;
     margin-bottom:2rem;
 }
 
 .section-copy{
     max-width:720px;
     line-height:1.9;
-    color:#afb6bf;
+    color:#afb7c1;
 }
 
 .visual-section{
@@ -300,49 +262,167 @@ section{
 }
 
 .chrome-vessel{
-    height:700px;
-    border-radius:40px;
+    height:760px;
+    border-radius:42px;
     position:relative;
     overflow:hidden;
     background:
-    radial-gradient(circle at top,#1b2130 0%,#090b10 65%);
+    radial-gradient(circle at top,#172131 0%,#090b10 62%);
     border:1px solid rgba(255,255,255,.08);
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
 .chrome-vessel::before{
     content:"";
-    width:320px;
-    height:520px;
-    border-radius:200px;
     position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
+    inset:0;
     background:
-    radial-gradient(circle at 30% 30%,#ffffff,#9299a3 25%,#2f343b 55%,#ffffff 88%);
+    linear-gradient(rgba(255,255,255,.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.015) 1px, transparent 1px);
+    background-size:70px 70px;
+    opacity:.12;
+}
+
+.ambient-glow{
+    position:absolute;
+    width:520px;
+    height:520px;
+    border-radius:50%;
+    background:
+    radial-gradient(circle,
+    rgba(142,197,255,.22),
+    transparent 70%);
+    filter:blur(90px);
+}
+
+.serum-bottle{
+    position:relative;
+    width:260px;
+    height:540px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    animation:floatBottle 7s ease-in-out infinite;
+    z-index:3;
+}
+
+@keyframes floatBottle{
+    0%,100%{
+        transform:translateY(0px) rotate(-1deg);
+    }
+    50%{
+        transform:translateY(-18px) rotate(1deg);
+    }
+}
+
+.bottle-cap{
+    width:120px;
+    height:90px;
+    border-radius:28px;
+    background:
+    linear-gradient(135deg,
+    #f8f9fb 0%,
+    #9ca3ad 25%,
+    #4e555f 55%,
+    #f8f9fb 100%);
+}
+
+.bottle-neck{
+    width:70px;
+    height:35px;
+    background:
+    linear-gradient(135deg,#dfe3e8,#636a73,#f8f9fb);
+    border-radius:0 0 18px 18px;
+}
+
+.bottle-body{
+    position:relative;
+    width:260px;
+    height:420px;
+    border-radius:120px 120px 70px 70px;
+    overflow:hidden;
+    background:
+    linear-gradient(135deg,
+    rgba(255,255,255,.95) 0%,
+    rgba(145,152,162,.9) 18%,
+    rgba(48,52,58,.96) 48%,
+    rgba(220,225,230,.95) 100%);
     box-shadow:
-    inset 0 0 30px rgba(255,255,255,.35),
-    0 0 120px rgba(255,255,255,.08);
-    animation:float 8s ease-in-out infinite;
+    inset 0 0 35px rgba(255,255,255,.28),
+    inset -20px -20px 40px rgba(0,0,0,.35),
+    0 30px 80px rgba(0,0,0,.55);
+}
+
+.serum-core{
+    position:absolute;
+    width:72%;
+    height:78%;
+    left:14%;
+    top:11%;
+    border-radius:90px;
+    background:
+    linear-gradient(180deg,
+    rgba(210,235,255,.95),
+    rgba(124,184,255,.72),
+    rgba(209,232,255,.92));
+    opacity:.58;
+}
+
+.chrome-reflection{
+    position:absolute;
+    background:
+    linear-gradient(90deg,
+    rgba(255,255,255,0),
+    rgba(255,255,255,.45),
+    rgba(255,255,255,0));
+}
+
+.reflection-1{
+    width:80px;
+    height:120%;
+    left:18px;
+    top:-10%;
+    transform:rotate(8deg);
+}
+
+.reflection-2{
+    width:40px;
+    height:120%;
+    right:45px;
+    top:-10%;
+    transform:rotate(-10deg);
+    opacity:.2;
 }
 
 .scan-ui{
     position:absolute;
     inset:0;
-    pointer-events:none;
 }
 
 .scan-line{
     position:absolute;
-    left:10%;
-    width:80%;
+    left:8%;
+    width:84%;
     height:1px;
-    background:rgba(142,197,255,.3);
+    background:
+    linear-gradient(90deg,
+    transparent,
+    rgba(142,197,255,.4),
+    transparent);
+    animation:scanMove 4s linear infinite;
 }
 
-.scan-line:nth-child(1){top:25%}
-.scan-line:nth-child(2){top:50%}
-.scan-line:nth-child(3){top:75%}
+.scan-line:nth-child(1){top:28%}
+.scan-line:nth-child(2){top:52%;animation-delay:1s}
+.scan-line:nth-child(3){top:76%;animation-delay:2s}
+
+@keyframes scanMove{
+    0%{opacity:.2;transform:translateX(-30px)}
+    50%{opacity:1}
+    100%{opacity:.2;transform:translateX(30px)}
+}
 
 .metric-grid{
     margin-top:4rem;
@@ -362,11 +442,11 @@ section{
     font-family:'Oswald',sans-serif;
     font-size:4rem;
     margin-bottom:1rem;
-    color:#dce7f6;
+    color:#dce8ff;
 }
 
 .metric p{
-    color:#aeb5be;
+    color:#adb5bf;
     line-height:1.7;
 }
 
@@ -394,7 +474,6 @@ section{
     left:40px;
     font-size:3rem;
     font-family:'Oswald',sans-serif;
-    color:#f3f5f7;
 }
 
 .poster::after{
@@ -402,8 +481,8 @@ section{
     position:absolute;
     bottom:40px;
     left:40px;
-    letter-spacing:.3em;
     font-size:.7rem;
+    letter-spacing:.3em;
     color:#88909a;
 }
 
@@ -434,8 +513,8 @@ section{
 .final p{
     max-width:720px;
     margin:auto;
+    color:#b0b8c2;
     line-height:1.9;
-    color:#afb7c1;
 }
 
 .button{
@@ -472,7 +551,11 @@ section{
 }
 
 .chrome-vessel{
-    height:500px;
+    height:560px;
+}
+
+.serum-bottle{
+    transform:scale(.82);
 }
 
 section{
@@ -525,7 +608,7 @@ STATIC™ is a conceptual skincare campaign experience designed for the overstim
 
 <div class="dropdown-trigger" id="dropdownTrigger">
 <span id="selectedText">Sleep Deprived</span>
-<div class="dropdown-arrow">⌄</div>
+<span>⌄</span>
 </div>
 
 <div class="dropdown-menu">
@@ -542,14 +625,14 @@ STATIC™ is a conceptual skincare campaign experience designed for the overstim
 </div>
 
 <div class="status">
+
 <h3 id="statusTitle">Recovery Protocol: Sleep Mode</h3>
 
 <p id="statusCopy">
 Low recovery cycles detected. Prioritize overnight hydration, inflammation repair, cooling barrier support, and deep recovery hydration systems.
 </p>
-</div>
 
-<div class="chrome-orb"></div>
+</div>
 
 </div>
 
@@ -578,6 +661,25 @@ STATIC™ reframes skincare as recovery infrastructure for digitally exhausted l
 
 <div class="chrome-vessel">
 
+<div class="ambient-glow"></div>
+
+<div class="serum-bottle">
+
+<div class="bottle-cap"></div>
+
+<div class="bottle-neck"></div>
+
+<div class="bottle-body">
+
+<div class="chrome-reflection reflection-1"></div>
+<div class="chrome-reflection reflection-2"></div>
+
+<div class="serum-core"></div>
+
+</div>
+
+</div>
+
 <div class="scan-ui">
 <div class="scan-line"></div>
 <div class="scan-line"></div>
@@ -592,17 +694,17 @@ STATIC™ reframes skincare as recovery infrastructure for digitally exhausted l
 
 <div class="metric">
 <div class="metric-number">12H</div>
-<p>Average continuous screen exposure disrupting overnight skin recovery cycles.</p>
+<p>Average continuous screen exposure disrupting overnight recovery cycles.</p>
 </div>
 
 <div class="metric">
 <div class="metric-number">247</div>
-<p>Daily digital interruptions contributing to elevated stress and inflammation.</p>
+<p>Daily digital interruptions contributing to visible stress fatigue.</p>
 </div>
 
 <div class="metric">
 <div class="metric-number">4%</div>
-<p>Uninterrupted recovery time remaining in high-stimulation environments.</p>
+<p>Uninterrupted recovery time remaining in overstimulated environments.</p>
 </div>
 
 </div>
@@ -649,7 +751,9 @@ when the noise stops
 An immersive conceptual skincare campaign exploring digital burnout, emotional recovery, cinematic beauty direction, and futuristic wellness systems for the always-online generation.
 </p>
 
-<a href="#" class="button">Enter Recovery Mode</a>
+<a href="#" class="button">
+Enter Recovery Mode
+</a>
 
 </section>
 
