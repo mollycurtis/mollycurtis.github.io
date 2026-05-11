@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>STATIC™ — Recovery for the Overstimulated</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --bg:#06070a;
+    --panel:rgba(255,255,255,.06);
+    --border:rgba(255,255,255,.08);
+    --text:#f4f6f8;
+    --muted:#98a0aa;
+    --chrome:linear-gradient(135deg,#ffffff,#7f8b97,#d8dde3,#646c75);
+    --blue:#8ec5ff;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:radial-gradient(circle at top,#10131a 0%,#06070a 55%);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    overflow-x:hidden;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+    linear-gradient(rgba(255,255,255,.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.015) 1px, transparent 1px);
+    background-size:80px 80px;
+    pointer-events:none;
+    opacity:.2;
+}
+
+section{
+    padding:8rem 7vw;
+    position:relative;
+}
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    position:relative;
+    overflow:hidden;
+}
+
+.blur-orb{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(120px);
+    opacity:.25;
+}
+
+.orb-1{
+    width:500px;
+    height:500px;
+    background:#7aa9ff;
+    top:-100px;
+    right:-120px;
+}
+
+.orb-2{
+    width:350px;
+    height:350px;
+    background:#ffffff;
+    bottom:-120px;
+    left:-100px;
+    opacity:.12;
+}
+
+.hero-grid{
+    display:grid;
+    grid-template-columns:1.2fr .8fr;
+    gap:5rem;
+    width:100%;
+    position:relative;
+    z-index:2;
+}
+
+.eyebrow{
+    color:var(--muted);
+    letter-spacing:.25em;
+    text-transform:uppercase;
+    font-size:.72rem;
+    margin-bottom:1.2rem;
+}
+
+.hero h1{
+    font-family:'Oswald',sans-serif;
+    font-size:clamp(4rem,10vw,8rem);
+    line-height:.92;
+    font-weight:500;
+    text-transform:uppercase;
+    margin-bottom:2rem;
+}
+
+.rotating-wrap{
+    height:1.1em;
+    overflow:hidden;
+    display:inline-block;
+    vertical-align:bottom;
+    position:relative;
+}
+
+.rotating{
+    display:flex;
+    flex-direction:column;
+    animation:flipWords 12s infinite;
+}
+
+.rotating span{
+    height:1.1em;
+    display:flex;
+    align-items:center;
+    color:#dbe8ff;
+}
+
+@keyframes flipWords{
+    0%,18%{transform:translateY(0);}
+    20%,38%{transform:translateY(-1.1em);}
+    40%,58%{transform:translateY(-2.2em);}
+    60%,78%{transform:translateY(-3.3em);}
+    80%,98%{transform:translateY(-4.4em);}
+    100%{transform:translateY(0);}
+}
+
+.hero-copy{
+    max-width:580px;
+    font-size:1.05rem;
+    line-height:1.8;
+    color:#b7bec8;
+}
+
+.glass-card{
+    background:var(--panel);
+    border:1px solid var(--border);
+    backdrop-filter:blur(22px);
+    border-radius:30px;
+    padding:2rem;
+    box-shadow:
+    0 0 40px rgba(255,255,255,.04),
+    inset 0 0 0 1px rgba(255,255,255,.02);
+}
+
+.diagnostic-panel{
+    display:flex;
+    flex-direction:column;
+    gap:1.4rem;
+}
+
+.panel-label{
+    font-size:.7rem;
+    text-transform:uppercase;
+    letter-spacing:.25em;
+    color:#7e8792;
+}
+
+.custom-select{
+    width:100%;
+    padding:1rem 1.2rem;
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:18px;
+    color:white;
+    font-size:1rem;
+    outline:none;
+    appearance:none;
+}
+
+.status-output{
+    margin-top:1rem;
+    padding-top:1rem;
+    border-top:1px solid rgba(255,255,255,.08);
+}
+
+.status-output h3{
+    font-size:1.5rem;
+    margin-bottom:.6rem;
+}
+
+.status-output p{
+    color:#9ea6b0;
+    line-height:1.7;
+}
+
+.section-title{
+    font-family:'Oswald',sans-serif;
+    font-size:clamp(2.5rem,5vw,5rem);
+    text-transform:uppercase;
+    margin-bottom:2rem;
+    line-height:.95;
+}
+
+.section-copy{
+    max-width:760px;
+    color:#adb5bf;
+    line-height:1.9;
+    font-size:1rem;
+}
+
+.pressure-grid{
+    margin-top:4rem;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1.5rem;
+}
+
+.metric-card{
+    background:rgba(255,255,255,.03);
+    border:1px solid rgba(255,255,255,.06);
+    border-radius:26px;
+    padding:2rem;
+    min-height:240px;
+    position:relative;
+    overflow:hidden;
+}
+
+.metric-card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg,rgba(255,255,255,.08),transparent);
+    opacity:.08;
+}
+
+.metric-card h4{
+    font-size:1rem;
+    margin-bottom:1rem;
+    text-transform:uppercase;
+    letter-spacing:.15em;
+}
+
+.metric-number{
+    font-family:'Oswald',sans-serif;
+    font-size:4rem;
+    margin-bottom:1rem;
+    background:var(--chrome);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.protocol-grid{
+    margin-top:5rem;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:1.5rem;
+}
+
+.protocol{
+    border-radius:30px;
+    padding:2rem;
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.07);
+    min-height:320px;
+    position:relative;
+    overflow:hidden;
+}
+
+.protocol h3{
+    font-family:'Oswald',sans-serif;
+    font-size:2rem;
+    margin-bottom:1rem;
+}
+
+.protocol p{
+    color:#aab1bb;
+    line-height:1.7;
+}
+
+.protocol::after{
+    content:"";
+    position:absolute;
+    width:200px;
+    height:200px;
+    background:radial-gradient(circle,rgba(255,255,255,.18),transparent 70%);
+    right:-80px;
+    top:-80px;
+}
+
+.final-cta{
+    text-align:center;
+    padding:10rem 7vw;
+}
+
+.final-cta h2{
+    font-family:'Oswald',sans-serif;
+    font-size:clamp(3rem,6vw,6rem);
+    text-transform:uppercase;
+    margin-bottom:1.5rem;
+}
+
+.final-cta p{
+    max-width:720px;
+    margin:auto;
+    line-height:1.9;
+    color:#a9b1ba;
+}
+
+.cta-button{
+    margin-top:3rem;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:1rem 2rem;
+    border-radius:999px;
+    border:1px solid rgba(255,255,255,.1);
+    background:rgba(255,255,255,.06);
+    backdrop-filter:blur(20px);
+    color:white;
+    text-decoration:none;
+    transition:.35s ease;
+}
+
+.cta-button:hover{
+    transform:translateY(-4px);
+    background:rgba(255,255,255,.1);
+}
+
+@media(max-width:950px){
+
+.hero-grid{
+    grid-template-columns:1fr;
+}
+
+.pressure-grid,
+.protocol-grid{
+    grid-template-columns:1fr;
+}
+
+.hero h1{
+    font-size:4.5rem;
+}
+
+section{
+    padding:6rem 1.5rem;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<section class="hero">
+
+<div class="blur-orb orb-1"></div>
+<div class="blur-orb orb-2"></div>
+
+<div class="hero-grid">
+
+<div>
+
+<div class="eyebrow">STATIC™ / Recovery Protocol</div>
+
+<h1>
+Recovery<br>
+for the
+<span class="rotating-wrap">
+<div class="rotating">
+<span>overstimulated</span>
+<span>burnt out</span>
+<span>sleep deprived</span>
+<span>always-online</span>
+<span>disconnected</span>
+</div>
+</span>
+</h1>
+
+<p class="hero-copy">
+STATIC™ is a conceptual skincare experience designed for the overstimulated generation — blending digital burnout, sensory recovery, emotional design, and futuristic wellness into an immersive editorial campaign world.
+</p>
+
+</div>
+
+<div class="glass-card diagnostic-panel">
+
+<div>
+<div class="panel-label">Current State</div>
+
+<select class="custom-select" id="stateSelect">
+<option>Overstimulated</option>
+<option>Sleep Deprived</option>
+<option>Burnt Out</option>
+<option>Mentally Foggy</option>
+<option>Hyperconnected</option>
+<option>Running on Empty</option>
+</select>
+</div>
+
+<div class="status-output">
+<h3 id="statusTitle">Recovery Protocol: RESET</h3>
+<p id="statusCopy">
+Elevated cortisol detected. Begin recovery sequence with overnight barrier support and sensory reduction protocols.
+</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="eyebrow">Skin Under Pressure</div>
+
+<h2 class="section-title">
+Designed for<br>
+modern exhaustion
+</h2>
+
+<p class="section-copy">
+STATIC™ reframes skincare as emotional recovery infrastructure for digitally fatigued lives. The visual system blends biometric-inspired interfaces, cinematic motion, chrome textures, and immersive diagnostics to create a future-facing recovery experience instead of a traditional beauty brand.
+</p>
+
+<div class="pressure-grid">
+
+<div class="metric-card">
+<h4>Blue Light Exposure</h4>
+<div class="metric-number">12H</div>
+<p>Continuous exposure disrupting recovery cycles, hydration retention, and overnight repair.</p>
+</div>
+
+<div class="metric-card">
+<h4>Notification Density</h4>
+<div class="metric-number">247</div>
+<p>Constant digital interruption contributing to emotional fatigue and elevated skin stress.</p>
+</div>
+
+<div class="metric-card">
+<h4>Recovery Window</h4>
+<div class="metric-number">4%</div>
+<p>Minimal uninterrupted recovery time remaining within high-stimulation environments.</p>
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="eyebrow">Recovery Modes</div>
+
+<h2 class="section-title">
+Recovery systems,<br>
+not products
+</h2>
+
+<div class="protocol-grid">
+
+<div class="protocol">
+<h3>RESET</h3>
+<p>
+A deep overnight recovery protocol designed to reduce visible stress fatigue and restore skin barrier stability.
+</p>
+</div>
+
+<div class="protocol">
+<h3>BUFFER</h3>
+<p>
+Daily environmental protection against overstimulation, screen fatigue, and urban exposure.
+</p>
+</div>
+
+<div class="protocol">
+<h3>RECOVER</h3>
+<p>
+Hydration-focused recovery treatment supporting depleted skin under chronic stress conditions.
+</p>
+</div>
+
+<div class="protocol">
+<h3>SLEEP MODE</h3>
+<p>
+A slow-release nighttime ritual engineered for recovery during disrupted sleep cycles.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<section class="final-cta">
+
+<div class="eyebrow">STATIC™ Campaign System</div>
+
+<h2>
+Recovery starts<br>
+when the noise stops
+</h2>
+
+<p>
+A conceptual campaign experience exploring digital fatigue, emotional recovery, immersive UX systems, and futuristic skincare storytelling through cinematic visual direction and interactive brand design.
+</p>
+
+<a href="#" class="cta-button">Enter Recovery Mode</a>
+
+</section>
+
+<script>
+
+const stateSelect = document.getElementById('stateSelect');
+const statusTitle = document.getElementById('statusTitle');
+const statusCopy = document.getElementById('statusCopy');
+
+const states = {
+    "Overstimulated":{
+        title:"Recovery Protocol: RESET",
+        copy:"Elevated cortisol detected. Begin recovery sequence with overnight barrier support and sensory reduction protocols."
+    },
+    "Sleep Deprived":{
+        title:"Recovery Protocol: SLEEP MODE",
+        copy:"Low recovery cycles detected. Prioritize overnight hydration and slow-release barrier repair."
+    },
+    "Burnt Out":{
+        title:"Recovery Protocol: RECOVER",
+        copy:"Visible stress fatigue identified. Activate deep hydration and anti-inflammatory support systems."
+    },
+    "Mentally Foggy":{
+        title:"Recovery Protocol: BUFFER",
+        copy:"Environmental overload detected. Deploy protective daytime recovery shielding."
+    },
+    "Hyperconnected":{
+        title:"Recovery Protocol: SIGNAL REDUCTION",
+        copy:"High notification exposure detected. Transition interface into reduced sensory stimulation mode."
+    },
+    "Running on Empty":{
+        title:"Recovery Protocol: FULL RESET",
+        copy:"Critical depletion state identified. Immediate overnight recovery sequence recommended."
+    }
+};
+
+stateSelect.addEventListener('change', function(){
+
+    const current = states[this.value];
+
+    statusTitle.style.opacity = 0;
+    statusCopy.style.opacity = 0;
+
+    setTimeout(()=>{
+        statusTitle.textContent = current.title;
+        statusCopy.textContent = current.copy;
+        statusTitle.style.opacity = 1;
+        statusCopy.style.opacity = 1;
+    },200);
+
+});
+
+</script>
+
+</body>
+</html>
