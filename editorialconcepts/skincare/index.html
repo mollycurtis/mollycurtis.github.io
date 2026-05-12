@@ -19,15 +19,18 @@
   --silver:      #7a8a9a;
   --chrome:      #b0bcc8;
   --white:       #e8eef4;
-  --ice:         #a8d8f0;
-  --ice-dim:     #4a8aaa;
-  --ice-glow:    rgba(168,216,240,0.08);
-  --glass:       rgba(168,216,240,0.05);
-  --glass-border:rgba(168,216,240,0.1);
+  --ice:         #9dc4d8;
+  --ice-dim:     #587888;
+  --ice-glow:    rgba(140,190,210,0.07);
+  --glass:       rgba(140,190,210,0.04);
+  --glass-border:rgba(160,180,195,0.1);
 
   --font-display:'Bebas Neue', sans-serif;
   --font-body:   'DM Sans', sans-serif;
   --font-mono:   'Space Mono', monospace;
+
+  --steel:        #8a9aaa;
+  --chrome-warm:  #c0c8d0;
 
   /* state accent — changes per selection */
   --state-hue:   rgba(168,216,240,0.12);
@@ -190,14 +193,14 @@ nav {
 
 .hero-orb-1 {
   width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(50,100,160,0.25) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(50,85,130,0.2) 0%, transparent 70%);
   top: -10%; right: -10%;
   animation: orbFloat 12s ease-in-out infinite;
 }
 
 .hero-orb-2 {
   width: 400px; height: 400px;
-  background: radial-gradient(circle, rgba(168,216,240,0.1) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(140,175,200,0.08) 0%, transparent 70%);
   bottom: 10%; left: -5%;
   animation: orbFloat 16s ease-in-out infinite reverse;
 }
@@ -348,30 +351,35 @@ nav {
 
 /* Floating glass panel — right side */
 .hero-panel {
-  position: absolute;
-  right: clamp(1.5rem,6vw,5rem);
-  top: 50%;
-  transform: translateY(-50%);
-  width: clamp(200px,22vw,280px);
-  background: rgba(12,16,22,0.6);
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  background: rgba(12,16,22,0.55);
   border: 1px solid var(--glass-border);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  padding: 1.5rem;
+  padding: 1.2rem 1.5rem;
   border-radius: 4px;
-  z-index: 3;
+  margin-top: 2.5rem;
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 0;
+  column-gap: 2rem;
 }
 
 .panel-header {
   font-family: var(--font-mono);
-  font-size: 0.5rem;
+  font-size: 0.48rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--ice-dim);
-  margin-bottom: 1.2rem;
+  margin-bottom: 0.9rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  grid-column: 1 / -1;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid var(--glass-border);
 }
 
 .panel-live {
@@ -380,21 +388,21 @@ nav {
 }
 
 .panel-metric {
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 }
 
 .metric-label {
   font-family: var(--font-mono);
-  font-size: 0.48rem;
-  letter-spacing: 0.2em;
+  font-size: 0.44rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--silver);
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.25rem;
 }
 
 .metric-bar-wrap {
-  height: 2px;
-  background: rgba(168,216,240,0.08);
+  height: 1px;
+  background: rgba(168,216,240,0.07);
   border-radius: 2px;
   overflow: hidden;
   margin-bottom: 0.2rem;
@@ -409,12 +417,12 @@ nav {
 
 .metric-val {
   font-family: var(--font-mono);
-  font-size: 0.48rem;
+  font-size: 0.44rem;
   color: var(--chrome);
   text-align: right;
 }
 
-@media (max-width: 900px) { .hero-panel { display: none; } }
+@media (max-width: 600px) { .hero-panel { grid-template-columns: 1fr; } }
 
 /* ── SECTION: SKIN UNDER PRESSURE ───────────────── */
 .pressure-section {
@@ -609,6 +617,7 @@ nav {
 }
 
 /* Custom select system */
+/* ── DIAGNOSTIC SELECTORS ────────────────────────── */
 .diag-selectors {
   display: grid;
   grid-template-columns: repeat(3,1fr);
@@ -619,81 +628,93 @@ nav {
 @media (max-width: 820px) { .diag-selectors { grid-template-columns: 1fr; } }
 
 .selector-module {
-  background: rgba(12,16,22,0.8);
-  border: 1px solid var(--glass-border);
+  background: rgba(12,16,22,0.85);
+  border: 1px solid rgba(160,180,195,0.12);
   border-radius: 4px;
-  overflow: hidden;
-  transition: border-color 0.3s;
+  padding: 1.6rem 1.6rem 1.4rem;
+  transition: border-color 0.35s;
 }
 
-.selector-module:focus-within {
-  border-color: rgba(168,216,240,0.3);
-  box-shadow: 0 0 20px rgba(168,216,240,0.04);
-}
+.selector-module:hover { border-color: rgba(157,196,216,0.22); }
 
-.selector-top {
-  padding: 1rem 1.2rem 0.6rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid var(--glass-border);
-}
-
-.selector-label {
+/* Step label */
+.sel-step {
   font-family: var(--font-mono);
-  font-size: 0.48rem;
+  font-size: 0.44rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--ice-dim);
+  margin-bottom: 0.5rem;
 }
 
-.selector-index {
+/* Question */
+.sel-question {
   font-family: var(--font-mono);
-  font-size: 0.44rem;
-  color: var(--graphite);
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--chrome);
+  margin-bottom: 1.4rem;
+  line-height: 1.5;
 }
 
-/* Custom select */
-.custom-select-wrap {
-  position: relative;
-  padding: 0.8rem 1.2rem;
+/* Pill options */
+.sel-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
 }
 
-.custom-select {
-  width: 100%;
+.sel-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 1rem;
+  border: 1px solid rgba(160,180,195,0.1);
+  border-radius: 3px;
   background: transparent;
-  border: none;
-  outline: none;
-  color: var(--white);
+  color: var(--silver);
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   letter-spacing: 0.1em;
   cursor: none;
-  appearance: none;
-  -webkit-appearance: none;
-  padding-right: 1.5rem;
+  transition: border-color 0.25s, color 0.25s, background 0.25s;
+  text-align: left;
+  width: 100%;
 }
 
-.custom-select option { background: var(--bg-3); color: var(--white); }
-
-.select-arrow {
-  position: absolute;
-  right: 1.2rem;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 8px; height: 8px;
-  border-right: 1px solid var(--ice-dim);
-  border-bottom: 1px solid var(--ice-dim);
-  transform: translateY(-70%) rotate(45deg);
-  pointer-events: none;
+.sel-pill:hover {
+  border-color: rgba(157,196,216,0.25);
+  color: var(--chrome);
+  background: rgba(140,190,210,0.04);
 }
 
-.selector-readout {
-  padding: 0.6rem 1.2rem 1rem;
-  font-family: var(--font-mono);
-  font-size: 0.44rem;
-  letter-spacing: 0.15em;
-  color: var(--graphite);
+.sel-pill.active {
+  border-color: rgba(157,196,216,0.4);
+  color: var(--ice);
+  background: rgba(140,190,210,0.06);
+}
+
+.sel-pill-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  border: 1px solid rgba(157,196,216,0.35);
+  flex-shrink: 0;
+  transition: background 0.25s, border-color 0.25s;
+}
+
+.sel-pill.active .sel-pill-dot {
+  background: var(--ice);
+  border-color: var(--ice);
+  box-shadow: 0 0 6px rgba(157,196,216,0.4);
+}
+
+/* Scrollable if many options */
+.sel-options-scroll {
+  max-height: 220px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(157,196,216,0.15) transparent;
 }
 
 /* Dynamic state panel */
@@ -906,29 +927,152 @@ nav {
 
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(4,1fr);
+  grid-template-columns: 1.6fr 1fr 1fr;
+  grid-template-rows: auto auto;
   gap: clamp(0.8rem,1.5vw,1.2rem);
 }
 
-@media (max-width: 900px) { .products-grid { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 900px) { .products-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 500px)  { .products-grid { grid-template-columns: 1fr; } }
 
+/* featured card spans 2 rows */
+.product-card-featured {
+  grid-row: 1 / 3;
+  background: rgba(10,14,20,0.9);
+  border: 1px solid rgba(157,196,216,0.16);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: border-color 0.4s, box-shadow 0.4s;
+  cursor: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card-featured:hover {
+  border-color: rgba(157,196,216,0.32);
+  box-shadow: 0 0 40px rgba(140,190,210,0.06);
+}
+
+.featured-visual {
+  flex: 1;
+  min-height: clamp(280px,30vw,420px);
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(145deg, #0a1220 0%, #0d1828 55%, #08101c 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* SVG bottle render inside featured card */
+.bottle-render {
+  position: relative;
+  z-index: 2;
+}
+
+.featured-orb-1 {
+  position: absolute;
+  width: 280px; height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(100,160,220,0.14) 0%, transparent 70%);
+  filter: blur(30px);
+  animation: orbFloat 8s ease-in-out infinite;
+}
+
+.featured-orb-2 {
+  position: absolute;
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(157,196,216,0.1) 0%, transparent 70%);
+  filter: blur(20px);
+  top: 20%; right: 15%;
+  animation: orbFloat 6s ease-in-out infinite reverse;
+}
+
+.featured-tag {
+  position: absolute;
+  top: 1.2rem; left: 1.2rem;
+  font-family: var(--font-mono);
+  font-size: 0.44rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ice);
+  background: rgba(8,11,15,0.7);
+  padding: 0.35rem 0.75rem;
+  border-radius: 2px;
+  border: 1px solid rgba(157,196,216,0.2);
+  z-index: 3;
+}
+
+.featured-protocol-no {
+  position: absolute;
+  bottom: 1.2rem; right: 1.5rem;
+  font-family: var(--font-display);
+  font-size: 6rem;
+  line-height: 1;
+  color: rgba(157,196,216,0.06);
+  letter-spacing: 0.04em;
+  user-select: none;
+  z-index: 1;
+}
+
+.featured-info {
+  padding: clamp(1.5rem,3vw,2.2rem);
+  border-top: 1px solid rgba(157,196,216,0.1);
+}
+
+.featured-code {
+  font-family: var(--font-mono);
+  font-size: 0.44rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ice-dim);
+  margin-bottom: 0.6rem;
+}
+
+.featured-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem,3.5vw,2.8rem);
+  letter-spacing: 0.06em;
+  color: var(--white);
+  line-height: 0.95;
+  margin-bottom: 0.9rem;
+}
+
+.featured-desc {
+  font-size: clamp(0.76rem,1.1vw,0.88rem);
+  line-height: 1.85;
+  color: var(--silver);
+  font-weight: 200;
+  margin-bottom: 1.2rem;
+  max-width: 340px;
+}
+
+.featured-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+/* Standard cards — secondary */
 .product-card {
   background: rgba(12,16,22,0.7);
   border: 1px solid var(--glass-border);
   border-radius: 4px;
   overflow: hidden;
-  transition: border-color 0.4s, transform 0.4s;
+  transition: border-color 0.4s, transform 0.35s;
   cursor: none;
+  display: flex;
+  flex-direction: column;
 }
 
 .product-card:hover {
-  border-color: rgba(168,216,240,0.22);
-  transform: translateY(-4px);
+  border-color: rgba(157,196,216,0.2);
+  transform: translateY(-3px);
 }
 
 .product-visual {
-  height: clamp(160px,18vw,220px);
+  height: clamp(120px,14vw,170px);
   position: relative;
   overflow: hidden;
   display: flex;
@@ -936,76 +1080,77 @@ nav {
   justify-content: center;
 }
 
-.product-bg-1 { background: linear-gradient(135deg, #0d1520 0%, #1a2840 100%); }
-.product-bg-2 { background: linear-gradient(135deg, #0e1418 0%, #1a2230 100%); }
-.product-bg-3 { background: linear-gradient(135deg, #080c14 0%, #141c2c 100%); }
-.product-bg-4 { background: linear-gradient(135deg, #0a0e18 0%, #101830 100%); }
+.product-bg-2 { background: linear-gradient(135deg, #0e1418 0%, #151e28 100%); }
+.product-bg-3 { background: linear-gradient(135deg, #0c1018 0%, #121820 100%); }
+.product-bg-4 { background: linear-gradient(135deg, #0a0e18 0%, #10161e 100%); }
 
 .product-orb {
-  width: 100px; height: 100px;
+  width: 80px; height: 80px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(168,216,240,0.18) 0%, transparent 70%);
-  filter: blur(12px);
+  background: radial-gradient(circle, rgba(140,190,210,0.15) 0%, transparent 70%);
+  filter: blur(10px);
   animation: orbFloat 6s ease-in-out infinite;
 }
 
 .product-tag-overlay {
   position: absolute;
-  top: 0.9rem; left: 0.9rem;
+  top: 0.8rem; left: 0.8rem;
   font-family: var(--font-mono);
-  font-size: 0.44rem;
+  font-size: 0.42rem;
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--ice-dim);
-  background: rgba(8,11,15,0.6);
-  padding: 0.3rem 0.6rem;
+  background: rgba(8,11,15,0.65);
+  padding: 0.28rem 0.55rem;
   border-radius: 2px;
-  border: 1px solid rgba(168,216,240,0.1);
+  border: 1px solid rgba(140,190,210,0.1);
 }
 
 .product-info {
-  padding: 1.2rem;
+  padding: 1.1rem 1.1rem 1.3rem;
   border-top: 1px solid var(--glass-border);
+  flex: 1;
 }
 
 .product-code {
   font-family: var(--font-mono);
-  font-size: 0.44rem;
+  font-size: 0.42rem;
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--ice-dim);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.45rem;
 }
 
 .product-title {
   font-family: var(--font-display);
-  font-size: clamp(1.2rem,2vw,1.6rem);
+  font-size: clamp(1.1rem,1.8vw,1.4rem);
   letter-spacing: 0.08em;
   color: var(--white);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.45rem;
+  line-height: 1.05;
 }
 
 .product-desc {
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   line-height: 1.7;
   color: var(--silver);
   font-weight: 200;
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.75rem;
 }
 
 .product-ingredients {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
+  gap: 0.35rem;
 }
 
 .ingredient-pill {
   font-family: var(--font-mono);
-  font-size: 0.42rem;
-  letter-spacing: 0.12em;
+  font-size: 0.4rem;
+  letter-spacing: 0.1em;
   color: var(--silver);
-  border: 1px solid rgba(168,216,240,0.1);
-  padding: 0.22rem 0.55rem;
+  border: 1px solid rgba(140,190,210,0.1);
+  padding: 0.2rem 0.5rem;
   border-radius: 20px;
 }
 
@@ -1176,7 +1321,7 @@ nav {
 .closing-bg {
   position: absolute; inset: 0;
   background:
-    radial-gradient(ellipse 70% 60% at 50% 40%, rgba(40,80,150,0.15) 0%, transparent 65%),
+    radial-gradient(ellipse 70% 60% at 50% 40%, rgba(40,70,120,0.12) 0%, transparent 65%),
     radial-gradient(ellipse 50% 40% at 20% 80%, rgba(168,216,240,0.05) 0%, transparent 60%),
     linear-gradient(to bottom, var(--bg-2) 0%, var(--bg) 100%);
 }
@@ -1373,75 +1518,31 @@ footer {
         </div>
       </div>
     </div>
-  </div>
-
-  <!-- Floating biometric panel -->
-  <div class="hero-panel">
-    <div class="panel-header">
-      <span>SKIN READOUT</span>
-      <span class="panel-live">● LIVE</span>
-    </div>
-    <div class="panel-metric">
-      <div class="metric-label">Cortisol Index</div>
-      <div class="metric-bar-wrap"><div class="metric-bar" style="width:78%"></div></div>
-      <div class="metric-val">78%</div>
-    </div>
-    <div class="panel-metric">
-      <div class="metric-label">Barrier Function</div>
-      <div class="metric-bar-wrap"><div class="metric-bar" style="width:42%"></div></div>
-      <div class="metric-val">42%</div>
-    </div>
-    <div class="panel-metric">
-      <div class="metric-label">Blue Light Stress</div>
-      <div class="metric-bar-wrap"><div class="metric-bar" style="width:91%"></div></div>
-      <div class="metric-val">91%</div>
-    </div>
-    <div class="panel-metric">
-      <div class="metric-label">Recovery Rate</div>
-      <div class="metric-bar-wrap"><div class="metric-bar" style="width:31%"></div></div>
-      <div class="metric-val">31%</div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════
-     SKIN UNDER PRESSURE
-══════════════════════════════════ -->
-<section class="pressure-section">
-  <div class="pressure-grid">
-    <div class="reveal">
-      <div class="overline">Skin Under Pressure</div>
-      <h2 class="pressure-heading">YOUR SKIN<br>IS READING<br>THE SIGNAL</h2>
-      <p class="pressure-body">Every notification, every scroll, every hour of blue light registers in your skin. Inflammation. Cortisol spikes. Barrier disruption. Your device is writing its history across your face.</p>
-      <div class="pressure-stats">
-        <div class="stat-block">
-          <div class="stat-num">7.4</div>
-          <div class="stat-label">Avg hrs daily screen time</div>
-        </div>
-        <div class="stat-block">
-          <div class="stat-num">96</div>
-          <div class="stat-label">Notifications per day</div>
-        </div>
-        <div class="stat-block">
-          <div class="stat-num">23%</div>
-          <div class="stat-label">Barrier function decline</div>
-        </div>
-        <div class="stat-block">
-          <div class="stat-num">↑ 3×</div>
-          <div class="stat-label">Cortisol vs. pre-digital</div>
-        </div>
+    <!-- Skin readout panel — below headline -->
+    <div class="hero-panel">
+      <div class="panel-header">
+        <span>SKIN READOUT</span>
+        <span class="panel-live">● LIVE</span>
       </div>
-    </div>
-
-    <div class="signal-visual reveal">
-      <div class="signal-circle"></div>
-      <div class="signal-circle"></div>
-      <div class="signal-circle"></div>
-      <div class="signal-circle"></div>
-      <div class="signal-circle"></div>
-      <div class="signal-text">
-        <div class="signal-hz">HZ</div>
-        <div class="signal-sub">SKIN FREQUENCY DISRUPTED</div>
+      <div class="panel-metric">
+        <div class="metric-label">Cortisol Index</div>
+        <div class="metric-bar-wrap"><div class="metric-bar" style="width:78%"></div></div>
+        <div class="metric-val">78%</div>
+      </div>
+      <div class="panel-metric">
+        <div class="metric-label">Barrier Function</div>
+        <div class="metric-bar-wrap"><div class="metric-bar" style="width:42%"></div></div>
+        <div class="metric-val">42%</div>
+      </div>
+      <div class="panel-metric">
+        <div class="metric-label">Blue Light Stress</div>
+        <div class="metric-bar-wrap"><div class="metric-bar" style="width:91%"></div></div>
+        <div class="metric-val">91%</div>
+      </div>
+      <div class="panel-metric">
+        <div class="metric-label">Recovery Rate</div>
+        <div class="metric-bar-wrap"><div class="metric-bar" style="width:31%"></div></div>
+        <div class="metric-val">31%</div>
       </div>
     </div>
   </div>
@@ -1462,60 +1563,70 @@ footer {
 
     <div class="diag-selectors reveal">
 
-      <!-- Selector 1: Current State -->
+      <!-- 01: Current State -->
       <div class="selector-module">
-        <div class="selector-top">
-          <span class="selector-label">Current State</span>
-          <span class="selector-index">01 / 03</span>
+        <div class="sel-step">01 / 03</div>
+        <div class="sel-question">What's your<br>current state?</div>
+        <div class="sel-options sel-options-scroll" id="stateOptions">
+          <button class="sel-pill active" data-value="overstimulated" data-group="state">
+            <span class="sel-pill-dot"></span>Overstimulated
+          </button>
+          <button class="sel-pill" data-value="sleep-deprived" data-group="state">
+            <span class="sel-pill-dot"></span>Sleep Deprived
+          </button>
+          <button class="sel-pill" data-value="burnt-out" data-group="state">
+            <span class="sel-pill-dot"></span>Burnt Out
+          </button>
+          <button class="sel-pill" data-value="mentally-foggy" data-group="state">
+            <span class="sel-pill-dot"></span>Mentally Foggy
+          </button>
+          <button class="sel-pill" data-value="hyperconnected" data-group="state">
+            <span class="sel-pill-dot"></span>Hyperconnected
+          </button>
+          <button class="sel-pill" data-value="running-on-empty" data-group="state">
+            <span class="sel-pill-dot"></span>Running on Empty
+          </button>
         </div>
-        <div class="custom-select-wrap">
-          <select class="custom-select" id="stateSelect">
-            <option value="overstimulated">Overstimulated</option>
-            <option value="sleep-deprived">Sleep Deprived</option>
-            <option value="burnt-out">Burnt Out</option>
-            <option value="mentally-foggy">Mentally Foggy</option>
-            <option value="hyperconnected">Hyperconnected</option>
-            <option value="running-on-empty">Running on Empty</option>
-          </select>
-          <div class="select-arrow"></div>
-        </div>
-        <div class="selector-readout" id="stateReadout">STATE DETECTED — INITIATING PROTOCOL</div>
       </div>
 
-      <!-- Selector 2: Exposure Level -->
+      <!-- 02: Exposure Level -->
       <div class="selector-module">
-        <div class="selector-top">
-          <span class="selector-label">Exposure Level</span>
-          <span class="selector-index">02 / 03</span>
+        <div class="sel-step">02 / 03</div>
+        <div class="sel-question">Daily screen<br>exposure?</div>
+        <div class="sel-options" id="exposureOptions">
+          <button class="sel-pill active" data-value="2hr" data-group="exposure">
+            <span class="sel-pill-dot"></span>Under 2 hours
+          </button>
+          <button class="sel-pill" data-value="6hr" data-group="exposure">
+            <span class="sel-pill-dot"></span>4–6 hours
+          </button>
+          <button class="sel-pill" data-value="10hr" data-group="exposure">
+            <span class="sel-pill-dot"></span>8–10 hours
+          </button>
+          <button class="sel-pill" data-value="endless" data-group="exposure">
+            <span class="sel-pill-dot"></span>Endless scrolling
+          </button>
         </div>
-        <div class="custom-select-wrap">
-          <select class="custom-select" id="exposureSelect">
-            <option value="2hr">2 hrs screen time</option>
-            <option value="6hr">6 hrs screen time</option>
-            <option value="10hr">10 hrs screen time</option>
-            <option value="endless">Endless scrolling</option>
-          </select>
-          <div class="select-arrow"></div>
-        </div>
-        <div class="selector-readout" id="exposureReadout">EXPOSURE LOGGED — CALIBRATING RESPONSE</div>
       </div>
 
-      <!-- Selector 3: Recovery Mode -->
+      <!-- 03: Recovery Mode -->
       <div class="selector-module">
-        <div class="selector-top">
-          <span class="selector-label">Recovery Mode</span>
-          <span class="selector-index">03 / 03</span>
+        <div class="sel-step">03 / 03</div>
+        <div class="sel-question">Select your<br>recovery mode.</div>
+        <div class="sel-options" id="modeOptions">
+          <button class="sel-pill active" data-value="reset" data-group="mode">
+            <span class="sel-pill-dot"></span>Reset
+          </button>
+          <button class="sel-pill" data-value="buffer" data-group="mode">
+            <span class="sel-pill-dot"></span>Buffer
+          </button>
+          <button class="sel-pill" data-value="recover" data-group="mode">
+            <span class="sel-pill-dot"></span>Recover
+          </button>
+          <button class="sel-pill" data-value="sleep-mode" data-group="mode">
+            <span class="sel-pill-dot"></span>Sleep Mode
+          </button>
         </div>
-        <div class="custom-select-wrap">
-          <select class="custom-select" id="modeSelect">
-            <option value="reset">Reset</option>
-            <option value="buffer">Buffer</option>
-            <option value="recover">Recover</option>
-            <option value="sleep-mode">Sleep Mode</option>
-          </select>
-          <div class="select-arrow"></div>
-        </div>
-        <div class="selector-readout" id="modeReadout">MODE ACTIVE — ADJUSTING INTERFACE</div>
       </div>
 
     </div>
@@ -1579,6 +1690,49 @@ footer {
 </section>
 
 <!-- ═══════════════════════════════
+     SKIN UNDER PRESSURE
+══════════════════════════════════ -->
+<section class="pressure-section">
+  <div class="pressure-grid">
+    <div class="reveal">
+      <div class="overline">Skin Under Pressure</div>
+      <h2 class="pressure-heading">YOUR SKIN<br>IS READING<br>THE SIGNAL</h2>
+      <p class="pressure-body">Every notification, every scroll, every hour of blue light registers in your skin. Inflammation. Cortisol spikes. Barrier disruption. Your device is writing its history across your face.</p>
+      <div class="pressure-stats">
+        <div class="stat-block">
+          <div class="stat-num">7.4</div>
+          <div class="stat-label">Avg hrs daily screen time</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-num">96</div>
+          <div class="stat-label">Notifications per day</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-num">23%</div>
+          <div class="stat-label">Barrier function decline</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-num">↑ 3×</div>
+          <div class="stat-label">Cortisol vs. pre-digital</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="signal-visual reveal">
+      <div class="signal-circle"></div>
+      <div class="signal-circle"></div>
+      <div class="signal-circle"></div>
+      <div class="signal-circle"></div>
+      <div class="signal-circle"></div>
+      <div class="signal-text">
+        <div class="signal-hz">HZ</div>
+        <div class="signal-sub">SKIN FREQUENCY DISRUPTED</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════
      PRODUCT PROTOCOLS
 ══════════════════════════════════ -->
 <section class="products-section" id="protocols">
@@ -1600,32 +1754,87 @@ footer {
 
     <div class="products-grid reveal">
 
-      <div class="product-card">
-        <div class="product-visual product-bg-1">
-          <div class="product-orb"></div>
-          <div class="product-tag-overlay">RESET</div>
+      <!-- FEATURED — Signal Reset Serum spans 2 rows -->
+      <div class="product-card-featured">
+        <div class="featured-visual">
+          <div class="featured-orb-1"></div>
+          <div class="featured-orb-2"></div>
+          <div class="featured-tag">PRIMARY PROTOCOL / RESET</div>
+          <!-- Chrome bottle SVG render -->
+          <div class="bottle-render">
+            <svg width="120" height="220" viewBox="0 0 120 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="bottleBody" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%"   stop-color="#1a2535"/>
+                  <stop offset="28%"  stop-color="#8aaabe" stop-opacity="0.9"/>
+                  <stop offset="50%"  stop-color="#c0ccd8"/>
+                  <stop offset="72%"  stop-color="#8aaabe" stop-opacity="0.8"/>
+                  <stop offset="100%" stop-color="#111a25"/>
+                </linearGradient>
+                <linearGradient id="capGrad" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%"   stop-color="#141e2a"/>
+                  <stop offset="40%"  stop-color="#606e7e"/>
+                  <stop offset="60%"  stop-color="#8a96a4"/>
+                  <stop offset="100%" stop-color="#141e2a"/>
+                </linearGradient>
+                <linearGradient id="labelGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%"   stop-color="#0d1620" stop-opacity="0.95"/>
+                  <stop offset="100%" stop-color="#0a1018" stop-opacity="0.9"/>
+                </linearGradient>
+                <linearGradient id="specular" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%"   stop-color="#c0d0e0" stop-opacity="0.35"/>
+                  <stop offset="100%" stop-color="#c0d0e0" stop-opacity="0"/>
+                </linearGradient>
+                <filter id="glow">
+                  <feGaussianBlur stdDeviation="3" result="blur"/>
+                  <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+              </defs>
+              <!-- shadow -->
+              <ellipse cx="60" cy="215" rx="38" ry="5" fill="#000" fill-opacity="0.4"/>
+              <!-- bottle body -->
+              <rect x="22" y="58" width="76" height="150" rx="10" fill="url(#bottleBody)"/>
+              <!-- specular streak -->
+              <rect x="30" y="66" width="14" height="120" rx="7" fill="url(#specular)"/>
+              <!-- label -->
+              <rect x="28" y="100" width="64" height="66" rx="3" fill="url(#labelGrad)" stroke="rgba(157,196,216,0.15)" stroke-width="0.5"/>
+              <text x="60" y="123" text-anchor="middle" fill="#9dc4d8" font-family="'Bebas Neue', sans-serif" font-size="11" letter-spacing="4">STATIC</text>
+              <line x1="34" y1="129" x2="86" y2="129" stroke="rgba(157,196,216,0.25)" stroke-width="0.5"/>
+              <text x="60" y="141" text-anchor="middle" fill="#587888" font-family="'Space Mono', monospace" font-size="5" letter-spacing="1.5">SIGNAL RESET</text>
+              <text x="60" y="154" text-anchor="middle" fill="#587888" font-family="'Space Mono', monospace" font-size="4.5" letter-spacing="1">30ml · STK-001</text>
+              <!-- neck -->
+              <rect x="38" y="38" width="44" height="22" rx="4" fill="url(#capGrad)"/>
+              <!-- cap -->
+              <rect x="32" y="14" width="56" height="28" rx="6" fill="url(#capGrad)" filter="url(#glow)"/>
+              <!-- cap highlight -->
+              <rect x="36" y="17" width="18" height="10" rx="3" fill="rgba(192,208,224,0.2)"/>
+            </svg>
+          </div>
+          <div class="featured-protocol-no">01</div>
         </div>
-        <div class="product-info">
-          <div class="product-code">STK-001 / RESET</div>
-          <div class="product-title">SIGNAL RESET SERUM</div>
-          <div class="product-desc">Interrupts cortisol-triggered inflammation. Reboots the skin's natural repair frequency overnight.</div>
-          <div class="product-ingredients">
-            <span class="ingredient-pill">Niacinamide</span>
+        <div class="featured-info">
+          <div class="featured-code">STK-001 / PRIMARY PROTOCOL</div>
+          <div class="featured-title">SIGNAL<br>RESET<br>SERUM</div>
+          <p class="featured-desc">Interrupts cortisol-triggered inflammation. Reboots the skin's natural repair frequency. The protocol that starts every recovery sequence.</p>
+          <div class="featured-pills">
+            <span class="ingredient-pill">Niacinamide 10%</span>
             <span class="ingredient-pill">Adenosine</span>
             <span class="ingredient-pill">Beta-Glucan</span>
+            <span class="ingredient-pill">Zinc PCA</span>
           </div>
         </div>
       </div>
 
+      <!-- Secondary cards — right column -->
       <div class="product-card">
         <div class="product-visual product-bg-2">
-          <div class="product-orb" style="background:radial-gradient(circle, rgba(100,160,220,0.15) 0%, transparent 70%)"></div>
+          <div class="product-orb"></div>
           <div class="product-tag-overlay">BUFFER</div>
         </div>
         <div class="product-info">
           <div class="product-code">STK-002 / BUFFER</div>
           <div class="product-title">BARRIER BUFFER</div>
-          <div class="product-desc">Reconstructs the compromised lipid barrier. A protective interface between your skin and the signal.</div>
+          <div class="product-desc">Reconstructs the compromised lipid barrier. Protective interface between skin and signal.</div>
           <div class="product-ingredients">
             <span class="ingredient-pill">Ceramide NP</span>
             <span class="ingredient-pill">Squalane</span>
@@ -1636,15 +1845,15 @@ footer {
 
       <div class="product-card">
         <div class="product-visual product-bg-3">
-          <div class="product-orb" style="background:radial-gradient(circle, rgba(140,200,240,0.12) 0%, transparent 70%)"></div>
+          <div class="product-orb"></div>
           <div class="product-tag-overlay">RECOVER</div>
         </div>
         <div class="product-info">
           <div class="product-code">STK-003 / RECOVER</div>
           <div class="product-title">RECOVER MIST</div>
-          <div class="product-desc">Mid-day reset. Neutralises blue light oxidative stress. Recalibrates for the second screen session.</div>
+          <div class="product-desc">Neutralises blue light oxidative stress. Recalibrates for the next session.</div>
           <div class="product-ingredients">
-            <span class="ingredient-pill">Antioxidant Vit C</span>
+            <span class="ingredient-pill">Vitamin C</span>
             <span class="ingredient-pill">Hyaluronic</span>
             <span class="ingredient-pill">Snow Algae</span>
           </div>
@@ -1653,13 +1862,13 @@ footer {
 
       <div class="product-card">
         <div class="product-visual product-bg-4">
-          <div class="product-orb" style="background:radial-gradient(circle, rgba(80,120,200,0.14) 0%, transparent 70%)"></div>
+          <div class="product-orb"></div>
           <div class="product-tag-overlay">SLEEP MODE</div>
         </div>
         <div class="product-info">
           <div class="product-code">STK-004 / SLEEP</div>
           <div class="product-title">SLEEP MODE MASK</div>
-          <div class="product-desc">Initiates deep repair during sleep's natural regeneration window. Offline recovery for the skin that never switched off.</div>
+          <div class="product-desc">Deep repair during sleep's regeneration window. Offline recovery.</div>
           <div class="product-ingredients">
             <span class="ingredient-pill">Bakuchiol</span>
             <span class="ingredient-pill">Peptide Complex</span>
@@ -1885,38 +2094,27 @@ function updateState(value) {
   document.documentElement.style.setProperty('--state-hue', d.hue);
 }
 
-document.getElementById('stateSelect').addEventListener('change', e => {
-  document.getElementById('stateReadout').textContent = 'STATE UPDATED — RECALIBRATING';
-  setTimeout(() => {
-    document.getElementById('stateReadout').textContent = 'PROTOCOL ACTIVE';
-  }, 800);
-  updateState(e.target.value);
-});
+/* Pill selectors */
+document.querySelectorAll('.sel-pill').forEach(pill => {
+  pill.addEventListener('click', () => {
+    const group = pill.dataset.group;
+    const value = pill.dataset.value;
 
-document.getElementById('exposureSelect').addEventListener('change', e => {
-  const labels = {
-    '2hr': 'LOW EXPOSURE — MAINTENANCE MODE',
-    '6hr': 'MODERATE — DAILY PROTOCOL ACTIVE',
-    '10hr': 'HIGH EXPOSURE — INTENSIVE RECOVERY',
-    'endless': 'CRITICAL — FULL RESET REQUIRED'
-  };
-  document.getElementById('exposureReadout').textContent = labels[e.target.value] || 'EXPOSURE LOGGED';
-  const m3Map = {'2hr': 28, '6hr': 60, '10hr': 82, 'endless': 98};
-  const val = m3Map[e.target.value];
-  if (val) {
-    document.getElementById('m3').style.width = val + '%';
-    document.getElementById('m3v').textContent = val + '%';
-  }
-});
+    // deactivate siblings
+    document.querySelectorAll(`.sel-pill[data-group="${group}"]`).forEach(p => p.classList.remove('active'));
+    pill.classList.add('active');
 
-document.getElementById('modeSelect').addEventListener('change', e => {
-  const labels = {
-    'reset': 'RESET ACTIVE — CLEARING SIGNAL',
-    'buffer': 'BUFFER MODE — PROTECTION LAYER ON',
-    'recover': 'RECOVER MODE — REPAIR INITIATED',
-    'sleep-mode': 'SLEEP MODE — OFFLINE RECOVERY'
-  };
-  document.getElementById('modeReadout').textContent = labels[e.target.value] || 'MODE ACTIVE';
+    if (group === 'state') {
+      updateState(value);
+    } else if (group === 'exposure') {
+      const m3Map = {'2hr': 28, '6hr': 60, '10hr': 82, 'endless': 98};
+      const val = m3Map[value];
+      if (val) {
+        document.getElementById('m3').style.width  = val + '%';
+        document.getElementById('m3v').textContent = val + '%';
+      }
+    }
+  });
 });
 
 /* ── PROTOCOL TABS ──────────────────────── */
