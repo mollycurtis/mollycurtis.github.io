@@ -182,6 +182,52 @@ LANDING
 }
 .footer-cta:hover { color:var(--accent); }
 
+
+/* ══════════════════════════════
+COMING SOON OVERLAY
+══════════════════════════════ */
+.coming-soon-overlay {
+  position:fixed; inset:0; z-index:500;
+  background:rgba(17,17,17,.92);
+  backdrop-filter:blur(8px);
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  gap:20px;
+  transform:translateY(100%);
+  transition:transform .5s cubic-bezier(.6,0,0,1);
+  pointer-events:none;
+}
+.coming-soon-overlay.open {
+  transform:translateY(0);
+  pointer-events:auto;
+}
+.coming-soon-label {
+  font-size:10px; letter-spacing:.3em; text-transform:uppercase;
+  color:var(--accent); margin-bottom:8px;
+}
+.coming-soon-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(36px,6vw,80px);
+  font-weight:300; color:var(--text);
+  letter-spacing:-.02em; line-height:1;
+  text-align:center;
+}
+.coming-soon-sub {
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic; font-size:18px;
+  color:var(--muted); text-align:center;
+  max-width:400px; line-height:1.6;
+}
+.coming-soon-close {
+  margin-top:20px;
+  font-size:11px; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--muted); background:none; border:1px solid var(--border);
+  padding:12px 28px; border-radius:999px; cursor:pointer;
+  font-family:'DM Sans',sans-serif;
+  transition:border-color .2s, color .2s;
+}
+.coming-soon-close:hover { border-color:var(--accent); color:var(--accent); }
+
 /* ══════════════════════════════
 SHARED PAGE SYSTEM
 ══════════════════════════════ */
@@ -921,6 +967,7 @@ RESPONSIVE — global
         <p class="about-p">Off camera: she enjoys thrifting, decorating, and listening to music. She has a cat named Milo, and loves to travel — with her first solo trip to Japan planned for 2027.</p>
         <div class="marketing-social-row">
           <a href="https://mollycurtis.github.io/" target="_blank" class="marketing-link" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='rgba(201,169,110,.3)'">View Marketing Work →</a>
+          </form>
           <div class="soc-row">
             <a class="soc-a" href="https://www.instagram.com/molcurphotos/" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
             <a class="soc-a" href="https://www.facebook.com/molcurphotos" target="_blank" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
@@ -1005,14 +1052,6 @@ RESPONSIVE — global
         </div>
       </div>
     </div>
-    <div class="proj-block">
-      <div class="proj-num">Project 02</div>
-      <div class="proj-header">
-        <div class="proj-title">Street Photography</div>
-        <p class="proj-desc">Candid moments and the raw energy of everyday life. No direction, just instinct.</p>
-      </div>
-      <div class="photo-grid">
-        <div class="photo-cell"><div class="photo-cell-ph">Add Photo</div></div>
         <div class="photo-cell"><div class="photo-cell-ph">Add Photo</div></div>
         <div class="photo-cell"><div class="photo-cell-ph">Add Photo</div></div>
         <div class="photo-cell"><div class="photo-cell-ph">Add Photo</div></div>
@@ -1108,18 +1147,22 @@ RESPONSIVE — global
         </div>
         <div class="contact-hero">Get In Touch</div>
         <p class="contact-sub">Share what you have in mind and I'll take it from there.</p>
+        <form id="contact-form" novalidate>
         <label class="f-label">Your Name</label>
-        <input class="f-input" type="text" placeholder="Full name" required>
+        <input class="f-input" type="text" name="name" placeholder="Full name" required>
         <label class="f-label">Email</label>
-        <input class="f-input" type="email" placeholder="your@email.com" required>
+        <input class="f-input" type="email" name="email" placeholder="your@email.com" required>
         <label class="f-label">Session Type</label>
-        <input class="f-input" type="text" placeholder="Portraits, Weddings, Senior..." required>
+        <input class="f-input" type="text" name="session_type" placeholder="Portraits, Weddings, Senior..." required>
         <label class="f-label">Preferred Date</label>
-        <input class="f-input" type="text" placeholder="Flexible / specific date" required>
+        <input class="f-input" type="text" name="preferred_date" placeholder="Flexible / specific date" required>
         <label class="f-label">Message</label>
-        <textarea class="f-input" placeholder="Tell me about your vision — vibe, location ideas, or anything specific you have in mind." required></textarea>
+        <textarea class="f-input" name="message" placeholder="Tell me about your vision — vibe, location ideas, or anything specific you have in mind." required></textarea>
         <div class="f-submit-row">
-          <button class="f-btn">Send Inquiry</button>
+          <button class="f-btn" type="submit" id="submit-btn">Send Inquiry</button>
+          <span id="form-success" style="display:none;font-size:13px;color:#4cba7a;letter-spacing:.08em;">Message sent! I'll be in touch soon.</span>
+          <span id="form-error" style="display:none;font-size:13px;color:#e05c5c;letter-spacing:.08em;">Something went wrong. Please try again.</span>
+          </form>
           <div class="soc-row">
             <a class="soc-a" href="https://www.instagram.com/molcurphotos/" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
             <a class="soc-a" href="https://www.facebook.com/molcurphotos" target="_blank" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
@@ -1337,32 +1380,33 @@ function openCategory(cat) {
     });
   } else if (cat === 'events') {
     document.getElementById('cat-photo-grid').innerHTML = `
-      <div class="pg-item"><img decoding="async" src="IMG_1922.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="IMG_1923.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="IMG_1924.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="IMG_1925.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="IMG_1926.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="IMG_1927.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="IMG_1928.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="IMG_1929.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="IMG_1930.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="IMG_1934.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="IMG_1935.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="IMG_1936.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="IMG_1937.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="IMG_1938.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="IMG_1939.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="IMG_1940.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="IMG_1941.jpeg" alt="Event" loading="lazy"></div>
+      <div class="grid-sizer"></div>
+      <div class="pg-item pg-featured"><img decoding="async" src="IMG_1930.jpeg" alt="Event" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="IMG_1942.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="IMG_1943.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="IMG_1922.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item pg-featured"><img decoding="async" src="IMG_1936.jpeg" alt="Event" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="IMG_1944.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="IMG_1945.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="IMG_1925.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="IMG_1938.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item pg-featured"><img decoding="async" src="IMG_1923.jpeg" alt="Event" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="IMG_1946.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="IMG_1947.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="IMG_1934.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="IMG_1927.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item pg-featured"><img decoding="async" src="IMG_1940.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="IMG_1924.jpeg" alt="Event" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="IMG_1948.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="IMG_1935.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item pg-featured"><img decoding="async" src="IMG_1928.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="IMG_1943.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="IMG_1926.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="IMG_1939.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item pg-featured"><img decoding="async" src="IMG_1950.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="IMG_1929.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="IMG_1945.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="IMG_1937.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item pg-featured"><img decoding="async" src="IMG_1941.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="IMG_1947.jpeg" alt="Event" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="IMG_1949.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="IMG_1950.jpeg" alt="Event" loading="lazy"></div>
     `;
   } else {
     document.getElementById('cat-photo-grid').innerHTML =
@@ -1380,8 +1424,8 @@ function openCategory(cat) {
   document.getElementById('page-category').scrollTop = 0;
   openPage('category');
 
-  // Init Masonry after images load for the portraits grid
-  if (cat === 'portraits') {
+  // Init Masonry after images load
+  if (cat === 'portraits' || cat === 'events') {
     setTimeout(() => {
       const grid = document.getElementById('cat-photo-grid');
       if (!grid || typeof Masonry === 'undefined') return;
@@ -1390,8 +1434,7 @@ function openCategory(cat) {
           itemSelector: '.pg-item',
           columnWidth: '.grid-sizer',
           gutter: 0,
-          percentPosition: true,
-          fitWidth: false
+          percentPosition: true
         });
       });
     }, 100);
@@ -1412,7 +1455,27 @@ function openCategory(cat) {
     }
   }
 }
-ptiles.forEach(tile => { tile.addEventListener('click', () => openCategory(tile.dataset.cat)); });
+ptiles.forEach(tile => {
+  tile.addEventListener('click', () => {
+    const cat = tile.dataset.cat;
+    if (cat === 'senior' || cat === 'weddings' || cat === 'business') {
+      showComingSoon();
+    } else {
+      openCategory(cat);
+    }
+  });
+});
+
+function showComingSoon() {
+  const el = document.getElementById('coming-soon-overlay');
+  el.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeComingSoon() {
+  const el = document.getElementById('coming-soon-overlay');
+  el.classList.remove('open');
+  document.body.style.overflow = '';
+}
 
 (function() {
   const slides = document.querySelectorAll('#aboutCarousel .carousel-slide');
@@ -1453,6 +1516,42 @@ ptiles.forEach(tile => { tile.addEventListener('click', () => openCategory(tile.
   function resetZodiacTimer() { clearInterval(zodiacTimer); zodiacTimer = setInterval(() => goTo(current + 1), 6000); }
 })();
 
+
+// ── FORMSPREE CONTACT FORM ───────────────────────────────────────
+(function() {
+  const form = document.getElementById('contact-form');
+  if (!form) return;
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submit-btn');
+    const success = document.getElementById('form-success');
+    const error = document.getElementById('form-error');
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    success.style.display = 'none';
+    error.style.display = 'none';
+    try {
+      const res = await fetch('https://formspree.io/f/mjgllzov', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(form)
+      });
+      if (res.ok) {
+        form.reset();
+        success.style.display = 'inline';
+        btn.textContent = 'Send Inquiry';
+        btn.disabled = false;
+      } else {
+        throw new Error('failed');
+      }
+    } catch {
+      error.style.display = 'inline';
+      btn.textContent = 'Send Inquiry';
+      btn.disabled = false;
+    }
+  });
+})();
+
 function toggleFaq(btn) {
   const item = btn.closest('.faq-item');
   const isOpen = item.classList.contains('open');
@@ -1460,5 +1559,13 @@ function toggleFaq(btn) {
   if (!isOpen) item.classList.add('open');
 }
 </script>
+
+<!-- ══════════ COMING SOON OVERLAY ══════════ -->
+<div class="coming-soon-overlay" id="coming-soon-overlay">
+  <span class="coming-soon-label">Gallery in progress</span>
+  <div class="coming-soon-title">Currently Curating</div>
+  <p class="coming-soon-sub">More images from this collection are on their way. Check back soon.</p>
+  <button class="coming-soon-close" onclick="closeComingSoon()">← Back to Portfolio</button>
+</div>
 </body>
 </html>
