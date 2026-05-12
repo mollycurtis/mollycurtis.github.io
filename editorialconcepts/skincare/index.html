@@ -973,9 +973,10 @@ nav {
 .product-photo {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center 20%;
+  object-fit: contain;
+  object-position: center center;
   display: block;
+  padding: clamp(0.8rem, 3%, 1.4rem);
   transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
@@ -1071,10 +1072,21 @@ nav {
 
 .featured-visual {
   flex: 1;
-  min-height: clamp(280px,30vw,420px);
+  min-height: clamp(320px,35vw,480px);
   position: relative;
   overflow: hidden;
   background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.featured-visual .product-photo {
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  padding: clamp(1rem,4%,2rem);
 }
 
 /* SVG bottle render inside featured card */
@@ -1185,10 +1197,20 @@ nav {
 }
 
 .product-visual {
-  height: clamp(120px,14vw,170px);
+  height: clamp(160px,18vw,220px);
   position: relative;
   overflow: hidden;
   background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-visual .product-photo {
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+  object-fit: contain;
 }
 
 .product-bg-2 { background: linear-gradient(135deg, #0e1418 0%, #151e28 100%); }
@@ -1295,18 +1317,27 @@ nav {
 
 .campaign-mosaic {
   display: grid;
-  grid-template-columns: 1.6fr 1fr;
-  grid-template-rows: auto auto;
-  gap: clamp(0.8rem,1.5vw,1.2rem);
+  /* Left: narrow portrait (phone). Right: 2 stacked landscape rows */
+  grid-template-columns: minmax(240px, 0.65fr) 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: clamp(0.6rem,1.2vw,1rem);
+  /* overall height matches the phone's natural aspect */
+  min-height: clamp(480px, 56vw, 780px);
 }
 
-@media (max-width: 700px) { .campaign-mosaic { grid-template-columns: 1fr; } }
+@media (max-width: 700px) {
+  .campaign-mosaic {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    min-height: unset;
+  }
+}
 
 .campaign-tile {
   border-radius: 4px;
   overflow: hidden;
   position: relative;
-  background: var(--bg-3);
+  background: #000;
   border: 1px solid var(--glass-border);
   transition: border-color 0.4s;
   cursor: none;
@@ -1314,108 +1345,50 @@ nav {
 
 .campaign-tile:hover { border-color: rgba(168,216,240,0.2); }
 
-.campaign-tile.tall { grid-row: 1 / 3; }
+/* Phone tile spans both rows on left */
+.campaign-tile.tile-phone {
+  grid-row: 1 / 3;
+}
 
-.tile-inner {
-  padding: clamp(2rem,4vw,3.5rem);
+@media (max-width: 700px) {
+  .campaign-tile.tile-phone { grid-row: auto; }
+}
+
+/* Shared photo style inside campaign tiles */
+.campaign-photo {
+  width: 100%;
   height: 100%;
-  min-height: 260px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: relative;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.tile-subway .tile-inner  { min-height: 340px; }
-.tile-app .tile-inner     { min-height: 220px; }
-.tile-bb .tile-inner      { min-height: 220px; }
+.campaign-tile:hover .campaign-photo { transform: scale(1.03); }
 
-/* Subway ad tile */
-.tile-subway {
-  background: linear-gradient(160deg, #0d1520 0%, #0a1018 100%);
+/* Phone tile — contain so full phone shows */
+.tile-phone .campaign-photo {
+  object-fit: contain;
+  background: #000;
+  padding: clamp(0.5rem, 2%, 1rem);
 }
 
-.subway-bg-text {
-  position: absolute;
-  bottom: -0.1em; left: 0; right: 0;
-  font-family: var(--font-display);
-  font-size: clamp(6rem,14vw,14rem);
-  letter-spacing: -0.02em;
-  color: rgba(168,216,240,0.04);
-  line-height: 1;
-  pointer-events: none;
-  user-select: none;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
+/* Label overlay on each tile */
 .tile-label {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
   font-family: var(--font-mono);
-  font-size: 0.48rem;
-  letter-spacing: 0.3em;
+  font-size: 0.46rem;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--ice-dim);
-  border: 1px solid rgba(168,216,240,0.15);
-  padding: 0.3rem 0.7rem;
+  border: 1px solid rgba(168,216,240,0.14);
+  padding: 0.28rem 0.65rem;
   border-radius: 2px;
-  align-self: flex-start;
-  background: rgba(8,11,15,0.5);
-}
-
-.tile-headline {
-  font-family: var(--font-display);
-  font-size: clamp(2.2rem,5vw,4rem);
-  line-height: 0.96;
-  letter-spacing: 0.04em;
-  color: var(--white);
-}
-
-.tile-sub {
-  font-family: var(--font-mono);
-  font-size: 0.55rem;
-  letter-spacing: 0.18em;
-  color: var(--silver);
-  margin-top: 0.8rem;
-}
-
-/* App UI tile */
-.tile-app {
-  background: linear-gradient(135deg, #0c1420 0%, #0e1824 100%);
-}
-
-.app-mockup {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-top: 1rem;
-}
-
-.app-row {
-  height: 2px;
-  background: rgba(168,216,240,0.07);
-  border-radius: 2px;
-  overflow: hidden;
-}
-
-.app-row-fill {
-  height: 100%;
-  background: linear-gradient(to right, var(--ice-dim), var(--ice));
-  border-radius: 2px;
-}
-
-/* Billboard tile */
-.tile-bb {
-  background: linear-gradient(145deg, #080c14 0%, #0d1420 100%);
-}
-
-.bb-number {
-  font-family: var(--font-display);
-  font-size: clamp(3.5rem,8vw,7rem);
-  line-height: 0.9;
-  letter-spacing: 0.04em;
-  color: rgba(168,216,240,0.12);
-  position: absolute;
-  bottom: 1rem; right: 1.5rem;
+  background: rgba(6,8,12,0.65);
+  backdrop-filter: blur(6px);
+  z-index: 2;
 }
 
 /* ── SECTION: CLOSING CTA ────────────────────────── */
@@ -2120,39 +2093,22 @@ section {
 
     <div class="campaign-mosaic reveal">
 
-      <!-- Large subway/billboard tile -->
-      <div class="campaign-tile tile-subway tall">
-        <div class="tile-inner">
-          <span class="tile-label">OOH / Subway Campaign</span>
-          <div>
-            <div class="tile-headline">YOUR PHONE<br>IS TAKING<br>NOTES.</div>
-            <div class="tile-sub">STATIC™ — SKIN RECOVERY SYSTEM</div>
-          </div>
-        </div>
-        <div class="subway-bg-text">STATIC</div>
+      <!-- LEFT: Phone mockup — spans both rows (portrait) -->
+      <div class="campaign-tile tile-phone">
+        <span class="tile-label">App / Recovery OS</span>
+        <img class="campaign-photo" src="mobilephone.png" alt="STATIC Recovery App">
       </div>
 
-      <!-- App UI tile -->
-      <div class="campaign-tile tile-app">
-        <div class="tile-inner">
-          <span class="tile-label">App / Diagnostic Interface</span>
-          <div class="tile-headline" style="font-size:clamp(1.5rem,3vw,2.2rem)">SKIN OS</div>
-          <div class="app-mockup">
-            <div class="app-row"><div class="app-row-fill" style="width:85%"></div></div>
-            <div class="app-row"><div class="app-row-fill" style="width:60%"></div></div>
-            <div class="app-row"><div class="app-row-fill" style="width:40%"></div></div>
-            <div class="app-row"><div class="app-row-fill" style="width:72%"></div></div>
-          </div>
-        </div>
+      <!-- RIGHT TOP: Subway campaign (landscape) -->
+      <div class="campaign-tile">
+        <span class="tile-label">OOH / Subway Campaign</span>
+        <img class="campaign-photo" src="subwaycampaign.png" alt="STATIC Subway Campaign">
       </div>
 
-      <!-- Billboard tile -->
-      <div class="campaign-tile tile-bb">
-        <div class="tile-inner">
-          <span class="tile-label">Billboard / Digital OOH</span>
-          <div class="tile-headline" style="font-size:clamp(1.8rem,3.5vw,2.8rem)">DISCONNECT<br>IS A<br>RITUAL.</div>
-        </div>
-        <div class="bb-number">STK</div>
+      <!-- RIGHT BOTTOM: Billboard (landscape) -->
+      <div class="campaign-tile">
+        <span class="tile-label">Billboard / Digital OOH</span>
+        <img class="campaign-photo" src="billboard.png" alt="STATIC Billboard Campaign">
       </div>
 
     </div>
