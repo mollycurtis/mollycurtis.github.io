@@ -351,35 +351,32 @@ nav {
 
 /* Floating glass panel — right side */
 .hero-panel {
-  position: relative;
-  width: 100%;
-  max-width: 560px;
-  background: rgba(12,16,22,0.55);
+  position: absolute;
+  right: clamp(1.5rem,6vw,5rem);
+  top: 50%;
+  transform: translateY(-50%);
+  width: clamp(200px,22vw,280px);
+  background: rgba(12,16,22,0.6);
   border: 1px solid var(--glass-border);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  padding: 1.2rem 1.5rem;
+  padding: 1.5rem;
   border-radius: 4px;
-  margin-top: 2.5rem;
-  display: grid;
-  grid-template-columns: repeat(2,1fr);
-  gap: 0;
-  column-gap: 2rem;
+  z-index: 3;
 }
+
+@media (max-width: 900px) { .hero-panel { display: none; } }
 
 .panel-header {
   font-family: var(--font-mono);
-  font-size: 0.48rem;
+  font-size: 0.5rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--ice-dim);
-  margin-bottom: 0.9rem;
+  margin-bottom: 1.2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  grid-column: 1 / -1;
-  padding-bottom: 0.7rem;
-  border-bottom: 1px solid var(--glass-border);
 }
 
 .panel-live {
@@ -388,20 +385,20 @@ nav {
 }
 
 .panel-metric {
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
 }
 
 .metric-label {
   font-family: var(--font-mono);
-  font-size: 0.44rem;
-  letter-spacing: 0.18em;
+  font-size: 0.48rem;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--silver);
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.3rem;
 }
 
 .metric-bar-wrap {
-  height: 1px;
+  height: 2px;
   background: rgba(168,216,240,0.07);
   border-radius: 2px;
   overflow: hidden;
@@ -417,12 +414,12 @@ nav {
 
 .metric-val {
   font-family: var(--font-mono);
-  font-size: 0.44rem;
+  font-size: 0.48rem;
   color: var(--chrome);
   text-align: right;
 }
 
-@media (max-width: 600px) { .hero-panel { grid-template-columns: 1fr; } }
+
 
 /* ── SECTION: SKIN UNDER PRESSURE ───────────────── */
 .pressure-section {
@@ -618,14 +615,23 @@ nav {
 
 /* Custom select system */
 /* ── DIAGNOSTIC SELECTORS ────────────────────────── */
-.diag-selectors {
+/* Two-column diagnostic body: selectors | results */
+.diag-body {
   display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: clamp(1rem,2vw,1.5rem);
-  margin-bottom: clamp(3rem,5vw,5rem);
+  grid-template-columns: 380px 1fr;
+  gap: clamp(1.5rem,3vw,2.5rem);
+  align-items: start;
 }
 
-@media (max-width: 820px) { .diag-selectors { grid-template-columns: 1fr; } }
+@media (max-width: 960px) {
+  .diag-body { grid-template-columns: 1fr; }
+}
+
+.diag-selectors {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.8rem,1.5vw,1rem);
+}
 
 .selector-module {
   background: rgba(12,16,22,0.85);
@@ -722,13 +728,19 @@ nav {
   background: rgba(12,16,22,0.6);
   border: 1px solid var(--glass-border);
   border-radius: 4px;
-  padding: clamp(2rem,4vw,3.5rem);
+  padding: clamp(1.8rem,3vw,2.8rem);
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  gap: 2rem;
+  align-items: start;
   transition: border-color 0.5s, box-shadow 0.5s;
-  position: relative;
+  position: sticky;
+  top: 6rem;
   overflow: hidden;
+}
+
+@media (max-width: 960px) {
+  .state-panel { position: relative; top: auto; grid-template-columns: 1fr; }
 }
 
 @media (max-width: 700px) { .state-panel { grid-template-columns: 1fr; } }
@@ -817,6 +829,37 @@ nav {
 }
 
 /* State meters */
+.skin-score-block {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--glass-border);
+}
+
+.skin-score-label {
+  font-family: var(--font-mono);
+  font-size: 0.44rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--ice-dim);
+  margin-bottom: 0.5rem;
+}
+
+.skin-score-num {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  color: var(--ice);
+  margin-bottom: 0.3rem;
+}
+
+.skin-score-sub {
+  font-family: var(--font-mono);
+  font-size: 0.44rem;
+  letter-spacing: 0.18em;
+  color: var(--silver);
+}
+
 .state-meters {
   position: relative;
   z-index: 1;
@@ -1122,12 +1165,13 @@ nav {
 }
 
 .product-title {
-  font-family: var(--font-display);
-  font-size: clamp(1.1rem,1.8vw,1.4rem);
-  letter-spacing: 0.08em;
+  font-family: var(--font-body);
+  font-size: clamp(1rem,1.6vw,1.25rem);
+  font-weight: 400;
+  letter-spacing: 0.06em;
   color: var(--white);
   margin-bottom: 0.45rem;
-  line-height: 1.05;
+  line-height: 1.1;
 }
 
 .product-desc {
@@ -1457,6 +1501,94 @@ footer {
 
 @media (max-width: 500px) { footer { flex-direction: column; text-align: center; } }
 
+
+/* ── GLITCH MARQUEE STRIP ────────────────────────── */
+.glitch-strip {
+  overflow: hidden;
+  padding: clamp(2.5rem,5vw,4rem) 0;
+  position: relative;
+  background: var(--bg);
+  border-top: 1px solid rgba(157,196,216,0.06);
+  border-bottom: 1px solid rgba(157,196,216,0.06);
+}
+
+.glitch-strip::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right,
+    var(--bg) 0%,
+    transparent 8%,
+    transparent 92%,
+    var(--bg) 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.glitch-track {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 22s linear infinite;
+  will-change: transform;
+}
+
+.glitch-track-reverse {
+  animation-direction: reverse;
+  animation-duration: 28s;
+  margin-top: 0.8rem;
+}
+
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.glitch-item {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.5rem,4vw,3rem);
+  padding-right: clamp(1.5rem,4vw,3rem);
+  white-space: nowrap;
+}
+
+.glitch-word {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem,4vw,3.2rem);
+  letter-spacing: 0.12em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(157,196,216,0.18);
+  text-transform: uppercase;
+  position: relative;
+  transition: color 0.2s, -webkit-text-stroke 0.2s;
+}
+
+.glitch-word.filled {
+  color: var(--chrome);
+  -webkit-text-stroke: 1px transparent;
+}
+
+.glitch-dot {
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: rgba(157,196,216,0.25);
+  flex-shrink: 0;
+}
+
+/* Glitch flicker on random words */
+@keyframes glitchFlicker {
+  0%,95%,100%  { opacity: 1; transform: none; clip-path: none; }
+  96% { opacity: 0.8; transform: translateX(2px); clip-path: inset(20% 0 60% 0); }
+  97% { opacity: 1; transform: translateX(-1px); clip-path: inset(60% 0 10% 0); }
+  98% { opacity: 0.9; transform: none; clip-path: none; }
+}
+
+.glitch-word:nth-child(5n) {
+  animation: glitchFlicker 8s ease-in-out infinite;
+}
+.glitch-word:nth-child(7n) {
+  animation: glitchFlicker 12s ease-in-out infinite 3s;
+}
+
 </style>
 </head>
 <body>
@@ -1491,7 +1623,7 @@ footer {
   <div class="hero-content">
     <div class="hero-readout">
       <div class="readout-line"></div>
-      <span class="readout-text">STATIC™ / Skin Recovery System / v2.4</span>
+      <span class="readout-text">STATIC™ / Skin Recovery System</span>
     </div>
 
     <h1 class="hero-headline">
@@ -1518,32 +1650,33 @@ footer {
         </div>
       </div>
     </div>
-    <!-- Skin readout panel — below headline -->
-    <div class="hero-panel">
-      <div class="panel-header">
-        <span>SKIN READOUT</span>
-        <span class="panel-live">● LIVE</span>
-      </div>
-      <div class="panel-metric">
-        <div class="metric-label">Cortisol Index</div>
-        <div class="metric-bar-wrap"><div class="metric-bar" style="width:78%"></div></div>
-        <div class="metric-val">78%</div>
-      </div>
-      <div class="panel-metric">
-        <div class="metric-label">Barrier Function</div>
-        <div class="metric-bar-wrap"><div class="metric-bar" style="width:42%"></div></div>
-        <div class="metric-val">42%</div>
-      </div>
-      <div class="panel-metric">
-        <div class="metric-label">Blue Light Stress</div>
-        <div class="metric-bar-wrap"><div class="metric-bar" style="width:91%"></div></div>
-        <div class="metric-val">91%</div>
-      </div>
-      <div class="panel-metric">
-        <div class="metric-label">Recovery Rate</div>
-        <div class="metric-bar-wrap"><div class="metric-bar" style="width:31%"></div></div>
-        <div class="metric-val">31%</div>
-      </div>
+  </div>
+
+  <!-- Skin readout panel — tall, absolute right -->
+  <div class="hero-panel">
+    <div class="panel-header">
+      <span>SKIN READOUT</span>
+      <span class="panel-live">● LIVE</span>
+    </div>
+    <div class="panel-metric">
+      <div class="metric-label">Cortisol Index</div>
+      <div class="metric-bar-wrap"><div class="metric-bar" style="width:78%"></div></div>
+      <div class="metric-val">78%</div>
+    </div>
+    <div class="panel-metric">
+      <div class="metric-label">Barrier Function</div>
+      <div class="metric-bar-wrap"><div class="metric-bar" style="width:42%"></div></div>
+      <div class="metric-val">42%</div>
+    </div>
+    <div class="panel-metric">
+      <div class="metric-label">Blue Light Stress</div>
+      <div class="metric-bar-wrap"><div class="metric-bar" style="width:91%"></div></div>
+      <div class="metric-val">91%</div>
+    </div>
+    <div class="panel-metric">
+      <div class="metric-label">Recovery Rate</div>
+      <div class="metric-bar-wrap"><div class="metric-bar" style="width:31%"></div></div>
+      <div class="metric-val">31%</div>
     </div>
   </div>
 </section>
@@ -1561,78 +1694,84 @@ footer {
       <p class="diag-intro reveal">Select your current state. STATIC™ calibrates your recovery protocol in real time — adjusting formulations, textures, and rituals to your exact condition.</p>
     </div>
 
-    <div class="diag-selectors reveal">
+    <div class="diag-body reveal">
 
-      <!-- 01: Current State -->
-      <div class="selector-module">
-        <div class="sel-step">01 / 03</div>
-        <div class="sel-question">What's your<br>current state?</div>
-        <div class="sel-options sel-options-scroll" id="stateOptions">
-          <button class="sel-pill active" data-value="overstimulated" data-group="state">
-            <span class="sel-pill-dot"></span>Overstimulated
-          </button>
-          <button class="sel-pill" data-value="sleep-deprived" data-group="state">
-            <span class="sel-pill-dot"></span>Sleep Deprived
-          </button>
-          <button class="sel-pill" data-value="burnt-out" data-group="state">
-            <span class="sel-pill-dot"></span>Burnt Out
-          </button>
-          <button class="sel-pill" data-value="mentally-foggy" data-group="state">
-            <span class="sel-pill-dot"></span>Mentally Foggy
-          </button>
-          <button class="sel-pill" data-value="hyperconnected" data-group="state">
-            <span class="sel-pill-dot"></span>Hyperconnected
-          </button>
-          <button class="sel-pill" data-value="running-on-empty" data-group="state">
-            <span class="sel-pill-dot"></span>Running on Empty
-          </button>
+      <!-- LEFT: stacked selectors -->
+      <div class="diag-selectors">
+
+        <!-- 01: Current State -->
+        <div class="selector-module">
+          <div class="sel-step">01 / 03</div>
+          <div class="sel-question">What's your<br>current state?</div>
+          <div class="sel-options" id="stateOptions">
+            <button class="sel-pill active" data-value="overstimulated" data-group="state">
+              <span class="sel-pill-dot"></span>Overstimulated
+            </button>
+            <button class="sel-pill" data-value="sleep-deprived" data-group="state">
+              <span class="sel-pill-dot"></span>Sleep Deprived
+            </button>
+            <button class="sel-pill" data-value="burnt-out" data-group="state">
+              <span class="sel-pill-dot"></span>Burnt Out
+            </button>
+            <button class="sel-pill" data-value="mentally-foggy" data-group="state">
+              <span class="sel-pill-dot"></span>Mentally Foggy
+            </button>
+            <button class="sel-pill" data-value="hyperconnected" data-group="state">
+              <span class="sel-pill-dot"></span>Hyperconnected
+            </button>
+          </div>
         </div>
-      </div>
 
-      <!-- 02: Exposure Level -->
-      <div class="selector-module">
-        <div class="sel-step">02 / 03</div>
-        <div class="sel-question">Daily screen<br>exposure?</div>
-        <div class="sel-options" id="exposureOptions">
-          <button class="sel-pill active" data-value="2hr" data-group="exposure">
-            <span class="sel-pill-dot"></span>Under 2 hours
-          </button>
-          <button class="sel-pill" data-value="6hr" data-group="exposure">
-            <span class="sel-pill-dot"></span>4–6 hours
-          </button>
-          <button class="sel-pill" data-value="10hr" data-group="exposure">
-            <span class="sel-pill-dot"></span>8–10 hours
-          </button>
-          <button class="sel-pill" data-value="endless" data-group="exposure">
-            <span class="sel-pill-dot"></span>Endless scrolling
-          </button>
+        <!-- 02: Exposure Level -->
+        <div class="selector-module">
+          <div class="sel-step">02 / 03</div>
+          <div class="sel-question">Daily screen<br>exposure?</div>
+          <div class="sel-options" id="exposureOptions">
+            <button class="sel-pill active" data-value="2hr" data-group="exposure">
+              <span class="sel-pill-dot"></span>Under 2 hours
+            </button>
+            <button class="sel-pill" data-value="6hr" data-group="exposure">
+              <span class="sel-pill-dot"></span>4–6 hours
+            </button>
+            <button class="sel-pill" data-value="10hr" data-group="exposure">
+              <span class="sel-pill-dot"></span>8–10 hours
+            </button>
+            <button class="sel-pill" data-value="endless" data-group="exposure">
+              <span class="sel-pill-dot"></span>Endless scrolling
+            </button>
+            <button class="sel-pill" data-value="overnight" data-group="exposure">
+              <span class="sel-pill-dot"></span>Screen in bed / overnight
+            </button>
+          </div>
         </div>
-      </div>
 
-      <!-- 03: Recovery Mode -->
-      <div class="selector-module">
-        <div class="sel-step">03 / 03</div>
-        <div class="sel-question">Select your<br>recovery mode.</div>
-        <div class="sel-options" id="modeOptions">
-          <button class="sel-pill active" data-value="reset" data-group="mode">
-            <span class="sel-pill-dot"></span>Reset
-          </button>
-          <button class="sel-pill" data-value="buffer" data-group="mode">
-            <span class="sel-pill-dot"></span>Buffer
-          </button>
-          <button class="sel-pill" data-value="recover" data-group="mode">
-            <span class="sel-pill-dot"></span>Recover
-          </button>
-          <button class="sel-pill" data-value="sleep-mode" data-group="mode">
-            <span class="sel-pill-dot"></span>Sleep Mode
-          </button>
+        <!-- 03: Recovery Mode -->
+        <div class="selector-module">
+          <div class="sel-step">03 / 03</div>
+          <div class="sel-question">Select your<br>recovery mode.</div>
+          <div class="sel-options" id="modeOptions">
+            <button class="sel-pill active" data-value="reset" data-group="mode">
+              <span class="sel-pill-dot"></span>Reset
+            </button>
+            <button class="sel-pill" data-value="buffer" data-group="mode">
+              <span class="sel-pill-dot"></span>Buffer
+            </button>
+            <button class="sel-pill" data-value="recover" data-group="mode">
+              <span class="sel-pill-dot"></span>Recover
+            </button>
+            <button class="sel-pill" data-value="sleep-mode" data-group="mode">
+              <span class="sel-pill-dot"></span>Sleep Mode
+            </button>
+            <button class="sel-pill" data-value="maintenance" data-group="mode">
+              <span class="sel-pill-dot"></span>Maintenance
+            </button>
+          </div>
         </div>
-      </div>
 
-    </div>
+      </div><!-- /diag-selectors -->
 
-    <!-- Dynamic recommendation panel -->
-    <div class="state-panel reveal" id="statePanel">
+      <!-- RIGHT: live results panel, sticky on desktop -->
+      <div class="state-panel" id="statePanel">
       <div class="state-recommendation">
         <div class="rec-overline" id="recOverline">RECOMMENDED PROTOCOL</div>
         <div class="rec-heading" id="recHeading">RESET SEQUENCE</div>
@@ -1683,8 +1822,17 @@ footer {
           <div class="meter-track"><div class="meter-fill" id="m5" style="width:31%"></div></div>
           <span class="meter-num" id="m5v">31%</span>
         </div>
+
+        <!-- Skin score block — fills vertical space, adds hierarchy -->
+        <div class="skin-score-block">
+          <div class="skin-score-label">OVERALL SKIN SCORE</div>
+          <div class="skin-score-num" id="skinScore">34</div>
+          <div class="skin-score-sub">Recovery recommended</div>
+        </div>
       </div>
-    </div>
+    </div><!-- /state-panel -->
+
+    </div><!-- /diag-body -->
 
   </div>
 </section>
@@ -1732,6 +1880,56 @@ footer {
   </div>
 </section>
 
+
+<!-- ═══════════════════════════════
+     GLITCH MARQUEE STRIP
+══════════════════════════════════ -->
+<div class="glitch-strip" aria-hidden="true">
+  <div class="glitch-track">
+    <div class="glitch-item">
+      <span class="glitch-word filled">OVERSTIMULATED</span><span class="glitch-dot"></span>
+      <span class="glitch-word">BURNT OUT</span><span class="glitch-dot"></span>
+      <span class="glitch-word filled">SLEEP DEPRIVED</span><span class="glitch-dot"></span>
+      <span class="glitch-word">ALWAYS ONLINE</span><span class="glitch-dot"></span>
+      <span class="glitch-word filled">DISCONNECTED</span><span class="glitch-dot"></span>
+      <span class="glitch-word">MENTALLY FOGGY</span><span class="glitch-dot"></span>
+      <span class="glitch-word filled">HYPERCONNECTED</span><span class="glitch-dot"></span>
+    </div>
+    <!-- duplicate for seamless loop -->
+    <div class="glitch-item">
+      <span class="glitch-word filled">OVERSTIMULATED</span><span class="glitch-dot"></span>
+      <span class="glitch-word">BURNT OUT</span><span class="glitch-dot"></span>
+      <span class="glitch-word filled">SLEEP DEPRIVED</span><span class="glitch-dot"></span>
+      <span class="glitch-word">ALWAYS ONLINE</span><span class="glitch-dot"></span>
+      <span class="glitch-word filled">DISCONNECTED</span><span class="glitch-dot"></span>
+      <span class="glitch-word">MENTALLY FOGGY</span><span class="glitch-dot"></span>
+      <span class="glitch-word filled">HYPERCONNECTED</span><span class="glitch-dot"></span>
+    </div>
+  </div>
+  <div class="glitch-track glitch-track-reverse">
+    <div class="glitch-item">
+      <span class="glitch-word">STATIC™</span><span class="glitch-dot"></span>
+      <span class="glitch-word filled">RESET</span><span class="glitch-dot"></span>
+      <span class="glitch-word">RECOVER</span><span class="glitch-dot"></span>
+      <span class="glitch-word filled">BUFFER</span><span class="glitch-dot"></span>
+      <span class="glitch-word">SLEEP MODE</span><span class="glitch-dot"></span>
+      <span class="glitch-word filled">SIGNAL CLEAR</span><span class="glitch-dot"></span>
+      <span class="glitch-word">SKIN RECOVERY</span><span class="glitch-dot"></span>
+      <span class="glitch-word filled">STATIC™</span><span class="glitch-dot"></span>
+    </div>
+    <div class="glitch-item">
+      <span class="glitch-word">STATIC™</span><span class="glitch-dot"></span>
+      <span class="glitch-word filled">RESET</span><span class="glitch-dot"></span>
+      <span class="glitch-word">RECOVER</span><span class="glitch-dot"></span>
+      <span class="glitch-word filled">BUFFER</span><span class="glitch-dot"></span>
+      <span class="glitch-word">SLEEP MODE</span><span class="glitch-dot"></span>
+      <span class="glitch-word filled">SIGNAL CLEAR</span><span class="glitch-dot"></span>
+      <span class="glitch-word">SKIN RECOVERY</span><span class="glitch-dot"></span>
+      <span class="glitch-word filled">STATIC™</span><span class="glitch-dot"></span>
+    </div>
+  </div>
+</div>
+
 <!-- ═══════════════════════════════
      PRODUCT PROTOCOLS
 ══════════════════════════════════ -->
@@ -1740,16 +1938,6 @@ footer {
     <div class="reveal">
       <div class="overline">Recovery Protocols</div>
       <h2 class="products-heading">THE SYSTEM</h2>
-    </div>
-
-    <div class="reveal">
-      <div class="protocol-tabs">
-        <button class="protocol-tab active" data-tab="all">All Protocols</button>
-        <button class="protocol-tab" data-tab="reset">Reset</button>
-        <button class="protocol-tab" data-tab="buffer">Buffer</button>
-        <button class="protocol-tab" data-tab="recover">Recover</button>
-        <button class="protocol-tab" data-tab="sleep">Sleep Mode</button>
-      </div>
     </div>
 
     <div class="products-grid reveal">
@@ -1877,6 +2065,23 @@ footer {
         </div>
       </div>
 
+      <div class="product-card">
+        <div class="product-visual" style="background: linear-gradient(135deg, #0e1620 0%, #162030 100%);">
+          <div class="product-orb" style="background:radial-gradient(circle, rgba(160,190,210,0.13) 0%, transparent 70%)"></div>
+          <div class="product-tag-overlay">CLEANSE</div>
+        </div>
+        <div class="product-info">
+          <div class="product-code">STK-005 / CLEANSE</div>
+          <div class="product-title">SIGNAL CLEAR</div>
+          <div class="product-desc">First step in every protocol. Removes blue light residue, environmental data, and oxidative buildup without stripping the barrier.</div>
+          <div class="product-ingredients">
+            <span class="ingredient-pill">Micellar Complex</span>
+            <span class="ingredient-pill">PHA Acid</span>
+            <span class="ingredient-pill">Oat Extract</span>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1909,7 +2114,7 @@ footer {
       <div class="campaign-tile tile-app">
         <div class="tile-inner">
           <span class="tile-label">App / Diagnostic Interface</span>
-          <div class="tile-headline" style="font-size:clamp(1.5rem,3vw,2.2rem)">SKIN OS<br>v2.4</div>
+          <div class="tile-headline" style="font-size:clamp(1.5rem,3vw,2.2rem)">SKIN OS</div>
           <div class="app-mockup">
             <div class="app-row"><div class="app-row-fill" style="width:85%"></div></div>
             <div class="app-row"><div class="app-row-fill" style="width:60%"></div></div>
@@ -1948,14 +2153,13 @@ footer {
       <span>·</span>
       <span>Skin Recovery System</span>
       <span>·</span>
-      <span>v2.4</span>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="footer-brand">STATIC™</div>
-  <div class="footer-copy">© 2025 STATIC™ — Visual Concept / Molly Curtis</div>
+
 </footer>
 
 <script>
@@ -2092,6 +2296,43 @@ function updateState(value) {
   });
 
   document.documentElement.style.setProperty('--state-hue', d.hue);
+
+  // Update overall skin score (inverse of avg stress)
+  const avg = Math.round(d.meters.reduce((a,b)=>a+b,0) / d.meters.length);
+  const score = Math.max(10, 100 - avg);
+  const scoreEl = document.getElementById('skinScore');
+  if (scoreEl) scoreEl.textContent = score;
+  const subEl = scoreEl && scoreEl.nextElementSibling;
+  if (subEl) subEl.textContent = score < 40 ? 'Recovery recommended' : score < 65 ? 'Maintenance mode' : 'Optimal range';
+}
+
+/* Track current selections */
+let currentState = 'overstimulated';
+let currentExposure = '2hr';
+let currentMode = 'reset';
+
+function recalcScore() {
+  const exposureBoost = {'2hr': 0, '6hr': 8, '10hr': 18, 'endless': 28, 'overnight': 24};
+  const modeBoost = {'reset': 0, 'buffer': -5, 'recover': -8, 'sleep-mode': -12, 'maintenance': -3};
+  const base = parseInt(document.getElementById('skinScore').textContent) || 34;
+  // Re-derive from state data + modifiers
+  const stateD = stateData[currentState];
+  if (!stateD) return;
+  const avg = Math.round(stateD.meters.reduce((a,b)=>a+b,0) / stateD.meters.length);
+  const expAdd  = exposureBoost[currentExposure] || 0;
+  const modeAdd = modeBoost[currentMode] || 0;
+  const score   = Math.max(5, Math.min(98, 100 - avg + expAdd + modeAdd));
+  const scoreEl = document.getElementById('skinScore');
+  if (scoreEl) scoreEl.textContent = score;
+  const subEl = scoreEl && scoreEl.nextElementSibling;
+  if (subEl) subEl.textContent = score < 40 ? 'Recovery recommended' : score < 65 ? 'Maintenance mode' : 'Optimal range';
+  // update blue light meter from exposure
+  const m3Map = {'2hr': 28, '6hr': 60, '10hr': 82, 'endless': 98, 'overnight': 95};
+  const blueVal = m3Map[currentExposure];
+  if (blueVal) {
+    document.getElementById('m3').style.width  = blueVal + '%';
+    document.getElementById('m3v').textContent = blueVal + '%';
+  }
 }
 
 /* Pill selectors */
@@ -2099,21 +2340,11 @@ document.querySelectorAll('.sel-pill').forEach(pill => {
   pill.addEventListener('click', () => {
     const group = pill.dataset.group;
     const value = pill.dataset.value;
-
-    // deactivate siblings
     document.querySelectorAll(`.sel-pill[data-group="${group}"]`).forEach(p => p.classList.remove('active'));
     pill.classList.add('active');
-
-    if (group === 'state') {
-      updateState(value);
-    } else if (group === 'exposure') {
-      const m3Map = {'2hr': 28, '6hr': 60, '10hr': 82, 'endless': 98};
-      const val = m3Map[value];
-      if (val) {
-        document.getElementById('m3').style.width  = val + '%';
-        document.getElementById('m3v').textContent = val + '%';
-      }
-    }
+    if (group === 'state')    { currentState    = value; updateState(value); }
+    if (group === 'exposure') { currentExposure = value; recalcScore(); }
+    if (group === 'mode')     { currentMode     = value; recalcScore(); }
   });
 });
 
