@@ -35,6 +35,20 @@
   /* state accent — changes per selection */
   --state-hue:   rgba(168,216,240,0.12);
   --state-line:  rgba(168,216,240,0.3);
+
+  /* spacing scale */
+  --sp-xs:   0.5rem;
+  --sp-sm:   1rem;
+  --sp-md:   2rem;
+  --sp-lg:   clamp(3rem,6vw,5rem);
+  --sp-xl:   clamp(5rem,10vw,9rem);
+  --sp-2xl:  clamp(7rem,14vw,12rem);
+
+  /* max-width system */
+  --mw-site:    1600px;
+  --mw-content: 1320px;
+  --mw-text:    680px;
+  --mw-narrow:  520px;
 }
 
 /* ── RESET ───────────────────────────────────────── */
@@ -169,7 +183,10 @@ nav {
   display: flex;
   align-items: center;
   overflow: hidden;
-  padding: 8rem clamp(1.5rem,6vw,5rem) 4rem;
+  padding: 8rem clamp(1.5rem,4vw,3rem) 4rem;
+  max-width: var(--mw-site);
+  margin: 0 auto;
+  width: 100%;
 }
 
 /* ambient grid */
@@ -423,10 +440,15 @@ nav {
 
 /* ── SECTION: SKIN UNDER PRESSURE ───────────────── */
 .pressure-section {
-  padding: clamp(5rem,10vw,9rem) clamp(1.5rem,6vw,5rem);
+  padding: var(--sp-xl) clamp(1.5rem,4vw,3rem);
   position: relative;
   overflow: hidden;
   background: linear-gradient(to bottom, var(--bg) 0%, var(--bg-2) 100%);
+}
+
+.pressure-inner {
+  max-width: var(--mw-content);
+  margin: 0 auto;
 }
 
 .pressure-section::before {
@@ -460,9 +482,8 @@ nav {
 .pressure-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(3rem,6vw,6rem);
+  gap: clamp(3rem,5vw,5rem);
   align-items: center;
-  max-width: 1300px;
 }
 
 @media (max-width: 820px) { .pressure-grid { grid-template-columns: 1fr; } }
@@ -569,7 +590,7 @@ nav {
 
 /* ── SECTION: DIAGNOSTICS ────────────────────────── */
 .diag-section {
-  padding: clamp(5rem,10vw,9rem) clamp(1.5rem,6vw,5rem);
+  padding: var(--sp-xl) clamp(1.5rem,4vw,3rem);
   background: var(--bg-2);
   position: relative;
   overflow: hidden;
@@ -584,7 +605,7 @@ nav {
 }
 
 .diag-inner {
-  max-width: 1300px;
+  max-width: var(--mw-content);
   margin: 0 auto;
 }
 
@@ -600,17 +621,18 @@ nav {
 
 .diag-heading {
   font-family: var(--font-display);
-  font-size: clamp(3rem,7vw,5.5rem);
+  font-size: clamp(2.8rem,5.5vw,5rem);
   line-height: 0.95;
   letter-spacing: 0.04em;
   color: var(--white);
 }
 
 .diag-intro {
-  font-size: clamp(0.82rem,1.2vw,0.92rem);
-  line-height: 1.85;
+  font-size: clamp(0.85rem,1.2vw,0.96rem);
+  line-height: 1.9;
   color: var(--silver);
-  font-weight: 200;
+  font-weight: 300;
+  max-width: var(--mw-narrow);
 }
 
 /* Custom select system */
@@ -618,8 +640,8 @@ nav {
 /* Two-column diagnostic body: selectors | results */
 .diag-body {
   display: grid;
-  grid-template-columns: 380px 1fr;
-  gap: clamp(1.5rem,3vw,2.5rem);
+  grid-template-columns: minmax(260px, 340px) 1fr;
+  gap: clamp(1.2rem,2.5vw,2rem);
   align-items: start;
 }
 
@@ -637,56 +659,78 @@ nav {
   background: rgba(12,16,22,0.85);
   border: 1px solid rgba(160,180,195,0.12);
   border-radius: 4px;
-  padding: 1.6rem 1.6rem 1.4rem;
+  padding: 1rem 1.2rem;
   transition: border-color 0.35s;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
 }
 
 .selector-module:hover { border-color: rgba(157,196,216,0.22); }
 
-/* Step label */
+/* Step + question row */
+.sel-header {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex-shrink: 0;
+}
+
 .sel-step {
   font-family: var(--font-mono);
-  font-size: 0.44rem;
-  letter-spacing: 0.3em;
+  font-size: 0.4rem;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--ice-dim);
-  margin-bottom: 0.5rem;
+  flex-shrink: 0;
 }
 
-/* Question */
+/* Question — strictly one line, no wrap */
 .sel-question {
   font-family: var(--font-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.14em;
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--chrome);
-  margin-bottom: 1.4rem;
-  line-height: 1.5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1;
 }
 
-/* Pill options */
+/* Scrollable pill list — fixed height, shows ~3 items, scroll for rest */
 .sel-options {
   display: flex;
   flex-direction: column;
-  gap: 0.45rem;
+  gap: 0.28rem;
+  height: 112px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(157,196,216,0.12) transparent;
+  padding-right: 4px;
 }
+
+.sel-options::-webkit-scrollbar { width: 2px; }
+.sel-options::-webkit-scrollbar-track { background: transparent; }
+.sel-options::-webkit-scrollbar-thumb { background: rgba(157,196,216,0.2); border-radius: 2px; }
 
 .sel-pill {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0.65rem 1rem;
+  gap: 0.65rem;
+  padding: 0.42rem 0.7rem;
   border: 1px solid rgba(160,180,195,0.1);
   border-radius: 3px;
   background: transparent;
   color: var(--silver);
   font-family: var(--font-mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.1em;
+  font-size: 0.58rem;
+  letter-spacing: 0.08em;
   cursor: none;
   transition: border-color 0.25s, color 0.25s, background 0.25s;
   text-align: left;
   width: 100%;
+  flex-shrink: 0;
 }
 
 .sel-pill:hover {
@@ -715,35 +759,30 @@ nav {
   box-shadow: 0 0 6px rgba(157,196,216,0.4);
 }
 
-/* Scrollable if many options */
-.sel-options-scroll {
-  max-height: 220px;
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(157,196,216,0.15) transparent;
-}
 
 /* Dynamic state panel */
 .state-panel {
   background: rgba(12,16,22,0.6);
   border: 1px solid var(--glass-border);
   border-radius: 4px;
-  padding: clamp(1.8rem,3vw,2.8rem);
+  padding: clamp(1.6rem,2.5vw,2.2rem);
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
-  align-items: start;
+  align-items: stretch;
   transition: border-color 0.5s, box-shadow 0.5s;
   position: sticky;
-  top: 6rem;
+  top: 5rem;
   overflow: hidden;
 }
 
 @media (max-width: 960px) {
-  .state-panel { position: relative; top: auto; grid-template-columns: 1fr; }
+  .state-panel {
+    position: relative;
+    top: auto;
+    grid-template-columns: 1fr;
+  }
 }
-
-@media (max-width: 700px) { .state-panel { grid-template-columns: 1fr; } }
 
 .state-panel::before {
   content: '';
@@ -757,38 +796,45 @@ nav {
 .state-recommendation {
   position: relative;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.rec-products {
+  margin-top: auto;
 }
 
 .rec-overline {
   font-family: var(--font-mono);
-  font-size: 0.5rem;
-  letter-spacing: 0.3em;
+  font-size: 0.48rem;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--ice-dim);
-  margin-bottom: 1rem;
+  margin-bottom: 0.6rem;
 }
 
 .rec-heading {
   font-family: var(--font-display);
-  font-size: clamp(2rem,4vw,3rem);
+  font-size: clamp(2rem,3.5vw,2.8rem);
   letter-spacing: 0.06em;
   color: var(--white);
-  margin-bottom: 1rem;
+  margin-bottom: 0.85rem;
   line-height: 1;
 }
 
 .rec-body {
-  font-size: clamp(0.78rem,1.1vw,0.88rem);
+  font-size: clamp(0.88rem,1.2vw,1rem);
   line-height: 1.85;
   color: var(--silver);
-  font-weight: 200;
-  margin-bottom: 1.5rem;
+  font-weight: 300;
+  margin-bottom: 1.2rem;
+  max-width: 38ch;
 }
 
 .rec-products {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.4rem;
 }
 
 .rec-product {
@@ -814,48 +860,54 @@ nav {
 
 .product-name {
   font-family: var(--font-mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.12em;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
   color: var(--chrome);
 }
 
 .product-category {
   margin-left: auto;
   font-family: var(--font-mono);
-  font-size: 0.45rem;
-  letter-spacing: 0.15em;
+  font-size: 0.52rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--silver);
+  white-space: nowrap;
 }
 
 /* State meters */
+.state-meters {
+  display: flex;
+  flex-direction: column;
+}
+
 .skin-score-block {
-  margin-top: 2rem;
-  padding-top: 1.5rem;
+  margin-top: auto;
+  padding-top: 1.2rem;
   border-top: 1px solid var(--glass-border);
 }
 
 .skin-score-label {
   font-family: var(--font-mono);
-  font-size: 0.44rem;
+  font-size: 0.46rem;
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--ice-dim);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
 }
 
 .skin-score-num {
   font-family: var(--font-display);
-  font-size: 4rem;
+  font-size: clamp(3rem,5vw,4.5rem);
   line-height: 1;
   letter-spacing: 0.04em;
   color: var(--ice);
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.25rem;
 }
 
 .skin-score-sub {
   font-family: var(--font-mono);
-  font-size: 0.44rem;
+  font-size: 0.48rem;
   letter-spacing: 0.18em;
   color: var(--silver);
 }
@@ -863,30 +915,32 @@ nav {
 .state-meters {
   position: relative;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .meter-title {
   font-family: var(--font-mono);
-  font-size: 0.5rem;
+  font-size: 0.48rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--ice-dim);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .meter-row {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  margin-bottom: 1rem;
+  gap: 0.8rem;
+  margin-bottom: 0.75rem;
 }
 
 .meter-key {
   font-family: var(--font-mono);
-  font-size: 0.5rem;
-  letter-spacing: 0.1em;
+  font-size: 0.58rem;
+  letter-spacing: 0.06em;
   color: var(--silver);
-  width: 90px;
+  width: 96px;
   flex-shrink: 0;
 }
 
@@ -907,9 +961,9 @@ nav {
 
 .meter-num {
   font-family: var(--font-mono);
-  font-size: 0.48rem;
+  font-size: 0.58rem;
   color: var(--chrome);
-  width: 28px;
+  width: 32px;
   text-align: right;
   flex-shrink: 0;
 }
@@ -1200,7 +1254,7 @@ nav {
 
 /* ── SECTION: CAMPAIGN VISUALS ───────────────────── */
 .campaign-section {
-  padding: clamp(5rem,10vw,9rem) clamp(1.5rem,6vw,5rem);
+  padding: var(--sp-xl) clamp(1.5rem,4vw,3rem);
   background: var(--bg-2);
   position: relative;
   overflow: hidden;
@@ -1214,7 +1268,7 @@ nav {
   background: linear-gradient(to right, transparent, rgba(168,216,240,0.1), transparent);
 }
 
-.campaign-inner { max-width: 1300px; margin: 0 auto; }
+.campaign-inner { max-width: var(--mw-content); margin: 0 auto; }
 
 .campaign-heading {
   font-family: var(--font-display);
@@ -1358,7 +1412,7 @@ nav {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  padding: clamp(5rem,10vw,9rem) clamp(1.5rem,6vw,5rem);
+  padding: var(--sp-xl) clamp(1.5rem,4vw,3rem);
   text-align: center;
 }
 
@@ -1382,7 +1436,7 @@ nav {
 .closing-content {
   position: relative;
   z-index: 2;
-  max-width: 800px;
+  max-width: var(--mw-text);
 }
 
 .closing-overline {
@@ -1589,6 +1643,14 @@ footer {
   animation: glitchFlicker 12s ease-in-out infinite 3s;
 }
 
+
+
+/* ── ULTRA-WIDE GUARD ────────────────────────────── */
+section {
+  max-width: var(--mw-site);
+  margin-left: auto;
+  margin-right: auto;
+}
 </style>
 </head>
 <body>
@@ -1701,8 +1763,7 @@ footer {
 
         <!-- 01: Current State -->
         <div class="selector-module">
-          <div class="sel-step">01 / 03</div>
-          <div class="sel-question">What's your<br>current state?</div>
+          <div class="sel-header"><span class="sel-question">What's your current state?</span><span class="sel-step">01/03</span></div>
           <div class="sel-options" id="stateOptions">
             <button class="sel-pill active" data-value="overstimulated" data-group="state">
               <span class="sel-pill-dot"></span>Overstimulated
@@ -1724,8 +1785,7 @@ footer {
 
         <!-- 02: Exposure Level -->
         <div class="selector-module">
-          <div class="sel-step">02 / 03</div>
-          <div class="sel-question">Daily screen<br>exposure?</div>
+          <div class="sel-header"><span class="sel-question">Daily screen exposure?</span><span class="sel-step">02/03</span></div>
           <div class="sel-options" id="exposureOptions">
             <button class="sel-pill active" data-value="2hr" data-group="exposure">
               <span class="sel-pill-dot"></span>Under 2 hours
@@ -1747,8 +1807,7 @@ footer {
 
         <!-- 03: Recovery Mode -->
         <div class="selector-module">
-          <div class="sel-step">03 / 03</div>
-          <div class="sel-question">Select your<br>recovery mode.</div>
+          <div class="sel-header"><span class="sel-question">Select your recovery mode.</span><span class="sel-step">03/03</span></div>
           <div class="sel-options" id="modeOptions">
             <button class="sel-pill active" data-value="reset" data-group="mode">
               <span class="sel-pill-dot"></span>Reset
@@ -1841,6 +1900,7 @@ footer {
      SKIN UNDER PRESSURE
 ══════════════════════════════════ -->
 <section class="pressure-section">
+  <div class="pressure-inner">
   <div class="pressure-grid">
     <div class="reveal">
       <div class="overline">Skin Under Pressure</div>
