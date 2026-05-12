@@ -5,19 +5,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Molly Curtis — Creative Digital Marketer</title>
-
-  <!-- Google tag (gtag.js) -->
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P2HJ0XDTL6"></script>
-
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-P2HJ0XDTL6');
-  </script>
-
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     :root {
@@ -58,7 +45,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(
 .btn-outline:hover { border-color: #b94fc8; }
 
 /* ── HERO ── */
-.hero { display: flex; align-items: center; padding: 10rem 2.5rem 6rem; }
+.hero { display: flex; align-items: center; padding: 12rem 2.5rem 8rem; }
 .hero-inner { max-width: var(--mw); margin: 0 auto; display: grid; grid-template-columns: 1fr 420px; align-items: center; gap: 5rem; width: 100%; }
 .hero-eyebrow { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--mid-gray); margin-bottom: 0.9rem; }
 .hero-name { font-family: 'Playfair Display', serif; font-size: clamp(3.6rem, 5vw, 5.8rem); line-height: 1.0; white-space: nowrap; margin-bottom: 0.4rem; text-shadow: 0 2px 20px rgba(200,64,200,0.08); }
@@ -244,16 +231,9 @@ footer { background: var(--gradient); color: rgba(255,255,255,0.92); text-align:
   /* Section headings 2 sizes bigger */
   .st { font-size: clamp(2.2rem, 3.6vw, 3.2rem); }
 
-  /* Hero: reduce top padding for tablet */
-  .hero { padding: 7rem 2rem 4rem; }
-
   /* Hero: tighter 2-col */
   .hero-inner { gap: 2.5rem; grid-template-columns: 1fr 300px; }
   .hero-img-wrap { width: 260px !important; height: 260px !important; }
-
-  /* Nav: hide middle links on tablet, keep logo + last 2 pills */
-  .nav-links li:not(:last-child):not(:nth-last-child(2)) { display: none; }
-  .nav-inner { padding: 0.9rem 1.5rem; }
 
   /* About: LEFT column stacks as before; RIGHT column goes inline (3 items side by side) */
   .about-grid { grid-template-columns: 1fr; gap: 2rem; }
@@ -629,8 +609,6 @@ footer { background: var(--gradient); color: rgba(255,255,255,0.92); text-align:
       <p>Eau Claire, WI &rarr; St. Paul, MN<br/><span style="font-size:0.78rem;color:#b94fc8;">Open to remote work</span></p>
     </div>
   </div>
-
-  <!-- Tablet: inline row (visible 768–1024px, rendered after about-text via JS-free CSS trick) -->
 </div>
 
 <!-- Tablet inline aside — sits below the grid on tablet, hidden on desktop and mobile -->
@@ -682,8 +660,6 @@ footer { background: var(--gradient); color: rgba(255,255,255,0.92); text-align:
   </div>
 </section>
 
-<!-- CONTACT with soft purple-gray background -->
-
 <section id="contact" class="contact-section-bg">
   <div class="inner">
     <div class="contact-box">
@@ -699,8 +675,6 @@ footer { background: var(--gradient); color: rgba(255,255,255,0.92); text-align:
     </div>
   </div>
 </section>
-
-<!-- PORTFOLIO FOOTER NAV -->
 
 <div class="portfolio-footer-nav">
   <p class="pf-label">Explore Projects</p>
@@ -722,7 +696,6 @@ footer { background: var(--gradient); color: rgba(255,255,255,0.92); text-align:
       <div class="pf-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
     </a>
   </div>
-
 </div>
 
 <footer>&copy; 2026 Molly Curtis</footer>
@@ -738,7 +711,6 @@ footer { background: var(--gradient); color: rgba(255,255,255,0.92); text-align:
   function closeProjectPanel() {
     document.getElementById('project-panel').classList.remove('open');
     document.body.style.overflow = '';
-    /* Reset form and success state after panel closes */
     setTimeout(function(){
       var form = document.getElementById('pp-form');
       var success = document.getElementById('pp-success');
