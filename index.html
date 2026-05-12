@@ -58,7 +58,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(
 .btn-outline:hover { border-color: #b94fc8; }
 
 /* ── HERO ── */
-.hero { display: flex; align-items: center; padding: 12rem 2.5rem 8rem; }
+.hero { display: flex; align-items: center; padding: 10rem 2.5rem 6rem; }
 .hero-inner { max-width: var(--mw); margin: 0 auto; display: grid; grid-template-columns: 1fr 420px; align-items: center; gap: 5rem; width: 100%; }
 .hero-eyebrow { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--mid-gray); margin-bottom: 0.9rem; }
 .hero-name { font-family: 'Playfair Display', serif; font-size: clamp(3.6rem, 5vw, 5.8rem); line-height: 1.0; white-space: nowrap; margin-bottom: 0.4rem; text-shadow: 0 2px 20px rgba(200,64,200,0.08); }
@@ -244,9 +244,16 @@ footer { background: var(--gradient); color: rgba(255,255,255,0.92); text-align:
   /* Section headings 2 sizes bigger */
   .st { font-size: clamp(2.2rem, 3.6vw, 3.2rem); }
 
+  /* Hero: reduce top padding for tablet */
+  .hero { padding: 7rem 2rem 4rem; }
+
   /* Hero: tighter 2-col */
   .hero-inner { gap: 2.5rem; grid-template-columns: 1fr 300px; }
   .hero-img-wrap { width: 260px !important; height: 260px !important; }
+
+  /* Nav: hide middle links on tablet, keep logo + last 2 pills */
+  .nav-links li:not(:last-child):not(:nth-last-child(2)) { display: none; }
+  .nav-inner { padding: 0.9rem 1.5rem; }
 
   /* About: LEFT column stacks as before; RIGHT column goes inline (3 items side by side) */
   .about-grid { grid-template-columns: 1fr; gap: 2rem; }
