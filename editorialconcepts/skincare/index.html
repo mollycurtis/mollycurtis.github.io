@@ -40,17 +40,23 @@
   --sp-xs:   0.5rem;
   --sp-sm:   1rem;
   --sp-md:   2rem;
-  --sp-sm:   clamp(1rem,1.5vw,1.5rem);
-  --sp-md:   clamp(1.5rem,2.5vw,2.5rem);
-  --sp-lg:   clamp(2rem,3vw,3rem);
-  --sp-xl:   clamp(2.5rem,4vw,4.5rem);
-  --sp-2xl:  clamp(3.5rem,5.5vw,6rem);
+  /* spacing: section-tight | section-standard | section-loose */
+  --section-tight:    clamp(2rem,3vw,3.5rem);
+  --section-standard: clamp(3rem,5vw,5.5rem);
+  --section-loose:    clamp(4rem,7vw,8rem);
 
-  /* max-width system */
+  /* component spacing */
+  --sp-xs:  0.5rem;
+  --sp-sm:  clamp(0.75rem,1.2vw,1.25rem);
+  --sp-md:  clamp(1.25rem,2vw,2rem);
+  --sp-lg:  clamp(2rem,3vw,3rem);
+  --sp-xl:  clamp(3rem,4.5vw,4.5rem);
+
+  /* containers */
   --mw-site:    1600px;
-  --mw-content: 1320px;
-  --mw-text:    680px;
-  --mw-narrow:  520px;
+  --mw-content: 1440px;
+  --mw-text:    780px;
+  --mw-narrow:  640px;
 }
 
 /* ── RESET ───────────────────────────────────────── */
@@ -161,7 +167,6 @@ nav {
   50% { opacity: 1; box-shadow: 0 0 6px var(--ice); }
 }
 
-@media (max-width: 600px) { .nav-links, .nav-status { display: none; } }
 
 /* ── SCANLINES OVERLAY ───────────────────────────── */
 .scanlines {
@@ -181,11 +186,11 @@ nav {
 /* ── HERO ─────────────────────────────────────────── */
 .hero {
   position: relative;
-  min-height: 100svh;
+  min-height: min(100svh, 900px);
   display: flex;
   align-items: center;
   overflow: hidden;
-  padding: clamp(5rem,8vw,8rem) clamp(1.5rem,4vw,3rem) clamp(3rem,4vw,4rem);
+  padding: clamp(4rem,6vw,7rem) clamp(1.5rem,4vw,3rem) clamp(2.5rem,3.5vw,4rem);
   max-width: var(--mw-site);
   margin: 0 auto;
   width: 100%;
@@ -240,9 +245,11 @@ nav {
 .hero-content {
   position: relative;
   z-index: 2;
-  max-width: 900px;
+  max-width: min(900px, 72vw);
   width: 100%;
 }
+
+@media (max-width: 960px) { .hero-content { max-width: 100%; } }
 
 /* biometric readout line */
 .hero-readout {
@@ -269,7 +276,7 @@ nav {
 /* ── ROTATING WORD HERO — the signature moment ── */
 .hero-headline {
   font-family: var(--font-display);
-  font-size: clamp(3.5rem, 7vw, 7rem);
+  font-size: clamp(3rem,5.5vw,6.5rem);
   line-height: 0.95;
   letter-spacing: 0.04em;
   color: var(--white);
@@ -341,8 +348,8 @@ nav {
 }
 
 .hero-sub-text {
-  max-width: 400px;
-  font-size: clamp(0.78rem,1.2vw,0.92rem);
+  max-width: clamp(380px,36vw,560px);
+  font-size: clamp(0.8rem,1.1vw,0.92rem);
   line-height: 1.8;
   color: var(--silver);
   font-weight: 200;
@@ -442,7 +449,7 @@ nav {
 
 /* ── SECTION: SKIN UNDER PRESSURE ───────────────── */
 .pressure-section {
-  padding: var(--sp-xl) clamp(1.5rem,4vw,3rem);
+  padding: var(--section-standard) clamp(1.5rem,4vw,3rem);
   position: relative;
   overflow: hidden;
   background: linear-gradient(to bottom, var(--bg) 0%, var(--bg-2) 100%);
@@ -499,7 +506,7 @@ nav {
   line-height: 1.9;
   color: var(--silver);
   font-weight: 200;
-  max-width: 540px;
+  max-width: min(640px, 100%);
   margin-bottom: 1.5rem;
 }
 
@@ -587,7 +594,7 @@ nav {
 
 /* ── SECTION: DIAGNOSTICS ────────────────────────── */
 .diag-section {
-  padding: var(--sp-xl) clamp(1.5rem,4vw,3rem);
+  padding: var(--section-standard) clamp(1.5rem,4vw,3rem);
   background: var(--bg-2);
   position: relative;
   overflow: hidden;
@@ -629,7 +636,7 @@ nav {
   line-height: 1.9;
   color: var(--silver);
   font-weight: 300;
-  max-width: 580px;
+  max-width: min(680px, 100%);
 }
 
 /* Custom select system */
@@ -637,12 +644,12 @@ nav {
 /* Two-column diagnostic body: selectors | results */
 .diag-body {
   display: grid;
-  grid-template-columns: minmax(260px, 340px) 1fr;
-  gap: clamp(1.2rem,2.5vw,2rem);
+  grid-template-columns: minmax(240px, 30%) 1fr;
+  gap: clamp(1rem,2vw,1.8rem);
   align-items: start;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 860px) {
   .diag-body { grid-template-columns: 1fr; }
 }
 
@@ -765,7 +772,7 @@ nav {
   padding: clamp(1.6rem,2.5vw,2.2rem);
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2rem;
+  gap: clamp(1rem,2.5vw,2rem);
   align-items: stretch;
   transition: border-color 0.5s, box-shadow 0.5s;
   position: sticky;
@@ -773,7 +780,7 @@ nav {
   overflow: hidden;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 820px) {
   .state-panel {
     position: relative;
     top: auto;
@@ -873,46 +880,22 @@ nav {
 
 /* State meters */
 .state-meters {
-  display: flex;
-  flex-direction: column;
-}
-
-.skin-score-block {
-  margin-top: auto;
-  padding-top: 1.2rem;
-  border-top: 1px solid var(--glass-border);
-}
-
-.skin-score-label {
-  font-family: var(--font-mono);
-  font-size: 0.46rem;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--ice-dim);
-  margin-bottom: 0.4rem;
-}
-
-.skin-score-num {
-  font-family: var(--font-display);
-  font-size: clamp(2.5rem,4vw,3.8rem);
-  line-height: 1;
-  letter-spacing: 0.04em;
-  color: var(--ice);
-  margin-bottom: 0.25rem;
-}
-
-.skin-score-sub {
-  font-family: var(--font-mono);
-  font-size: 0.48rem;
-  letter-spacing: 0.18em;
-  color: var(--silver);
-}
-
-.state-meters {
   position: relative;
   z-index: 1;
   display: flex;
   flex-direction: column;
+  gap: 0;
+}
+
+/* Title + score on the same row */
+.meter-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(157,196,216,0.08);
 }
 
 .meter-title {
@@ -921,8 +904,47 @@ nav {
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--ice-dim);
-  margin-bottom: 1rem;
+  margin-bottom: 0; /* override — now inside flex row */
 }
+
+/* Inline score: number + label stacked, right-aligned */
+.skin-score-inline {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
+}
+
+.skin-score-num {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem,3vw,2.8rem);
+  line-height: 1;
+  letter-spacing: 0.04em;
+  color: var(--ice);
+}
+
+.skin-score-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.skin-score-label {
+  font-family: var(--font-mono);
+  font-size: 0.4rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--ice-dim);
+}
+
+.skin-score-sub {
+  font-family: var(--font-mono);
+  font-size: 0.44rem;
+  letter-spacing: 0.12em;
+  color: var(--silver);
+}
+
+
 
 .meter-row {
   display: flex;
@@ -1032,12 +1054,12 @@ nav {
 */
 .products-grid {
   display: grid;
-  grid-template-columns: minmax(260px, 0.9fr) 1fr;
+  grid-template-columns: minmax(240px, 0.85fr) 1fr;
   gap: clamp(0.8rem,1.5vw,1.2rem);
-  align-items: start;
+  align-items: stretch;
 }
 
-@media (max-width: 900px) { .products-grid { grid-template-columns: 1fr; } }
+@media (max-width: 860px) { .products-grid { grid-template-columns: 1fr; } }
 
 /* ── FEATURED CARD (left col, full height) ── */
 .product-card-featured {
@@ -1048,7 +1070,7 @@ nav {
   transition: border-color 0.4s, box-shadow 0.4s;
   cursor: none;
   display: flex;
-  flex-direction: column;
+  flex-direction: column !important;
   height: 100%;
 }
 
@@ -1062,7 +1084,7 @@ nav {
   flex: 1;
   position: relative;
   background: #000;
-  min-height: clamp(400px,50vw,660px);
+  min-height: clamp(320px,40vw,560px);
   overflow: hidden;
   padding: 0;
 }
@@ -1138,6 +1160,7 @@ nav {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: clamp(0.8rem,1.5vw,1.2rem);
+  align-content: start;
 }
 
 @media (max-width: 500px) {
@@ -1167,9 +1190,9 @@ nav {
 .product-visual {
   position: relative;
   background: #000;
-  flex: 0 0 clamp(110px,12vw,160px);
+  flex: 0 0 clamp(90px,10vw,140px);
   height: auto;
-  min-height: clamp(160px,18vw,240px);
+  min-height: clamp(140px,16vw,220px);
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -1295,16 +1318,18 @@ nav {
   grid-template-columns: minmax(220px, 0.55fr) 1fr;
   grid-template-rows: 1fr 1fr;
   gap: clamp(0.6rem,1.2vw,1rem);
-  height: clamp(400px, 48vw, 680px);
-  max-height: 680px;
+  height: auto;
+  aspect-ratio: 16/9;
+  max-height: 660px;
 }
 
 @media (max-width: 820px) {
   .campaign-mosaic {
     grid-template-columns: 1fr;
-    grid-template-rows: clamp(300px,60vw,440px) clamp(200px,38vw,280px) clamp(200px,38vw,280px);
+    grid-template-rows: 56vw auto auto;
     height: auto;
     max-height: none;
+    aspect-ratio: unset;
   }
 }
 
@@ -1326,7 +1351,7 @@ nav {
 /* Phone spans both rows — portrait image contained */
 .campaign-tile.tile-phone {
   grid-row: 1 / 3;
-  padding: clamp(0.8rem,3%,1.5rem);
+  padding: clamp(0.5rem,1.5%,1rem);
 }
 
 @media (max-width: 820px) {
@@ -1378,12 +1403,12 @@ nav {
 /* ── SECTION: CLOSING CTA ────────────────────────── */
 .closing-section {
   position: relative;
-  min-height: 50svh;
+  min-height: clamp(320px,40vw,560px);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  padding: var(--sp-xl) clamp(1.5rem,4vw,3rem);
+  padding: var(--section-standard) clamp(1.5rem,4vw,3rem);
   text-align: center;
 }
 
@@ -1447,7 +1472,7 @@ nav {
   line-height: 1.85;
   color: var(--silver);
   font-weight: 200;
-  max-width: 480px;
+  max-width: min(560px, 90%);
   margin: 0 auto 2rem;
 }
 
@@ -1643,27 +1668,42 @@ footer {
 }
 
 
-/* ── TABLET REFINEMENTS (768–1100px) ────────────────────── */
-@media (min-width: 768px) and (max-width: 1100px) {
-  .hero-content { max-width: 680px; }
-  .hero-headline { font-size: clamp(3rem,6vw,5.5rem); }
-  .diag-body { grid-template-columns: minmax(240px, 320px) 1fr; gap: 1.2rem; }
-  .state-panel { grid-template-columns: 1fr; }
-  .products-grid { grid-template-columns: 1fr 1fr 1fr; }
-  .product-card-featured { grid-column: 1 / -1; grid-row: auto; flex-direction: row; }
-  .featured-visual { min-height: 220px; flex: 0 0 220px; }
-  .campaign-mosaic { height: clamp(380px,44vw,560px); }
-  .pressure-grid { grid-template-columns: 1fr; }
+/* ── RESPONSIVE: fluid first, minimal breakpoints ────────── */
+
+/* Tablet: cols collapse at natural content breakpoints */
+@media (max-width: 860px) {
+  .products-grid { grid-template-columns: 1fr; }
+  .diag-header { grid-template-columns: 1fr; }
 }
 
-/* ── MOBILE (<600px) ──────────────────────────────────────── */
-@media (max-width: 600px) {
-  .hero-headline { font-size: clamp(2.8rem,12vw,5rem); }
+@media (max-width: 820px) {
+  .pressure-grid { grid-template-columns: 1fr; }
+  .campaign-mosaic {
+    grid-template-columns: 1fr;
+    grid-template-rows: 56vw auto auto;
+    aspect-ratio: unset;
+    height: auto;
+    max-height: none;
+  }
+  .campaign-tile.tile-phone { grid-row: auto; padding: 0.75rem; }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .hero-headline { font-size: clamp(2.6rem,11vw,4.5rem); }
+  .hero-sub-text { max-width: 100%; }
   .diag-body { grid-template-columns: 1fr; }
-  .state-panel { grid-template-columns: 1fr; position: relative; top: auto; }
-  .products-grid { grid-template-columns: 1fr; }
-  .product-card-featured { grid-row: auto; }
-  .campaign-mosaic { height: auto; }
+  .state-panel { position: relative; top: auto; grid-template-columns: 1fr; }
+  .product-cards-grid { grid-template-columns: 1fr; }
+  .product-card { flex-direction: column; }
+  .product-visual {
+    flex: none;
+    width: 100%;
+    height: clamp(200px,55vw,280px);
+    min-height: unset;
+  }
+  .product-info { border-left: none; border-top: 1px solid var(--glass-border); }
+  .nav-links, .nav-status { display: none; }
 }
 </style>
 </head>
@@ -1869,7 +1909,19 @@ footer {
       </div>
 
       <div class="state-meters">
-        <div class="meter-title">SKIN SIGNAL ANALYSIS</div>
+
+        <!-- Header row: title left, score right — same baseline -->
+        <div class="meter-header-row">
+          <span class="meter-title">SKIN SIGNAL ANALYSIS</span>
+          <div class="skin-score-inline">
+            <span class="skin-score-num" id="skinScore">34</span>
+            <div class="skin-score-meta">
+              <span class="skin-score-label">SKIN SCORE</span>
+              <span class="skin-score-sub" id="skinScoreSub">Recovery recommended</span>
+            </div>
+          </div>
+        </div>
+
         <div class="meter-row">
           <span class="meter-key">Stress Load</span>
           <div class="meter-track"><div class="meter-fill" id="m1" style="width:78%"></div></div>
@@ -1896,12 +1948,6 @@ footer {
           <span class="meter-num" id="m5v">31%</span>
         </div>
 
-        <!-- Skin score block — fills vertical space, adds hierarchy -->
-        <div class="skin-score-block">
-          <div class="skin-score-label">OVERALL SKIN SCORE</div>
-          <div class="skin-score-num" id="skinScore">34</div>
-          <div class="skin-score-sub">Recovery recommended</div>
-        </div>
       </div>
     </div><!-- /state-panel -->
 
@@ -2296,7 +2342,7 @@ function updateState(value) {
   const score = Math.max(10, 100 - avg);
   const scoreEl = document.getElementById('skinScore');
   if (scoreEl) scoreEl.textContent = score;
-  const subEl = scoreEl && scoreEl.nextElementSibling;
+  const subEl = document.getElementById('skinScoreSub');
   if (subEl) subEl.textContent = score < 40 ? 'Recovery recommended' : score < 65 ? 'Maintenance mode' : 'Optimal range';
 }
 
@@ -2318,7 +2364,7 @@ function recalcScore() {
   const score   = Math.max(5, Math.min(98, 100 - avg + expAdd + modeAdd));
   const scoreEl = document.getElementById('skinScore');
   if (scoreEl) scoreEl.textContent = score;
-  const subEl = scoreEl && scoreEl.nextElementSibling;
+  const subEl = document.getElementById('skinScoreSub');
   if (subEl) subEl.textContent = score < 40 ? 'Recovery recommended' : score < 65 ? 'Maintenance mode' : 'Optimal range';
   // update blue light meter from exposure
   const m3Map = {'2hr': 28, '6hr': 60, '10hr': 82, 'endless': 98, 'overnight': 95};
