@@ -477,28 +477,16 @@ PORTRAIT EDITORIAL GRID — structured rows
     width: 100%;
     left: auto;
     transform: none;
-    gap: 2px;
-    /* Switch to single column flex for full control */
-    display: flex;
-    flex-direction: column;
+    display: block;
   }
-  /* Each row becomes a flex column itself */
-  .pg-row {
-    display: contents; /* dissolve row wrappers — children flow into parent */
+  /* All rows stack as blocks */
+  .pg-row-a, .pg-row-b {
+    display: block;
+    width: 100%;
   }
-  /* Horiz stack also dissolves */
-  .pg-horiz-stack {
-    display: contents;
-  }
-  /* Reorder Row B on mobile: left-vert, right-vert go after horiz */
-  .pg-row-b .pg-vert:first-child { order: 1; }
-  .pg-horiz-stack              { order: 2; display: flex; flex-direction: column; gap: 2px; }
-  .pg-row-b .pg-vert:last-child { order: 3; }
-  /* But pg-row-b itself needs to be a flex container for order to work */
-  .pg-row-b { display: flex; flex-direction: column; gap: 2px; }
-
-  /* Every item full width */
+  /* Every item full width, stacked */
   .pg-item {
+    display: block;
     width: 100%;
     float: none;
   }
@@ -506,6 +494,21 @@ PORTRAIT EDITORIAL GRID — structured rows
     width: 100%;
     height: auto;
     display: block;
+    object-fit: unset;
+  }
+  /* Row B verticals — restore natural height on mobile */
+  .pg-row-b .pg-vert img {
+    height: auto;
+    object-fit: unset;
+  }
+  /* Horiz stack — each image stacked full width, no side by side */
+  .pg-horiz-stack {
+    display: block;
+    width: 100%;
+  }
+  .pg-horiz-stack .pg-horiz {
+    display: block;
+    width: 100%;
   }
 }
   .pg-port, .pg-land, .pg-port-wide {
