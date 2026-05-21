@@ -416,23 +416,21 @@ PORTRAIT EDITORIAL GRID — structured rows
   display: flex;
   gap: 2px;
   width: 100%;
+  align-items: flex-start;
 }
 
-/* Row A: 3 equal vertical columns, images natural height */
-.pg-row-a { align-items: flex-start; }
+/* Row A: 3 equal vertical columns, fully natural */
 .pg-row-a .pg-vert { flex: 1; min-width: 0; }
 
-/* Row B: fixed height so horiz images + vert images align */
-.pg-row-b { align-items: stretch; height: 600px; }
+/* Row B: natural dimensions, no fixed height, no cropping */
 .pg-row-b .pg-vert { flex: 1; min-width: 0; }
 .pg-row-b .pg-vert img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
+  height: auto;
+  display: block;
 }
 
-/* Horiz stack fills the fixed row height */
+/* Horiz stack — natural heights stacked */
 .pg-horiz-stack {
   flex: 1;
   min-width: 0;
@@ -440,14 +438,11 @@ PORTRAIT EDITORIAL GRID — structured rows
   flex-direction: column;
   gap: 2px;
 }
-.pg-horiz-stack .pg-horiz {
-  flex: 1;
-  min-height: 0;
-}
+.pg-horiz-stack .pg-horiz { width: 100%; }
 .pg-horiz-stack .pg-horiz img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  display: block;
 }
 
 /* All items */
@@ -476,18 +471,35 @@ PORTRAIT EDITORIAL GRID — structured rows
     left: auto;
     transform: none;
     gap: 2px;
-  }
-  .pg-row, .pg-row-b {
+    /* Switch to single column flex for full control */
+    display: flex;
     flex-direction: column;
-    height: auto;
-    gap: 2px;
   }
-  .pg-row-b .pg-vert img,
-  .pg-horiz-stack .pg-horiz img {
-    height: auto;
-    object-fit: unset;
+  /* Each row becomes a flex column itself */
+  .pg-row {
+    display: contents; /* dissolve row wrappers — children flow into parent */
   }
-  .pg-horiz-stack { gap: 2px; }
+  /* Horiz stack also dissolves */
+  .pg-horiz-stack {
+    display: contents;
+  }
+  /* Reorder Row B on mobile: left-vert, right-vert go after horiz */
+  .pg-row-b .pg-vert:first-child { order: 1; }
+  .pg-horiz-stack              { order: 2; display: flex; flex-direction: column; gap: 2px; }
+  .pg-row-b .pg-vert:last-child { order: 3; }
+  /* But pg-row-b itself needs to be a flex container for order to work */
+  .pg-row-b { display: flex; flex-direction: column; gap: 2px; }
+
+  /* Every item full width */
+  .pg-item {
+    width: 100%;
+    float: none;
+  }
+  .pg-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
 }
   .pg-port, .pg-land, .pg-port-wide {
     grid-column: 1;
@@ -1119,14 +1131,6 @@ RESPONSIVE — global
         <div class="photo-cell"><div class="photo-cell-ph">Add Photo</div></div>
         <div class="photo-cell"><div class="photo-cell-ph">Add Photo</div></div>
       </div>
-    </div>
-    <div class="book-cta-block">
-      <div class="book-cta-left">
-        <div class="book-cta-eyebrow">Have a concept in mind?</div>
-        <div class="book-cta-headline">Let's build something ambitious together.</div>
-        <p class="book-cta-sub">Portraits, editorial, events, collaborations. If you have an idea, let's talk about it.</p>
-      </div>
-      <button class="book-cta-btn" onclick="closePage('projects');openPage('contact')">Start a Conversation</button>
     </div>
   </div>
 </div>
