@@ -422,15 +422,22 @@ PORTRAIT EDITORIAL GRID — structured rows
 /* Row A: 3 equal vertical columns, fully natural */
 .pg-row-a .pg-vert { flex: 1; min-width: 0; }
 
-/* Row B: natural dimensions, no fixed height, no cropping */
-.pg-row-b .pg-vert { flex: 1; min-width: 0; }
+/* Row B: stretch so verticals match the horiz stack height */
+.pg-row-b { align-items: stretch; }
+.pg-row-b .pg-vert {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
 .pg-row-b .pg-vert img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
   display: block;
 }
 
-/* Horiz stack — natural heights stacked */
+/* Horiz stack — natural heights, drives the row height */
 .pg-horiz-stack {
   flex: 1;
   min-width: 0;
