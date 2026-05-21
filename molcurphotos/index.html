@@ -4,12 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
+<link rel="preload" as="image" href="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337906/Copy_of_bola2_gbdbvz.jpg" fetchpriority="high" imagesrcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600/v1779337906/Copy_of_bola2_gbdbvz.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337906/Copy_of_bola2_gbdbvz.jpg 1200w" imagesizes="(max-width:768px) 100vw, 33vw">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/5.0.0/imagesloaded.pkgd.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/5.0.0/imagesloaded.pkgd.min.js" defer></script>
+<!-- Masonry removed: new editorial layout uses CSS only -->
 <title>molcurphotos</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -308,7 +306,7 @@ PORTFOLIO — full-bleed tiles
   position:relative; overflow:hidden; cursor:pointer;
   display:flex; align-items:flex-end;
   padding:24px 26px;
-  will-change:transform, opacity;
+  will-change:auto;
   transform:translateZ(0);
   transition:filter .35s;
   text-decoration:none;
@@ -399,20 +397,18 @@ CATEGORY PAGE
   .cat-header { grid-template-columns:1fr; gap:16px; }
   .cat-sub { max-width:100%; }
 }
-/* Portrait masonry — Masonry.js powered, natural aspect ratios */
+/* ══════════════════════════════
+PORTRAIT EDITORIAL GRID
+══════════════════════════════ */
 #cat-photo-grid {
-  width:100vw;
-  position:relative;
-  left:50%;
-  transform:translateX(-50%);
-  margin-top:36px;
+  width:100%;
+  margin-top:0;
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:3px;
 }
-#cat-photo-grid::after { content:''; display:block; clear:both; }
-.grid-sizer   { width:33.333%; }
-.gutter-sizer { width:0; }
+
 .pg-item {
-  float:left;
-  width:33.333%;
   overflow:hidden;
   position:relative;
   background:var(--bg2);
@@ -421,16 +417,29 @@ CATEGORY PAGE
   width:100%;
   height:auto;
   display:block;
-  transition:opacity .4s ease;
+  transition:transform .6s cubic-bezier(.4,0,.2,1), opacity .6s ease;
+  opacity:0;
 }
-/* Featured images — 50% wide so they stand out without dominating */
-.pg-featured { width:50%; }
-.pg-set[data-imgs*="rebeka-ca"] img { object-fit:cover; object-position:center; }
+.pg-item img.loaded { opacity:1; }
+.pg-item:hover img { transform:scale(1.03); }
+
+/* Staggered fade-in */
+.pg-item:nth-child(1)  img { transition-delay:.05s; }
+.pg-item:nth-child(2)  img { transition-delay:.1s; }
+.pg-item:nth-child(3)  img { transition-delay:.15s; }
+.pg-item:nth-child(4)  img { transition-delay:.2s; }
+.pg-item:nth-child(5)  img { transition-delay:.25s; }
+.pg-item:nth-child(6)  img { transition-delay:.3s; }
+.pg-item:nth-child(7)  img { transition-delay:.35s; }
+.pg-item:nth-child(8)  img { transition-delay:.4s; }
+.pg-item:nth-child(9)  img { transition-delay:.45s; }
+.pg-item:nth-child(10) img { transition-delay:.5s; }
 
 @media(max-width:768px){
-  .grid-sizer { width:50%; }
-  .pg-item { width:50%; }
-  .pg-featured { width:100%; }
+  #cat-photo-grid {
+    grid-template-columns: 1fr;
+    gap:2px;
+  }
 }
 .photo-grid {
   display:grid;
@@ -1297,114 +1306,54 @@ function openCategory(cat) {
   document.getElementById('cat-sub-text').textContent = d.sub;
   if (cat === 'portraits') {
     document.getElementById('cat-photo-grid').innerHTML = `
-      <div class="grid-sizer"></div>
-      <div class="pg-item pg-featured pg-set" data-imgs="tatumn3.jpg,tatumn5.jpg"><img decoding="async" src="tatumn3.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-featured"><img decoding="async" src="caitdoty.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-featured"><img decoding="async" src="bola2.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-set" data-imgs="melisa1.jpg,melisa2.jpg"><img decoding="async" src="melisa1.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="serena1.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="alexalee.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-set" data-imgs="alexa-dunes1.jpg,alexa-dunes2.jpg"><img decoding="async" src="alexa-dunes1.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="dystine4.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="melisa3.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-set" data-imgs="rebeka2.jpg,rebeka6.jpg"><img decoding="async" src="rebeka2.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="sesamae.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="darah3.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="melisa4.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-set" data-imgs="rebeka-ca1.jpg,rebeka-ca2.jpg,rebeka-ca3.jpg"><img decoding="async" src="rebeka-ca1.jpg" alt="Portrait" loading="lazy" style="object-fit:cover;object-position:center;"></div>
-      <div class="pg-item"><img decoding="async" src="tavish4-bw.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-set" data-imgs="alexa1.jpg,alexa4.jpg,alexa6.jpg"><img decoding="async" src="alexa1.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="alexa2.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="eva.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-featured pg-set" data-imgs="Annette-studio1.jpg,Annette-studio2.jpg"><img decoding="async" src="Annette-studio1.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="tat4.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="bola4.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-featured"><img decoding="async" src="gabby4.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="dystine10.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="iztla1.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="madison6-.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="emily4-bw.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-set" data-imgs="eleanor1-bw.jpg,eleanor4-bw.jpg"><img decoding="async" src="eleanor1-bw.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-featured"><img decoding="async" src="megan.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-featured"><img decoding="async" src="emily1.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-featured"><img decoding="async" src="meley5.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-set" data-imgs="bailie8.jpg,bailie9.jpg,bailie4.jpg"><img decoding="async" src="bailie8.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-featured"><img decoding="async" src="liv.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="tatumnn.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-set" data-imgs="tatumn-airbnb1.jpg,tatumn-airbnb2.jpg"><img decoding="async" src="tatumn-airbnb1.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-featured"><img decoding="async" src="iztla5.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="meley6.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item pg-featured"><img decoding="async" src="chy2.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="emily1%281%29.jpg" alt="Portrait" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="meganeric.jpg" alt="Portrait" loading="lazy"></div>
+      <div class="pg-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337906/Copy_of_bola2_gbdbvz.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_800/v1779337906/Copy_of_bola2_gbdbvz.jpg 800w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337906/Copy_of_bola2_gbdbvz.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337906/Copy_of_bola2_gbdbvz.jpg 1600w" alt="Portrait" fetchpriority="high" decoding="async" sizes="(max-width:768px) 100vw, 33vw" onload="this.classList.add('loaded')"></div>
+      <div class="pg-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337900/Copy_of_eleanor1-bw_y97mab.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_800/v1779337900/Copy_of_eleanor1-bw_y97mab.jpg 800w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337900/Copy_of_eleanor1-bw_y97mab.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337900/Copy_of_eleanor1-bw_y97mab.jpg 1600w" alt="Portrait" loading="lazy" decoding="async" sizes="(max-width:768px) 100vw, 33vw" onload="this.classList.add('loaded')"></div>
+      <div class="pg-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337901/Copy_of_liv2_jng5fh.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_800/v1779337901/Copy_of_liv2_jng5fh.jpg 800w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337901/Copy_of_liv2_jng5fh.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337901/Copy_of_liv2_jng5fh.jpg 1600w" alt="Portrait" loading="lazy" decoding="async" sizes="(max-width:768px) 100vw, 33vw" onload="this.classList.add('loaded')"></div>
+      <div class="pg-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337898/Copy_of_eva4-bw_xna8bu.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_800/v1779337898/Copy_of_eva4-bw_xna8bu.jpg 800w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337898/Copy_of_eva4-bw_xna8bu.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337898/Copy_of_eva4-bw_xna8bu.jpg 1600w" alt="Portrait" loading="lazy" decoding="async" sizes="(max-width:768px) 100vw, 33vw" onload="this.classList.add('loaded')"></div>
+      <div class="pg-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337908/Copy_of_madison6-_q8skga.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_800/v1779337908/Copy_of_madison6-_q8skga.jpg 800w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337908/Copy_of_madison6-_q8skga.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337908/Copy_of_madison6-_q8skga.jpg 1600w" alt="Portrait" loading="lazy" decoding="async" sizes="(max-width:768px) 100vw, 33vw" onload="this.classList.add('loaded')"></div>
+      <div class="pg-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337907/Copy_of_dystine10_w3arfq.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_800/v1779337907/Copy_of_dystine10_w3arfq.jpg 800w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337907/Copy_of_dystine10_w3arfq.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337907/Copy_of_dystine10_w3arfq.jpg 1600w" alt="Portrait" loading="lazy" decoding="async" sizes="(max-width:768px) 100vw, 33vw" onload="this.classList.add('loaded')"></div>
+      <div class="pg-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337909/Copy_of_alexa1_wdql3b.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_800/v1779337909/Copy_of_alexa1_wdql3b.jpg 800w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337909/Copy_of_alexa1_wdql3b.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337909/Copy_of_alexa1_wdql3b.jpg 1600w" alt="Portrait" loading="lazy" decoding="async" sizes="(max-width:768px) 100vw, 33vw" onload="this.classList.add('loaded')"></div>
+      <div class="pg-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337909/Copy_of_rebeka2_xmee0t.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_800/v1779337909/Copy_of_rebeka2_xmee0t.jpg 800w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337909/Copy_of_rebeka2_xmee0t.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337909/Copy_of_rebeka2_xmee0t.jpg 1600w" alt="Portrait" loading="lazy" decoding="async" sizes="(max-width:768px) 100vw, 33vw" onload="this.classList.add('loaded')"></div>
+      <div class="pg-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337907/Copy_of_gabby4_pltiqb.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_800/v1779337907/Copy_of_gabby4_pltiqb.jpg 800w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337907/Copy_of_gabby4_pltiqb.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337907/Copy_of_gabby4_pltiqb.jpg 1600w" alt="Portrait" loading="lazy" decoding="async" sizes="(max-width:768px) 100vw, 33vw" onload="this.classList.add('loaded')"></div>
+      <div class="pg-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337905/Copy_of_bailie9_x4pwdh.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_800/v1779337905/Copy_of_bailie9_x4pwdh.jpg 800w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337905/Copy_of_bailie9_x4pwdh.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337905/Copy_of_bailie9_x4pwdh.jpg 1600w" alt="Portrait" loading="lazy" decoding="async" sizes="(max-width:768px) 100vw, 33vw" onload="this.classList.add('loaded')"></div>
+      <div class="pg-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337904/Copy_of_Annette3_mctig7.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_800/v1779337904/Copy_of_Annette3_mctig7.jpg 800w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337904/Copy_of_Annette3_mctig7.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337904/Copy_of_Annette3_mctig7.jpg 1600w" alt="Portrait" loading="lazy" decoding="async" sizes="(max-width:768px) 100vw, 33vw" onload="this.classList.add('loaded')"></div>
+      <div class="pg-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337902/Copy_of_iztla5_rfjpgr.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_800/v1779337902/Copy_of_iztla5_rfjpgr.jpg 800w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337902/Copy_of_iztla5_rfjpgr.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337902/Copy_of_iztla5_rfjpgr.jpg 1600w" alt="Portrait" loading="lazy" decoding="async" sizes="(max-width:768px) 100vw, 33vw" onload="this.classList.add('loaded')"></div>
+      <div class="pg-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337903/Copy_of_meley5_casbqi.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_800/v1779337903/Copy_of_meley5_casbqi.jpg 800w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337903/Copy_of_meley5_casbqi.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337903/Copy_of_meley5_casbqi.jpg 1600w" alt="Portrait" loading="lazy" decoding="async" sizes="(max-width:768px) 100vw, 33vw" onload="this.classList.add('loaded')"></div>
+      <div class="pg-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337904/Copy_of_melisa1_yp1t0b.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_800/v1779337904/Copy_of_melisa1_yp1t0b.jpg 800w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337904/Copy_of_melisa1_yp1t0b.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337904/Copy_of_melisa1_yp1t0b.jpg 1600w" alt="Portrait" loading="lazy" decoding="async" sizes="(max-width:768px) 100vw, 33vw" onload="this.classList.add('loaded')"></div>
+      <div class="pg-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337902/Copy_of_megan1_ktqwap.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_800/v1779337902/Copy_of_megan1_ktqwap.jpg 800w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337902/Copy_of_megan1_ktqwap.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337902/Copy_of_megan1_ktqwap.jpg 1600w" alt="Portrait" loading="lazy" decoding="async" sizes="(max-width:768px) 100vw, 33vw" onload="this.classList.add('loaded')"></div>
+      <div class="pg-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337901/Copy_of_sesamae1_seozzn.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_800/v1779337901/Copy_of_sesamae1_seozzn.jpg 800w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337901/Copy_of_sesamae1_seozzn.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337901/Copy_of_sesamae1_seozzn.jpg 1600w" alt="Portrait" loading="lazy" decoding="async" sizes="(max-width:768px) 100vw, 33vw" onload="this.classList.add('loaded')"></div>
+      <div class="pg-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337899/Copy_of_caitdoty_mg2kkr.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_800/v1779337899/Copy_of_caitdoty_mg2kkr.jpg 800w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337899/Copy_of_caitdoty_mg2kkr.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337899/Copy_of_caitdoty_mg2kkr.jpg 1600w" alt="Portrait" loading="lazy" decoding="async" sizes="(max-width:768px) 100vw, 33vw" onload="this.classList.add('loaded')"></div>
+      <div class="pg-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337899/Copy_of_emily1_kqdc9b.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_800/v1779337899/Copy_of_emily1_kqdc9b.jpg 800w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337899/Copy_of_emily1_kqdc9b.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337899/Copy_of_emily1_kqdc9b.jpg 1600w" alt="Portrait" loading="lazy" decoding="async" sizes="(max-width:768px) 100vw, 33vw" onload="this.classList.add('loaded')"></div>
+      <div class="pg-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337898/Copy_of_darah3_hp2n5p.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_800/v1779337898/Copy_of_darah3_hp2n5p.jpg 800w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337898/Copy_of_darah3_hp2n5p.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337898/Copy_of_darah3_hp2n5p.jpg 1600w" alt="Portrait" loading="lazy" decoding="async" sizes="(max-width:768px) 100vw, 33vw" onload="this.classList.add('loaded')"></div>
+      <div class="pg-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337906/Copy_of_chy2_tsziag.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_800/v1779337906/Copy_of_chy2_tsziag.jpg 800w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337906/Copy_of_chy2_tsziag.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337906/Copy_of_chy2_tsziag.jpg 1600w" alt="Portrait" loading="lazy" decoding="async" sizes="(max-width:768px) 100vw, 33vw" onload="this.classList.add('loaded')"></div>
     `;
-    document.querySelectorAll('.pg-set').forEach(cell => {
-      const imgs = cell.dataset.imgs.split(',');
-      if (imgs.length < 2) return;
-      const container = document.createElement('div');
-      container.style.cssText = 'position:relative;width:100%;overflow:hidden;';
-      const baseImg = document.createElement('img');
-      baseImg.src = imgs[0];
-      baseImg.style.cssText = 'width:100%;height:auto;display:block;visibility:hidden;';
-      container.appendChild(baseImg);
-      const slides = imgs.map((src, i) => {
-        const slide = document.createElement('div');
-        slide.style.cssText = `position:absolute;inset:0;opacity:${i===0?1:0};transition:opacity 1s ease;`;
-        const img = document.createElement('img');
-        if (i === 0) { img.src = src; } else { img.dataset.src = src; }
-        img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
-        slide.appendChild(img);
-        container.appendChild(slide);
-        return slide;
-      });
-      cell.innerHTML = '';
-      cell.appendChild(container);
-      let idx = 0, loaded = false;
-      const obs = new IntersectionObserver(entries => {
-        if (entries[0].isIntersecting && !loaded) {
-          loaded = true;
-          slides.forEach((slide, i) => {
-            if (i === 0) return;
-            const img = slide.querySelector('img');
-            if (img.dataset.src) { img.src = img.dataset.src; }
-          });
-          obs.disconnect();
-        }
-      }, { rootMargin: '300px' });
-      obs.observe(cell);
-      setInterval(() => {
-        slides[idx].style.opacity = '0';
-        idx = (idx + 1) % slides.length;
-        slides[idx].style.opacity = '1';
-      }, 5000);
-    });
   } else if (cat === 'events') {
     document.getElementById('cat-photo-grid').innerHTML = `
       <div class="grid-sizer"></div>
-      <div class="pg-item pg-featured"><img decoding="async" src="IMG_1930.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="IMG_1930.jpeg" alt="Event" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="IMG_1942.jpeg" alt="Event" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="IMG_1922.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item pg-featured"><img decoding="async" src="IMG_1936.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="IMG_1936.jpeg" alt="Event" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="IMG_1944.jpeg" alt="Event" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="IMG_1925.jpeg" alt="Event" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="IMG_1938.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item pg-featured"><img decoding="async" src="IMG_1923.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="IMG_1923.jpeg" alt="Event" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="IMG_1946.jpeg" alt="Event" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="IMG_1934.jpeg" alt="Event" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="IMG_1927.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item pg-featured"><img decoding="async" src="IMG_1940.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="IMG_1940.jpeg" alt="Event" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="IMG_1924.jpeg" alt="Event" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="IMG_1948.jpeg" alt="Event" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="IMG_1935.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item pg-featured"><img decoding="async" src="IMG_1928.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="IMG_1928.jpeg" alt="Event" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="IMG_1943.jpeg" alt="Event" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="IMG_1926.jpeg" alt="Event" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="IMG_1939.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item pg-featured"><img decoding="async" src="IMG_1950.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="IMG_1950.jpeg" alt="Event" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="IMG_1929.jpeg" alt="Event" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="IMG_1945.jpeg" alt="Event" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="IMG_1937.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item pg-featured"><img decoding="async" src="IMG_1941.jpeg" alt="Event" loading="lazy"></div>
+      <div class="pg-item"><img decoding="async" src="IMG_1941.jpeg" alt="Event" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="IMG_1947.jpeg" alt="Event" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="IMG_1949.jpeg" alt="Event" loading="lazy"></div>
     `;
@@ -1423,37 +1372,6 @@ function openCategory(cat) {
   placeholder.innerHTML = `<div class="next-genre"><span class="next-genre-label">Next</span><button class="next-genre-link" onclick="openCategory('${nextCat}')">${nextLabel} <span class="next-genre-arrow">→</span></button></div>`;
   document.getElementById('page-category').scrollTop = 0;
   openPage('category');
-
-  // Init Masonry after images load
-  if (cat === 'portraits' || cat === 'events') {
-    setTimeout(() => {
-      const grid = document.getElementById('cat-photo-grid');
-      if (!grid || typeof Masonry === 'undefined') return;
-      imagesLoaded(grid, function() {
-        new Masonry(grid, {
-          itemSelector: '.pg-item',
-          columnWidth: '.grid-sizer',
-          gutter: 0,
-          percentPosition: true
-        });
-      });
-    }, 100);
-  }
-
-  // Init Masonry after images load
-  if (cat === 'portraits') {
-    const grid = document.getElementById('msnry-grid');
-    if (grid && typeof imagesLoaded !== 'undefined' && typeof Masonry !== 'undefined') {
-      imagesLoaded(grid, function() {
-        new Masonry(grid, {
-          itemSelector: '.pg-item',
-          columnWidth: '.pg-item',
-          percentPosition: true,
-          gutter: 0
-        });
-      });
-    }
-  }
 }
 ptiles.forEach(tile => {
   tile.addEventListener('click', () => {
@@ -1516,6 +1434,15 @@ function closeComingSoon() {
   function resetZodiacTimer() { clearInterval(zodiacTimer); zodiacTimer = setInterval(() => goTo(current + 1), 6000); }
 })();
 
+
+// ── IMAGE REVEAL — handle cached images that fire before JS runs ─
+(function() {
+  document.querySelectorAll('.pg-item img').forEach(function(img) {
+    if (img.complete && img.naturalWidth > 0) {
+      img.classList.add('loaded');
+    }
+  });
+})();
 
 // ── FORMSPREE CONTACT FORM ───────────────────────────────────────
 (function() {
