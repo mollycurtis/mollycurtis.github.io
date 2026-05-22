@@ -7,7 +7,7 @@
 <link rel="preload" as="image" href="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337906/Copy_of_bola2_gbdbvz.jpg" fetchpriority="high" imagesrcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600/v1779337906/Copy_of_bola2_gbdbvz.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337906/Copy_of_bola2_gbdbvz.jpg 1200w" imagesizes="(max-width:768px) 100vw, 33vw">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
+<!-- no masonry needed: structured row layout -->
 <title>molcurphotos</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -167,7 +167,11 @@ LANDING
   position:relative;
 }
 .footer-copy { font-size:11px; letter-spacing:.12em; color:var(--muted); }
-
+.footer-descriptor {
+  font-size:11px; letter-spacing:.12em; color:var(--muted);
+  position:absolute; left:0; right:0; text-align:center;
+  pointer-events:none;
+}
 .footer-cta {
   font-size:13px; letter-spacing:.14em; text-transform:uppercase;
   color:var(--muted); cursor:pointer; background:none; border:none;
@@ -175,6 +179,7 @@ LANDING
   transition:color .2s;
 }
 .footer-cta:hover { color:var(--accent); }
+
 
 /* ══════════════════════════════
 COMING SOON OVERLAY
@@ -330,6 +335,11 @@ PORTFOLIO — full-bleed tiles
   text-shadow: 0 2px 12px rgba(0,0,0,.6);
 }
 .ptile:hover .ptile-label { letter-spacing:.06em; }
+.ptile-num {
+  position:absolute; top:18px; left:24px;
+  font-size:10px; letter-spacing:.18em;
+  color:rgba(255,255,255,.4); z-index:2;
+}
 
 .ptile-portraits { grid-column:1;   grid-row:1/3; background:#1e1512; }
 .ptile-senior    { grid-column:2;   grid-row:1;   background:#121a16; }
@@ -387,40 +397,88 @@ CATEGORY PAGE
   .cat-header { grid-template-columns:1fr; gap:16px; }
   .cat-sub { max-width:100%; }
 }
-/* Portrait grid — structured rows, full bleed */
+/* ══════════════════════════════
+PORTRAIT EDITORIAL GRID — structured rows
+══════════════════════════════ */
 #cat-photo-grid {
   width: 100vw;
   position: relative;
   left: 50%;
   transform: translateX(-50%);
-  margin-top: 36px;
+  margin-top: 24px;
   display: flex;
   flex-direction: column;
   gap: 2px;
 }
-.pg-row { display: flex; gap: 2px; width: 100%; }
-/* Row A: 3 equal verticals */
-.pg-row-a { align-items: flex-start; }
-.pg-row-a .pg-vert { flex: 1; min-width: 0; }
-.pg-row-a .pg-vert img { width: 100%; height: auto; display: block; }
-/* Row B: outer verts stretch to match horiz stack */
-.pg-row-b { align-items: stretch; }
-.pg-row-b .pg-vert { flex: 1; min-width: 0; display: flex; flex-direction: column; }
-.pg-row-b .pg-vert img { width: 100%; flex: 1; object-fit: cover; object-position: center top; display: block; min-height: 0; }
-.pg-horiz-stack { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
-.pg-horiz-stack .pg-horiz { flex: 1; min-height: 0; overflow: hidden; }
-.pg-horiz-stack .pg-horiz img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.pg-item { overflow: hidden; position: relative; background: var(--bg2); }
-.pg-item img { opacity: 0; transition: opacity .5s ease; }
-.pg-item img.loaded { opacity: 1; }
-@media(max-width:768px){
-  #cat-photo-grid { width: 100%; left: auto; transform: none; }
-  .pg-row-a, .pg-row-b { flex-direction: column; align-items: stretch; gap: 2px; }
-  .pg-row-b .pg-vert img { height: auto; object-fit: unset; flex: unset; }
-  .pg-horiz-stack { flex-direction: column; gap: 2px; }
-  .pg-horiz-stack .pg-horiz { flex: unset; min-height: unset; }
-  .pg-horiz-stack .pg-horiz img { height: auto; object-fit: unset; }
+
+/* Row types */
+.pg-row {
+  display: flex;
+  gap: 2px;
+  width: 100%;
+  align-items: flex-start;
 }
+
+/* Row A: 3 equal vertical columns, fully natural */
+.pg-row-a .pg-vert { flex: 1; min-width: 0; }
+
+/* Row B: stretch so verticals match the horiz stack height */
+.pg-row-b { align-items: stretch; }
+.pg-row-b .pg-vert {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+.pg-row-b .pg-vert img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* Horiz stack — natural heights, drives the row height */
+.pg-horiz-stack {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.pg-horiz-stack .pg-horiz { width: 100%; }
+.pg-horiz-stack .pg-horiz img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* All items */
+.pg-item {
+  overflow: hidden;
+  position: relative;
+  background: var(--bg2);
+  min-width: 0;
+}
+.pg-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  opacity: 0;
+  transition: opacity .5s ease, transform .6s cubic-bezier(.4,0,.2,1);
+}
+.pg-item img.loaded { opacity: 1; }
+.pg-item:hover img  { transform: scale(1.02); }
+
+
+
+/* Mobile — single column stacked */
+@media(max-width:768px){
+  #cat-photo-grid {
+    width: 100%;
+    left: auto;
+    transform: none;
+    display: block;
+  }
   /* All rows stack as blocks */
   .pg-row-a, .pg-row-b {
     display: block;
@@ -453,7 +511,9 @@ CATEGORY PAGE
     width: 100%;
   }
 }
-  ., ., 
+  .pg-port, .pg-land, .pg-port-wide {
+    grid-column: 1;
+  }
 }
 .photo-grid {
   display:grid;
@@ -466,7 +526,7 @@ CATEGORY PAGE
 }
 .photo-cell img { width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s var(--ease); }
 .photo-cell:hover img { transform:scale(1.04); }
-
+.photo-cell-ph { font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(245,242,238,.14);font-family:'DM Sans',sans-serif; }
 
 /* ══════════════════════════════
 SHARED BOOK CTA BLOCK
@@ -579,7 +639,7 @@ ABOUT PAGE
 .carousel-slide { position:absolute; inset:0; opacity:0; transition:opacity 1s ease; }
 .carousel-slide.active { opacity:1; }
 .carousel-slide img { width:100%; height:100%; object-fit:cover; object-position:center; display:block; }
-
+.carousel-slide-ph { width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:rgba(245,242,238,.14); }
 .carousel-dots { position:absolute; bottom:16px; left:50%; transform:translateX(-50%); display:flex; gap:6px; z-index:3; }
 .carousel-dot { width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,.3); transition:background .3s, transform .3s; }
 .carousel-dot.active { background:white; transform:scale(1.3); }
@@ -813,7 +873,7 @@ RESPONSIVE — global
   .landing-avail { margin-top:16px; }
   .top-nav { padding:18px 20px; }
   .landing-footer { padding:16px 20px; }
-  
+  .footer-descriptor { display:none; }
   .page-nav { padding:16px 20px; }
   #tile-grid { grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr 1fr; }
   .ptile-portraits { grid-column:1/3; grid-row:1; }
@@ -951,7 +1011,7 @@ RESPONSIVE — global
       <div class="cat-hero" id="cat-hero-text"></div>
       <p class="cat-sub" id="cat-sub-text"></p>
     </div>
-    <div id="cat-photo-grid"></div>
+    <div class="photo-grid" id="cat-photo-grid"></div>
     <div class="book-cta-block">
       <div class="book-cta-left">
         <div class="book-cta-eyebrow">Ready to book?</div>
@@ -1311,42 +1371,63 @@ function openCategory(cat) {
   document.getElementById('cat-hero-text').textContent = label;
   document.getElementById('cat-sub-text').textContent = d.sub;
   if (cat === 'portraits') {
-                        document.getElementById('cat-photo-grid').innerHTML = `
+                    document.getElementById('cat-photo-grid').innerHTML = `
       <div class="pg-row pg-row-a">
-        <div class="pg-item pg-vert"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337899/Copy_of_caitdoty_mg2kkr.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600/v1779337899/Copy_of_caitdoty_mg2kkr.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337899/Copy_of_caitdoty_mg2kkr.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337899/Copy_of_caitdoty_mg2kkr.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" fetchpriority="high" decoding="async" onload="this.classList.add('loaded')"></div><div class="pg-item pg-vert"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337902/Copy_of_megan1_ktqwap.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600/v1779337902/Copy_of_megan1_ktqwap.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337902/Copy_of_megan1_ktqwap.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337902/Copy_of_megan1_ktqwap.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div><div class="pg-item pg-vert"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337906/Copy_of_bola2_gbdbvz.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600/v1779337906/Copy_of_bola2_gbdbvz.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337906/Copy_of_bola2_gbdbvz.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337906/Copy_of_bola2_gbdbvz.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div>
+        <div class="pg-item pg-vert"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337899/Copy_of_caitdoty_mg2kkr.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600/v1779337899/Copy_of_caitdoty_mg2kkr.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337899/Copy_of_caitdoty_mg2kkr.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337899/Copy_of_caitdoty_mg2kkr.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" fetchpriority="high" decoding="async" onload="this.classList.add('loaded')"></div>
+        <div class="pg-item pg-vert"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337902/Copy_of_megan1_ktqwap.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600/v1779337902/Copy_of_megan1_ktqwap.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337902/Copy_of_megan1_ktqwap.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337902/Copy_of_megan1_ktqwap.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div>
+        <div class="pg-item pg-vert"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337906/Copy_of_bola2_gbdbvz.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600/v1779337906/Copy_of_bola2_gbdbvz.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337906/Copy_of_bola2_gbdbvz.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337906/Copy_of_bola2_gbdbvz.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div>
       </div>
       <div class="pg-row pg-row-b">
         <div class="pg-item pg-vert"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337905/Copy_of_bailie9_x4pwdh.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600/v1779337905/Copy_of_bailie9_x4pwdh.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337905/Copy_of_bailie9_x4pwdh.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337905/Copy_of_bailie9_x4pwdh.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div>
-        <div class="pg-horiz-stack"><div class="pg-item pg-horiz"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337909/Copy_of_alexa1_wdql3b.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600/v1779337909/Copy_of_alexa1_wdql3b.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337909/Copy_of_alexa1_wdql3b.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337909/Copy_of_alexa1_wdql3b.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div><div class="pg-item pg-horiz"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337907/Copy_of_gabby4_pltiqb.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600/v1779337907/Copy_of_gabby4_pltiqb.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337907/Copy_of_gabby4_pltiqb.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337907/Copy_of_gabby4_pltiqb.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div></div>
+        <div class="pg-horiz-stack">
+          <div class="pg-item pg-horiz"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337909/Copy_of_alexa1_wdql3b.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600/v1779337909/Copy_of_alexa1_wdql3b.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337909/Copy_of_alexa1_wdql3b.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337909/Copy_of_alexa1_wdql3b.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div>
+          <div class="pg-item pg-horiz"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337907/Copy_of_gabby4_pltiqb.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600/v1779337907/Copy_of_gabby4_pltiqb.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337907/Copy_of_gabby4_pltiqb.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337907/Copy_of_gabby4_pltiqb.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div>
+        </div>
         <div class="pg-item pg-vert"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337902/Copy_of_iztla5_rfjpgr.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600/v1779337902/Copy_of_iztla5_rfjpgr.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337902/Copy_of_iztla5_rfjpgr.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337902/Copy_of_iztla5_rfjpgr.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div>
       </div>
       <div class="pg-row pg-row-a">
-        <div class="pg-item pg-vert"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337900/Copy_of_eleanor1-bw_y97mab.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600/v1779337900/Copy_of_eleanor1-bw_y97mab.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337900/Copy_of_eleanor1-bw_y97mab.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337900/Copy_of_eleanor1-bw_y97mab.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div><div class="pg-item pg-vert"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337909/Copy_of_rebeka2_xmee0t.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600/v1779337909/Copy_of_rebeka2_xmee0t.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337909/Copy_of_rebeka2_xmee0t.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337909/Copy_of_rebeka2_xmee0t.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div><div class="pg-item pg-vert"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337904/Copy_of_melisa1_yp1t0b.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600/v1779337904/Copy_of_melisa1_yp1t0b.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337904/Copy_of_melisa1_yp1t0b.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337904/Copy_of_melisa1_yp1t0b.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div>
+        <div class="pg-item pg-vert"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337900/Copy_of_eleanor1-bw_y97mab.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600/v1779337900/Copy_of_eleanor1-bw_y97mab.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337900/Copy_of_eleanor1-bw_y97mab.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337900/Copy_of_eleanor1-bw_y97mab.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div>
+        <div class="pg-item pg-vert"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337909/Copy_of_rebeka2_xmee0t.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600/v1779337909/Copy_of_rebeka2_xmee0t.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337909/Copy_of_rebeka2_xmee0t.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337909/Copy_of_rebeka2_xmee0t.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div>
+        <div class="pg-item pg-vert"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337904/Copy_of_melisa1_yp1t0b.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600/v1779337904/Copy_of_melisa1_yp1t0b.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337904/Copy_of_melisa1_yp1t0b.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337904/Copy_of_melisa1_yp1t0b.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div>
       </div>
       <div class="pg-row pg-row-b">
         <div class="pg-item pg-vert"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337899/Copy_of_emily1_kqdc9b.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600/v1779337899/Copy_of_emily1_kqdc9b.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337899/Copy_of_emily1_kqdc9b.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337899/Copy_of_emily1_kqdc9b.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div>
-        <div class="pg-horiz-stack"><div class="pg-item pg-horiz"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337906/Copy_of_chy2_tsziag.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600/v1779337906/Copy_of_chy2_tsziag.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337906/Copy_of_chy2_tsziag.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337906/Copy_of_chy2_tsziag.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div><div class="pg-item pg-horiz"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337901/Copy_of_liv2_jng5fh.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600/v1779337901/Copy_of_liv2_jng5fh.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337901/Copy_of_liv2_jng5fh.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337901/Copy_of_liv2_jng5fh.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div></div>
+        <div class="pg-horiz-stack">
+          <div class="pg-item pg-horiz"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337906/Copy_of_chy2_tsziag.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600/v1779337906/Copy_of_chy2_tsziag.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337906/Copy_of_chy2_tsziag.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337906/Copy_of_chy2_tsziag.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div>
+          <div class="pg-item pg-horiz"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337901/Copy_of_liv2_jng5fh.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600/v1779337901/Copy_of_liv2_jng5fh.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337901/Copy_of_liv2_jng5fh.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337901/Copy_of_liv2_jng5fh.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div>
+        </div>
         <div class="pg-item pg-vert"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337903/Copy_of_meley5_casbqi.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600/v1779337903/Copy_of_meley5_casbqi.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337903/Copy_of_meley5_casbqi.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337903/Copy_of_meley5_casbqi.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div>
       </div>
       <div class="pg-row pg-row-a">
-        <div class="pg-item pg-vert"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337898/Copy_of_eva4-bw_xna8bu.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600/v1779337898/Copy_of_eva4-bw_xna8bu.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337898/Copy_of_eva4-bw_xna8bu.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337898/Copy_of_eva4-bw_xna8bu.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div><div class="pg-item pg-vert"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337908/Copy_of_madison6-_q8skga.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600/v1779337908/Copy_of_madison6-_q8skga.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337908/Copy_of_madison6-_q8skga.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337908/Copy_of_madison6-_q8skga.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div><div class="pg-item pg-vert"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337907/Copy_of_dystine10_w3arfq.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600/v1779337907/Copy_of_dystine10_w3arfq.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337907/Copy_of_dystine10_w3arfq.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337907/Copy_of_dystine10_w3arfq.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div>
+        <div class="pg-item pg-vert"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337898/Copy_of_eva4-bw_xna8bu.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600/v1779337898/Copy_of_eva4-bw_xna8bu.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337898/Copy_of_eva4-bw_xna8bu.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337898/Copy_of_eva4-bw_xna8bu.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div>
+        <div class="pg-item pg-vert"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337908/Copy_of_madison6-_q8skga.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600/v1779337908/Copy_of_madison6-_q8skga.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337908/Copy_of_madison6-_q8skga.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337908/Copy_of_madison6-_q8skga.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div>
+        <div class="pg-item pg-vert"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337907/Copy_of_dystine10_w3arfq.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600/v1779337907/Copy_of_dystine10_w3arfq.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337907/Copy_of_dystine10_w3arfq.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337907/Copy_of_dystine10_w3arfq.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div>
       </div>
       <div class="pg-row pg-row-b">
         <div class="pg-item pg-vert"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337901/Copy_of_sesamae1_seozzn.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600/v1779337901/Copy_of_sesamae1_seozzn.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337901/Copy_of_sesamae1_seozzn.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337901/Copy_of_sesamae1_seozzn.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div>
-        <div class="pg-horiz-stack"><div class="pg-item pg-horiz"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600,c_limit/v1779396658/Copy_of_melisa2_yxroju.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600,c_limit/v1779396658/Copy_of_melisa2_yxroju.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200,c_limit/v1779396658/Copy_of_melisa2_yxroju.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600,c_limit/v1779396658/Copy_of_melisa2_yxroju.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div><div class="pg-item pg-horiz"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600,c_limit/v1779396658/Copy_of_gabby3_ghkcng.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600,c_limit/v1779396658/Copy_of_gabby3_ghkcng.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200,c_limit/v1779396658/Copy_of_gabby3_ghkcng.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600,c_limit/v1779396658/Copy_of_gabby3_ghkcng.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div></div>
+        <div class="pg-horiz-stack">
+          <div class="pg-item pg-horiz"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600,c_limit/v1779396658/Copy_of_melisa2_yxroju.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600,c_limit/v1779396658/Copy_of_melisa2_yxroju.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200,c_limit/v1779396658/Copy_of_melisa2_yxroju.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600,c_limit/v1779396658/Copy_of_melisa2_yxroju.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div>
+          <div class="pg-item pg-horiz"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600,c_limit/v1779396658/Copy_of_gabby3_ghkcng.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600,c_limit/v1779396658/Copy_of_gabby3_ghkcng.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200,c_limit/v1779396658/Copy_of_gabby3_ghkcng.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600,c_limit/v1779396658/Copy_of_gabby3_ghkcng.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div>
+        </div>
         <div class="pg-item pg-vert"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337898/Copy_of_darah3_hp2n5p.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600/v1779337898/Copy_of_darah3_hp2n5p.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337898/Copy_of_darah3_hp2n5p.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337898/Copy_of_darah3_hp2n5p.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div>
       </div>
       <div class="pg-row pg-row-a">
-        <div class="pg-item pg-vert"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337904/Copy_of_Annette3_mctig7.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600/v1779337904/Copy_of_Annette3_mctig7.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337904/Copy_of_Annette3_mctig7.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337904/Copy_of_Annette3_mctig7.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div><div class="pg-item pg-vert"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600,c_limit/v1779397445/Copy_of_ella1_mka9st.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600,c_limit/v1779397445/Copy_of_ella1_mka9st.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200,c_limit/v1779397445/Copy_of_ella1_mka9st.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600,c_limit/v1779397445/Copy_of_ella1_mka9st.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div><div class="pg-item pg-vert"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600,c_limit/v1779397445/Copy_of_tatumn3_ypctjr.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600,c_limit/v1779397445/Copy_of_tatumn3_ypctjr.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200,c_limit/v1779397445/Copy_of_tatumn3_ypctjr.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600,c_limit/v1779397445/Copy_of_tatumn3_ypctjr.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div>
+        <div class="pg-item pg-vert"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337904/Copy_of_Annette3_mctig7.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600/v1779337904/Copy_of_Annette3_mctig7.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337904/Copy_of_Annette3_mctig7.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779337904/Copy_of_Annette3_mctig7.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div>
+        <div class="pg-item pg-vert"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600,c_limit/v1779397445/Copy_of_ella1_mka9st.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600,c_limit/v1779397445/Copy_of_ella1_mka9st.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200,c_limit/v1779397445/Copy_of_ella1_mka9st.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600,c_limit/v1779397445/Copy_of_ella1_mka9st.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div>
+        <div class="pg-item pg-vert"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600,c_limit/v1779397445/Copy_of_tatumn3_ypctjr.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600,c_limit/v1779397445/Copy_of_tatumn3_ypctjr.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200,c_limit/v1779397445/Copy_of_tatumn3_ypctjr.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600,c_limit/v1779397445/Copy_of_tatumn3_ypctjr.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div>
       </div>
       <div class="pg-row pg-row-b">
         <div class="pg-item pg-vert"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600,c_limit/v1779397445/Copy_of_tavish4-bw_trnqpx.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600,c_limit/v1779397445/Copy_of_tavish4-bw_trnqpx.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200,c_limit/v1779397445/Copy_of_tavish4-bw_trnqpx.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600,c_limit/v1779397445/Copy_of_tavish4-bw_trnqpx.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div>
-        <div class="pg-horiz-stack"><div class="pg-item pg-horiz"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600,c_limit/v1779396658/Copy_of_iztla2_hrogxv.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600,c_limit/v1779396658/Copy_of_iztla2_hrogxv.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200,c_limit/v1779396658/Copy_of_iztla2_hrogxv.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600,c_limit/v1779396658/Copy_of_iztla2_hrogxv.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div><div class="pg-item pg-horiz"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600,c_limit/v1779396658/Copy_of_tatumn15_i3e4pa.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600,c_limit/v1779396658/Copy_of_tatumn15_i3e4pa.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200,c_limit/v1779396658/Copy_of_tatumn15_i3e4pa.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600,c_limit/v1779396658/Copy_of_tatumn15_i3e4pa.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div></div>
+        <div class="pg-horiz-stack">
+          <div class="pg-item pg-horiz"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600,c_limit/v1779396658/Copy_of_iztla2_hrogxv.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600,c_limit/v1779396658/Copy_of_iztla2_hrogxv.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200,c_limit/v1779396658/Copy_of_iztla2_hrogxv.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600,c_limit/v1779396658/Copy_of_iztla2_hrogxv.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div>
+          <div class="pg-item pg-horiz"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600,c_limit/v1779396658/Copy_of_tatumn15_i3e4pa.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600,c_limit/v1779396658/Copy_of_tatumn15_i3e4pa.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200,c_limit/v1779396658/Copy_of_tatumn15_i3e4pa.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600,c_limit/v1779396658/Copy_of_tatumn15_i3e4pa.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div>
+        </div>
         <div class="pg-item pg-vert"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600,c_limit/v1779397445/Copy_of_alexa1_1_ny8suk.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600,c_limit/v1779397445/Copy_of_alexa1_1_ny8suk.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200,c_limit/v1779397445/Copy_of_alexa1_1_ny8suk.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600,c_limit/v1779397445/Copy_of_alexa1_1_ny8suk.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div>
       </div>
     `;
   } else if (cat === 'events') {
     document.getElementById('cat-photo-grid').innerHTML = `
+      <div class="grid-sizer"></div>
       <div class="pg-item"><img decoding="async" src="IMG_1930.jpeg" alt="Event" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="IMG_1942.jpeg" alt="Event" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="IMG_1922.jpeg" alt="Event" loading="lazy"></div>
@@ -1451,6 +1532,7 @@ function closeComingSoon() {
   function resetZodiacTimer() { clearInterval(zodiacTimer); zodiacTimer = setInterval(() => goTo(current + 1), 6000); }
 })();
 
+
 // ── IMAGE REVEAL — handle cached images that fire before JS runs ─
 (function() {
   document.querySelectorAll('.pg-item img').forEach(function(img) {
@@ -1494,7 +1576,6 @@ function closeComingSoon() {
     }
   });
 })();
-
 
 function toggleFaq(btn) {
   const item = btn.closest('.faq-item');
