@@ -7,7 +7,7 @@
 <link rel="preload" as="image" href="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337906/Copy_of_bola2_gbdbvz.jpg" fetchpriority="high" imagesrcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600/v1779337906/Copy_of_bola2_gbdbvz.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779337906/Copy_of_bola2_gbdbvz.jpg 1200w" imagesizes="(max-width:768px) 100vw, 33vw">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- no masonry needed: structured row layout -->
+
 <title>molcurphotos</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -167,11 +167,7 @@ LANDING
   position:relative;
 }
 .footer-copy { font-size:11px; letter-spacing:.12em; color:var(--muted); }
-.footer-descriptor {
-  font-size:11px; letter-spacing:.12em; color:var(--muted);
-  position:absolute; left:0; right:0; text-align:center;
-  pointer-events:none;
-}
+
 .footer-cta {
   font-size:13px; letter-spacing:.14em; text-transform:uppercase;
   color:var(--muted); cursor:pointer; background:none; border:none;
@@ -179,7 +175,6 @@ LANDING
   transition:color .2s;
 }
 .footer-cta:hover { color:var(--accent); }
-
 
 /* ══════════════════════════════
 COMING SOON OVERLAY
@@ -335,11 +330,6 @@ PORTFOLIO — full-bleed tiles
   text-shadow: 0 2px 12px rgba(0,0,0,.6);
 }
 .ptile:hover .ptile-label { letter-spacing:.06em; }
-.ptile-num {
-  position:absolute; top:18px; left:24px;
-  font-size:10px; letter-spacing:.18em;
-  color:rgba(255,255,255,.4); z-index:2;
-}
 
 .ptile-portraits { grid-column:1;   grid-row:1/3; background:#1e1512; }
 .ptile-senior    { grid-column:2;   grid-row:1;   background:#121a16; }
@@ -400,11 +390,15 @@ CATEGORY PAGE
 /* ══════════════════════════════
 PORTRAIT EDITORIAL GRID — structured rows
 ══════════════════════════════ */
+
+/* Full bleed — remove cat-body side padding for portraits */
+#page-category.portraits-active .cat-body {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 #cat-photo-grid {
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
+  width: 100%;
   margin-top: 24px;
   display: flex;
   flex-direction: column;
@@ -412,147 +406,58 @@ PORTRAIT EDITORIAL GRID — structured rows
 }
 
 /* ── ROW BASE ── */
-.pg-row {
-  display: flex;
-  gap: 2px;
-  width: 100%;
-}
+.pg-row { display: flex; gap: 2px; width: 100%; }
 
 /* ── ROW A: 3 verticals, natural heights ── */
 .pg-row-a { align-items: flex-start; }
 .pg-row-a .pg-vert { flex: 1; min-width: 0; }
 .pg-row-a .pg-vert img { width: 100%; height: auto; display: block; }
 
-/* ── ROW B: verticals stretch to fill horiz stack height ── */
+/* ── ROW B: no gaps ── */
+/* The horiz stack sets the height. Flanking verts stretch to match. */
 .pg-row-b { align-items: stretch; }
-.pg-row-b .pg-vert {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-}
+.pg-row-b .pg-vert { flex: 1; min-width: 0; }
 .pg-row-b .pg-vert img {
-  width: 100%;
-  flex: 1;
-  object-fit: cover;
-  object-position: center top;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center top;
   display: block;
-  min-height: 0;
 }
-
-/* ── HORIZ STACK: drives row height, images natural ── */
 .pg-horiz-stack {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
+  flex: 1; min-width: 0;
+  display: flex; flex-direction: column; gap: 2px;
 }
-.pg-horiz-stack .pg-horiz {
-  flex: 1;
-  min-height: 0;
-  overflow: hidden;
-}
+.pg-horiz-stack .pg-horiz { flex: 1; min-height: 0; }
 .pg-horiz-stack .pg-horiz img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
 }
 
 /* ── ALL ITEMS ── */
-.pg-item {
-  overflow: hidden;
-  position: relative;
-  background: var(--bg2);
-}
-.pg-item img {
-  opacity: 0;
-  transition: opacity .5s ease, transform .6s cubic-bezier(.4,0,.2,1);
-}
+.pg-item { overflow: hidden; position: relative; background: var(--bg2); }
+.pg-item img { opacity: 0; transition: opacity .5s ease, transform .6s cubic-bezier(.4,0,.2,1); }
 .pg-item img.loaded { opacity: 1; }
 .pg-item:hover img { transform: scale(1.02); }
 
-/* Staggered fade */
-.pg-item:nth-child(2) img { transition-delay:.05s; }
-.pg-item:nth-child(3) img { transition-delay:.10s; }
-.pg-item:nth-child(4) img { transition-delay:.15s; }
-.pg-item:nth-child(5) img { transition-delay:.20s; }
-
-/* ── MOBILE: resequenced single column ── */
+/* ── MOBILE ── */
 @media(max-width:768px){
-  /* Original grid hidden by JS, mobile grid takes over */
+  /* JS builds #mobile-portrait-grid and hides #cat-photo-grid */
+  #mobile-portrait-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    width: 100%;
+  }
   #mobile-portrait-grid .pg-item {
     width: 100%;
     overflow: hidden;
   }
   #mobile-portrait-grid .pg-item img {
-    width: 100%;
-    height: auto;
+    width: 100%; height: auto;
     display: block;
-    object-fit: unset;
     opacity: 0;
     transition: opacity .5s ease;
   }
-  #mobile-portrait-grid .pg-item img.loaded {
-    opacity: 1;
-  }
-  #cat-photo-grid {
-    width: 100%;
-    left: auto;
-    transform: none;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-  /* All rows stack vertically */
-  .pg-row-a, .pg-row-b {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 2px;
-  }
-  /* Every item full width */
-  .pg-item { width: 100%; }
-
-  /* Row B verticals restore natural height */
-  .pg-row-b .pg-vert img {
-    height: auto;
-    object-fit: unset;
-    flex: unset;
-  }
-
-  /* Horiz stack: row so we can use order to split them */
-  .pg-horiz-stack {
-    flex-direction: column;
-    gap: 2px;
-  }
-  .pg-horiz-stack .pg-horiz {
-    flex: unset;
-    min-height: unset;
-  }
-  .pg-horiz-stack .pg-horiz img {
-    height: auto;
-    object-fit: unset;
-  }
-
-  /* Row B mobile order:
-     left-vert (order 1), horiz-1 (order 2), right-vert (order 3), horiz-2 (order 4)
-     This splits the two horizontals with a vertical in between */
-  .pg-row-b {
-    display: flex;
-    flex-direction: column;
-  }
-  .pg-row-b > .pg-vert:first-child    { order: 1; }
-  .pg-row-b > .pg-horiz-stack         { order: 2; display: flex; flex-direction: column; }
-  .pg-row-b > .pg-vert:last-child     { order: 3; }
-
-  /* Split horiz stack: first horiz stays with stack (order 2),
-     second horiz moves after the right vertical (order 4) */
-  .pg-horiz-stack > .pg-horiz:first-child { order: 1; }
-  .pg-horiz-stack > .pg-horiz:last-child  {
-    order: 4;
-    /* Pull out of stack visually by making stack a block and using margin */
-  }
+  #mobile-portrait-grid .pg-item img.loaded { opacity: 1; }
 }
   /* All rows stack as blocks */
   .pg-row-a, .pg-row-b {
@@ -586,9 +491,7 @@ PORTRAIT EDITORIAL GRID — structured rows
     width: 100%;
   }
 }
-  .pg-port, .pg-land, .pg-port-wide {
-    grid-column: 1;
-  }
+  ., ., 
 }
 .photo-grid {
   display:grid;
@@ -601,7 +504,7 @@ PORTRAIT EDITORIAL GRID — structured rows
 }
 .photo-cell img { width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s var(--ease); }
 .photo-cell:hover img { transform:scale(1.04); }
-.photo-cell-ph { font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(245,242,238,.14);font-family:'DM Sans',sans-serif; }
+
 
 /* ══════════════════════════════
 SHARED BOOK CTA BLOCK
@@ -714,7 +617,7 @@ ABOUT PAGE
 .carousel-slide { position:absolute; inset:0; opacity:0; transition:opacity 1s ease; }
 .carousel-slide.active { opacity:1; }
 .carousel-slide img { width:100%; height:100%; object-fit:cover; object-position:center; display:block; }
-.carousel-slide-ph { width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:rgba(245,242,238,.14); }
+
 .carousel-dots { position:absolute; bottom:16px; left:50%; transform:translateX(-50%); display:flex; gap:6px; z-index:3; }
 .carousel-dot { width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,.3); transition:background .3s, transform .3s; }
 .carousel-dot.active { background:white; transform:scale(1.3); }
@@ -948,7 +851,7 @@ RESPONSIVE — global
   .landing-avail { margin-top:16px; }
   .top-nav { padding:18px 20px; }
   .landing-footer { padding:16px 20px; }
-  .footer-descriptor { display:none; }
+  
   .page-nav { padding:16px 20px; }
   #tile-grid { grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr 1fr; }
   .ptile-portraits { grid-column:1/3; grid-row:1; }
@@ -1502,7 +1405,6 @@ function openCategory(cat) {
     `;
   } else if (cat === 'events') {
     document.getElementById('cat-photo-grid').innerHTML = `
-      <div class="grid-sizer"></div>
       <div class="pg-item"><img decoding="async" src="IMG_1930.jpeg" alt="Event" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="IMG_1942.jpeg" alt="Event" loading="lazy"></div>
       <div class="pg-item"><img decoding="async" src="IMG_1922.jpeg" alt="Event" loading="lazy"></div>
@@ -1543,6 +1445,10 @@ function openCategory(cat) {
   }
   const placeholder = document.getElementById('next-genre-placeholder');
   placeholder.innerHTML = `<div class="next-genre"><span class="next-genre-label">Next</span><button class="next-genre-link" onclick="openCategory('${nextCat}')">${nextLabel} <span class="next-genre-arrow">→</span></button></div>`;
+  if (cat === 'portraits') {
+    document.getElementById('page-category').classList.add('portraits-active');
+    setTimeout(splitHorizForMobile, 150);
+  } else { document.getElementById('page-category').classList.remove('portraits-active'); }
   document.getElementById('page-category').scrollTop = 0;
   openPage('category');
 }
@@ -1607,7 +1513,6 @@ function closeComingSoon() {
   function resetZodiacTimer() { clearInterval(zodiacTimer); zodiacTimer = setInterval(() => goTo(current + 1), 6000); }
 })();
 
-
 // ── IMAGE REVEAL — handle cached images that fire before JS runs ─
 (function() {
   document.querySelectorAll('.pg-item img').forEach(function(img) {
@@ -1652,6 +1557,41 @@ function closeComingSoon() {
   });
 })();
 
+
+// ── MOBILE RESEQUENCE — 3 verts then 1 horiz ──────────────────
+function splitHorizForMobile() {
+  if (window.innerWidth > 768) return;
+  try {
+    var grid = document.getElementById('cat-photo-grid');
+    if (!grid) return;
+    var prev = document.getElementById('mobile-portrait-grid');
+    if (prev) prev.parentNode.removeChild(prev);
+    grid.style.display = '';
+    var allVerts  = Array.from(grid.querySelectorAll('.pg-vert'));
+    var allHorizs = Array.from(grid.querySelectorAll('.pg-horiz'));
+    if (!allVerts.length && !allHorizs.length) return;
+    var sequence = [], vi = 0, hi = 0;
+    while (vi < allVerts.length || hi < allHorizs.length) {
+      for (var i = 0; i < 3 && vi < allVerts.length; i++, vi++) {
+        sequence.push(allVerts[vi]);
+      }
+      if (hi < allHorizs.length) { sequence.push(allHorizs[hi]); hi++; }
+    }
+    var mobileGrid = document.createElement('div');
+    mobileGrid.id = 'mobile-portrait-grid';
+    sequence.forEach(function(item) {
+      var clone = item.cloneNode(true);
+      var img = clone.querySelector('img');
+      if (img) {
+        if (img.complete && img.naturalWidth > 0) img.classList.add('loaded');
+        img.addEventListener('load', function() { this.classList.add('loaded'); });
+      }
+      mobileGrid.appendChild(clone);
+    });
+    grid.style.display = 'none';
+    grid.parentNode.insertBefore(mobileGrid, grid.nextSibling);
+  } catch(e) { console.warn('Mobile resequence failed:', e); }
+}
 function toggleFaq(btn) {
   const item = btn.closest('.faq-item');
   const isOpen = item.classList.contains('open');
