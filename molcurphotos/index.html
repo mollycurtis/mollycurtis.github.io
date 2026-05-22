@@ -411,33 +411,36 @@ PORTRAIT EDITORIAL GRID — structured rows
   gap: 2px;
 }
 
-/* Row types */
+/* ── ROW BASE ── */
 .pg-row {
   display: flex;
   gap: 2px;
   width: 100%;
-  align-items: flex-start;
 }
 
-/* Row A: 3 equal vertical columns, fully natural */
+/* ── ROW A: 3 verticals, natural heights ── */
+.pg-row-a { align-items: flex-start; }
 .pg-row-a .pg-vert { flex: 1; min-width: 0; }
+.pg-row-a .pg-vert img { width: 100%; height: auto; display: block; }
 
-/* Row B: stretch so verticals match the horiz stack height */
+/* ── ROW B: verticals stretch to fill horiz stack height ── */
 .pg-row-b { align-items: stretch; }
 .pg-row-b .pg-vert {
   flex: 1;
   min-width: 0;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 .pg-row-b .pg-vert img {
   width: 100%;
-  height: 100%;
+  flex: 1;
   object-fit: cover;
   object-position: center top;
   display: block;
+  min-height: 0;
 }
 
-/* Horiz stack — natural heights, drives the row height */
+/* ── HORIZ STACK: drives row height, images natural ── */
 .pg-horiz-stack {
   flex: 1;
   min-width: 0;
@@ -445,40 +448,112 @@ PORTRAIT EDITORIAL GRID — structured rows
   flex-direction: column;
   gap: 2px;
 }
-.pg-horiz-stack .pg-horiz { width: 100%; }
+.pg-horiz-stack .pg-horiz {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
 .pg-horiz-stack .pg-horiz img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   display: block;
 }
 
-/* All items */
+/* ── ALL ITEMS ── */
 .pg-item {
   overflow: hidden;
   position: relative;
   background: var(--bg2);
-  min-width: 0;
 }
 .pg-item img {
-  width: 100%;
-  height: auto;
-  display: block;
   opacity: 0;
   transition: opacity .5s ease, transform .6s cubic-bezier(.4,0,.2,1);
 }
 .pg-item img.loaded { opacity: 1; }
-.pg-item:hover img  { transform: scale(1.02); }
+.pg-item:hover img { transform: scale(1.02); }
 
+/* Staggered fade */
+.pg-item:nth-child(2) img { transition-delay:.05s; }
+.pg-item:nth-child(3) img { transition-delay:.10s; }
+.pg-item:nth-child(4) img { transition-delay:.15s; }
+.pg-item:nth-child(5) img { transition-delay:.20s; }
 
-
-/* Mobile — single column stacked */
+/* ── MOBILE: resequenced single column ── */
 @media(max-width:768px){
+  /* Original grid hidden by JS, mobile grid takes over */
+  #mobile-portrait-grid .pg-item {
+    width: 100%;
+    overflow: hidden;
+  }
+  #mobile-portrait-grid .pg-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: unset;
+    opacity: 0;
+    transition: opacity .5s ease;
+  }
+  #mobile-portrait-grid .pg-item img.loaded {
+    opacity: 1;
+  }
   #cat-photo-grid {
     width: 100%;
     left: auto;
     transform: none;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
   }
+  /* All rows stack vertically */
+  .pg-row-a, .pg-row-b {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+  }
+  /* Every item full width */
+  .pg-item { width: 100%; }
+
+  /* Row B verticals restore natural height */
+  .pg-row-b .pg-vert img {
+    height: auto;
+    object-fit: unset;
+    flex: unset;
+  }
+
+  /* Horiz stack: row so we can use order to split them */
+  .pg-horiz-stack {
+    flex-direction: column;
+    gap: 2px;
+  }
+  .pg-horiz-stack .pg-horiz {
+    flex: unset;
+    min-height: unset;
+  }
+  .pg-horiz-stack .pg-horiz img {
+    height: auto;
+    object-fit: unset;
+  }
+
+  /* Row B mobile order:
+     left-vert (order 1), horiz-1 (order 2), right-vert (order 3), horiz-2 (order 4)
+     This splits the two horizontals with a vertical in between */
+  .pg-row-b {
+    display: flex;
+    flex-direction: column;
+  }
+  .pg-row-b > .pg-vert:first-child    { order: 1; }
+  .pg-row-b > .pg-horiz-stack         { order: 2; display: flex; flex-direction: column; }
+  .pg-row-b > .pg-vert:last-child     { order: 3; }
+
+  /* Split horiz stack: first horiz stays with stack (order 2),
+     second horiz moves after the right vertical (order 4) */
+  .pg-horiz-stack > .pg-horiz:first-child { order: 1; }
+  .pg-horiz-stack > .pg-horiz:last-child  {
+    order: 4;
+    /* Pull out of stack visually by making stack a block and using margin */
+  }
+}
   /* All rows stack as blocks */
   .pg-row-a, .pg-row-b {
     display: block;
@@ -1425,6 +1500,7 @@ function openCategory(cat) {
         <div class="pg-item pg-vert"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600,c_limit/v1779397445/Copy_of_alexa1_1_ny8suk.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600,c_limit/v1779397445/Copy_of_alexa1_1_ny8suk.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200,c_limit/v1779397445/Copy_of_alexa1_1_ny8suk.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600,c_limit/v1779397445/Copy_of_alexa1_1_ny8suk.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div>
       </div>
     `;
+  splitHorizForMobile();
   } else if (cat === 'events') {
     document.getElementById('cat-photo-grid').innerHTML = `
       <div class="grid-sizer"></div>
