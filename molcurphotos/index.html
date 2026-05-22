@@ -1050,6 +1050,19 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   transform: translateX(-50%);
   margin-top: 0;
 }
+
+/* section label — above group photo, larger */
+.biz-label {
+  padding: 32px 0 16px;
+  font-size: 13px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  text-align: center;
+  font-family: var(--sans);
+}
+
+/* group photo — desktop constrained, mobile full bleed */
 .biz-group-photo {
   width: 100%;
   display: block;
@@ -1064,32 +1077,29 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 }
 .biz-group-photo img.loaded { opacity: 1; }
 
-/* section label */
-.biz-label {
-  padding: 28px 0 12px;
-  font-size: 10px;
-  letter-spacing: .22em;
-  text-transform: uppercase;
-  color: var(--accent);
-  text-align: center;
+@media(min-width:769px) {
+  .biz-group-photo {
+    max-width: 900px;
+    margin: 0 auto;
+  }
 }
 
-/* marquee track */
+/* marquee — no pause on hover, slower speeds */
 .biz-marquee {
   overflow: hidden;
   width: 100%;
   position: relative;
   line-height: 0;
+  margin-top: 0;
 }
 .biz-marquee-track {
   display: flex;
   gap: 0;
   width: max-content;
-  animation: marqueeScroll 32s linear infinite;
+  animation: marqueeScroll 52s linear infinite;
   will-change: transform;
 }
-.biz-marquee-track.slow { animation-duration: 48s; }
-.biz-marquee:hover .biz-marquee-track { animation-play-state: paused; }
+.biz-marquee-track.slow { animation-duration: 68s; }
 @keyframes marqueeScroll {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
@@ -1111,9 +1121,29 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 }
 .biz-marquee-item img.loaded { opacity: 1; }
 
+/* individual headshots grid — 3 per row, full bleed */
+.biz-hs-grid {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.biz-hs-cell {
+  width: 33.333%;
+  line-height: 0;
+  overflow: hidden;
+}
+.biz-hs-cell img {
+  width: 100%;
+  height: auto;
+  display: block;
+  opacity: 0;
+  transition: opacity .5s ease;
+}
+.biz-hs-cell img.loaded { opacity: 1; }
+
 /* section divider */
 .biz-divider {
-  height: 2px;
+  height: 1px;
   background: var(--border);
   width: 100vw;
   position: relative;
@@ -1122,13 +1152,12 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   margin: 40px 0;
 }
 
-/* solo marquee section (no group photo) */
-.biz-solo { padding: 20px 0 0; }
-
 @media(max-width:768px) {
   .biz-marquee-item { width: 220px; }
   .biz-marquee-item img { height: 280px; }
-  .biz-label { padding: 20px 0 10px; }
+  .biz-label { padding: 20px 0 10px; font-size: 11px; }
+  .biz-group-photo { max-width: 100%; }
+  .biz-hs-cell { width: 100%; }
 }
 
 </style>
@@ -1684,11 +1713,12 @@ function openCategory(cat) {
       else img.addEventListener('load', () => img.classList.add('loaded'), {once:true});
     });
   } else if (cat === 'business') {
-    document.getElementById('cat-photo-grid').innerHTML = `<div class=\"biz-section\"><div class=\"biz-group-photo\"><img src=\"https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491334/Group2_cuo0pa.jpg\" fetchpriority=\"high\" decoding=\"async\" alt=\"Salon\" onload=\"this.classList.add('loaded')\"></div><div class=\"biz-label\">Salon</div><div class=\"biz-marquee\"><div class=\"biz-marquee-track \"><div class=\"biz-marquee-item\"><img src=\"https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491333/23_vutng1.jpg\" loading=\"lazy\" decoding=\"async\" alt=\"Headshot\" onload=\"this.classList.add('loaded')\"></div><div class=\"biz-marquee-item\"><img src=\"https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491333/25_wdvbbt.jpg\" loading=\"lazy\" decoding=\"async\" alt=\"Headshot\" onload=\"this.classList.add('loaded')\"></div><div class=\"biz-marquee-item\"><img src=\"https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491329/13_noxmgh.jpg\" loading=\"lazy\" decoding=\"async\" alt=\"Headshot\" onload=\"this.classList.add('loaded')\"></div><div class=\"biz-marquee-item\"><img src=\"https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491329/15_bwopnk.jpg\" loading=\"lazy\" decoding=\"async\" alt=\"Headshot\" onload=\"this.classList.add('loaded')\"></div><div class=\"biz-marquee-item\"><img src=\"https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491328/6_gw3agu.jpg\" loading=\"lazy\" decoding=\"async\" alt=\"Headshot\" onload=\"this.classList.add('loaded')\"></div><div class=\"biz-marquee-item\"><img src=\"https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491328/8_h8xfx9.jpg\" loading=\"lazy\" decoding=\"async\" alt=\"Headshot\" onload=\"this.classList.add('loaded')\"></div><div class=\"biz-marquee-item\"><img src=\"https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491333/23_vutng1.jpg\" loading=\"lazy\" decoding=\"async\" alt=\"Headshot\" onload=\"this.classList.add('loaded')\"></div><div class=\"biz-marquee-item\"><img src=\"https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491333/25_wdvbbt.jpg\" loading=\"lazy\" decoding=\"async\" alt=\"Headshot\" onload=\"this.classList.add('loaded')\"></div><div class=\"biz-marquee-item\"><img src=\"https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491329/13_noxmgh.jpg\" loading=\"lazy\" decoding=\"async\" alt=\"Headshot\" onload=\"this.classList.add('loaded')\"></div><div class=\"biz-marquee-item\"><img src=\"https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491329/15_bwopnk.jpg\" loading=\"lazy\" decoding=\"async\" alt=\"Headshot\" onload=\"this.classList.add('loaded')\"></div><div class=\"biz-marquee-item\"><img src=\"https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491328/6_gw3agu.jpg\" loading=\"lazy\" decoding=\"async\" alt=\"Headshot\" onload=\"this.classList.add('loaded')\"></div><div class=\"biz-marquee-item\"><img src=\"https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491328/8_h8xfx9.jpg\" loading=\"lazy\" decoding=\"async\" alt=\"Headshot\" onload=\"this.classList.add('loaded')\"></div></div></div></div><div class=\"biz-divider\"></div><div class=\"biz-section biz-solo\"><div class=\"biz-label\">Headshots</div><div class=\"biz-marquee\"><div class=\"biz-marquee-track slow\"><div class=\"biz-marquee-item\"><img src=\"https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491328/sarah-headshot2_chxezf.jpg\" loading=\"lazy\" decoding=\"async\" alt=\"Headshot\" onload=\"this.classList.add('loaded')\"></div><div class=\"biz-marquee-item\"><img src=\"https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491331/morgan1_swz8ff.jpg\" loading=\"lazy\" decoding=\"async\" alt=\"Headshot\" onload=\"this.classList.add('loaded')\"></div><div class=\"biz-marquee-item\"><img src=\"https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491328/zac_bw_ih88bv.jpg\" loading=\"lazy\" decoding=\"async\" alt=\"Headshot\" onload=\"this.classList.add('loaded')\"></div><div class=\"biz-marquee-item\"><img src=\"https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491333/DSC09288_cidlwc.jpg\" loading=\"lazy\" decoding=\"async\" alt=\"Headshot\" onload=\"this.classList.add('loaded')\"></div><div class=\"biz-marquee-item\"><img src=\"https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491331/molly-headshot1_xkpnbv.jpg\" loading=\"lazy\" decoding=\"async\" alt=\"Headshot\" onload=\"this.classList.add('loaded')\"></div><div class=\"biz-marquee-item\"><img src=\"https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491335/Ethan-Newman-Headshot_wupb3p.jpg\" loading=\"lazy\" decoding=\"async\" alt=\"Headshot\" onload=\"this.classList.add('loaded')\"></div><div class=\"biz-marquee-item\"><img src=\"https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491329/kellie3_ithadz.jpg\" loading=\"lazy\" decoding=\"async\" alt=\"Headshot\" onload=\"this.classList.add('loaded')\"></div><div class=\"biz-marquee-item\"><img src=\"https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491328/sarah-headshot2_chxezf.jpg\" loading=\"lazy\" decoding=\"async\" alt=\"Headshot\" onload=\"this.classList.add('loaded')\"></div><div class=\"biz-marquee-item\"><img src=\"https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491331/morgan1_swz8ff.jpg\" loading=\"lazy\" decoding=\"async\" alt=\"Headshot\" onload=\"this.classList.add('loaded')\"></div><div class=\"biz-marquee-item\"><img src=\"https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491328/zac_bw_ih88bv.jpg\" loading=\"lazy\" decoding=\"async\" alt=\"Headshot\" onload=\"this.classList.add('loaded')\"></div><div class=\"biz-marquee-item\"><img src=\"https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491333/DSC09288_cidlwc.jpg\" loading=\"lazy\" decoding=\"async\" alt=\"Headshot\" onload=\"this.classList.add('loaded')\"></div><div class=\"biz-marquee-item\"><img src=\"https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491331/molly-headshot1_xkpnbv.jpg\" loading=\"lazy\" decoding=\"async\" alt=\"Headshot\" onload=\"this.classList.add('loaded')\"></div><div class=\"biz-marquee-item\"><img src=\"https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491335/Ethan-Newman-Headshot_wupb3p.jpg\" loading=\"lazy\" decoding=\"async\" alt=\"Headshot\" onload=\"this.classList.add('loaded')\"></div><div class=\"biz-marquee-item\"><img src=\"https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491329/kellie3_ithadz.jpg\" loading=\"lazy\" decoding=\"async\" alt=\"Headshot\" onload=\"this.classList.add('loaded')\"></div></div></div></div><div class=\"biz-divider\"></div><div class=\"biz-section\"><div class=\"biz-group-photo\"><img src=\"https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491333/NBIGroupPhoto_tettyj.jpg\" loading=\"lazy\" decoding=\"async\" alt=\"National Business Institute\" onload=\"this.classList.add('loaded')\"></div><div class=\"biz-label\">National Business Institute</div><div class=\"biz-marquee\"><div class=\"biz-marquee-track slow\"><div class=\"biz-marquee-item\"><img src=\"https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491330/Matt_zabwkz.jpg\" loading=\"lazy\" decoding=\"async\" alt=\"Headshot\" onload=\"this.classList.add('loaded')\"></div><div class=\"biz-marquee-item\"><img src=\"https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491329/Allison_h3imxq.jpg\" loading=\"lazy\" decoding=\"async\" alt=\"Headshot\" onload=\"this.classList.add('loaded')\"></div><div class=\"biz-marquee-item\"><img src=\"https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491332/BrettM_y7mkkc.jpg\" loading=\"lazy\" decoding=\"async\" alt=\"Headshot\" onload=\"this.classList.add('loaded')\"></div><div class=\"biz-marquee-item\"><img src=\"https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491331/Dawn_vntlea.jpg\" loading=\"lazy\" decoding=\"async\" alt=\"Headshot\" onload=\"this.classList.add('loaded')\"></div><div class=\"biz-marquee-item\"><img src=\"https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491332/Alex_g2iuhq.jpg\" loading=\"lazy\" decoding=\"async\" alt=\"Headshot\" onload=\"this.classList.add('loaded')\"></div><div class=\"biz-marquee-item\"><img src=\"https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491334/Sandra_uz3we9.jpg\" loading=\"lazy\" decoding=\"async\" alt=\"Headshot\" onload=\"this.classList.add('loaded')\"></div><div class=\"biz-marquee-item\"><img src=\"https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491332/MarkM_osaqjj.jpg\" loading=\"lazy\" decoding=\"async\" alt=\"Headshot\" onload=\"this.classList.add('loaded')\"></div><div class=\"biz-marquee-item\"><img src=\"https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491330/Amanda_mnfeq3.jpg\" loading=\"lazy\" decoding=\"async\" alt=\"Headshot\" onload=\"this.classList.add('loaded')\"></div><div class=\"biz-marquee-item\"><img src=\"https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491331/Elliot_ex7gj8.jpg\" loading=\"lazy\" decoding=\"async\" alt=\"Headshot\" onload=\"this.classList.add('loaded')\"></div><div class=\"biz-marquee-item\"><img src=\"https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491330/Matt_zabwkz.jpg\" loading=\"lazy\" decoding=\"async\" alt=\"Headshot\" onload=\"this.classList.add('loaded')\"></div><div class=\"biz-marquee-item\"><img src=\"https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491329/Allison_h3imxq.jpg\" loading=\"lazy\" decoding=\"async\" alt=\"Headshot\" onload=\"this.classList.add('loaded')\"></div><div class=\"biz-marquee-item\"><img src=\"https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491332/BrettM_y7mkkc.jpg\" loading=\"lazy\" decoding=\"async\" alt=\"Headshot\" onload=\"this.classList.add('loaded')\"></div><div class=\"biz-marquee-item\"><img src=\"https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491331/Dawn_vntlea.jpg\" loading=\"lazy\" decoding=\"async\" alt=\"Headshot\" onload=\"this.classList.add('loaded')\"></div><div class=\"biz-marquee-item\"><img src=\"https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491332/Alex_g2iuhq.jpg\" loading=\"lazy\" decoding=\"async\" alt=\"Headshot\" onload=\"this.classList.add('loaded')\"></div><div class=\"biz-marquee-item\"><img src=\"https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491334/Sandra_uz3we9.jpg\" loading=\"lazy\" decoding=\"async\" alt=\"Headshot\" onload=\"this.classList.add('loaded')\"></div><div class=\"biz-marquee-item\"><img src=\"https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491332/MarkM_osaqjj.jpg\" loading=\"lazy\" decoding=\"async\" alt=\"Headshot\" onload=\"this.classList.add('loaded')\"></div><div class=\"biz-marquee-item\"><img src=\"https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491330/Amanda_mnfeq3.jpg\" loading=\"lazy\" decoding=\"async\" alt=\"Headshot\" onload=\"this.classList.add('loaded')\"></div><div class=\"biz-marquee-item\"><img src=\"https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491331/Elliot_ex7gj8.jpg\" loading=\"lazy\" decoding=\"async\" alt=\"Headshot\" onload=\"this.classList.add('loaded')\"></div></div></div></div>`;
+    document.getElementById('cat-photo-grid').innerHTML = `<div class="biz-section"><div class="biz-label">Salon</div><div class="biz-group-photo"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491334/Group2_cuo0pa.jpg" fetchpriority="high" decoding="async" alt="Salon" onload="this.classList.add('loaded')"></div><div class="biz-marquee"><div class="biz-marquee-track "><div class="biz-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491333/23_vutng1.jpg" loading="lazy" decoding="async" alt="Headshot" onload="this.classList.add('loaded')"></div><div class="biz-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491333/25_wdvbbt.jpg" loading="lazy" decoding="async" alt="Headshot" onload="this.classList.add('loaded')"></div><div class="biz-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491329/13_noxmgh.jpg" loading="lazy" decoding="async" alt="Headshot" onload="this.classList.add('loaded')"></div><div class="biz-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491329/15_bwopnk.jpg" loading="lazy" decoding="async" alt="Headshot" onload="this.classList.add('loaded')"></div><div class="biz-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491328/6_gw3agu.jpg" loading="lazy" decoding="async" alt="Headshot" onload="this.classList.add('loaded')"></div><div class="biz-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491328/8_h8xfx9.jpg" loading="lazy" decoding="async" alt="Headshot" onload="this.classList.add('loaded')"></div><div class="biz-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491333/23_vutng1.jpg" loading="lazy" decoding="async" alt="Headshot" onload="this.classList.add('loaded')"></div><div class="biz-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491333/25_wdvbbt.jpg" loading="lazy" decoding="async" alt="Headshot" onload="this.classList.add('loaded')"></div><div class="biz-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491329/13_noxmgh.jpg" loading="lazy" decoding="async" alt="Headshot" onload="this.classList.add('loaded')"></div><div class="biz-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491329/15_bwopnk.jpg" loading="lazy" decoding="async" alt="Headshot" onload="this.classList.add('loaded')"></div><div class="biz-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491328/6_gw3agu.jpg" loading="lazy" decoding="async" alt="Headshot" onload="this.classList.add('loaded')"></div><div class="biz-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491328/8_h8xfx9.jpg" loading="lazy" decoding="async" alt="Headshot" onload="this.classList.add('loaded')"></div></div></div></div><div class="biz-divider"></div><div class="biz-section"><div class="biz-label">National Business Institute</div><div class="biz-group-photo"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491333/NBIGroupPhoto_tettyj.jpg" loading="lazy" decoding="async" alt="National Business Institute" onload="this.classList.add('loaded')"></div><div class="biz-marquee"><div class="biz-marquee-track slow"><div class="biz-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491330/Matt_zabwkz.jpg" loading="lazy" decoding="async" alt="Headshot" onload="this.classList.add('loaded')"></div><div class="biz-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491329/Allison_h3imxq.jpg" loading="lazy" decoding="async" alt="Headshot" onload="this.classList.add('loaded')"></div><div class="biz-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491332/BrettM_y7mkkc.jpg" loading="lazy" decoding="async" alt="Headshot" onload="this.classList.add('loaded')"></div><div class="biz-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491331/Dawn_vntlea.jpg" loading="lazy" decoding="async" alt="Headshot" onload="this.classList.add('loaded')"></div><div class="biz-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491332/Alex_g2iuhq.jpg" loading="lazy" decoding="async" alt="Headshot" onload="this.classList.add('loaded')"></div><div class="biz-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491334/Sandra_uz3we9.jpg" loading="lazy" decoding="async" alt="Headshot" onload="this.classList.add('loaded')"></div><div class="biz-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491332/MarkM_osaqjj.jpg" loading="lazy" decoding="async" alt="Headshot" onload="this.classList.add('loaded')"></div><div class="biz-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491330/Amanda_mnfeq3.jpg" loading="lazy" decoding="async" alt="Headshot" onload="this.classList.add('loaded')"></div><div class="biz-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491331/Elliot_ex7gj8.jpg" loading="lazy" decoding="async" alt="Headshot" onload="this.classList.add('loaded')"></div><div class="biz-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491330/Matt_zabwkz.jpg" loading="lazy" decoding="async" alt="Headshot" onload="this.classList.add('loaded')"></div><div class="biz-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491329/Allison_h3imxq.jpg" loading="lazy" decoding="async" alt="Headshot" onload="this.classList.add('loaded')"></div><div class="biz-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491332/BrettM_y7mkkc.jpg" loading="lazy" decoding="async" alt="Headshot" onload="this.classList.add('loaded')"></div><div class="biz-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491331/Dawn_vntlea.jpg" loading="lazy" decoding="async" alt="Headshot" onload="this.classList.add('loaded')"></div><div class="biz-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491332/Alex_g2iuhq.jpg" loading="lazy" decoding="async" alt="Headshot" onload="this.classList.add('loaded')"></div><div class="biz-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491334/Sandra_uz3we9.jpg" loading="lazy" decoding="async" alt="Headshot" onload="this.classList.add('loaded')"></div><div class="biz-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491332/MarkM_osaqjj.jpg" loading="lazy" decoding="async" alt="Headshot" onload="this.classList.add('loaded')"></div><div class="biz-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491330/Amanda_mnfeq3.jpg" loading="lazy" decoding="async" alt="Headshot" onload="this.classList.add('loaded')"></div><div class="biz-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491331/Elliot_ex7gj8.jpg" loading="lazy" decoding="async" alt="Headshot" onload="this.classList.add('loaded')"></div></div></div></div><div class="biz-divider"></div><div class="biz-section"><div class="biz-label">Headshots</div><div class="biz-hs-grid"><div class="biz-hs-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491328/sarah-headshot2_chxezf.jpg" loading="lazy" decoding="async" alt="Headshot" onload="this.classList.add('loaded')"></div><div class="biz-hs-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491331/morgan1_swz8ff.jpg" loading="lazy" decoding="async" alt="Headshot" onload="this.classList.add('loaded')"></div><div class="biz-hs-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491328/zac_bw_ih88bv.jpg" loading="lazy" decoding="async" alt="Headshot" onload="this.classList.add('loaded')"></div><div class="biz-hs-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491333/DSC09288_cidlwc.jpg" loading="lazy" decoding="async" alt="Headshot" onload="this.classList.add('loaded')"></div><div class="biz-hs-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491331/molly-headshot1_xkpnbv.jpg" loading="lazy" decoding="async" alt="Headshot" onload="this.classList.add('loaded')"></div><div class="biz-hs-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779491335/Ethan-Newman-Headshot_wupb3p.jpg" loading="lazy" decoding="async" alt="Headshot" onload="this.classList.add('loaded')"></div></div></div>`;
     document.querySelectorAll('#cat-photo-grid img').forEach(img => {
       if (img.complete && img.naturalWidth > 0) img.classList.add('loaded');
       else img.addEventListener('load', () => img.classList.add('loaded'), {once:true});
     });
+  
   } else {
     document.getElementById('cat-photo-grid').innerHTML =
       Array(d.count||6).fill(0).map(() => `<div class="photo-cell"><div class="photo-cell-ph">Add Photo</div></div>`).join('');
