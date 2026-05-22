@@ -459,7 +459,8 @@ html, body {
 }
 .cat-sub {
   font-size: 14px; color: var(--muted); font-weight: 300;
-  line-height: 1.75; max-width: 420px; padding-bottom: 6px;
+  line-height: 1.75; max-width: none; padding-bottom: 6px;
+  white-space: nowrap;
 }
 
 /* portrait editorial grid */
@@ -865,7 +866,7 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 
   .cat-body, .about-body, .faqs-body, .contact-body, .proj-body { padding: 24px 20px; }
   .cat-header, .proj-header { grid-template-columns: 1fr !important; gap: 12px; }
-  .cat-sub { max-width: 100%; }
+  .cat-sub { max-width: 100%; white-space: normal; }
 
   /* portrait grid mobile — single column */
   #cat-photo-grid { width: 100%; left: auto; transform: none; display: block; }
