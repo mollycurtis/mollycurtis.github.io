@@ -387,78 +387,32 @@ CATEGORY PAGE
   .cat-header { grid-template-columns:1fr; gap:16px; }
   .cat-sub { max-width:100%; }
 }
-/* ══════════════════════════════
-PORTRAIT EDITORIAL GRID — structured rows
-══════════════════════════════ */
-
-/* Full bleed — remove cat-body side padding for portraits */
-#page-category.portraits-active .cat-body {
-  padding-left: 0;
-  padding-right: 0;
-  max-width: 100%;
-}
-
+/* Portrait grid — columns masonry, full bleed */
 #cat-photo-grid {
-  width: 100%;
-  margin-top: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
+  columns: 3;
+  column-gap: 0;
+  width:100vw;
+  position:relative;
+  left:50%;
+  transform:translateX(-50%);
+  margin-top:36px;
 }
-
-/* ── ROW BASE ── */
-.pg-row { display: flex; gap: 2px; width: 100%; }
-
-/* ── ROW A: 3 verticals, natural heights ── */
-.pg-row-a { align-items: flex-start; }
-.pg-row-a .pg-vert { flex: 1; min-width: 0; }
-.pg-row-a .pg-vert img { width: 100%; height: auto; display: block; }
-
-/* ── ROW B: no gaps ── */
-/* The horiz stack sets the height. Flanking verts stretch to match. */
-.pg-row-b { align-items: stretch; }
-.pg-row-b .pg-vert { flex: 1; min-width: 0; }
-.pg-row-b .pg-vert img {
-  width: 100%; height: 100%;
-  object-fit: cover; object-position: center top;
-  display: block;
+.pg-item {
+  break-inside: avoid;
+  overflow:hidden;
+  position:relative;
+  background:var(--bg2);
+  display:block;
+  margin-bottom:0;
 }
-.pg-horiz-stack {
-  flex: 1; min-width: 0;
-  display: flex; flex-direction: column; gap: 2px;
+.pg-item img {
+  width:100%;
+  height:auto;
+  display:block;
+  transition:opacity .4s ease;
 }
-.pg-horiz-stack .pg-horiz { flex: 1; min-height: 0; }
-.pg-horiz-stack .pg-horiz img {
-  width: 100%; height: 100%;
-  object-fit: cover; display: block;
-}
-
-/* ── ALL ITEMS ── */
-.pg-item { overflow: hidden; position: relative; background: var(--bg2); }
-.pg-item img { opacity: 0; transition: opacity .5s ease, transform .6s cubic-bezier(.4,0,.2,1); }
-.pg-item img.loaded { opacity: 1; }
-.pg-item:hover img { transform: scale(1.02); }
-
-/* ── MOBILE ── */
 @media(max-width:768px){
-  /* JS builds #mobile-portrait-grid and hides #cat-photo-grid */
-  #mobile-portrait-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    width: 100%;
-  }
-  #mobile-portrait-grid .pg-item {
-    width: 100%;
-    overflow: hidden;
-  }
-  #mobile-portrait-grid .pg-item img {
-    width: 100%; height: auto;
-    display: block;
-    opacity: 0;
-    transition: opacity .5s ease;
-  }
-  #mobile-portrait-grid .pg-item img.loaded { opacity: 1; }
+  #cat-photo-grid { columns: 2; column-gap:0; }
 }
   /* All rows stack as blocks */
   .pg-row-a, .pg-row-b {
@@ -1446,10 +1400,6 @@ function openCategory(cat) {
   }
   const placeholder = document.getElementById('next-genre-placeholder');
   placeholder.innerHTML = `<div class="next-genre"><span class="next-genre-label">Next</span><button class="next-genre-link" onclick="openCategory('${nextCat}')">${nextLabel} <span class="next-genre-arrow">→</span></button></div>`;
-  if (cat === 'portraits') {
-    document.getElementById('page-category').classList.add('portraits-active');
-    setTimeout(splitHorizForMobile, 150);
-  } else { document.getElementById('page-category').classList.remove('portraits-active'); }
   document.getElementById('page-category').scrollTop = 0;
   openPage('category');
 }
@@ -1559,40 +1509,6 @@ function closeComingSoon() {
 })();
 
 
-// ── MOBILE RESEQUENCE — 3 verts then 1 horiz ──────────────────
-function splitHorizForMobile() {
-  if (window.innerWidth > 768) return;
-  try {
-    var grid = document.getElementById('cat-photo-grid');
-    if (!grid) return;
-    var prev = document.getElementById('mobile-portrait-grid');
-    if (prev) prev.parentNode.removeChild(prev);
-    grid.style.display = '';
-    var allVerts  = Array.from(grid.querySelectorAll('.pg-vert'));
-    var allHorizs = Array.from(grid.querySelectorAll('.pg-horiz'));
-    if (!allVerts.length && !allHorizs.length) return;
-    var sequence = [], vi = 0, hi = 0;
-    while (vi < allVerts.length || hi < allHorizs.length) {
-      for (var i = 0; i < 3 && vi < allVerts.length; i++, vi++) {
-        sequence.push(allVerts[vi]);
-      }
-      if (hi < allHorizs.length) { sequence.push(allHorizs[hi]); hi++; }
-    }
-    var mobileGrid = document.createElement('div');
-    mobileGrid.id = 'mobile-portrait-grid';
-    sequence.forEach(function(item) {
-      var clone = item.cloneNode(true);
-      var img = clone.querySelector('img');
-      if (img) {
-        if (img.complete && img.naturalWidth > 0) img.classList.add('loaded');
-        img.addEventListener('load', function() { this.classList.add('loaded'); });
-      }
-      mobileGrid.appendChild(clone);
-    });
-    grid.style.display = 'none';
-    grid.parentNode.insertBefore(mobileGrid, grid.nextSibling);
-  } catch(e) { console.warn('Mobile resequence failed:', e); }
-}
 function toggleFaq(btn) {
   const item = btn.closest('.faq-item');
   const isOpen = item.classList.contains('open');
