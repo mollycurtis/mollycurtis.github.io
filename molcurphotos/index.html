@@ -964,6 +964,8 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   position: absolute; inset: 0;
   pointer-events: none; z-index: 0;
   overflow: hidden;
+  isolation: isolate;
+  contain: strict;
 }
 
 /* orb 1 — broad/distant, upper left, warm charcoal
@@ -983,6 +985,8 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   opacity: 0;
   transition: opacity 2.5s ease;
   animation: ambientDrift1 44s ease-in-out infinite;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 /* orb 2 — medium depth, lower right, muted bronze-gray
@@ -1003,6 +1007,8 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   transition: opacity 2.5s ease;
   animation: ambientDrift2 56s ease-in-out infinite;
   animation-delay: -22s;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 /* orb 3 — smaller/closer, center, barely-warm gray
@@ -1022,6 +1028,8 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   transition: opacity 3s ease;
   animation: ambientDrift3 68s ease-in-out infinite;
   pointer-events: none;
+  will-change: transform;
+  transform: translate(-50%, -50%) translateZ(0);
 }
 .landing-ambient.ready::before,
 .landing-ambient.ready::after { opacity: 1; }
