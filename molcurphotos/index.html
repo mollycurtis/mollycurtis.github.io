@@ -970,8 +970,7 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   will-change: auto;
 }
 
-/* orb 1 — broad/distant, upper left, warm charcoal
-   Large, low opacity — the "far" depth layer */
+/* orb 1 — broad/distant, upper left */
 .landing-ambient::before {
   content: '';
   position: absolute;
@@ -979,11 +978,12 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   width: 55vw; height: 55vw;
   top: -20%; left: -18%;
   background: radial-gradient(circle at 50% 50%,
-    rgba(190,170,150,.15) 0%,
-    rgba(170,150,130,.09) 25%,
-    rgba(150,132,115,.03) 55%,
+    rgba(190,170,150,.12) 0%,
+    rgba(180,162,143,.09) 15%,
+    rgba(170,152,134,.06) 30%,
+    rgba(160,143,126,.03) 50%,
+    rgba(150,133,117,.01) 65%,
     transparent 80%);
-  filter: blur(52px);
   opacity: 0;
   transition: opacity 2.5s ease;
   animation: ambientDrift1 44s ease-in-out infinite;
@@ -991,7 +991,7 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   transform: translateZ(0);
 }
 
-/* orb 2 — medium depth, lower right, muted bronze-gray */
+/* orb 2 — medium depth, lower right */
 .landing-ambient::after {
   content: '';
   position: absolute;
@@ -999,11 +999,11 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   width: 34vw; height: 34vw;
   bottom: -8%; right: -6%;
   background: radial-gradient(circle at 50% 50%,
-    rgba(165,148,130,.13) 0%,
-    rgba(145,130,114,.07) 30%,
-    rgba(125,112,98,.02) 60%,
-    transparent 82%);
-  filter: blur(46px);
+    rgba(165,148,130,.10) 0%,
+    rgba(155,139,122,.07) 20%,
+    rgba(145,130,114,.04) 40%,
+    rgba(135,120,106,.02) 60%,
+    transparent 80%);
   opacity: 0;
   transition: opacity 2.5s ease;
   animation: ambientDrift2 56s ease-in-out infinite;
@@ -1012,17 +1012,17 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   transform: translateZ(0);
 }
 
-/* orb 3 — smaller/closer, center */
+/* orb 3 — center */
 .landing-ambient-center {
   position: absolute;
   border-radius: 50%;
   width: 22vw; height: 22vw;
   top: 50%; left: 50%;
   background: radial-gradient(circle at 50% 50%,
-    rgba(210,195,178,.07) 0%,
-    rgba(190,175,158,.03) 40%,
+    rgba(210,195,178,.06) 0%,
+    rgba(200,185,168,.04) 25%,
+    rgba(190,175,158,.02) 50%,
     transparent 75%);
-  filter: blur(40px);
   opacity: 0;
   transition: opacity 3s ease;
   animation: ambientDrift3 68s ease-in-out infinite;
