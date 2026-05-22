@@ -1038,6 +1038,98 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   .ev-row { flex-direction: column; }
 }
 
+
+/* ─────────────────────────────────────────────
+   BUSINESS PORTFOLIO — sections + marquee
+───────────────────────────────────────────── */
+.biz-section {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 0;
+}
+.biz-group-photo {
+  width: 100%;
+  display: block;
+  line-height: 0;
+}
+.biz-group-photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+  opacity: 0;
+  transition: opacity .6s ease;
+}
+.biz-group-photo img.loaded { opacity: 1; }
+
+/* section label */
+.biz-label {
+  padding: 28px 0 12px;
+  font-size: 10px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  text-align: center;
+}
+
+/* marquee track */
+.biz-marquee {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  line-height: 0;
+}
+.biz-marquee-track {
+  display: flex;
+  gap: 0;
+  width: max-content;
+  animation: marqueeScroll 32s linear infinite;
+  will-change: transform;
+}
+.biz-marquee-track.slow { animation-duration: 48s; }
+.biz-marquee:hover .biz-marquee-track { animation-play-state: paused; }
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.biz-marquee-item {
+  flex-shrink: 0;
+  width: 320px;
+  line-height: 0;
+  overflow: hidden;
+}
+.biz-marquee-item img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  opacity: 0;
+  transition: opacity .5s ease;
+}
+.biz-marquee-item img.loaded { opacity: 1; }
+
+/* section divider */
+.biz-divider {
+  height: 2px;
+  background: var(--border);
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 40px 0;
+}
+
+/* solo marquee section (no group photo) */
+.biz-solo { padding: 20px 0 0; }
+
+@media(max-width:768px) {
+  .biz-marquee-item { width: 220px; }
+  .biz-marquee-item img { height: 280px; }
+  .biz-label { padding: 20px 0 10px; }
+}
+
 </style>
 </head>
 <body>
@@ -1505,7 +1597,7 @@ const CAT = {
   portraits:{ sub:'Portraits with an editorial approach. Personality, mood, and essence captured with intention.', count:8 },
   senior:   { sub:'Celebrating milestones with stunning imagery that captures this once-in-a-lifetime chapter.', count:6 },
   weddings: { sub:'Every love story is unique. Molly documents the emotion, details, and joy of your most important day.', count:8 },
-  business: { sub:'Headshots and brand photography that make a strong first impression and elevate your professional presence.', count:6 },
+  business: { sub:'Professional portraits for teams, businesses, and individuals.' },
   events:   { sub:'Events documented with care. Corporate gatherings, celebrations, and everything in between.', count:26 },
 };
 function openCategory(cat) {
@@ -1609,24 +1701,11 @@ function openCategory(cat) {
 ptiles.forEach(tile => {
   tile.addEventListener('click', () => {
     const cat = tile.dataset.cat;
-    if (cat === 'senior' || cat === 'weddings' || cat === 'business') {
-      showComingSoon();
-    } else {
-      openCategory(cat);
-    }
+    openCategory(cat);
   });
 });
 
-function showComingSoon() {
-  const el = document.getElementById('coming-soon-overlay');
-  el.classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closeComingSoon() {
-  const el = document.getElementById('coming-soon-overlay');
-  el.classList.remove('open');
-  document.body.style.overflow = '';
-}
+
 
 (function() {
   const slides = document.querySelectorAll('#aboutCarousel .carousel-slide');
@@ -1738,13 +1817,6 @@ function toggleFaq(btn) {
   if (!isOpen) item.classList.add('open');
 }
 </script>
-<!-- ══════════ COMING SOON OVERLAY ══════════ -->
-<div class="coming-soon-overlay" id="coming-soon-overlay">
-  <span class="coming-soon-label">Gallery in progress</span>
-  <div class="coming-soon-title">Currently Curating</div>
-  <p class="coming-soon-sub">More images from this collection are on their way. Check back soon.</p>
-  <button class="coming-soon-close" onclick="closeComingSoon()">← Back to Portfolio</button>
-</div>
 </body>
 </html>
 </body>
