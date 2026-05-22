@@ -966,6 +966,8 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   overflow: hidden;
   isolation: isolate;
   contain: strict;
+  transform: translateZ(0);
+  will-change: auto;
 }
 
 /* orb 1 — broad/distant, upper left, warm charcoal
@@ -974,7 +976,7 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   content: '';
   position: absolute;
   border-radius: 50%;
-  width: 75vw; height: 75vw;
+  width: 55vw; height: 55vw;
   top: -20%; left: -18%;
   background: radial-gradient(circle at 50% 50%,
     rgba(190,170,150,.15) 0%,
@@ -989,13 +991,12 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   transform: translateZ(0);
 }
 
-/* orb 2 — medium depth, lower right, muted bronze-gray
-   Mid-size, slightly more presence — the "mid" depth layer */
+/* orb 2 — medium depth, lower right, muted bronze-gray */
 .landing-ambient::after {
   content: '';
   position: absolute;
   border-radius: 50%;
-  width: 46vw; height: 46vw;
+  width: 34vw; height: 34vw;
   bottom: -8%; right: -6%;
   background: radial-gradient(circle at 50% 50%,
     rgba(165,148,130,.13) 0%,
@@ -1011,14 +1012,12 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   transform: translateZ(0);
 }
 
-/* orb 3 — smaller/closer, center, barely-warm gray
-   Tightest, most defined — the "near" depth layer */
+/* orb 3 — smaller/closer, center */
 .landing-ambient-center {
   position: absolute;
   border-radius: 50%;
-  width: 30vw; height: 30vw;
+  width: 22vw; height: 22vw;
   top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
   background: radial-gradient(circle at 50% 50%,
     rgba(210,195,178,.07) 0%,
     rgba(190,175,158,.03) 40%,
@@ -1030,6 +1029,22 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   pointer-events: none;
   will-change: transform;
   transform: translate(-50%, -50%) translateZ(0);
+}
+
+/* mobile — slightly faster drift, smaller orbs */
+@media(max-width:768px) {
+  .landing-ambient::before {
+    width: 80vw; height: 80vw;
+    animation-duration: 28s;
+  }
+  .landing-ambient::after {
+    width: 60vw; height: 60vw;
+    animation-duration: 36s;
+  }
+  .landing-ambient-center {
+    width: 50vw; height: 50vw;
+    animation-duration: 44s;
+  }
 }
 .landing-ambient.ready::before,
 .landing-ambient.ready::after { opacity: 1; }
