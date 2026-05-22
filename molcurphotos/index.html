@@ -997,6 +997,46 @@ textarea.f-input { resize: vertical; min-height: 100px; }
     );
 }
 
+
+/* ─────────────────────────────────────────────
+   EVENTS GRID — full bleed, 3-per-row
+───────────────────────────────────────────── */
+.ev-grid {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.ev-row {
+  display: flex;
+  gap: 0;
+  width: 100%;
+}
+.ev-cell {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  display: block;
+  line-height: 0;
+}
+.ev-cell img {
+  width: 100%;
+  height: auto;
+  display: block;
+  opacity: 0;
+  transition: opacity .5s ease;
+}
+.ev-cell img.loaded { opacity: 1; }
+.ev-cell:hover img { filter: brightness(1.06); transition: opacity .5s ease, filter .35s ease; }
+@media(max-width:768px) {
+  .ev-grid { width: 100%; left: auto; transform: none; }
+  .ev-row { flex-direction: column; }
+}
+
 </style>
 </head>
 <body>
@@ -1117,7 +1157,7 @@ textarea.f-input { resize: vertical; min-height: 100px; }
       <div class="cat-hero" id="cat-hero-text"></div>
       <p class="cat-sub" id="cat-sub-text"></p>
     </div>
-    <div class="photo-grid" id="cat-photo-grid"></div>
+    <div id="cat-photo-grid"></div>
     <div class="book-cta-block">
       <div class="book-cta-left">
         <div class="book-cta-eyebrow">Currently booking</div>
@@ -1533,34 +1573,22 @@ function openCategory(cat) {
     `;
   } else if (cat === 'events') {
     document.getElementById('cat-photo-grid').innerHTML = `
-      <div class="grid-sizer"></div>
-      <div class="pg-item"><img decoding="async" src="IMG_1930.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="IMG_1942.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="IMG_1922.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="IMG_1936.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="IMG_1944.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="IMG_1925.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="IMG_1938.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="IMG_1923.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="IMG_1946.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="IMG_1934.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="IMG_1927.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="IMG_1940.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="IMG_1924.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="IMG_1948.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="IMG_1935.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="IMG_1928.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="IMG_1943.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="IMG_1926.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="IMG_1939.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="IMG_1950.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="IMG_1929.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="IMG_1945.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="IMG_1937.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="IMG_1941.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="IMG_1947.jpeg" alt="Event" loading="lazy"></div>
-      <div class="pg-item"><img decoding="async" src="IMG_1949.jpeg" alt="Event" loading="lazy"></div>
+      <div class="ev-grid">
+      <div class="ev-row"><div class="ev-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779486817/DSC05135_kdd7wf.jpg" fetchpriority="high" decoding="async" style="width:100%;display:block;" alt="Event"></div><div class="ev-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779486816/DSC08394_1_kvzgwl.jpg" loading="lazy" decoding="async" style="width:100%;display:block;" alt="Event"></div><div class="ev-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779486817/DSC05156_dj9j50.jpg" loading="lazy" decoding="async" style="width:100%;display:block;" alt="Event"></div></div>
+      <div class="ev-row"><div class="ev-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779486816/DSC08282_1_sz1d9w.jpg" loading="lazy" decoding="async" style="width:100%;display:block;" alt="Event"></div><div class="ev-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779486813/DSC05075_xprsny.jpg" loading="lazy" decoding="async" style="width:100%;display:block;" alt="Event"></div><div class="ev-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779486814/DSC08229_1_gvtxeo.jpg" loading="lazy" decoding="async" style="width:100%;display:block;" alt="Event"></div></div>
+      <div class="ev-row"><div class="ev-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779486814/DSC08211_1_xuvool.jpg" loading="lazy" decoding="async" style="width:100%;display:block;" alt="Event"></div><div class="ev-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779486816/DSC03346_1_c0fdfr.jpg" loading="lazy" decoding="async" style="width:100%;display:block;" alt="Event"></div><div class="ev-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779486814/DSC05173_zjkgyo.jpg" loading="lazy" decoding="async" style="width:100%;display:block;" alt="Event"></div></div>
+      <div class="ev-row"><div class="ev-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779486814/DSC08203_1_v5oenv.jpg" loading="lazy" decoding="async" style="width:100%;display:block;" alt="Event"></div><div class="ev-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779486813/DSC05121_fcphjd.jpg" loading="lazy" decoding="async" style="width:100%;display:block;" alt="Event"></div><div class="ev-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779486814/DSC01939_1_ynzhc5.jpg" loading="lazy" decoding="async" style="width:100%;display:block;" alt="Event"></div></div>
+      <div class="ev-row"><div class="ev-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779486813/DSC04870_zp8wbu.jpg" loading="lazy" decoding="async" style="width:100%;display:block;" alt="Event"></div><div class="ev-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779486816/DSC07877_1_slenv4.jpg" loading="lazy" decoding="async" style="width:100%;display:block;" alt="Event"></div><div class="ev-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779486816/DSC05080_kde9of.jpg" loading="lazy" decoding="async" style="width:100%;display:block;" alt="Event"></div></div>
+      <div class="ev-row"><div class="ev-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779486814/DSC08276_1_kkxtmi.jpg" loading="lazy" decoding="async" style="width:100%;display:block;" alt="Event"></div><div class="ev-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779486813/DSC04391_1_tfqanu.jpg" loading="lazy" decoding="async" style="width:100%;display:block;" alt="Event"></div><div class="ev-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779486813/DSC05013_h30zgb.jpg" loading="lazy" decoding="async" style="width:100%;display:block;" alt="Event"></div></div>
+      <div class="ev-row"><div class="ev-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779486813/DSC02003_1_vmnxsl.jpg" loading="lazy" decoding="async" style="width:100%;display:block;" alt="Event"></div><div class="ev-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779486815/DSC08219_1_uvwnyt.jpg" loading="lazy" decoding="async" style="width:100%;display:block;" alt="Event"></div><div class="ev-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779486816/DSC03350_1_r6sbdc.jpg" loading="lazy" decoding="async" style="width:100%;display:block;" alt="Event"></div></div>
+      <div class="ev-row"><div class="ev-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779486817/DSC04799_kknelm.jpg" loading="lazy" decoding="async" style="width:100%;display:block;" alt="Event"></div><div class="ev-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779486814/DSC04351_1_jpooai.jpg" loading="lazy" decoding="async" style="width:100%;display:block;" alt="Event"></div><div class="ev-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779486815/DSC09011_1_e2gxjl.jpg" loading="lazy" decoding="async" style="width:100%;display:block;" alt="Event"></div></div>
+      </div>
     `;
+    // Reveal on load/cache
+    document.querySelectorAll('.ev-cell img').forEach(img => {
+      if (img.complete && img.naturalWidth > 0) img.classList.add('loaded');
+      else img.addEventListener('load', () => img.classList.add('loaded'), {once:true});
+    });
   } else {
     document.getElementById('cat-photo-grid').innerHTML =
       Array(d.count).fill(0).map(() => `<div class="photo-cell"><div class="photo-cell-ph">Add Photo</div></div>`).join('');
