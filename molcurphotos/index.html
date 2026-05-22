@@ -445,10 +445,11 @@ PORTRAIT EDITORIAL GRID — structured rows
   flex-direction: column;
   gap: 2px;
 }
-.pg-horiz-stack .pg-horiz { width: 100%; }
+.pg-horiz-stack .pg-horiz { flex: 1; min-height: 0; overflow: hidden; }
 .pg-horiz-stack .pg-horiz img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   display: block;
 }
 
