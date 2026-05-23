@@ -941,71 +941,11 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 @media(min-width:769px) { .footer-socials-mobile { display: none; } }
 
 
-/* ─────────────────────────────────────────────
-   AMBIENT LANDING BACKGROUND
-───────────────────────────────────────────── */
-
-  35%  { transform: translate(9%, -11%) scale(1.06); }
-  70%  { transform: translate(-7%, 8%) scale(.95); }
-  100% { transform: translate(0%, 0%) scale(1); }
-}
-
-  40%  { transform: translate(-10%, 8%) scale(1.05); }
-  78%  { transform: translate(7%, -6%) scale(.96); }
-  100% { transform: translate(0%, 0%) scale(1); }
-}
-
-  50%  { transform: translate(calc(-50% + 3vw), calc(-50% - 2vh)) scale(1.03); }
-  100% { transform: translate(-50%, -50%) scale(1); }
-}
 
 
 
 
 
-
-/* Landing needs position:relative so ambient positions inside it */
-#landing { position: relative; }
-.hero-menu, .top-nav, .landing-footer { position: relative; z-index: 1; }
-
-
-/* ─────────────────────────────────────────────
-   AMBIENT LANDING BACKGROUND — static, performant
-───────────────────────────────────────────── */
-.landing-ambient {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-}
-.landing-ambient::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(
-      ellipse 55% 45% at 18% 22%,
-      rgba(190,170,150,.13) 0%,
-      rgba(175,157,138,.07) 35%,
-      transparent 65%
-    ),
-    radial-gradient(
-      ellipse 45% 50% at 82% 78%,
-      rgba(165,148,130,.10) 0%,
-      rgba(150,135,118,.05) 35%,
-      transparent 62%
-    ),
-    radial-gradient(
-      ellipse 40% 35% at 52% 48%,
-      rgba(210,195,178,.06) 0%,
-      rgba(195,180,163,.02) 40%,
-      transparent 65%
-    );
-  animation: ambientBreath 18s ease-in-out infinite;
-}
-@keyframes ambientBreath {
-  0%, 100% { opacity: .7; }
   50%       { opacity: 1; }
 }
 
@@ -1172,8 +1112,305 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   .biz-marquee-item img { height: 280px; }
   .biz-label { padding: 20px 0 10px; font-size: 11px; }
   .biz-group-photo { max-width: 100%; padding: 0; }
-  .biz-hs-cell { width: 100%; }
+  .biz-hs-cell { width: 50%; }
   .biz-hs-grid { margin-bottom: 32px; }
+}
+
+
+
+/* zodiac hero grid — 4 per row, full bleed */
+.zod-hero-grid {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.zod-hero-row {
+  display: flex;
+  gap: 0;
+  width: 100%;
+}
+.zod-hero-cell {
+  flex: 1;
+  min-width: 0;
+  line-height: 0;
+  overflow: hidden;
+}
+.zod-hero-cell img {
+  width: 100%;
+  height: auto;
+  display: block;
+  opacity: 0;
+  transition: opacity .55s ease;
+}
+.zod-hero-cell img.loaded { opacity: 1; }
+@media(max-width:768px) {
+  .zod-hero-row { flex-direction: column; }
+}
+
+/* ─────────────────────────────────────────────
+   ZODIAC PROJECT — cinematic case study
+───────────────────────────────────────────── */
+.zod-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px 48px;
+  margin-top: 32px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
+}
+.zod-meta-item { display: flex; flex-direction: column; gap: 5px; }
+.zod-meta-label { font-size: 9px; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); }
+.zod-meta-val { font-family: var(--serif); font-size: 15px; font-weight: 300; color: var(--muted); }
+
+/* placeholder blocks */
+.zod-placeholder {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.zod-placeholder-label {
+  font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted2);
+}
+
+/* hero image */
+.zod-hero {
+  width: 100%;
+  margin: 56px 0 0;
+}
+.zod-hero .zod-placeholder { height: 60vh; min-height: 360px; }
+
+/* section heading */
+.zod-section-title {
+  font-family: var(--serif);
+  font-size: clamp(22px,3vh,36px);
+  font-weight: 300;
+  color: var(--text);
+  letter-spacing: -.01em;
+  margin-bottom: 28px;
+}
+
+/* process section */
+.zod-process {
+  margin-top: 72px;
+  padding-top: 48px;
+  border-top: 1px solid var(--border);
+}
+.zod-process-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 4px;
+  margin-top: 20px;
+}
+.zod-process-main .zod-placeholder { height: 420px; }
+.zod-process-side {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.zod-process-side .zod-placeholder { height: calc(50% - 2px); min-height: 120px; flex: 1; }
+.zod-process-sub {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  margin-top: 4px;
+}
+.zod-process-sub .zod-placeholder { height: 200px; }
+
+/* BTS section */
+.zod-bts {
+  margin-top: 72px;
+  padding-top: 48px;
+  border-top: 1px solid var(--border);
+}
+.zod-video-wrap {
+  width: 100%;
+  aspect-ratio: 16/9;
+  margin-bottom: 4px;
+}
+.zod-video-wrap .zod-placeholder { height: 100%; }
+
+.zod-bts-item {
+  position: relative;
+  line-height: 0;
+}
+.zod-bts-item .zod-placeholder { height: 180px; }
+.zod-bts-caption {
+  font-size: 9px; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--muted); margin-top: 8px; display: block;
+}
+
+/* post-production section */
+.zod-post {
+  margin-top: 72px;
+  padding-top: 48px;
+  border-top: 1px solid var(--border);
+}
+.zod-compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  margin-top: 20px;
+}
+.zod-compare-item { display: flex; flex-direction: column; gap: 10px; }
+.zod-compare-item .zod-placeholder { height: 340px; }
+.zod-compare-label {
+  font-size: 9px; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--muted); display: block;
+}
+
+/* final series marquee */
+.zod-marquee-section {
+  margin-top: 72px;
+  padding-top: 48px;
+  border-top: 1px solid var(--border);
+}
+.zod-marquee {
+  overflow: hidden;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 20px;
+  line-height: 0;
+}
+.zod-marquee-track {
+  display: flex;
+  gap: 0;
+  width: max-content;
+  animation: marqueeScroll 60s linear infinite;
+  will-change: transform;
+}
+.zod-marquee-item {
+  flex-shrink: 0;
+  width: 340px;
+  line-height: 0;
+  overflow: hidden;
+}
+.zod-marquee-item img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* scroll reveal */
+.zod-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .8s var(--ease), transform .8s var(--ease);
+}
+.zod-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media(max-width:768px) {
+  .zod-meta-row { gap: 20px 28px; }
+  .zod-process-grid { grid-template-columns: 1fr; }
+  .zod-process-side { flex-direction: row; }
+  .zod-process-sub { grid-template-columns: 1fr 1fr; }
+  .zod-compare-grid { grid-template-columns: 1fr; gap: 32px; }
+  
+  .zod-marquee-item { width: 240px; }
+  .zod-marquee-item img { height: 340px; }
+  .zod-hero .zod-placeholder { height: 40vh; }
+}
+
+
+/* ─────────────────────────────────────────────
+   LANDING BACKGROUND — cinematic, static
+   Single directional warm glow + vignette.
+   Pure CSS, zero animation, zero GPU overhead.
+───────────────────────────────────────────── */
+#landing {
+  background:
+    /* soft vignette — edge darkening */
+    radial-gradient(
+      ellipse 120% 100% at 50% 50%,
+      transparent 40%,
+      rgba(0,0,0,.55) 100%
+    ),
+    /* faint warm center — directional key light */
+    radial-gradient(
+      ellipse 60% 50% at 38% 38%,
+      rgba(200,182,158,.055) 0%,
+      transparent 70%
+    ),
+    /* base */
+    var(--bg);
+}
+
+/* Grain overlay — purely CSS, no JS, no image files */
+#landing::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: .028;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* Ensure all landing children sit above grain */
+#landing > * { position: relative; z-index: 1; }
+
+
+/* BTS media cells */
+.zod-bts-media {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  line-height: 0;
+  background: var(--bg2);
+}
+
+/* 3-col BTS strip */
+.zod-bts-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  margin-top: 4px;
+}
+
+/* Closing overview text */
+.zod-closing {
+  margin-top: 80px;
+  padding-top: 56px;
+  border-top: 1px solid var(--border);
+  padding-bottom: 16px;
+}
+.zod-closing-inner {
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.zod-closing-p {
+  font-family: var(--serif);
+  font-size: clamp(16px, 2vh, 22px);
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.85;
+  letter-spacing: .01em;
+}
+
+@media(max-width:768px) {
+  .zod-bts-strip { grid-template-columns: 1fr; }
+  .zod-bts-media { height: 260px; }
+  .zod-closing-inner { text-align: left; }
 }
 
 </style>
@@ -1182,7 +1419,6 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 
 <!-- ══════════ LANDING ══════════ -->
 <div id="landing">
-  <div class="landing-ambient" id="landingAmbient"></div>
   <nav class="top-nav">
     <div class="top-nav-socials">
       <a href="https://www.instagram.com/molcurphotos/" target="_blank" aria-label="Instagram">
@@ -1391,32 +1627,88 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   </nav>
   <div class="proj-body">
     <div class="proj-block">
-      <div class="proj-num">Project 01</div>
+      <div class="proj-num u-eyebrow">Project 01</div>
       <div class="proj-header">
         <div class="proj-title">The Zodiac Signs</div>
-        <p class="proj-desc">I directed and created my own take on all twelve astrological signs with a fantastic team. It was one of the most creatively rewarding shoots I've done.</p>
+        <p class="proj-desc">A twelve-part portrait series inspired by the symbolism, aesthetics, and emotional identities of the zodiac signs. This project combined creative direction, styling, makeup artistry, lighting design, and post-production to create a distinct visual world for each sign.</p>
       </div>
-      <div class="zodiac-carousel" id="zodiacCarousel">
-        <div class="zodiac-track" id="zodiacTrack">
-          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><img decoding="async" src="aries1.jpg" alt="Aries" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
-          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><img decoding="async" src="taurus1.jpg" alt="Taurus" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
-          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><img decoding="async" src="gemini1.jpg" alt="Gemini" style="width:100%;height:100%;object-fit:cover;object-position:70% center;display:block;"></div></div>
-          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><img decoding="async" src="cancer1.jpg" alt="Cancer" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
-          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><img decoding="async" src="leo1.jpg" alt="Leo" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
-          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><img decoding="async" src="virgo1.jpg" alt="Virgo" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
-          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><img decoding="async" src="libra-1.jpg" alt="Libra" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
-          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><img decoding="async" src="scorpio1.jpg" alt="Scorpio" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
-          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><img decoding="async" src="sagittarius1.jpg" alt="Sagittarius" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
-          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><img decoding="async" src="capricorn1.jpg" alt="Capricorn" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
-          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><img decoding="async" src="aquarius1.jpg" alt="Aquarius" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
-          <div class="zodiac-slide"><div class="photo-cell" style="aspect-ratio:2/3"><img decoding="async" src="pisces1.jpg" alt="Pisces" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
+
+      <!-- metadata row -->
+      <div class="zod-meta-row zod-reveal">
+        <div class="zod-meta-item"><span class="zod-meta-label">Role</span><span class="zod-meta-val">Creative Direction + Photography</span></div>
+        <div class="zod-meta-item"><span class="zod-meta-label">Post-Production</span><span class="zod-meta-val">Retouching + Color</span></div>
+        <div class="zod-meta-item"><span class="zod-meta-label">Collaboration</span><span class="zod-meta-val">Styling + Makeup Artistry</span></div>
+        <div class="zod-meta-item"><span class="zod-meta-label">Year</span><span class="zod-meta-val">2021</span></div>
+      </div>
+
+      <!-- hero — 12 zodiac images, 4×4×4 full bleed -->
+      <div class="zod-hero-grid zod-reveal">
+        <div class="zod-hero-row"><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499612/aries1_gkiz1g.jpg" fetchpriority="high" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499611/taurus1_eohr4r.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499610/gemini1_qel6y4.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499609/cancer1_d2rido.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div></div><div class="zod-hero-row"><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499609/leo1_ww3q1l.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499610/virgo1_ud2eng.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499610/libra-1_obcwjk.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499612/scorpio1_sc2lwp.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div></div><div class="zod-hero-row"><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499613/sagittarius1_aoirdd.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499610/capricorn1_za8ltl.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499611/aquarius1_esi2bm.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499612/pisces1_gscsnv.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div></div>
+      </div>
+
+      <!-- creative process -->
+      <div class="zod-process zod-reveal">
+        <div class="zod-section-title">Creative Process</div>
+        <p class="proj-desc" style="max-width:600px;margin-bottom:0">Each sign was researched, conceptualized, and built from the ground up. Styling, color palette, lighting, and location were chosen to reflect each sign's mythology and energy.</p>
+        <div class="zod-process-grid">
+          <div class="zod-process-main">
+            <div class="zod-placeholder"><span class="zod-placeholder-label">Moodboard</span></div>
+          </div>
+          <div class="zod-process-side">
+            <div class="zod-placeholder"><span class="zod-placeholder-label">Styling Reference</span></div>
+            <div class="zod-placeholder"><span class="zod-placeholder-label">Concept Sketch</span></div>
+          </div>
         </div>
-        <div class="zodiac-controls">
-          <button class="zodiac-btn" id="zodiacPrev">←</button>
-          <div class="zodiac-dots" id="zodiacDots"></div>
-          <button class="zodiac-btn" id="zodiacNext">→</button>
+        <div class="zod-process-sub">
+          <div class="zod-placeholder"><span class="zod-placeholder-label">Prop Reference</span></div>
+          <div class="zod-placeholder"><span class="zod-placeholder-label">Inspiration</span></div>
+          <div class="zod-placeholder"><span class="zod-placeholder-label">Color Palette</span></div>
+          <div class="zod-placeholder"><span class="zod-placeholder-label">Location Scout</span></div>
         </div>
       </div>
+
+      <!-- behind the scenes -->
+      <div class="zod-bts zod-reveal">
+        <div class="zod-section-title">Behind the Scenes</div>
+        <div class="zod-video-wrap">
+          <video
+            src="https://res.cloudinary.com/dih43qroh/video/upload/q_auto:good,vc_auto,f_auto/v1779499442/IMG_0200_r17bib.mov"
+            autoplay muted loop playsinline
+            preload="none"
+            style="width:100%;height:100%;object-fit:cover;display:block;">
+          </video>
+        </div>
+        <div class="zod-bts-strip">
+          <div class="zod-bts-item">
+            <div class="zod-bts-media">
+              <video src="https://res.cloudinary.com/dih43qroh/video/upload/q_auto:good,vc_auto,f_auto/v1779501181/7a603d66d5f745b298622908d56fe038_y0jplf.mp4" autoplay muted loop playsinline preload="none" style="width:100%;height:100%;object-fit:cover;display:block;"></video>
+            </div>
+            <span class="zod-bts-caption">Behind the Scenes</span>
+          </div>
+          <div class="zod-bts-item">
+            <div class="zod-bts-media">
+              <img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779501181/IMG_3475_hueju0.jpg" loading="lazy" decoding="async" alt="Set Up" style="width:100%;height:100%;object-fit:cover;display:block;" onload="this.classList.add('loaded')">
+            </div>
+            <span class="zod-bts-caption">Set Up</span>
+          </div>
+          <div class="zod-bts-item">
+            <div class="zod-bts-media">
+              <video src="https://res.cloudinary.com/dih43qroh/video/upload/q_auto:good,vc_auto,f_auto/v1779501182/IMG_3970_wgbl0r.mov" autoplay muted loop playsinline preload="none" style="width:100%;height:100%;object-fit:cover;display:block;"></video>
+            </div>
+            <span class="zod-bts-caption">Makeup Application</span>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- closing overview -->
+      <div class="zod-closing zod-reveal">
+        <div class="zod-closing-inner">
+          <p class="zod-closing-p">What began as a creative concept evolved into a twelve-part portrait series centered around the symbolism and emotional identity of each zodiac sign. Every shoot was approached with its own visual language through styling, makeup, lighting, color, and atmosphere while still maintaining a cohesive identity across the full series.</p>
+          <p class="zod-closing-p">This project became one of the most formative creative experiences for me early in my career. Directing and building something at this scale pushed me to think beyond simply taking portraits and more deeply about concept development, storytelling, and creating an immersive visual world around each subject.</p>
+        </div>
+      </div>
+
     </div>
     </div>
   </div>
@@ -1872,6 +2164,33 @@ ptiles.forEach(tile => {
       btn.disabled = false;
     }
   });
+})();
+
+
+// ── ZODIAC SCROLL REVEAL ─────────────────────────────────────
+(function() {
+  var revObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        revObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  function initReveal() {
+    document.querySelectorAll('.zod-reveal').forEach(function(el) {
+      revObs.observe(el);
+    });
+  }
+  // Run when projects page opens
+  var projPage = document.getElementById('page-projects');
+  if (projPage) {
+    new MutationObserver(function(muts) {
+      muts.forEach(function(m) {
+        if (m.target.classList.contains('open')) setTimeout(initReveal, 100);
+      });
+    }).observe(projPage, { attributes: true, attributeFilter: ['class'] });
+  }
 })();
 
 function toggleFaq(btn) {
