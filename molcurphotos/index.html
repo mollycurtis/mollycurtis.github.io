@@ -1413,6 +1413,101 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   .zod-closing-inner { text-align: left; }
 }
 
+
+/* ── CREATIVE PROCESS — redesigned ── */
+.zod-process-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 64px;
+  align-items: center;
+  margin-top: 40px;
+}
+.zod-process-text { display: flex; flex-direction: column; gap: 20px; }
+.zod-process-text .zod-section-title { margin-bottom: 0; }
+.zod-process-text .proj-desc { max-width: none; margin: 0; }
+.zod-collage-wrap {
+  position: relative;
+  line-height: 0;
+  overflow: hidden;
+  border-radius: 20px;
+}
+.zod-collage-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 20px;
+  transition: transform .7s var(--ease), opacity .6s ease;
+  opacity: 0;
+}
+.zod-collage-wrap img.loaded { opacity: 1; }
+.zod-collage-wrap:hover img { transform: scale(1.025); }
+
+/* ── PROJECT OVERVIEW closing ── */
+.zod-overview {
+  margin-top: 72px;
+  padding-top: 40px;
+  border-top: 1px solid var(--border);
+}
+.zod-overview-label {
+  font-size: 9px;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 28px;
+  display: block;
+}
+.zod-overview-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  margin-bottom: 48px;
+}
+.zod-stat {
+  padding: 18px 24px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.zod-stat-num {
+  font-family: var(--serif);
+  font-size: clamp(20px, 2.5vh, 28px);
+  font-weight: 300;
+  color: var(--text);
+  line-height: 1;
+}
+.zod-stat-label {
+  font-size: 9px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.zod-overview-paras {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 640px;
+}
+.zod-overview-p {
+  font-family: var(--serif);
+  font-size: clamp(15px, 1.8vh, 19px);
+  font-weight: 300;
+  color: rgba(245,242,238,.62);
+  line-height: 1.85;
+  letter-spacing: .01em;
+}
+
+@media(max-width:768px) {
+  .zod-process-layout { grid-template-columns: 1fr; gap: 36px; }
+  .zod-overview-stats { grid-template-columns: 1fr 1fr; }
+  .zod-overview-paras { max-width: 100%; }
+  .zod-collage-wrap { border-radius: 14px; }
+  .zod-collage-wrap img { border-radius: 14px; }
+}
+
 </style>
 </head>
 <body>
@@ -1633,7 +1728,7 @@ textarea.f-input { resize: vertical; min-height: 100px; }
         <p class="proj-desc">A twelve-part portrait series inspired by the symbolism, aesthetics, and emotional identities of the zodiac signs. This project combined creative direction, styling, makeup artistry, lighting design, and post-production to create a distinct visual world for each sign.</p>
       </div>
 
-      <!-- metadata row -->
+      <!-- metadata -->
       <div class="zod-meta-row zod-reveal">
         <div class="zod-meta-item"><span class="zod-meta-label">Role</span><span class="zod-meta-val">Creative Direction + Photography</span></div>
         <div class="zod-meta-item"><span class="zod-meta-label">Post-Production</span><span class="zod-meta-val">Retouching + Color</span></div>
@@ -1641,71 +1736,60 @@ textarea.f-input { resize: vertical; min-height: 100px; }
         <div class="zod-meta-item"><span class="zod-meta-label">Year</span><span class="zod-meta-val">2021</span></div>
       </div>
 
-      <!-- hero — 12 zodiac images, 4×4×4 full bleed -->
+      <!-- 12 zodiac images 4x4x4 -->
       <div class="zod-hero-grid zod-reveal">
         <div class="zod-hero-row"><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499612/aries1_gkiz1g.jpg" fetchpriority="high" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499611/taurus1_eohr4r.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499610/gemini1_qel6y4.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499609/cancer1_d2rido.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div></div><div class="zod-hero-row"><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499609/leo1_ww3q1l.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499610/virgo1_ud2eng.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499610/libra-1_obcwjk.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499612/scorpio1_sc2lwp.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div></div><div class="zod-hero-row"><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499613/sagittarius1_aoirdd.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499610/capricorn1_za8ltl.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499611/aquarius1_esi2bm.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499612/pisces1_gscsnv.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div></div>
-      </div>
-
-      <!-- creative process -->
-      <div class="zod-process zod-reveal">
-        <div class="zod-section-title">Creative Process</div>
-        <p class="proj-desc" style="max-width:600px;margin-bottom:0">Each sign was researched, conceptualized, and built from the ground up. Styling, color palette, lighting, and location were chosen to reflect each sign's mythology and energy.</p>
-        <div class="zod-process-grid">
-          <div class="zod-process-main">
-            <div class="zod-placeholder"><span class="zod-placeholder-label">Moodboard</span></div>
-          </div>
-          <div class="zod-process-side">
-            <div class="zod-placeholder"><span class="zod-placeholder-label">Styling Reference</span></div>
-            <div class="zod-placeholder"><span class="zod-placeholder-label">Concept Sketch</span></div>
-          </div>
-        </div>
-        <div class="zod-process-sub">
-          <div class="zod-placeholder"><span class="zod-placeholder-label">Prop Reference</span></div>
-          <div class="zod-placeholder"><span class="zod-placeholder-label">Inspiration</span></div>
-          <div class="zod-placeholder"><span class="zod-placeholder-label">Color Palette</span></div>
-          <div class="zod-placeholder"><span class="zod-placeholder-label">Location Scout</span></div>
-        </div>
       </div>
 
       <!-- behind the scenes -->
       <div class="zod-bts zod-reveal">
         <div class="zod-section-title">Behind the Scenes</div>
         <div class="zod-video-wrap">
-          <video
-            src="https://res.cloudinary.com/dih43qroh/video/upload/q_auto:good,vc_auto,f_auto/v1779499442/IMG_0200_r17bib.mov"
-            autoplay muted loop playsinline
-            preload="none"
-            style="width:100%;height:100%;object-fit:cover;display:block;">
-          </video>
+          <video src="https://res.cloudinary.com/dih43qroh/video/upload/q_auto:good,vc_auto,f_auto/v1779499442/IMG_0200_r17bib.mov" autoplay muted loop playsinline preload="none" style="width:100%;height:100%;object-fit:cover;display:block;"></video>
         </div>
         <div class="zod-bts-strip">
           <div class="zod-bts-item">
-            <div class="zod-bts-media">
-              <video src="https://res.cloudinary.com/dih43qroh/video/upload/q_auto:good,vc_auto,f_auto/v1779501181/7a603d66d5f745b298622908d56fe038_y0jplf.mp4" autoplay muted loop playsinline preload="none" style="width:100%;height:100%;object-fit:cover;display:block;"></video>
-            </div>
+            <div class="zod-bts-media"><video src="https://res.cloudinary.com/dih43qroh/video/upload/q_auto:good,vc_auto,f_auto/v1779501181/7a603d66d5f745b298622908d56fe038_y0jplf.mp4" autoplay muted loop playsinline preload="none" style="width:100%;height:100%;object-fit:cover;display:block;"></video></div>
             <span class="zod-bts-caption">Behind the Scenes</span>
           </div>
           <div class="zod-bts-item">
-            <div class="zod-bts-media">
-              <img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779501181/IMG_3475_hueju0.jpg" loading="lazy" decoding="async" alt="Set Up" style="width:100%;height:100%;object-fit:cover;display:block;" onload="this.classList.add('loaded')">
-            </div>
+            <div class="zod-bts-media"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779501181/IMG_3475_hueju0.jpg" loading="lazy" decoding="async" alt="Set Up" style="width:100%;height:100%;object-fit:cover;display:block;" onload="this.classList.add('loaded')"></div>
             <span class="zod-bts-caption">Set Up</span>
           </div>
           <div class="zod-bts-item">
-            <div class="zod-bts-media">
-              <video src="https://res.cloudinary.com/dih43qroh/video/upload/q_auto:good,vc_auto,f_auto/v1779501182/IMG_3970_wgbl0r.mov" autoplay muted loop playsinline preload="none" style="width:100%;height:100%;object-fit:cover;display:block;"></video>
-            </div>
+            <div class="zod-bts-media"><video src="https://res.cloudinary.com/dih43qroh/video/upload/q_auto:good,vc_auto,f_auto/v1779501182/IMG_3970_wgbl0r.mov" autoplay muted loop playsinline preload="none" style="width:100%;height:100%;object-fit:cover;display:block;"></video></div>
             <span class="zod-bts-caption">Makeup Application</span>
           </div>
         </div>
       </div>
 
+      <!-- creative process — redesigned -->
+      <div class="zod-process zod-reveal">
+        <div class="zod-process-layout">
+          <div class="zod-process-text">
+            <div class="zod-section-title">Creative Process</div>
+            <p class="proj-desc">Before production, I spent months building visual references for each zodiac sign — pulling inspiration from mythology, color palettes, symbolism, lighting, makeup artistry, texture, wardrobe styling, and set design. Each sign was approached as its own creative world while still feeling cohesive as a full collection. This project was independently directed and produced before I turned 21, and it remains one of the most creatively ambitious shoots I've ever executed.</p>
+          </div>
+          <div class="zod-collage-wrap">
+            <img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779502490/zodiaccollage_bnmq4g.png" loading="lazy" decoding="async" alt="Zodiac inspiration collage" onload="this.classList.add('loaded')">
+          </div>
+        </div>
+      </div>
 
-      <!-- closing overview -->
-      <div class="zod-closing zod-reveal">
-        <div class="zod-closing-inner">
-          <p class="zod-closing-p">What began as a creative concept evolved into a twelve-part portrait series centered around the symbolism and emotional identity of each zodiac sign. Every shoot was approached with its own visual language through styling, makeup, lighting, color, and atmosphere while still maintaining a cohesive identity across the full series.</p>
-          <p class="zod-closing-p">This project became one of the most formative creative experiences for me early in my career. Directing and building something at this scale pushed me to think beyond simply taking portraits and more deeply about concept development, storytelling, and creating an immersive visual world around each subject.</p>
+      <!-- project overview + closing -->
+      <div class="zod-overview zod-reveal">
+        <span class="zod-overview-label">Project Overview</span>
+        <div class="zod-overview-stats">
+          <div class="zod-stat"><span class="zod-stat-num">12</span><span class="zod-stat-label">Zodiac Signs</span></div>
+          <div class="zod-stat"><span class="zod-stat-num">2</span><span class="zod-stat-label">Shoot Days</span></div>
+          <div class="zod-stat"><span class="zod-stat-num">Independent</span><span class="zod-stat-label">Creative Direction</span></div>
+          <div class="zod-stat"><span class="zod-stat-num">Full</span><span class="zod-stat-label">Concept Development</span></div>
+          <div class="zod-stat"><span class="zod-stat-num">On-Set</span><span class="zod-stat-label">Makeup + Styling</span></div>
+          <div class="zod-stat"><span class="zod-stat-num">Complete</span><span class="zod-stat-label">Post Production</span></div>
+        </div>
+        <div class="zod-overview-paras">
+          <p class="zod-overview-p">What began as a creative concept evolved into a twelve-part portrait series centered around the symbolism and emotional identity of each zodiac sign. Every shoot was approached with its own visual language through styling, makeup, lighting, color, and atmosphere while still maintaining a cohesive identity across the full series.</p>
+          <p class="zod-overview-p">This project became one of the most formative creative experiences for me early in my career. Directing and building something at this scale pushed me to think beyond simply taking portraits and more deeply about concept development, storytelling, and creating an immersive visual world around each subject.</p>
         </div>
       </div>
 
