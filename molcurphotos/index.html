@@ -55,6 +55,10 @@
   --accent2:rgba(201,169,110,0.15);
   --border: rgba(245,242,238,0.1);
   --green:  #4cba7a;
+  --accent-low: rgba(201,169,110,.15);
+  --accent-mid: rgba(201,169,110,.2);
+  --accent-border: rgba(201,169,110,.3);
+  --border-radius: 999px;
 
   /* easing */
   --swoop:  cubic-bezier(.6,0,0,1);
@@ -82,20 +86,10 @@ html, body {
 /* ─────────────────────────────────────────────
    LAYOUT UTILITIES
 ───────────────────────────────────────────── */
-.u-serif { font-family: var(--serif); }
+
 .u-eyebrow {
   font-size: 10px; letter-spacing: .22em;
   text-transform: uppercase; color: var(--accent);
-}
-.u-label {
-  font-size: 11px; letter-spacing: .18em;
-  text-transform: uppercase; color: var(--muted);
-}
-.u-page-body {
-  padding: 48px var(--pad-x);
-  max-width: 1440px;
-  margin: 0 auto;
-  width: 100%;
 }
 
 /* Focus ring — keyboard only, accent colour */
@@ -260,7 +254,7 @@ html, body {
 .footer-cta {
   font-size: 13px; letter-spacing: .14em; text-transform: uppercase;
   color: var(--accent); cursor: pointer; background: none; border: none;
-  font-family: var(--sans); transition: color .25s;
+  font-family: var(--sans); transition: color .25s var(--ease);
 }
 .footer-cta:hover { color: var(--text); }
 .footer-socials-mobile { display: none; gap: 16px; align-items: center; }
@@ -301,7 +295,7 @@ html, body {
   color: var(--text); cursor: pointer;
   background: none; border: none;
   flex: 1; text-align: left;
-  transition: color .25s;
+  transition: color .25s var(--ease);
 }
 .page-nav-brand:hover { color: var(--accent); }
 .page-nav-brand .brand-full { display: inline; }
@@ -409,39 +403,6 @@ html, body {
 /* ─────────────────────────────────────────────
    COMING SOON OVERLAY
 ───────────────────────────────────────────── */
-.coming-soon-overlay {
-  position: fixed; inset: 0; z-index: 500;
-  background: rgba(17,17,17,.94);
-  backdrop-filter: blur(12px);
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  gap: 20px;
-  transform: translateY(100%);
-  transition: transform .6s var(--swoop);
-  pointer-events: none;
-}
-.coming-soon-overlay.open { transform: translateY(0); pointer-events: auto; }
-.coming-soon-label { font-size: 10px; letter-spacing: .3em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
-.coming-soon-title {
-  font-family: var(--serif);
-  font-size: clamp(36px,6vw,80px);
-  font-weight: 300; color: var(--text);
-  letter-spacing: -.02em; line-height: 1; text-align: center;
-}
-.coming-soon-sub {
-  font-family: var(--serif);
-  font-style: italic; font-size: 18px;
-  color: var(--muted); text-align: center;
-  max-width: 400px; line-height: 1.6;
-}
-.coming-soon-close {
-  margin-top: 20px;
-  font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
-  color: var(--muted); background: none; border: 1px solid var(--border);
-  padding: 12px 28px; border-radius: var(--radius); cursor: pointer;
-  font-family: var(--sans); transition: border-color .25s, color .25s;
-}
-.coming-soon-close:hover { border-color: var(--accent); color: var(--accent); }
 
 /* ─────────────────────────────────────────────
    CATEGORY PAGE — portrait grid
@@ -494,11 +455,7 @@ html, body {
 .pg-item:hover img { transform: scale(1.025); }
 
 /* events / placeholder grid */
-.photo-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px,1fr));
-  gap: 5px;
-}
+
 .photo-cell {
   aspect-ratio: 3/2; background: var(--bg2); overflow: hidden;
   display: flex; align-items: center; justify-content: center; cursor: pointer;
@@ -527,7 +484,7 @@ html, body {
   font-family: var(--serif); font-size: clamp(28px,4vw,52px);
   font-weight: 300; color: var(--text);
   cursor: pointer; background: none; border: none;
-  letter-spacing: -.01em; transition: color .3s;
+  letter-spacing: -.01em; transition: color .3s var(--ease);
 }
 .next-genre-link:hover { color: var(--accent); }
 .next-genre-arrow { font-size: 24px; transition: transform .35s var(--ease); }
@@ -659,26 +616,6 @@ html, body {
 .proj-desc { font-size: clamp(13px,1.6vh,14px); color: var(--muted); line-height: 1.8; font-weight: 300; padding-bottom: 4px; }
 
 /* zodiac carousel */
-.zodiac-carousel { position: relative; overflow: hidden; }
-.zodiac-track {
-  display: grid;
-  grid-template-columns: repeat(12, calc((100% - 12px) / 3));
-  gap: 6px; transition: transform .55s var(--ease);
-  will-change: transform;
-}
-.zodiac-slide { min-width: 0; }
-.zodiac-controls { display: flex; align-items: center; justify-content: center; gap: 20px; margin-top: 24px; }
-.zodiac-btn {
-  background: none; border: 1px solid var(--border);
-  color: var(--text); width: 36px; height: 36px;
-  border-radius: 50%; cursor: pointer; font-size: 14px;
-  display: flex; align-items: center; justify-content: center;
-  transition: border-color .25s, background .25s;
-}
-.zodiac-btn:hover { border-color: var(--text); background: rgba(245,242,238,.08); }
-.zodiac-dots { display: flex; gap: 6px; }
-.zodiac-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(245,242,238,.2); transition: background .3s, transform .3s; cursor: pointer; }
-.zodiac-dot.active { background: var(--text); transform: scale(1.3); }
 
 /* ─────────────────────────────────────────────
    FAQs PAGE
@@ -700,7 +637,7 @@ html, body {
   font-family: var(--serif);
   font-size: clamp(15px,1.8vh,22px); font-weight: 300;
   color: var(--text); letter-spacing: .01em;
-  background: none; border: none; width: 100%; text-align: left; transition: color .25s;
+  background: none; border: none; width: 100%; text-align: left; transition: color .25s var(--ease);
 }
 .faq-q:hover { color: var(--accent); }
 .faq-icon { font-size: 18px; color: var(--muted); transition: transform .35s var(--ease), color .25s; flex-shrink: 0; margin-left: 16px; }
@@ -810,145 +747,18 @@ textarea.f-input { resize: vertical; min-height: 100px; }
    On first open of any page, section headers
    animate in with a staggered fade+rise.
 ───────────────────────────────────────────── */
-.page-reveal {
-  animation: fadeUp .7s var(--swoop) both;
-}
-.page-reveal--delay-1 { animation-delay: .08s; }
-.page-reveal--delay-2 { animation-delay: .16s; }
-.page-reveal--delay-3 { animation-delay: .24s; }
 
 /* ─────────────────────────────────────────────
    RESPONSIVE
 ───────────────────────────────────────────── */
-@media(max-width:900px) {
-  :root { --pad-x: 20px; }
-  .faq-grid { grid-template-columns: 1fr; gap: 0; }
-  .faq-item:first-child { border-top: none; }
-  .about-stats { gap: 0; justify-content: space-between; flex-wrap: nowrap; margin-bottom: 20px; }
-  .about-stat { align-items: center; flex: 1; }
-  .sn { font-size: clamp(22px,6vw,32px); }
-  .sl { font-size: 9px; letter-spacing: .14em; }
-  .about-main-grid { grid-template-columns: 1fr; gap: 32px; }
-  .about-carousel { max-width: 100%; margin: 0 auto; width: 100%; aspect-ratio: 3/4; }
-  .exp-phi-row { grid-template-columns: 1fr; gap: 32px; padding-top: 28px; }
-  .phi-block { border-top: 1px solid var(--border); padding-top: 28px; }
-  .exp-label, .phi-l, .exp-headline { text-align: center; }
-  .phi-q { text-align: center; }
-  .contact-grid { grid-template-columns: 1fr; gap: 36px; }
-  .book-cta-sub { white-space: normal; }
-}
-
-@media(max-width:768px) {
-  .home-brand { font-size: 20px; }
-  .top-nav { padding: 18px 20px; }
-  .top-nav-socials { gap: 14px; }
-  .top-nav-socials svg { width: 18px; height: 18px; }
-  .book-btn { font-size: 11px; padding: 10px 20px; }
-  .landing-footer { padding: 16px 20px; }
-  .landing-tagline { margin-bottom: 10px; margin-top: 0; }
-  .landing-avail { margin-top: 16px; }
-  .footer-cta { font-size: 11px; }
-  .footer-descriptor { display: none; }
-  .menu-word { font-size: clamp(48px,13vw,72px); }
-
-  .page-nav { padding: 16px 20px; }
-  .page-nav-brand { font-size: 22px; }
-  .page-nav-brand .brand-full { display: none; }
-  .page-nav-brand .brand-short { display: inline; }
-
-  #tile-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr 1fr; }
-  .ptile-portraits { grid-column: 1/3; grid-row: 1; }
-  .ptile-portraits .ptile-bg { background-image: url(alexa-dunes1.jpg) !important; background-position: center 30%; }
-  .ptile-senior    { grid-column: 1; grid-row: 2; }
-  .ptile-weddings  { grid-column: 2; grid-row: 3; }
-  .ptile-events    { grid-column: 1; grid-row: 3; }
-  .ptile-business  { grid-column: 2; grid-row: 2; }
-
-  .cat-body, .about-body, .faqs-body, .contact-body, .proj-body { padding: 24px 20px; }
-  .cat-header, .proj-header { grid-template-columns: 1fr !important; gap: 12px; }
-  .cat-sub { max-width: 100%; white-space: normal; }
-
-  /* portrait grid mobile — single column */
-  #cat-photo-grid { width: 100%; left: auto; transform: none; display: block; }
-  .pg-row-a, .pg-row-b { display: block; width: 100%; }
-  .pg-item { display: block; width: 100%; float: none; }
-  .pg-item img { height: auto; object-fit: unset; }
-  .pg-row-b .pg-vert img { height: auto; object-fit: unset; }
-  .pg-horiz-stack { display: block; width: 100%; }
-  .pg-horiz-stack .pg-horiz { display: block; width: 100%; }
-  .pg-horiz-stack .pg-horiz img { height: auto; object-fit: unset; }
-
-  .photo-grid { grid-template-columns: repeat(2,1fr); }
-  .book-cta-block { flex-direction: column; align-items: flex-start; padding: 24px 20px; }
-  .book-cta-headline { white-space: normal; font-size: clamp(20px,5.5vw,28px); }
-
-  .contact-grid { grid-template-columns: 1fr; gap: 32px; display: block; }
-  .contact-right { display: none; }
-  .contact-info-mobile { display: flex; margin-bottom: 24px; justify-content: center; gap: 32px; }
-  .what-next-mobile { display: block; }
-  .contact-info-desktop { display: none; }
-  .what-next-desktop { display: none; }
-  .contact-body { padding: 24px 20px; }
-  .contact-hero { white-space: normal; font-size: clamp(36px,10vw,60px); }
-  .contact-sub { text-align: center; }
-  .ci-label, .ci-val { text-align: center; }
-  .f-submit-row { justify-content: center; }
-  .tcard-heading { text-align: center; }
-  .view-portfolio-link { width: 100%; text-align: center; }
-
-  .about-body .book-cta-block { align-items: center; text-align: center; }
-  .about-body .book-cta-eyebrow,
-  .about-body .book-cta-headline,
-  .about-body .book-cta-sub { text-align: center; }
-  .about-body .book-cta-btn { align-self: center; }
-  .about-pill-row { display: flex; justify-content: center; }
-
-  .faqs-hero { white-space: normal; font-size: clamp(36px,9vw,52px); }
-  .contact-faq-pill { text-align: center; }
-  .proj-body { padding: 32px 20px; }
-  .proj-header { grid-template-columns: 1fr !important; gap: 12px; }
-}
-
-@media(max-width:700px) {
-  .book-cta-headline { white-space: normal; font-size: clamp(20px,5.5vw,28px); }
-  .book-cta-block { flex-direction: column; align-items: flex-start; padding: 24px 20px; }
-}
-
-@media(max-width:582px) {
-  .book-cta-block { align-items: center; }
-  .book-cta-left { max-width: 100%; }
-  .book-cta-eyebrow, .book-cta-headline, .book-cta-sub { text-align: center; }
-  .book-cta-btn { align-self: center; }
-  .book-cta-headline { font-size: clamp(18px,5vw,24px); }
-}
-
-@media(max-width:500px) {
-  .home-brand { position: static; text-align: left; font-size: 18px; }
-  .top-nav { justify-content: space-between; }
-  .top-nav-socials { display: none; }
-  .book-btn { display: flex; font-size: 10px; padding: 9px 14px; }
-  .footer-socials-mobile { display: flex; }
-  .landing-footer { flex-wrap: wrap; gap: 12px; padding: 16px 20px; }
-  .footer-copy { width: 100%; text-align: center; order: 3; }
-  .footer-socials-mobile { order: 1; }
-  .footer-cta { order: 2; }
-}
 
 @media(min-width:501px) and (max-width:768px) {
   .book-btn { font-size: 11px; padding: 10px 16px; }
   .footer-socials-mobile { display: none; }
 }
-@media(min-width:769px) { .footer-socials-mobile { display: none; } }
-
-
-
-
-
-
 
   50%       { opacity: 1; }
 }
-
 
 /* ─────────────────────────────────────────────
    EVENTS GRID — full bleed, 3-per-row
@@ -984,11 +794,6 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 }
 .ev-cell img.loaded { opacity: 1; }
 .ev-cell:hover img { filter: brightness(1.06); transition: opacity .5s ease, filter .35s ease; }
-@media(max-width:768px) {
-  .ev-grid { width: 100%; left: auto; transform: none; }
-  .ev-row { flex-direction: column; }
-}
-
 
 /* ─────────────────────────────────────────────
    BUSINESS PORTFOLIO — sections + marquee
@@ -1027,15 +832,6 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 }
 .biz-group-photo img.loaded { opacity: 1; }
 
-@media(min-width:769px) {
-  .biz-group-photo {
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: 0 48px;
-    box-sizing: border-box;
-  }
-}
-
 /* marquee */
 .biz-marquee {
   overflow: hidden;
@@ -1049,7 +845,7 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   gap: 0;
   width: max-content;
   animation: marqueeScroll 52s linear infinite;
-  will-change: transform;
+  /* will-change applied by JS only while visible */
 }
 .biz-marquee-track.slow { animation-duration: 68s; }
 @keyframes marqueeScroll {
@@ -1107,17 +903,6 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   margin: 40px 0;
 }
 
-@media(max-width:768px) {
-  .biz-marquee-item { width: 220px; }
-  .biz-marquee-item img { height: 280px; }
-  .biz-label { padding: 20px 0 10px; font-size: 11px; }
-  .biz-group-photo { max-width: 100%; padding: 0; }
-  .biz-hs-cell { width: 50%; }
-  .biz-hs-grid { margin-bottom: 32px; }
-}
-
-
-
 /* zodiac hero grid — 4 per row, full bleed */
 .zod-hero-grid {
   /* Full bleed: escape padding AND max-width centering */
@@ -1150,11 +935,6 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   transition: opacity .55s ease;
 }
 .zod-hero-cell img.loaded { opacity: 1; }
-@media(max-width:768px) {
-  .zod-hero-row { flex-wrap: wrap; }
-  .zod-hero-cell { flex: 1 1 33.333%; max-width: 33.333%; }
-  .zod-hero-cell img { height: 360px; }
-}
 
 /* ─────────────────────────────────────────────
    ZODIAC PROJECT — cinematic case study
@@ -1172,31 +952,20 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 .zod-meta-val { font-family: var(--serif); font-size: 15px; font-weight: 300; color: var(--muted); }
 
 /* placeholder blocks */
-.zod-placeholder {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-}
-.zod-placeholder-label {
-  font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted2);
-}
 
 /* hero image */
 .zod-hero {
   width: 100%;
   margin: 56px 0 0;
 }
-.zod-hero .zod-placeholder { height: 60vh; min-height: 360px; }
+.zod-hero 
 
 /* section heading */
 .zod-section-title {
   font-family: var(--serif);
   font-size: clamp(22px,3vh,36px);
   font-weight: 300;
-  color: var(--text);
+  color: var(--accent);
   letter-spacing: -.01em;
   margin-bottom: 28px;
 }
@@ -1207,26 +976,12 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   padding-top: 48px;
   border-top: 1px solid var(--border);
 }
-.zod-process-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 4px;
-  margin-top: 20px;
-}
-.zod-process-main .zod-placeholder { height: 420px; }
-.zod-process-side {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-.zod-process-side .zod-placeholder { height: calc(50% - 2px); min-height: 120px; flex: 1; }
-.zod-process-sub {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4px;
-  margin-top: 4px;
-}
-.zod-process-sub .zod-placeholder { height: 200px; }
+
+.zod-process-main 
+
+.zod-process-side 
+
+.zod-process-sub 
 
 /* BTS section */
 .zod-bts {
@@ -1234,19 +989,24 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   padding-top: 48px;
   border-top: 1px solid var(--border);
 }
-.zod-video-wrap {
-  width: 100%;
-  aspect-ratio: 16/9;
-  margin-bottom: 4px;
+/* BTS — side-by-side layout on desktop */
+.zod-bts-layout {
+  display: flex;
+  gap: 0;
+  width: 100vw;
+  margin-left: calc((min(100vw, 1440px) - 100vw) / 2 - var(--pad-x));
+  margin-top: 20px;
   overflow: hidden;
 }
-.zod-video-wrap .zod-placeholder { height: 100%; }
-
-.zod-bts-item {
-  position: relative;
-  line-height: 0;
+.zod-video-wrap {
+  flex: 0 0 72%;
+  min-width: 0;
+  overflow: hidden;
+  aspect-ratio: 16/9;
 }
-.zod-bts-item .zod-placeholder { height: 180px; }
+.zod-video-wrap 
+
+.zod-bts-item 
 .zod-bts-caption {
   font-size: 9px; letter-spacing: .18em; text-transform: uppercase;
   color: var(--muted); margin-top: 8px; display: block;
@@ -1258,54 +1018,10 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   padding-top: 48px;
   border-top: 1px solid var(--border);
 }
-.zod-compare-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
-  margin-top: 20px;
-}
-.zod-compare-item { display: flex; flex-direction: column; gap: 10px; }
-.zod-compare-item .zod-placeholder { height: 340px; }
-.zod-compare-label {
-  font-size: 9px; letter-spacing: .2em; text-transform: uppercase;
-  color: var(--muted); display: block;
-}
+
+.zod-compare-item 
 
 /* final series marquee */
-.zod-marquee-section {
-  margin-top: 72px;
-  padding-top: 48px;
-  border-top: 1px solid var(--border);
-}
-.zod-marquee {
-  overflow: hidden;
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-  margin-top: 20px;
-  line-height: 0;
-}
-.zod-marquee-track {
-  display: flex;
-  gap: 0;
-  width: max-content;
-  animation: marqueeScroll 60s linear infinite;
-  will-change: transform;
-}
-.zod-marquee-item {
-  flex-shrink: 0;
-  width: 340px;
-  line-height: 0;
-  overflow: hidden;
-}
-.zod-marquee-item img {
-  width: 100%;
-  height: 500px;
-  object-fit: cover;
-  object-position: center top;
-  display: block;
-}
 
 /* scroll reveal */
 .zod-reveal {
@@ -1317,19 +1033,6 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   opacity: 1;
   transform: translateY(0);
 }
-
-@media(max-width:768px) {
-  .zod-meta-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 16px; }
-  .zod-process-grid { grid-template-columns: 1fr; }
-  .zod-process-side { flex-direction: row; }
-  .zod-process-sub { grid-template-columns: 1fr 1fr; }
-  .zod-compare-grid { grid-template-columns: 1fr; gap: 32px; }
-  
-  .zod-marquee-item { width: 240px; }
-  .zod-marquee-item img { height: 340px; }
-  .zod-hero .zod-placeholder { height: 40vh; }
-}
-
 
 /* ─────────────────────────────────────────────
    LANDING BACKGROUND — cinematic, static
@@ -1370,54 +1073,32 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 /* Ensure all landing children sit above grain */
 #landing > * { position: relative; z-index: 1; }
 
-
 /* BTS media cells */
 .zod-bts-media {
   width: 100%;
-  height: 220px;
+  height: 100%;
+  flex: 1;
   overflow: hidden;
   line-height: 0;
   background: var(--bg2);
 }
+.zod-bts-item {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
 
-/* 3-col BTS strip */
+/* BTS strip — vertical on desktop (right of video), horizontal on mobile */
 .zod-bts-strip {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 4px;
-  margin-top: 4px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-width: 0;
 }
 
 /* Closing overview text */
-.zod-closing {
-  margin-top: 80px;
-  padding-top: 56px;
-  border-top: 1px solid var(--border);
-  padding-bottom: 16px;
-}
-.zod-closing-inner {
-  max-width: 680px;
-  margin: 0 auto;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-.zod-closing-p {
-  font-family: var(--serif);
-  font-size: clamp(16px, 2vh, 22px);
-  font-weight: 300;
-  color: var(--muted);
-  line-height: 1.85;
-  letter-spacing: .01em;
-}
-
-@media(max-width:768px) {
-  .zod-bts-strip { grid-template-columns: repeat(3, 1fr); margin-left: calc(-1 * var(--pad-x)); margin-right: calc(-1 * var(--pad-x)); gap: 0; }
-  .zod-bts-media { height: 140px; }
-  .zod-closing-inner { text-align: left; }
-}
-
 
 /* ── CREATIVE PROCESS — redesigned ── */
 .zod-process-layout {
@@ -1510,17 +1191,6 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   letter-spacing: .01em;
 }
 
-@media(max-width:768px) {
-  .zod-process-layout { grid-template-columns: 1fr; gap: 36px; }
-  .zod-overview-stats { grid-template-columns: 1fr 1fr; }
-  .zod-overview-paras { max-width: 100%; }
-  .zod-overview-layout { grid-template-columns: 1fr; gap: 36px; }
-  .zod-overview-stats { grid-template-columns: 1fr 1fr; }
-  .zod-collage-wrap { border-radius: 14px; }
-  .zod-collage-wrap img { border-radius: 14px; }
-}
-
-
 /* Collage lightbox */
 .zod-collage-wrap { cursor: zoom-in; }
 .zod-lightbox {
@@ -1541,9 +1211,134 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   box-shadow: 0 32px 80px rgba(0,0,0,.6);
 }
 
+/* ═══════════════════════════════════════
+   RESPONSIVE — all breakpoints consolidated
+══════════════════════════════════════ */
+@media(max-width:900px){
+:root { --pad-x: 20px; }
+  .faq-grid { grid-template-columns: 1fr; gap: 0; }
+  .faq-item:first-child { border-top: none; }
+  .about-stats { gap: 0; justify-content: space-between; flex-wrap: nowrap; margin-bottom: 20px; }
+  .about-stat { align-items: center; flex: 1; }
+  .sn { font-size: clamp(22px,6vw,32px); }
+  .sl { font-size: 9px; letter-spacing: .14em; }
+  .about-main-grid { grid-template-columns: 1fr; gap: 32px; }
+  .about-carousel { max-width: 100%; margin: 0 auto; width: 100%; aspect-ratio: 3/4; }
+  .exp-phi-row { grid-template-columns: 1fr; gap: 32px; padding-top: 28px; }
+  .phi-block { border-top: 1px solid var(--border); padding-top: 28px; }
+  .exp-label, .phi-l, 
+  .phi-q { text-align: center; }
+  .contact-grid { grid-template-columns: 1fr; gap: 36px; }
+  .book-cta-sub { white-space: normal; }
+}
+@media(min-width:769px){
+.footer-socials-mobile { display: none; }
+.biz-group-photo {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 48px;
+    box-sizing: border-box;
+  }
+}
+@media(max-width:768px){
+.home-brand { font-size: 20px; }
+  .top-nav { padding: 18px 20px; }
+  .top-nav-socials { gap: 14px; }
+  .top-nav-socials svg { width: 18px; height: 18px; }
+  .book-btn { font-size: 11px; padding: 10px 20px; }
+  .landing-footer { padding: 16px 20px; }
+  .landing-tagline { margin-bottom: 10px; margin-top: 0; }
+  .landing-avail { margin-top: 16px; }
+  .footer-cta { font-size: 11px; }
+  
+  .menu-word { font-size: clamp(48px,13vw,72px); }
 
-@media(max-width:768px) {
-  .zod-video-wrap {
+  .page-nav { padding: 16px 20px; }
+  .page-nav-brand { font-size: 22px; }
+  .page-nav-brand .brand-full { display: none; }
+  .page-nav-brand .brand-short { display: inline; }
+
+  #tile-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr 1fr; }
+  .ptile-portraits { grid-column: 1/3; grid-row: 1; }
+  .ptile-portraits .ptile-bg { background-image: url(alexa-dunes1.jpg) !important; background-position: center 30%; }
+  .ptile-senior    { grid-column: 1; grid-row: 2; }
+  .ptile-weddings  { grid-column: 2; grid-row: 3; }
+  .ptile-events    { grid-column: 1; grid-row: 3; }
+  .ptile-business  { grid-column: 2; grid-row: 2; }
+
+  .cat-body, .about-body, .faqs-body, .contact-body, .proj-body { padding: 24px 20px; }
+  .cat-header, .proj-header { grid-template-columns: 1fr !important; gap: 12px; }
+  .cat-sub { max-width: 100%; white-space: normal; }
+
+  /* portrait grid mobile — single column */
+  #cat-photo-grid { width: 100%; left: auto; transform: none; display: block; }
+  .pg-row-a, .pg-row-b { display: block; width: 100%; }
+  .pg-item { display: block; width: 100%; float: none; }
+  .pg-item img { height: auto; object-fit: unset; }
+  .pg-row-b .pg-vert img { height: auto; object-fit: unset; }
+  .pg-horiz-stack { display: block; width: 100%; }
+  .pg-horiz-stack .pg-horiz { display: block; width: 100%; }
+  .pg-horiz-stack .pg-horiz img { height: auto; object-fit: unset; }
+
+  
+  .book-cta-block { flex-direction: column; align-items: flex-start; padding: 24px 20px; }
+  .book-cta-headline { white-space: normal; font-size: clamp(20px,5.5vw,28px); }
+
+  .contact-grid { grid-template-columns: 1fr; gap: 32px; display: block; }
+  .contact-right { display: none; }
+  .contact-info-mobile { display: flex; margin-bottom: 24px; justify-content: center; gap: 32px; }
+  .what-next-mobile { display: block; }
+  .contact-info-desktop { display: none; }
+  .what-next-desktop { display: none; }
+  .contact-body { padding: 24px 20px; }
+  .contact-hero { white-space: normal; font-size: clamp(36px,10vw,60px); }
+  .contact-sub { text-align: center; }
+  .ci-label, .ci-val { text-align: center; }
+  .f-submit-row { justify-content: center; }
+  .tcard-heading { text-align: center; }
+  .view-portfolio-link { width: 100%; text-align: center; }
+
+  .about-body .book-cta-block { align-items: center; text-align: center; }
+  .about-body .book-cta-eyebrow,
+  .about-body .book-cta-headline,
+  .about-body .book-cta-sub { text-align: center; }
+  .about-body .book-cta-btn { align-self: center; }
+  .about-pill-row { display: flex; justify-content: center; }
+
+  .faqs-hero { white-space: normal; font-size: clamp(36px,9vw,52px); }
+  .contact-faq-pill { text-align: center; }
+  .proj-body { padding: 32px 20px; }
+  .proj-header { grid-template-columns: 1fr !important; gap: 12px; }
+.ev-grid { width: 100%; left: auto; transform: none; }
+  .ev-row { flex-direction: column; }
+.biz-marquee-item { width: 220px; }
+  .biz-marquee-item img { height: 280px; }
+  .biz-label { padding: 20px 0 10px; font-size: 11px; }
+  .biz-group-photo { max-width: 100%; padding: 0; }
+  .biz-hs-cell { width: 50%; }
+  .biz-hs-grid { margin-bottom: 32px; }
+.zod-hero-row { flex-wrap: wrap; }
+  .zod-hero-cell { flex: 1 1 33.333%; max-width: 33.333%; }
+  .zod-hero-cell img { height: 360px; }
+.zod-meta-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 16px; }
+  
+  
+  
+  
+  
+  
+  
+  .zod-hero
+.zod-bts-strip { grid-template-columns: repeat(3, 1fr); margin-left: calc(-1 * var(--pad-x)); margin-right: calc(-1 * var(--pad-x)); gap: 0; }
+  .zod-bts-media { height: 140px; }
+.zod-process-layout { grid-template-columns: 1fr; gap: 36px; }
+  .zod-overview-stats { grid-template-columns: 1fr 1fr; }
+  .zod-overview-paras { max-width: 100%; }
+  .zod-overview-layout { grid-template-columns: 1fr; gap: 36px; }
+  .zod-overview-stats { grid-template-columns: 1fr 1fr; }
+  .zod-collage-wrap { border-radius: 14px; }
+  .zod-collage-wrap img { border-radius: 14px; }
+.zod-video-wrap {
     aspect-ratio: 4/3;
     width: 100vw;
     position: relative;
@@ -1551,6 +1346,42 @@ textarea.f-input { resize: vertical; min-height: 100px; }
     transform: translateX(-50%);
     margin-bottom: 4px;
   }
+}
+@media(max-width:700px){
+.book-cta-headline { white-space: normal; font-size: clamp(20px,5.5vw,28px); }
+  .book-cta-block { flex-direction: column; align-items: flex-start; padding: 24px 20px; }
+}
+@media(max-width:582px){
+.book-cta-block { align-items: center; }
+  .book-cta-left { max-width: 100%; }
+  .book-cta-eyebrow, .book-cta-headline, .book-cta-sub { text-align: center; }
+  .book-cta-btn { align-self: center; }
+  .book-cta-headline { font-size: clamp(18px,5vw,24px); }
+}
+@media(max-width:500px){
+.home-brand { position: static; text-align: left; font-size: 18px; }
+  .top-nav { justify-content: space-between; }
+  .top-nav-socials { display: none; }
+  .book-btn { display: flex; font-size: 10px; padding: 9px 14px; }
+  .footer-socials-mobile { display: flex; }
+  .landing-footer { flex-wrap: wrap; gap: 12px; padding: 16px 20px; }
+  .footer-copy { width: 100%; text-align: center; order: 3; }
+  .footer-socials-mobile { order: 1; }
+  .footer-cta { order: 2; }
+}
+
+/* ═══════════════════════════════════════
+   REDUCED MOTION — accessibility
+══════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+  .biz-marquee-track { animation: none; }
+  .page { transition: none; }
+  .zod-reveal { opacity: 1; transform: none; }
 }
 
 </style>
@@ -1577,22 +1408,22 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 
   <div class="hero-menu">
     <p class="landing-tagline" style="margin-top:-24px">I make people feel seen. Then I photograph them.</p>
-    <button class="menu-item" onclick="openPage('portfolio')">
+    <button class="menu-item" onclick="openPage('portfolio')" aria-label="Open Portfolio">
       <span class="menu-num">01</span><span class="menu-word">Portfolio</span>
     </button>
-    <button class="menu-item" onclick="openPage('about')">
+    <button class="menu-item" onclick="openPage('about')" aria-label="Open About">
       <span class="menu-num">02</span><span class="menu-word">About</span>
     </button>
-    <button class="menu-item" onclick="openPage('projects')">
+    <button class="menu-item" onclick="openPage('projects')" aria-label="Open Projects">
       <span class="menu-num">03</span><span class="menu-word">Projects</span>
     </button>
     <a class="menu-item" href="blog/index.html">
       <span class="menu-num">04</span><span class="menu-word">Journal</span>
     </a>
-    <button class="menu-item" onclick="openPage('faqs')">
+    <button class="menu-item" onclick="openPage('faqs')" aria-label="Open FAQs">
       <span class="menu-num">05</span><span class="menu-word">FAQs</span>
     </button>
-    <button class="menu-item" onclick="openPage('contact')">
+    <button class="menu-item" onclick="openPage('contact')" aria-label="Open Contact">
       <span class="menu-num">06</span><span class="menu-word">Contact</span>
     </button>
 
@@ -1614,13 +1445,13 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 </div>
 
 <!-- ══════════ PORTFOLIO PAGE ══════════ -->
-<div class="page" id="page-portfolio">
+<div class="page" id="page-portfolio" role="dialog" aria-label="Portfolio" aria-modal="true">
   <div id="portfolio-scroll-area">
     <div id="portfolio-stage">
       <nav class="page-nav" style="position:sticky;top:0">
         <button class="page-nav-brand" onclick="closePage('portfolio')"><span class="brand-full">molcurphotos</span><span class="brand-short">MC</span></button>
         <span class="page-nav-title">Portfolio</span>
-        <div class="page-nav-close-wrap"><button class="page-close" onclick="closePage('portfolio')">✕</button></div>
+        <div class="page-nav-close-wrap"><button class="page-close" onclick="closePage('portfolio')" aria-label="Close Portfolio">✕</button></div>
       </nav>
       <div id="tile-grid-wrap" style="position:relative;flex:1;min-height:0;overflow:hidden;">
         <div id="portfolio-intro">
@@ -1660,11 +1491,11 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 </div>
 
 <!-- ══════════ CATEGORY PAGE ══════════ -->
-<div class="page" id="page-category" style="z-index:300">
+<div class="page" id="page-category" style="z-index:300" role="dialog" aria-modal="true">
   <nav class="page-nav">
     <button class="page-nav-brand" onclick="closePage('category')"><span class="brand-full">molcurphotos</span><span class="brand-short">MC</span></button>
     <span class="page-nav-title" id="cat-nav-title"></span>
-    <div class="page-nav-close-wrap"><button class="page-close" onclick="closePage('category')">✕</button></div>
+    <div class="page-nav-close-wrap"><button class="page-close" onclick="closePage('category')" aria-label="Close">✕</button></div>
   </nav>
   <div class="cat-body">
     <button class="back-btn" onclick="closePage('category')">← Back to Portfolio</button>
@@ -1686,11 +1517,11 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 </div>
 
 <!-- ══════════ ABOUT PAGE ══════════ -->
-<div class="page" id="page-about">
+<div class="page" id="page-about" role="dialog" aria-label="About" aria-modal="true">
   <nav class="page-nav">
     <button class="page-nav-brand" onclick="closePage('about')"><span class="brand-full">molcurphotos</span><span class="brand-short">MC</span></button>
     <span class="page-nav-title">About</span>
-    <div class="page-nav-close-wrap"><button class="page-close" onclick="closePage('about')">✕</button></div>
+    <div class="page-nav-close-wrap"><button class="page-close" onclick="closePage('about')" aria-label="Close About">✕</button></div>
   </nav>
   <div class="about-body">
     <div class="about-main-grid">
@@ -1759,11 +1590,11 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 </div>
 
 <!-- ══════════ PROJECTS PAGE ══════════ -->
-<div class="page" id="page-projects">
+<div class="page" id="page-projects" role="dialog" aria-label="Projects" aria-modal="true">
   <nav class="page-nav">
     <button class="page-nav-brand" onclick="closePage('projects')"><span class="brand-full">molcurphotos</span><span class="brand-short">MC</span></button>
     <span class="page-nav-title">Projects</span>
-    <div class="page-nav-close-wrap"><button class="page-close" onclick="closePage('projects')">✕</button></div>
+    <div class="page-nav-close-wrap"><button class="page-close" onclick="closePage('projects')" aria-label="Close Projects">✕</button></div>
   </nav>
   <div class="proj-body">
     <div class="proj-block">
@@ -1783,16 +1614,17 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 
       <!-- 12 zodiac images 4x4x4 -->
       <div class="zod-hero-grid zod-reveal">
-        <div class="zod-hero-row"><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499612/aries1_gkiz1g.jpg" fetchpriority="high" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499611/taurus1_eohr4r.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499610/gemini1_qel6y4.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499609/cancer1_d2rido.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div></div><div class="zod-hero-row"><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499609/leo1_ww3q1l.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499610/virgo1_ud2eng.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499610/libra-1_obcwjk.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499612/scorpio1_sc2lwp.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div></div><div class="zod-hero-row"><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499613/sagittarius1_aoirdd.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499610/capricorn1_za8ltl.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499611/aquarius1_esi2bm.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499612/pisces1_gscsnv.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div></div>
+        <div class="zod-hero-row"><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499612/aries1_gkiz1g.jpg" fetchpriority="high" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499611/taurus1_eohr4r.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499610/gemini1_qel6y4.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')" style="object-position:70% top"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499609/cancer1_d2rido.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div></div><div class="zod-hero-row"><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499609/leo1_ww3q1l.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499610/virgo1_ud2eng.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499610/libra-1_obcwjk.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499612/scorpio1_sc2lwp.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div></div><div class="zod-hero-row"><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499613/sagittarius1_aoirdd.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499610/capricorn1_za8ltl.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499611/aquarius1_esi2bm.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499612/pisces1_gscsnv.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div></div>
       </div>
 
       <!-- behind the scenes -->
       <div class="zod-bts zod-reveal">
         <div class="zod-section-title">Behind the Scenes</div>
-        <div class="zod-video-wrap">
-          <video src="https://res.cloudinary.com/dih43qroh/video/upload/q_auto:good,vc_auto,f_auto/v1779499442/IMG_0200_r17bib.mov" autoplay muted loop playsinline preload="none" style="width:100%;height:100%;object-fit:cover;display:block;"></video>
-        </div>
-        <div class="zod-bts-strip">
+        <div class="zod-bts-layout">
+          <div class="zod-video-wrap">
+            <video src="https://res.cloudinary.com/dih43qroh/video/upload/q_auto:good,vc_auto,f_auto/v1779499442/IMG_0200_r17bib.mov" autoplay muted loop playsinline preload="none" style="width:100%;height:100%;object-fit:cover;display:block;"></video>
+          </div>
+          <div class="zod-bts-strip">
           <div class="zod-bts-item">
             <div class="zod-bts-media"><video src="https://res.cloudinary.com/dih43qroh/video/upload/q_auto:good,vc_auto,f_auto/v1779501181/7a603d66d5f745b298622908d56fe038_y0jplf.mp4" autoplay muted loop playsinline preload="none" style="width:100%;height:100%;object-fit:cover;display:block;"></video></div>
 
@@ -1804,6 +1636,7 @@ textarea.f-input { resize: vertical; min-height: 100px; }
           <div class="zod-bts-item">
             <div class="zod-bts-media"><video src="https://res.cloudinary.com/dih43qroh/video/upload/q_auto:good,vc_auto,f_auto/v1779501182/IMG_3970_wgbl0r.mov" autoplay muted loop playsinline preload="none" style="width:100%;height:100%;object-fit:cover;display:block;"></video></div>
 
+          </div>
           </div>
         </div>
       </div>
@@ -1846,11 +1679,11 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 </div>
 
 <!-- ══════════ FAQs PAGE ══════════ -->
-<div class="page" id="page-faqs">
+<div class="page" id="page-faqs" role="dialog" aria-label="Faqs" aria-modal="true">
   <nav class="page-nav">
     <button class="page-nav-brand" onclick="closePage('faqs')"><span class="brand-full">molcurphotos</span><span class="brand-short">MC</span></button>
     <span class="page-nav-title">FAQs</span>
-    <div class="page-nav-close-wrap"><button class="page-close" onclick="closePage('faqs')">✕</button></div>
+    <div class="page-nav-close-wrap"><button class="page-close" onclick="closePage('faqs')" aria-label="Close FAQs">✕</button></div>
   </nav>
   <div class="faqs-body">
     <div class="faqs-hero">Frequently Asked</div>
@@ -1904,11 +1737,11 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 </div>
 
 <!-- ══════════ CONTACT PAGE ══════════ -->
-<div class="page" id="page-contact">
+<div class="page" id="page-contact" role="dialog" aria-label="Contact" aria-modal="true">
   <nav class="page-nav">
     <button class="page-nav-brand" onclick="closePage('contact')"><span class="brand-full">molcurphotos</span><span class="brand-short">MC</span></button>
     <span class="page-nav-title">Contact</span>
-    <div class="page-nav-close-wrap"><button class="page-close" onclick="closePage('contact')">✕</button></div>
+    <div class="page-nav-close-wrap"><button class="page-close" onclick="closePage('contact')" aria-label="Close Contact">✕</button></div>
   </nav>
   <div class="contact-body">
     <div class="contact-grid">
@@ -2192,8 +2025,6 @@ ptiles.forEach(tile => {
   });
 });
 
-
-
 (function() {
   const slides = document.querySelectorAll('#aboutCarousel .carousel-slide');
   const dots = document.querySelectorAll('#aboutCarousel .carousel-dot');
@@ -2232,7 +2063,6 @@ ptiles.forEach(tile => {
   let zodiacTimer = setInterval(() => goTo(current + 1), 6000);
   function resetZodiacTimer() { clearInterval(zodiacTimer); zodiacTimer = setInterval(() => goTo(current + 1), 6000); }
 })();
-
 
 // ── IMAGE REVEAL — IntersectionObserver for portrait grid ──────────
 (function() {
@@ -2297,7 +2127,6 @@ ptiles.forEach(tile => {
   });
 })();
 
-
 // ── ZODIAC SCROLL REVEAL ─────────────────────────────────────
 (function() {
   var revObs = new IntersectionObserver(function(entries) {
@@ -2324,7 +2153,6 @@ ptiles.forEach(tile => {
   }
 })();
 
-
 // ── ENSURE BTS VIDEOS LOOP CONTINUOUSLY ─────────────────────
 (function() {
   function fixVideos() {
@@ -2343,7 +2171,6 @@ ptiles.forEach(tile => {
   }
 })();
 
-
 // ── COLLAGE LIGHTBOX ─────────────────────────────────────────
 (function() {
   document.addEventListener('click', function(e) {
@@ -2361,6 +2188,19 @@ ptiles.forEach(tile => {
   });
 })();
 
+
+// ── MARQUEE PERFORMANCE — will-change only while visible ───────────────
+(function() {
+  if (!('IntersectionObserver' in window)) return;
+  var marqObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      var track = e.target.querySelector('.biz-marquee-track');
+      if (track) track.style.willChange = e.isIntersecting ? 'transform' : 'auto';
+    });
+  }, { rootMargin: '100px' });
+  document.querySelectorAll('.biz-marquee').forEach(function(m) { marqObs.observe(m); });
+})();
+
 function toggleFaq(btn) {
   const item = btn.closest('.faq-item');
   const isOpen = item.classList.contains('open');
@@ -2370,14 +2210,14 @@ function toggleFaq(btn) {
 </script>
 
 <!-- Collage lightbox -->
-<div class="zod-lightbox" id="zodLightbox" onclick="this.classList.remove('open')">
+<div class="zod-lightbox" id="zodLightbox" role="dialog" aria-label="Image lightbox" aria-modal="true" onclick="this.classList.remove('open')">
   <img id="zodLightboxImg" src="" alt="Zodiac collage">
 </div>
 </body>
 </html>
 
 <!-- Collage lightbox -->
-<div class="zod-lightbox" id="zodLightbox" onclick="this.classList.remove('open')">
+<div class="zod-lightbox" id="zodLightbox" role="dialog" aria-label="Image lightbox" aria-modal="true" onclick="this.classList.remove('open')">
   <img id="zodLightboxImg" src="" alt="Zodiac collage">
 </div>
 </body>
