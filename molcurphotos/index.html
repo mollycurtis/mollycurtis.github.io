@@ -1121,13 +1121,13 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 
 /* zodiac hero grid — 4 per row, full bleed */
 .zod-hero-grid {
+  /* Full bleed: escape proj-body padding on both sides */
   margin-left: calc(-1 * var(--pad-x));
   margin-right: calc(-1 * var(--pad-x));
   margin-top: 40px;
   display: flex;
   flex-direction: column;
   gap: 0;
-  overflow: hidden;
 }
 .zod-hero-row {
   display: flex;
@@ -1135,21 +1135,26 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   width: 100%;
 }
 .zod-hero-cell {
-  flex: 1 1 25%;
+  flex: 1 1 0;
   min-width: 0;
   line-height: 0;
   overflow: hidden;
 }
+/* Fixed height crop so horizontal images don't distort the row */
 .zod-hero-cell img {
   width: 100%;
-  height: auto;
+  height: 340px;
+  object-fit: cover;
+  object-position: center top;
   display: block;
   opacity: 0;
   transition: opacity .55s ease;
 }
 .zod-hero-cell img.loaded { opacity: 1; }
 @media(max-width:768px) {
-  .zod-hero-row { flex-direction: column; }
+  .zod-hero-row { flex-wrap: wrap; }
+  .zod-hero-cell { flex: 1 1 33.333%; max-width: 33.333%; }
+  .zod-hero-cell img { height: 220px; }
 }
 
 /* ─────────────────────────────────────────────
@@ -1409,7 +1414,7 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 }
 
 @media(max-width:768px) {
-  .zod-bts-strip { grid-template-columns: repeat(3, 1fr); }
+  .zod-bts-strip { grid-template-columns: repeat(3, 1fr); margin-left: calc(-1 * var(--pad-x)); margin-right: calc(-1 * var(--pad-x)); gap: 0; }
   .zod-bts-media { height: 140px; }
   .zod-closing-inner { text-align: left; }
 }
@@ -1482,7 +1487,7 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   font-family: var(--serif);
   font-size: clamp(20px, 2.5vh, 28px);
   font-weight: 300;
-  color: var(--text);
+  color: var(--accent);
   line-height: 1;
 }
 .zod-stat-label {
