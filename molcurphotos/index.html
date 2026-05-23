@@ -1120,11 +1120,9 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 
 /* zodiac hero grid — 4 per row, full bleed */
 .zod-hero-grid {
-  /* True full bleed — escape both padding and max-width centering */
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
+  /* Full bleed: escape padding AND max-width centering */
   width: 100vw;
+  margin-left: calc((min(100vw, 1440px) - 100vw) / 2 - var(--pad-x));
   margin-top: 40px;
   display: flex;
   flex-direction: column;
@@ -1153,7 +1151,6 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 }
 .zod-hero-cell img.loaded { opacity: 1; }
 @media(max-width:768px) {
-  .zod-hero-grid { left: 50%; transform: translateX(-50%); width: 100vw; }
   .zod-hero-row { flex-wrap: wrap; }
   .zod-hero-cell { flex: 1 1 33.333%; max-width: 33.333%; }
   .zod-hero-cell img { height: 260px; }
