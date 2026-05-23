@@ -988,12 +988,13 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 
 /* section heading */
 .zod-section-title {
-  font-family: var(--serif);
-  font-size: clamp(28px,4vh,48px);
+  font-family: var(--serif) !important;
+  font-size: clamp(36px,5vh,60px) !important;
   font-weight: 300;
-  color: var(--accent);
+  color: var(--accent) !important;
   letter-spacing: -.01em;
   margin-bottom: 32px;
+  display: block;
 }
 
 /* process section */
@@ -1011,7 +1012,7 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 
 /* BTS section */
 .zod-bts {
-  margin-top: 80px;
+  margin-top: 120px;
   padding-top: 56px;
   border-top: 1px solid var(--border);
 }
@@ -1025,10 +1026,10 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   overflow: hidden;
   /* Height driven by video aspect ratio, not by card column */
   align-items: stretch;
-  max-height: 56vw; /* 16:9 of 72% width = 72% * 56.25% ≈ 40.5vw — give headroom */
+  max-height: 35vw; /* 16:9 of 55% width ≈ 31vw — give headroom */
 }
 .zod-video-wrap {
-  flex: 0 0 72%;
+  flex: 0 0 55%;
   min-width: 0;
   overflow: hidden;
   aspect-ratio: 16/9;
@@ -1135,7 +1136,6 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   margin-top: 40px;
 }
 .zod-process-text { display: flex; flex-direction: column; gap: 20px; }
-.zod-process-text .zod-section-title { margin-bottom: 16px; font-family: var(--serif); color: var(--accent); }
 .zod-process-text .proj-desc { max-width: none; margin: 0; }
 .zod-collage-wrap {
   position: relative;
@@ -1161,9 +1161,10 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   border-top: 1px solid var(--border);
 }
 .zod-overview-label {
-  font-size: 9px;
-  letter-spacing: .28em;
-  text-transform: uppercase;
+  font-family: var(--serif);
+  font-size: clamp(36px,5vh,60px);
+  font-weight: 300;
+  letter-spacing: -.01em;
   color: var(--accent);
   margin-bottom: 28px;
   display: block;
@@ -1240,7 +1241,6 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 /* ═══════════════════════════════════════
    RESPONSIVE — all breakpoints consolidated
 ══════════════════════════════════════ */
-}
 @media(max-width:900px){
 :root { --pad-x: 20px; }
   .faq-grid { grid-template-columns: 1fr; gap: 0; }
@@ -1257,6 +1257,7 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   .phi-q { text-align: center; }
   .contact-grid { grid-template-columns: 1fr; gap: 36px; }
   .book-cta-sub { white-space: normal; }
+}
 @media(min-width:769px){
 .footer-socials-mobile { display: none; }
 .biz-group-photo {
@@ -1265,6 +1266,7 @@ textarea.f-input { resize: vertical; min-height: 100px; }
     padding: 0 48px;
     box-sizing: border-box;
   }
+}
 @media(max-width:768px){
 .home-brand { font-size: 20px; }
   .top-nav { padding: 18px 20px; }
@@ -1346,42 +1348,49 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   .zod-hero-cell { flex: 1 1 33.333%; max-width: 33.333%; }
   .zod-hero-cell img { height: 360px; }
 .zod-meta-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 16px; }
-  
-  
-  
-  
-  
-  
-  
-  .zod-hero
-.zod-bts-strip { grid-template-columns: repeat(3, 1fr); margin-left: calc(-1 * var(--pad-x)); margin-right: calc(-1 * var(--pad-x)); gap: 0; }
+}
+
+/* ══════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════ */
+
+@media(max-width:768px) {
+  /* hero grid */
+  .zod-hero-row { flex-wrap: wrap; }
+  .zod-hero-cell { flex: 1 1 33.333%; max-width: 33.333%; }
+  .zod-hero-cell img { height: 260px; }
+  /* BTS */
+  .zod-bts-layout { flex-direction: column; width: 100%; margin-left: 0; }
+  .zod-video-wrap { flex: none; width: 100vw; position: relative; left: 50%; transform: translateX(-50%); aspect-ratio: 4/3; max-height: none; }
+  .zod-bts-strip { flex-direction: row; width: 100%; grid-template-columns: repeat(3,1fr); margin-left: calc(-1 * var(--pad-x)); margin-right: calc(-1 * var(--pad-x)); gap: 0; }
+  .zod-bts-item { flex: 1; max-height: none; }
   .zod-bts-media { height: 140px; }
-.zod-process-layout { grid-template-columns: 1fr; gap: 36px; }
-  .zod-overview-stats { grid-template-columns: 1fr 1fr; }
-  .zod-overview-paras { max-width: 100%; }
+  /* process */
+  .zod-process-layout { grid-template-columns: 1fr; gap: 36px; }
+  .zod-collage-wrap, .zod-collage-wrap img { border-radius: 14px; }
+  /* overview */
   .zod-overview-layout { grid-template-columns: 1fr; gap: 36px; }
   .zod-overview-stats { grid-template-columns: 1fr 1fr; }
-  .zod-collage-wrap { border-radius: 14px; }
-  .zod-collage-wrap img { border-radius: 14px; }
-.zod-video-wrap {
-    aspect-ratio: 4/3;
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-bottom: 4px;
-  }
-@media(max-width:700px){
-.book-cta-headline { white-space: normal; font-size: clamp(20px,5.5vw,28px); }
+  .zod-overview-paras { max-width: 100%; }
+  /* meta */
+  .zod-meta-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 16px; }
+}
+
+@media(max-width:700px) {
+  .book-cta-headline { white-space: normal; font-size: clamp(20px,5.5vw,28px); }
   .book-cta-block { flex-direction: column; align-items: flex-start; padding: 24px 20px; }
-@media(max-width:582px){
-.book-cta-block { align-items: center; }
+}
+
+@media(max-width:582px) {
+  .book-cta-block { align-items: center; }
   .book-cta-left { max-width: 100%; }
   .book-cta-eyebrow, .book-cta-headline, .book-cta-sub { text-align: center; }
   .book-cta-btn { align-self: center; }
   .book-cta-headline { font-size: clamp(18px,5vw,24px); }
-@media(max-width:500px){
-.home-brand { position: static; text-align: left; font-size: 18px; }
+}
+
+@media(max-width:500px) {
+  .home-brand { position: static; text-align: left; font-size: 18px; }
   .top-nav { justify-content: space-between; }
   .top-nav-socials { display: none; }
   .book-btn { display: flex; font-size: 10px; padding: 9px 14px; }
@@ -1390,10 +1399,11 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   .footer-copy { width: 100%; text-align: center; order: 3; }
   .footer-socials-mobile { order: 1; }
   .footer-cta { order: 2; }
-/* ═══════════════════════════════════════
-   REDUCED MOTION — accessibility
-══════════════════════════════════════ */
 }
+
+/* ══════════════════════════════════════════════
+   REDUCED MOTION
+══════════════════════════════════════════════ */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: .01ms !important;
@@ -1403,10 +1413,6 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   .biz-marquee-track { animation: none; }
   .page { transition: none; }
   .zod-reveal { opacity: 1; transform: none; }
-}
-}
-}
-}
 }
 </style>
 </head>
@@ -1643,7 +1649,7 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 
       <!-- behind the scenes -->
       <div class="zod-bts zod-reveal">
-        <div class="zod-section-title">Behind the Scenes</div>
+        <div class="zod-overview-label">Behind the Scenes</div>
         <div class="zod-bts-layout">
           <div class="zod-video-wrap">
             <video src="https://res.cloudinary.com/dih43qroh/video/upload/q_auto:good,vc_auto,f_auto/v1779499442/IMG_0200_r17bib.mov" autoplay muted loop playsinline preload="none" style="width:100%;height:100%;object-fit:cover;display:block;"></video>
@@ -1669,7 +1675,7 @@ textarea.f-input { resize: vertical; min-height: 100px; }
       <div class="zod-process zod-reveal">
         <div class="zod-process-layout">
           <div class="zod-process-text">
-            <div class="zod-section-title">Creative Process</div>
+            <div class="zod-overview-label">Creative Process</div>
             <p class="proj-desc">Before production, I spent months building visual references for each zodiac sign — pulling inspiration from mythology, color palettes, symbolism, lighting, makeup artistry, texture, wardrobe styling, and set design. Each sign was approached as its own creative world while still feeling cohesive as a full collection. This project was independently directed and produced before I turned 21, and it remains one of the most creatively ambitious shoots I've ever executed.</p>
           </div>
           <div class="zod-collage-wrap">
