@@ -32,6 +32,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
+/* ── FULL-BLEED UTILITY ────────────────────────────────────────
+   Use .full-bleed on any child of a padded max-width container
+   to break out to viewport edges. Works with overflow-x:clip
+   on the scroll parent.
+──────────────────────────────────────────────────────────────── */
+.full-bleed {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+/* Variant for padded+centered containers (max-width + padding) */
+.full-bleed-constrained {
+  width: 100vw;
+  margin-left: calc((min(100vw, 1440px) - 100vw) / 2 - var(--pad-x));
+}
+
 /* ─────────────────────────────────────────────
    BASE — reset, tokens, global
 ───────────────────────────────────────────── */
@@ -59,6 +76,10 @@
   --accent-mid: rgba(201,169,110,.2);
   --accent-border: rgba(201,169,110,.3);
   --border-radius: 999px;
+  --t-color: color .25s var(--ease);
+  --t-bg: background .3s var(--ease), color .3s var(--ease);
+  --t-opacity: opacity .5s ease;
+  --t-transform: transform .6s var(--ease);
 
   /* easing */
   --swoop:  cubic-bezier(.6,0,0,1);
@@ -118,7 +139,6 @@ html, body {
   from { opacity: 0; }
   to   { opacity: 1; }
 }
-
 /* ─────────────────────────────────────────────
    LANDING
 ───────────────────────────────────────────── */
@@ -128,6 +148,19 @@ html, body {
   flex-direction: column;
   overflow: hidden;
   max-width: 100vw;
+  position: relative;
+  background:
+    radial-gradient(
+      ellipse 120% 100% at 50% 50%,
+      transparent 40%,
+      rgba(0,0,0,.55) 100%
+    ),
+    radial-gradient(
+      ellipse 60% 50% at 38% 38%,
+      rgba(200,182,158,.055) 0%,
+      transparent 70%
+    ),
+    var(--bg);
 }
 
 /* nav */
@@ -265,6 +298,7 @@ html, body {
 .page {
   position: fixed; inset: 0;
   z-index: 200; overflow-y: auto; overflow-x: clip;
+  -webkit-overflow-scrolling: touch; /* Safari smooth scroll */
   transform: translateY(100%);
   transition: transform .75s var(--swoop);
   pointer-events: none;
@@ -280,7 +314,7 @@ html, body {
   border-bottom: 1px solid var(--border);
   background: var(--bg);
   isolation: isolate;
-  /* subtle backdrop */
+  
   backdrop-filter: blur(0px);
 }
 .page-nav-title {
@@ -615,8 +649,6 @@ html, body {
 }
 .proj-desc { font-size: clamp(13px,1.6vh,14px); color: var(--muted); line-height: 1.8; font-weight: 300; padding-bottom: 4px; }
 
-/* zodiac carousel */
-
 /* ─────────────────────────────────────────────
    FAQs PAGE
 ───────────────────────────────────────────── */
@@ -756,10 +788,6 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   .book-btn { font-size: 11px; padding: 10px 16px; }
   .footer-socials-mobile { display: none; }
 }
-
-  50%       { opacity: 1; }
-}
-
 /* ─────────────────────────────────────────────
    EVENTS GRID — full bleed, 3-per-row
 ───────────────────────────────────────────── */
@@ -907,6 +935,7 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 .zod-hero-grid {
   /* Full bleed: escape padding AND max-width centering */
   width: 100vw;
+  /* full-bleed-constrained */
   margin-left: calc((min(100vw, 1440px) - 100vw) / 2 - var(--pad-x));
   margin-top: 40px;
   display: flex;
@@ -948,12 +977,9 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   border-top: 1px solid var(--border);
 }
 .zod-meta-item { display: flex; flex-direction: column; gap: 5px; }
-.zod-meta-label { font-size: 9px; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); }
-.zod-meta-val { font-family: var(--serif); font-size: 15px; font-weight: 300; color: var(--muted); }
+.zod-meta-label { font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+.zod-meta-val { font-family: var(--serif); font-size: clamp(16px,1.8vh,22px); font-weight: 300; color: var(--muted); }
 
-/* placeholder blocks */
-
-/* hero image */
 .zod-hero {
   width: 100%;
   margin: 56px 0 0;
@@ -963,11 +989,11 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 /* section heading */
 .zod-section-title {
   font-family: var(--serif);
-  font-size: clamp(22px,3vh,36px);
+  font-size: clamp(28px,4vh,48px);
   font-weight: 300;
   color: var(--accent);
   letter-spacing: -.01em;
-  margin-bottom: 28px;
+  margin-bottom: 32px;
 }
 
 /* process section */
@@ -985,8 +1011,8 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 
 /* BTS section */
 .zod-bts {
-  margin-top: 72px;
-  padding-top: 48px;
+  margin-top: 80px;
+  padding-top: 56px;
   border-top: 1px solid var(--border);
 }
 /* BTS — side-by-side layout on desktop */
@@ -997,22 +1023,23 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   margin-left: calc((min(100vw, 1440px) - 100vw) / 2 - var(--pad-x));
   margin-top: 20px;
   overflow: hidden;
+  /* Height driven by video aspect ratio, not by card column */
+  align-items: stretch;
+  max-height: 56vw; /* 16:9 of 72% width = 72% * 56.25% ≈ 40.5vw — give headroom */
 }
 .zod-video-wrap {
   flex: 0 0 72%;
   min-width: 0;
   overflow: hidden;
   aspect-ratio: 16/9;
+  max-height: 100%;
 }
-.zod-video-wrap 
-
 .zod-bts-item 
 .zod-bts-caption {
   font-size: 9px; letter-spacing: .18em; text-transform: uppercase;
   color: var(--muted); margin-top: 8px; display: block;
 }
 
-/* post-production section */
 .zod-post {
   margin-top: 72px;
   padding-top: 48px;
@@ -1020,8 +1047,6 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 }
 
 .zod-compare-item 
-
-/* final series marquee */
 
 /* scroll reveal */
 .zod-reveal {
@@ -1040,7 +1065,6 @@ textarea.f-input { resize: vertical; min-height: 100px; }
    Pure CSS, zero animation, zero GPU overhead.
 ───────────────────────────────────────────── */
 #landing {
-  background:
     /* soft vignette — edge darkening */
     radial-gradient(
       ellipse 120% 100% at 50% 50%,
@@ -1085,8 +1109,10 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 .zod-bts-item {
   flex: 1;
   min-height: 0;
+  max-height: 33.333%;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 /* BTS strip — vertical on desktop (right of video), horizontal on mobile */
@@ -1109,7 +1135,7 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   margin-top: 40px;
 }
 .zod-process-text { display: flex; flex-direction: column; gap: 20px; }
-.zod-process-text .zod-section-title { margin-bottom: 0; }
+.zod-process-text .zod-section-title { margin-bottom: 16px; font-family: var(--serif); color: var(--accent); }
 .zod-process-text .proj-desc { max-width: none; margin: 0; }
 .zod-collage-wrap {
   position: relative;
@@ -1214,6 +1240,7 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 /* ═══════════════════════════════════════
    RESPONSIVE — all breakpoints consolidated
 ══════════════════════════════════════ */
+}
 @media(max-width:900px){
 :root { --pad-x: 20px; }
   .faq-grid { grid-template-columns: 1fr; gap: 0; }
@@ -1230,7 +1257,6 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   .phi-q { text-align: center; }
   .contact-grid { grid-template-columns: 1fr; gap: 36px; }
   .book-cta-sub { white-space: normal; }
-}
 @media(min-width:769px){
 .footer-socials-mobile { display: none; }
 .biz-group-photo {
@@ -1239,7 +1265,6 @@ textarea.f-input { resize: vertical; min-height: 100px; }
     padding: 0 48px;
     box-sizing: border-box;
   }
-}
 @media(max-width:768px){
 .home-brand { font-size: 20px; }
   .top-nav { padding: 18px 20px; }
@@ -1346,18 +1371,15 @@ textarea.f-input { resize: vertical; min-height: 100px; }
     transform: translateX(-50%);
     margin-bottom: 4px;
   }
-}
 @media(max-width:700px){
 .book-cta-headline { white-space: normal; font-size: clamp(20px,5.5vw,28px); }
   .book-cta-block { flex-direction: column; align-items: flex-start; padding: 24px 20px; }
-}
 @media(max-width:582px){
 .book-cta-block { align-items: center; }
   .book-cta-left { max-width: 100%; }
   .book-cta-eyebrow, .book-cta-headline, .book-cta-sub { text-align: center; }
   .book-cta-btn { align-self: center; }
   .book-cta-headline { font-size: clamp(18px,5vw,24px); }
-}
 @media(max-width:500px){
 .home-brand { position: static; text-align: left; font-size: 18px; }
   .top-nav { justify-content: space-between; }
@@ -1368,11 +1390,10 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   .footer-copy { width: 100%; text-align: center; order: 3; }
   .footer-socials-mobile { order: 1; }
   .footer-cta { order: 2; }
-}
-
 /* ═══════════════════════════════════════
    REDUCED MOTION — accessibility
 ══════════════════════════════════════ */
+}
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: .01ms !important;
@@ -1383,7 +1404,10 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   .page { transition: none; }
   .zod-reveal { opacity: 1; transform: none; }
 }
-
+}
+}
+}
+}
 </style>
 </head>
 <body>
@@ -1614,7 +1638,7 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 
       <!-- 12 zodiac images 4x4x4 -->
       <div class="zod-hero-grid zod-reveal">
-        <div class="zod-hero-row"><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499612/aries1_gkiz1g.jpg" fetchpriority="high" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499611/taurus1_eohr4r.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499610/gemini1_qel6y4.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')" style="object-position:70% top"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499609/cancer1_d2rido.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div></div><div class="zod-hero-row"><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499609/leo1_ww3q1l.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499610/virgo1_ud2eng.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499610/libra-1_obcwjk.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499612/scorpio1_sc2lwp.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div></div><div class="zod-hero-row"><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499613/sagittarius1_aoirdd.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499610/capricorn1_za8ltl.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499611/aquarius1_esi2bm.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499612/pisces1_gscsnv.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div></div>
+        <div class="zod-hero-row"><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499612/aries1_gkiz1g.jpg" fetchpriority="high" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499611/taurus1_eohr4r.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499610/gemini1_qel6y4.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')" style="object-position:80% top"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499609/cancer1_d2rido.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div></div><div class="zod-hero-row"><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499609/leo1_ww3q1l.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499610/virgo1_ud2eng.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499610/libra-1_obcwjk.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499612/scorpio1_sc2lwp.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div></div><div class="zod-hero-row"><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499613/sagittarius1_aoirdd.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499610/capricorn1_za8ltl.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499611/aquarius1_esi2bm.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499612/pisces1_gscsnv.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div></div>
       </div>
 
       <!-- behind the scenes -->
@@ -1831,14 +1855,6 @@ function openPage(id) {
   document.body.style.overflow = 'hidden';
   openStack.push(id);
   if (id === 'portfolio') setTimeout(() => { resetPortfolioAnim(); attachPortfolioScroll(); }, 50);
-  // Cinematic reveal: stagger-animate first visible elements
-  setTimeout(() => {
-    el.querySelectorAll('.cat-hero, .cat-sub, .back-btn, .about-h, .contact-hero, .contact-sub, .faqs-hero, .proj-title').forEach((el, i) => {
-      el.style.animation = 'none';
-      el.offsetHeight; // reflow
-      el.style.animation = `fadeUp .65s cubic-bezier(.6,0,0,1) ${i * 80}ms both`;
-    });
-  }, 50);
 }
 function closePage(id) {
   const el = document.getElementById('page-' + id);
@@ -2029,39 +2045,12 @@ ptiles.forEach(tile => {
   const slides = document.querySelectorAll('#aboutCarousel .carousel-slide');
   const dots = document.querySelectorAll('#aboutCarousel .carousel-dot');
   let current = 0;
-  function goTo(n) {
+  function goToSlide(n) {
     slides[current].classList.remove('active'); dots[current].classList.remove('active');
     current = n % slides.length;
     slides[current].classList.add('active'); dots[current].classList.add('active');
   }
-  setInterval(() => goTo(current + 1), 8000);
-})();
-
-(function() {
-  const track = document.getElementById('zodiacTrack');
-  const dotsWrap = document.getElementById('zodiacDots');
-  const prevBtn = document.getElementById('zodiacPrev');
-  const nextBtn = document.getElementById('zodiacNext');
-  if (!track) return;
-  const total = 12, perPage = 3, pages = Math.ceil(total / perPage);
-  let current = 0;
-  for (let i = 0; i < pages; i++) {
-    const d = document.createElement('div');
-    d.className = 'zodiac-dot' + (i === 0 ? ' active' : '');
-    d.addEventListener('click', () => { goTo(i); resetZodiacTimer(); });
-    dotsWrap.appendChild(d);
-  }
-  function goTo(page) {
-    current = (page + pages) % pages;
-    const slideW = track.parentElement.offsetWidth / perPage;
-    track.style.transform = `translateX(-${current * slideW * perPage + current * 6}px)`;
-    dotsWrap.querySelectorAll('.zodiac-dot').forEach((d, i) => d.classList.toggle('active', i === current));
-  }
-  prevBtn.addEventListener('click', () => { goTo(current - 1); resetZodiacTimer(); });
-  nextBtn.addEventListener('click', () => { goTo(current + 1); resetZodiacTimer(); });
-  window.addEventListener('resize', () => goTo(current));
-  let zodiacTimer = setInterval(() => goTo(current + 1), 6000);
-  function resetZodiacTimer() { clearInterval(zodiacTimer); zodiacTimer = setInterval(() => goTo(current + 1), 6000); }
+  setInterval(() => goToSlide(current + 1), 8000);
 })();
 
 // ── IMAGE REVEAL — IntersectionObserver for portrait grid ──────────
@@ -2153,24 +2142,6 @@ ptiles.forEach(tile => {
   }
 })();
 
-// ── ENSURE BTS VIDEOS LOOP CONTINUOUSLY ─────────────────────
-(function() {
-  function fixVideos() {
-    document.querySelectorAll('.zod-bts-media video, .zod-video-wrap video').forEach(function(v) {
-      v.loop = true;
-      v.addEventListener('ended', function() { this.play(); });
-    });
-  }
-  var projPage = document.getElementById('page-projects');
-  if (projPage) {
-    new MutationObserver(function(muts) {
-      muts.forEach(function(m) {
-        if (m.target.classList.contains('open')) setTimeout(fixVideos, 200);
-      });
-    }).observe(projPage, { attributes: true, attributeFilter: ['class'] });
-  }
-})();
-
 // ── COLLAGE LIGHTBOX ─────────────────────────────────────────
 (function() {
   document.addEventListener('click', function(e) {
@@ -2188,17 +2159,16 @@ ptiles.forEach(tile => {
   });
 })();
 
-
-// ── MARQUEE PERFORMANCE — will-change only while visible ───────────────
+// ── MARQUEE PERFORMANCE — will-change only while visible ────────────
 (function() {
   if (!('IntersectionObserver' in window)) return;
-  var marqObs = new IntersectionObserver(function(entries) {
+  var mq = new IntersectionObserver(function(entries) {
     entries.forEach(function(e) {
-      var track = e.target.querySelector('.biz-marquee-track');
-      if (track) track.style.willChange = e.isIntersecting ? 'transform' : 'auto';
+      var t = e.target.querySelector('.biz-marquee-track');
+      if (t) t.style.willChange = e.isIntersecting ? 'transform' : 'auto';
     });
   }, { rootMargin: '100px' });
-  document.querySelectorAll('.biz-marquee').forEach(function(m) { marqObs.observe(m); });
+  document.querySelectorAll('.biz-marquee').forEach(function(m) { mq.observe(m); });
 })();
 
 function toggleFaq(btn) {
