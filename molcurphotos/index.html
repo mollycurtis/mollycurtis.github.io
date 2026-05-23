@@ -270,7 +270,7 @@ html, body {
 ───────────────────────────────────────────── */
 .page {
   position: fixed; inset: 0;
-  z-index: 200; overflow-y: auto;
+  z-index: 200; overflow-y: auto; overflow-x: clip;
   transform: translateY(100%);
   transition: transform .75s var(--swoop);
   pointer-events: none;
@@ -647,8 +647,7 @@ html, body {
 /* ─────────────────────────────────────────────
    PROJECTS PAGE
 ───────────────────────────────────────────── */
-.proj-body { padding: 48px var(--pad-x); max-width: 1440px; margin: 0 auto; width: 100%; overflow-x: visible; }
-#page-projects { overflow-x: clip; }
+.proj-body { padding: 48px var(--pad-x); max-width: 1440px; margin: 0 auto; width: 100%; position: relative; }
 .proj-block { margin-bottom: 52px; }
 .proj-num { margin-bottom: 13px; }
 .proj-header { display: grid; grid-template-columns: auto 1fr; gap: 48px; align-items: end; margin-bottom: 36px; }
@@ -1121,9 +1120,11 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 
 /* zodiac hero grid — 4 per row, full bleed */
 .zod-hero-grid {
-  /* Full bleed: escape proj-body padding on both sides */
-  margin-left: calc(-1 * var(--pad-x));
-  margin-right: calc(-1 * var(--pad-x));
+  /* True full bleed — escape both padding and max-width centering */
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
   margin-top: 40px;
   display: flex;
   flex-direction: column;
@@ -1140,10 +1141,10 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   line-height: 0;
   overflow: hidden;
 }
-/* Fixed height crop so horizontal images don't distort the row */
+/* Tall crop — vertical feel, not square */
 .zod-hero-cell img {
   width: 100%;
-  height: 340px;
+  height: 480px;
   object-fit: cover;
   object-position: center top;
   display: block;
@@ -1152,9 +1153,10 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 }
 .zod-hero-cell img.loaded { opacity: 1; }
 @media(max-width:768px) {
+  .zod-hero-grid { left: 50%; transform: translateX(-50%); width: 100vw; }
   .zod-hero-row { flex-wrap: wrap; }
   .zod-hero-cell { flex: 1 1 33.333%; max-width: 33.333%; }
-  .zod-hero-cell img { height: 220px; }
+  .zod-hero-cell img { height: 260px; }
 }
 
 /* ─────────────────────────────────────────────
