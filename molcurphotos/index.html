@@ -1128,14 +1128,16 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   display: flex;
   flex-direction: column;
   gap: 0;
+  overflow: hidden;
 }
 .zod-hero-row {
   display: flex;
   gap: 0;
   width: 100%;
+  flex-shrink: 0;
 }
 .zod-hero-cell {
-  flex: 1;
+  flex: 1 1 25%;
   min-width: 0;
   line-height: 0;
   overflow: hidden;
@@ -1456,13 +1458,18 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   margin-bottom: 28px;
   display: block;
 }
+.zod-overview-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 64px;
+  align-items: start;
+}
 .zod-overview-stats {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 1fr;
   gap: 0;
   border-top: 1px solid var(--border);
   border-left: 1px solid var(--border);
-  margin-bottom: 48px;
 }
 .zod-stat {
   padding: 18px 24px;
@@ -1489,7 +1496,7 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   display: flex;
   flex-direction: column;
   gap: 20px;
-  max-width: 640px;
+  max-width: 100%;
 }
 .zod-overview-p {
   font-family: var(--serif);
@@ -1504,8 +1511,31 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   .zod-process-layout { grid-template-columns: 1fr; gap: 36px; }
   .zod-overview-stats { grid-template-columns: 1fr 1fr; }
   .zod-overview-paras { max-width: 100%; }
+  .zod-overview-layout { grid-template-columns: 1fr; gap: 36px; }
+  .zod-overview-stats { grid-template-columns: 1fr 1fr; }
   .zod-collage-wrap { border-radius: 14px; }
   .zod-collage-wrap img { border-radius: 14px; }
+}
+
+
+/* Collage lightbox */
+.zod-collage-wrap { cursor: zoom-in; }
+.zod-lightbox {
+  position: fixed; inset: 0; z-index: 999;
+  background: rgba(0,0,0,.92);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity .35s ease;
+  cursor: zoom-out;
+  backdrop-filter: blur(4px);
+}
+.zod-lightbox.open { opacity: 1; pointer-events: auto; }
+.zod-lightbox img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 32px 80px rgba(0,0,0,.6);
 }
 
 </style>
@@ -1779,17 +1809,19 @@ textarea.f-input { resize: vertical; min-height: 100px; }
       <!-- project overview + closing -->
       <div class="zod-overview zod-reveal">
         <span class="zod-overview-label">Project Overview</span>
-        <div class="zod-overview-stats">
-          <div class="zod-stat"><span class="zod-stat-num">12</span><span class="zod-stat-label">Zodiac Signs</span></div>
-          <div class="zod-stat"><span class="zod-stat-num">2</span><span class="zod-stat-label">Shoot Days</span></div>
-          <div class="zod-stat"><span class="zod-stat-num">Independent</span><span class="zod-stat-label">Creative Direction</span></div>
-          <div class="zod-stat"><span class="zod-stat-num">Full</span><span class="zod-stat-label">Concept Development</span></div>
-          <div class="zod-stat"><span class="zod-stat-num">On-Set</span><span class="zod-stat-label">Makeup + Styling</span></div>
-          <div class="zod-stat"><span class="zod-stat-num">Complete</span><span class="zod-stat-label">Post Production</span></div>
-        </div>
-        <div class="zod-overview-paras">
-          <p class="zod-overview-p">What began as a creative concept evolved into a twelve-part portrait series centered around the symbolism and emotional identity of each zodiac sign. Every shoot was approached with its own visual language through styling, makeup, lighting, color, and atmosphere while still maintaining a cohesive identity across the full series.</p>
-          <p class="zod-overview-p">This project became one of the most formative creative experiences for me early in my career. Directing and building something at this scale pushed me to think beyond simply taking portraits and more deeply about concept development, storytelling, and creating an immersive visual world around each subject.</p>
+        <div class="zod-overview-layout">
+          <div class="zod-overview-stats">
+            <div class="zod-stat"><span class="zod-stat-num">12</span><span class="zod-stat-label">Zodiac Signs</span></div>
+            <div class="zod-stat"><span class="zod-stat-num">2</span><span class="zod-stat-label">Shoot Days</span></div>
+            <div class="zod-stat"><span class="zod-stat-num">Independent</span><span class="zod-stat-label">Creative Direction</span></div>
+            <div class="zod-stat"><span class="zod-stat-num">Full</span><span class="zod-stat-label">Concept Development</span></div>
+            <div class="zod-stat"><span class="zod-stat-num">On-Set</span><span class="zod-stat-label">Makeup + Styling</span></div>
+            <div class="zod-stat"><span class="zod-stat-num">Complete</span><span class="zod-stat-label">Post Production</span></div>
+          </div>
+          <div class="zod-overview-paras">
+            <p class="zod-overview-p">What began as a creative concept evolved into a twelve-part portrait series centered around the symbolism and emotional identity of each zodiac sign. Every shoot was approached with its own visual language through styling, makeup, lighting, color, and atmosphere while still maintaining a cohesive identity across the full series.</p>
+            <p class="zod-overview-p">This project became one of the most formative creative experiences for me early in my career. Directing and building something at this scale pushed me to think beyond simply taking portraits and more deeply about concept development, storytelling, and creating an immersive visual world around each subject.</p>
+          </div>
         </div>
       </div>
 
@@ -2277,6 +2309,43 @@ ptiles.forEach(tile => {
   }
 })();
 
+
+// ── ENSURE BTS VIDEOS LOOP CONTINUOUSLY ─────────────────────
+(function() {
+  function fixVideos() {
+    document.querySelectorAll('.zod-bts-media video, .zod-video-wrap video').forEach(function(v) {
+      v.loop = true;
+      v.addEventListener('ended', function() { this.play(); });
+    });
+  }
+  var projPage = document.getElementById('page-projects');
+  if (projPage) {
+    new MutationObserver(function(muts) {
+      muts.forEach(function(m) {
+        if (m.target.classList.contains('open')) setTimeout(fixVideos, 200);
+      });
+    }).observe(projPage, { attributes: true, attributeFilter: ['class'] });
+  }
+})();
+
+
+// ── COLLAGE LIGHTBOX ─────────────────────────────────────────
+(function() {
+  document.addEventListener('click', function(e) {
+    var wrap = e.target.closest('.zod-collage-wrap');
+    if (wrap) {
+      var img = wrap.querySelector('img');
+      if (img) {
+        document.getElementById('zodLightboxImg').src = img.src;
+        document.getElementById('zodLightbox').classList.add('open');
+      }
+    }
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') document.getElementById('zodLightbox').classList.remove('open');
+  });
+})();
+
 function toggleFaq(btn) {
   const item = btn.closest('.faq-item');
   const isOpen = item.classList.contains('open');
@@ -2284,7 +2353,17 @@ function toggleFaq(btn) {
   if (!isOpen) item.classList.add('open');
 }
 </script>
+
+<!-- Collage lightbox -->
+<div class="zod-lightbox" id="zodLightbox" onclick="this.classList.remove('open')">
+  <img id="zodLightboxImg" src="" alt="Zodiac collage">
+</div>
 </body>
 </html>
+
+<!-- Collage lightbox -->
+<div class="zod-lightbox" id="zodLightbox" onclick="this.classList.remove('open')">
+  <img id="zodLightboxImg" src="" alt="Zodiac collage">
+</div>
 </body>
 </html>
