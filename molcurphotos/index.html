@@ -1633,12 +1633,9 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 .sr-layout-a {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  grid-template-rows: auto auto;
   gap: 2px;
 }
-.sr-layout-a .sr-hero {
-  grid-column: 1; grid-row: 1 / 3;
-}
+.sr-layout-a .sr-hero  { grid-column: 1; grid-row: 1 / 3; }
 .sr-layout-a .sr-side-top    { grid-column: 2; grid-row: 1; }
 .sr-layout-a .sr-side-bottom { grid-column: 2; grid-row: 2; }
 
@@ -1649,28 +1646,25 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   gap: 2px;
 }
 
-/* Layout C — 2 hero + 1 tall right */
+/* Layout C — asymmetric 3 col */
 .sr-layout-c {
   display: grid;
   grid-template-columns: 1fr 1fr 1.2fr;
   gap: 2px;
 }
 
-/* Layout D — wide hero top + 2 below */
+/* Layout D — wide left + narrow right */
 .sr-layout-d {
   display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr;
+  grid-template-columns: 1.5fr 1fr;
   gap: 2px;
 }
-.sr-layout-d .sr-hero { grid-column: 1; grid-row: 1 / 3; }
-.sr-layout-d .sr-sub  { grid-column: 2 / 4; }
 
-/* Layout E — 2 col asymmetric */
+/* Layout E — asymmetric 2 col */
 .sr-layout-e {
   display: grid;
   grid-template-columns: 1.3fr 1fr;
   gap: 2px;
-  grid-auto-rows: auto;
 }
 
 /* Shared image cell */
@@ -1679,18 +1673,13 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   background: var(--bg2);
   line-height: 0;
   position: relative;
-  max-height: 420px;
 }
 .sr-cell img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  object-position: center top;
+  width: 100%;
+  height: auto;
   display: block;
   opacity: 0;
   transition: opacity .5s ease, transform .5s var(--ease);
-  will-change: opacity;
-  min-height: 180px;
-  max-height: 420px;
 }
 .sr-cell img.loaded { opacity: 1; }
 .sr-cell:hover img { transform: scale(1.03); }
@@ -1706,8 +1695,7 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   display: flex;
   gap: 2px;
   width: max-content;
-  animation: marqueeScroll 48s linear infinite;
-  will-change: transform;
+  animation: marqueeScroll 52s linear infinite;
 }
 .sr-marquee-section:hover .sr-marquee-track { animation-play-state: paused; }
 .sr-marquee-item {
