@@ -1603,6 +1603,135 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   padding-bottom: 4px;
 }
 
+
+/* ── CUSTOM GOLD SCROLLBAR — pages only (not homepage) ─────── */
+.page::-webkit-scrollbar { width: 6px; }
+.page::-webkit-scrollbar-track { background: var(--bg); }
+.page::-webkit-scrollbar-thumb {
+  background: rgba(201,169,110,.35);
+  border-radius: 3px;
+  transition: background .2s;
+}
+.page::-webkit-scrollbar-thumb:hover { background: rgba(201,169,110,.65); }
+/* Firefox */
+.page { scrollbar-width: thin; scrollbar-color: rgba(201,169,110,.35) var(--bg); }
+/* Re-enable scrollbar visibility (was hidden globally) */
+.page::-webkit-scrollbar { display: block; }
+
+
+/* ── SENIOR PORTFOLIO ──────────────────────────────────────── */
+.sr-body { padding: 0; width: 100%; }
+
+/* Session section */
+.sr-session {
+  width: 100%;
+  margin-bottom: 2px;
+}
+
+/* Layout A — hero left + 2 stack right */
+.sr-layout-a {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 2px;
+}
+.sr-layout-a .sr-hero {
+  grid-column: 1; grid-row: 1 / 3;
+}
+.sr-layout-a .sr-side-top    { grid-column: 2; grid-row: 1; }
+.sr-layout-a .sr-side-bottom { grid-column: 2; grid-row: 2; }
+
+/* Layout B — 3 equal columns */
+.sr-layout-b {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2px;
+}
+
+/* Layout C — 2 hero + 1 tall right */
+.sr-layout-c {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.2fr;
+  gap: 2px;
+}
+
+/* Layout D — wide hero top + 2 below */
+.sr-layout-d {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 2px;
+}
+.sr-layout-d .sr-hero { grid-column: 1; grid-row: 1 / 3; }
+.sr-layout-d .sr-sub  { grid-column: 2 / 4; }
+
+/* Layout E — 2 col asymmetric */
+.sr-layout-e {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 2px;
+  grid-auto-rows: auto;
+}
+
+/* Shared image cell */
+.sr-cell {
+  overflow: hidden;
+  background: var(--bg2);
+  line-height: 0;
+  position: relative;
+}
+.sr-cell img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  opacity: 0;
+  transition: opacity .5s ease, transform .5s var(--ease);
+  will-change: opacity;
+  min-height: 280px;
+}
+.sr-cell img.loaded { opacity: 1; }
+.sr-cell:hover img { transform: scale(1.03); }
+
+/* Scrolling marquee section */
+.sr-marquee-section {
+  margin: 2px 0;
+  overflow: hidden;
+  width: 100%;
+  line-height: 0;
+}
+.sr-marquee-track {
+  display: flex;
+  gap: 2px;
+  width: max-content;
+  animation: marqueeScroll 48s linear infinite;
+  will-change: transform;
+}
+.sr-marquee-section:hover .sr-marquee-track { animation-play-state: paused; }
+.sr-marquee-item {
+  flex-shrink: 0;
+  width: 280px;
+  overflow: hidden;
+  background: var(--bg2);
+}
+.sr-marquee-item img {
+  width: 100%; height: 420px;
+  object-fit: cover; object-position: center top;
+  display: block;
+  opacity: 0; transition: opacity .5s ease;
+}
+.sr-marquee-item img.loaded { opacity: 1; }
+
+@media(max-width:768px) {
+  .sr-layout-a, .sr-layout-b, .sr-layout-c,
+  .sr-layout-d, .sr-layout-e { grid-template-columns: 1fr 1fr; grid-auto-rows: auto; }
+  .sr-layout-a .sr-hero,
+  .sr-layout-d .sr-hero { grid-column: 1 / 3; grid-row: auto; }
+  .sr-layout-d .sr-sub  { grid-column: 1 / 3; }
+  .sr-cell img { min-height: 200px; }
+  .sr-marquee-item { width: 200px; }
+  .sr-marquee-item img { height: 300px; }
+}
+
 </style>
 </head>
 <body>
@@ -2204,6 +2333,18 @@ function openCategory(cat) {
         <div class="pg-item pg-vert"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600,c_limit/v1779397445/Copy_of_alexa1_1_ny8suk.jpg" srcset="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_600,c_limit/v1779397445/Copy_of_alexa1_1_ny8suk.jpg 600w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200,c_limit/v1779397445/Copy_of_alexa1_1_ny8suk.jpg 1200w, https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600,c_limit/v1779397445/Copy_of_alexa1_1_ny8suk.jpg 1600w" sizes="(max-width:768px) 100vw, 33vw" alt="Portrait" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></div>
       </div>
     `;
+  } else if (cat === 'senior') {
+    document.getElementById('cat-photo-grid').innerHTML = `
+<!-- ══════════ SENIOR PORTFOLIO CONTENT ══════════ -->
+<div class="sr-body">
+<div class="sr-session"><div class="sr-layout-a"><div class="sr-hero sr-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779596061/imaan11_az0lpp.jpg" loading="eager" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div><div class="sr-side-top sr-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779596059/imaan4_d95m7u.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div><div class="sr-side-bottom sr-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779596058/imaan8_ezbddm.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div></div><div class="sr-layout-b" style="margin-top:2px"><div class="sr-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779596064/imaan5_r3xl8l.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div><div class="sr-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779596060/imaan10_blicyw.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div><div class="sr-cell" style="background:var(--bg2);min-height:280px"></div></div></div><div style="height:2px"></div><div class="sr-session"><div class="sr-layout-b"><div class="sr-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779596068/maddie6_zw8lw6.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div><div class="sr-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779596054/maddie14_hj7fzu.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div><div class="sr-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779596054/maddie18_te6ihc.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div></div><div class="sr-layout-e" style="margin-top:2px"><div class="sr-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779596053/maddie12_vj2re3.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div><div class="sr-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779596056/maddie2_qnxlyw.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div></div></div><div style="height:2px"></div><div class="sr-session"><div class="sr-layout-c"><div class="sr-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779596065/olivia-1_ut2vb9.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div><div class="sr-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779596065/olivia5_bnbyvy.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div><div class="sr-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779596051/olivia4_ta4hrg.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div></div><div class="sr-layout-e" style="margin-top:2px"><div class="sr-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779596066/olivia-2_cu9yjr.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div><div class="sr-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779596067/olivia3_skxpt7.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div></div></div><div style="height:2px"></div><div class="sr-marquee-section"><div class="sr-marquee-track"><div class="sr-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779596047/brianna11_z2ppgq.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div><div class="sr-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779596071/hallie1_mrtr81.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div><div class="sr-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779596068/Image_8-16-20_at_10.04_PM_auu4pi.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div><div class="sr-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779596067/DSC08235_u0tiv9.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div><div class="sr-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779596069/DSC06268_ninzqo.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div><div class="sr-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779596049/DSC04705_uw0mnw.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div><div class="sr-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779596057/e5_t3fn6q.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div><div class="sr-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779596052/taylin6_d3bjrq.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div><div class="sr-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779596055/nuha4_jjx01l.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div><div class="sr-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779596063/broden8_zmndi5.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div><div class="sr-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779596070/DSC06419_wdxoof.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div><div class="sr-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779596070/DSC06508_ojrohl.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div><div class="sr-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779596047/brianna11_z2ppgq.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div><div class="sr-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779596071/hallie1_mrtr81.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div><div class="sr-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779596068/Image_8-16-20_at_10.04_PM_auu4pi.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div><div class="sr-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779596067/DSC08235_u0tiv9.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div><div class="sr-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779596069/DSC06268_ninzqo.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div><div class="sr-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779596049/DSC04705_uw0mnw.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div><div class="sr-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779596057/e5_t3fn6q.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div><div class="sr-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779596052/taylin6_d3bjrq.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div><div class="sr-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779596055/nuha4_jjx01l.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div><div class="sr-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779596063/broden8_zmndi5.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div><div class="sr-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779596070/DSC06419_wdxoof.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div><div class="sr-marquee-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779596070/DSC06508_ojrohl.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div></div></div><div style="height:2px"></div><div class="sr-session"><div class="sr-layout-e"><div class="sr-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779596072/DSC06364_xiawv7.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div><div class="sr-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779596050/DSC06559_bb3f4o.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div></div><div class="sr-layout-b" style="margin-top:2px"><div class="sr-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779596049/DSC06412_ryqx14.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div><div class="sr-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779596050/DSC06553_atayha.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div><div class="sr-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779596072/DSC06311_igdb4p.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div></div></div><div style="height:2px"></div><div class="sr-session"><div class="sr-layout-a"><div class="sr-hero sr-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779596061/hanna7_cem49n.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div><div class="sr-side-top sr-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779596063/hanna2_fvvpuo.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div><div class="sr-side-bottom sr-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779596046/hanna5_kekwpy.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div></div><div class="sr-layout-e" style="margin-top:2px"><div class="sr-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779596046/hanna9_nagyto.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div><div class="sr-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779596786/hanna4_1_wzfsk4.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div></div></div><div style="height:2px"></div><div class="sr-session"><div class="sr-layout-b"><div class="sr-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779596056/luc3_h8wglx.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div><div class="sr-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779596057/luc17_qr3fdn.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div><div class="sr-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779596044/luc19_lauy2h.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div></div><div class="sr-layout-e" style="margin-top:2px"><div class="sr-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779596045/luc12_egzdxt.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div><div class="sr-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779596059/luc7_ckgxkd.jpg" loading="lazy" decoding="async" alt="Senior portrait" onload="this.classList.add('loaded')"></div></div></div>
+</div>
+<!-- ══════════ END SENIOR PORTFOLIO ══════════ -->
+`;
+    document.querySelectorAll('#cat-photo-grid img').forEach(img => {
+      if (img.complete && img.naturalWidth > 0) img.classList.add('loaded');
+      else img.addEventListener('load', () => img.classList.add('loaded'), {once:true});
+    });
   } else if (cat === 'events') {
     document.getElementById('cat-photo-grid').innerHTML = `
       <div class="ev-grid">
