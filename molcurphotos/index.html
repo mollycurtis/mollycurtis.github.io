@@ -1522,60 +1522,69 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 }
 
 
-/* ── PUBLICATIONS & PARTNERSHIPS ───────────────────────────── */
+/* ── SELECTED FEATURES & COLLABORATIONS ─────────────────────── */
 .pub-section {
   border-top: 1px solid var(--border);
   padding-top: 40px;
   margin-bottom: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: start;
 }
+.pub-left { display: flex; flex-direction: column; gap: 16px; }
 .pub-label {
-  font-size: 9px;
-  letter-spacing: .28em;
+  font-size: 11px;
+  letter-spacing: .2em;
   text-transform: uppercase;
   color: var(--accent);
-  margin-bottom: 12px;
   display: block;
 }
 .pub-intro {
   font-family: var(--serif);
-  font-size: clamp(16px, 2vh, 22px);
-  font-weight: 300;
-  color: var(--muted);
-  line-height: 1.7;
-  max-width: 640px;
-  margin-bottom: 36px;
-}
-.pub-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0;
-  border-top: 1px solid var(--border);
-  border-left: 1px solid var(--border);
-}
-.pub-item {
-  padding: 22px 28px;
-  border-right: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.pub-name {
-  font-family: var(--serif);
   font-size: clamp(15px, 1.8vh, 20px);
   font-weight: 300;
-  color: var(--text);
-  line-height: 1.2;
-}
-.pub-type {
-  font-size: 9px;
-  letter-spacing: .18em;
-  text-transform: uppercase;
   color: var(--muted);
+  line-height: 1.75;
+  max-width: 489px;
 }
-@media(max-width:768px) {
-  .pub-grid { grid-template-columns: 1fr 1fr; }
-  .pub-intro { max-width: 100%; }
+.pub-right { display: flex; flex-direction: column; gap: 28px; }
+.pub-logos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px 28px;
+  align-items: center;
+}
+.pub-logo {
+  display: flex;
+  align-items: center;
+  opacity: .45;
+  transition: opacity .3s var(--ease);
+  max-width: 90px;
+}
+.pub-logo:hover { opacity: .75; }
+.pub-logo img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: brightness(0) invert(1);
+  max-height: 18px;
+  object-fit: contain;
+}
+.pub-note {
+  font-size: 11px;
+  letter-spacing: .08em;
+  color: var(--muted);
+  line-height: 1.7;
+  opacity: .6;
+}
+@media(max-width:900px) {
+  .pub-section { grid-template-columns: 1fr; gap: 36px; }
+  .pub-intro { max-width: 100%; text-align: center; }
+  .pub-label { text-align: center; }
+  .pub-logos { justify-content: center; max-width: 320px; margin: 0 auto; }
+  .pub-logo { flex: 0 0 calc(33.333% - 20px); justify-content: center; }
+  .pub-note { text-align: center; }
 }
 
 </style>
@@ -1774,33 +1783,19 @@ textarea.f-input { resize: vertical; min-height: 100px; }
     </div>
 
     <div class="pub-section">
-      <span class="pub-label">Selected Features &amp; Collaborations</span>
-      <p class="pub-intro">Editorial features and creative partnerships across regional publications, wedding platforms, and luxury venues.</p>
-      <div class="pub-grid">
-        <div class="pub-item">
-          <span class="pub-name">Eau Claire Golf &amp; Country Club</span>
-          <span class="pub-type">Venue Partnership</span>
+      <div class="pub-left">
+        <span class="pub-label">Selected Features &amp; Collaborations</span>
+        <p class="pub-intro">Editorial features and creative partnerships across regional publications, wedding platforms, and luxury venues.</p>
+      </div>
+      <div class="pub-right">
+        <div class="pub-logos">
+          <a class="pub-logo" href="https://www.selinmagazine.com/" target="_blank" rel="noopener" aria-label="Selin Magazine"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_200/v1779582853/selin_gk0pxc.svg" alt="Selin Magazine" decoding="async" loading="lazy"></a>
+          <a class="pub-logo" href="https://www.gmaromagazine.com/" target="_blank" rel="noopener" aria-label="Gmaro Magazine"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_200/v1779582852/gmaro_dryf8b.svg" alt="Gmaro Magazine" decoding="async" loading="lazy"></a>
+          <a class="pub-logo" href="https://www.edithmag.com/" target="_blank" rel="noopener" aria-label="Edith Magazine"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_200/v1779582959/edith_v71fem.svg" alt="Edith Magazine" decoding="async" loading="lazy"></a>
+          <a class="pub-logo" href="https://www.thisismob.com/" target="_blank" rel="noopener" aria-label="MOB Magazine"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_200/v1779582853/mob_izgytn.svg" alt="MOB Magazine" decoding="async" loading="lazy"></a>
+          <a class="pub-logo" href="https://www.vigourmag.com/" target="_blank" rel="noopener" aria-label="Vigour Magazine"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_200/v1779582854/vigour_gv2be1.svg" alt="Vigour Magazine" decoding="async" loading="lazy"></a>
         </div>
-        <div class="pub-item">
-          <span class="pub-name">Publication</span>
-          <span class="pub-type">Editorial Feature</span>
-        </div>
-        <div class="pub-item">
-          <span class="pub-name">Publication</span>
-          <span class="pub-type">Editorial Feature</span>
-        </div>
-        <div class="pub-item">
-          <span class="pub-name">Publication</span>
-          <span class="pub-type">Editorial Feature</span>
-        </div>
-        <div class="pub-item">
-          <span class="pub-name">Publication</span>
-          <span class="pub-type">Editorial Feature</span>
-        </div>
-        <div class="pub-item">
-          <span class="pub-name">Publication</span>
-          <span class="pub-type">Editorial Feature</span>
-        </div>
+        <p class="pub-note">Including 30+ publications, creative collaborations, and venue partnerships such as <a href="https://www.ecgcc.com/" target="_blank" rel="noopener" style="color:inherit;border-bottom:1px solid rgba(245,242,238,.2);text-decoration:none;transition:border-color .2s;">Eau Claire Golf &amp; Country Club</a>.</p>
       </div>
     </div>
     <div class="book-cta-block">
