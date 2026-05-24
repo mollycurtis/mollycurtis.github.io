@@ -1013,14 +1013,8 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 .zod-process-sub 
 
 /* BTS section */
-.zod-bts {
-  margin-top: 0;
-  padding-top: 56px;
-  border-top: 1px solid var(--border);
-}
-.zod-bts > .zod-overview-label {
-  margin-bottom: 40px;
-}
+
+
 /* BTS — side-by-side layout on desktop */
 .zod-bts-layout {
   display: flex;
@@ -1135,7 +1129,7 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 /* ── CREATIVE PROCESS — editorial redesign ─────────────────── */
 .zod-process-layout {
   display: grid;
-  grid-template-columns: 1fr 1.6fr;
+  grid-template-columns: 1fr 1.3fr;
   gap: 80px;
   align-items: start;
   margin-top: 48px;
@@ -1493,33 +1487,11 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   .zod-reveal { opacity: 1; transform: none; }
 }
 
-/* ── ZODIAC GRID → BTS TRANSITION ─────────────────────────── */
-.zod-transition {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 56px 0 0;
-  margin-bottom: 0;
-  gap: 48px;
-}
-.zod-transition-line {
-  height: 1px;
-  flex: 1;
-  background: linear-gradient(to right, transparent, var(--border));
-}
-.zod-transition-line.right {
-  background: linear-gradient(to left, transparent, var(--border));
-}
-.zod-transition-text {
-  font-family: var(--serif);
-  font-size: clamp(11px, 1.2vh, 14px);
-  font-weight: 300;
-  font-style: italic;
-  color: var(--muted);
-  letter-spacing: .12em;
-  white-space: nowrap;
-  opacity: .6;
-}
+
+
+
+
+
 
 
 /* ── SELECTED FEATURES & COLLABORATIONS ─────────────────────── */
@@ -1567,7 +1539,7 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   width: 100%;
   height: auto;
   display: block;
-  filter: brightness(0) invert(1) sepia(1) saturate(2) hue-rotate(5deg) brightness(.85);
+  filter: brightness(0) invert(1) sepia(1) saturate(3) hue-rotate(3deg) brightness(1.1);
   max-height: 48px;
   object-fit: contain;
 }
@@ -1584,10 +1556,52 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   .pub-label { text-align: center; }
   .pub-logos { justify-content: center; max-width: 320px; margin: 0 auto; }
   .pub-logo { flex: 0 0 calc(33.333% - 20px); justify-content: center; max-width: 120px; }
-  .pub-note { text-align: center; max-width: calc(100% - 5px); }
+  .pub-note { text-align: center; max-width: calc(100% - 32px); margin: 0 auto; }
 
 }
 
+
+
+/* ── CINEMATIC BTS INTRO ─────────────────────────────────────── */
+.zod-bts {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+.zod-bts-intro {
+  padding: 72px 0 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+  /* Slight visual overlap with grid above via negative margin */
+  position: relative;
+}
+.zod-bts-intro::before {
+  content: '';
+  position: absolute;
+  top: 0; left: calc(-1 * var(--pad-x)); right: calc(-1 * var(--pad-x));
+  height: 1px;
+  background: linear-gradient(to right, var(--border) 0%, transparent 60%);
+}
+.zod-bts-eyebrow {
+  font-size: 9px;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--accent);
+  opacity: .7;
+}
+.zod-bts-header {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 48px;
+  align-items: end;
+  margin-top: 8px;
+}
+.zod-bts-sub {
+  font-style: normal;
+  padding-bottom: 4px;
+}
 
 </style>
 </head>
@@ -1841,16 +1855,15 @@ textarea.f-input { resize: vertical; min-height: 100px; }
         <div class="zod-hero-row"><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499610/libra-1_obcwjk.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499610/gemini1_qel6y4.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')" style="object-position:80% top"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499609/cancer1_d2rido.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div><div class="zod-hero-cell"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1200/v1779499612/aries1_gkiz1g.jpg" loading="lazy" decoding="async" alt="Zodiac" onload="this.classList.add('loaded')"></div></div>
       </div>
 
-      <!-- transition -->
-      <div class="zod-transition zod-reveal">
-        <div class="zod-transition-line"></div>
-        <span class="zod-transition-text">Behind the shoot</span>
-        <div class="zod-transition-line right"></div>
-      </div>
-
       <!-- behind the scenes -->
       <div class="zod-bts zod-reveal">
-        <div class="zod-overview-label">Behind the Scenes</div>
+        <div class="zod-bts-intro">
+          <span class="zod-bts-eyebrow">Process / On Set / Production Notes</span>
+          <div class="zod-bts-header">
+            <div class="zod-overview-label">Behind the Scenes</div>
+            <p class="proj-desc zod-bts-sub">A closer look into the styling, lighting, makeup artistry, and creative direction behind the twelve-part zodiac series.</p>
+          </div>
+        </div>
         <div class="zod-bts-layout">
           <div class="zod-video-wrap">
             <video src="https://res.cloudinary.com/dih43qroh/video/upload/q_auto:good,vc_auto,f_auto/v1779499442/IMG_0200_r17bib.mov" autoplay muted loop playsinline preload="none" style="width:100%;height:100%;object-fit:cover;display:block;"></video>
@@ -1876,8 +1889,8 @@ textarea.f-input { resize: vertical; min-height: 100px; }
       <div class="zod-process zod-reveal">
         <div class="zod-process-layout">
           <div class="zod-process-text">
-            <div class="zod-overview-label">Creative Process</div>
             <span class="zod-process-eyebrow">Pre-production</span>
+            <div class="zod-overview-label">Creative Process</div>
             <p class="zod-process-body">Before production, I spent months building visual references for each zodiac sign — pulling from mythology, color theory, symbolism, lighting, makeup artistry, wardrobe, and set design. Each sign was approached as its own creative world while still reading as a cohesive collection.</p>
             <p class="zod-process-pull">"This project was independently directed and produced before I turned 21 — and it remains one of the most creatively ambitious things I've ever built."</p>
           </div>
