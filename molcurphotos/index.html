@@ -657,7 +657,7 @@ html, body {
 .faqs-hero {
   font-family: var(--serif);
   font-size: clamp(28px,5vh,58px);
-  font-weight: 300; color: var(--text);
+  font-weight: 300; color: var(--accent);
   line-height: 1; margin-bottom: 44px; letter-spacing: -.01em; white-space: nowrap;
 }
 .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 64px; align-items: start; }
@@ -676,7 +676,7 @@ html, body {
 .faq-icon { font-size: 18px; color: var(--muted); transition: transform .35s var(--ease), color .25s; flex-shrink: 0; margin-left: 16px; }
 .faq-item.open .faq-icon { transform: rotate(45deg); color: var(--accent); }
 .faq-a {
-  font-size: 14px; color: var(--muted); line-height: 1.85; font-weight: 300;
+  font-size: 16px; color: var(--muted); line-height: 1.85; font-weight: 300;
   max-height: 0; overflow: hidden;
   transition: max-height .5s var(--ease), padding .5s var(--ease);
   padding-bottom: 0;
@@ -1023,99 +1023,16 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   margin-left: calc((min(100vw, 1440px) - 100vw) / 2 - var(--pad-x));
   margin-top: 20px;
   overflow: hidden;
-  /* Height driven by video aspect ratio, not by card column */
   align-items: stretch;
-  max-height: 45vw; /* taller — gives more presence to the video */
 }
 .zod-video-wrap {
   flex: 0 0 70%;
   min-width: 0;
   overflow: hidden;
   aspect-ratio: 16/9;
-  max-height: 100%;
-}
-.zod-bts-item 
-.zod-bts-caption {
-  font-size: 9px; letter-spacing: .18em; text-transform: uppercase;
-  color: var(--muted); margin-top: 8px; display: block;
 }
 
-.zod-post {
-  margin-top: 72px;
-  padding-top: 48px;
-  border-top: 1px solid var(--border);
-}
-
-.zod-compare-item 
-
-/* scroll reveal */
-.zod-reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity .8s var(--ease), transform .8s var(--ease);
-}
-.zod-reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ─────────────────────────────────────────────
-   LANDING BACKGROUND — cinematic, static
-   Single directional warm glow + vignette.
-   Pure CSS, zero animation, zero GPU overhead.
-───────────────────────────────────────────── */
-#landing {
-    /* soft vignette — edge darkening */
-    radial-gradient(
-      ellipse 120% 100% at 50% 50%,
-      transparent 40%,
-      rgba(0,0,0,.55) 100%
-    ),
-    /* faint warm center — directional key light */
-    radial-gradient(
-      ellipse 60% 50% at 38% 38%,
-      rgba(200,182,158,.055) 0%,
-      transparent 70%
-    ),
-    /* base */
-    var(--bg);
-}
-
-/* Grain overlay — purely CSS, no JS, no image files */
-#landing::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  opacity: .028;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 256px 256px;
-}
-
-/* Ensure all landing children sit above grain */
-#landing > * { position: relative; z-index: 1; }
-
-/* BTS media cells */
-.zod-bts-media {
-  width: 100%;
-  height: 100%;
-  flex: 1;
-  overflow: hidden;
-  line-height: 0;
-  background: var(--bg2);
-}
-.zod-bts-item {
-  flex: 1;
-  min-height: 0;
-  max-height: 33.333%;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-/* BTS strip — vertical on desktop (right of video), horizontal on mobile */
+/* BTS strip/* BTS strip — vertical on desktop (right of video), horizontal on mobile */
 .zod-bts-strip {
   flex: 1;
   display: flex;
@@ -1130,10 +1047,11 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 .zod-process-layout {
   display: grid;
   grid-template-columns: 1fr 1.3fr;
-  gap: 80px;
+  gap: 64px;
   align-items: start;
   margin-top: 48px;
 }
+.zod-collage-wrap { margin-top: 0; }
 .zod-process-text {
   display: flex;
   flex-direction: column;
@@ -1311,6 +1229,8 @@ textarea.f-input { resize: vertical; min-height: 100px; }
     margin: 0 auto;
     padding: 0 48px;
     box-sizing: border-box;
+    transform: scale(0.88);
+    transform-origin: center top;
   }
 }
 @media(max-width:768px){
@@ -1360,7 +1280,7 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   .contact-grid { grid-template-columns: 1fr; gap: 32px; display: block; }
   .contact-right { display: none; }
   .contact-info-mobile { display: flex; margin-bottom: 24px; justify-content: center; gap: 32px; }
-  .what-next-mobile { display: block; }
+  .what-next-mobile { display: none; }
   .tcard-mobile { display: block; margin-top: 32px; }
   .contact-info-desktop { display: none; }
   .what-next-desktop { display: none; }
@@ -1402,7 +1322,7 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 ══════════════════════════════════════════════ */
 
 @media(max-width:768px) {
-  .zod-bts-header { grid-template-columns: 1fr; gap: 16px; align-items: start; }
+  .zod-bts-header { grid-template-columns: auto 1fr; gap: 48px; align-items: end; }
   .zod-bts-sub { white-space: normal; }
   /* hero grid — CSS Grid on mobile so rows don't create gaps */
   .zod-hero-grid {
@@ -1418,26 +1338,12 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   .zod-hero-cell { flex: unset; max-width: unset; }
   .zod-hero-cell img { height: 220px; }
   /* BTS */
+  .zod-bts-header { grid-template-columns: 1fr; gap: 8px; }
   .zod-bts-layout { flex-direction: column; width: 100%; margin-left: 0; }
-  .zod-video-wrap {
-    flex: none;
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    aspect-ratio: 16/9;
-    max-height: none;
-  }
-  .zod-bts-strip {
-    flex-direction: row;
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    gap: 0;
-  }
-  .zod-bts-item { flex: 1; max-height: none; }
-  .zod-bts-media { height: 120px; }
+  .zod-video-wrap { flex: none; width: 100%; aspect-ratio: 16/9; max-height: none; }
+  .zod-bts-strip { display: flex; flex-direction: row; width: 100%; gap: 0; }
+  .zod-bts-item { flex: 1; min-width: 0; overflow: hidden; }
+  .zod-bts-media { height: 110px; }
   /* process */
   .zod-process-layout { grid-template-columns: 1fr; gap: 36px; }
   .zod-collage-wrap, .zod-collage-wrap img { border-radius: 14px; }
@@ -1591,17 +1497,18 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   text-transform: uppercase;
   color: var(--accent);
   opacity: .7;
+  margin-bottom: 0;
 }
 .zod-bts-header {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 48px;
+  align-items: end;
   margin-top: 8px;
 }
 .zod-bts-sub {
   font-style: normal;
   padding-bottom: 4px;
-  max-width: 600px;
 }
 
 
@@ -1635,7 +1542,7 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   display: flex;
   gap: 3px;
   width: 100%;
-  margin-bottom: 2px;
+  margin-bottom: 32px;
   line-height: 0;
   align-items: stretch;
   max-height: 140vh;
@@ -1730,7 +1637,7 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 .wd-collage {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 520px;
+  grid-auto-rows: 640px;
   gap: 3px;
   width: 100vw;
   position: relative;
@@ -1756,7 +1663,7 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 .wd-collage-item:hover img { transform: scale(1.025); }
 .wd-gap { height: 48px; }
 @media(max-width:768px) {
-  .wd-collage { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 300px; }
+  .wd-collage { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 400px; }
   .wd-gap { height: 32px; }
 }
 
@@ -1992,7 +1899,7 @@ textarea.f-input { resize: vertical; min-height: 100px; }
     <div class="proj-block">
       <div class="proj-num u-eyebrow" style="display:flex;align-items:center;justify-content:space-between;max-width:100%">
         <span>Project 01</span>
-        <span style="font-family:var(--serif);font-size:13px;font-weight:300;letter-spacing:.04em;color:var(--muted);text-transform:none">2021</span>
+        <span style="font-family:var(--serif);font-size:clamp(16px,1.8vh,22px);font-weight:300;letter-spacing:.04em;color:var(--muted);text-transform:none">2021</span>
       </div>
       <div class="proj-header">
         <div class="proj-title">The Zodiac Signs</div>
@@ -2393,7 +2300,7 @@ function openCategory(cat) {
     (function() {
       var raf;
       var pos = 0;
-      var speed = 0.4; // px per frame
+      var speed = 0.5; // px per frame
       var paused = false;
       setTimeout(function() {
         var track = document.querySelector('.sr-marquee-track');
@@ -2466,7 +2373,7 @@ function openCategory(cat) {
           var track = section.querySelector('.biz-marquee-track');
           if (!track) return;
           track.style.animation = 'none';
-          var speed = track.classList.contains('slow') ? 0.25 : 0.4;
+          var speed = 0.5;
           var pos = 0;
           var halfW = 0;
           function tick() {
