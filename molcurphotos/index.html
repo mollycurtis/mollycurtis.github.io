@@ -881,6 +881,10 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
+@keyframes srScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
 .biz-marquee-item {
   flex-shrink: 0;
   width: 320px;
@@ -1638,6 +1642,7 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   margin-bottom: 2px;
   line-height: 0;
   align-items: stretch;
+  max-height: 55vh;
 }
 /* Vertical hero image */
 .sr-vert {
@@ -1700,9 +1705,10 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   display: flex;
   gap: 2px;
   width: max-content;
-  animation: marqueeScroll 50s linear infinite;
+  animation: srScroll 50s linear infinite;
   will-change: transform;
-  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 .sr-marquee-section:hover .sr-marquee-track { animation-play-state: paused; }
 .sr-marquee-item {
