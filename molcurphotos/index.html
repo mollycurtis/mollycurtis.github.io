@@ -1638,7 +1638,7 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   margin-bottom: 2px;
   line-height: 0;
   align-items: stretch;
-  max-height: 130vh;
+  max-height: 140vh;
 }
 /* Vertical hero image */
 .sr-vert {
@@ -1651,7 +1651,7 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: center 25%;
   display: block;
   opacity: 0;
   transition: opacity .5s ease, transform .5s var(--ease);
@@ -1684,10 +1684,10 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 .sr-cell:hover img { transform: scale(1.025); }
 @media(max-width:768px) {
   .sr-session { flex-direction: column; }
-  .sr-vert { flex: none; width: 100%; height: 70vw; }
-  .sr-vert img { object-position: center top; }
+  .sr-vert { flex: none; width: 100%; height: 90vw; }
+  .sr-vert img { object-position: center 30%; }
   .sr-grid { grid-template-columns: 1fr 1fr; }
-  .sr-cell { height: 45vw; }
+  .sr-cell { height: 55vw; }
 }
 
 /* Scrolling marquee section */
@@ -1710,7 +1710,7 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   background: var(--bg2);
 }
 .sr-marquee-item img {
-  width: 100%; height: 380px;
+  width: 100%; height: 520px;
   object-fit: cover; object-position: center 20%;
   display: block;
   opacity: 0; transition: opacity .5s ease;
@@ -2398,8 +2398,7 @@ function openCategory(cat) {
         if (!track) return;
         var section = track.parentElement;
         var halfW = track.scrollWidth / 2;
-        section.addEventListener('mouseenter', function() { paused = true; });
-        section.addEventListener('mouseleave', function() { paused = false; });
+
         function tick() {
           if (!paused) {
             pos += speed;
