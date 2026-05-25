@@ -2460,6 +2460,15 @@ function openCategory(cat) {
         if (img.complete && img.naturalWidth > 0) img.classList.add('loaded');
         else obs.observe(img);
       });
+      // Restart marquee animations after dynamic injection
+      setTimeout(function() {
+        document.querySelectorAll('.biz-marquee-track').forEach(function(t) {
+          var dur = t.classList.contains('slow') ? '68s' : '52s';
+          t.style.animation = 'none';
+          void t.offsetWidth;
+          t.style.animation = 'marqueeScroll ' + dur + ' linear infinite';
+        });
+      }, 100);
     })();
   
   } else {
