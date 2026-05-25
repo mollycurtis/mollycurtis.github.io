@@ -1875,7 +1875,6 @@ textarea.f-input { resize: vertical; min-height: 100px; }
     <button class="back-btn" onclick="closePage('category')">← Back to Portfolio</button>
     <div class="cat-header">
       <div class="cat-hero" id="cat-hero-text"></div>
-      <p class="cat-sub" id="cat-sub-text"></p>
     </div>
     <div id="cat-photo-grid"></div>
     <div class="book-cta-block">
@@ -2321,7 +2320,6 @@ function openCategory(cat) {
   const nextLabel = nextCat.charAt(0).toUpperCase() + nextCat.slice(1);
   document.getElementById('cat-nav-title').textContent = label;
   document.getElementById('cat-hero-text').textContent = label;
-  document.getElementById('cat-sub-text').textContent = d.sub;
   if (cat === 'portraits') {
                     document.getElementById('cat-photo-grid').innerHTML = `
       <div class="pg-row pg-row-a">
