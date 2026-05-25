@@ -881,10 +881,6 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
-@keyframes srScroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
 .biz-marquee-item {
   flex-shrink: 0;
   width: 320px;
@@ -1705,12 +1701,8 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   display: flex;
   gap: 2px;
   width: max-content;
-  animation: srScroll 50s linear infinite;
   will-change: transform;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
 }
-.sr-marquee-section:hover .sr-marquee-track { animation-play-state: paused; }
 .sr-marquee-item {
   flex-shrink: 0;
   width: 260px;
@@ -1727,6 +1719,7 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 
 @media(max-width:768px) {
   .sr-session { columns: 2; }
+  .sr-marquee-section { margin: 24px 0; }
   .sr-marquee-item { width: 180px; }
   .sr-marquee-item img { height: 260px; }
 }
@@ -2396,11 +2389,30 @@ function openCategory(cat) {
       if (img.complete && img.naturalWidth > 0) img.classList.add('loaded');
       else img.addEventListener('load', () => img.classList.add('loaded'), {once:true});
     });
-    // Force marquee to animate after dynamic HTML injection
-    setTimeout(function() {
-      var t = document.querySelector('.sr-marquee-track');
-      if (t) { t.style.animation = 'none'; void t.offsetWidth; t.style.animation = 'srScroll 50s linear infinite'; }
-    }, 100);
+    // JS-driven marquee — bypasses CSS animation issues
+    (function() {
+      var raf;
+      var pos = 0;
+      var speed = 0.4; // px per frame
+      var paused = false;
+      setTimeout(function() {
+        var track = document.querySelector('.sr-marquee-track');
+        if (!track) return;
+        var section = track.parentElement;
+        var halfW = track.scrollWidth / 2;
+        section.addEventListener('mouseenter', function() { paused = true; });
+        section.addEventListener('mouseleave', function() { paused = false; });
+        function tick() {
+          if (!paused) {
+            pos += speed;
+            if (pos >= halfW) pos = 0;
+            track.style.transform = 'translateX(-' + pos + 'px)';
+          }
+          raf = requestAnimationFrame(tick);
+        }
+        tick();
+      }, 200);
+    })();
   } else if (cat === 'weddings') {
     document.getElementById('cat-photo-grid').innerHTML = `
 <!-- ══════════ WEDDING PORTFOLIO CONTENT ══════════ -->
