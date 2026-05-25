@@ -1690,7 +1690,7 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 
 /* Scrolling marquee section */
 .sr-marquee-section {
-  margin: 2px 0;
+  margin: 40px 0;
   overflow: hidden;
   width: 100%;
   line-height: 0;
@@ -1699,17 +1699,19 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   display: flex;
   gap: 2px;
   width: max-content;
-  animation: marqueeScroll 52s linear infinite;
+  animation: marqueeScroll 50s linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
 }
 .sr-marquee-section:hover .sr-marquee-track { animation-play-state: paused; }
 .sr-marquee-item {
   flex-shrink: 0;
-  width: 220px;
+  width: 260px;
   overflow: hidden;
   background: var(--bg2);
 }
 .sr-marquee-item img {
-  width: 100%; height: 320px;
+  width: 100%; height: 380px;
   object-fit: cover; object-position: center top;
   display: block;
   opacity: 0; transition: opacity .5s ease;
