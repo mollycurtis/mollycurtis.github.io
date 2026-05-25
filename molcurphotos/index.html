@@ -2460,15 +2460,25 @@ function openCategory(cat) {
         if (img.complete && img.naturalWidth > 0) img.classList.add('loaded');
         else obs.observe(img);
       });
-      // Restart marquee animations after dynamic injection
+      // JS rAF marquees — same approach as senior marquee
       setTimeout(function() {
-        document.querySelectorAll('.biz-marquee-track').forEach(function(t) {
-          var dur = t.classList.contains('slow') ? '68s' : '52s';
-          t.style.animation = 'none';
-          void t.offsetWidth;
-          t.style.animation = 'marqueeScroll ' + dur + ' linear infinite';
+        document.querySelectorAll('.biz-marquee').forEach(function(section) {
+          var track = section.querySelector('.biz-marquee-track');
+          if (!track) return;
+          track.style.animation = 'none';
+          var speed = track.classList.contains('slow') ? 0.25 : 0.4;
+          var pos = 0;
+          var halfW = 0;
+          function tick() {
+            if (!halfW) halfW = track.scrollWidth / 2;
+            pos += speed;
+            if (pos >= halfW) pos = 0;
+            track.style.transform = 'translateX(-' + pos + 'px)';
+            requestAnimationFrame(tick);
+          }
+          requestAnimationFrame(tick);
         });
-      }, 100);
+      }, 200);
     })();
   
   } else {
