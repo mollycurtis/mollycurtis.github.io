@@ -1642,7 +1642,7 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   margin-bottom: 2px;
   line-height: 0;
   align-items: stretch;
-  max-height: 75vh;
+  max-height: 90vh;
 }
 /* Vertical hero image */
 .sr-vert {
@@ -2396,6 +2396,11 @@ function openCategory(cat) {
       if (img.complete && img.naturalWidth > 0) img.classList.add('loaded');
       else img.addEventListener('load', () => img.classList.add('loaded'), {once:true});
     });
+    // Force marquee to animate after dynamic HTML injection
+    setTimeout(function() {
+      var t = document.querySelector('.sr-marquee-track');
+      if (t) { t.style.animation = 'none'; void t.offsetWidth; t.style.animation = 'srScroll 50s linear infinite'; }
+    }, 100);
   } else if (cat === 'weddings') {
     document.getElementById('cat-photo-grid').innerHTML = `
 <!-- ══════════ WEDDING PORTFOLIO CONTENT ══════════ -->
