@@ -32,23 +32,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
-/* ── FULL-BLEED UTILITY ────────────────────────────────────────
-   Use .full-bleed on any child of a padded max-width container
-   to break out to viewport edges. Works with overflow-x:clip
-   on the scroll parent.
-──────────────────────────────────────────────────────────────── */
-.full-bleed {
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-}
-/* Variant for padded+centered containers (max-width + padding) */
-.full-bleed-constrained {
-  width: 100vw;
-  margin-left: calc((min(100vw, 1440px) - 100vw) / 2 - var(--pad-x));
-}
-
 /* ─────────────────────────────────────────────
    BASE — reset, tokens, global
 ───────────────────────────────────────────── */
@@ -130,14 +113,6 @@ html, body {
 @keyframes sarrow {
   0%,100% { transform: translateY(0);  opacity: .25; }
   50%     { transform: translateY(6px); opacity: .9;  }
-}
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-@keyframes scrimIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
 }
 /* ─────────────────────────────────────────────
    LANDING
@@ -433,10 +408,6 @@ html, body {
 .scroll-arrows svg:nth-child(1) { animation: sarrow 1.8s ease-in-out infinite; }
 .scroll-arrows svg:nth-child(2) { animation: sarrow 1.8s ease-in-out .22s infinite; }
 .scroll-arrows svg:nth-child(3) { animation: sarrow 1.8s ease-in-out .44s infinite; }
-
-/* ─────────────────────────────────────────────
-   COMING SOON OVERLAY
-───────────────────────────────────────────── */
 
 /* ─────────────────────────────────────────────
    CATEGORY PAGE — portrait grid
@@ -773,12 +744,6 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 .tcard-mobile { display: none; }
 
 /* ─────────────────────────────────────────────
-   CINEMATIC PAGE-IN REVEAL (The One Moment)
-   On first open of any page, section headers
-   animate in with a staggered fade+rise.
-───────────────────────────────────────────── */
-
-/* ─────────────────────────────────────────────
    RESPONSIVE
 ───────────────────────────────────────────── */
 
@@ -979,30 +944,12 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 .zod-meta-label { font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
 .zod-meta-val { font-family: var(--serif); font-size: clamp(16px,1.8vh,22px); font-weight: 300; color: var(--muted); }
 
-.zod-hero {
-  width: 100%;
-  margin: 56px 0 0;
-}
-/* section heading */
-.zod-section-title {
-  font-family: var(--serif) !important;
-  font-size: clamp(36px,5vh,60px) !important;
-  font-weight: 300;
-  color: var(--accent) !important;
-  letter-spacing: -.01em;
-  margin-bottom: 32px;
-  display: block;
-}
-
 /* process section */
 .zod-process {
   margin-top: 72px;
   padding-top: 48px;
   border-top: 1px solid var(--border);
 }
-
-/* BTS section */
-
 
 /* ── BTS LAYOUT — explicit responsive breakpoints ───────────────
    ≥769px : desktop + tablet → 70/30 side-by-side, big video left,
@@ -1091,9 +1038,8 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   }
 }
 
-/* Closing overview text */
-
 /* ── CREATIVE PROCESS — editorial redesign ─────────────────── */
+
 .zod-process-layout {
   display: grid;
   grid-template-columns: 1fr 1.3fr;
@@ -1151,22 +1097,6 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 .zod-collage-wrap img.loaded { opacity: 1; }
 .zod-collage-wrap:hover img { transform: scale(1.025); }
 .zod-process-text .proj-desc { max-width: none; margin: 0; }
-.zod-collage-wrap {
-  position: relative;
-  line-height: 0;
-  overflow: hidden;
-  border-radius: 20px;
-}
-.zod-collage-wrap img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 20px;
-  transition: transform .7s var(--ease), opacity .6s ease;
-  opacity: 0;
-}
-.zod-collage-wrap img.loaded { opacity: 1; }
-.zod-collage-wrap:hover img { transform: scale(1.025); }
 
 /* ── PROJECT OVERVIEW closing ── */
 .zod-overview {
@@ -1233,7 +1163,6 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 }
 
 /* Collage lightbox */
-.zod-collage-wrap { cursor: zoom-in; }
 .zod-lightbox {
   position: fixed; inset: 0; z-index: 999;
   background: rgba(0,0,0,.92);
@@ -1582,12 +1511,6 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 /* ── SENIOR PORTFOLIO ──────────────────────────────────────── */
 .sr-body { padding: 0; width: 100%; }
 .sr-body > :last-child { margin-bottom: 64px; }
-
-/* Session section */
-.sr-session {
-  width: 100%;
-  margin-bottom: 2px;
-}
 
 /* Senior sessions — clean 3-col masonry */
 .sr-session {
