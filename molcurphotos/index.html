@@ -452,11 +452,6 @@ html, body {
   font-size: clamp(64px,9vw,130px);
   font-weight: 300; letter-spacing: -.01em; line-height: .95; color: var(--text);
 }
-.cat-sub {
-  font-size: 14px; color: var(--muted); font-weight: 300;
-  line-height: 1.75; max-width: none; padding-bottom: 6px;
-  white-space: nowrap;
-}
 
 /* portrait editorial grid */
 #cat-photo-grid {
@@ -988,8 +983,6 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   width: 100%;
   margin: 56px 0 0;
 }
-.zod-hero 
-
 /* section heading */
 .zod-section-title {
   font-family: var(--serif) !important;
@@ -1007,12 +1000,6 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   padding-top: 48px;
   border-top: 1px solid var(--border);
 }
-
-.zod-process-main 
-
-.zod-process-side 
-
-.zod-process-sub 
 
 /* BTS section */
 
@@ -1089,6 +1076,11 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   }
 }
 
+/* Bottom-card video: show more of the top so faces aren't cut */
+.zod-bts-strip .zod-bts-item:last-child video {
+  object-position: center 22% !important;
+}
+
 /* MEDIUM SCREEN (769–1024px / tablet portrait + landscape +
    smaller laptops): keep side-by-side but cap the height so the
    section doesn't get enormous on narrower viewports. */
@@ -1106,7 +1098,7 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   display: grid;
   grid-template-columns: 1fr 1.3fr;
   gap: 64px;
-  align-items: start;
+  align-items: center;
   margin-top: 48px;
 }
 .zod-collage-wrap { margin-top: 0; }
@@ -1283,12 +1275,10 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 @media(min-width:769px){
 .footer-socials-mobile { display: none; }
 .biz-group-photo {
-    max-width: 1440px;
+    max-width: 1267px;
     margin: 0 auto;
     padding: 0 48px;
     box-sizing: border-box;
-    transform: scale(0.88);
-    transform-origin: center top;
   }
 }
 @media(max-width:768px){
@@ -1319,7 +1309,6 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 
   .cat-body, .about-body, .faqs-body, .contact-body, .proj-body { padding: 24px 20px; }
   .cat-header, .proj-header { grid-template-columns: 1fr !important; gap: 12px; }
-  .cat-sub { max-width: 100%; white-space: normal; }
 
   /* portrait grid mobile — single column */
   #cat-photo-grid { width: 100%; left: auto; transform: none; display: block; }
@@ -1404,7 +1393,7 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   .zod-video-wrap video { width: 100%; height: 100%; object-fit: cover; }
   .zod-bts-strip { flex-direction: row !important; width: 100%; gap: 0; }
   .zod-bts-item { flex: 1; min-width: 0; overflow: hidden; }
-  .zod-bts-media { height: 110px; }
+  .zod-bts-media { height: 180px; }
   /* process */
   .zod-process-layout { grid-template-columns: 1fr; gap: 36px; }
   .zod-collage-wrap, .zod-collage-wrap img { border-radius: 14px; }
@@ -1440,7 +1429,7 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   .footer-socials-mobile { order: 1; }
   .footer-cta { order: 2; }
   /* EXTRA-SMALL BTS: tighten item heights on small phones */
-  .zod-bts-media { height: 90px; }
+  .zod-bts-media { height: 140px; }
 }
 
 /* ══════════════════════════════════════════════
@@ -1700,7 +1689,7 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 .wd-collage {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 640px;
+  grid-auto-rows: 760px;
   gap: 3px;
   width: 100vw;
   position: relative;
@@ -1712,6 +1701,7 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   overflow: hidden;
   display: block;
   line-height: 0;
+  cursor: zoom-in;
 }
 .wd-collage-item img {
   width: 100%;
@@ -1726,7 +1716,7 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 .wd-collage-item:hover img { transform: scale(1.025); }
 .wd-gap { height: 48px; }
 @media(max-width:768px) {
-  .wd-collage { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 400px; }
+  .wd-collage { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 500px; }
   .wd-gap { height: 32px; }
 }
 
@@ -2279,11 +2269,11 @@ resetPortfolioAnim();
 
 const CAT_ORDER = ['portraits','senior','weddings','business','events'];
 const CAT = {
-  portraits:{ sub:'Portraits with an editorial approach. Personality, mood, and essence captured with intention.', count:8 },
-  senior:   { sub:'Senior portraits focused on personality, mood, and the individual. Photographed with intention.', count:6 },
-  weddings: { sub:'Wedding photography that is documentary, detail-driven, and true to the day.', count:8 },
-  business: { sub:'Professional portraits for teams, businesses, and individuals.' },
-  events:   { sub:'Events documented with care. Corporate gatherings, celebrations, and everything in between.', count:26 },
+  portraits:{ count:8 },
+  senior:   { count:6 },
+  weddings: { count:8 },
+  business: {},
+  events:   { count:26 },
 };
 function openCategory(cat) {
   const d = CAT[cat]; if (!d) return;
@@ -2386,7 +2376,7 @@ function openCategory(cat) {
     document.getElementById('cat-photo-grid').innerHTML = `
 <!-- ══════════ WEDDING PORTFOLIO CONTENT ══════════ -->
 <div class="wd-body">
-<div class="wd-collage"><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598808/Molly-Curtis-Photographer_soj242.jpg" fetchpriority="high" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598799/DSC01629_hu0ofr.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598805/DSC01886_mncpnb.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598806/DSC01978_azztxy.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598803/DSC01803_gskbj1.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598801/DSC01686_bo8m26.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598802/DSC01700_xgynaq.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598807/DSC01984_nbljix.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598807/DSC02332_oevlzk.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598797/DSC01517_nj00ry.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598804/DSC01831_lluvwb.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598798/DSC01546_vmxsda.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div></div><div class="wd-gap"></div>
+<div class="wd-collage"><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598808/Molly-Curtis-Photographer_soj242.jpg" fetchpriority="high" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598799/DSC01629_hu0ofr.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598805/DSC01886_mncpnb.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598806/DSC01978_azztxy.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598803/DSC01803_gskbj1.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598801/DSC01686_bo8m26.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598802/DSC01700_xgynaq.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598807/DSC01984_nbljix.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598807/DSC02332_oevlzk.jpg" loading="lazy" decoding="async" alt="Wedding" style="object-position:20% center;" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598797/DSC01517_nj00ry.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598804/DSC01831_lluvwb.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598798/DSC01546_vmxsda.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div></div><div class="wd-gap"></div>
 <div class="wd-collage"><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598850/DSC04115_bfrec2.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598839/DSC03536_kthtpa.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598844/DSC03723_zbcdut.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598844/DSC03728_kdkbs8.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598842/DSC03641_www3vi.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598846/DSC03961_zvuu5t.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598849/DSC04094_js3ikq.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598845/DSC03769_my2z6z.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598847/DSC03908_uvnmet.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598848/DSC04085_e4eluk.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598840/DSC03591_tuwffx.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598838/DSC03516_ao7nrp.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598841/DSC03614_ixoypf.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598829/DSC03923_xcpjkh.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598821/DSC04005_hjufzm.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598819/DSC03895_zuytdo.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598822/DSC04054_mof90f.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div></div><div class="wd-gap"></div>
 <div class="wd-collage"><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598835/DSC09426_vkwnfk.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598812/DSC00139_z3823j.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598809/DSC09407_ta46nj.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598833/DSC09881_hemw27.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598836/DSC09351_auelwh.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598816/DSC09381_xuqahq.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598814/DSC00169_jx7g1c.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598824/DSC00032_g3jvg3.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598834/DSC09853_jtogje.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598828/DSC09431_t7k2rj.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598830/DSC09444_at5zp5.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598851/DSC09511_czengb.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598832/DSC09486_c9dzwh.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598831/DSC09618_jf35xd.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598822/DSC00004_eczy9m.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598817/DSC09589_bh3bpo.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598825/DSC00083_tphsjw.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598819/DSC09762_ermjxo.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598818/DSC09666_li3bmn.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598811/DSC00112_sfaoks.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div><div class="wd-collage-item"><img src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_1600/v1779598810/DSC00064_v10vjd.jpg" loading="lazy" decoding="async" alt="Wedding" onload="this.classList.add('loaded')"></div></div>
 </div>
@@ -2570,7 +2560,7 @@ ptiles.forEach(tile => {
 
 (function() {
   document.addEventListener('click', function(e) {
-    var wrap = e.target.closest('.zod-collage-wrap');
+    var wrap = e.target.closest('.zod-collage-wrap, .wd-collage-item');
     if (wrap) {
       var img = wrap.querySelector('img');
       if (img) {
