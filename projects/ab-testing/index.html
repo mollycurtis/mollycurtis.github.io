@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A/B Testing Optimization — Molly Curtis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink:      #080e1c;
+      --ink2:     #0d1628;
+      --navy:     #10203c;
+      --blue:     #1458cc;
+      --blue-lt:  #5aa0ff;
+      --sky:      #a8ceff;
+      --white:    #ffffff;
+      --surface:  #f4f7fc;
+      --border:   #dfe6f0;
+      --muted:    #7d8ca3;
+      --text:     #16202f;
+      --font:     'DM Sans', sans-serif;
+      --grad:     linear-gradient(90deg, #080e1c 0%, #10203c 45%, #1458cc 100%);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); background: var(--white); color: var(--text); -webkit-font-smoothing: antialiased; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 56px;
+      background: rgba(255,255,255,0.96); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; color: var(--ink); }
+    .nav-back { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; text-transform: uppercase; transition: color 0.2s; }
+    .nav-back:hover { color: var(--blue); }
+
+    /* HERO */
+    .hero {
+      margin-top: 57px; background: var(--ink);
+      position: relative; overflow: hidden; padding: 76px 0 68px;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(30,120,255,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(30,120,255,0.06) 1px, transparent 1px);
+      background-size: 30px 30px;
+      animation: grid-drift 20s linear infinite;
+    }
+    .hero::after {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 70% at 88% 12%, rgba(30,110,255,0.24) 0%, transparent 58%),
+        radial-gradient(ellipse 40% 45% at 8% 88%, rgba(90,160,255,0.10) 0%, transparent 55%);
+    }
+    @keyframes grid-drift {
+      0%   { background-position: 0 0, 0 0; }
+      100% { background-position: 30px 30px, 30px 30px; }
+    }
+    /* faint bar chart in hero, right side */
+    .hero-bars {
+      position: absolute; right: 56px; bottom: 0; top: 0;
+      width: 34%; display: flex; align-items: flex-end; gap: 9px;
+      padding-bottom: 0; z-index: 1; opacity: 0.13;
+    }
+    .hero-bar { flex: 1; background: var(--blue-lt); border-radius: 4px 4px 0 0; }
+    .hero-bar:nth-child(1) { height: 26%; }
+    .hero-bar:nth-child(2) { height: 48%; }
+    .hero-bar:nth-child(3) { height: 35%; }
+    .hero-bar:nth-child(4) { height: 68%; }
+    .hero-bar:nth-child(5) { height: 44%; }
+    .hero-bar:nth-child(6) { height: 82%; }
+    .hero-bar:nth-child(7) { height: 58%; }
+
+    .hero-inner { position: relative; z-index: 2; max-width: 1300px; margin: 0 auto; padding: 0 56px; }
+    .hero-kicker { display: flex; align-items: center; gap: 16px; margin-bottom: 26px; }
+    .hero-kicker-line { width: 32px; height: 1px; background: var(--blue-lt); opacity: 0.6; }
+    .hero-kicker-text { font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(168,206,255,0.75); }
+    .hero-title { font-size: clamp(36px, 5vw, 68px); font-weight: 700; line-height: 1.02; letter-spacing: -0.03em; color: var(--white); max-width: 780px; margin-bottom: 20px; }
+    .hero-title em { font-style: italic; font-weight: 300; color: var(--blue-lt); }
+    .hero-desc { font-size: 15px; line-height: 1.65; color: rgba(255,255,255,0.55); font-weight: 300; max-width: 560px; margin-bottom: 30px; }
+    .hero-meta-row { display: flex; gap: 40px; flex-wrap: wrap; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.08); }
+    .hero-meta-label { font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 5px; }
+    .hero-meta-value { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.85); }
+
+    .accent-div { height: 3px; background: linear-gradient(90deg, transparent, rgba(20,88,204,0.6) 30%, rgba(90,160,255,0.9) 50%, rgba(20,88,204,0.6) 70%, transparent); }
+
+    /* CONTEXT STRIP */
+    .context-strip { background: var(--ink2); position: relative; overflow: hidden; opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .context-strip.visible { opacity: 1; transform: none; }
+    .context-strip::before {
+      content: ''; position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(30,120,255,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(30,120,255,0.05) 1px, transparent 1px);
+      background-size: 26px 26px;
+    }
+    .context-inner {
+      position: relative; z-index: 1;
+      max-width: 1300px; margin: 0 auto; padding: 56px;
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0;
+    }
+    .context-col { padding-right: 40px; border-right: 1px solid rgba(255,255,255,0.07); }
+    .context-col:last-child { border-right: none; padding-right: 0; padding-left: 40px; }
+    .context-col:nth-child(2) { padding-left: 40px; }
+    .context-num { font-size: clamp(38px, 4.8vw, 60px); font-weight: 700; color: var(--blue-lt); letter-spacing: -0.04em; line-height: 1; margin-bottom: 8px; }
+    .context-label { font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 12px; }
+    .context-desc { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.65; font-weight: 300; }
+
+    /* MAIN */
+    main { max-width: 1300px; margin: 0 auto; padding: 0 56px; }
+
+    /* SECTIONS */
+    .section { padding: 56px 0 0; opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .section.visible { opacity: 1; transform: none; }
+    .eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 14px; }
+    .section-title {
+      font-size: clamp(24px, 3.2vw, 40px); font-weight: 700; line-height: 1.12; letter-spacing: -0.025em;
+      background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; margin-bottom: 20px; display: inline-block;
+    }
+    .body-text { font-size: 15px; line-height: 1.75; color: #3f5064; }
+    .body-text p + p { margin-top: 14px; }
+    .divider { height: 1px; background: var(--border); margin-top: 56px; }
+
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+
+    /* PROBLEM LIST */
+    .problem-list { margin-top: 26px; }
+    .problem-item { display: grid; grid-template-columns: 36px 1fr; gap: 18px; padding: 22px 0; border-bottom: 1px solid var(--border); }
+    .problem-item:first-child { border-top: 1px solid var(--border); }
+    .problem-item:last-child { border-bottom: none; }
+    .problem-n { font-size: 11px; font-weight: 700; color: var(--blue); letter-spacing: 0.08em; padding-top: 3px; }
+    .problem-title { font-size: 14.5px; font-weight: 600; color: var(--ink); margin-bottom: 5px; }
+    .problem-desc { font-size: 13.5px; line-height: 1.65; color: #55637a; }
+
+    /* THE TEST — variant comparison */
+    .variant-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px; align-items: start; }
+    .variant-card { border-radius: 10px; overflow: hidden; border: 1px solid var(--border); background: var(--white); }
+    .variant-card.winner { border-color: rgba(20,88,204,0.35); box-shadow: 0 6px 28px rgba(20,88,204,0.10); }
+    .variant-head {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 20px; border-bottom: 1px solid var(--border); background: var(--surface);
+    }
+    .variant-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+    .variant-card.winner .variant-tag { color: var(--blue); }
+    .variant-badge { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 10px; border-radius: 20px; background: rgba(20,88,204,0.1); border: 1px solid rgba(20,88,204,0.25); color: var(--blue); }
+
+    /* mock page inside each variant */
+    .mock { padding: 0; }
+    .mock-band { padding: 18px 20px; }
+    .mock-a .mock-band { background: #12386e; }
+    .mock-b .mock-band { background: var(--ink); position: relative; overflow: hidden; }
+    .mock-b .mock-band::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 70% at 85% 20%, rgba(30,110,255,0.28) 0%, transparent 60%);
+    }
+    .mock-bi { position: relative; z-index: 1; }
+    .mock-h { font-size: 13px; font-weight: 700; color: #fff; line-height: 1.25; margin-bottom: 6px; }
+    .mock-b .mock-h span { color: var(--blue-lt); }
+    .mock-sub { font-size: 9px; color: rgba(255,255,255,0.45); line-height: 1.5; margin-bottom: 10px; }
+    .mock-btn { display: inline-block; font-size: 8px; font-weight: 700; padding: 6px 13px; border-radius: 4px; }
+    .mock-a .mock-btn { background: #4a80c0; color: #fff; }
+    .mock-b .mock-btn { background: var(--blue-lt); color: var(--ink); }
+    .mock-form { padding: 14px 20px; border-bottom: 1px solid #eef2f7; }
+    .mock-flabel { font-size: 8px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 7px; }
+    .mock-field { height: 20px; border: 1px solid #e2e8f2; border-radius: 3px; margin-bottom: 6px; background: #fbfcfe; }
+    .mock-field.short { width: 60%; }
+    .mock-body-s { padding: 14px 20px; }
+    .mock-line { height: 6px; background: #eef2f7; border-radius: 3px; margin-bottom: 6px; }
+    .mock-line.w80 { width: 80%; } .mock-line.w60 { width: 60%; } .mock-line.w90 { width: 90%; }
+    .mock-trust { display: flex; gap: 6px; margin-top: 10px; }
+    .mock-chip { font-size: 7px; font-weight: 600; padding: 3px 8px; border-radius: 12px; background: rgba(20,88,204,0.08); color: var(--blue); border: 1px solid rgba(20,88,204,0.18); }
+    .variant-note { padding: 14px 20px; border-top: 1px solid var(--border); font-size: 12px; line-height: 1.6; color: #55637a; background: var(--white); }
+    .variant-note strong { color: var(--ink); font-weight: 600; }
+
+    /* RESULT BAR */
+    .lift-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 36px; }
+    .lift-card { padding: 30px 20px; border: 1px solid var(--border); border-radius: 10px; background: var(--white); text-align: center; }
+    .lift-num { font-size: clamp(24px, 3vw, 36px); font-weight: 700; color: var(--blue); line-height: 1; margin-bottom: 9px; letter-spacing: -0.02em; }
+    .lift-label { font-size: 12.5px; line-height: 1.55; color: var(--muted); }
+
+    /* STRATEGY */
+    .strategy-layout { display: grid; grid-template-columns: 1fr 2fr; gap: 64px; align-items: start; margin-top: 40px; }
+    .strategy-nav { position: sticky; top: 90px; }
+    .strategy-nav-item { display: flex; align-items: flex-start; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border); }
+    .strategy-nav-item:first-child { border-top: 1px solid var(--border); }
+    .s-num { font-size: 11px; font-weight: 700; color: var(--blue); min-width: 24px; padding-top: 2px; }
+    .s-label { font-size: 13.5px; font-weight: 600; color: var(--ink); line-height: 1.3; }
+    .strategy-content { display: flex; flex-direction: column; gap: 32px; }
+    .strategy-block { padding: 28px; background: var(--surface); border-radius: 10px; }
+    .strategy-block-num { font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+    .strategy-block-title { font-size: 17px; font-weight: 700; color: var(--ink); margin-bottom: 10px; letter-spacing: -0.01em; }
+    .strategy-block-body { font-size: 14px; line-height: 1.75; color: #55637a; }
+
+    /* DECISIONS */
+    .decision-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 36px; }
+    .decision-card { padding: 22px 24px; border: 1px solid var(--border); border-left: 3px solid var(--blue); border-radius: 10px; background: var(--surface); transition: box-shadow 0.2s; }
+    .decision-card:hover { box-shadow: 0 4px 16px rgba(20,88,204,0.1); }
+    .decision-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); margin-bottom: 7px; }
+    .decision-title { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+    .decision-body { font-size: 13px; line-height: 1.6; color: #55637a; }
+
+    /* OUTCOME STRIP */
+    .outcome-strip { margin-top: 56px; background: var(--ink); position: relative; overflow: hidden; }
+    .outcome-strip::before {
+      content: ''; position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(30,120,255,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(30,120,255,0.05) 1px, transparent 1px);
+      background-size: 26px 26px;
+    }
+    .outcome-inner { position: relative; z-index: 1; max-width: 1300px; margin: 0 auto; padding: 56px; }
+    .outcome-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(168,206,255,0.6); margin-bottom: 20px; }
+    .outcome-title { font-size: clamp(16px, 2.2vw, 32px); font-weight: 700; color: var(--white); letter-spacing: -0.025em; margin-bottom: 40px; line-height: 1.15; }
+    .outcome-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+    .outcome-item { padding: 32px 40px 32px 0; border-right: 1px solid rgba(255,255,255,0.07); }
+    .outcome-item:last-child { border-right: none; padding-right: 0; padding-left: 40px; }
+    .outcome-item:nth-child(2) { padding-left: 40px; }
+    .outcome-n { font-size: clamp(24px, 3.2vw, 42px); font-weight: 700; color: var(--blue-lt); letter-spacing: -0.04em; line-height: 1; margin-bottom: 10px; }
+    .outcome-l { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.6; font-weight: 300; }
+
+    /* TAKEAWAY */
+    .takeaway { margin: 56px auto 0; max-width: 1000px; padding: 48px 56px; background: var(--ink); border-radius: 14px; position: relative; overflow: hidden; text-align: center; }
+    .takeaway::before {
+      content: ''; position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(30,120,255,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(30,120,255,0.05) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+    .takeaway::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 50% 60% at 85% 30%, rgba(30,110,255,0.22) 0%, transparent 55%); }
+    .takeaway-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(168,206,255,0.6); margin-bottom: 16px; position: relative; z-index: 1; }
+    .takeaway-title { font-size: clamp(26px, 3vw, 38px); font-weight: 700; color: var(--white); line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 16px; position: relative; z-index: 1; }
+    .takeaway-body { font-size: 15px; line-height: 1.75; color: rgba(255,255,255,0.55); font-weight: 300; position: relative; z-index: 1; max-width: 620px; margin: 0 auto; }
+
+    /* GRAD DIVIDER + FOOTER */
+    .grad-divider { margin-top: 56px; height: 1px; background: linear-gradient(90deg, transparent 0%, #080e1c 20%, #1458cc 70%, transparent 100%); opacity: 0.4; }
+    .footer-cta { padding: 56px 0 100px; text-align: center; }
+    .footer-cta-eyebrow { font-size: 12px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+    .footer-cta-link { display: inline-flex; align-items: center; gap: 10px; font-size: clamp(22px, 3vw, 36px); font-weight: 700; color: var(--ink); text-decoration: none; letter-spacing: -0.02em; transition: color 0.2s, gap 0.2s; }
+    .footer-cta-link:hover { color: var(--blue); gap: 16px; }
+    .footer-cta-link .arrow { font-size: 0.85em; transition: transform 0.2s; }
+    .footer-cta-link:hover .arrow { transform: translateX(4px); }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+
+    /* RESPONSIVE */
+    @media (max-width: 960px) {
+      nav { padding: 16px 28px; }
+      .hero-inner, main { padding-left: 28px; padding-right: 28px; }
+      .context-inner, .outcome-inner { padding-left: 28px; padding-right: 28px; }
+      .hero-bars { display: none; }
+      .context-inner { grid-template-columns: 1fr 1fr; gap: 28px; }
+      .context-col { border-right: none; padding: 0; }
+      .context-col:last-child { padding-left: 0; }
+      .context-col:nth-child(2) { padding-left: 0; }
+      .two-col { grid-template-columns: 1fr; gap: 28px; }
+      .variant-row { grid-template-columns: 1fr; }
+      .lift-row { grid-template-columns: 1fr 1fr; }
+      .strategy-layout { grid-template-columns: 1fr; gap: 32px; }
+      .strategy-nav { position: static; }
+      .decision-row { grid-template-columns: 1fr 1fr; }
+      .outcome-grid { grid-template-columns: 1fr 1fr; }
+      .outcome-item { border-right: 1px solid rgba(255,255,255,0.07); padding: 24px 28px 24px 0; }
+      .outcome-item:nth-child(2) { padding-left: 28px; border-right: none; }
+      .outcome-item:nth-child(3) { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,0.07); border-right: none; padding: 24px 0 0; }
+      .takeaway { padding: 40px 32px; max-width: 100%; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; }
+      .hero-inner, main { padding-left: 20px; padding-right: 20px; }
+      .context-inner, .outcome-inner { padding-left: 20px; padding-right: 20px; }
+      .hero { padding: 48px 0 40px; }
+      .section { padding: 40px 0 0; }
+      .divider { margin-top: 40px; }
+      .context-inner { grid-template-columns: 1fr; gap: 24px; }
+      .lift-row { grid-template-columns: 1fr; }
+      .decision-row { grid-template-columns: 1fr; }
+      .outcome-strip { margin-top: 40px; }
+      .outcome-grid { grid-template-columns: 1fr; }
+      .outcome-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); padding: 20px 0; }
+      .outcome-item:last-child { border-bottom: none; padding-left: 0; }
+      .outcome-item:nth-child(2) { padding-left: 0; }
+      .outcome-item:nth-child(3) { border-top: none; grid-column: auto; }
+      .takeaway { padding: 28px 20px; margin-top: 40px; border-radius: 10px; max-width: 100%; }
+      .takeaway-title { font-size: 20px; letter-spacing: -0.01em; line-height: 1.25; }
+      .takeaway-body { font-size: 13px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="https://mollycurtis.github.io" class="nav-logo">Molly Curtis</a>
+    <a href="https://mollycurtis.github.io/landingpages/" class="nav-back">← Landing Pages</a>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-bars">
+      <div class="hero-bar"></div><div class="hero-bar"></div><div class="hero-bar"></div>
+      <div class="hero-bar"></div><div class="hero-bar"></div><div class="hero-bar"></div>
+      <div class="hero-bar"></div>
+    </div>
+    <div class="hero-inner">
+      <div class="hero-kicker">
+        <div class="hero-kicker-line"></div>
+        <div class="hero-kicker-text">Case Study · NBI · 2026</div>
+      </div>
+      <h1 class="hero-title">A/B Testing<br><em>Optimization</em></h1>
+      <p class="hero-desc">Paid-search landing pages across multiple state campaigns were spending budget without converting. I rebuilt them around a single hypothesis and tested it live.</p>
+      <div class="hero-meta-row">
+        <div class="hero-meta-item">
+          <div class="hero-meta-label">Deliverable</div>
+          <div class="hero-meta-value">Paid Search Landing Pages</div>
+        </div>
+        <div class="hero-meta-item">
+          <div class="hero-meta-label">Focus</div>
+          <div class="hero-meta-value">Conversion Rate Optimization</div>
+        </div>
+        <div class="hero-meta-item">
+          <div class="hero-meta-label">Method</div>
+          <div class="hero-meta-value">Live A/B Split Test</div>
+        </div>
+        <div class="hero-meta-item">
+          <div class="hero-meta-label">Year</div>
+          <div class="hero-meta-value">2026</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accent-div"></div>
+
+  <div class="context-strip" id="context">
+    <div class="context-inner">
+      <div class="context-col">
+        <div class="context-num">14</div>
+        <div class="context-label">State Campaigns</div>
+        <div class="context-desc">Each state ran its own paid-search campaign pointing at a near-identical landing page template.</div>
+      </div>
+      <div class="context-col">
+        <div class="context-num">6 wks</div>
+        <div class="context-label">Test Duration</div>
+        <div class="context-desc">Long enough to reach statistical significance across both variants without seasonal distortion.</div>
+      </div>
+      <div class="context-col">
+        <div class="context-num">50/50</div>
+        <div class="context-label">Traffic Split</div>
+        <div class="context-desc">An even split so neither variant had a volume advantage — the only difference was the page itself.</div>
+      </div>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- BRIEF -->
+    <section class="section" id="brief">
+      <div class="two-col">
+        <div>
+          <div class="eyebrow">The Brief</div>
+          <h2 class="section-title">Paid traffic was arriving. It just wasn't converting.</h2>
+        </div>
+        <div class="body-text">
+          <p>NBI was running paid search across more than a dozen state CLE campaigns. Clicks were healthy and cost per click was reasonable — but the pages those clicks landed on weren't turning visitors into registrations.</p>
+          <p>Rather than guess at a fix, I rebuilt the page around one clear hypothesis and put it head-to-head against the original in a live split test.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- PROBLEMS -->
+    <section class="section" id="problems">
+      <div class="eyebrow">What Wasn't Working</div>
+      <h2 class="section-title">Four things standing between a click and a registration.</h2>
+      <p class="body-text" style="margin-bottom:0;">I audited the existing template against the one thing a paid visitor needs: a fast, obvious path from the ad they clicked to the thing they wanted.</p>
+      <div class="problem-list">
+        <div class="problem-item">
+          <div class="problem-n">01</div>
+          <div>
+            <div class="problem-title">The ad promise didn't match the page</div>
+            <div class="problem-desc">Ads referenced a specific state's CLE deadline, but the landing page opened with generic national copy. That mismatch costs trust in the first two seconds and drives bounces on paid traffic you already paid for.</div>
+          </div>
+        </div>
+        <div class="problem-item">
+          <div class="problem-n">02</div>
+          <div>
+            <div class="problem-title">Deadline buried below the fold</div>
+            <div class="problem-desc">The compliance deadline is the single strongest motivator for this audience — and it appeared halfway down the page. The most persuasive fact on the page was the one visitors were least likely to see.</div>
+          </div>
+        </div>
+        <div class="problem-item">
+          <div class="problem-n">03</div>
+          <div>
+            <div class="problem-title">Too many fields in the form</div>
+            <div class="problem-desc">The registration form asked for information that wasn't needed to start. Every additional field is another reason to abandon, especially on mobile where a majority of this traffic landed.</div>
+          </div>
+        </div>
+        <div class="problem-item">
+          <div class="problem-n">04</div>
+          <div>
+            <div class="problem-title">Competing calls to action</div>
+            <div class="problem-desc">Browse the catalog, download a guide, register now — all presented with equal weight. When everything is a CTA, nothing is. Paid landing pages need one job.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- THE TEST -->
+    <section class="section" id="test">
+      <div class="eyebrow">The Test</div>
+      <h2 class="section-title">One hypothesis, tested honestly.</h2>
+      <p class="body-text"><strong>Hypothesis:</strong> if the page matches the ad's state and deadline, surfaces urgency above the fold, and reduces the form to essentials only, more paid visitors will complete a registration.</p>
+
+      <div class="variant-row">
+        <!-- CONTROL -->
+        <div class="variant-card">
+          <div class="variant-head">
+            <span class="variant-tag">Variant A — Control</span>
+          </div>
+          <div class="mock mock-a">
+            <div class="mock-band">
+              <div class="mock-bi">
+                <div class="mock-h">Continuing Legal Education Courses</div>
+                <div class="mock-sub">Browse our full catalog of CLE courses for attorneys nationwide.</div>
+                <span class="mock-btn">Browse Catalog</span>
+              </div>
+            </div>
+            <div class="mock-body-s">
+              <div class="mock-line w90"></div>
+              <div class="mock-line w80"></div>
+              <div class="mock-line w60"></div>
+            </div>
+            <div class="mock-form">
+              <div class="mock-flabel">Register</div>
+              <div class="mock-field"></div>
+              <div class="mock-field"></div>
+              <div class="mock-field"></div>
+              <div class="mock-field"></div>
+              <div class="mock-field short"></div>
+            </div>
+          </div>
+          <div class="variant-note"><strong>Generic headline</strong>, deadline below the fold, five-field form, three competing CTAs.</div>
+        </div>
+
+        <!-- VARIANT -->
+        <div class="variant-card winner">
+          <div class="variant-head">
+            <span class="variant-tag">Variant B — Test</span>
+            <span class="variant-badge">Winner</span>
+          </div>
+          <div class="mock mock-b">
+            <div class="mock-band">
+              <div class="mock-bi">
+                <div class="mock-h">Your Ohio CLE deadline is <span>December 31</span></div>
+                <div class="mock-sub">Complete all required credits online. Instant certificate on completion.</div>
+                <span class="mock-btn">Register Now</span>
+              </div>
+            </div>
+            <div class="mock-form">
+              <div class="mock-flabel">Register — 2 fields</div>
+              <div class="mock-field"></div>
+              <div class="mock-field short"></div>
+            </div>
+            <div class="mock-body-s">
+              <div class="mock-line w90"></div>
+              <div class="mock-line w60"></div>
+              <div class="mock-trust">
+                <span class="mock-chip">State Approved</span>
+                <span class="mock-chip">40+ Years</span>
+                <span class="mock-chip">100K+ Reviews</span>
+              </div>
+            </div>
+          </div>
+          <div class="variant-note"><strong>State and deadline in the headline</strong>, form moved above the fold and cut to two fields, one CTA, trust signals added.</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- STRATEGY -->
+    <section class="section" id="strategy">
+      <div class="eyebrow">Strategy</div>
+      <h2 class="section-title">Match the ad. Remove the friction. Ask once.</h2>
+      <div class="strategy-layout">
+        <div class="strategy-nav">
+          <div class="strategy-nav-item"><span class="s-num">01</span><span class="s-label">Match message to ad</span></div>
+          <div class="strategy-nav-item"><span class="s-num">02</span><span class="s-label">Deadline above the fold</span></div>
+          <div class="strategy-nav-item"><span class="s-num">03</span><span class="s-label">Cut the form down</span></div>
+          <div class="strategy-nav-item"><span class="s-num">04</span><span class="s-label">One CTA, repeated</span></div>
+          <div class="strategy-nav-item"><span class="s-num">05</span><span class="s-label">Test, don't assume</span></div>
+        </div>
+        <div class="strategy-content">
+          <div class="strategy-block">
+            <div class="strategy-block-num">01 — Message Match</div>
+            <div class="strategy-block-title">The page finishes the sentence the ad started</div>
+            <div class="strategy-block-body">Each state campaign got a page whose headline named that state and its actual deadline. When the page confirms what the ad promised, the visitor stops evaluating whether they're in the right place and starts evaluating the offer.</div>
+          </div>
+          <div class="strategy-block">
+            <div class="strategy-block-num">02 — Urgency Placement</div>
+            <div class="strategy-block-title">Lead with the deadline, because it's the real motivator</div>
+            <div class="strategy-block-body">Attorneys don't buy CLE because they want to. They buy because a compliance date is approaching. Moving that date into the headline puts the strongest reason to act in the first thing anyone reads.</div>
+          </div>
+          <div class="strategy-block">
+            <div class="strategy-block-num">03 — Form Friction</div>
+            <div class="strategy-block-title">Ask for two fields, not five</div>
+            <div class="strategy-block-body">Everything not required to start was cut or deferred to a later step. On mobile especially, each removed field is a removed reason to abandon. The form also moved above the fold so it's visible without scrolling.</div>
+          </div>
+          <div class="strategy-block">
+            <div class="strategy-block-num">04 — Single Action</div>
+            <div class="strategy-block-title">One CTA, repeated, with no competition</div>
+            <div class="strategy-block-body">Browse and download were removed entirely. A paid landing page has one job, and every additional option splits attention and dilutes the result you're paying for.</div>
+          </div>
+          <div class="strategy-block">
+            <div class="strategy-block-num">05 — Validation</div>
+            <div class="strategy-block-title">Run it live rather than argue about it</div>
+            <div class="strategy-block-body">The redesign ran against the original at an even traffic split for six weeks. A real test on real paid traffic settles the question in a way that internal opinion never does — and gives a repeatable template for the remaining campaigns.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- RESULTS -->
+    <section class="section" id="results">
+      <div class="eyebrow">Results</div>
+      <h2 class="section-title">Variant B won on every metric that mattered.</h2>
+      <p class="body-text">Placeholder figures below — replace with final reporting numbers.</p>
+
+      <div class="lift-row">
+        <div class="lift-card">
+          <div class="lift-num">+38%</div>
+          <div class="lift-label">Conversion rate vs. control</div>
+        </div>
+        <div class="lift-card">
+          <div class="lift-num">−24%</div>
+          <div class="lift-label">Cost per registration</div>
+        </div>
+        <div class="lift-card">
+          <div class="lift-num">−19%</div>
+          <div class="lift-label">Bounce rate on paid traffic</div>
+        </div>
+        <div class="lift-card">
+          <div class="lift-num">+52%</div>
+          <div class="lift-label">Mobile form completions</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- DECISIONS -->
+    <section class="section" id="decisions">
+      <div class="eyebrow">Design Decisions</div>
+      <h2 class="section-title">Every change had a conversion reason behind it.</h2>
+      <p class="body-text">Nothing was changed for aesthetics alone — each decision was tied to a specific drop-off point.</p>
+      <div class="decision-row">
+        <div class="decision-card">
+          <div class="decision-tag">Headline</div>
+          <div class="decision-title">State and date, written out</div>
+          <div class="decision-body">Naming the state and the actual deadline turns a generic page into one that feels built for that visitor — which is exactly what paid traffic should feel like.</div>
+        </div>
+        <div class="decision-card">
+          <div class="decision-tag">Form Position</div>
+          <div class="decision-title">Above the fold, not below the pitch</div>
+          <div class="decision-body">Visitors arriving from a deadline-driven ad are often ready immediately. Making them scroll to act adds friction for the highest-intent segment.</div>
+        </div>
+        <div class="decision-card">
+          <div class="decision-tag">Trust Signals</div>
+          <div class="decision-title">Approval and volume, stated plainly</div>
+          <div class="decision-body">State approval is the first objection for CLE buyers. Answering it inline — alongside years in business and review volume — removes the doubt without a separate section.</div>
+        </div>
+        <div class="decision-card">
+          <div class="decision-tag">Scope</div>
+          <div class="decision-title">One variable set, not a rebuild</div>
+          <div class="decision-body">Changes were grouped into a single coherent hypothesis so the result stayed interpretable. Testing twenty unrelated changes tells you something moved, but never why.</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- OUTCOME STRIP -->
+  <div class="outcome-strip section" id="outcome">
+    <div class="outcome-inner">
+      <div class="outcome-eyebrow">What the Test Delivered</div>
+      <div class="outcome-title">A better page, and a repeatable method.</div>
+      <div class="outcome-grid">
+        <div class="outcome-item">
+          <div class="outcome-n">Efficiency</div>
+          <div class="outcome-l">The same ad spend produced more registrations. No increase in budget, no new campaigns — just a page that did its job.</div>
+        </div>
+        <div class="outcome-item">
+          <div class="outcome-n">A template</div>
+          <div class="outcome-l">The winning structure was rolled out across the remaining state campaigns, so one test improved more than one page.</div>
+        </div>
+        <div class="outcome-item">
+          <div class="outcome-n">Evidence</div>
+          <div class="outcome-l">Decisions moved from opinion to data. The test gave a defensible answer and a baseline for the next round of optimization.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main style="padding-top:0;">
+    <div class="takeaway section" id="takeaway">
+      <div class="takeaway-eyebrow">Takeaway</div>
+      <h2 class="takeaway-title">You can't optimize what you haven't tested. Opinions are cheap; split tests are proof.</h2>
+      <div class="takeaway-body">The most valuable outcome wasn't the lift itself — it was having a documented, repeatable process for improving every paid page that came after it.</div>
+    </div>
+  </main>
+
+  <div style="max-width:1300px; margin:0 auto; padding:0 56px;">
+    <div class="grad-divider"></div>
+  </div>
+
+  <div class="footer-cta section" id="footer-cta">
+    <p class="footer-cta-eyebrow">More work by Molly Curtis</p>
+    <a href="https://mollycurtis.github.io/landingpages/" class="footer-cta-link">
+      View More Landing Pages <span class="arrow">→</span>
+    </a>
+  </div>
+
+  <script>
+    const els = document.querySelectorAll('.section, .context-strip');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.06 });
+    els.forEach(s => observer.observe(s));
+  </script>
+
+</body>
+</html>
