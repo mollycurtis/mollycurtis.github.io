@@ -242,6 +242,20 @@
     @media (max-width: 480px) {
       .footer-links { grid-template-columns: 1fr; }
     }
+
+    .card-disabled { cursor: default; pointer-events: none; }
+    .card-disabled .card-thumb.thumb-abt { filter: grayscale(1) brightness(0.72); }
+    .card-disabled .card-thumb.thumb-abt::before,
+    .card-disabled .card-thumb.thumb-abt::after { opacity: 0.5; }
+    .card-disabled .abt-bars { opacity: 0.06 !important; }
+    .card-disabled:hover { box-shadow: none; transform: none; }
+    .card-disabled .card-desc { opacity: 0.7; }
+    .card-arrow-disabled {
+      display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted);
+      background: var(--surface); border: 1.5px dashed var(--border);
+      padding: 7px 14px; border-radius: 30px;
+    }
   </style>
 </head>
 <body>
@@ -323,10 +337,10 @@
           </div>
         </div>
       </a>
-      <!-- CARD 4 — A/B Testing Optimization -->
-      <a class="project-card card-abt" href="https://mollycurtis.github.io/projects/ab-testing">
+      <!-- CARD 4 — A/B Testing Optimization (in progress, not yet clickable) -->
+      <div class="project-card card-abt card-disabled" aria-disabled="true">
         <div class="card-thumb thumb-abt">
-          <span class="thumb-badge" style="background:rgba(20,88,204,0.35);color:rgba(130,190,255,0.95);border:1px solid rgba(100,170,255,0.22);">NBI · 2026</span>
+          <span class="thumb-badge" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.65);border:1px solid rgba(255,255,255,0.22);">In Progress</span>
           <div class="abt-bars">
             <div class="abt-bar"></div>
             <div class="abt-bar"></div>
@@ -340,9 +354,9 @@
           <div class="branded-thumb-inner" style="position:relative;z-index:2;">
             <div class="branded-thumb-title" style="font-family:'DM Sans',sans-serif;font-weight:600;color:#e8f2ff;letter-spacing:-0.02em;">A/B Testing Optimization</div>
             <div class="branded-thumb-pills">
-              <span class="branded-pill" style="border-color:rgba(60,130,255,0.3);color:rgba(130,190,255,0.88);">CRO</span>
-              <span class="branded-pill" style="border-color:rgba(60,130,255,0.3);color:rgba(130,190,255,0.88);">Paid Search</span>
-              <span class="branded-pill" style="border-color:rgba(60,130,255,0.3);color:rgba(130,190,255,0.88);">UX Strategy</span>
+              <span class="branded-pill" style="border-color:rgba(255,255,255,0.22);color:rgba(255,255,255,0.55);">CRO</span>
+              <span class="branded-pill" style="border-color:rgba(255,255,255,0.22);color:rgba(255,255,255,0.55);">Paid Search</span>
+              <span class="branded-pill" style="border-color:rgba(255,255,255,0.22);color:rgba(255,255,255,0.55);">UX Strategy</span>
             </div>
           </div>
         </div>
@@ -350,10 +364,10 @@
           <p class="card-desc">Redesigned paid-search landing pages across multiple state campaigns. Simplified hierarchy, reduced friction, and improved conversion performance through live A/B testing.</p>
           <div class="card-footer">
             <span class="card-client">National Business Institute</span>
-            <div class="card-arrow">View Case Study<div class="card-arrow-icon"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></div>
+            <div class="card-arrow card-arrow-disabled">Case Study Coming Soon</div>
           </div>
         </div>
-      </a>
+      </div>
       <!-- CARD 5 — Marketing Summit -->
       <a class="project-card card-summit" href="https://mollycurtis.github.io/projects/marketing-summit/">
         <div class="card-thumb thumb-signal">
@@ -438,7 +452,5 @@
       </a>
     </div>
   </footer>
-  <script>
-  </script>
 </body>
 </html>
