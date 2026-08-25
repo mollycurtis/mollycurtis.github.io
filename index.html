@@ -192,6 +192,8 @@ body.hub-open header.mast{display:none}
 .looking{margin-top:var(--s6);padding:var(--s5);background:var(--paper-raised);border:1px solid var(--hairline);border-left:2px solid var(--red);border-radius:2px}
 .looking .l{font-family:var(--mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--red-deep);display:block;margin-bottom:var(--s2)}
 .looking p{font-size:16px;line-height:1.6;color:var(--ink-soft);max-width:60ch;margin:0}
+.resume-link{display:inline-flex;align-items:center;gap:.4em;margin-top:var(--s5);font-family:var(--mono);font-size:13px;letter-spacing:.04em;color:var(--red-deep);text-decoration:none;border-bottom:1px solid transparent;transition:color .2s var(--ease),border-color .2s var(--ease)}
+.resume-link:hover{color:var(--red-deep);border-color:var(--red-deep)}
 .about-figure{overflow:hidden;background:#e7e2d8;aspect-ratio:4/5;max-height:62vh;border:1px solid var(--red)}
 .about-figure img{width:100%;height:100%;object-fit:cover;object-position:center 20%;opacity:0;transition:opacity .7s var(--ease)}
 .about-figure img.loaded{opacity:1}
@@ -333,7 +335,7 @@ body.hub-open header.mast{display:none}
       <div class="cover-metrics">
         <div class="metric"><span class="n">$1M+</span><span class="l">Attributed Revenue</span></div>
         <div class="metric"><span class="n">650+</span><span class="l">Pages Designed &amp; Optimized</span></div>
-        <div class="metric"><span class="n">80+</span><span class="l">Campaigns Executed</span></div>
+        <div class="metric"><span class="n">80+</span><span class="l">Campaigns Supported</span></div>
         <div class="metric"><span class="n">400K+</span><span class="l">Sessions Driven</span></div>
       </div>
     </div>
@@ -409,12 +411,10 @@ body.hub-open header.mast{display:none}
     <h2 class="h-view tk-reveal d1" id="about-h" data-view-focus tabindex="-1">The person behind the work.</h2>
     <div class="about-grid" style="margin-top:var(--s5)">
       <div class="about-body tk-reveal d2">
-        <p>I'm a creative digital marketer with a background in growth and brand strategy, focused on creating work that is visually strong and performance-driven. My experience spans landing pages, digital campaigns, ad creative, and conversion-focused design across channels.</p>
-        <p>In less than 3 years, I've grown from intern to analyst to digital marketing specialist. While building hands-on experience across design, strategy, analytics, and web execution that bring a performance and systems-driven approach to every project.</p>
-        <div class="looking">
-          <span class="l">What I'm Looking For</span>
-          <p>I'm drawn to roles where design, marketing, and performance intersect. Marketing is always evolving, and I enjoy staying current, adapting quickly, and creating work that reflects how people discover, engage, and convert.</p>
-        </div>
+        <p>I'm a digital marketer with a creative and analytical approach to building brands, campaigns, and digital experiences. My work sits at the intersection of strategy, design, content, and performance, from conversion-focused landing pages and web experiences to paid media, brand development, and visual content.</p>
+        <p>In less than three years, I've grown from marketing intern to digital marketing specialist while working across web, CRO, analytics, paid media, content, and creative work. I enjoy taking an idea from strategy through execution, figuring out what makes it effective, and building systems that make the work better and more scalable.</p>
+        <p>Marketing is always evolving, and I enjoy staying current, adapting quickly, and creating work that reflects how people discover, engage, and convert. I'm especially drawn to work where marketing and creativity come together, turning strong ideas into experiences that people notice, engage with, and remember.</p>
+        <a class="resume-link" href="https://mollycurtis.github.io/Molly_Curtis_Resume.docx.pdf" target="_blank" rel="noopener" aria-label="View Resume">View Resume <span aria-hidden="true">→</span></a>
       </div>
       <figure class="about-figure tk-reveal d3">
         <img data-src="https://res.cloudinary.com/dih43qroh/image/upload/f_auto,q_auto,w_800/v1780602349/Molly-Curtis_dycnol.png"
@@ -441,8 +441,8 @@ body.hub-open header.mast{display:none}
       <div class="contact-grid">
         <div class="contact-left">
           <span class="kicker">Creative Marketing</span>
-          <h2 class="h-view contact-h" id="contact-h" data-view-focus tabindex="-1">Interested in working together?</h2>
-          <p class="contact-lede">Whether it's a brand, campaign, landing page, or creative concept, I'm always open to new opportunities and collaborations.</p>
+          <h2 class="h-view contact-h" id="contact-h" data-view-focus tabindex="-1">Let's connect.</h2>
+          <p class="contact-lede">I'm always interested in hearing about thoughtful marketing, creative, and digital opportunities.</p>
           <div class="hiw">
             <span class="hiw-label">How I Work</span>
             <ol class="hiw-list">
@@ -458,9 +458,9 @@ body.hub-open header.mast{display:none}
           <form id="contact-form" novalidate action="https://formspree.io/f/mzdokgor" method="POST">
             <div class="field"><label for="c-name">Your name</label><input id="c-name" name="name" type="text" placeholder="Full name" required></div>
             <div class="field"><label for="c-email">Email</label><input id="c-email" name="email" type="email" placeholder="your@email.com" required></div>
-            <div class="field"><label for="c-role">Company or role</label><input id="c-role" name="company_or_role" type="text" placeholder="Where are you reaching out from?"></div>
-            <div class="field"><label for="c-opp">What's the opportunity?</label><input id="c-opp" name="opportunity" type="text" placeholder="Role, collaboration, creative project…"></div>
-            <div class="field"><label for="c-msg">Anything else</label><textarea id="c-msg" name="message" placeholder="Share context, timeline, or anything that helps me understand the fit." required></textarea></div>
+            <div class="field"><label for="c-role">Company or organization</label><input id="c-role" name="company_or_role" type="text" placeholder="Where are you reaching out from?"></div>
+            <div class="field"><label for="c-opp">What are you reaching out about?</label><input id="c-opp" name="opportunity" type="text" placeholder="Role, project, collaboration, or something else…"></div>
+            <div class="field"><label for="c-msg">Additional context</label><textarea id="c-msg" name="message" placeholder="Anything you'd like me to know?" required></textarea></div>
             <button class="submit" type="submit" id="c-submit">Send message</button>
             <p class="form-status" id="c-status" role="status" aria-live="polite"></p>
           </form>
