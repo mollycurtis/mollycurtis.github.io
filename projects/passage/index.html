@@ -45,11 +45,14 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
 .hero-bag{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(1.6);width:clamp(240px,34vw,480px);will-change:transform,opacity;transform-origin:center center}
 .hero-wordmark{position:absolute;top:42px;left:50%;transform:translateX(-50%);font-size:11px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:rgba(231,226,215,.5);white-space:nowrap;opacity:0;transition:opacity .6s var(--ease)}
 .hero-wordmark.show{opacity:1}
-.hero-headline{position:absolute;bottom:0;left:0;right:0;padding:0 var(--gut) 64px;display:flex;align-items:flex-end;justify-content:space-between;gap:32px}
-.hero-h1{font-family:var(--serif);font-size:clamp(48px,7.5vw,104px);font-weight:300;line-height:.94;letter-spacing:-.02em;color:var(--linen);opacity:0;transform:translateY(30px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.hero-headline{position:absolute;bottom:0;left:0;right:0;padding:0 var(--gut) 64px;display:flex;align-items:flex-end;justify-content:space-between;gap:clamp(32px,6vw,88px)}
+.hero-head-main{display:flex;flex-direction:column}
+.hero-eyebrow{font-size:11px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--clay);margin-bottom:20px;opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.hero-eyebrow.show{opacity:1;transform:none}
+.hero-h1{font-family:var(--serif);font-size:clamp(44px,6.6vw,92px);font-weight:400;line-height:.98;letter-spacing:-.02em;color:var(--linen);opacity:0;transform:translateY(30px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
 .hero-h1.show{opacity:1;transform:none}
 .hero-h1 em{font-style:italic;color:var(--clay)}
-.hero-sub{font-size:13px;font-weight:300;letter-spacing:.02em;color:rgba(231,226,215,.6);text-align:right;max-width:240px;line-height:1.7;opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease) .15s,transform .7s var(--ease) .15s}
+.hero-sub{font-size:15px;font-weight:400;letter-spacing:.01em;color:rgba(231,226,215,.62);text-align:left;max-width:420px;line-height:1.7;padding-bottom:8px;opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease) .15s,transform .7s var(--ease) .15s}
 .hero-sub.show{opacity:1;transform:none}
 .hero-sub strong{color:var(--linen);font-weight:500}
 .scroll-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;transition:opacity .4s}
@@ -62,33 +65,22 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
 /* ══ BRIEF ══ */
 #ch-brief{background:var(--linen);padding:clamp(88px,13vh,150px) var(--gut);display:grid;grid-template-columns:1.55fr 1fr;gap:clamp(40px,7vw,96px);align-items:end}
 .brief-statement{font-family:var(--serif);font-size:clamp(40px,6vw,82px);font-weight:300;line-height:1.0;letter-spacing:-.02em;color:var(--espresso);margin:28px 0 0;max-width:15ch}
-.brief-statement em{font-style:italic}
+.brief-statement em{font-style:italic;color:var(--clay)}
+.brief-statement em.em2{color:var(--terracotta)}
 .brief-side{padding-bottom:8px}
-.brief-side p{font-size:14.5px;font-weight:300;color:rgba(42,40,37,.62);line-height:1.75;margin-bottom:22px}
+.brief-side p{font-size:16.5px;font-weight:400;color:rgba(42,40,37,.7);line-height:1.7;margin-bottom:22px}
 .brief-side p strong{color:var(--espresso);font-weight:500}
 .brief-meta{margin-top:28px;padding-top:24px;border-top:1px solid rgba(42,40,37,.14);display:grid;grid-template-columns:1fr 1fr;gap:16px 24px}
-.brief-meta div span{display:block;font-size:9.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--rust);margin-bottom:5px}
-.brief-meta div p{font-size:13px;font-weight:400;color:var(--ink);line-height:1.4;margin:0}
+.brief-meta div span{display:block;font-size:10.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--terracotta);margin-bottom:6px}
+.brief-meta div p{font-size:14.5px;font-weight:400;color:var(--ink);line-height:1.45;margin:0}
 
 /* ══ THE FRAME ══ */
-.ch-frame{background:var(--espresso);position:relative;padding:clamp(88px,13vh,150px) var(--gut);display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(48px,7vw,110px);align-items:center}
-.frame-copy{position:relative;z-index:2;max-width:46ch}
-.frame-copy .kicker{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2vw,26px);color:var(--rust-lt);margin:20px 0 18px;font-weight:400;line-height:1.15}
-.frame-copy h2{font-family:var(--serif);font-size:clamp(36px,5vw,66px);font-weight:300;line-height:1.0;letter-spacing:-.02em;color:var(--linen);margin-bottom:26px}
-.frame-copy h2 em{font-style:italic;color:var(--clay)}
-.frame-copy p{font-size:15px;font-weight:300;color:rgba(231,226,215,.62);line-height:1.78;margin-bottom:20px}
-.frame-copy p strong{color:var(--linen);font-weight:500}
-.frame-points{margin-top:30px;display:flex;flex-direction:column;border-top:1px solid rgba(231,226,215,.12)}
-.frame-point{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:baseline;padding:16px 0;border-bottom:1px solid rgba(231,226,215,.12)}
-.frame-point .fp-n{font-family:var(--serif);font-style:italic;font-size:16px;color:var(--rust-lt)}
-.frame-point .fp-t{font-size:13.5px;font-weight:300;color:rgba(231,226,215,.72);line-height:1.5}
-.frame-point .fp-t b{color:var(--linen);font-weight:500}
-.frame-viz{position:relative;z-index:2;display:flex;align-items:center;justify-content:center}
 
 /* ══ KITS (config) ══ */
 .ch-config{background:var(--espresso);position:relative;padding:clamp(80px,11vh,130px) 0 clamp(72px,9vh,110px)}
 .config-head{padding:0 var(--gut);margin-bottom:44px;display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,7vw,96px);align-items:end}
-.config-head h2{font-family:var(--serif);font-size:clamp(30px,4.4vw,58px);font-weight:300;line-height:1.0;letter-spacing:-.018em;color:var(--linen);margin-top:18px}
+.config-head h2{font-family:var(--serif);font-size:clamp(30px,4.4vw,58px);font-weight:300;line-height:1.0;letter-spacing:-.018em;color:var(--linen);margin-top:6px}
+.config-kicker{font-family:var(--serif);font-style:italic;font-size:clamp(17px,1.9vw,23px);color:var(--clay);margin:16px 0 4px;font-weight:400;line-height:1.2}
 .config-head h2 em{font-style:italic;color:var(--clay)}
 .config-head .reason{font-size:14px;font-weight:300;color:rgba(231,226,215,.58);line-height:1.75;padding-bottom:6px}
 .config-head .reason strong{color:var(--linen);font-weight:500}
@@ -105,8 +97,9 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
 
 .config-stage{padding:0 var(--gut);display:grid;grid-template-columns:1.1fr 1fr;gap:0;border-top:1px solid rgba(231,226,215,.12)}
 .config-viz{display:flex;align-items:center;justify-content:center;padding:44px clamp(24px,4vw,56px);border-right:1px solid rgba(231,226,215,.12);position:relative;overflow:hidden;min-height:48vh}
-.interior-panel{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .45s var(--ease);padding:44px}
+.interior-panel{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .5s var(--ease);padding:clamp(20px,3vw,40px)}
 .interior-panel.active{opacity:1}
+.config-img{width:100%;max-width:540px;height:auto;object-fit:contain;filter:drop-shadow(0 24px 34px rgba(0,0,0,.4))}
 .config-copy{padding:clamp(40px,5vh,60px) 0 clamp(40px,5vh,60px) clamp(32px,5vw,64px);display:flex;flex-direction:column;justify-content:center}
 .config-kit-name{font-family:var(--serif);font-size:clamp(30px,4.2vw,52px);font-weight:300;font-style:italic;color:var(--linen);line-height:.98;letter-spacing:-.02em;margin-bottom:8px}
 .config-lines{display:flex;flex-direction:column;gap:2px;margin-bottom:24px}
@@ -198,32 +191,23 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
 .ed-head .reason strong{color:var(--espresso);font-weight:500}
 .ed-stage{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,88px);align-items:center;margin-top:40px}
 .ed-viz{display:flex;align-items:center;justify-content:center;padding:20px}
-.ed-imgwrap{position:relative;display:flex;align-items:center;justify-content:center;width:100%}
-.ed-img{width:100%;max-width:320px;height:auto;object-fit:contain;filter:drop-shadow(0 34px 46px rgba(42,40,37,.28));will-change:opacity,filter}
-.ed-img.flick{animation:edFlicker .62s steps(1,end) 1}
-@keyframes edFlicker{
-  0%{opacity:1}
-  12%{opacity:.15}
-  24%{opacity:.75}
-  38%{opacity:.25}
-  52%{opacity:.9}
-  66%{opacity:.4}
-  100%{opacity:1}
-}
+.ed-imgwrap{position:relative;width:100%;display:flex;align-items:center;justify-content:center;min-height:clamp(340px,42vw,500px)}
+.ed-img{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:100%;max-width:320px;height:auto;object-fit:contain;opacity:0;transition:opacity .55s var(--ease);filter:drop-shadow(0 30px 40px rgba(42,40,37,.32));will-change:opacity}
+.ed-img.active{opacity:1}
 .ed-panel{display:flex;flex-direction:column;gap:0}
-.ed-name{font-family:var(--serif);font-size:clamp(30px,4vw,52px);font-weight:300;color:var(--espresso);line-height:1;margin-bottom:12px;transition:opacity .3s}
+.ed-name{font-family:var(--serif);font-size:clamp(30px,4vw,52px);font-weight:400;color:var(--espresso);line-height:1;margin-bottom:12px;transition:opacity .3s}
 .ed-name em{font-style:italic;color:var(--rust)}
-.ed-desc{font-size:14px;font-weight:300;color:rgba(42,40,37,.58);line-height:1.6;margin-bottom:32px;transition:opacity .3s}
-.ed-swatches{display:flex;flex-direction:column;gap:0;border-top:1px solid rgba(42,40,37,.14)}
-.ed-swatch{display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center;padding:16px 0;border-bottom:1px solid rgba(42,40,37,.12);cursor:pointer;background:none;border-left:none;border-right:none;border-top:none;text-align:left;font-family:var(--sans);transition:padding-left .25s var(--ease)}
-.ed-swatch:hover{padding-left:8px}
-.ed-swatch.active{padding-left:8px}
-.ed-swatch-dots{display:flex;gap:-4px}
-.ed-dot{width:18px;height:18px;border-radius:50%;border:1px solid rgba(42,40,37,.15)}
-.ed-dot:nth-child(2){margin-left:-6px}
-.ed-swatch-name{font-size:13px;font-weight:500;letter-spacing:.04em;color:var(--espresso)}
-.ed-swatch.active .ed-swatch-name{color:var(--rust)}
-.ed-swatch-loc{font-size:11px;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:rgba(42,40,37,.4)}
+.ed-desc{font-size:15px;font-weight:400;color:rgba(42,40,37,.62);line-height:1.6;margin-bottom:30px;transition:opacity .3s}
+.ed-swatches{display:flex;flex-direction:column;gap:8px}
+.ed-swatch{display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;padding:14px 18px 14px 16px;border:1px solid rgba(42,40,37,.16);background:transparent;cursor:pointer;text-align:left;font-family:var(--sans);position:relative;transition:background .2s var(--ease),border-color .2s var(--ease)}
+.ed-swatch::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--terracotta);transform:scaleY(0);transform-origin:center;transition:transform .25s var(--ease)}
+.ed-swatch:hover{background:rgba(42,40,37,.035);border-color:rgba(42,40,37,.28)}
+.ed-swatch.active{background:rgba(42,40,37,.06);border-color:rgba(42,40,37,.34)}
+.ed-swatch.active::before{transform:scaleY(1)}
+.ed-swatch-dot{width:24px;height:24px;border-radius:50%;border:1px solid rgba(42,40,37,.22);flex-shrink:0;box-shadow:inset 0 0 0 1px rgba(255,255,255,.15)}
+.ed-swatch-name{font-size:14px;font-weight:500;letter-spacing:.02em;color:var(--espresso)}
+.ed-swatch.active .ed-swatch-name{color:var(--terracotta)}
+.ed-swatch-loc{font-size:10.5px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:rgba(42,40,37,.42)}
 
 /* ══ KEEP UP (intelligent features) ══ */
 .ch-keepup{background:var(--espresso);position:relative;padding:clamp(80px,11vh,130px) var(--gut)}
@@ -330,9 +314,7 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
 /* ══ RESPONSIVE ══ */
 @media(max-width:900px){
   #ch-brief{grid-template-columns:1fr;gap:44px;align-items:start}
-  .ch-frame{grid-template-columns:1fr;gap:48px}
-  .frame-viz{order:-1}
-  .config-head{grid-template-columns:1fr;gap:24px}
+      .config-head{grid-template-columns:1fr;gap:24px}
   .pack-head{grid-template-columns:1fr;gap:24px}
   .pack-grid{grid-template-columns:1fr;gap:40px}
   .feature-intro-inner{grid-template-columns:1fr;gap:24px}
@@ -352,7 +334,7 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
   .config-viz{border-right:none;border-bottom:1px solid rgba(231,226,215,.12);min-height:56vw}
   .config-copy{padding:36px 0 8px}
   .hero-headline{flex-direction:column;align-items:flex-start;gap:20px;padding-bottom:48px}
-  .hero-sub{text-align:left;max-width:none}
+  .hero-sub{max-width:none}
   .fl-a,.fl-c{right:auto;left:calc(100% + 10px);flex-direction:row}
   .fl-a .feature-label-text,.fl-c .feature-label-text{text-align:left;align-items:flex-start}
   .feature-label-line{width:22px}
@@ -405,8 +387,11 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
         </svg>
       </div>
       <div class="hero-headline">
-        <h1 class="hero-h1" id="heroH1">One carry-on.<br><em>Different ways</em><br>to travel.</h1>
-        <p class="hero-sub" id="heroSub">A launch page for <strong>PASSAGE ONE</strong>, a carry-on whose interior, and intelligence, reconfigure around the trip. This is how I designed it.</p>
+        <div class="hero-head-main">
+          <span class="hero-eyebrow" id="heroEyebrow">Product Launch &middot; Case Study</span>
+          <h1 class="hero-h1" id="heroH1">A product launch,<br><em>designed end to end.</em></h1>
+        </div>
+        <p class="hero-sub" id="heroSub">PASSAGE ONE is a carry-on whose interior and intelligence reconfigure around the trip. A walkthrough of how I built the brand, the story, and the launch page.</p>
       </div>
       <div class="scroll-hint" id="scrollHint" aria-hidden="true"><span>Scroll</span><div class="scroll-line"></div></div>
     </div>
@@ -417,7 +402,7 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
 <section id="ch-brief" aria-label="The brief">
   <div class="brief-main">
     <span class="eyebrow">The Brief</span>
-    <p class="brief-statement">Launch a product people <em>understand</em> before they want it.</p>
+    <p class="brief-statement">Launch a product people <em>understand</em> before they <em class="em2">want</em> it.</p>
   </div>
   <div class="brief-side">
     <p>Luggage is usually sold on numbers: capacity, weight, wheel count. But nobody falls for a spec sheet. The real job was to make one bag feel like the answer to <strong>every kind of trip you take</strong>, then let the details close the deal.</p>
@@ -431,55 +416,15 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
   </div>
 </section>
 
-<!-- ══ THE FRAME ══ -->
-<section class="ch-frame grain on-dark" aria-label="The product idea: the Passage Frame">
-  <div class="frame-copy">
-    <span class="eyebrow">The Product Idea</span>
-    <p class="kicker">Your trip changes.<br>Your luggage should too.</p>
-    <h2>One suitcase. <em>Different ways to use it.</em></h2>
-    <p>Most carry-ons are a hollow shell you fill with loose packing cubes that shift the moment you lift the bag. ONE starts with <strong>the Passage Frame</strong>, a lightweight aluminum structure that stays in the case for good.</p>
-    <p>Everything else clips onto the Frame and changes with the trip. Reconfigure in seconds without unpacking. Lift a module out to carry it on its own.</p>
-    <div class="frame-points">
-      <div class="frame-point"><span class="fp-n">i</span><p class="fp-t"><b>The Frame stays.</b> The permanent interior spine every kit mounts to.</p></div>
-      <div class="frame-point"><span class="fp-n">ii</span><p class="fp-t"><b>The kits change.</b> Weekender, Work, Field, Long Haul, swapped in and out.</p></div>
-      <div class="frame-point"><span class="fp-n">iii</span><p class="fp-t"><b>Nothing floats.</b> Everything locks down, so a full bag still feels like one solid object.</p></div>
-    </div>
-  </div>
-  <div class="frame-viz">
-    <svg viewBox="0 0 440 480" fill="none" style="width:100%;max-width:420px" aria-hidden="true">
-      <rect x="40" y="40" width="360" height="400" rx="5" stroke="#E7E2D7" stroke-width="1.2" opacity=".45"/>
-      <line x1="220" y1="64" x2="220" y2="416" stroke="#E7E2D7" stroke-width="3" opacity=".85"/>
-      <line x1="214" y1="64" x2="214" y2="416" stroke="#E7E2D7" stroke-width=".6" opacity=".35"/>
-      <line x1="226" y1="64" x2="226" y2="416" stroke="#E7E2D7" stroke-width=".6" opacity=".35"/>
-      <text x="220" y="52" font-family="'Didot','Playfair Display',serif" font-size="8" font-weight="500" letter-spacing="3" text-anchor="middle" fill="#E7E2D7" opacity=".55">THE FRAME</text>
-      <circle cx="220" cy="110" r="4.5" fill="#B24E2E" opacity=".9"/>
-      <circle cx="220" cy="190" r="4.5" fill="#B24E2E" opacity=".9"/>
-      <circle cx="220" cy="270" r="4.5" fill="#B24E2E" opacity=".9"/>
-      <circle cx="220" cy="350" r="4.5" fill="#B24E2E" opacity=".9"/>
-      <rect x="66" y="82" width="140" height="56" rx="2" fill="rgba(231,226,215,.07)" stroke="#E7E2D7" stroke-width=".8" opacity=".6"/>
-      <line x1="206" y1="110" x2="220" y2="110" stroke="#B24E2E" stroke-width="1.4" opacity=".8"/>
-      <text x="136" y="114" font-family="'Didot','Playfair Display',serif" font-size="7" text-anchor="middle" fill="#E7E2D7" opacity=".5" letter-spacing="1.5">GARMENT FOLD</text>
-      <rect x="234" y="162" width="140" height="56" rx="2" fill="rgba(231,226,215,.07)" stroke="#E7E2D7" stroke-width=".8" opacity=".6"/>
-      <line x1="220" y1="190" x2="234" y2="190" stroke="#B24E2E" stroke-width="1.4" opacity=".8"/>
-      <text x="304" y="194" font-family="'Didot','Playfair Display',serif" font-size="7" text-anchor="middle" fill="#E7E2D7" opacity=".5" letter-spacing="1.5">LAPTOP SLEEVE</text>
-      <rect x="66" y="242" width="140" height="56" rx="2" fill="rgba(231,226,215,.07)" stroke="#E7E2D7" stroke-width=".8" opacity=".6"/>
-      <line x1="206" y1="270" x2="220" y2="270" stroke="#B24E2E" stroke-width="1.4" opacity=".8"/>
-      <text x="136" y="274" font-family="'Didot','Playfair Display',serif" font-size="7" text-anchor="middle" fill="#E7E2D7" opacity=".5" letter-spacing="1.5">CAMERA CUBE</text>
-      <rect x="234" y="322" width="140" height="56" rx="2" fill="rgba(231,226,215,.07)" stroke="#E7E2D7" stroke-width=".8" opacity=".6"/>
-      <line x1="220" y1="350" x2="234" y2="350" stroke="#B24E2E" stroke-width="1.4" opacity=".8"/>
-      <text x="304" y="354" font-family="'Didot','Playfair Display',serif" font-size="7" text-anchor="middle" fill="#E7E2D7" opacity=".5" letter-spacing="1.5">COMPRESSION</text>
-    </svg>
-  </div>
-</section>
-
-<!-- ══ KITS / CHOOSE HOW YOURS TRAVELS ══ -->
-<section class="ch-config grain on-dark" aria-label="Choose how yours travels">
+<!-- ══ THE PRODUCT / CHOOSE HOW YOURS TRAVELS (merged) ══ -->
+<section class="ch-config grain on-dark" id="ch-config" aria-label="The product: choose how yours travels">
   <div class="config-head">
     <div>
-      <span class="eyebrow">Choose how yours travels</span>
-      <h2>One suitcase, <em>configured for you.</em></h2>
+      <span class="eyebrow">The Product &middot; Choose how yours travels</span>
+      <p class="config-kicker">Your trip changes. Your luggage should too.</p>
+      <h2>One suitcase. <em>Different ways to use it.</em></h2>
     </div>
-    <p class="reason">At checkout, you don't pick a color, you pick how it's packed. The Frame is standard. The kit is yours. Watch the same bag become each trip.<span class="aside"><b>Design decision 01</b> &nbsp;&mdash;&nbsp; use cases before features</span></p>
+    <p class="reason">Every PASSAGE ONE is built on <strong>the Frame</strong>, a lightweight aluminum structure that stays in the case for good. The kits clip onto it and change with the trip, so you reconfigure without unpacking. At checkout you don't pick a color, you pick how it's packed.<span class="aside"><b>Design decision 01</b> &nbsp;&mdash;&nbsp; use cases before features</span></p>
   </div>
 
   <div class="config-tabs" role="tablist" aria-label="Kit configurations">
@@ -491,65 +436,10 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
 
   <div class="config-stage" id="config-panel" role="tabpanel">
     <div class="config-viz" aria-hidden="true">
-      <div class="interior-panel active" data-panel="weekend">
-        <svg viewBox="0 0 300 340" fill="none" style="width:100%;max-width:280px">
-          <rect x="24" y="20" width="252" height="300" rx="3" stroke="#E7E2D7" stroke-width="1" opacity=".4"/>
-          <line x1="150" y1="34" x2="150" y2="306" stroke="#E7E2D7" stroke-width="2.4" opacity=".7"/>
-          <circle cx="150" cy="72" r="3.5" fill="#B24E2E" opacity=".85"/><circle cx="150" cy="150" r="3.5" fill="#B24E2E" opacity=".85"/>
-          <rect x="40" y="48" width="94" height="48" rx="2" fill="rgba(231,226,215,.06)" stroke="#E7E2D7" stroke-width=".7" opacity=".5"/>
-          <text x="87" y="76" font-family="'Didot','Playfair Display',serif" font-size="6.5" text-anchor="middle" fill="#E7E2D7" opacity=".42" letter-spacing="1.5">PACKING DIVIDER</text>
-          <rect x="166" y="126" width="94" height="48" rx="2" fill="rgba(231,226,215,.05)" stroke="#E7E2D7" stroke-width=".6" opacity=".4"/>
-          <text x="213" y="154" font-family="'Didot','Playfair Display',serif" font-size="6" text-anchor="middle" fill="#E7E2D7" opacity=".32" letter-spacing="1.5">ESSENTIALS</text>
-          <rect x="40" y="200" width="220" height="96" rx="2" stroke="#E7E2D7" stroke-width=".4" stroke-dasharray="3 6" opacity=".16"/>
-          <text x="150" y="252" font-family="'Didot','Playfair Display',serif" font-size="6.5" text-anchor="middle" fill="#E7E2D7" opacity=".25" letter-spacing="2">OPEN SPACE</text>
-        </svg>
-      </div>
-      <div class="interior-panel" data-panel="work">
-        <svg viewBox="0 0 300 340" fill="none" style="width:100%;max-width:280px">
-          <rect x="24" y="20" width="252" height="300" rx="3" stroke="#E7E2D7" stroke-width="1" opacity=".4"/>
-          <line x1="150" y1="34" x2="150" y2="306" stroke="#E7E2D7" stroke-width="2.4" opacity=".7"/>
-          <circle cx="150" cy="70" r="3.5" fill="#B24E2E" opacity=".85"/><circle cx="150" cy="150" r="3.5" fill="#B24E2E" opacity=".85"/><circle cx="150" cy="240" r="3.5" fill="#B24E2E" opacity=".85"/>
-          <rect x="40" y="46" width="220" height="48" rx="2" fill="rgba(231,226,215,.08)" stroke="#E7E2D7" stroke-width=".8" opacity=".6"/>
-          <text x="150" y="74" font-family="'Didot','Playfair Display',serif" font-size="6.5" text-anchor="middle" fill="#E7E2D7" opacity=".5" letter-spacing="1.5">PADDED LAPTOP SLEEVE</text>
-          <rect x="40" y="126" width="94" height="48" rx="2" fill="rgba(231,226,215,.05)" stroke="#E7E2D7" stroke-width=".6" opacity=".42"/>
-          <text x="87" y="154" font-family="'Didot','Playfair Display',serif" font-size="6" text-anchor="middle" fill="#E7E2D7" opacity=".34" letter-spacing="1">DOC FOLIO</text>
-          <rect x="166" y="126" width="94" height="48" rx="2" fill="rgba(231,226,215,.05)" stroke="#E7E2D7" stroke-width=".6" opacity=".38"/>
-          <text x="213" y="154" font-family="'Didot','Playfair Display',serif" font-size="6" text-anchor="middle" fill="#E7E2D7" opacity=".32" letter-spacing="1">CABLES</text>
-          <rect x="40" y="216" width="220" height="46" rx="2" fill="rgba(231,226,215,.04)" stroke="#E7E2D7" stroke-width=".5" opacity=".3"/>
-          <text x="150" y="242" font-family="'Didot','Playfair Display',serif" font-size="6" text-anchor="middle" fill="#E7E2D7" opacity=".3" letter-spacing="1.5">CLOTHES &amp; TECH POUCH</text>
-        </svg>
-      </div>
-      <div class="interior-panel" data-panel="creative">
-        <svg viewBox="0 0 300 340" fill="none" style="width:100%;max-width:280px">
-          <rect x="24" y="20" width="252" height="300" rx="3" stroke="#E7E2D7" stroke-width="1" opacity=".4"/>
-          <line x1="150" y1="34" x2="150" y2="306" stroke="#E7E2D7" stroke-width="2.4" opacity=".7"/>
-          <circle cx="150" cy="90" r="3.5" fill="#B24E2E" opacity=".85"/><circle cx="150" cy="180" r="3.5" fill="#B24E2E" opacity=".85"/><circle cx="150" cy="256" r="3.5" fill="#B24E2E" opacity=".85"/>
-          <rect x="40" y="46" width="94" height="90" rx="2" fill="rgba(231,226,215,.08)" stroke="#E7E2D7" stroke-width=".8" opacity=".58"/>
-          <circle cx="87" cy="86" r="22" fill="none" stroke="#E7E2D7" stroke-width=".7" opacity=".4"/><circle cx="87" cy="86" r="13" fill="none" stroke="#E7E2D7" stroke-width=".5" opacity=".28"/>
-          <text x="87" y="126" font-family="'Didot','Playfair Display',serif" font-size="6" text-anchor="middle" fill="#E7E2D7" opacity=".38" letter-spacing="1">CAMERA CUBE</text>
-          <rect x="166" y="46" width="94" height="90" rx="2" fill="rgba(231,226,215,.06)" stroke="#E7E2D7" stroke-width=".7" opacity=".45"/>
-          <text x="213" y="94" font-family="'Didot','Playfair Display',serif" font-size="6" text-anchor="middle" fill="#E7E2D7" opacity=".32" letter-spacing="1">LAPTOP</text>
-          <rect x="40" y="164" width="220" height="44" rx="2" fill="rgba(231,226,215,.05)" stroke="#E7E2D7" stroke-width=".6" opacity=".4"/>
-          <text x="150" y="190" font-family="'Didot','Playfair Display',serif" font-size="6" text-anchor="middle" fill="#E7E2D7" opacity=".33" letter-spacing="1.5">LENS DIVIDER SYSTEM</text>
-          <rect x="40" y="228" width="220" height="60" rx="2" stroke="#E7E2D7" stroke-width=".5" stroke-dasharray="3 6" opacity=".2"/>
-          <text x="150" y="262" font-family="'Didot','Playfair Display',serif" font-size="6" text-anchor="middle" fill="#E7E2D7" opacity=".28" letter-spacing="1.5">ROOM TO BRING SOMETHING HOME</text>
-        </svg>
-      </div>
-      <div class="interior-panel" data-panel="longhaul">
-        <svg viewBox="0 0 300 340" fill="none" style="width:100%;max-width:280px">
-          <rect x="24" y="20" width="252" height="300" rx="3" stroke="#E7E2D7" stroke-width="1" opacity=".4"/>
-          <line x1="150" y1="34" x2="150" y2="306" stroke="#E7E2D7" stroke-width="2.4" opacity=".7"/>
-          <circle cx="150" cy="66" r="3.5" fill="#B24E2E" opacity=".85"/><circle cx="150" cy="150" r="3.5" fill="#B24E2E" opacity=".85"/><circle cx="150" cy="240" r="3.5" fill="#B24E2E" opacity=".85"/>
-          <rect x="40" y="44" width="220" height="46" rx="2" fill="rgba(231,226,215,.09)" stroke="#E7E2D7" stroke-width=".8" opacity=".58"/>
-          <text x="150" y="71" font-family="'Didot','Playfair Display',serif" font-size="6.5" text-anchor="middle" fill="#E7E2D7" opacity=".48" letter-spacing="1.5">COMPRESSION SYSTEM</text>
-          <rect x="40" y="110" width="104" height="70" rx="2" fill="rgba(231,226,215,.07)" stroke="#E7E2D7" stroke-width=".7" opacity=".48"/>
-          <text x="92" y="149" font-family="'Didot','Playfair Display',serif" font-size="6" text-anchor="middle" fill="#E7E2D7" opacity=".36" letter-spacing="1">LAUNDRY</text>
-          <rect x="156" y="110" width="104" height="70" rx="2" fill="rgba(231,226,215,.06)" stroke="#E7E2D7" stroke-width=".7" opacity=".44"/>
-          <text x="208" y="149" font-family="'Didot','Playfair Display',serif" font-size="6" text-anchor="middle" fill="#E7E2D7" opacity=".34" letter-spacing="1">SHOE COMPARTMENT</text>
-          <rect x="40" y="200" width="220" height="88" rx="2" fill="rgba(231,226,215,.06)" stroke="#E7E2D7" stroke-width=".7" opacity=".42"/>
-          <text x="150" y="248" font-family="'Didot','Playfair Display',serif" font-size="6" text-anchor="middle" fill="#E7E2D7" opacity=".34" letter-spacing="1.5">EXPANDABLE PACKING SECTION</text>
-        </svg>
-      </div>
+      <div class="interior-panel active" data-panel="weekend"><img class="config-img" src="weekender.png" alt="PASSAGE ONE packed as the Weekender Kit"></div>
+      <div class="interior-panel" data-panel="work"><img class="config-img" src="work.png" alt="PASSAGE ONE packed as the Work Kit"></div>
+      <div class="interior-panel" data-panel="creative"><img class="config-img" src="creative.png" alt="PASSAGE ONE packed as the Field Kit"></div>
+      <div class="interior-panel" data-panel="longhaul"><img class="config-img" src="longhaul.png" alt="PASSAGE ONE packed as the Long Haul Kit"></div>
     </div>
 
     <div class="config-copy">
@@ -661,7 +551,11 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
   <div class="ed-stage">
     <div class="ed-viz" aria-hidden="true">
       <div class="ed-imgwrap" id="edImgWrap">
-        <img class="ed-img" id="edImg" src="japan.png" alt="">
+        <img class="ed-img active" data-ed="0" src="japan.png" alt="">
+        <img class="ed-img" data-ed="1" src="egypt.png" alt="">
+        <img class="ed-img" data-ed="2" src="lisbon.png" alt="">
+        <img class="ed-img" data-ed="3" src="paris.png" alt="">
+        <img class="ed-img" data-ed="4" src="santorini.png" alt="">
       </div>
     </div>
 
@@ -822,7 +716,7 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
   'use strict';
 
   /* ══ HERO ══ */
-  const heroSection=document.getElementById('ch-hero'),heroBag=document.getElementById('heroBag'),heroWordmark=document.getElementById('heroWordmark'),heroH1=document.getElementById('heroH1'),heroSub=document.getElementById('heroSub'),scrollHint=document.getElementById('scrollHint');
+  const heroSection=document.getElementById('ch-hero'),heroBag=document.getElementById('heroBag'),heroWordmark=document.getElementById('heroWordmark'),heroEyebrow=document.getElementById('heroEyebrow'),heroH1=document.getElementById('heroH1'),heroSub=document.getElementById('heroSub'),scrollHint=document.getElementById('scrollHint');
   let heroHeight=0;
   function updateHeroHeight(){heroHeight=heroSection?heroSection.offsetHeight:0}
   updateHeroHeight();window.addEventListener('resize',updateHeroHeight,{passive:true});
@@ -832,6 +726,7 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
     heroBag.style.transform=`translate(-50%, calc(-50% + ${-12+p*12}px)) scale(${1.6-p*0.6})`;
     heroBag.style.opacity=p<0.85?1:1-((p-0.85)/0.15);
     heroWordmark.classList.toggle('show',p>0.1);
+    if(heroEyebrow)heroEyebrow.classList.toggle('show',p>0.22);
     heroH1.classList.toggle('show',p>0.25);heroSub.classList.toggle('show',p>0.25);
     scrollHint.classList.toggle('hide',p>0.05);
   }
@@ -998,26 +893,25 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
     {key:'Paris',loc:'France',img:'paris.png',desc:'Rose terracotta and gold. The city softened to a watercolor.',dots:['#C0685C','#C6A66B']},
     {key:'Santorini',loc:'Greece',img:'santorini.png',desc:'Sky blue and silver. Whitewashed domes above the caldera.',dots:['#A8C6E0','#C9CDD2']}
   ];
-  const edImg=document.getElementById('edImg'),edName=document.getElementById('edName'),edDesc=document.getElementById('edDesc'),edSwatches=document.getElementById('edSwatches');
-  function applyEdition(ed){
-    if(edImg){
-      edImg.classList.remove('flick');void edImg.offsetWidth; // restart flicker
-      edImg.classList.add('flick');
-      edImg.alt='Passage / '+ed.key+' edition suitcase';
-      // swap the source mid-flicker so the change reads as a flicker
-      setTimeout(()=>{edImg.src=ed.img;},150);
-    }
+  const edImgs=document.querySelectorAll('.ed-img'),edName=document.getElementById('edName'),edDesc=document.getElementById('edDesc'),edSwatches=document.getElementById('edSwatches');
+  function applyEdition(i){
+    const ed=editions[i];if(!ed)return;
+    // smooth crossfade between stacked images
+    edImgs.forEach(im=>im.classList.toggle('active',parseInt(im.dataset.ed)===i));
     if(edName){
       edName.style.opacity='0';edDesc.style.opacity='0';
-      setTimeout(()=>{edName.innerHTML=`Passage / <em>${ed.key}</em>`;edDesc.textContent=ed.desc;edName.style.opacity='1';edDesc.style.opacity='1'},180);
+      setTimeout(()=>{edName.innerHTML=`Passage / <em>${ed.key}</em>`;edDesc.textContent=ed.desc;edName.style.opacity='1';edDesc.style.opacity='1'},200);
     }
   }
   function buildEditions(){
-    edSwatches.innerHTML=editions.map((ed,i)=>`<button class="ed-swatch${i===0?' active':''}" data-ed="${i}">
-      <span class="ed-swatch-dots"><span class="ed-dot" style="background:${ed.dots[0]}"></span><span class="ed-dot" style="background:${ed.dots[1]}"></span></span>
+    edSwatches.innerHTML=editions.map((ed,i)=>`<button class="ed-swatch${i===0?' active':''}" data-ed="${i}" aria-pressed="${i===0}">
+      <span class="ed-swatch-dot" style="background:linear-gradient(115deg, ${ed.dots[0]} 0 50%, ${ed.dots[1]} 50% 100%)"></span>
       <span class="ed-swatch-name">Passage / ${ed.key}</span>
       <span class="ed-swatch-loc">${ed.loc}</span></button>`).join('');
-    edSwatches.querySelectorAll('.ed-swatch').forEach(b=>b.addEventListener('click',()=>{edSwatches.querySelectorAll('.ed-swatch').forEach(x=>x.classList.toggle('active',x===b));applyEdition(editions[parseInt(b.dataset.ed)])}));
+    edSwatches.querySelectorAll('.ed-swatch').forEach(b=>b.addEventListener('click',()=>{
+      edSwatches.querySelectorAll('.ed-swatch').forEach(x=>{const on=x===b;x.classList.toggle('active',on);x.setAttribute('aria-pressed',on);});
+      applyEdition(parseInt(b.dataset.ed));
+    }));
   }
   if(edSwatches){buildEditions()}
 
