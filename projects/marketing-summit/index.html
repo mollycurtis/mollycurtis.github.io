@@ -26,7 +26,6 @@
     html { scroll-behavior: smooth; }
     body { font-family: var(--font); background: var(--white); color: var(--text); -webkit-font-smoothing: antialiased; }
 
-    /* NAV */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
@@ -38,7 +37,6 @@
     .nav-back { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; text-transform: uppercase; transition: color 0.2s; }
     .nav-back:hover { color: var(--lime-dim); }
 
-    /* HERO */
     .hero {
       margin-top: 57px; background: var(--dark);
       position: relative; overflow: hidden; padding: 80px 0 72px;
@@ -67,10 +65,8 @@
     .hero-meta-label { font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 5px; }
     .hero-meta-value { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.85); }
 
-    /* MAIN */
     main { max-width: 1300px; margin: 0 auto; padding: 0 56px; }
 
-    /* SECTIONS */
     .section { padding: 56px 0 0; opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
     .section.visible { opacity: 1; transform: none; }
     .eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--lime-dim); margin-bottom: 14px; }
@@ -80,7 +76,6 @@
     .body-text p + p { margin-top: 14px; }
     .divider { height: 1px; background: var(--border); margin-top: 56px; }
 
-    /* CONTEXT STRIP */
     .context-strip { background: var(--dark); position: relative; overflow: hidden; opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
     .context-strip.visible { opacity: 1; transform: none; }
     .context-strip::before {
@@ -100,10 +95,8 @@
     .context-label { font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 12px; }
     .context-desc { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.65; font-weight: 300; }
 
-    /* TWO COL */
     .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
 
-    /* PROBLEM LIST */
     .problem-list { margin-top: 28px; }
     .problem-item { display: grid; grid-template-columns: 36px 1fr; gap: 18px; padding: 22px 0; border-bottom: 1px solid var(--border); }
     .problem-item:first-child { border-top: 1px solid var(--border); }
@@ -112,97 +105,261 @@
     .problem-title { font-size: 14.5px; font-weight: 600; color: var(--dark); margin-bottom: 5px; }
     .problem-desc { font-size: 13.5px; line-height: 1.65; color: #5a5a50; }
 
-    /* BEFORE / AFTER — screenshot style, no browser frame */
-    .ba-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px; align-items: start; }
-    .ba-screenshot { border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
-    .ba-screenshot.after-shot { border-color: rgba(180,240,80,0.25); }
+    /* ── BEFORE / AFTER LAYOUT ── */
+    .ba-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; align-items: stretch; }
+    .ba-col { display: flex; flex-direction: column; min-width: 0; }
+    .before-mockup, .after-mockup { height: 100%; width: 100%; overflow: hidden; }
     .ba-label { display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 0 0 12px; color: var(--muted); }
-    .ba-caption { text-align: center; font-size: 12px; font-style: italic; color: var(--muted); margin-top: 14px; }
+    .ba-caption { text-align: center; font-size: 12px; font-style: italic; color: var(--muted); margin-top: 20px; line-height: 1.6; }
 
-    /* BEFORE PAGE */
-    .before-page { background: #fff; }
-    .before-nav-fake { display: flex; align-items: center; justify-content: space-between; padding: 11px 22px; border-bottom: 1px solid #eee; }
-    .before-logo { font-size: 12px; font-weight: 700; color: #0052a3; }
-    .before-nav-links { display: flex; gap: 12px; }
-    .before-nav-links span { font-size: 10px; color: #666; }
-    .before-hero-band { background: #0052a3; padding: 28px 22px; }
-    .before-hero-band h2 { font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 5px; }
-    .before-hero-band p { font-size: 11px; color: rgba(255,255,255,0.6); }
-    .before-section { padding: 16px 22px; border-bottom: 1px solid #f0f0f0; }
-    .before-section-title { font-size: 10px; font-weight: 700; color: #222; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.08em; }
-    .before-about-text { font-size: 10px; color: #555; line-height: 1.6; }
-    .before-speakers-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 7px; }
-    .before-sp-card { border: 1px solid #e8e8e8; border-radius: 3px; padding: 9px; display: flex; align-items: center; gap: 8px; }
-    .before-sp-av {
-      width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
-      background-size: cover; background-position: center top;
+    /* ── BEFORE MOCKUP — 2012 corporate event site ── */
+    .before-mockup {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f4f2;
+      border: 1px solid #c8c8c4;
+      border-radius: 4px;
+      overflow: hidden;
+      font-size: 11px;
+      color: #333;
     }
-    .before-sp-info {}
-    .before-sp-name { font-size: 9px; font-weight: 600; color: #333; }
-    .before-sp-co { font-size: 8px; color: #999; }
-    .before-table { width: 100%; border-collapse: collapse; font-size: 9px; }
-    .before-table th { background: #f5f5f5; padding: 5px 7px; text-align: left; color: #666; font-weight: 600; border: 1px solid #e8e8e8; }
-    .before-table td { padding: 5px 7px; border: 1px solid #e8e8e8; color: #333; }
-    .before-table td.price { font-weight: 700; color: #0052a3; }
-    .before-btn { display: inline-block; margin-top: 10px; background: #0052a3; color: #fff; font-size: 10px; font-weight: 600; padding: 7px 16px; border-radius: 3px; }
-    .before-urgency { font-size: 9px; color: #c00; margin-top: 6px; }
+    /* top utility bar */
+    .bm-util-bar {
+      background: #2a4a7a;
+      padding: 4px 14px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .bm-util-bar span { font-size: 9px; color: rgba(255,255,255,0.65); }
+    .bm-util-bar a { font-size: 9px; color: rgba(255,255,255,0.65); text-decoration: underline; cursor: default; }
+    /* main nav */
+    .bm-nav-bar {
+      background: #fff;
+      border-bottom: 3px solid #2a4a7a;
+      padding: 0 14px;
+      display: flex; align-items: stretch;
+    }
+    .bm-nav-logo {
+      font-size: 9px; font-weight: bold; color: #2a4a7a;
+      padding: 6px 7px 6px 0;
+      border-right: 1px solid #e0e0dc;
+      margin-right: 8px;
+      white-space: nowrap;
+      align-self: center;
+    }
+    .bm-nav-links {
+      display: flex; align-items: stretch; min-width: 0; flex: 1;
+    }
+    .bm-nav-link {
+      font-size: 8px; color: #444; padding: 4px 5px;
+      display: flex; align-items: center;
+      border-right: 1px solid #eee;
+      cursor: default;
+      white-space: nowrap;
+    }
+    .bm-nav-link.active { color: #2a4a7a; font-weight: bold; background: #f0f4fa; border-bottom: 2px solid #2a4a7a; }
+    .bm-nav-link.register { background: #2a4a7a; color: #fff; font-weight: bold; }
+    /* header band */
+    .bm-header {
+      background: linear-gradient(to bottom, #2a4a7a, #1e3660);
+      padding: 16px 14px 12px;
+      border-bottom: 2px solid #c8a020;
+    }
+    .bm-header-title { font-size: 16px; font-weight: bold; color: #fff; margin-bottom: 3px; }
+    .bm-header-sub { font-size: 9px; color: rgba(255,255,255,0.65); margin-bottom: 9px; }
+    .bm-header-pills { display: flex; gap: 6px; }
+    .bm-header-pill { font-size: 9px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.7); padding: 2px 8px; }
+    /* body */
+    .bm-body-wrap { display: flex; }
+    .bm-main { flex: 1; padding: 0; }
+    .bm-sidebar { width: 95px; flex-shrink: 0; background: #eceae6; border-left: 1px solid #d0cec8; padding: 10px 8px; }
+    .bm-sidebar-title { font-size: 9px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.06em; color: #666; border-bottom: 1px solid #c8c4be; padding-bottom: 4px; margin-bottom: 8px; }
+    .bm-sidebar-link { font-size: 9px; color: #2a4a7a; text-decoration: underline; display: block; margin-bottom: 5px; cursor: default; line-height: 1.4; }
+    .bm-sidebar-box { background: #2a4a7a; color: #fff; padding: 8px; margin-top: 10px; text-align: center; }
+    .bm-sidebar-box div:first-child { font-size: 10px; font-weight: bold; margin-bottom: 3px; }
+    .bm-sidebar-box div:last-child { font-size: 7px; color: rgba(255,255,255,0.7); word-break: break-all; line-height: 1.3; }
+    /* section blocks */
+    .bm-sec { border-bottom: 1px solid #d0cec8; background: #fff; padding: 10px 12px; }
+    .bm-sec:nth-child(even) { background: #fafaf8; }
+    .bm-sec-title { font-size: 11px; font-weight: bold; color: #2a4a7a; text-transform: uppercase; letter-spacing: 0.06em; border-bottom: 1px dotted #c8c4be; padding-bottom: 4px; margin-bottom: 8px; }
+    .bm-sec-body { font-size: 9.5px; color: #444; line-height: 1.65; }
+    .bm-key-dates { background: #f0f4fa; border: 1px solid #c8d4e8; padding: 7px 10px; margin-bottom: 8px; }
+    .bm-key-dates-title { font-size: 9px; font-weight: bold; color: #2a4a7a; margin-bottom: 4px; }
+    .bm-kd-row { display: flex; gap: 0; border: 1px solid #c8d4e8; margin-bottom: 4px; }
+    .bm-kd-cell { flex: 1; padding: 4px 6px; font-size: 9px; border-right: 1px solid #c8d4e8; }
+    .bm-kd-cell:last-child { border-right: none; }
+    .bm-kd-label { font-weight: bold; color: #555; display: block; }
+    .bm-kd-val { color: #333; }
+    .bm-topic-list { columns: 2; column-gap: 10px; list-style: disc; padding-left: 12px; font-size: 9.5px; color: #555; line-height: 1.8; }
+    .bm-speaker-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
+    .bm-sp { display: flex; align-items: center; gap: 6px; border: 1px solid #ddd; padding: 5px 7px; background: #fafaf8; min-width: 130px; }
+    .bm-sp-av { width: 26px; height: 26px; border-radius: 50%; background-size: cover; background-position: center top; flex-shrink: 0; border: 1px solid #ccc; }
+    .bm-sp-name { font-size: 9px; font-weight: bold; color: #333; display: block; }
+    .bm-sp-co { font-size: 8px; color: #888; }
+    .bm-pricing-tbl { width: 100%; border-collapse: collapse; font-size: 9px; margin-bottom: 6px; table-layout: fixed; }
+    .bm-pricing-tbl th { background: #2a4a7a; color: #fff; padding: 5px 8px; text-align: left; font-size: 9px; font-weight: bold; border: 1px solid #1e3660; }
+    .bm-pricing-tbl td { padding: 4px 6px; border: 1px solid #d0d0cc; vertical-align: top; word-wrap: break-word; }
+    .bm-pricing-tbl tr:nth-child(even) td { background: #f4f4f2; }
+    .bm-price-val { font-weight: bold; color: #2a4a7a; }
+    .bm-reg-cta { display: inline-block; background: #2a4a7a; color: #fff; font-size: 10px; font-weight: bold; padding: 6px 14px; border: 1px solid #1e3660; cursor: default; margin-top: 6px; }
+    .bm-note { font-size: 8px; color: #888; font-style: italic; margin-top: 4px; }
 
-    /* AFTER PAGE */
-    .after-page { background: #0c0c0c; }
-    .after-topbar { display: flex; align-items: center; justify-content: space-between; padding: 11px 22px; border-bottom: 1px solid rgba(255,255,255,0.06); }
-    .after-logo { font-size: 12px; font-weight: 700; color: #fff; letter-spacing: -0.01em; }
-    .after-nav-links { display: flex; gap: 14px; }
-    .after-nav-links span { font-size: 9px; color: rgba(255,255,255,0.3); }
-    .after-cta-nav { font-size: 9px; font-weight: 700; background: #b4f050; color: #0c0c0c; padding: 5px 11px; border-radius: 4px; }
-    .after-hero-s {
-      position: relative; overflow: hidden; padding: 18px 22px 16px;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
+    /* ── AFTER MOCKUP — focused landing page, no nav ── */
+    .after-mockup {
+      font-family: var(--font);
+      background: #fff;
+      border: 1px solid #e0e0da;
+      border-radius: 6px;
+      overflow: hidden;
+      color: #111;
     }
-    .after-hero-s::before {
-      content: ''; position: absolute; inset: 0;
-      background-image: radial-gradient(circle, rgba(180,240,80,0.1) 1px, transparent 1px);
-      background-size: 14px 14px;
+    /* No nav — just a thin top strip */
+    .am-top-strip {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 8px 20px;
+      background: #fff;
+      border-bottom: 1px solid #f0f0ec;
     }
-    .after-hero-s::after {
-      content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse 80% 60% at 85% 50%, rgba(180,240,80,0.1) 0%, transparent 60%);
+    .am-top-logo { font-size: 12px; font-weight: 700; color: #111; letter-spacing: -0.01em; }
+    .am-top-cta {
+      font-size: 10px; font-weight: 700;
+      background: #111; color: #fff;
+      padding: 6px 14px; border-radius: 4px;
+      letter-spacing: 0.01em;
     }
-    .after-hi { position: relative; z-index: 1; }
-    .after-badge { display: inline-block; font-size: 8px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 3px 8px; border-radius: 20px; background: rgba(180,240,80,0.15); border: 1px solid rgba(180,240,80,0.25); color: #b4f050; margin-bottom: 9px; }
-    .after-h1 { font-size: clamp(14px, 2.2vw, 20px); font-weight: 700; color: #fff; line-height: 1.15; letter-spacing: -0.025em; margin-bottom: 7px; }
-    .after-h1 span { color: #b4f050; }
-    .after-sub { font-size: 9px; color: rgba(255,255,255,0.38); margin-bottom: 13px; line-height: 1.5; }
-    .after-btn-row { display: flex; gap: 7px; }
-    .after-btn-p { background: #b4f050; color: #0c0c0c; font-size: 8px; font-weight: 700; padding: 6px 13px; border-radius: 4px; }
-    .after-btn-s { border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.4); font-size: 8px; padding: 6px 10px; border-radius: 4px; }
-    .after-stats-row { display: flex; gap: 14px; }
-    .after-sn { font-size: 13px; font-weight: 700; color: #b4f050; letter-spacing: -0.02em; }
-    .after-sl { font-size: 7px; color: rgba(255,255,255,0.22); text-transform: uppercase; letter-spacing: 0.1em; }
-    .after-urg { display: flex; align-items: center; justify-content: space-between; padding: 9px 22px; background: rgba(180,240,80,0.05); border-bottom: 1px solid rgba(180,240,80,0.1); flex-wrap: wrap; gap: 8px; }
-    .after-urg-l { display: flex; align-items: center; gap: 7px; }
-    .after-udot { width: 6px; height: 6px; border-radius: 50%; background: #b4f050; }
-    .after-utext { font-size: 8px; color: rgba(255,255,255,0.45); }
-    .after-utext strong { color: #b4f050; }
-    .after-ucount { font-size: 9px; font-weight: 700; color: #b4f050; letter-spacing: 0.04em; }
-    .after-sp-s { padding: 14px 22px; border-bottom: 1px solid rgba(255,255,255,0.05); }
-    .after-sec-label { font-size: 8px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.18); margin-bottom: 9px; }
-    .after-sp-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 7px; }
-    .after-sp { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 6px; padding: 10px 9px; }
-    .after-sp-av { width: 36px; height: 36px; border-radius: 50%; margin-bottom: 6px; position: relative; overflow: hidden; background-size: cover; background-position: center top; }
-    .after-sp-name { font-size: 9px; font-weight: 600; color: #fff; margin-bottom: 1px; }
-    .after-sp-co { font-size: 8px; color: rgba(255,255,255,0.28); margin-bottom: 6px; }
-    .after-sp-tag { font-size: 7px; font-weight: 600; padding: 2px 6px; border-radius: 10px; background: rgba(180,240,80,0.1); border: 1px solid rgba(180,240,80,0.2); color: #b4f050; display: inline-block; }
-    .after-price-s { padding: 10px 22px 14px; }
-    .after-price-row { display: grid; grid-template-columns: 1fr 1.15fr 1fr; gap: 7px; }
-    .after-pc { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 6px; padding: 11px 9px; text-align: center; }
-    .after-pc.feat { background: rgba(180,240,80,0.06); border-color: rgba(180,240,80,0.22); }
-    .after-pc-tier { font-size: 7px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.22); margin-bottom: 5px; }
-    .after-pc.feat .after-pc-tier { color: #b4f050; }
-    .after-pc-price { font-size: 16px; font-weight: 700; color: #fff; letter-spacing: -0.02em; margin-bottom: 4px; }
-    .after-pc.feat .after-pc-price { color: #b4f050; }
-    .after-pc-desc { font-size: 7px; color: rgba(255,255,255,0.22); line-height: 1.5; margin-bottom: 7px; }
-    .after-pc-btn { font-size: 7px; font-weight: 600; padding: 4px 0; border-radius: 4px; background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.35); display: block; }
-    .after-pc.feat .after-pc-btn { background: #b4f050; color: #0c0c0c; }
+    /* Hero — all content above fold */
+    .am-hero {
+      padding: 22px 18px 16px;
+      border-bottom: 1px solid #f0f0ec;
+      background: #fff;
+    }
+    .am-event-label {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #aaa;
+      margin-bottom: 10px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .am-event-label span { color: #6aaa28; }
+    .am-hero-title {
+      font-size: clamp(20px, 3.2vw, 28px); font-weight: 700;
+      color: #111; line-height: 1.1; letter-spacing: -0.03em;
+      margin-bottom: 6px;
+    }
+    .am-hero-sub {
+      font-size: 11px; color: #666; line-height: 1.5; margin-bottom: 14px; max-width: 420px;
+    }
+    .am-stats-row {
+      display: flex; gap: 0;
+      border: 1px solid #e8e8e2;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 14px;
+    }
+    .am-stat {
+      flex: 1; padding: 10px 12px;
+      border-right: 1px solid #e8e8e2;
+      text-align: center;
+    }
+    .am-stat:last-child { border-right: none; }
+    .am-stat-n { font-size: 16px; font-weight: 700; color: #111; letter-spacing: -0.03em; line-height: 1; }
+    .am-stat-l { font-size: 8px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #bbb; margin-top: 2px; }
+    .am-cta-row { display: flex; gap: 8px; align-items: center; }
+    .am-cta-primary {
+      background: #111; color: #fff;
+      font-size: 11px; font-weight: 700;
+      padding: 10px 20px; border-radius: 5px;
+    }
+    .am-cta-ghost {
+      font-size: 11px; font-weight: 600; color: #555;
+      border: 1.5px solid #ddd; padding: 9px 16px; border-radius: 5px;
+    }
+    /* Urgency bar */
+    .am-urgency {
+      background: #f8ffe8; border-bottom: 1px solid #daf0a0;
+      padding: 7px 20px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .am-urg-left { display: flex; align-items: center; gap: 6px; }
+    .am-urg-dot { width: 5px; height: 5px; border-radius: 50%; background: #6aaa28; flex-shrink: 0; }
+    .am-urg-text { font-size: 10px; color: #4a7818; }
+    .am-urg-text strong { font-weight: 700; }
+    .am-urg-timer { font-size: 10px; font-weight: 700; color: #6aaa28; font-variant-numeric: tabular-nums; }
+    /* Speakers */
+    .am-speakers { padding: 12px 18px; border-bottom: 1px solid #f0f0ec; }
+    .am-sec-eyebrow { font-size: 9px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #ccc; margin-bottom: 10px; }
+    .am-sp-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+    .am-sp-card { border: 1px solid #ebebeb; border-radius: 6px; padding: 10px 10px 8px; }
+    .am-sp-av { width: 30px; height: 30px; border-radius: 50%; background-size: cover; background-position: center top; margin-bottom: 6px; }
+    .am-sp-name { font-size: 10px; font-weight: 700; color: #111; margin-bottom: 1px; }
+    .am-sp-co { font-size: 9px; color: #999; margin-bottom: 5px; }
+    .am-sp-tag { font-size: 8px; font-weight: 600; padding: 2px 7px; border-radius: 10px; background: #f2fce8; border: 1px solid #c8e890; color: #5a9018; display: inline-block; }
+    /* Pricing */
+    .am-pricing { padding: 12px 18px 14px; }
+    .am-pricing-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+    .am-pc { border: 1px solid #e8e8e2; border-radius: 6px; padding: 12px 10px; }
+    .am-pc.feat { border-color: #c8e890; background: #f8ffe8; }
+    .am-pc-badge { font-size: 7px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #6aaa28; margin-bottom: 4px; }
+    .am-pc-tier { font-size: 9px; font-weight: 600; color: #888; margin-bottom: 4px; }
+    .am-pc.feat .am-pc-tier { color: #5a9018; }
+    .am-pc-price { font-size: 20px; font-weight: 700; color: #111; letter-spacing: -0.03em; margin-bottom: 4px; line-height: 1; }
+    .am-pc-desc { font-size: 8px; color: #aaa; line-height: 1.5; margin-bottom: 8px; }
+    .am-pc-btn { font-size: 9px; font-weight: 600; padding: 5px 0; border-radius: 4px; background: #f0f0ec; color: #555; display: block; text-align: center; }
+    .am-pc.feat .am-pc-btn { background: #111; color: #fff; }
+    /* Proof row: testimonial + benefits side by side */
+    .am-proof-row {
+      display: grid; grid-template-columns: 1.4fr 1fr;
+      border-top: 1px solid #f0f0ec;
+    }
+    .am-benefits {
+      padding: 16px 20px;
+      background: #fafafa;
+      border-left: 1px solid #f0f0ec;
+      display: flex; flex-direction: column; justify-content: center; gap: 10px;
+    }
+    .am-benefit { display: flex; align-items: flex-start; gap: 7px; }
+    .am-benefit-icon {
+      width: 14px; height: 14px; border-radius: 50%;
+      background: #6aaa28; color: #fff;
+      font-size: 8px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 1px;
+    }
+    .am-benefit-text { font-size: 9px; color: #666; line-height: 1.4; }
+    .am-benefit-text strong { color: #111; font-weight: 700; }
+    /* Testimonial */
+    .am-testimonial {
+      padding: 16px 20px;
+      background: #fff;
+    }
+    .am-quote {
+      font-size: 12px; color: #222; line-height: 1.5; font-weight: 500;
+      margin-bottom: 10px; letter-spacing: -0.01em;
+    }
+    .am-quote-author { display: flex; align-items: center; gap: 8px; }
+    .am-quote-av { width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0; }
+    .am-quote-name { font-size: 9px; font-weight: 700; color: #111; }
+    .am-quote-role { font-size: 8px; color: #999; }
+    /* Logos */
+    .am-logos {
+      padding: 12px 20px;
+      border-top: 1px solid #f0f0ec;
+      background: #fafafa;
+    }
+    .am-logos-label { font-size: 8px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #bbb; margin-bottom: 8px; }
+    .am-logos-row { display: flex; gap: 16px; flex-wrap: wrap; }
+    .am-logos-row span { font-size: 11px; font-weight: 700; color: #ccc; letter-spacing: -0.01em; }
+    /* Final CTA band */
+    .am-final-cta {
+      padding: 14px 20px;
+      background: #111;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    }
+    .am-final-cta-title { font-size: 12px; font-weight: 700; color: #fff; letter-spacing: -0.01em; margin-bottom: 2px; }
+    .am-final-cta-sub { font-size: 9px; color: rgba(255,255,255,0.55); }
+    .am-final-cta-btn {
+      background: #b4f050; color: #111;
+      font-size: 10px; font-weight: 700;
+      padding: 9px 16px; border-radius: 5px;
+      white-space: nowrap; flex-shrink: 0;
+    }
 
     /* STRATEGY */
     .strategy-layout { display: grid; grid-template-columns: 1fr 2fr; gap: 64px; align-items: start; margin-top: 40px; }
@@ -217,7 +374,6 @@
     .strategy-block-title { font-size: 17px; font-weight: 700; color: var(--dark); margin-bottom: 10px; letter-spacing: -0.01em; }
     .strategy-block-body { font-size: 14px; line-height: 1.75; color: #5a5a50; }
 
-    /* DECISIONS */
     .decision-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 36px; }
     .decision-card { padding: 22px 24px; border: 1px solid var(--border); border-left: 3px solid var(--lime-dim); border-radius: 10px; background: var(--surface); transition: border-color 0.2s, box-shadow 0.2s; }
     .decision-card:hover { border-color: var(--lime-dim); border-left-color: var(--lime-dim); box-shadow: 0 4px 16px rgba(122,184,48,0.1); }
@@ -225,7 +381,6 @@
     .decision-title { font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 6px; letter-spacing: -0.01em; }
     .decision-body { font-size: 13px; line-height: 1.6; color: #5a5a50; }
 
-    /* OUTCOME STRIP */
     .outcome-strip { margin-top: 56px; background: var(--dark); position: relative; overflow: hidden; }
     .outcome-strip::before {
       content: ''; position: absolute; inset: 0;
@@ -242,7 +397,6 @@
     .outcome-n { font-size: clamp(28px, 3.5vw, 48px); font-weight: 700; color: var(--lime); letter-spacing: -0.04em; line-height: 1; margin-bottom: 10px; }
     .outcome-l { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.6; font-weight: 300; }
 
-    /* TAKEAWAY */
     .takeaway { margin: 56px auto 0; max-width: 1000px; padding: 48px 56px; background: var(--dark); border-radius: 14px; position: relative; overflow: hidden; text-align: center; }
     .takeaway::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(180,240,80,0.08) 1px, transparent 1px); background-size: 20px 20px; }
     .takeaway::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 50% 60% at 85% 30%, rgba(180,240,80,0.09) 0%, transparent 55%); }
@@ -250,7 +404,6 @@
     .takeaway-title { font-size: clamp(28px, 3vw, 38px); font-weight: 700; color: var(--white); line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 16px; position: relative; z-index: 1; }
     .takeaway-body { font-size: 15px; line-height: 1.75; color: rgba(255,255,255,0.55); font-weight: 300; position: relative; z-index: 1; max-width: 600px; margin: 0 auto; }
 
-    /* GRAD DIVIDER + FOOTER */
     .grad-divider { margin-top: 56px; height: 1px; background: linear-gradient(90deg, transparent 0%, #0c0c0c 20%, #7ab830 70%, transparent 100%); opacity: 0.35; }
     .footer-cta { padding: 56px 0 100px; text-align: center; }
     .footer-cta-eyebrow { font-size: 12px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
@@ -261,7 +414,6 @@
 
     @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
 
-    /* RESPONSIVE */
     @media (max-width: 960px) {
       nav { padding: 16px 28px; }
       .hero-inner, main { padding-left: 28px; padding-right: 28px; }
@@ -269,7 +421,7 @@
       .context-inner { grid-template-columns: 1fr 1fr; gap: 28px; }
       .context-col:last-child { padding-left: 28px; }
       .context-col:nth-child(2) { padding-left: 28px; }
-      .ba-layout { grid-template-columns: 1fr; }
+      .ba-layout { grid-template-columns: 1fr; gap: 32px; }
       .two-col { grid-template-columns: 1fr; gap: 28px; }
       .strategy-layout { grid-template-columns: 1fr; gap: 32px; }
       .strategy-nav { position: static; }
@@ -294,19 +446,42 @@
       .takeaway-body { font-size: 13px; }
       .context-inner { grid-template-columns: 1fr; gap: 24px; }
       .context-col { border-right: none; padding: 0; }
-      .after-sp-row { grid-template-columns: 1fr 1fr; }
-      .after-price-row { grid-template-columns: 1fr; }
-      .before-speakers-grid { grid-template-columns: 1fr 1fr; }
       .decision-row { grid-template-columns: 1fr; }
       .outcome-grid { grid-template-columns: 1fr; }
       .outcome-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); padding: 20px 0; }
       .outcome-item:last-child { border-bottom: none; }
       .outcome-item:nth-child(2) { padding-left: 0; border-right: none; }
       .outcome-item:nth-child(3) { border-top: none; grid-column: auto; }
+      .am-sp-grid { grid-template-columns: 1fr 1fr 1fr; gap: 5px; }
+      .am-pricing-grid { grid-template-columns: 1fr 1fr 1fr; gap: 5px; }
+      .am-trust { flex-direction: column; }
+      .am-trust-item { border-right: none; border-bottom: 1px solid #f0f0ec; }
+      .am-trust-item:last-child { border-bottom: none; }
+      .bm-speakers-row { flex-direction: column; }
     }
     @media (max-width: 480px) {
       .hero-title { font-size: clamp(28px, 8vw, 44px); }
-      .ba-screenshot, .before-page, .after-page { height: 560px; }
+      .am-sp-card { padding: 7px 5px; }
+      .am-sp-av { width: 24px; height: 24px; }
+      .am-sp-name { font-size: 8px; }
+      .am-sp-co { font-size: 7px; }
+      .am-sp-tag { font-size: 6.5px; padding: 1px 5px; }
+      .am-pc { padding: 9px 6px; }
+      .am-pc-price { font-size: 15px; }
+      .am-pc-tier { font-size: 8px; }
+      .am-pc-desc { font-size: 7px; }
+      .am-pc-btn { font-size: 8px; }
+      .am-pc-badge { font-size: 6px; }
+      .am-stat { padding: 8px 4px; }
+      .am-stat-n { font-size: 13px; }
+      .am-stat-l { font-size: 7px; }
+      .am-proof-row { grid-template-columns: 1fr; }
+      .am-benefits { border-left: none; border-top: 1px solid #f0f0ec; }
+      .am-quote { font-size: 11px; }
+      .am-logos-row { gap: 10px; }
+      .am-logos-row span { font-size: 9px; }
+      .am-final-cta { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .am-final-cta-btn { width: 100%; text-align: center; }
     }
   </style>
 </head>
@@ -314,7 +489,7 @@
 
   <nav>
     <a href="/" class="nav-logo">Molly Curtis</a>
-    <a href="https://mollycurtis.github.io/landingpages/" class="nav-back">← Landing Pages</a>
+    <a href="https://mollycurtis.github.io/landingpages/" class="nav-back">&#8592; Landing Pages</a>
   </nav>
 
   <div class="hero">
@@ -423,153 +598,257 @@
     <div class="divider"></div>
 
     <section class="section" id="before-after">
-      <div class="eyebrow">Before & After</div>
+      <div class="eyebrow">Before &amp; After</div>
       <h2 class="section-title">Same event. Completely different page.</h2>
       <p class="body-text">The before page had all the right information — just in the wrong order, at the wrong scale, with no visual priority.</p>
 
       <div class="ba-layout">
-        <div>
+
+        <!-- BEFORE -->
+        <div class="ba-col">
           <span class="ba-label">Before</span>
-          <div class="ba-screenshot">
-            <div class="before-page">
-              <div class="before-nav-fake">
-                <span class="before-logo">Marketing Summit 2026</span>
-                <div class="before-nav-links"><span>Agenda</span><span>Speakers</span><span>Register</span></div>
+          <div class="before-mockup">
+            <!-- Utility bar -->
+            <div class="bm-util-bar">
+              <span>Marketing Summit 2026 | Official Event Website</span>
+              <span>Contact Us &nbsp;|&nbsp; <a>Log In</a> &nbsp;|&nbsp; <a>Cart (0)</a></span>
+            </div>
+            <!-- Heavy nav -->
+            <div class="bm-nav-bar">
+              <div class="bm-nav-logo">MarketingSummit 2026</div>
+              <div class="bm-nav-links">
+                <div class="bm-nav-link active">Home</div>
+                <div class="bm-nav-link">About</div>
+                <div class="bm-nav-link">Agenda</div>
+                <div class="bm-nav-link">Speakers</div>
+                <div class="bm-nav-link">Sponsors</div>
+                <div class="bm-nav-link">Venue</div>
+                <div class="bm-nav-link">FAQs</div>
+                <div class="bm-nav-link">Past</div>
+                <div class="bm-nav-link register">Register</div>
               </div>
-              <div class="before-hero-band">
-                <h2>Marketing Summit 2026</h2>
-                <p>September 12–13 · Minneapolis Convention Center · 800+ Attendees</p>
+            </div>
+            <!-- Blue header band -->
+            <div class="bm-header">
+              <div class="bm-header-title">Welcome to Marketing Summit 2026</div>
+              <div class="bm-header-sub">September 12–13, 2026 &nbsp;·&nbsp; Minneapolis Convention Center, Minneapolis, MN</div>
+              <div class="bm-header-pills">
+                <div class="bm-header-pill">800+ Attendees Expected</div>
+                <div class="bm-header-pill">12 Speakers</div>
+                <div class="bm-header-pill">2 Days</div>
               </div>
-              <div class="before-section">
-                <div class="before-section-title">About the Event</div>
-                <p class="before-about-text">Join us for two days of panels, workshops, and networking sessions with marketing professionals from across the country. Sessions cover brand strategy, content, SEO, paid media, and more.</p>
-              </div>
-              <div class="before-section">
-                <div class="before-section-title">Speakers</div>
-                <div class="before-speakers-grid">
-                  <div class="before-sp-card">
-                    <div class="before-sp-av" style="background:url('https://images.unsplash.com/photo-1560250097-0b93528c311a?w=80&h=80&fit=crop&crop=face') center/cover no-repeat;"></div>
-                    <div class="before-sp-info">
-                      <div class="before-sp-name">Jordan Reeves</div>
-                      <div class="before-sp-co">Notion</div>
-                    </div>
-                  </div>
-                  <div class="before-sp-card">
-                    <div class="before-sp-av" style="background:url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&h=80&fit=crop&crop=face') center/cover no-repeat;"></div>
-                    <div class="before-sp-info">
-                      <div class="before-sp-name">Priya Mehta</div>
-                      <div class="before-sp-co">Linear</div>
-                    </div>
-                  </div>
-                  <div class="before-sp-card">
-                    <div class="before-sp-av" style="background:url('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face') center/cover no-repeat;"></div>
-                    <div class="before-sp-info">
-                      <div class="before-sp-name">Cam Elsworth</div>
-                      <div class="before-sp-co">Figma</div>
+            </div>
+            <!-- Two-column body -->
+            <div class="bm-body-wrap">
+              <div class="bm-main">
+                <!-- About -->
+                <div class="bm-sec">
+                  <div class="bm-sec-title">About Marketing Summit 2026</div>
+                  <p class="bm-sec-body">Marketing Summit 2026 is a comprehensive two-day professional development conference for marketing and communications professionals at all experience levels. The event brings together brand strategists, content marketers, SEO professionals, paid media specialists, and marketing technologists for two days of keynote presentations, breakout sessions, panel discussions, and structured networking opportunities. With over 800 attendees expected from organizations across the United States and Canada, Marketing Summit is one of the region's premier marketing events. This year's theme focuses on integrating traditional and digital marketing disciplines to drive business results in an increasingly complex media environment.</p>
+                </div>
+                <!-- Key Dates -->
+                <div class="bm-sec">
+                  <div class="bm-sec-title">Key Dates &amp; Information</div>
+                  <div class="bm-key-dates">
+                    <div class="bm-key-dates-title">Important Dates</div>
+                    <div class="bm-kd-row">
+                      <div class="bm-kd-cell"><span class="bm-kd-label">Early Bird Deadline</span><span class="bm-kd-val">Aug 15, 2026</span></div>
+                      <div class="bm-kd-cell"><span class="bm-kd-label">Event Dates</span><span class="bm-kd-val">Sept 12–13, 2026</span></div>
+                      <div class="bm-kd-cell"><span class="bm-kd-label">Location</span><span class="bm-kd-val">Minneapolis, MN</span></div>
                     </div>
                   </div>
                 </div>
+                <!-- Topics -->
+                <div class="bm-sec">
+                  <div class="bm-sec-title">Session Topics</div>
+                  <ul class="bm-topic-list">
+                    <li>Brand Strategy &amp; Positioning</li>
+                    <li>Content Marketing &amp; SEO</li>
+                    <li>Paid Media &amp; Display Advertising</li>
+                    <li>Email Marketing &amp; Automation</li>
+                    <li>Social Media Strategy</li>
+                    <li>Analytics &amp; Attribution</li>
+                    <li>Campaign Planning</li>
+                    <li>Marketing Technology</li>
+                  </ul>
+                </div>
+                <!-- Speakers buried -->
+                <div class="bm-sec">
+                  <div class="bm-sec-title">2026 Featured Speakers</div>
+                  <div class="bm-speaker-row">
+                    <div class="bm-sp">
+                      <div class="bm-sp-av" style="background-image:url('https://images.unsplash.com/photo-1560250097-0b93528c311a?w=80&h=80&fit=crop&crop=face');background-size:cover;background-position:center top;background-repeat:no-repeat;"></div>
+                      <div><span class="bm-sp-name">Jordan Reeves</span><span class="bm-sp-co">Notion</span></div>
+                    </div>
+                    <div class="bm-sp">
+                      <div class="bm-sp-av" style="background-image:url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&h=80&fit=crop&crop=face');background-size:cover;background-position:center top;background-repeat:no-repeat;"></div>
+                      <div><span class="bm-sp-name">Priya Mehta</span><span class="bm-sp-co">Linear</span></div>
+                    </div>
+                    <div class="bm-sp">
+                      <div class="bm-sp-av" style="background-image:url('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face');background-size:cover;background-position:center top;background-repeat:no-repeat;"></div>
+                      <div><span class="bm-sp-name">Cam Elsworth</span><span class="bm-sp-co">Figma</span></div>
+                    </div>
+                  </div>
+                  <p class="bm-sec-body" style="margin-top:6px;">View full speaker list and session schedule on the <a style="color:#2a4a7a;text-decoration:underline;cursor:default;">Speakers page</a>.</p>
+                </div>
+                <!-- Pricing table — buried, flat, boring -->
+                <div class="bm-sec">
+                  <div class="bm-sec-title">Registration &amp; Pricing</div>
+                  <table class="bm-pricing-tbl">
+                    <tr><th>Pass Type</th><th>Price</th><th>Includes</th><th>Availability</th></tr>
+                    <tr><td>General Admission</td><td class="bm-price-val">$199</td><td>Full 2-day access, session recordings</td><td>Available</td></tr>
+                    <tr><td>VIP Pass</td><td class="bm-price-val">$349</td><td>General access + networking dinners, workshops</td><td>Available</td></tr>
+                    <tr><td>Team Rate (5+ seats)</td><td class="bm-price-val">$149/ea</td><td>All general access, group discount applied</td><td>Available</td></tr>
+                  </table>
+                  <div class="bm-reg-cta">Proceed to Registration</div>
+                  <p class="bm-note">* Early bird pricing ends August 15. All prices in USD. Contact us for group invoicing.</p>
+                </div>
               </div>
-              <div class="before-section">
-                <div class="before-section-title">Registration</div>
-                <table class="before-table">
-                  <tr><th>Tier</th><th>Price</th><th>Includes</th></tr>
-                  <tr><td>General</td><td class="price">$199</td><td>Full access</td></tr>
-                  <tr><td>VIP</td><td class="price">$349</td><td>General + dinners</td></tr>
-                  <tr><td>Team (5+)</td><td class="price">$149/ea</td><td>Bulk discount</td></tr>
-                </table>
-                <div class="before-btn">Register Now</div>
-                <div class="before-urgency">* Early bird pricing ends soon</div>
+              <!-- Sidebar -->
+              <div class="bm-sidebar">
+                <div class="bm-sidebar-title">Quick Links</div>
+                <a class="bm-sidebar-link">Download Agenda PDF</a>
+                <a class="bm-sidebar-link">Hotel &amp; Travel Info</a>
+                <a class="bm-sidebar-link">Sponsorship Packages</a>
+                <a class="bm-sidebar-link">Press &amp; Media Inquiries</a>
+                <a class="bm-sidebar-link">Past Event Recordings</a>
+                <a class="bm-sidebar-link">Group Registration</a>
+                <div class="bm-sidebar-box">
+                  <div>Questions?</div>
+                  <div>events@<br>marketingsummit.com</div>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div>
+        <!-- AFTER -->
+        <div class="ba-col">
           <span class="ba-label">After</span>
-          <div class="ba-screenshot after-shot">
-            <div class="after-page">
-              <div class="after-topbar">
-                <div class="after-logo">Marketing Summit</div>
-                <div class="after-nav-links"><span>Speakers</span><span>Agenda</span><span>FAQ</span></div>
-                <div class="after-cta-nav">Register — From $199</div>
+          <div class="after-mockup">
+            <!-- No traditional nav — just logo + single CTA -->
+            <div class="am-top-strip">
+              <div class="am-top-logo">Marketing Summit &rsquo;26</div>
+              <div class="am-top-cta">Register &mdash; From $199</div>
+            </div>
+            <!-- Hero: value first -->
+            <div class="am-hero">
+              <div class="am-event-label">
+                Sept 12&ndash;13 &nbsp;&middot;&nbsp; Minneapolis &nbsp;&middot;&nbsp;
+                <span>Early Bird Ends Aug 15</span>
               </div>
-              <div class="after-hero-s">
-                <div class="after-hi">
-                  <div class="after-badge">Early Bird Ends Friday</div>
-                  <div class="after-h1">The conference built for marketers who <span>actually ship.</span></div>
-                  <div class="after-sub">Two days. 12 speakers. Minneapolis — Sept 12–13, 2026.</div>
-                  <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:nowrap;">
-                    <div style="display:flex;gap:7px;align-items:center;">
-                      <div class="after-btn-p">Register Now</div>
-                      <div class="after-btn-s">View Full Agenda →</div>
-                    </div>
-                    <div class="after-stats-row">
-                      <div><div class="after-sn">800+</div><div class="after-sl">Attendees</div></div>
-                      <div><div class="after-sn">12</div><div class="after-sl">Speakers</div></div>
-                      <div><div class="after-sn">94%</div><div class="after-sl">Return</div></div>
-                    </div>
-                  </div>
+              <div class="am-hero-title">Two days of real marketing.<br>No fluff. No filler.</div>
+              <div class="am-hero-sub">12 practitioners from Notion, Linear, and Figma — doing the work, not presenting it. Sessions on brand, content, paid, and growth.</div>
+              <div class="am-stats-row">
+                <div class="am-stat"><div class="am-stat-n">800+</div><div class="am-stat-l">Attendees</div></div>
+                <div class="am-stat"><div class="am-stat-n">12</div><div class="am-stat-l">Speakers</div></div>
+                <div class="am-stat"><div class="am-stat-n">94%</div><div class="am-stat-l">Return Rate</div></div>
+                <div class="am-stat"><div class="am-stat-n">2 Days</div><div class="am-stat-l">Sept 12&ndash;13</div></div>
+              </div>
+              <div class="am-cta-row">
+                <div class="am-cta-primary">Register Now</div>
+                <div class="am-cta-ghost">View Agenda &rarr;</div>
+              </div>
+            </div>
+            <!-- Urgency bar -->
+            <div class="am-urgency">
+              <div class="am-urg-left">
+                <div class="am-urg-dot"></div>
+                <div class="am-urg-text"><strong>127 spots</strong> at early bird pricing</div>
+              </div>
+              <div class="am-urg-timer">2d &nbsp;14h &nbsp;22m</div>
+            </div>
+            <!-- Pricing: anchored, not flat table -->
+            <div class="am-pricing">
+              <div class="am-sec-eyebrow">Choose Your Pass</div>
+              <div class="am-pricing-grid">
+                <div class="am-pc">
+                  <div class="am-pc-tier">General</div>
+                  <div class="am-pc-price">$199</div>
+                  <div class="am-pc-desc">2-day access &amp; recordings</div>
+                  <div class="am-pc-btn">Select</div>
                 </div>
-              </div>
-              <div class="after-urg">
-                <div class="after-urg-l">
-                  <div class="after-udot"></div>
-                  <div class="after-utext"><strong>127 spots remaining</strong> at early bird pricing</div>
+                <div class="am-pc feat">
+                  <div class="am-pc-badge">Most Popular</div>
+                  <div class="am-pc-tier">VIP Pass</div>
+                  <div class="am-pc-price">$349</div>
+                  <div class="am-pc-desc">General + dinners &amp; workshops</div>
+                  <div class="am-pc-btn">Select</div>
                 </div>
-                <div class="after-ucount">2d : 14h : 22m</div>
-              </div>
-              <div class="after-sp-s">
-                <div class="after-sec-label">Featured Speakers</div>
-                <div class="after-sp-row">
-                  <div class="after-sp">
-                    <div class="after-sp-av" style="background:url('https://images.unsplash.com/photo-1560250097-0b93528c311a?w=80&h=80&fit=crop&crop=face') center/cover no-repeat;"></div>
-                    <div class="after-sp-name">Jordan Reeves</div>
-                    <div class="after-sp-co">VP Marketing, Notion</div>
-                    <div class="after-sp-tag">Brand Strategy</div>
-                  </div>
-                  <div class="after-sp">
-                    <div class="after-sp-av" style="background:url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&h=80&fit=crop&crop=face') center/cover no-repeat;"></div>
-                    <div class="after-sp-name">Priya Mehta</div>
-                    <div class="after-sp-co">Head of Growth, Linear</div>
-                    <div class="after-sp-tag">Growth & SEO</div>
-                  </div>
-                  <div class="after-sp">
-                    <div class="after-sp-av" style="background:url('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face') center/cover no-repeat;"></div>
-                    <div class="after-sp-name">Cam Elsworth</div>
-                    <div class="after-sp-co">Creative Director, Figma</div>
-                    <div class="after-sp-tag">Creative Direction</div>
-                  </div>
-                </div>
-              </div>
-              <div class="after-price-s">
-                <div class="after-sec-label">Choose Your Pass</div>
-                <div class="after-price-row">
-                  <div class="after-pc">
-                    <div class="after-pc-tier">General</div>
-                    <div class="after-pc-price">$199</div>
-                    <div class="after-pc-desc">2-day access, recordings</div>
-                    <div class="after-pc-btn">Select</div>
-                  </div>
-                  <div class="after-pc feat">
-                    <div class="after-pc-tier">Most Popular — VIP</div>
-                    <div class="after-pc-price">$349</div>
-                    <div class="after-pc-desc">General + dinners, workshops</div>
-                    <div class="after-pc-btn">Select</div>
-                  </div>
-                  <div class="after-pc">
-                    <div class="after-pc-tier">Team (5+ seats)</div>
-                    <div class="after-pc-price">$149<span style="font-size:9px;font-weight:300;color:rgba(255,255,255,0.25)">/ea</span></div>
-                    <div class="after-pc-desc">Bulk pricing + speaker channel</div>
-                    <div class="after-pc-btn">Contact Us</div>
-                  </div>
+                <div class="am-pc">
+                  <div class="am-pc-tier">Team (5+ seats)</div>
+                  <div class="am-pc-price">$149<span style="font-size:10px;font-weight:300;color:#bbb">/ea</span></div>
+                  <div class="am-pc-desc">Bulk pricing for groups</div>
+                  <div class="am-pc-btn">Contact Us</div>
                 </div>
               </div>
             </div>
+            <!-- Speakers immediately visible -->
+            <div class="am-speakers">
+              <div class="am-sec-eyebrow">Featured Speakers</div>
+              <div class="am-sp-grid">
+                <div class="am-sp-card">
+                  <div class="am-sp-av" style="background-image:url('https://images.unsplash.com/photo-1560250097-0b93528c311a?w=80&h=80&fit=crop&crop=face');background-size:cover;background-position:center top;background-repeat:no-repeat;"></div>
+                  <div class="am-sp-name">Jordan Reeves</div>
+                  <div class="am-sp-co">VP Marketing, Notion</div>
+                  <span class="am-sp-tag">Brand Strategy</span>
+                </div>
+                <div class="am-sp-card">
+                  <div class="am-sp-av" style="background-image:url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&h=80&fit=crop&crop=face');background-size:cover;background-position:center top;background-repeat:no-repeat;"></div>
+                  <div class="am-sp-name">Priya Mehta</div>
+                  <div class="am-sp-co">Head of Growth, Linear</div>
+                  <span class="am-sp-tag">Growth &amp; SEO</span>
+                </div>
+                <div class="am-sp-card">
+                  <div class="am-sp-av" style="background-image:url('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face');background-size:cover;background-position:center top;background-repeat:no-repeat;"></div>
+                  <div class="am-sp-name">Cam Elsworth</div>
+                  <div class="am-sp-co">Creative Director, Figma</div>
+                  <span class="am-sp-tag">Creative Direction</span>
+                </div>
+              </div>
+            </div>
+            <!-- Social proof: testimonial + benefits side by side -->
+            <div class="am-proof-row">
+              <div class="am-testimonial">
+                <div class="am-quote">&ldquo;Easily the most useful two days of my year. I left with a content strategy I actually shipped the following week.&rdquo;</div>
+                <div class="am-quote-author">
+                  <div class="am-quote-av" style="background-image:url('https://images.unsplash.com/photo-1580489944761-15a19d654956?w=80&h=80&fit=crop&crop=face');background-size:cover;background-position:center top;background-repeat:no-repeat;"></div>
+                  <div>
+                    <div class="am-quote-name">Sarah Chen</div>
+                    <div class="am-quote-role">Marketing Director, 2025 Attendee</div>
+                  </div>
+                </div>
+              </div>
+              <div class="am-benefits">
+                <div class="am-benefit"><div class="am-benefit-icon">&#10003;</div><div class="am-benefit-text"><strong>Free cancellation</strong> up to 30 days before</div></div>
+                <div class="am-benefit"><div class="am-benefit-icon">&#10003;</div><div class="am-benefit-text"><strong>Team invoicing</strong> available</div></div>
+                <div class="am-benefit"><div class="am-benefit-icon">&#10003;</div><div class="am-benefit-text"><strong>All sessions recorded</strong> &amp; included</div></div>
+              </div>
+            </div>
+            <!-- Logos / trusted by -->
+            <div class="am-logos">
+              <div class="am-logos-label">Past attendees from</div>
+              <div class="am-logos-row">
+                <span>Notion</span>
+                <span>Linear</span>
+                <span>Figma</span>
+                <span>Webflow</span>
+                <span>HubSpot</span>
+              </div>
+            </div>
+            <!-- Final CTA band -->
+            <div class="am-final-cta">
+              <div class="am-final-cta-text">
+                <div class="am-final-cta-title">Early bird ends Aug 15.</div>
+                <div class="am-final-cta-sub">127 spots left at $199. Prices rise after.</div>
+              </div>
+              <div class="am-final-cta-btn">Register Now &rarr;</div>
+            </div>
           </div>
         </div>
+
       </div>
-      <div class="ba-caption">Before: logistics-first, flat hierarchy, buried speakers, no urgency. After: value-first, speakers above the fold, anchored pricing, real deadline.</div>
+      <p class="ba-caption">Before: 8-item navigation, logistics-first hierarchy, dense copy, speakers buried below topics and key dates, flat pricing table with no visual anchor. After: no navigation — a single focused CTA; value-first headline, speakers immediately below the fold, urgency made real, pricing anchored around the recommended tier.</p>
     </section>
 
     <div class="divider"></div>
@@ -683,7 +962,7 @@
   <div class="footer-cta section" id="footer-cta">
     <p class="footer-cta-eyebrow">More work by Molly Curtis</p>
     <a href="https://mollycurtis.github.io/landingpages/" class="footer-cta-link">
-      View More Landing Pages <span class="arrow">→</span>
+      View More Landing Pages <span class="arrow">&#8594;</span>
     </a>
   </div>
 
