@@ -28,6 +28,7 @@
       --body:    #4a5666;
       --mute:    #8a95a3;
       --blue:    #1a5fd4;
+      --blue-dk: #1550b8;
       --blue-lt: #6aa8ff;
       --pos:     #12805c;
       --neg:     #b03a2e;
@@ -52,23 +53,32 @@
     .nav-back:hover { color: var(--blue); }
 
     /* MASTHEAD */
-    .mast { padding: 138px 0 8px; }
+    .mast { padding: 138px 0 46px; }
     .mast-kicker { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--blue); margin-bottom: 24px; }
     .mast-title { font-size: clamp(32px, 4.6vw, 58px); font-weight: 700; letter-spacing: -0.035em; line-height: 1.02; text-wrap: balance; max-width: 15em; }
-    .mast-lede { margin-top: 24px; max-width: 640px; font-size: 16.5px; line-height: 1.6; color: var(--body); }
+    .mast-lede { margin-top: 24px; max-width: 660px; font-size: 16.5px; line-height: 1.6; color: var(--body); }
     .mast-lede strong { color: var(--ink); font-weight: 600; }
 
+    /* DIVIDERS */
+    .hero-rule { height: 1px; background: var(--rule); }          /* subtle, contained */
+    .secbreak { height: 2px; background: #bcc7d2; margin-top: 88px; }          /* prominent, full-bleed */
+
     /* SECTION SHELL */
-    .sec { padding: 84px 0 0; }
+    .sec { padding: 80px 0 0; }
     .sec-head { display: grid; grid-template-columns: 1.15fr 1fr; gap: 72px; align-items: end; margin-bottom: 38px; }
     .sec-n { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; }
     .sec-t { font-size: clamp(26px, 3.2vw, 42px); font-weight: 700; letter-spacing: -0.032em; line-height: 1.05; }
     .sec-d { font-size: 15.5px; line-height: 1.6; color: var(--body); }
     .sec-d strong { color: var(--ink); font-weight: 600; }
 
-    /* CHIPS */
-    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 38px; }
-    .chip { font-size: 13px; color: var(--body); background: var(--wash); border: 1px solid var(--rule); padding: 7px 14px; border-radius: 2px; }
+    /* PILLS */
+    .chips { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 40px; }
+    .chip {
+      display: inline-flex; align-items: center; font-size: 13px; font-weight: 500;
+      color: #16407e; background: rgba(26,95,212,0.07);
+      border: 1px solid rgba(26,95,212,0.22); padding: 8px 14px; border-radius: 3px;
+    }
+    .chip::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--blue); margin-right: 9px; flex-shrink: 0; }
 
     /* RESULTS TABLE */
     .rt { width: 100%; border-collapse: collapse; }
@@ -105,39 +115,15 @@
     .read-k { font-family: var(--mono); font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--blue); margin-bottom: 9px; }
     .read-b { font-size: 14px; line-height: 1.6; color: var(--body); }
 
-    /* SPLIT: mock + notes */
-    .split { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: start; }
-    .mock { border: 1px solid var(--rule); background: var(--paper); }
-    .mk-nav { display: flex; align-items: center; justify-content: space-between; padding: 11px 16px; border-bottom: 1px solid var(--rule); }
-    .mk-logo { font-size: 11px; font-weight: 700; letter-spacing: 0.04em; }
-    .mk-links { display: flex; gap: 11px; }
-    .mk-links span { font-size: 8px; color: var(--mute); }
-    .mk-hero { padding: 24px 16px; background: linear-gradient(135deg,#16324f,#0e2237); }
-    .mk-hero-h { font-size: 12px; font-weight: 700; color: #fff; margin-bottom: 4px; }
-    .mk-hero-s { font-size: 8.5px; color: rgba(255,255,255,0.5); }
-    .mk-zone { padding: 15px 16px; border-bottom: 1px solid var(--rule); position: relative; }
-    .mk-zone.on { background: rgba(26,95,212,0.04); box-shadow: inset 3px 0 0 var(--blue); }
-    .mk-tag { position: absolute; top: 11px; right: 14px; font-family: var(--mono); font-size: 7.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); }
-    .mk-zt { font-size: 9.5px; font-weight: 700; margin-bottom: 9px; }
-    .mk-q4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 6px; }
-    .mk-q { border: 1px solid var(--rule); padding: 9px 5px; text-align: center; font-size: 7.5px; color: var(--body); }
-    .mk-t3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 6px; }
-    .mk-t { border: 1px solid var(--rule); }
-    .mk-t-i { height: 25px; background: linear-gradient(135deg,#1e3f66,#2f6199); }
-    .mk-t-b { padding: 5px; font-size: 7.5px; color: var(--body); }
-    .mk-rows { display: flex; flex-direction: column; gap: 5px; }
-    .mk-r { height: 7px; background: #edf1f5; }
-
-    .notes { display: flex; flex-direction: column; }
-    .note { padding: 20px 0; border-bottom: 1px solid var(--rule); }
-    .note:first-child { padding-top: 0; }
-    .note:last-child { border-bottom: none; }
-    .note-k { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); margin-bottom: 7px; }
-    .note-t { font-size: 15.5px; font-weight: 600; letter-spacing: -0.012em; margin-bottom: 5px; }
-    .note-b { font-size: 14px; line-height: 1.6; color: var(--body); }
+    /* KENTUCKY winning-page shot */
+    .kshot { margin-top: 44px; border: 1px solid var(--rule); background: var(--wash); }
+    .kcap { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pos); padding: 11px 15px; border-bottom: 1px solid var(--rule); }
+    .kshot a { display: block; }
+    .kshot img { width: 100%; height: auto; display: block; transition: opacity 0.18s; }
+    .kshot a:hover img { opacity: 0.92; }
 
     /* METRIC STRIP */
-    .mstrip { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 2px solid var(--ink); border-bottom: 1px solid var(--rule); margin-top: 40px; }
+    .mstrip { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 2px solid var(--ink); border-bottom: 1px solid var(--rule); }
     .ms { padding: 26px 28px 26px 0; border-right: 1px solid var(--rule); }
     .ms:last-child { border-right: none; }
     .ms:not(:first-child) { padding-left: 28px; }
@@ -162,32 +148,56 @@
     .cta-t tr.win td { color: var(--ink); }
     .cta-t tr.win td.hi { color: var(--pos); font-weight: 600; }
 
-    /* CARD HIERARCHY — before/after screenshots */
-    .ba { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 22px; max-width: 900px; }
+    /* CARD HIERARCHY — before/after screenshots (before column wider so heights match) */
+    .ba { display: grid; grid-template-columns: 1.12fr 1fr; gap: 20px; margin-top: 22px; align-items: start; }
     .ba-shot { border: 1px solid var(--rule); background: var(--wash); }
     .ba-cap { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mute); padding: 10px 14px; border-bottom: 1px solid var(--rule); }
     .ba-shot.after .ba-cap { color: var(--blue); }
-    .ba-shot img { width: 100%; height: auto; display: block; }
+    .ba-shot a { display: block; }
+    .ba-shot img { width: 100%; height: auto; display: block; transition: opacity 0.18s; }
+    .ba-shot a:hover img { opacity: 0.92; }
 
-    /* SUBSCRIPTION CTA */
-    .subcta { margin-top: 34px; padding-top: 26px; border-top: 1px solid var(--rule); }
-    .subcta-link { display: inline-flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 600; color: var(--ink); text-decoration: none; transition: gap 0.18s, color 0.18s; }
-    .subcta-link:hover { color: var(--blue); gap: 16px; }
+    /* SUBSCRIPTION CTA — filled button */
+    .subcta { margin-top: 36px; }
+    .subcta-btn {
+      display: inline-flex; align-items: center; gap: 11px;
+      background: var(--blue); color: #fff; text-decoration: none;
+      font-size: 15.5px; font-weight: 600; letter-spacing: -0.01em;
+      padding: 15px 26px; border-radius: 4px;
+      box-shadow: 0 1px 2px rgba(11,17,25,0.12);
+      transition: background 0.18s, gap 0.18s, transform 0.18s;
+    }
+    .subcta-btn span { font-size: 17px; line-height: 1; }
+    .subcta-btn:hover { background: var(--blue-dk); gap: 16px; transform: translateY(-1px); }
 
-    /* CLOSE */
-    .close { padding: 84px 0; }
+    /* HOMEPAGE — notes left, wide shot right, metrics below */
+    .hp-grid { display: grid; grid-template-columns: 300px 1fr; gap: 48px; align-items: center; margin-bottom: 40px; }
+    .hp-shot { display: block; border: 1px solid var(--rule); background: var(--wash); text-decoration: none; }
+    .hp-shot img { width: 100%; height: auto; display: block; transition: opacity 0.18s; }
+    .hp-shot:hover img { opacity: 0.92; }
+
+    .notes { display: flex; flex-direction: column; }
+    .note { padding: 18px 0; border-bottom: 1px solid var(--rule); }
+    .note:first-child { padding-top: 0; }
+    .note:last-child { border-bottom: none; padding-bottom: 0; }
+    .note-k { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); margin-bottom: 7px; }
+    .note-t { font-size: 15.5px; font-weight: 600; letter-spacing: -0.012em; margin-bottom: 5px; }
+    .note-b { font-size: 13.5px; line-height: 1.55; color: var(--body); }
+
+    /* CLOSE — full-bleed dark, stands apart */
+    .close { background: var(--ink); color: #fff; padding: 92px 0; }
+    .close-k { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--blue-lt); margin-bottom: 22px; }
     .close-g { display: grid; grid-template-columns: 1.15fr 1fr; gap: 72px; align-items: start; }
-    .close-t { font-size: clamp(24px, 3vw, 38px); font-weight: 700; letter-spacing: -0.032em; line-height: 1.15; }
-    .close-b { font-size: 15.5px; line-height: 1.7; color: var(--body); }
+    .close-t { font-size: clamp(26px, 3.2vw, 42px); font-weight: 700; letter-spacing: -0.032em; line-height: 1.1; color: #fff; }
+    .close-b { font-size: 16px; line-height: 1.7; color: rgba(255,255,255,0.72); }
 
     /* FOOTER */
-    .fdiv { height: 1px; background: var(--rule); }
-    .fcta { padding: 52px 0 96px; text-align: center; }
+    .fcta { padding: 60px 0 96px; text-align: center; }
     .fcta-k { font-family: var(--mono); font-size: 11px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--mute); margin-bottom: 15px; }
     .fcta-l { display: inline-flex; align-items: center; gap: 10px; font-size: clamp(22px, 3vw, 34px); font-weight: 700; color: var(--ink); text-decoration: none; letter-spacing: -0.028em; transition: color 0.18s, gap 0.18s; }
     .fcta-l:hover { color: var(--blue); gap: 16px; }
 
-    /* SCROLL ANIMATION — hidden states apply only when JS confirms motion is allowed */
+    /* SCROLL ANIMATION */
     .anim-ready .mast-kicker,
     .anim-ready .mast-title,
     .anim-ready .mast-lede,
@@ -195,11 +205,12 @@
     .anim-ready .chips,
     .anim-ready .rt,
     .anim-ready .reads .read,
-    .anim-ready .mock,
+    .anim-ready .kshot,
     .anim-ready .note,
     .anim-ready .mstrip,
     .anim-ready .exrow,
     .anim-ready .ba-shot,
+    .anim-ready .hp-shot,
     .anim-ready .subcta,
     .anim-ready .close-g > * {
       opacity: 0; transform: translateY(20px); will-change: opacity, transform;
@@ -212,22 +223,22 @@
     @media (prefers-reduced-motion: reduce) {
       .anim-ready .mast-kicker, .anim-ready .mast-title, .anim-ready .mast-lede,
       .anim-ready .sec-head, .anim-ready .chips, .anim-ready .rt,
-      .anim-ready .reads .read, .anim-ready .mock, .anim-ready .note,
+      .anim-ready .reads .read, .anim-ready .kshot, .anim-ready .note,
       .anim-ready .mstrip, .anim-ready .exrow, .anim-ready .ba-shot,
-      .anim-ready .subcta, .anim-ready .close-g > * { opacity: 1; transform: none; }
+      .anim-ready .hp-shot, .anim-ready .subcta, .anim-ready .close-g > * { opacity: 1; transform: none; }
     }
 
     /* RESPONSIVE */
     @media (max-width: 1080px) {
       nav, .wrap { padding-left: 30px; padding-right: 30px; }
       .sec-head, .close-g { grid-template-columns: 1fr; gap: 22px; }
-      .split { grid-template-columns: 1fr; gap: 32px; }
+      .hp-grid { grid-template-columns: 1fr; gap: 26px; align-items: start; }
     }
     @media (max-width: 720px) {
       nav { padding: 12px 20px; }
       .wrap { padding-left: 20px; padding-right: 20px; }
-      .mast { padding-top: 108px; }
-      .sec { padding-top: 60px; }
+      .mast { padding: 108px 0 36px; }
+      .sec { padding-top: 58px; }
       .mstrip { grid-template-columns: 1fr; }
       .ms { padding: 18px 0; border-right: none; border-bottom: 1px solid var(--rule); }
       .ms:last-child { border-bottom: none; }
@@ -256,17 +267,20 @@
 <div class="wrap mast">
   <div class="mast-kicker">Conversion Optimization · Online Learning · 2026</div>
   <h1 class="mast-title">Test it. Read it. Test it again.</h1>
-  <p class="mast-lede">Three A/B tests for an online course subscription business, spanning paid search, the subscription checkout, and the homepage. Some variants won, some lost, and both outcomes shaped the next test.</p>
+  <p class="mast-lede">Three rounds of A/B testing for an online course subscription business: state-specific paid search pages, the subscription checkout, and the homepage. Most changes won. The ones that didn't were just as useful.</p>
 </div>
+
+<!-- hero divider (subtle) -->
+<div class="wrap"><div class="hero-rule"></div></div>
 
 <!-- 01 PAID SEARCH -->
 <section class="wrap sec">
   <div class="sec-head">
     <div>
       <div class="sec-n">01 · Paid Search</div>
-      <h2 class="sec-t">Nine states. One template. Nine answers.</h2>
+      <h2 class="sec-t">One template, tested in every state.</h2>
     </div>
-    <p class="sec-d">Every state ran its own paid campaign against one shared page. The redesigned template was tested market by market, since no two states convert the same way.</p>
+    <p class="sec-d">Every state runs its own paid campaign against a shared landing page. The redesigned template was tested across all of them. Most states improved. The few that dipped were tested in a month with no upcoming deadline, when intent runs lower, so timing explained the drop more than the design did.</p>
   </div>
 
   <div class="chips">
@@ -292,66 +306,60 @@
         <td class="st">Kentucky</td>
         <td class="num">1.37%</td><td class="num new">3.62%</td>
         <td class="delta up">+164.1%</td>
-        <td class="chart"><div class="dbar"><span class="up" style="width:50.0%"></span></div></td>
+        <td class="chart"><div class="dbar"><span class="up" style="width:64.0%"></span></div></td>
       </tr>
       <tr>
         <td class="st">Kansas</td>
         <td class="num">2.65%</td><td class="num new">4.36%</td>
         <td class="delta up">+64.5%</td>
-        <td class="chart"><div class="dbar"><span class="up" style="width:19.7%"></span></div></td>
+        <td class="chart"><div class="dbar"><span class="up" style="width:25.2%"></span></div></td>
       </tr>
       <tr>
         <td class="st">New York</td>
         <td class="num">0.92%</td><td class="num new">1.42%</td>
         <td class="delta up">+54.8%</td>
-        <td class="chart"><div class="dbar"><span class="up" style="width:16.7%"></span></div></td>
+        <td class="chart"><div class="dbar"><span class="up" style="width:21.4%"></span></div></td>
       </tr>
       <tr>
         <td class="st">Florida</td>
         <td class="num">2.33%</td><td class="num new">2.79%</td>
         <td class="delta up">+19.8%</td>
-        <td class="chart"><div class="dbar"><span class="up" style="width:6.0%"></span></div></td>
+        <td class="chart"><div class="dbar"><span class="up" style="width:7.7%"></span></div></td>
       </tr>
       <tr>
         <td class="st">Missouri</td>
         <td class="num">3.25%</td><td class="num new">3.54%</td>
         <td class="delta up">+8.6%</td>
-        <td class="chart"><div class="dbar"><span class="up" style="width:2.6%"></span></div></td>
+        <td class="chart"><div class="dbar"><span class="up" style="width:3.4%"></span></div></td>
       </tr>
       <tr>
         <td class="st">Utah</td>
         <td class="num">2.90%</td><td class="num new">3.00%</td>
         <td class="delta up">+3.1%</td>
-        <td class="chart"><div class="dbar"><span class="up" style="width:1.0%"></span></div></td>
+        <td class="chart"><div class="dbar"><span class="up" style="width:1.2%"></span></div></td>
       </tr>
       <tr>
         <td class="st">Pennsylvania</td>
         <td class="num">3.19%</td><td class="num new">2.48%</td>
         <td class="delta dn">−22.4%</td>
-        <td class="chart"><div class="dbar"><span class="dn" style="width:6.8%"></span></div></td>
+        <td class="chart"><div class="dbar"><span class="dn" style="width:8.7%"></span></div></td>
       </tr>
       <tr>
         <td class="st">West Virginia</td>
         <td class="num">6.82%</td><td class="num new">3.53%</td>
         <td class="delta dn">−48.2%</td>
-        <td class="chart"><div class="dbar"><span class="dn" style="width:14.7%"></span></div></td>
-      </tr>
-      <tr>
-        <td class="st">Illinois</td>
-        <td class="num">5.49%</td><td class="num new">1.22%</td>
-        <td class="delta dn">−77.8%</td>
-        <td class="chart"><div class="dbar"><span class="dn" style="width:23.7%"></span></div></td>
+        <td class="chart"><div class="dbar"><span class="dn" style="width:18.8%"></span></div></td>
       </tr>
     </tbody>
     <tfoot>
-      <tr><td colspan="5">6 improved · 3 declined · sorted by change</td></tr>
+      <tr><td colspan="5">6 improved · 2 declined · a sample of the state pages tested</td></tr>
     </tfoot>
   </table>
 
   <div class="reads">
     <div class="read">
       <div class="read-k">The losses</div>
-      <div class="read-b">Illinois and West Virginia already converted well, and the redesign replaced what those markets responded to. A high baseline was a warning, not a target.</div>
+      <div class="read-b">West Virginia and Pennsylvania slipped, both tested in a month with no upcoming deadline. Their baselines were already high, so there was little room to gain, and lower intent that month did the rest.</div>
     </div>
     <div class="read">
       <div class="read-k">The wins</div>
@@ -359,10 +367,20 @@
     </div>
     <div class="read">
       <div class="read-k">What changed after</div>
-      <div class="read-b">Winners rolled out. Losers reverted and were re-tested on their own, rather than forcing one template onto every market.</div>
+      <div class="read-b">Winners shipped. The slips were re-tested in months with a deadline, rather than being written off from one slow window.</div>
     </div>
   </div>
+
+  <figure class="kshot">
+    <figcaption class="kcap">Kentucky · winning variant, +164% CVR</figcaption>
+    <a href="Kentucky.png" target="_blank" rel="noopener">
+      <img src="Kentucky.png" alt="Kentucky paid search landing page, winning variant" />
+    </a>
+  </figure>
 </section>
+
+<!-- prominent divider -->
+<div class="secbreak"></div>
 
 <!-- 02 SUBSCRIPTION -->
 <section class="wrap sec">
@@ -400,79 +418,60 @@
       <div class="ba">
         <figure class="ba-shot">
           <figcaption class="ba-cap">Before · 3 cards</figcaption>
-          <img src="3cards.png" alt="Subscription pricing with three plan cards above the fold" />
+          <a href="3cards.png" target="_blank" rel="noopener">
+            <img src="3cards.png" alt="Subscription pricing with three plan cards above the fold" />
+          </a>
         </figure>
         <figure class="ba-shot after">
           <figcaption class="ba-cap">After · 2 cards</figcaption>
-          <img src="2cards.png" alt="Subscription pricing with two plan cards above the fold" />
+          <a href="2cards.png" target="_blank" rel="noopener">
+            <img src="2cards.png" alt="Subscription pricing with two plan cards above the fold" />
+          </a>
         </figure>
       </div>
     </div>
   </div>
 
   <div class="subcta">
-    <a class="subcta-link" href="https://mollycurtis.github.io/projects/nbi-subscription/">Read the full subscription case study <span>→</span></a>
+    <a class="subcta-btn" href="https://mollycurtis.github.io/projects/nbi-subscription/">Read the full subscription case study <span>→</span></a>
   </div>
 </section>
+
+<!-- prominent divider -->
+<div class="secbreak"></div>
 
 <!-- 03 HOMEPAGE -->
 <section class="wrap sec">
   <div class="sec-head">
     <div>
       <div class="sec-n">03 · Homepage</div>
-      <h2 class="sec-t">Not a redesign. A reordering.</h2>
+      <h2 class="sec-t">Top Categories, moved above the fold.</h2>
     </div>
-    <p class="sec-d">The homepage already worked. The question was whether its order matched what visitors came for, so three structure changes were tested instead of a rebuild.</p>
+    <p class="sec-d">The category grid sat mid-page, below a product carousel, where few visitors reached it. Moving it directly under the hero put the most-used entry point where attention already was.</p>
   </div>
 
-  <div class="split">
-    <div class="mock">
-      <div class="mk-nav">
-        <span class="mk-logo">Vantage</span>
-        <div class="mk-links"><span>Courses</span><span>Topics</span><span>Pricing</span></div>
-      </div>
-      <div class="mk-hero">
-        <div class="mk-hero-h">Online courses, on your schedule</div>
-        <div class="mk-hero-s">Live and on-demand training for working professionals</div>
-      </div>
-      <div class="mk-zone on">
-        <div class="mk-tag">A</div>
-        <div class="mk-zt">Category quick links</div>
-        <div class="mk-q4"><div class="mk-q">Popular</div><div class="mk-q">New</div><div class="mk-q">Live</div><div class="mk-q">On-Demand</div></div>
-      </div>
-      <div class="mk-zone on">
-        <div class="mk-tag">B</div>
-        <div class="mk-zt">Topic placements</div>
-        <div class="mk-t3">
-          <div class="mk-t"><div class="mk-t-i"></div><div class="mk-t-b">Business</div></div>
-          <div class="mk-t"><div class="mk-t-i"></div><div class="mk-t-b">Design</div></div>
-          <div class="mk-t"><div class="mk-t-i"></div><div class="mk-t-b">Data</div></div>
-        </div>
-      </div>
-      <div class="mk-zone on" style="border-bottom:none;">
-        <div class="mk-tag">C</div>
-        <div class="mk-zt">Content hierarchy</div>
-        <div class="mk-rows"><div class="mk-r"></div><div class="mk-r"></div><div class="mk-r" style="width:68%"></div></div>
-      </div>
-    </div>
-
+  <div class="hp-grid">
     <div class="notes">
       <div class="note">
         <div class="note-k">A · Quick links</div>
         <div class="note-t">Let people skip the hunt</div>
-        <div class="note-b">Most visitors arrive knowing roughly what they need, so entry points moved higher.</div>
+        <div class="note-b">Most visitors arrive knowing roughly what they need. Categories became the first thing after the hero, so they don't have to scroll to start.</div>
       </div>
       <div class="note">
         <div class="note-k">B · Topic order</div>
         <div class="note-t">Order by demand, not catalog</div>
-        <div class="note-b">Reordering by what people actually browse moved high-intent topics into view.</div>
+        <div class="note-b">The grid was reordered by what people actually browse, moving high-intent topics into the first row.</div>
       </div>
       <div class="note">
         <div class="note-k">C · Hierarchy</div>
         <div class="note-t">Fewer blocks competing</div>
-        <div class="note-b">A clear priority order gave each section a fair chance to be seen.</div>
+        <div class="note-b">Dropping the carousel that sat above it gave the categories a clear, uncontested slot.</div>
       </div>
     </div>
+
+    <a class="hp-shot" href="homepage.png" target="_blank" rel="noopener">
+      <img src="homepage.png" alt="Homepage with Top Categories moved directly under the hero" />
+    </a>
   </div>
 
   <div class="mstrip">
@@ -483,14 +482,15 @@
 </section>
 
 <!-- CLOSE -->
-<div class="wrap close">
-  <div class="close-g">
-    <h2 class="close-t">Optimization isn't a project. It's a habit.</h2>
-    <p class="close-b">Each test isolated one idea, so a win or a loss could actually be explained. The point was never a single winning variant. It was a system where every result set up the next question.</p>
+<section class="close">
+  <div class="wrap">
+    <div class="close-k">The takeaway</div>
+    <div class="close-g">
+      <h2 class="close-t">Most pages improved. The exceptions were the point.</h2>
+      <p class="close-b">Across state landing pages, the checkout, and the homepage, every change was one hypothesis tested against real traffic. The pages that dipped weren't failures. They marked where a redesign wasn't the lever, or where timing mattered more than layout.</p>
+    </div>
   </div>
-</div>
-
-<div class="wrap"><div class="fdiv"></div></div>
+</section>
 
 <div class="fcta">
   <p class="fcta-k">More work by Molly Curtis</p>
@@ -531,7 +531,7 @@
       });
     }
     ['.reads .read', '.note', '.close-g > *', '.ba-shot'].forEach(function (s) { collect(s, true); });
-    ['.sec-head', '.chips', '.rt', '.mock', '.mstrip', '.exrow', '.subcta'].forEach(function (s) { collect(s, false); });
+    ['.sec-head', '.chips', '.rt', '.kshot', '.hp-shot', '.mstrip', '.exrow', '.subcta'].forEach(function (s) { collect(s, false); });
     ['.mast-kicker', '.mast-title', '.mast-lede'].forEach(function (sel, i) {
       var el = document.querySelector(sel);
       if (!el || el._reveal) return;
@@ -540,7 +540,6 @@
       revealEls.push(el);
     });
 
-    // bars: collapse now, grow when the table appears
     document.querySelectorAll('.dbar span').forEach(function (b) {
       b.dataset.w = b.style.width; b.style.width = '0';
     });
