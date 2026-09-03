@@ -3,14 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Conversion Optimization — Molly Curtis</title>
+  <title>Conversion Optimization · Molly Curtis</title>
+  <script>
+    /* Set the hidden-state flag before first paint so reveals never flash. */
+    (function () {
+      try {
+        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!reduce && 'IntersectionObserver' in window) {
+          document.documentElement.className += (document.documentElement.className ? ' ' : '') + 'anim-ready';
+        }
+      } catch (e) {}
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
     :root {
       --ink:     #0b1119;
-      --ink2:    #131c28;
       --paper:   #ffffff;
       --wash:    #f6f8fa;
       --rule:    #e3e8ee;
@@ -20,9 +30,7 @@
       --blue:    #1a5fd4;
       --blue-lt: #6aa8ff;
       --pos:     #12805c;
-      --pos-bg:  #d9f0e6;
       --neg:     #b03a2e;
-      --neg-bg:  #f6ded9;
       --sans:    'DM Sans', sans-serif;
       --mono:    'IBM Plex Mono', monospace;
     }
@@ -44,35 +52,23 @@
     .nav-back:hover { color: var(--blue); }
 
     /* MASTHEAD */
-    .mast { padding: 132px 0 0; }
-    .mast-kicker { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--blue); margin-bottom: 22px; }
-    .mast-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 72px; align-items: end; padding-bottom: 40px; }
-    .mast-title { font-size: clamp(38px, 5.4vw, 74px); font-weight: 700; letter-spacing: -0.038em; line-height: 0.97; }
-    .mast-lede { font-size: 17px; line-height: 1.6; color: var(--body); }
+    .mast { padding: 138px 0 8px; }
+    .mast-kicker { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--blue); margin-bottom: 24px; }
+    .mast-title { font-size: clamp(32px, 4.6vw, 58px); font-weight: 700; letter-spacing: -0.035em; line-height: 1.02; text-wrap: balance; max-width: 15em; }
+    .mast-lede { margin-top: 24px; max-width: 640px; font-size: 16.5px; line-height: 1.6; color: var(--body); }
     .mast-lede strong { color: var(--ink); font-weight: 600; }
 
-    /* TOPLINE NUMBERS */
-    .topline { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 2px solid var(--ink); border-bottom: 1px solid var(--rule); }
-    .tl-c { padding: 24px 26px 24px 0; border-right: 1px solid var(--rule); }
-    .tl-c:last-child { border-right: none; }
-    .tl-c:not(:first-child) { padding-left: 26px; }
-    .tl-v { font-family: var(--mono); font-size: clamp(26px, 3vw, 38px); font-weight: 600; letter-spacing: -0.02em; line-height: 1; margin-bottom: 8px; }
-    .tl-k { font-family: var(--mono); font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--mute); }
-
     /* SECTION SHELL */
-    .sec { padding: 88px 0 0; }
-    .sec-head { display: grid; grid-template-columns: 1.15fr 1fr; gap: 72px; align-items: end; margin-bottom: 40px; }
+    .sec { padding: 84px 0 0; }
+    .sec-head { display: grid; grid-template-columns: 1.15fr 1fr; gap: 72px; align-items: end; margin-bottom: 38px; }
     .sec-n { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; }
-    .sec-t { font-size: clamp(27px, 3.4vw, 44px); font-weight: 700; letter-spacing: -0.032em; line-height: 1.05; }
-    .sec-d { font-size: 15.5px; line-height: 1.65; color: var(--body); }
+    .sec-t { font-size: clamp(26px, 3.2vw, 42px); font-weight: 700; letter-spacing: -0.032em; line-height: 1.05; }
+    .sec-d { font-size: 15.5px; line-height: 1.6; color: var(--body); }
     .sec-d strong { color: var(--ink); font-weight: 600; }
 
-    /* CHANGE LIST — inline, horizontal */
-    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 40px; }
-    .chip {
-      font-size: 13px; color: var(--body); background: var(--wash);
-      border: 1px solid var(--rule); padding: 7px 14px; border-radius: 2px;
-    }
+    /* CHIPS */
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 38px; }
+    .chip { font-size: 13px; color: var(--body); background: var(--wash); border: 1px solid var(--rule); padding: 7px 14px; border-radius: 2px; }
 
     /* RESULTS TABLE */
     .rt { width: 100%; border-collapse: collapse; }
@@ -93,7 +89,6 @@
     .rt .delta.dn { color: var(--neg); }
     .rt .chart { padding-left: 24px; }
 
-    /* diverging bar */
     .dbar { position: relative; height: 16px; }
     .dbar::before { content: ''; position: absolute; left: 50%; top: -3px; bottom: -3px; width: 1px; background: var(--rule-d); }
     .dbar span { position: absolute; top: 2px; height: 12px; border-radius: 1px; }
@@ -112,10 +107,9 @@
 
     /* SPLIT: mock + notes */
     .split { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: start; }
-
     .mock { border: 1px solid var(--rule); background: var(--paper); }
     .mk-nav { display: flex; align-items: center; justify-content: space-between; padding: 11px 16px; border-bottom: 1px solid var(--rule); }
-    .mk-logo { font-size: 10px; font-weight: 700; letter-spacing: 0.06em; }
+    .mk-logo { font-size: 11px; font-weight: 700; letter-spacing: 0.04em; }
     .mk-links { display: flex; gap: 11px; }
     .mk-links span { font-size: 8px; color: var(--mute); }
     .mk-hero { padding: 24px 16px; background: linear-gradient(135deg,#16324f,#0e2237); }
@@ -144,81 +138,44 @@
 
     /* METRIC STRIP */
     .mstrip { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 2px solid var(--ink); border-bottom: 1px solid var(--rule); margin-top: 40px; }
-    .mstrip.four { grid-template-columns: repeat(4, 1fr); }
     .ms { padding: 26px 28px 26px 0; border-right: 1px solid var(--rule); }
     .ms:last-child { border-right: none; }
     .ms:not(:first-child) { padding-left: 28px; }
     .ms-v { font-family: var(--mono); font-size: clamp(24px, 2.8vw, 36px); font-weight: 600; letter-spacing: -0.02em; line-height: 1; margin-bottom: 8px; color: var(--pos); }
-    .ms-v.flat { color: var(--ink); }
     .ms-k { font-family: var(--mono); font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--mute); margin-bottom: 5px; }
     .ms-n { font-size: 13px; line-height: 1.5; color: var(--body); }
-
-    /* VISITOR SPLIT */
-    .vsplit { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; align-items: start; }
-    .vs-head { font-family: var(--mono); font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--mute); margin-bottom: 18px; }
-    .vs-row { margin-bottom: 22px; }
-    .vs-top { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 9px; }
-    .vs-l { font-size: 14.5px; font-weight: 600; }
-    .vs-p { font-family: var(--mono); font-size: 14px; font-weight: 600; }
-    .vs-bar { height: 10px; background: var(--wash); border: 1px solid var(--rule); }
-    .vs-fill { height: 100%; background: var(--blue); }
-    .vs-fill.alt { background: var(--blue-lt); }
-    .vs-note { font-size: 14px; line-height: 1.65; color: var(--body); }
-    .vs-note + .vs-note { margin-top: 12px; }
 
     /* EXPERIMENT ROW (subscription) */
     .exrow { display: grid; grid-template-columns: 200px 1fr; gap: 40px; padding: 30px 0; border-top: 1px solid var(--rule); align-items: start; }
     .exrow:last-of-type { border-bottom: 1px solid var(--rule); }
     .ex-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mute); padding-top: 3px; }
     .ex-title { font-size: 17px; font-weight: 600; letter-spacing: -0.015em; margin-bottom: 7px; }
-    .ex-body { font-size: 14.5px; line-height: 1.65; color: var(--body); max-width: 760px; }
+    .ex-body { font-size: 14.5px; line-height: 1.6; color: var(--body); max-width: 760px; }
+    .ex-lift { font-family: var(--mono); font-size: 15px; font-weight: 600; color: var(--pos); margin-top: 14px; }
 
     /* CTA TEST TABLE */
-    .cta-t { width: 100%; border-collapse: collapse; margin-top: 22px; max-width: 720px; }
+    .cta-t { width: 100%; border-collapse: collapse; margin-top: 20px; max-width: 640px; }
     .cta-t th { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mute); font-weight: 500; text-align: right; padding: 0 0 10px 20px; border-bottom: 1px solid var(--rule-d); }
     .cta-t th:first-child { text-align: left; padding-left: 0; }
     .cta-t td { font-family: var(--mono); font-size: 14px; text-align: right; padding: 12px 0 12px 20px; border-bottom: 1px solid var(--rule); color: var(--body); }
     .cta-t td:first-child { font-family: var(--sans); font-size: 14.5px; font-weight: 600; text-align: left; padding-left: 0; color: var(--ink); }
     .cta-t tr.win td { color: var(--ink); }
     .cta-t tr.win td.hi { color: var(--pos); font-weight: 600; }
-    .cta-t td.lift { font-weight: 600; color: var(--pos); }
 
-    /* CARD HIERARCHY BEFORE/AFTER */
-    .ba { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 24px; max-width: 860px; }
-    .ba-box { border: 1px solid var(--rule); }
-    .ba-h { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mute); padding: 10px 14px; border-bottom: 1px solid var(--rule); background: var(--wash); }
-    .ba-box.after .ba-h { color: var(--blue); }
-    .ba-in { padding: 16px 14px; }
-    .ba-fold { font-family: var(--mono); font-size: 7.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mute); border-top: 1px dashed var(--rule-d); margin: 12px 0 10px; padding-top: 6px; }
-    .cards3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 7px; }
-    .cards2 { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
-    .pcard { border: 1px solid var(--rule); padding: 12px 8px; text-align: center; }
-    .pcard.big { border-color: var(--blue); background: rgba(26,95,212,0.04); }
-    .pcard.solo { border-style: dashed; opacity: 0.75; }
-    .pc-n { font-size: 8px; color: var(--mute); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
-    .pc-p { font-family: var(--mono); font-size: 13px; font-weight: 600; }
-    .pcard.big .pc-p { color: var(--blue); }
+    /* CARD HIERARCHY — before/after screenshots */
+    .ba { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 22px; max-width: 900px; }
+    .ba-shot { border: 1px solid var(--rule); background: var(--wash); }
+    .ba-cap { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mute); padding: 10px 14px; border-bottom: 1px solid var(--rule); }
+    .ba-shot.after .ba-cap { color: var(--blue); }
+    .ba-shot img { width: 100%; height: auto; display: block; }
 
-    /* TRADEOFF */
-    .tradeoff { display: grid; grid-template-columns: 200px 1fr; gap: 40px; margin-top: 34px; padding-top: 26px; border-top: 2px solid var(--ink); }
-    .to-k { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); padding-top: 2px; }
-    .to-b { font-size: 15px; line-height: 1.7; color: var(--body); max-width: 780px; }
-    .to-b strong { color: var(--ink); font-weight: 600; }
-
-    /* METHOD */
-    .method { background: var(--ink); color: #fff; margin-top: 96px; }
-    .method-in { max-width: 1320px; margin: 0 auto; padding: 64px 44px; }
-    .method-t { font-size: clamp(22px, 2.8vw, 34px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.15; max-width: 720px; margin-bottom: 40px; }
-    .method-g { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid rgba(255,255,255,0.16); }
-    .mc { padding: 26px 28px 0 0; border-right: 1px solid rgba(255,255,255,0.12); }
-    .mc:last-child { border-right: none; padding-right: 0; }
-    .mc:not(:first-child) { padding-left: 28px; }
-    .mc-n { font-family: var(--mono); font-size: 10.5px; color: var(--blue-lt); letter-spacing: 0.1em; margin-bottom: 11px; }
-    .mc-h { font-size: 15px; font-weight: 600; margin-bottom: 7px; }
-    .mc-b { font-size: 13.5px; line-height: 1.6; color: rgba(255,255,255,0.5); }
+    /* SUBSCRIPTION CTA */
+    .subcta { margin-top: 34px; padding-top: 26px; border-top: 1px solid var(--rule); }
+    .subcta-link { display: inline-flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 600; color: var(--ink); text-decoration: none; transition: gap 0.18s, color 0.18s; }
+    .subcta-link:hover { color: var(--blue); gap: 16px; }
 
     /* CLOSE */
-    .close { padding: 80px 0; }
+    .close { padding: 84px 0; }
     .close-g { display: grid; grid-template-columns: 1.15fr 1fr; gap: 72px; align-items: start; }
     .close-t { font-size: clamp(24px, 3vw, 38px); font-weight: 700; letter-spacing: -0.032em; line-height: 1.15; }
     .close-b { font-size: 15.5px; line-height: 1.7; color: var(--body); }
@@ -230,34 +187,58 @@
     .fcta-l { display: inline-flex; align-items: center; gap: 10px; font-size: clamp(22px, 3vw, 34px); font-weight: 700; color: var(--ink); text-decoration: none; letter-spacing: -0.028em; transition: color 0.18s, gap 0.18s; }
     .fcta-l:hover { color: var(--blue); gap: 16px; }
 
+    /* SCROLL ANIMATION — hidden states apply only when JS confirms motion is allowed */
+    .anim-ready .mast-kicker,
+    .anim-ready .mast-title,
+    .anim-ready .mast-lede,
+    .anim-ready .sec-head,
+    .anim-ready .chips,
+    .anim-ready .rt,
+    .anim-ready .reads .read,
+    .anim-ready .mock,
+    .anim-ready .note,
+    .anim-ready .mstrip,
+    .anim-ready .exrow,
+    .anim-ready .ba-shot,
+    .anim-ready .subcta,
+    .anim-ready .close-g > * {
+      opacity: 0; transform: translateY(20px); will-change: opacity, transform;
+    }
+    .anim-ready .is-in {
+      opacity: 1 !important; transform: none !important;
+      transition: opacity 0.66s cubic-bezier(0.16, 0.84, 0.44, 1),
+                  transform 0.66s cubic-bezier(0.16, 0.84, 0.44, 1);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .anim-ready .mast-kicker, .anim-ready .mast-title, .anim-ready .mast-lede,
+      .anim-ready .sec-head, .anim-ready .chips, .anim-ready .rt,
+      .anim-ready .reads .read, .anim-ready .mock, .anim-ready .note,
+      .anim-ready .mstrip, .anim-ready .exrow, .anim-ready .ba-shot,
+      .anim-ready .subcta, .anim-ready .close-g > * { opacity: 1; transform: none; }
+    }
+
     /* RESPONSIVE */
     @media (max-width: 1080px) {
-      nav, .wrap, .method-in { padding-left: 30px; padding-right: 30px; }
-      .mast-grid, .sec-head, .close-g { grid-template-columns: 1fr; gap: 22px; }
-      .topline, .mstrip.four { grid-template-columns: 1fr 1fr; }
-      .tl-c, .mstrip.four .ms { border-bottom: 1px solid var(--rule); }
+      nav, .wrap { padding-left: 30px; padding-right: 30px; }
+      .sec-head, .close-g { grid-template-columns: 1fr; gap: 22px; }
       .split { grid-template-columns: 1fr; gap: 32px; }
-      .vsplit { grid-template-columns: 1fr; gap: 26px; }
-      .method-g { grid-template-columns: 1fr 1fr; }
-      .mc { border-bottom: 1px solid rgba(255,255,255,0.12); padding-bottom: 24px; }
-      .rt thead th.chart, .rt .chart { display: none; }
-      .ba { grid-template-columns: 1fr; }
     }
     @media (max-width: 720px) {
       nav { padding: 12px 20px; }
-      .wrap, .method-in { padding-left: 20px; padding-right: 20px; }
-      .mast { padding-top: 104px; }
-      .sec { padding-top: 62px; }
-      .topline, .mstrip, .mstrip.four { grid-template-columns: 1fr; }
-      .tl-c, .ms { padding: 18px 0; border-right: none; border-bottom: 1px solid var(--rule); }
-      .tl-c:not(:first-child), .ms:not(:first-child) { padding-left: 0; }
+      .wrap { padding-left: 20px; padding-right: 20px; }
+      .mast { padding-top: 108px; }
+      .sec { padding-top: 60px; }
+      .mstrip { grid-template-columns: 1fr; }
+      .ms { padding: 18px 0; border-right: none; border-bottom: 1px solid var(--rule); }
+      .ms:last-child { border-bottom: none; }
+      .ms:not(:first-child) { padding-left: 0; }
       .reads { grid-template-columns: 1fr; }
       .read { border-right: none; border-bottom: 1px solid var(--rule); padding: 20px 0; }
       .read:not(:first-child) { padding-left: 0; }
       .read:last-child { border-bottom: none; }
-      .exrow, .tradeoff { grid-template-columns: 1fr; gap: 12px; }
-      .method-g { grid-template-columns: 1fr; }
-      .mc { padding-left: 0; padding-right: 0; border-right: none; }
+      .exrow { grid-template-columns: 1fr; gap: 12px; }
+      .ba { grid-template-columns: 1fr; }
+      .rt thead th.chart, .rt .chart { display: none; }
       .rt .num { font-size: 12px; }
       .rt .st { font-size: 13.5px; }
       .cta-t th, .cta-t td { padding-left: 10px; font-size: 12.5px; }
@@ -273,36 +254,27 @@
 
 <!-- MASTHEAD -->
 <div class="wrap mast">
-  <div class="mast-kicker">Conversion Optimization · NBI · 2026</div>
-  <div class="mast-grid">
-    <h1 class="mast-title">Test it.<br>Read it.<br>Test it again.</h1>
-    <p class="mast-lede">Three optimization programs across paid search, the homepage, and the subscription funnel. <strong>Six state redesigns won. Three lost.</strong> Both outcomes shaped what came next.</p>
-  </div>
-
-  <div class="topline">
-    <div class="tl-c"><div class="tl-v">9</div><div class="tl-k">States Tested</div></div>
-    <div class="tl-c"><div class="tl-v" style="color:var(--pos)">+164%</div><div class="tl-k">Best State Lift</div></div>
-    <div class="tl-c"><div class="tl-v" style="color:var(--pos)">+23.8%</div><div class="tl-k">Homepage CVR</div></div>
-    <div class="tl-c"><div class="tl-v" style="color:var(--pos)">+95.2%</div><div class="tl-k">CTA Copy Test</div></div>
-  </div>
+  <div class="mast-kicker">Conversion Optimization · Online Learning · 2026</div>
+  <h1 class="mast-title">Test it. Read it. Test it again.</h1>
+  <p class="mast-lede">Three A/B tests for an online course subscription business, spanning paid search, the subscription checkout, and the homepage. Some variants won, some lost, and both outcomes shaped the next test.</p>
 </div>
 
 <!-- 01 PAID SEARCH -->
 <section class="wrap sec">
   <div class="sec-head">
     <div>
-      <div class="sec-n">01 — Paid Search</div>
-      <h2 class="sec-t">Nine states. One template. Nine different answers.</h2>
+      <div class="sec-n">01 · Paid Search</div>
+      <h2 class="sec-t">Nine states. One template. Nine answers.</h2>
     </div>
-    <p class="sec-d">Each state ran its own paid campaign against a shared national page. I redesigned the template and tested it state by state — because assuming one market behaves like another is how you lose money at scale.</p>
+    <p class="sec-d">Every state ran its own paid campaign against one shared page. The redesigned template was tested market by market, since no two states convert the same way.</p>
   </div>
 
   <div class="chips">
-    <span class="chip">Simplified content hierarchy</span>
-    <span class="chip">State-specific info surfaced sooner</span>
-    <span class="chip">Message match to paid ads</span>
-    <span class="chip">CTA visibility</span>
-    <span class="chip">Shorter conversion paths</span>
+    <span class="chip">Simplified hierarchy</span>
+    <span class="chip">State info surfaced sooner</span>
+    <span class="chip">Message match to ads</span>
+    <span class="chip">Clearer CTA</span>
+    <span class="chip">Shorter path to convert</span>
   </div>
 
   <table class="rt">
@@ -378,52 +350,103 @@
 
   <div class="reads">
     <div class="read">
-      <div class="read-k">What the losses say</div>
-      <div class="read-b">Illinois and West Virginia already converted well. The redesign replaced something those markets responded to — a reminder that a high baseline is a warning, not a target.</div>
+      <div class="read-k">The losses</div>
+      <div class="read-b">Illinois and West Virginia already converted well, and the redesign replaced what those markets responded to. A high baseline was a warning, not a target.</div>
     </div>
     <div class="read">
-      <div class="read-k">Where it won biggest</div>
-      <div class="read-b">Kentucky and New York started lowest and gained most. The template fixed pages that weren't working; it didn't improve pages that already were.</div>
+      <div class="read-k">The wins</div>
+      <div class="read-b">Kentucky and New York started lowest and gained most. The template fixed pages that weren't working, not ones that already were.</div>
     </div>
     <div class="read">
       <div class="read-k">What changed after</div>
-      <div class="read-b">Winners rolled out. Losers reverted and got re-tested individually instead of forcing one national template onto every market.</div>
+      <div class="read-b">Winners rolled out. Losers reverted and were re-tested on their own, rather than forcing one template onto every market.</div>
     </div>
   </div>
 </section>
 
-<!-- 02 HOMEPAGE -->
+<!-- 02 SUBSCRIPTION -->
 <section class="wrap sec">
   <div class="sec-head">
     <div>
-      <div class="sec-n">02 — Homepage</div>
+      <div class="sec-n">02 · Subscription</div>
+      <h2 class="sec-t">One checkout, tested continuously.</h2>
+    </div>
+    <p class="sec-d">The subscription page is tested on an ongoing basis, with each result deciding what gets tried next.</p>
+  </div>
+
+  <div class="exrow">
+    <div class="ex-label">Test · CTA copy</div>
+    <div>
+      <div class="ex-title">Changing the button label nearly doubled conversions</div>
+      <p class="ex-body">Same layout, same design. Only the button wording changed, from Select Pass to Buy Now.</p>
+      <table class="cta-t">
+        <thead>
+          <tr><th>Variant</th><th>Sessions</th><th>Conversions</th><th>CVR</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Select Pass</td><td>4,864</td><td>14</td><td>0.29%</td></tr>
+          <tr class="win"><td>Buy Now</td><td>4,452</td><td class="hi">25</td><td class="hi">0.56%</td></tr>
+        </tbody>
+      </table>
+      <p class="ex-lift">+95.2% conversion rate</p>
+    </div>
+  </div>
+
+  <div class="exrow">
+    <div class="ex-label">Test · Card hierarchy</div>
+    <div>
+      <div class="ex-title">Three cards above the fold became two</div>
+      <p class="ex-body">The third plan moved to its own section lower down, leaving the two most popular passes to carry the fold. Less to weigh, a clearer default.</p>
+      <div class="ba">
+        <figure class="ba-shot">
+          <figcaption class="ba-cap">Before · 3 cards</figcaption>
+          <img src="3cards.png" alt="Subscription pricing with three plan cards above the fold" />
+        </figure>
+        <figure class="ba-shot after">
+          <figcaption class="ba-cap">After · 2 cards</figcaption>
+          <img src="2cards.png" alt="Subscription pricing with two plan cards above the fold" />
+        </figure>
+      </div>
+    </div>
+  </div>
+
+  <div class="subcta">
+    <a class="subcta-link" href="https://mollycurtis.github.io/projects/nbi-subscription/">Read the full subscription case study <span>→</span></a>
+  </div>
+</section>
+
+<!-- 03 HOMEPAGE -->
+<section class="wrap sec">
+  <div class="sec-head">
+    <div>
+      <div class="sec-n">03 · Homepage</div>
       <h2 class="sec-t">Not a redesign. A reordering.</h2>
     </div>
-    <p class="sec-d">The homepage worked. The question was whether its structure matched what visitors came for. I tested three information-architecture changes instead of rebuilding anything.</p>
+    <p class="sec-d">The homepage already worked. The question was whether its order matched what visitors came for, so three structure changes were tested instead of a rebuild.</p>
   </div>
 
   <div class="split">
     <div class="mock">
       <div class="mk-nav">
-        <span class="mk-logo">NBI</span>
-        <div class="mk-links"><span>Courses</span><span>Topics</span><span>Subscribe</span></div>
+        <span class="mk-logo">Vantage</span>
+        <div class="mk-links"><span>Courses</span><span>Topics</span><span>Pricing</span></div>
       </div>
       <div class="mk-hero">
-        <div class="mk-hero-h">Continuing legal education, on your schedule</div>
-        <div class="mk-hero-s">Live and on-demand CLE for attorneys in every state</div>
+        <div class="mk-hero-h">Online courses, on your schedule</div>
+        <div class="mk-hero-s">Live and on-demand training for working professionals</div>
       </div>
       <div class="mk-zone on">
         <div class="mk-tag">A</div>
         <div class="mk-zt">Category quick links</div>
-        <div class="mk-q4"><div class="mk-q">By State</div><div class="mk-q">By Topic</div><div class="mk-q">On-Demand</div><div class="mk-q">Live</div></div>
+        <div class="mk-q4"><div class="mk-q">Popular</div><div class="mk-q">New</div><div class="mk-q">Live</div><div class="mk-q">On-Demand</div></div>
       </div>
       <div class="mk-zone on">
         <div class="mk-tag">B</div>
         <div class="mk-zt">Topic placements</div>
         <div class="mk-t3">
-          <div class="mk-t"><div class="mk-t-i"></div><div class="mk-t-b">Employment</div></div>
-          <div class="mk-t"><div class="mk-t-i"></div><div class="mk-t-b">Estate</div></div>
-          <div class="mk-t"><div class="mk-t-i"></div><div class="mk-t-b">Litigation</div></div>
+          <div class="mk-t"><div class="mk-t-i"></div><div class="mk-t-b">Business</div></div>
+          <div class="mk-t"><div class="mk-t-i"></div><div class="mk-t-b">Design</div></div>
+          <div class="mk-t"><div class="mk-t-i"></div><div class="mk-t-b">Data</div></div>
         </div>
       </div>
       <div class="mk-zone on" style="border-bottom:none;">
@@ -435,19 +458,19 @@
 
     <div class="notes">
       <div class="note">
-        <div class="note-k">A — Quick links</div>
+        <div class="note-k">A · Quick links</div>
         <div class="note-t">Let people skip the hunt</div>
-        <div class="note-b">Most visitors arrive knowing roughly what they need. Surfacing entry points high removes a navigation step.</div>
+        <div class="note-b">Most visitors arrive knowing roughly what they need, so entry points moved higher.</div>
       </div>
       <div class="note">
-        <div class="note-k">B — Topic placements</div>
-        <div class="note-t">Order by demand, not org chart</div>
-        <div class="note-b">Modules were sequenced around internal catalog structure. Reordering by what people actually browse put high-intent topics in high-visibility slots.</div>
+        <div class="note-k">B · Topic order</div>
+        <div class="note-t">Order by demand, not catalog</div>
+        <div class="note-b">Reordering by what people actually browse moved high-intent topics into view.</div>
       </div>
       <div class="note">
-        <div class="note-k">C — Hierarchy</div>
+        <div class="note-k">C · Hierarchy</div>
         <div class="note-t">Fewer blocks competing</div>
-        <div class="note-b">The area below the hero was doing too many jobs at once. A clear priority order gave each section a fair chance to be seen.</div>
+        <div class="note-b">A clear priority order gave each section a fair chance to be seen.</div>
       </div>
     </div>
   </div>
@@ -457,143 +480,13 @@
     <div class="ms"><div class="ms-k">RPV</div><div class="ms-v">+25.8%</div><div class="ms-n">Revenue per visitor</div></div>
     <div class="ms"><div class="ms-k">ATC</div><div class="ms-v">+23.3%</div><div class="ms-n">Add to cart</div></div>
   </div>
-
-  <div class="vsplit">
-    <div>
-      <div class="vs-head">Traffic mix — homepage</div>
-      <div class="vs-row">
-        <div class="vs-top"><span class="vs-l">New visitors</span><span class="vs-p" style="color:var(--blue)">70%</span></div>
-        <div class="vs-bar"><div class="vs-fill" style="width:70%"></div></div>
-      </div>
-      <div class="vs-row">
-        <div class="vs-top"><span class="vs-l">Returning visitors</span><span class="vs-p" style="color:var(--mute)">30%</span></div>
-        <div class="vs-bar"><div class="vs-fill alt" style="width:30%"></div></div>
-      </div>
-    </div>
-    <div>
-      <div class="vs-head">Reading the result</div>
-      <p class="vs-note">New visitors drive the majority of the gain — expected, since navigation clarity matters most to people without a learned path through the site.</p>
-      <p class="vs-note">Returning-visitor samples are much smaller, so that segment's numbers carry less weight and shouldn't be read as a separate finding.</p>
-      <p class="vs-note">Gains held across desktop and mobile, and across both subscription and one-time purchasers.</p>
-    </div>
-  </div>
 </section>
-
-<!-- 03 SUBSCRIPTION -->
-<section class="wrap sec">
-  <div class="sec-head">
-    <div>
-      <div class="sec-n">03 — Subscription</div>
-      <h2 class="sec-t">One page, tested continuously.</h2>
-    </div>
-    <p class="sec-d">The subscription page isn't a project I finished. It's a surface I keep testing — each result deciding what gets tried next.</p>
-  </div>
-
-  <div class="exrow">
-    <div class="ex-label">Test — CTA copy</div>
-    <div>
-      <div class="ex-title">Changing the button text nearly doubled conversions</div>
-      <p class="ex-body">No layout change, no design change. Wording only.</p>
-      <table class="cta-t">
-        <thead>
-          <tr><th>Variant</th><th>Sessions</th><th>Conversions</th><th>CVR</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Original</td><td>4,864</td><td>14</td><td>0.29%</td></tr>
-          <tr class="win"><td>Variant</td><td>4,452</td><td class="hi">25</td><td class="hi">0.56%</td></tr>
-          <tr><td>Lift</td><td>—</td><td>—</td><td class="lift">+95.2%</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="exrow">
-    <div class="ex-label">Test — Card hierarchy</div>
-    <div>
-      <div class="ex-title">Three cards above the fold became two</div>
-      <p class="ex-body">The Firm card moved to its own section below, leaving OnDemand and All Inclusive — the two most popular plans — to carry the fold. Less to weigh, clearer default.</p>
-      <div class="ba">
-        <div class="ba-box">
-          <div class="ba-h">Before — 3 cards</div>
-          <div class="ba-in">
-            <div class="cards3">
-              <div class="pcard"><div class="pc-n">OnDemand</div><div class="pc-p">$99</div></div>
-              <div class="pcard"><div class="pc-n">All Inclusive</div><div class="pc-p">$129</div></div>
-              <div class="pcard"><div class="pc-n">Firm</div><div class="pc-p">Custom</div></div>
-            </div>
-            <div class="ba-fold">Fold</div>
-          </div>
-        </div>
-        <div class="ba-box after">
-          <div class="ba-h">After — 2 cards</div>
-          <div class="ba-in">
-            <div class="cards2">
-              <div class="pcard big"><div class="pc-n">OnDemand</div><div class="pc-p">$99</div></div>
-              <div class="pcard big"><div class="pc-n">All Inclusive</div><div class="pc-p">$129</div></div>
-            </div>
-            <div class="ba-fold">Fold</div>
-            <div class="pcard solo"><div class="pc-n">Firm — own section</div><div class="pc-p">Custom</div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="exrow">
-    <div class="ex-label">Test — Annual discount</div>
-    <div>
-      <div class="ex-title">Trading order value for volume and revenue per visitor</div>
-      <p class="ex-body">An annual billing discount, tested to move subscribers off monthly commitments.</p>
-    </div>
-  </div>
-
-  <div class="mstrip four">
-    <div class="ms"><div class="ms-k">CVR</div><div class="ms-v">+13.7%</div><div class="ms-n">Conversion rate</div></div>
-    <div class="ms"><div class="ms-k">RPV</div><div class="ms-v">+33.2%</div><div class="ms-n">Revenue per visitor</div></div>
-    <div class="ms"><div class="ms-k">ATC</div><div class="ms-v">+43%</div><div class="ms-n">Add to cart</div></div>
-    <div class="ms"><div class="ms-k">First-time subs</div><div class="ms-v">+20.3%</div><div class="ms-n">New subscribers</div></div>
-  </div>
-
-  <div class="tradeoff">
-    <div class="to-k">The tradeoff</div>
-    <div class="to-b"><strong>Subscription AOV fell about 13%</strong> — the cost of the discount, not a failure of the test. Revenue per visitor rose 33.2% and first-time subscribers rose 20.3%, which more than covers it. Blended AOV actually rose, though a handful of unusually large one-time purchases inflate that figure, so I don't lean on it. <strong>Not every metric has to go up for an experiment to be worth shipping.</strong></div>
-  </div>
-</section>
-
-<!-- METHOD -->
-<div class="method">
-  <div class="method-in">
-    <h2 class="method-t">A result you can't explain isn't a result.</h2>
-    <div class="method-g">
-      <div class="mc">
-        <div class="mc-n">01</div>
-        <div class="mc-h">One hypothesis</div>
-        <div class="mc-b">Changes tie to a single idea. Twenty unrelated edits tell you something moved, never why.</div>
-      </div>
-      <div class="mc">
-        <div class="mc-n">02</div>
-        <div class="mc-h">Segment before concluding</div>
-        <div class="mc-b">A flat overall number often hides a strong result in one segment and a weak one in another.</div>
-      </div>
-      <div class="mc">
-        <div class="mc-n">03</div>
-        <div class="mc-h">Read metrics together</div>
-        <div class="mc-b">CVR, RPV, ATC, and AOV as a set. A lift beside a drop is a tradeoff to weigh, not a win to announce.</div>
-      </div>
-      <div class="mc">
-        <div class="mc-n">04</div>
-        <div class="mc-h">Keep the losses</div>
-        <div class="mc-b">Three state redesigns lost. Those told me more about market differences than the six that won.</div>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- CLOSE -->
 <div class="wrap close">
   <div class="close-g">
     <h2 class="close-t">Optimization isn't a project. It's a habit.</h2>
-    <p class="close-b">The useful output here isn't one winning variant — it's a program where every result, good or bad, sets up the next question. The three states that lost changed how I roll anything out.</p>
+    <p class="close-b">Each test isolated one idea, so a win or a loss could actually be explained. The point was never a single winning variant. It was a system where every result set up the next question.</p>
   </div>
 </div>
 
@@ -603,6 +496,111 @@
   <p class="fcta-k">More work by Molly Curtis</p>
   <a href="https://mollycurtis.github.io/landingpages/" class="fcta-l">View More Landing Pages <span>→</span></a>
 </div>
+
+<script>
+/* ---- Scroll animations: staggered reveals, growing bars, counting numbers ---- */
+(function () {
+  var root = document.documentElement;
+  var animate = root.classList.contains('anim-ready')
+    && !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)
+    && ('IntersectionObserver' in window);
+
+  var numEls = [];
+  function bailStatic() {
+    try {
+      root.classList.remove('anim-ready');
+      document.querySelectorAll('.dbar span').forEach(function (b) {
+        if (b.dataset && b.dataset.w) b.style.width = b.dataset.w;
+      });
+      numEls.forEach(function (el) { if (el._cu) el.textContent = el._cu.raw; });
+    } catch (e) {}
+  }
+
+  if (!animate) return;
+
+  try {
+    var EASE = 'cubic-bezier(0.16, 0.84, 0.44, 1)';
+
+    var revealEls = [];
+    function collect(sel, stagger) {
+      document.querySelectorAll(sel).forEach(function (el, i) {
+        if (el._reveal) return;
+        el._reveal = true;
+        if (stagger) el.style.transitionDelay = (Math.min(i, 6) * 70) + 'ms';
+        revealEls.push(el);
+      });
+    }
+    ['.reads .read', '.note', '.close-g > *', '.ba-shot'].forEach(function (s) { collect(s, true); });
+    ['.sec-head', '.chips', '.rt', '.mock', '.mstrip', '.exrow', '.subcta'].forEach(function (s) { collect(s, false); });
+    ['.mast-kicker', '.mast-title', '.mast-lede'].forEach(function (sel, i) {
+      var el = document.querySelector(sel);
+      if (!el || el._reveal) return;
+      el._reveal = true;
+      el.style.transitionDelay = (120 + i * 110) + 'ms';
+      revealEls.push(el);
+    });
+
+    // bars: collapse now, grow when the table appears
+    document.querySelectorAll('.dbar span').forEach(function (b) {
+      b.dataset.w = b.style.width; b.style.width = '0';
+    });
+    var rt = document.querySelector('.rt');
+    if (rt) rt._bars = rt.querySelectorAll('.dbar span');
+    function growBars(list) {
+      Array.prototype.forEach.call(list, function (b, i) {
+        b.style.transition = 'width 1.05s ' + EASE + ' ' + (i * 45) + 'ms';
+        requestAnimationFrame(function () { b.style.width = b.dataset.w; });
+      });
+    }
+
+    function parseNum(txt) {
+      var m = txt.match(/^([+\u2212-]?)(\d[\d,]*)(?:\.(\d+))?(%?)$/);
+      if (!m) return null;
+      var sign = m[1] === '+' ? '+' : (m[1] === '' ? '' : '\u2212');
+      var val = parseFloat(m[2].replace(/,/g, '') + (m[3] ? '.' + m[3] : ''));
+      return { sign: sign, val: val, dec: m[3] ? m[3].length : 0,
+               suf: m[4], comma: m[2].indexOf(',') !== -1, raw: txt };
+    }
+    function fmt(n, info) {
+      var s = n.toFixed(info.dec);
+      if (info.comma) { var p = s.split('.'); p[0] = p[0].replace(/\B(?=(\d{3})+(?!\d))/g, ','); s = p.join('.'); }
+      return info.sign + s + info.suf;
+    }
+    document.querySelectorAll('.ms-v').forEach(function (el) {
+      var info = parseNum(el.textContent.trim());
+      if (!info) return;
+      el._cu = info; el.textContent = fmt(0, info); numEls.push(el);
+    });
+    function countUp(el) {
+      var info = el._cu, dur = 1150, start = null;
+      function step(t) {
+        if (start === null) start = t;
+        var p = Math.min((t - start) / dur, 1);
+        var e = 1 - Math.pow(1 - p, 3);
+        el.textContent = p < 1 ? fmt(info.val * e, info) : info.raw;
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (ent) {
+        if (!ent.isIntersecting) return;
+        var el = ent.target;
+        io.unobserve(el);
+        if (el._reveal) el.classList.add('is-in');
+        if (el._bars) growBars(el._bars);
+        if (el._cu) countUp(el);
+      });
+    }, { threshold: 0.18, rootMargin: '0px 0px -6% 0px' });
+
+    revealEls.forEach(function (el) { io.observe(el); });
+    numEls.forEach(function (el) { if (!el._reveal) io.observe(el); });
+  } catch (e) {
+    bailStatic();
+  }
+})();
+</script>
 
 </body>
 </html>
