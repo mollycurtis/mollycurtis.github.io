@@ -30,6 +30,8 @@
       --blue:    #1a5fd4;
       --blue-dk: #1550b8;
       --blue-lt: #6aa8ff;
+      --cta:     #1b3666;
+      --cta-h:   #26467d;
       --pos:     #12805c;
       --neg:     #b03a2e;
       --sans:    'DM Sans', sans-serif;
@@ -52,24 +54,22 @@
     .nav-back { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.04em; color: var(--mute); text-decoration: none; text-transform: uppercase; }
     .nav-back:hover { color: var(--blue); }
 
-    /* MASTHEAD */
+    /* MASTHEAD (hero heading size unchanged) */
     .mast { padding: 138px 0 46px; }
     .mast-kicker { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--blue); margin-bottom: 24px; }
     .mast-title { font-size: clamp(32px, 4.6vw, 58px); font-weight: 700; letter-spacing: -0.035em; line-height: 1.02; text-wrap: balance; max-width: 15em; }
     .mast-lede { margin-top: 24px; max-width: 660px; font-size: 16.5px; line-height: 1.6; color: var(--body); }
-    .mast-lede strong { color: var(--ink); font-weight: 600; }
 
     /* DIVIDERS */
-    .hero-rule { height: 1px; background: var(--rule); }          /* subtle, contained */
-    .secbreak { height: 2px; background: #bcc7d2; margin-top: 88px; }          /* prominent, full-bleed */
+    .hero-rule { height: 1px; background: var(--rule); }
+    .secbreak { height: 2px; background: #bcc7d2; margin-top: 88px; }
 
-    /* SECTION SHELL */
+    /* SECTION SHELL — heading column wider, heading smaller so it stays one line */
     .sec { padding: 80px 0 0; }
-    .sec-head { display: grid; grid-template-columns: 1.15fr 1fr; gap: 72px; align-items: end; margin-bottom: 38px; }
+    .sec-head { display: grid; grid-template-columns: 1.4fr 1fr; gap: 60px; align-items: start; margin-bottom: 38px; }
     .sec-n { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; }
-    .sec-t { font-size: clamp(26px, 3.2vw, 42px); font-weight: 700; letter-spacing: -0.032em; line-height: 1.05; }
-    .sec-d { font-size: 15.5px; line-height: 1.6; color: var(--body); }
-    .sec-d strong { color: var(--ink); font-weight: 600; }
+    .sec-t { font-size: clamp(22px, 2.3vw, 34px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.08; }
+    .sec-d { font-size: 15px; line-height: 1.6; color: var(--body); padding-top: 3px; }
 
     /* PILLS */
     .chips { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 40px; }
@@ -123,19 +123,19 @@
     .kshot a:hover img { opacity: 0.92; }
 
     /* METRIC STRIP */
-    .mstrip { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 2px solid var(--ink); border-bottom: 1px solid var(--rule); }
-    .ms { padding: 26px 28px 26px 0; border-right: 1px solid var(--rule); }
+    .mstrip { display: grid; grid-template-columns: repeat(3, 1fr); }
+    .ms { padding: 4px 28px 0 0; border-right: 1px solid var(--rule); }
     .ms:last-child { border-right: none; }
     .ms:not(:first-child) { padding-left: 28px; }
     .ms-v { font-family: var(--mono); font-size: clamp(24px, 2.8vw, 36px); font-weight: 600; letter-spacing: -0.02em; line-height: 1; margin-bottom: 8px; color: var(--pos); }
     .ms-k { font-family: var(--mono); font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--mute); margin-bottom: 5px; }
     .ms-n { font-size: 13px; line-height: 1.5; color: var(--body); }
 
-    /* EXPERIMENT ROW (subscription) */
-    .exrow { display: grid; grid-template-columns: 200px 1fr; gap: 40px; padding: 30px 0; border-top: 1px solid var(--rule); align-items: start; }
-    .exrow:last-of-type { border-bottom: 1px solid var(--rule); }
-    .ex-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mute); padding-top: 3px; }
-    .ex-title { font-size: 17px; font-weight: 600; letter-spacing: -0.015em; margin-bottom: 7px; }
+    /* EXPERIMENT TESTS — two tests side by side */
+    .extests { display: grid; grid-template-columns: 1fr 1.2fr; gap: 50px; align-items: start; border-top: 1px solid var(--rule); padding-top: 32px; }
+    .exrow { min-width: 0; }
+    .ex-label { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--mute); margin-bottom: 14px; }
+    .ex-title { font-size: 18px; font-weight: 600; letter-spacing: -0.015em; margin-bottom: 7px; }
     .ex-body { font-size: 14.5px; line-height: 1.6; color: var(--body); max-width: 760px; }
     .ex-lift { font-family: var(--mono); font-size: 15px; font-weight: 600; color: var(--pos); margin-top: 14px; }
 
@@ -148,12 +148,12 @@
     .cta-t tr.win td { color: var(--ink); }
     .cta-t tr.win td.hi { color: var(--pos); font-weight: 600; }
 
-    /* CARD HIERARCHY — before/after screenshots (before column wider so heights match) */
-    .ba { display: grid; grid-template-columns: 1.12fr 1fr; gap: 20px; margin-top: 22px; align-items: start; }
-    .ba-shot { border: 1px solid var(--rule); background: var(--wash); }
+    /* CARD HIERARCHY — equal-width cards, equal height, image vertically centered */
+    .ba { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 20px; align-items: stretch; }
+    .ba-shot { border: 1px solid var(--rule); background: var(--wash); display: flex; flex-direction: column; min-width: 0; }
     .ba-cap { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mute); padding: 10px 14px; border-bottom: 1px solid var(--rule); }
     .ba-shot.after .ba-cap { color: var(--blue); }
-    .ba-shot a { display: block; }
+    .ba-shot a { flex: 1; display: flex; align-items: center; justify-content: center; }
     .ba-shot img { width: 100%; height: auto; display: block; transition: opacity 0.18s; }
     .ba-shot a:hover img { opacity: 0.92; }
 
@@ -161,41 +161,64 @@
     .subcta { margin-top: 36px; }
     .subcta-btn {
       display: inline-flex; align-items: center; gap: 11px;
-      background: var(--blue); color: #fff; text-decoration: none;
+      background: var(--cta); color: #fff; text-decoration: none;
       font-size: 15.5px; font-weight: 600; letter-spacing: -0.01em;
       padding: 15px 26px; border-radius: 4px;
-      box-shadow: 0 1px 2px rgba(11,17,25,0.12);
+      box-shadow: 0 1px 2px rgba(11,17,25,0.14);
       transition: background 0.18s, gap 0.18s, transform 0.18s;
     }
     .subcta-btn span { font-size: 17px; line-height: 1; }
-    .subcta-btn:hover { background: var(--blue-dk); gap: 16px; transform: translateY(-1px); }
+    .subcta-btn:hover { background: var(--cta-h); gap: 16px; transform: translateY(-1px); }
 
-    /* HOMEPAGE — notes left, wide shot right, metrics below */
-    .hp-grid { display: grid; grid-template-columns: 300px 1fr; gap: 48px; align-items: center; margin-bottom: 40px; }
+    /* HOMEPAGE — notes left, wide shot right (top-aligned), stats below, no divider above stats */
+    .hp-grid { display: grid; grid-template-columns: 300px 1fr; gap: 48px; align-items: start; margin-bottom: 34px; }
     .hp-shot { display: block; border: 1px solid var(--rule); background: var(--wash); text-decoration: none; }
     .hp-shot img { width: 100%; height: auto; display: block; transition: opacity 0.18s; }
     .hp-shot:hover img { opacity: 0.92; }
 
     .notes { display: flex; flex-direction: column; }
-    .note { padding: 18px 0; border-bottom: 1px solid var(--rule); }
+    .note { padding: 16px 0; border-bottom: 1px solid var(--rule); }
     .note:first-child { padding-top: 0; }
     .note:last-child { border-bottom: none; padding-bottom: 0; }
-    .note-k { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); margin-bottom: 7px; }
-    .note-t { font-size: 15.5px; font-weight: 600; letter-spacing: -0.012em; margin-bottom: 5px; }
-    .note-b { font-size: 13.5px; line-height: 1.55; color: var(--body); }
+    .note-k { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); margin-bottom: 6px; }
+    .note-t { font-size: 15px; font-weight: 600; letter-spacing: -0.012em; margin-bottom: 4px; }
+    .note-b { font-size: 13.5px; line-height: 1.5; color: var(--body); }
 
-    /* CLOSE — full-bleed dark, stands apart */
-    .close { background: var(--ink); color: #fff; padding: 92px 0; }
-    .close-k { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--blue-lt); margin-bottom: 22px; }
-    .close-g { display: grid; grid-template-columns: 1.15fr 1fr; gap: 72px; align-items: start; }
-    .close-t { font-size: clamp(26px, 3.2vw, 42px); font-weight: 700; letter-spacing: -0.032em; line-height: 1.1; color: #fff; }
-    .close-b { font-size: 16px; line-height: 1.7; color: rgba(255,255,255,0.72); }
+    /* TAKEAWAY — light card, matches the page vibe */
+    .takeaway { padding: 90px 0; }
+    .tk-card {
+      max-width: 1040px; margin: 0 auto;
+      background: linear-gradient(180deg, #f4f8fe 0%, #eef4fc 100%);
+      border: 1px solid #dbe5f3; border-radius: 14px;
+      padding: clamp(30px, 4vw, 54px);
+    }
+    .tk-k { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--blue); margin-bottom: 18px; }
+    .tk-t { font-size: clamp(24px, 2.9vw, 36px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.12; max-width: 20em; margin-bottom: 18px; }
+    .tk-b { font-size: 16px; line-height: 1.7; color: var(--body); max-width: 44em; }
 
     /* FOOTER */
-    .fcta { padding: 60px 0 96px; text-align: center; }
+    .fcta { padding: 70px 0 96px; text-align: center; }
     .fcta-k { font-family: var(--mono); font-size: 11px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--mute); margin-bottom: 15px; }
     .fcta-l { display: inline-flex; align-items: center; gap: 10px; font-size: clamp(22px, 3vw, 34px); font-weight: 700; color: var(--ink); text-decoration: none; letter-spacing: -0.028em; transition: color 0.18s, gap 0.18s; }
     .fcta-l:hover { color: var(--blue); gap: 16px; }
+
+    /* LIGHTBOX */
+    .zoom { cursor: zoom-in; }
+    .lb {
+      position: fixed; inset: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: center; padding: 4vw;
+      background: rgba(11,17,25,0.72); backdrop-filter: blur(3px);
+      opacity: 0; pointer-events: none; transition: opacity 0.22s; cursor: zoom-out;
+    }
+    .lb.open { opacity: 1; pointer-events: auto; }
+    .lb img { max-width: 94vw; max-height: 90vh; border-radius: 4px; box-shadow: 0 24px 70px rgba(0,0,0,0.45); }
+    .lb-close {
+      position: absolute; top: 18px; right: 22px; width: 40px; height: 40px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(255,255,255,0.12); border: none; border-radius: 50%;
+      color: #fff; font-size: 24px; line-height: 1; cursor: pointer; transition: background 0.18s;
+    }
+    .lb-close:hover { background: rgba(255,255,255,0.24); }
 
     /* SCROLL ANIMATION */
     .anim-ready .mast-kicker,
@@ -212,7 +235,7 @@
     .anim-ready .ba-shot,
     .anim-ready .hp-shot,
     .anim-ready .subcta,
-    .anim-ready .close-g > * {
+    .anim-ready .tk-card {
       opacity: 0; transform: translateY(20px); will-change: opacity, transform;
     }
     .anim-ready .is-in {
@@ -225,14 +248,16 @@
       .anim-ready .sec-head, .anim-ready .chips, .anim-ready .rt,
       .anim-ready .reads .read, .anim-ready .kshot, .anim-ready .note,
       .anim-ready .mstrip, .anim-ready .exrow, .anim-ready .ba-shot,
-      .anim-ready .hp-shot, .anim-ready .subcta, .anim-ready .close-g > * { opacity: 1; transform: none; }
+      .anim-ready .hp-shot, .anim-ready .subcta, .anim-ready .tk-card { opacity: 1; transform: none; }
     }
 
     /* RESPONSIVE */
     @media (max-width: 1080px) {
       nav, .wrap { padding-left: 30px; padding-right: 30px; }
-      .sec-head, .close-g { grid-template-columns: 1fr; gap: 22px; }
-      .hp-grid { grid-template-columns: 1fr; gap: 26px; align-items: start; }
+      .sec-head { grid-template-columns: 1fr; gap: 18px; }
+      .hp-grid { grid-template-columns: 1fr; gap: 24px; }
+      .extests { grid-template-columns: 1fr; gap: 0; }
+      .extests .exrow + .exrow { border-top: 1px solid var(--rule); padding-top: 30px; margin-top: 30px; }
     }
     @media (max-width: 720px) {
       nav { padding: 12px 20px; }
@@ -240,15 +265,14 @@
       .mast { padding: 108px 0 36px; }
       .sec { padding-top: 58px; }
       .mstrip { grid-template-columns: 1fr; }
-      .ms { padding: 18px 0; border-right: none; border-bottom: 1px solid var(--rule); }
+      .ms { padding: 16px 0; border-right: none; border-bottom: 1px solid var(--rule); }
       .ms:last-child { border-bottom: none; }
       .ms:not(:first-child) { padding-left: 0; }
       .reads { grid-template-columns: 1fr; }
       .read { border-right: none; border-bottom: 1px solid var(--rule); padding: 20px 0; }
       .read:not(:first-child) { padding-left: 0; }
       .read:last-child { border-bottom: none; }
-      .exrow { grid-template-columns: 1fr; gap: 12px; }
-      .ba { grid-template-columns: 1fr; }
+      .ba { grid-template-columns: 1fr; max-width: 460px; }
       .rt thead th.chart, .rt .chart { display: none; }
       .rt .num { font-size: 12px; }
       .rt .st { font-size: 13.5px; }
@@ -260,7 +284,7 @@
 
 <nav>
   <a href="https://mollycurtis.github.io" class="nav-logo">Molly Curtis</a>
-  <a href="https://mollycurtis.github.io/landingpages/" class="nav-back">← Landing Pages</a>
+  <a href="https://mollycurtis.github.io/#landing-pages" class="nav-back">← Landing Pages</a>
 </nav>
 
 <!-- MASTHEAD -->
@@ -270,7 +294,6 @@
   <p class="mast-lede">Three rounds of A/B testing for an online course subscription business: state-specific paid search pages, the subscription checkout, and the homepage. Most changes won. The ones that didn't were just as useful.</p>
 </div>
 
-<!-- hero divider (subtle) -->
 <div class="wrap"><div class="hero-rule"></div></div>
 
 <!-- 01 PAID SEARCH -->
@@ -280,7 +303,7 @@
       <div class="sec-n">01 · Paid Search</div>
       <h2 class="sec-t">One template, tested in every state.</h2>
     </div>
-    <p class="sec-d">Every state runs its own paid campaign against a shared landing page. The redesigned template was tested across all of them. Most states improved. The few that dipped were tested in a month with no upcoming deadline, when intent runs lower, so timing explained the drop more than the design did.</p>
+    <p class="sec-d">Every state runs its own paid campaign against a shared landing page. The redesigned template was tested across all of them. Most improved. The few that dipped were tested in a month with no deadline, when intent runs lower.</p>
   </div>
 
   <div class="chips">
@@ -373,13 +396,12 @@
 
   <figure class="kshot">
     <figcaption class="kcap">Kentucky · winning variant, +164% CVR</figcaption>
-    <a href="Kentucky.png" target="_blank" rel="noopener">
+    <a class="zoom" href="Kentucky.png">
       <img src="Kentucky.png" alt="Kentucky paid search landing page, winning variant" />
     </a>
   </figure>
 </section>
 
-<!-- prominent divider -->
 <div class="secbreak"></div>
 
 <!-- 02 SUBSCRIPTION -->
@@ -392,52 +414,50 @@
     <p class="sec-d">The subscription page is tested on an ongoing basis, with each result deciding what gets tried next.</p>
   </div>
 
+  <div class="extests">
   <div class="exrow">
     <div class="ex-label">Test · CTA copy</div>
-    <div>
-      <div class="ex-title">Changing the button label nearly doubled conversions</div>
-      <p class="ex-body">Same layout, same design. Only the button wording changed, from Select Pass to Buy Now.</p>
-      <table class="cta-t">
-        <thead>
-          <tr><th>Variant</th><th>Sessions</th><th>Conversions</th><th>CVR</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Select Pass</td><td>4,864</td><td>14</td><td>0.29%</td></tr>
-          <tr class="win"><td>Buy Now</td><td>4,452</td><td class="hi">25</td><td class="hi">0.56%</td></tr>
-        </tbody>
-      </table>
-      <p class="ex-lift">+95.2% conversion rate</p>
-    </div>
+    <div class="ex-title">Changing the button label nearly doubled conversions</div>
+    <p class="ex-body">Same layout, same design. Only the button wording changed, from Select Pass to Buy Now.</p>
+    <table class="cta-t">
+      <thead>
+        <tr><th>Variant</th><th>Sessions</th><th>Conversions</th><th>CVR</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Select Pass</td><td>4,864</td><td>14</td><td>0.29%</td></tr>
+        <tr class="win"><td>Buy Now</td><td>4,452</td><td class="hi">25</td><td class="hi">0.56%</td></tr>
+      </tbody>
+    </table>
+    <p class="ex-lift">+95.2% conversion rate</p>
   </div>
 
   <div class="exrow">
     <div class="ex-label">Test · Card hierarchy</div>
-    <div>
-      <div class="ex-title">Three cards above the fold became two</div>
-      <p class="ex-body">The third plan moved to its own section lower down, leaving the two most popular passes to carry the fold. Less to weigh, a clearer default.</p>
-      <div class="ba">
-        <figure class="ba-shot">
-          <figcaption class="ba-cap">Before · 3 cards</figcaption>
-          <a href="3cards.png" target="_blank" rel="noopener">
-            <img src="3cards.png" alt="Subscription pricing with three plan cards above the fold" />
-          </a>
-        </figure>
-        <figure class="ba-shot after">
-          <figcaption class="ba-cap">After · 2 cards</figcaption>
-          <a href="2cards.png" target="_blank" rel="noopener">
-            <img src="2cards.png" alt="Subscription pricing with two plan cards above the fold" />
-          </a>
-        </figure>
-      </div>
+    <div class="ex-title">Three cards above the fold became two</div>
+    <p class="ex-body">The third plan moved to its own section lower down, leaving the two most popular passes to carry the fold. Less to weigh, a clearer default.</p>
+    <div class="ba">
+      <figure class="ba-shot">
+        <figcaption class="ba-cap">Before · 3 cards</figcaption>
+        <a class="zoom" href="3cards.png">
+          <img src="3cards.png" alt="Subscription pricing with three plan cards above the fold" />
+        </a>
+      </figure>
+      <figure class="ba-shot after">
+        <figcaption class="ba-cap">After · 2 cards</figcaption>
+        <a class="zoom" href="2cards.png">
+          <img src="2cards.png" alt="Subscription pricing with two plan cards above the fold" />
+        </a>
+      </figure>
     </div>
   </div>
+  </div>
+
 
   <div class="subcta">
     <a class="subcta-btn" href="https://mollycurtis.github.io/projects/nbi-subscription/">Read the full subscription case study <span>→</span></a>
   </div>
 </section>
 
-<!-- prominent divider -->
 <div class="secbreak"></div>
 
 <!-- 03 HOMEPAGE -->
@@ -455,12 +475,12 @@
       <div class="note">
         <div class="note-k">A · Quick links</div>
         <div class="note-t">Let people skip the hunt</div>
-        <div class="note-b">Most visitors arrive knowing roughly what they need. Categories became the first thing after the hero, so they don't have to scroll to start.</div>
+        <div class="note-b">Most visitors arrive knowing what they need, so categories became the first thing after the hero.</div>
       </div>
       <div class="note">
         <div class="note-k">B · Topic order</div>
         <div class="note-t">Order by demand, not catalog</div>
-        <div class="note-b">The grid was reordered by what people actually browse, moving high-intent topics into the first row.</div>
+        <div class="note-b">The grid was reordered by what people actually browse, putting high-intent topics first.</div>
       </div>
       <div class="note">
         <div class="note-k">C · Hierarchy</div>
@@ -469,7 +489,7 @@
       </div>
     </div>
 
-    <a class="hp-shot" href="homepage.png" target="_blank" rel="noopener">
+    <a class="hp-shot zoom" href="homepage.png">
       <img src="homepage.png" alt="Homepage with Top Categories moved directly under the hero" />
     </a>
   </div>
@@ -481,23 +501,53 @@
   </div>
 </section>
 
-<!-- CLOSE -->
-<section class="close">
-  <div class="wrap">
-    <div class="close-k">The takeaway</div>
-    <div class="close-g">
-      <h2 class="close-t">Most pages improved. The exceptions were the point.</h2>
-      <p class="close-b">Across state landing pages, the checkout, and the homepage, every change was one hypothesis tested against real traffic. The pages that dipped weren't failures. They marked where a redesign wasn't the lever, or where timing mattered more than layout.</p>
-    </div>
+<!-- TAKEAWAY -->
+<section class="wrap takeaway">
+  <div class="tk-card">
+    <div class="tk-k">The takeaway</div>
+    <h2 class="tk-t">Most pages improved. The exceptions were the point.</h2>
+    <p class="tk-b">Across state landing pages, the checkout, and the homepage, every change was one hypothesis tested against real traffic. The pages that dipped weren't failures. They marked where a redesign wasn't the lever, or where timing mattered more than layout.</p>
   </div>
 </section>
 
 <div class="fcta">
   <p class="fcta-k">More work by Molly Curtis</p>
-  <a href="https://mollycurtis.github.io/landingpages/" class="fcta-l">View More Landing Pages <span>→</span></a>
+  <a href="https://mollycurtis.github.io/#landing-pages" class="fcta-l">View More Landing Pages <span>→</span></a>
 </div>
 
 <script>
+/* ---- Lightbox: click a screenshot to enlarge it over a dimmed backdrop ---- */
+(function () {
+  var links = document.querySelectorAll('a.zoom');
+  if (!links.length) return;
+  var lb = document.createElement('div');
+  lb.className = 'lb';
+  lb.innerHTML = '<button class="lb-close" aria-label="Close">\u00d7</button><img alt="" />';
+  document.body.appendChild(lb);
+  var lbImg = lb.querySelector('img');
+  var scrollY = 0;
+
+  function open(src, alt) {
+    lbImg.src = src; lbImg.alt = alt || '';
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function close() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+    setTimeout(function () { if (!lb.classList.contains('open')) lbImg.removeAttribute('src'); }, 240);
+  }
+  links.forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      var img = a.querySelector('img');
+      open(a.getAttribute('href'), img ? img.alt : '');
+    });
+  });
+  lb.addEventListener('click', close);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+})();
+
 /* ---- Scroll animations: staggered reveals, growing bars, counting numbers ---- */
 (function () {
   var root = document.documentElement;
@@ -530,8 +580,8 @@
         revealEls.push(el);
       });
     }
-    ['.reads .read', '.note', '.close-g > *', '.ba-shot'].forEach(function (s) { collect(s, true); });
-    ['.sec-head', '.chips', '.rt', '.kshot', '.hp-shot', '.mstrip', '.exrow', '.subcta'].forEach(function (s) { collect(s, false); });
+    ['.reads .read', '.note', '.ba-shot'].forEach(function (s) { collect(s, true); });
+    ['.sec-head', '.chips', '.rt', '.kshot', '.hp-shot', '.mstrip', '.exrow', '.subcta', '.tk-card'].forEach(function (s) { collect(s, false); });
     ['.mast-kicker', '.mast-title', '.mast-lede'].forEach(function (sel, i) {
       var el = document.querySelector(sel);
       if (!el || el._reveal) return;
@@ -541,14 +591,16 @@
     });
 
     document.querySelectorAll('.dbar span').forEach(function (b) {
-      b.dataset.w = b.style.width; b.style.width = '0';
+      b.dataset.w = b.style.width; b.style.width = '0%';
     });
     var rt = document.querySelector('.rt');
     if (rt) rt._bars = rt.querySelectorAll('.dbar span');
     function growBars(list) {
       Array.prototype.forEach.call(list, function (b, i) {
-        b.style.transition = 'width 1.05s ' + EASE + ' ' + (i * 45) + 'ms';
-        requestAnimationFrame(function () { b.style.width = b.dataset.w; });
+        b.style.transition = 'width 1.0s ' + EASE + ' ' + (i * 60) + 'ms';
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () { b.style.width = b.dataset.w; });
+        });
       });
     }
 
@@ -588,13 +640,25 @@
         var el = ent.target;
         io.unobserve(el);
         if (el._reveal) el.classList.add('is-in');
-        if (el._bars) growBars(el._bars);
         if (el._cu) countUp(el);
       });
     }, { threshold: 0.18, rootMargin: '0px 0px -6% 0px' });
 
     revealEls.forEach(function (el) { io.observe(el); });
     numEls.forEach(function (el) { if (!el._reveal) io.observe(el); });
+
+    // Bars grow on their own, on a short delay after the table enters view, so the
+    // motion reads as a deliberate sweep rather than being masked by the reveal fade.
+    if (rt && rt._bars.length) {
+      var barIO = new IntersectionObserver(function (entries) {
+        entries.forEach(function (ent) {
+          if (!ent.isIntersecting) return;
+          barIO.unobserve(ent.target);
+          setTimeout(function () { growBars(ent.target._bars); }, 400);
+        });
+      }, { threshold: 0, rootMargin: '0px 0px -30% 0px' });
+      barIO.observe(rt);
+    }
   } catch (e) {
     bailStatic();
   }
