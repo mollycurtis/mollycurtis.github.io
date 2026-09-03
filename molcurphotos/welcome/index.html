@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>molcurphotos — Client Welcome Guide</title>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P2HJ0XDTL6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-P2HJ0XDTL6');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ════════════════════════════════════════════
+       DESIGN TOKENS — all sizing derives from here
+       ════════════════════════════════════════════ */
+    :root {
+      /* Color */
+      --col-black:    #0a0a0a;
+      --col-surface:  #111111;
+      --col-card:     #161616;
+      --col-border:   rgba(255,255,255,0.08);
+      --col-muted:    rgba(255,255,255,0.32);
+      --col-dim:      rgba(255,255,255,0.58);
+      --col-white:    #f5f3ef;
+      --col-accent:   #b5a07a;
+      --col-accent-a: rgba(181,160,122,0.12);
+
+      /* Fonts */
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans:  'DM Sans', system-ui, sans-serif;
+
+      /* Fluid type scale */
+      --t-label:   clamp(0.625rem, 0.85vw,  0.72rem);
+      --t-body:    clamp(0.875rem, 1.1vw,   1rem);
+      --t-body-lg: clamp(0.95rem,  1.35vw,  1.1rem);
+      --t-card:    clamp(1rem,     1.4vw,   1.2rem);
+      --t-sub:     clamp(1rem,     1.7vw,   1.3rem);
+      --t-section: clamp(2rem,     4.5vw,   4rem);
+      --t-hero:    clamp(3.2rem,   9vw,     8rem);
+      --t-closing: clamp(2.4rem,   6vw,     5.5rem);
+      --t-quote:   clamp(1.4rem,   3vw,     2.3rem);
+      --t-note:    clamp(1.15rem,  2vw,     1.6rem);
+
+      /* Fluid spacing */
+      --sp-2:  clamp(0.5rem,  0.8vw,  0.75rem);
+      --sp-3:  clamp(0.75rem, 1vw,    1rem);
+      --sp-4:  clamp(1rem,    1.5vw,  1.5rem);
+      --sp-6:  clamp(1.5rem,  2.5vw,  2.5rem);
+      --sp-8:  clamp(2rem,    3.5vw,  3.5rem);
+      --sp-12: clamp(3rem,    5vw,    5rem);
+      --sp-16: clamp(4rem,    6.5vw,  6.5rem);
+      --sp-20: clamp(5rem,    8.5vw,  9rem);
+
+      /* Max-width containers */
+      --mw-cinema:  1600px;
+      --mw-content: 1240px;
+      --mw-read:    680px;
+      --mw-tight:   480px;
+
+      --gutter: clamp(1.25rem, 5vw, 5rem);
+      --ease:   cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --trans:  0.35s var(--ease);
+
+      /* Image placeholder color — warm dark */
+      --img-bg: #181510;
+    }
+
+    /* ════════════════════════════════════════════
+       RESET
+       ════════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scrollbar-gutter: stable; }
+    body {
+      background: var(--col-black);
+      color: var(--col-white);
+      font-family: var(--font-sans);
+      font-weight: 300;
+      font-size: var(--t-body);
+      line-height: 1.75;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ════════════════════════════════════════════
+       LAYOUT SYSTEM
+       ════════════════════════════════════════════ */
+    .band          { width: 100%; }
+    .band--surface { background: var(--col-surface); }
+    .band--black   { background: var(--col-black); }
+
+    .container {
+      width: 100%;
+      max-width: var(--mw-content);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+    }
+
+    .section       { padding-block: var(--sp-20); }
+    .section--md   { padding-block: var(--sp-16); }
+    .section--slim { padding-block: var(--sp-12); }
+
+    .divider {
+      width: 100%;
+      max-width: var(--mw-content);
+      margin-inline: auto;
+      height: 1px;
+      background: var(--col-border);
+    }
+    .divider--full {
+      max-width: 100%;
+      background: var(--col-border);
+    }
+
+    /* ════════════════════════════════════════════
+       AMBIENT: GRAIN + ORBS
+       ════════════════════════════════════════════ */
+    .grain {
+      position: fixed; inset: -50%; width: 200%; height: 200%;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity: 0.028; pointer-events: none; z-index: 9999;
+      animation: grainShift 10s steps(10) infinite;
+    }
+    @keyframes grainShift {
+      0%  { transform:translate(0,0);     } 10% { transform:translate(-2%,-3%); }
+      20% { transform:translate(3%,1%);   } 30% { transform:translate(-1%,4%);  }
+      40% { transform:translate(4%,-2%);  } 50% { transform:translate(-3%,2%);  }
+      60% { transform:translate(2%,-4%);  } 70% { transform:translate(-4%,1%);  }
+      80% { transform:translate(1%,3%);   } 90% { transform:translate(3%,-1%);  }
+      100%{ transform:translate(0,0);     }
+    }
+
+    .orb {
+      position: fixed; border-radius: 50%; pointer-events: none; z-index: 0;
+      filter: blur(100px); opacity: 0; will-change: transform, opacity;
+      animation: orbIn 4s var(--ease) forwards;
+    }
+    .orb-1 {
+      width: min(500px,45vw); height: min(500px,45vw);
+      background: radial-gradient(circle, rgba(181,160,122,0.07) 0%, transparent 70%);
+      top: -8vh; right: -6vw; animation-delay: 1s;
+    }
+    .orb-2 {
+      width: min(380px,36vw); height: min(380px,36vw);
+      background: radial-gradient(circle, rgba(181,160,122,0.04) 0%, transparent 70%);
+      bottom: 32vh; left: -5vw; animation-delay: 2s;
+    }
+    @keyframes orbIn { to { opacity: 1; } }
+
+
+
+    /* ════════════════════════════════════════════
+       NAV
+       ════════════════════════════════════════════ */
+    .nav {
+      position: fixed; inset-block-start: 0; inset-inline: 0;
+      z-index: 200; padding-block: var(--sp-4); padding-inline: var(--gutter);
+      display: flex;
+      background: linear-gradient(to bottom, rgba(10,10,10,0.92) 0%, transparent 100%);
+    }
+    .nav-inner {
+      width: 100%; max-width: var(--mw-cinema); margin-inline: auto;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-wordmark {
+      font-family: var(--font-serif); font-style: italic; font-weight: 400;
+      font-size: clamp(1rem, 1.4vw, 1.15rem);
+      color: var(--col-white); text-decoration: none;
+    }
+    .nav-label {
+      font-size: var(--t-label); letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--col-muted);
+    }
+
+    /* ════════════════════════════════════════════
+       TYPOGRAPHY ATOMS
+       ════════════════════════════════════════════ */
+    .eyebrow {
+      display: flex; align-items: center; gap: var(--sp-3);
+      font-size: var(--t-label); letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--col-accent);
+      margin-bottom: var(--sp-4);
+    }
+    .eyebrow::after {
+      content: ''; width: 32px; height: 1px;
+      background: var(--col-accent); opacity: 0.4; flex-shrink: 0;
+    }
+
+    .section-title {
+      font-family: var(--font-serif); font-weight: 300;
+      font-size: var(--t-section); line-height: 1.04;
+      letter-spacing: -0.015em; color: var(--col-white);
+      margin-bottom: var(--sp-4);
+    }
+    .section-title em { font-style: italic; color: var(--col-dim); }
+
+    .lead {
+      font-size: var(--t-body-lg); font-weight: 300;
+      color: var(--col-dim); line-height: 1.8; max-width: var(--mw-read);
+    }
+
+    /* ════════════════════════════════════════════
+       REVEAL ANIMATIONS
+       ════════════════════════════════════════════ */
+    .reveal {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    .stagger > * {
+      opacity: 0; transform: translateY(16px);
+      transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+    }
+    .stagger.visible > *:nth-child(1) { opacity:1; transform:none; transition-delay:0s;    }
+    .stagger.visible > *:nth-child(2) { opacity:1; transform:none; transition-delay:0.09s; }
+    .stagger.visible > *:nth-child(3) { opacity:1; transform:none; transition-delay:0.18s; }
+    .stagger.visible > *:nth-child(4) { opacity:1; transform:none; transition-delay:0.27s; }
+    .stagger.visible > *:nth-child(5) { opacity:1; transform:none; transition-delay:0.36s; }
+    .stagger.visible > *:nth-child(6) { opacity:1; transform:none; transition-delay:0.45s; }
+
+    /* ════════════════════════════════════════════
+       IMAGE PLACEHOLDER SYSTEM
+       Shared styles for all 5 image zones.
+       Each has an ID and HTML comment for easy swap.
+       ════════════════════════════════════════════ */
+
+    /* Shared inner layer for parallax + bg */
+    .ph-inner {
+      position: absolute; inset: -12%;
+      background-color: var(--img-bg);
+      background-size: cover;
+      background-position: center;
+      will-change: transform;
+    }
+
+    /* Shared grain overlay on photos */
+    .ph-grain {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity: 0.06; mix-blend-mode: overlay; z-index: 2;
+    }
+
+    /* Placeholder label shown until real image is dropped in */
+    .ph-label {
+      position: absolute; inset: 0; z-index: 3;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 0.5rem;
+      pointer-events: none;
+    }
+    .ph-label-title {
+      font-size: var(--t-label); letter-spacing: 0.2em;
+      text-transform: uppercase; color: rgba(181,160,122,0.5);
+    }
+    .ph-label-sub {
+      font-family: var(--font-serif); font-style: italic;
+      font-size: 0.85rem; color: rgba(255,255,255,0.2);
+    }
+
+    /* ── IMAGE 1: Hero feature (below hero text) ── */
+    /* Recommended: emotional portrait, soft movement, editorial lighting */
+    /* Dimensions: 1440 × 860px or wider (16:9 landscape) */
+    .ph-hero {
+      width: 100%;
+      height: clamp(280px, 48vw, 640px);
+      position: relative; overflow: hidden;
+    }
+    /* Top + bottom gradient fades into page */
+    .ph-hero::before,
+    .ph-hero::after {
+      content: ''; position: absolute; left: 0; right: 0; z-index: 4; pointer-events: none;
+    }
+    .ph-hero::before { top: 0; height: 40%; background: linear-gradient(to bottom, var(--col-black) 0%, transparent 100%); }
+    .ph-hero::after  { bottom: 0; height: 40%; background: linear-gradient(to top, var(--col-black) 0%, transparent 100%); }
+
+    /* Overlay quote on hero image */
+    .ph-hero-caption {
+      position: absolute; inset: 0; z-index: 5;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .ph-hero-caption-text {
+      font-family: var(--font-serif); font-style: italic; font-weight: 300;
+      font-size: clamp(1.3rem, 3.2vw, 2.6rem);
+      color: rgba(245,243,239,0.7);
+      letter-spacing: 0.03em; text-align: center;
+      text-shadow: 0 2px 48px rgba(0,0,0,0.65);
+      max-width: 560px; padding-inline: var(--gutter);
+      line-height: 1.35;
+    }
+
+    /* ── IMAGE 2: Full-width cinematic divider ── */
+    /* Recommended: wide environmental, storytelling, atmospheric composition */
+    /* Dimensions: 1920 × 720px or wider (ultra-wide landscape) */
+    .ph-divider {
+      width: 100%;
+      height: clamp(240px, 42vw, 560px);
+      position: relative; overflow: hidden;
+    }
+    .ph-divider::before,
+    .ph-divider::after {
+      content: ''; position: absolute; left: 0; right: 0; z-index: 4; pointer-events: none;
+    }
+    .ph-divider::before { top: 0; height: 38%; background: linear-gradient(to bottom, var(--col-black) 0%, transparent 100%); }
+    .ph-divider::after  { bottom: 0; height: 38%; background: linear-gradient(to top, var(--col-black) 0%, transparent 100%); }
+
+    /* ── IMAGE 3: Editorial portrait beside session section ── */
+    /* Recommended: close emotional portrait, soft expression, detail composition */
+    /* Dimensions: 800 × 1060px (portrait, 3:4 ratio) */
+    .ph-editorial {
+      width: 100%; aspect-ratio: 3/4;
+      position: relative; overflow: hidden;
+    }
+    .ph-editorial .ph-inner { transition: transform 0.7s var(--ease); }
+    .ph-editorial:hover .ph-inner { transform: scale(1.025) translateY(-1%); }
+
+    /* ── IMAGES 4a + 4b: Staggered grid pair ── */
+    /* 4a Recommended: candid interaction, movement, laughing moment (landscape) */
+    /* 4a Dimensions: 1200 × 800px (3:2 landscape) */
+    /* 4b Recommended: cinematic detail, motion blur, walking moment (portrait) */
+    /* 4b Dimensions: 800 × 1100px (portrait, 3:4) */
+    .ph-grid-a {
+      width: 100%; aspect-ratio: 3/2;
+      position: relative; overflow: hidden;
+    }
+    .ph-grid-b {
+      width: 100%; aspect-ratio: 3/4;
+      position: relative; overflow: hidden;
+    }
+    .ph-grid-a .ph-inner,
+    .ph-grid-b .ph-inner { transition: transform 0.7s var(--ease); }
+    .ph-grid-a:hover .ph-inner,
+    .ph-grid-b:hover .ph-inner { transform: scale(1.025); }
+
+    /* ── IMAGE 5: Closing portrait ── */
+    /* Recommended: intimate close-up, warm emotional frame, dreamy portrait */
+    /* Dimensions: 1200 × 700px (wide landscape) or 800 × 1060px (portrait) */
+    .ph-closing {
+      width: 100%;
+      height: clamp(220px, 36vw, 480px);
+      position: relative; overflow: hidden;
+    }
+    .ph-closing::before,
+    .ph-closing::after {
+      content: ''; position: absolute; left: 0; right: 0; z-index: 4; pointer-events: none;
+    }
+    .ph-closing::before { top: 0; height: 50%; background: linear-gradient(to bottom, var(--col-black) 0%, transparent 100%); }
+    .ph-closing::after  { bottom: 0; height: 50%; background: linear-gradient(to top, var(--col-black) 0%, transparent 100%); }
+
+    /* ════════════════════════════════════════════
+       HERO
+       ════════════════════════════════════════════ */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding-block: var(--sp-20);
+      padding-block-start: calc(var(--sp-16) + 4rem);
+      overflow: hidden;
+    }
+    .hero-inner {
+      position: relative; z-index: 1;
+      width: 100%; max-width: min(820px, 90vw);
+      margin-inline: auto; padding-inline: var(--gutter);
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .hero-eyebrow {
+      font-size: var(--t-label); letter-spacing: 0.26em;
+      text-transform: uppercase; color: var(--col-accent);
+      margin-bottom: var(--sp-6);
+      opacity: 0; animation: fadeUp 0.9s 0.3s var(--ease) forwards;
+    }
+    .hero-headline {
+      font-family: var(--font-serif); font-weight: 300;
+      font-size: var(--t-hero); line-height: 0.92;
+      letter-spacing: -0.025em; color: var(--col-white);
+      margin-bottom: var(--sp-6);
+      opacity: 0; animation: fadeUp 1s 0.5s var(--ease) forwards;
+      will-change: transform, opacity;
+    }
+    .hero-headline em { font-style: italic; color: var(--col-accent); }
+    .hero-sub {
+      font-family: var(--font-serif); font-style: italic; font-weight: 300;
+      font-size: var(--t-sub); color: var(--col-dim);
+      max-width: var(--mw-tight); line-height: 1.65;
+      margin-bottom: var(--sp-8);
+      opacity: 0; animation: fadeUp 1s 0.7s var(--ease) forwards;
+      will-change: transform, opacity;
+    }
+    .hero-cta {
+      display: inline-block; padding: 0.9em 2.4em;
+      border: 1px solid rgba(181,160,122,0.42);
+      color: var(--col-accent); font-size: var(--t-label);
+      letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none;
+      transition: var(--trans);
+      opacity: 0; animation: fadeUp 1s 0.9s var(--ease) forwards;
+    }
+    .hero-cta:hover { background: var(--col-accent-a); border-color: var(--col-accent); letter-spacing: 0.26em; }
+
+    .hero-scroll {
+      position: absolute; bottom: var(--sp-8); left: 50%;
+      transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: var(--sp-2);
+      opacity: 0; animation: fadeUp 1s 1.2s var(--ease) forwards;
+    }
+    .hero-scroll-text { font-size: 0.58rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--col-muted); }
+    .hero-scroll-line { width: 1px; height: 44px; background: linear-gradient(to bottom, var(--col-accent), transparent); animation: linePulse 2.4s ease-in-out infinite; }
+
+    /* ════════════════════════════════════════════
+       SECTION 01 — TIMELINE
+       ════════════════════════════════════════════ */
+    .timeline-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+      gap: var(--sp-8) var(--sp-12);
+      margin-top: var(--sp-12);
+    }
+    .timeline-step {
+      padding-left: var(--sp-4);
+      border-left: 1px solid var(--col-border);
+      transition: border-color var(--trans);
+    }
+    .timeline-step:hover { border-color: var(--col-accent); }
+    .step-num   { font-family: var(--font-serif); font-style: italic; font-size: var(--t-label); color: var(--col-accent); margin-bottom: var(--sp-3); }
+    .step-title { font-family: var(--font-serif); font-weight: 500; font-size: var(--t-card); color: var(--col-white); margin-bottom: var(--sp-2); }
+    .step-body  { font-size: var(--t-body); color: var(--col-dim); line-height: 1.75; }
+
+    /* ════════════════════════════════════════════
+       SECTION 02 — COMMUNICATION
+       Asymmetric: image left, cards right
+       ════════════════════════════════════════════ */
+    .comm-asymmetric {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: var(--sp-12);
+      margin-top: var(--sp-12);
+      align-items: start;
+    }
+    .comm-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-3);
+    }
+    .comm-card {
+      background: var(--col-card); border: 1px solid var(--col-border);
+      padding: var(--sp-6) var(--sp-4);
+      transition: border-color var(--trans), background var(--trans);
+      transform-style: preserve-3d; will-change: transform;
+    }
+    .comm-card:hover { border-color: rgba(181,160,122,0.25); background: #191919; }
+    .comm-num   { font-family: var(--font-serif); font-style: italic; font-size: 1.3rem; color: var(--col-accent); opacity: 0.4; line-height: 1; margin-bottom: var(--sp-3); }
+    .comm-title { font-family: var(--font-serif); font-weight: 500; font-size: var(--t-card); color: var(--col-white); margin-bottom: var(--sp-2); }
+    .comm-body  { font-size: var(--t-body); color: var(--col-dim); line-height: 1.75; }
+
+    /* ════════════════════════════════════════════
+       SECTION 03 — SESSION EXPERIENCE
+       Full-width quote + list, no repeated grid
+       ════════════════════════════════════════════ */
+    .session-layout {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: var(--sp-16); margin-top: var(--sp-12); align-items: start;
+    }
+    .session-quote {
+      font-family: var(--font-serif); font-style: italic; font-weight: 300;
+      font-size: var(--t-quote); line-height: 1.25;
+      color: var(--col-white); margin-bottom: var(--sp-6);
+    }
+    .session-quote em { color: var(--col-accent); font-style: normal; }
+    .session-list { list-style: none; display: flex; flex-direction: column; gap: var(--sp-4); }
+    .session-list li {
+      display: flex; align-items: flex-start; gap: var(--sp-4);
+      font-size: var(--t-body); color: var(--col-dim); line-height: 1.75;
+    }
+    .session-list li::before { content: '—'; color: var(--col-accent); flex-shrink: 0; }
+
+    /* ════════════════════════════════════════════
+       WHAT TO WEAR — editorial card strip
+       ════════════════════════════════════════════ */
+    .wear-intro {
+      max-width: var(--mw-read);
+      margin-bottom: var(--sp-12);
+    }
+    .wear-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+      gap: var(--sp-3);
+    }
+    .wear-card {
+      padding: var(--sp-6) var(--sp-4);
+      border-top: 1px solid var(--col-border);
+      transition: border-color var(--trans);
+    }
+    .wear-card:hover { border-color: var(--col-accent); }
+    .wear-icon {
+      font-family: var(--font-serif); font-style: italic;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      color: var(--col-accent); opacity: 0.35;
+      line-height: 1; margin-bottom: var(--sp-3);
+    }
+    .wear-title { font-family: var(--font-serif); font-weight: 500; font-size: var(--t-card); color: var(--col-white); margin-bottom: var(--sp-2); }
+    .wear-body  { font-size: var(--t-body); color: var(--col-dim); line-height: 1.7; }
+
+    /* ════════════════════════════════════════════
+       PERSONAL NOTE FROM MOLLY
+       Center-aligned, italic, editorial
+       ════════════════════════════════════════════ */
+    .note-band { background: var(--col-surface); }
+    .note-inner {
+      max-width: 680px; margin-inline: auto;
+      padding-block: var(--sp-16); padding-inline: var(--gutter);
+      text-align: center;
+    }
+    .note-pre {
+      font-size: var(--t-label); letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--col-accent);
+      margin-bottom: var(--sp-6);
+    }
+    .note-text {
+      font-family: var(--font-serif); font-style: italic; font-weight: 300;
+      font-size: var(--t-note); line-height: 1.65;
+      color: var(--col-dim); margin-bottom: var(--sp-6);
+    }
+    .note-sig {
+      font-family: var(--font-serif); font-style: italic;
+      font-size: var(--t-sub); color: var(--col-accent);
+    }
+
+    /* ════════════════════════════════════════════
+       EMOTION / TESTIMONIAL
+       Image on right, text + testimonials on left
+       ════════════════════════════════════════════ */
+    .emotion-layout {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: var(--sp-16); align-items: start;
+      margin-top: var(--sp-12);
+    }
+    .emotion-pull {
+      font-family: var(--font-serif); font-style: italic; font-weight: 300;
+      font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+      line-height: 1.2; color: var(--col-white);
+      margin-bottom: var(--sp-8);
+    }
+    .emotion-pull em { color: var(--col-accent); font-style: normal; }
+    .testimonials { display: flex; flex-direction: column; gap: var(--sp-4); }
+    .testimonial {
+      padding: var(--sp-6);
+      border: 1px solid var(--col-border);
+      background: var(--col-card);
+      transition: border-color var(--trans);
+    }
+    .testimonial:hover { border-color: rgba(181,160,122,0.22); }
+    .testimonial-name { font-family: var(--font-serif); font-weight: 500; font-size: var(--t-card); color: var(--col-accent); margin-bottom: var(--sp-2); }
+    .testimonial-text { font-size: var(--t-body); color: var(--col-dim); line-height: 1.75; font-style: italic; }
+
+    /* ════════════════════════════════════════════
+       STAGGERED IMAGE GRID (Images 4a + 4b)
+       Magazine-inspired asymmetric layout
+       ════════════════════════════════════════════ */
+    .stagger-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      grid-template-rows: auto auto;
+      gap: var(--sp-4);
+      margin-top: var(--sp-12);
+      align-items: end;
+    }
+    .stagger-grid-a {
+      grid-column: 1; grid-row: 1;
+      align-self: end;
+    }
+    .stagger-grid-b {
+      grid-column: 2; grid-row: 1 / 3;
+      margin-top: var(--sp-12); /* intentional offset — stagger effect */
+    }
+    .stagger-grid-caption {
+      grid-column: 1; grid-row: 2;
+      padding-block: var(--sp-4);
+    }
+    .stagger-caption-text {
+      font-family: var(--font-serif); font-style: italic;
+      font-size: var(--t-sub); color: var(--col-dim); line-height: 1.6;
+    }
+
+    /* ════════════════════════════════════════════
+       SECTION 04 — DELIVERY
+       ════════════════════════════════════════════ */
+    .delivery-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; margin-top: var(--sp-12);
+      background: var(--col-border);
+    }
+    .delivery-cell {
+      background: var(--col-black); padding: var(--sp-8) var(--sp-6);
+      transition: background var(--trans);
+      transform-style: preserve-3d; will-change: transform;
+    }
+    .delivery-cell:hover { background: var(--col-card); }
+    .delivery-eyebrow { font-size: var(--t-label); letter-spacing: 0.18em; text-transform: uppercase; color: var(--col-muted); margin-bottom: var(--sp-3); }
+    .delivery-num     { font-family: var(--font-serif); font-style: italic; font-weight: 300; font-size: clamp(1.3rem, 2.8vw, 2.2rem); color: var(--col-accent); line-height: 1; margin-bottom: var(--sp-4); }
+    .delivery-body    { font-size: var(--t-body); color: var(--col-dim); line-height: 1.75; }
+
+    /* ════════════════════════════════════════════
+       SECTION 05 — FAQ
+       ════════════════════════════════════════════ */
+    .faq-list { margin-top: var(--sp-12); }
+    .faq-item { border-top: 1px solid var(--col-border); }
+    .faq-item:last-child { border-bottom: 1px solid var(--col-border); }
+    .faq-q {
+      width: 100%; background: none; border: none; text-align: left;
+      padding-block: var(--sp-6); display: flex; align-items: center;
+      justify-content: space-between; gap: var(--sp-4); cursor: pointer;
+      color: var(--col-white); font-family: var(--font-serif);
+      font-size: clamp(1rem, 1.5vw, 1.2rem); font-weight: 400;
+      transition: color var(--trans);
+    }
+    .faq-q:hover { color: var(--col-accent); }
+    .faq-icon {
+      flex-shrink: 0; width: 22px; height: 22px;
+      border: 1px solid var(--col-border); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.78rem; color: var(--col-accent);
+      transition: transform var(--trans), background var(--trans);
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); background: var(--col-accent-a); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.42s var(--ease); }
+    .faq-item.open .faq-answer { max-height: 320px; }
+    .faq-answer-inner { padding-bottom: var(--sp-6); font-size: var(--t-body); color: var(--col-dim); line-height: 1.8; max-width: var(--mw-read); }
+
+    /* ════════════════════════════════════════════
+       CLOSING
+       ════════════════════════════════════════════ */
+    .closing {
+      position: relative; overflow: hidden;
+      padding-block: var(--sp-20);
+      text-align: center;
+    }
+    .closing-glow {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 55% 45% at 50% 55%, rgba(181,160,122,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .closing-inner {
+      position: relative; z-index: 1;
+      width: 100%; max-width: min(820px, 90vw);
+      margin-inline: auto; padding-inline: var(--gutter);
+    }
+    .closing-headline {
+      font-family: var(--font-serif); font-weight: 300;
+      font-size: var(--t-closing); line-height: 1.07;
+      letter-spacing: -0.02em; color: var(--col-white); margin-bottom: var(--sp-6);
+    }
+    .closing-headline em { font-style: italic; color: var(--col-accent); }
+    .closing-body {
+      font-family: var(--font-serif); font-style: italic;
+      font-size: var(--t-sub); color: var(--col-dim);
+      max-width: 480px; margin-inline: auto; margin-bottom: var(--sp-8);
+      line-height: 1.65;
+    }
+    .closing-sig { font-family: var(--font-serif); font-style: italic; font-size: var(--t-sub); color: var(--col-accent); margin-bottom: var(--sp-8); }
+    .btn-primary {
+      display: inline-block; padding: 0.9em 2.4em;
+      background: var(--col-accent); color: var(--col-black);
+      font-size: var(--t-label); letter-spacing: 0.18em;
+      text-transform: uppercase; text-decoration: none; font-weight: 500;
+      transition: background var(--trans);
+    }
+    .btn-primary:hover { background: var(--col-white); }
+
+    /* ════════════════════════════════════════════
+       FOOTER
+       ════════════════════════════════════════════ */
+    .footer { padding-block: var(--sp-8); padding-inline: var(--gutter); border-top: 1px solid var(--col-border); }
+    .footer-inner {
+      width: 100%; max-width: var(--mw-cinema); margin-inline: auto;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: var(--sp-3);
+    }
+    .footer-wordmark { font-family: var(--font-serif); font-style: italic; font-size: clamp(0.9rem, 1.2vw, 1rem); color: var(--col-muted); }
+    .footer-copy { font-size: var(--t-label); letter-spacing: 0.08em; color: var(--col-muted); }
+
+    /* ════════════════════════════════════════════
+       KEYFRAMES
+       ════════════════════════════════════════════ */
+    @keyframes fadeUp    { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:none; } }
+    @keyframes linePulse { 0%,100%{ opacity:0.3; } 50%{ opacity:0.9; } }
+
+    /* ════════════════════════════════════════════
+       RESPONSIVE — only genuine layout shifts
+       ════════════════════════════════════════════ */
+    @media (max-width: 860px) {
+      .comm-asymmetric { grid-template-columns: 1fr; }
+      .comm-asymmetric .ph-editorial { display: none; } /* hide image on tablet — show content */
+      .comm-grid { grid-template-columns: 1fr; }
+      .session-layout { grid-template-columns: 1fr; gap: var(--sp-8); }
+      .emotion-layout { grid-template-columns: 1fr; gap: var(--sp-8); }
+      .stagger-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto auto;
+      }
+      .stagger-grid-b { margin-top: var(--sp-6); }
+      .delivery-grid { grid-template-columns: repeat(2, 1fr); }
+      .nav-label { display: none; }
+    }
+
+    @media (max-width: 560px) {
+      .delivery-grid    { grid-template-columns: 1fr; }
+      .stagger-grid     { grid-template-columns: 1fr; }
+      .stagger-grid-b   { grid-column: 1; grid-row: auto; margin-top: 0; }
+      .stagger-grid-a   { grid-column: 1; }
+      .stagger-grid-caption { grid-column: 1; }
+      .hero-scroll      { display: none; }
+      .footer-inner     { flex-direction: column; align-items: center; text-align: center; }
+      .wear-grid        { grid-template-columns: 1fr; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Grain + orbs -->
+  <div class="grain" aria-hidden="true"></div>
+  <div class="orb orb-1" aria-hidden="true"></div>
+  <div class="orb orb-2" aria-hidden="true"></div>
+
+  <!-- ══════════════════════════════════════════
+       NAV
+       ══════════════════════════════════════════ -->
+  <nav class="nav" aria-label="Site navigation">
+    <div class="nav-inner">
+      <a href="https://molcurphotos.com" class="nav-wordmark">molcurphotos</a>
+      <span class="nav-label">Client Welcome Guide</span>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════════
+       HERO
+       ══════════════════════════════════════════ -->
+  <section class="hero" id="hero" aria-label="Welcome">
+    <div class="hero-inner">
+      <p class="hero-eyebrow">Before we create</p>
+      <h1 class="hero-headline">So glad<br><em>you're here.</em></h1>
+      <p class="hero-sub">Everything you need — before, during, and after your session.</p>
+      <a href="#next" class="hero-cta">View Your Experience</a>
+    </div>
+    <div class="hero-scroll" aria-hidden="true">
+      <span class="hero-scroll-text">Scroll</span>
+      <div class="hero-scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       IMAGE 1 — HERO FEATURE
+       Swap: replace background-color on .ph-inner
+       with background-image: url('your-photo.jpg')
+       Ideal: emotional portrait · soft movement · editorial lighting
+       Dimensions: 1440 × 860px or wider
+       ══════════════════════════════════════════ -->
+  <div class="ph-hero" id="img1-hero-feature" aria-hidden="true">
+    <div class="ph-inner" id="img1-inner"></div>
+    <div class="ph-grain"></div>
+    <div class="ph-label">
+      <span class="ph-label-title">Image 1 — Hero Feature</span>
+      <span class="ph-label-sub">emotional portrait · editorial lighting · 1440×860px+</span>
+    </div>
+    <div class="ph-hero-caption">
+      <p class="ph-hero-caption-text reveal">The in-between moments.<br>That's where the real images live.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ══════════════════════════════════════════
+       01 WHAT HAPPENS NEXT
+       ══════════════════════════════════════════ -->
+  <section id="next" class="section" aria-labelledby="next-h">
+    <div class="container">
+      <div class="eyebrow reveal">01</div>
+      <h2 class="section-title reveal" id="next-h">What Happens<br><em>Next</em></h2>
+      <p class="lead reveal">Here's what our time together looks like, start to finish.</p>
+
+      <div class="timeline-grid stagger">
+        <div class="timeline-step">
+          <div class="step-num">i.</div>
+          <div class="step-title">Booking Confirmed</div>
+          <p class="step-body">Your date is locked in. This guide is your first look at what's ahead.</p>
+        </div>
+        <div class="timeline-step">
+          <div class="step-num">ii.</div>
+          <div class="step-title">Contract + Retainer</div>
+          <p class="step-body">A signed contract and non-refundable retainer hold your session. The remaining balance is collected before gallery delivery.</p>
+        </div>
+        <div class="timeline-step">
+          <div class="step-num">iii.</div>
+          <div class="step-title">Pre-Session Connect</div>
+          <p class="step-body">We'll touch base to confirm location, timing, and any shots you have in mind.</p>
+        </div>
+        <div class="timeline-step">
+          <div class="step-num">iv.</div>
+          <div class="step-title">Location + Prep</div>
+          <p class="step-body">Pinterest boards are always welcome — share what resonates and I'll build around it.</p>
+        </div>
+        <div class="timeline-step">
+          <div class="step-num">v.</div>
+          <div class="step-title">Session Day</div>
+          <p class="step-body">Arrive and breathe. I'll guide every moment — no experience needed.</p>
+        </div>
+        <div class="timeline-step">
+          <div class="step-num">vi.</div>
+          <div class="step-title">Gallery Delivery</div>
+          <p class="step-body">Your edited gallery arrives via Pixieset. Download, share, and keep forever.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ══════════════════════════════════════════
+       02 COMMUNICATION
+       Asymmetric: image left, 4 cards right
+       ══════════════════════════════════════════ -->
+  <section id="communication" class="section" aria-labelledby="comm-h">
+    <div class="container">
+      <div class="eyebrow reveal">02</div>
+      <h2 class="section-title reveal" id="comm-h">How We<br><em>Communicate</em></h2>
+
+      <div class="comm-asymmetric">
+        <!-- IMAGE 3 — EDITORIAL PORTRAIT (beside communication section) -->
+        <!-- Swap: add background-image: url('your-photo.jpg') to .ph-inner inside -->
+        <!-- Ideal: close emotional portrait · soft expression · detail composition -->
+        <!-- Dimensions: 800×1060px portrait (3:4) -->
+        <div class="ph-editorial reveal" id="img3-editorial-portrait" aria-hidden="true">
+          <div class="ph-inner"></div>
+          <div class="ph-grain"></div>
+          <div class="ph-label">
+            <span class="ph-label-title">Image 3 — Editorial Portrait</span>
+            <span class="ph-label-sub">close portrait · soft expression · 800×1060px</span>
+          </div>
+        </div>
+
+        <div class="comm-grid stagger">
+          <div class="comm-card">
+            <div class="comm-num">01</div>
+            <div class="comm-title">Preferred Method</div>
+            <p class="comm-body">Email is best for planning and questions — it keeps everything in one place.</p>
+          </div>
+          <div class="comm-card">
+            <div class="comm-num">02</div>
+            <div class="comm-title">Response Time</div>
+            <p class="comm-body">I respond within 24–48 business hours. I may be slower on weekends and session days.</p>
+          </div>
+          <div class="comm-card">
+            <div class="comm-num">03</div>
+            <div class="comm-title">Day-Of</div>
+            <p class="comm-body">Text is great for day-of logistics — parking, running behind, last-minute questions. I'll have my phone on me.</p>
+          </div>
+          <div class="comm-card">
+            <div class="comm-num">04</div>
+            <div class="comm-title">Working Together</div>
+            <p class="comm-body">I welcome your ideas. Let's make something we're both proud of.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ══════════════════════════════════════════
+       03 SESSION EXPERIENCE
+       ══════════════════════════════════════════ -->
+  <div class="band band--surface">
+    <section id="session" class="section" aria-labelledby="session-h">
+      <div class="container">
+        <div class="eyebrow reveal">03</div>
+        <h2 class="section-title reveal" id="session-h">Your Session<br><em>Experience</em></h2>
+
+        <div class="session-layout">
+          <div class="reveal">
+            <p class="session-quote">"You don't need to know how to pose. <em>That's my job.</em>"</p>
+            <p class="lead">Sessions are relaxed, guided, and genuinely fun. You show up — I'll handle the rest.</p>
+          </div>
+          <ul class="session-list reveal">
+            <li>Posing guidance throughout — no experience needed.</li>
+            <li>We move naturally until something feels right.</li>
+            <li>The in-between, unplanned moments are often the best ones.</li>
+            <li>Authentic emotion always wins over a perfect pose.</li>
+            <li>Speak up anytime. This session is yours.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       IMAGE 2 — FULL-WIDTH CINEMATIC DIVIDER
+       Swap: add background-image: url('your-photo.jpg') to #img2-inner
+       Ideal: wide environmental · storytelling · atmospheric composition
+       Dimensions: 1920×720px or wider (ultra-wide landscape)
+       ══════════════════════════════════════════ -->
+  <div class="ph-divider" id="img2-cinematic-divider" aria-hidden="true">
+    <div class="ph-inner" id="img2-inner"></div>
+    <div class="ph-grain"></div>
+    <div class="ph-label">
+      <span class="ph-label-title">Image 2 — Cinematic Divider</span>
+      <span class="ph-label-sub">wide environmental · atmospheric · 1920×720px+</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ══════════════════════════════════════════
+       WHAT TO WEAR
+       ══════════════════════════════════════════ -->
+  <section id="wear" class="section" aria-labelledby="wear-h">
+    <div class="container">
+      <div class="eyebrow reveal">04</div>
+      <h2 class="section-title reveal" id="wear-h">What to<br><em>Wear</em></h2>
+
+      <div class="wear-intro reveal">
+        <p class="lead">You don't need a new outfit — you need to feel like yourself. A few simple choices go a long way toward images you'll love for years.</p>
+      </div>
+
+      <div class="wear-grid stagger">
+        <div class="wear-card">
+          <div class="wear-icon">i.</div>
+          <div class="wear-title">Neutral Tones</div>
+          <p class="wear-body">Cream, taupe, sage, rust, soft denim, warm white. These photograph beautifully and keep focus on you.</p>
+        </div>
+        <div class="wear-card">
+          <div class="wear-icon">ii.</div>
+          <div class="wear-title">Coordinate, Don't Match</div>
+          <p class="wear-body">For groups or couples — choose a color story, not identical outfits. Variety within a palette looks natural.</p>
+        </div>
+        <div class="wear-card">
+          <div class="wear-icon">iii.</div>
+          <div class="wear-title">Skip the Logos</div>
+          <p class="wear-body">Large graphics, bold patterns, and neon colors pull the eye away. When in doubt — go simpler.</p>
+        </div>
+        <div class="wear-card">
+          <div class="wear-icon">iv.</div>
+          <div class="wear-title">Layer + Texture</div>
+          <p class="wear-body">Scarves, linen, knits, and layering add depth and give us options to work with during the session.</p>
+        </div>
+        <div class="wear-card">
+          <div class="wear-icon">v.</div>
+          <div class="wear-title">Bring Options</div>
+          <p class="wear-body">Pack 2–3 looks if you can. Even if we don't use all of them, having choices keeps things relaxed.</p>
+        </div>
+        <div class="wear-card">
+          <div class="wear-icon">vi.</div>
+          <div class="wear-title">Comfort First</div>
+          <p class="wear-body">If it doesn't feel like you, it won't feel right in the images. Wear something you genuinely love.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ══════════════════════════════════════════
+       PERSONAL NOTE FROM MOLLY
+       ══════════════════════════════════════════ -->
+  <div class="note-band">
+    <div class="note-inner">
+      <p class="note-pre reveal">A note from Molly</p>
+      <p class="note-text reveal">"I know handing over something as personal as your image takes trust. I don't take that lightly. My job isn't just to take beautiful photos — it's to make sure you feel comfortable, seen, and genuinely at ease from the moment we start. I'm rooting for you. I always am."</p>
+      <p class="note-sig reveal">— Molly</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ══════════════════════════════════════════
+       EMOTION + TESTIMONIALS
+       ══════════════════════════════════════════ -->
+  <section class="section" aria-labelledby="emotion-h">
+    <div class="container">
+      <div class="eyebrow reveal">The Experience</div>
+      <h2 class="section-title reveal" id="emotion-h">More than<br><em>photographs.</em></h2>
+
+      <div class="emotion-layout">
+        <div class="reveal">
+          <p class="emotion-pull">This is about how you feel when you look back at these images <em>ten years from now.</em></p>
+          <div class="testimonials">
+            <div class="testimonial">
+              <div class="testimonial-name">Rebeka</div>
+              <p class="testimonial-text">"Molly has a unique ability to capture the essence of the moment — high-quality images that truly speak volumes. I can't recommend her enough."</p>
+            </div>
+            <div class="testimonial">
+              <div class="testimonial-name">Melisa</div>
+              <p class="testimonial-text">"I've worked with Molly since 2019 and her work has always amazed me. The way she poses you and makes you look your best is astonishing. Such a gem."</p>
+            </div>
+            <div class="testimonial">
+              <div class="testimonial-name">Samantha — Glam by Sam</div>
+              <p class="testimonial-text">"Quick with edits, fast to give you a sneak peek, and incredibly professional. I recommend Molly 100%."</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- STAGGERED IMAGE GRID — Images 4a + 4b -->
+        <div class="stagger-grid reveal">
+          <!-- IMAGE 4a — STAGGERED GRID (landscape) -->
+          <!-- Swap: add background-image: url('your-photo.jpg') to .ph-inner -->
+          <!-- Ideal: candid interaction · movement · laughing moment -->
+          <!-- Dimensions: 1200×800px (3:2 landscape) -->
+          <div class="stagger-grid-a">
+            <div class="ph-grid-a" id="img4a-stagger-landscape" aria-hidden="true">
+              <div class="ph-inner"></div>
+              <div class="ph-grain"></div>
+              <div class="ph-label">
+                <span class="ph-label-title">Image 4a — Movement</span>
+                <span class="ph-label-sub">candid · movement · 1200×800px</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- IMAGE 4b — STAGGERED GRID (portrait, offset) -->
+          <!-- Swap: add background-image: url('your-photo.jpg') to .ph-inner -->
+          <!-- Ideal: cinematic detail · motion blur · walking moment -->
+          <!-- Dimensions: 800×1100px (3:4 portrait) -->
+          <div class="stagger-grid-b">
+            <div class="ph-grid-b" id="img4b-stagger-portrait" aria-hidden="true">
+              <div class="ph-inner"></div>
+              <div class="ph-grain"></div>
+              <div class="ph-label">
+                <span class="ph-label-title">Image 4b — Cinematic Detail</span>
+                <span class="ph-label-sub">motion · detail · 800×1100px</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="stagger-grid-caption">
+            <p class="stagger-caption-text">Light. Laughter. The moments you didn't know were being captured.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ══════════════════════════════════════════
+       05 GALLERY DELIVERY
+       ══════════════════════════════════════════ -->
+  <div class="band band--surface">
+    <section id="delivery" class="section" aria-labelledby="delivery-h">
+      <div class="container">
+        <div class="eyebrow reveal">05</div>
+        <h2 class="section-title reveal" id="delivery-h">Your Gallery<br><em>Delivery</em></h2>
+        <p class="lead reveal">Everything you need to know about receiving your images.</p>
+
+        <div class="delivery-grid stagger">
+          <div class="delivery-cell">
+            <div class="delivery-eyebrow">Turnaround</div>
+            <div class="delivery-num">2–6 wks</div>
+            <p class="delivery-body">Delivery varies by session type and workload. I'll always share an estimate upfront.</p>
+          </div>
+          <div class="delivery-cell">
+            <div class="delivery-eyebrow">Gallery Access</div>
+            <div class="delivery-num">~1 yr</div>
+            <p class="delivery-body">Your gallery stays active for about a year. Download and back up your images when they arrive.</p>
+          </div>
+          <div class="delivery-cell">
+            <div class="delivery-eyebrow">Delivered Via</div>
+            <div class="delivery-num">Pixieset</div>
+            <p class="delivery-body">You'll receive a private Pixieset link by email — simple to view, download, and share.</p>
+          </div>
+          <div class="delivery-cell">
+            <div class="delivery-eyebrow">RAW Files</div>
+            <div class="delivery-num">Not included</div>
+            <p class="delivery-body">Unedited files aren't part of standard delivery — they're unfinished work that doesn't reflect my style.</p>
+          </div>
+          <div class="delivery-cell">
+            <div class="delivery-eyebrow">Your Images</div>
+            <div class="delivery-num">Personal use</div>
+            <p class="delivery-body">Share freely for personal use. A tag is always appreciated. Commercial use requires a conversation first.</p>
+          </div>
+          <div class="delivery-cell">
+            <div class="delivery-eyebrow">Balance</div>
+            <div class="delivery-num">Due first</div>
+            <p class="delivery-body">Final galleries are delivered once the remaining balance has been completed.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ══════════════════════════════════════════
+       06 FAQ
+       ══════════════════════════════════════════ -->
+  <section id="faq" class="section" aria-labelledby="faq-h">
+    <div class="container">
+      <div class="eyebrow reveal">06</div>
+      <h2 class="section-title reveal" id="faq-h">Frequently<br><em>Asked</em></h2>
+
+      <div class="faq-list reveal">
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            What if the weather is bad?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" role="region">
+            <div class="faq-answer-inner">Weather can actually add something. If conditions are truly unworkable, we'll reschedule with at least 48 hours notice. A second reschedule may require a new retainer.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            Can I bring someone with me?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" role="region">
+            <div class="faq-answer-inner">Of course — just know that extra energy on set can shift the mood. A quiet support person is always welcome.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            Do you provide RAW files?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" role="region">
+            <div class="faq-answer-inner">RAW files aren't included — they're unfinished work and don't represent my style. They can be discussed on a case-by-case basis.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            What if I'm late?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" role="region">
+            <div class="faq-answer-inner">Just text me. We'll make the most of what we have. Extended sessions beyond the booked window are billed at $150/hr.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            Can I post the images?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" role="region">
+            <div class="faq-answer-inner">Absolutely — share freely for personal use. A tag is always appreciated. Please don't apply heavy filters or alter the images significantly, as they represent my work too.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            How long will my gallery stay active?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" role="region">
+            <div class="faq-answer-inner">About one year. Download and back up your images early — cloud storage or a hard drive both work well.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       IMAGE 5 — CLOSING PORTRAIT
+       Swap: add background-image: url('your-photo.jpg') to #img5-inner
+       Ideal: intimate close-up · warm emotional frame · dreamy portrait
+       Dimensions: 1200×700px landscape or 800×1060px portrait
+       ══════════════════════════════════════════ -->
+  <div class="ph-closing" id="img5-closing-portrait" aria-hidden="true">
+    <div class="ph-inner" id="img5-inner"></div>
+    <div class="ph-grain"></div>
+    <div class="ph-label">
+      <span class="ph-label-title">Image 5 — Closing Portrait</span>
+      <span class="ph-label-sub">intimate · warm · emotional · 1200×700px or 800×1060px</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ══════════════════════════════════════════
+       CLOSING
+       ══════════════════════════════════════════ -->
+  <section class="closing" aria-label="Closing message">
+    <div class="closing-glow" aria-hidden="true"></div>
+    <div class="closing-inner">
+      <h2 class="closing-headline reveal">
+        Can't wait to create<br><em>something meaningful</em><br>together.
+      </h2>
+      <p class="closing-body reveal">If you ever have questions before your session, my inbox is always open. This is the beginning of something worth remembering.</p>
+      <p class="closing-sig reveal">— Molly</p>
+      <div class="reveal">
+        <a href="https://instagram.com/molcurphotos" class="btn-primary">Follow Along</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       FOOTER
+       ══════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <span class="footer-wordmark">molcurphotos</span>
+      <span class="footer-copy">© 2026 Molly Curtis · All Rights Reserved</span>
+    </div>
+  </footer>
+
+  <!-- ══════════════════════════════════════════
+       JAVASCRIPT
+       ══════════════════════════════════════════ -->
+  <script>
+    'use strict';
+
+    const isTouch = window.matchMedia('(hover: none)').matches;
+
+    /* ── Scroll reveal ─────────────────────── */
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
+
+    document.querySelectorAll('.reveal, .stagger').forEach(el => obs.observe(el));
+
+    /* ── Hero parallax (reduced intensity) ─── */
+    const heroHeadline = document.querySelector('.hero-headline');
+    const heroSub      = document.querySelector('.hero-sub');
+    const heroEyebrow  = document.querySelector('.hero-eyebrow');
+    const orb1         = document.querySelector('.orb-1');
+    const orb2         = document.querySelector('.orb-2');
+
+    // Scroll-based: gentle fade + lift
+    window.addEventListener('scroll', () => {
+      const sy   = window.scrollY;
+      const fade = Math.max(0, 1 - sy / 520); /* slightly longer fade window */
+
+      if (heroHeadline) {
+        heroHeadline.style.transform = `translateY(${sy * 0.10}px)`; /* reduced from 0.15 */
+        heroHeadline.style.opacity   = String(fade);
+      }
+      if (heroSub) {
+        heroSub.style.transform = `translateY(${sy * 0.06}px)`;     /* reduced from 0.08 */
+        heroSub.style.opacity   = String(fade);
+      }
+      if (heroEyebrow) heroEyebrow.style.opacity = String(fade * 0.85);
+
+      /* Orb drift — very subtle */
+      if (orb1) orb1.style.transform = `translateY(${sy * 0.05}px)`;
+      if (orb2) orb2.style.transform = `translateY(${sy * -0.03}px)`;
+
+      /* Parallax all image sections that are in view */
+      document.querySelectorAll('.ph-inner[id]').forEach(inner => {
+        const parent = inner.parentElement;
+        const rect   = parent.getBoundingClientRect();
+        if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+        const center = rect.top + rect.height / 2;
+        const offset = (window.innerHeight / 2 - center) * 0.12; /* gentle */
+        inner.style.transform = `translateY(${offset}px)`;
+      });
+
+    }, { passive: true });
+
+    /* ── Mouse parallax on hero (reduced, desktop only) ── */
+    if (!isTouch) {
+      document.addEventListener('mousemove', e => {
+        if (window.scrollY > window.innerHeight * 0.5) return;
+        const cx = window.innerWidth / 2, cy = window.innerHeight / 2;
+        const dx = (e.clientX - cx) / cx, dy = (e.clientY - cy) / cy;
+        if (heroHeadline) heroHeadline.style.transform = `translate(${dx * 3.5}px, ${dy * 2}px)`;
+        if (heroSub)      heroSub.style.transform      = `translate(${dx * 1.8}px, ${dy * 1.2}px)`;
+        if (orb1)         orb1.style.transform         = `translate(${dx * -12}px, ${dy * -8}px)`;
+        if (orb2)         orb2.style.transform         = `translate(${dx * 8}px, ${dy * 5}px)`;
+      });
+    }
+
+    /* ── Card tilt (reduced intensity, desktop only) ─── */
+    if (!isTouch) {
+      document.querySelectorAll('.comm-card, .delivery-cell').forEach(card => {
+        card.addEventListener('mouseenter', () => { card.style.transition = 'border-color 0.35s, background 0.35s, transform 0.12s'; });
+        card.addEventListener('mousemove', e => {
+          const r = card.getBoundingClientRect();
+          const dx = (e.clientX - (r.left + r.width / 2))  / (r.width / 2);
+          const dy = (e.clientY - (r.top  + r.height / 2)) / (r.height / 2);
+          card.style.transform = `perspective(800px) rotateY(${dx * 1.8}deg) rotateX(${-dy * 1.8}deg) translateZ(2px)`;
+        });
+        card.addEventListener('mouseleave', () => {
+          card.style.transition = 'border-color 0.35s, background 0.35s, transform 0.5s';
+          card.style.transform  = 'perspective(800px) rotateY(0) rotateX(0) translateZ(0)';
+        });
+      });
+    }
+
+    /* ── FAQ accordion ─────────────────────── */
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item'), isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => { i.classList.remove('open'); i.querySelector('.faq-q').setAttribute('aria-expanded', 'false'); });
+        if (!isOpen) { item.classList.add('open'); btn.setAttribute('aria-expanded', 'true'); }
+      });
+    });
+  </script>
+
+</body>
+</html>
