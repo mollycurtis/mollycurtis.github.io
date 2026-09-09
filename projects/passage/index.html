@@ -206,15 +206,15 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
 
 /* ══ KEEP UP (intelligent features) ══ */
 .ch-keepup{background:var(--espresso);position:relative;padding:clamp(80px,11vh,130px) var(--gut)}
-.keepup-head{max-width:1120px;margin-bottom:56px}
+.keepup-head{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,7vw,96px);align-items:end;max-width:1120px;margin-bottom:56px}
 .keepup-head h2{font-family:var(--serif);font-size:clamp(32px,4.6vw,62px);font-weight:300;line-height:1.0;letter-spacing:-.02em;color:var(--linen);margin-top:20px}
 .keepup-head h2 em{font-style:italic;color:var(--clay)}
-.keepup-head p{font-size:14.5px;font-weight:300;color:rgba(231,226,215,.58);line-height:1.7;margin-top:22px;max-width:78ch}
+.keepup-head p{font-size:14.5px;font-weight:300;color:rgba(231,226,215,.58);line-height:1.7;padding-bottom:6px}
 .keepup-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(231,226,215,.1);border:1px solid rgba(231,226,215,.1);border-radius:16px;overflow:hidden}
-.keepup-cell{background:var(--espresso);padding:clamp(28px,3vw,40px);display:flex;flex-direction:column;min-height:420px}
-.keepup-cell .kc-num{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--rust-lt);margin-bottom:20px}
-.keepup-cell .kc-name{font-family:var(--serif);font-size:clamp(24px,2.6vw,32px);font-weight:300;color:var(--linen);line-height:1.05;margin-bottom:12px}
-.keepup-cell .kc-desc{font-size:13.5px;font-weight:300;color:rgba(231,226,215,.56);line-height:1.65;margin-bottom:24px}
+.keepup-cell{background:var(--espresso);padding:clamp(22px,2.4vw,32px);display:flex;flex-direction:column;min-height:340px}
+.keepup-cell .kc-num{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--rust-lt);margin-bottom:12px}
+.keepup-cell .kc-name{font-family:var(--serif);font-size:clamp(24px,2.6vw,32px);font-weight:300;color:var(--linen);line-height:1.05;margin-bottom:8px}
+.keepup-cell .kc-desc{font-size:13.5px;font-weight:300;color:rgba(231,226,215,.56);line-height:1.65;margin-bottom:16px}
 .keepup-cell .kc-visual{margin-top:auto;position:relative}
 
 /* self-moving animation */
@@ -235,11 +235,11 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
 /* airline check */
 .airline-check{}
 .airline-select-label{font-size:9.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--rust-lt);margin-bottom:12px;display:block}
-.airline-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px}
+.airline-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
 .airline-chip{font-size:11px;font-weight:400;color:rgba(231,226,215,.6);background:none;border:1px solid rgba(231,226,215,.2);padding:7px 12px;cursor:pointer;transition:all .2s;font-family:var(--sans);border-radius:999px}
 .airline-chip:hover{border-color:rgba(231,226,215,.45);color:var(--linen)}
 .airline-chip.active{background:var(--stone);border-color:var(--stone);color:var(--espresso)}
-.airline-result{border-top:1px solid rgba(231,226,215,.12);padding-top:18px;min-height:140px;border-radius:0 0 10px 10px}
+.airline-result{border-top:1px solid rgba(231,226,215,.12);padding-top:14px;min-height:120px;border-radius:0 0 10px 10px}
 .airline-verdict{display:flex;align-items:center;gap:10px;margin-bottom:12px}
 .airline-verdict .av-mark{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0}
 .airline-verdict.fits .av-mark{background:var(--stone);color:var(--espresso)}
@@ -317,6 +317,7 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
 @media(max-width:900px){
   #ch-brief{grid-template-columns:1fr;gap:44px;align-items:start}
       .config-head{grid-template-columns:1fr;gap:24px}
+      .keepup-head{grid-template-columns:1fr;gap:24px}
   .pack-grid{grid-template-columns:1fr;gap:40px}
   .feature-intro-inner{grid-template-columns:1fr;gap:24px}
   .ed-head{grid-template-columns:1fr;gap:24px}
@@ -558,8 +559,10 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
 <!-- ══ KEEP UP ══ -->
 <section class="ch-keepup grain on-dark" aria-label="Designed to keep up">
   <div class="keepup-head">
-    <span class="eyebrow">Designed to keep up</span>
-    <h2>The bag does <em>some of the work.</em></h2>
+    <div>
+      <span class="eyebrow">Designed to keep up</span>
+      <h2>The bag does <em>some of the work.</em></h2>
+    </div>
     <p>Three features that make PASSAGE feel less like luggage and more like a travel companion, and give the landing page a reason to talk about intelligence, not just materials.</p>
   </div>
 
