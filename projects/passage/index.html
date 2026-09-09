@@ -4,7 +4,7 @@
   <base target="_top">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PASSAGE ONE — Molly Curtis</title>
+  <title>PASSAGE — Molly Curtis</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
@@ -125,16 +125,16 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
 .pack-controls{}
 .pack-ctrl-label{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--rust);margin-bottom:16px;display:block}
 .pack-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px}
-.pack-chip{font-size:12.5px;font-weight:400;letter-spacing:.02em;color:rgba(42,40,37,.6);background:none;border:1px solid rgba(42,40,37,.2);padding:9px 16px;cursor:pointer;transition:all .2s var(--ease);font-family:var(--sans)}
+.pack-chip{font-size:12.5px;font-weight:400;letter-spacing:.02em;color:rgba(42,40,37,.6);background:none;border:1px solid rgba(42,40,37,.2);padding:9px 16px;cursor:pointer;transition:all .2s var(--ease);font-family:var(--sans);border-radius:999px}
 .pack-chip:hover{border-color:rgba(42,40,37,.5);color:var(--espresso)}
 .pack-chip.active{background:var(--espresso);border-color:var(--espresso);color:var(--linen)}
-.pack-days{display:flex;gap:0;border:1px solid rgba(42,40,37,.2)}
+.pack-days{display:flex;gap:0;border:1px solid rgba(42,40,37,.2);border-radius:10px;overflow:hidden}
 .pack-day{flex:1;font-size:13px;font-weight:500;color:rgba(42,40,37,.55);background:none;border:none;border-right:1px solid rgba(42,40,37,.14);padding:12px 0;cursor:pointer;transition:all .2s;font-family:var(--sans)}
 .pack-day:last-child{border-right:none}
 .pack-day.active{background:var(--rust);color:var(--linen)}
 .pack-day:not(.active):hover{background:rgba(42,40,37,.05)}
 
-.pack-output{background:var(--espresso);padding:clamp(32px,4vw,48px);position:relative;overflow:hidden;min-height:340px}
+.pack-output{background:var(--espresso);padding:clamp(32px,4vw,48px);position:relative;overflow:hidden;min-height:340px;border-radius:16px}
 .pack-out-top{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:6px}
 .pack-out-dest{font-family:var(--serif);font-size:clamp(26px,3.2vw,40px);font-weight:300;font-style:italic;color:var(--linen);line-height:1;transition:opacity .3s}
 .pack-out-days{font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(231,226,215,.45)}
@@ -148,7 +148,7 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
 .pack-leg-txt{font-size:12.5px;font-weight:300;color:rgba(231,226,215,.62);display:flex;justify-content:space-between;flex:1;gap:8px}
 .pack-leg-txt b{color:var(--linen);font-weight:500}
 .pack-out-note{margin-top:26px;padding-top:18px;border-top:1px solid rgba(231,226,215,.12);font-size:11.5px;font-weight:300;color:rgba(231,226,215,.42);line-height:1.6}
-.pack-mode-tag{display:inline-flex;align-items:center;gap:8px;margin-top:22px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--espresso);background:var(--stone);padding:9px 18px}
+.pack-mode-tag{display:inline-flex;align-items:center;gap:8px;margin-top:22px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--espresso);background:var(--stone);padding:9px 18px;border-radius:999px}
 
 /* ══ FEATURES (sticky) ══ */
 .feature-intro{background:var(--espresso);padding:clamp(80px,11vh,130px) var(--gut) 0;position:relative}
@@ -170,12 +170,12 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
 .feature-caption{position:relative;width:100%;min-height:52px}
 .feature-caption-item{position:absolute;inset:0;display:flex;flex-direction:column;align-items:flex-start;gap:6px;opacity:0;transform:translateY(8px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
 .feature-caption-item.show{opacity:1;transform:none}
-.feature-caption-item .flt-name{font-size:11.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--linen)}
-.feature-caption-item .flt-desc{font-size:12.5px;font-weight:300;color:rgba(231,226,215,.55)}
+.feature-caption-item .flt-name{font-size:16px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--linen)}
+.feature-caption-item .flt-desc{font-size:17px;font-weight:300;color:rgba(231,226,215,.55)}
 .feature-progress{position:relative;display:flex;flex-direction:row;gap:10px}
 .fp-dot{width:4px;height:4px;background:rgba(231,226,215,.2);transition:background .3s,transform .3s}
 .fp-dot.on{background:var(--stone);transform:scale(1.6)}
-.feature-counter{position:relative;font-family:var(--serif);font-style:italic;font-size:clamp(60px,7vw,110px);color:rgba(231,226,215,.1);line-height:1;pointer-events:none;user-select:none}
+.feature-counter{position:relative;font-family:var(--serif);font-style:italic;font-size:clamp(80px,9vw,150px);color:rgba(231,226,215,.14);line-height:1;pointer-events:none;user-select:none}
 
 /* ══ EDITIONS ══ */
 .ch-editions{background:var(--linen);padding:clamp(80px,11vh,130px) var(--gut)}
@@ -194,7 +194,7 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
 .ed-name em{font-style:italic;color:var(--rust)}
 .ed-desc{font-size:15px;font-weight:400;color:rgba(42,40,37,.62);line-height:1.6;margin-bottom:30px;transition:opacity .3s}
 .ed-swatches{display:flex;flex-direction:column;gap:8px}
-.ed-swatch{display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;padding:14px 18px 14px 16px;border:1px solid rgba(42,40,37,.16);background:transparent;cursor:pointer;text-align:left;font-family:var(--sans);position:relative;transition:background .2s var(--ease),border-color .2s var(--ease)}
+.ed-swatch{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;padding:14px 18px 14px 16px;border:1px solid rgba(42,40,37,.16);background:transparent;cursor:pointer;text-align:left;font-family:var(--sans);position:relative;transition:background .2s var(--ease),border-color .2s var(--ease);border-radius:10px;overflow:hidden}
 .ed-swatch::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--terracotta);transform:scaleY(0);transform-origin:center;transition:transform .25s var(--ease)}
 .ed-swatch:hover{background:rgba(42,40,37,.035);border-color:rgba(42,40,37,.28)}
 .ed-swatch.active{background:rgba(42,40,37,.06);border-color:rgba(42,40,37,.34)}
@@ -210,7 +210,7 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
 .keepup-head h2{font-family:var(--serif);font-size:clamp(32px,4.6vw,62px);font-weight:300;line-height:1.0;letter-spacing:-.02em;color:var(--linen);margin-top:20px}
 .keepup-head h2 em{font-style:italic;color:var(--clay)}
 .keepup-head p{font-size:14.5px;font-weight:300;color:rgba(231,226,215,.58);line-height:1.7;margin-top:22px;max-width:78ch}
-.keepup-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(231,226,215,.1);border:1px solid rgba(231,226,215,.1)}
+.keepup-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(231,226,215,.1);border:1px solid rgba(231,226,215,.1);border-radius:16px;overflow:hidden}
 .keepup-cell{background:var(--espresso);padding:clamp(28px,3vw,40px);display:flex;flex-direction:column;min-height:420px}
 .keepup-cell .kc-num{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--rust-lt);margin-bottom:20px}
 .keepup-cell .kc-name{font-family:var(--serif);font-size:clamp(24px,2.6vw,32px);font-weight:300;color:var(--linen);line-height:1.05;margin-bottom:12px}
@@ -236,10 +236,10 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
 .airline-check{}
 .airline-select-label{font-size:9.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--rust-lt);margin-bottom:12px;display:block}
 .airline-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px}
-.airline-chip{font-size:11px;font-weight:400;color:rgba(231,226,215,.6);background:none;border:1px solid rgba(231,226,215,.2);padding:7px 12px;cursor:pointer;transition:all .2s;font-family:var(--sans)}
+.airline-chip{font-size:11px;font-weight:400;color:rgba(231,226,215,.6);background:none;border:1px solid rgba(231,226,215,.2);padding:7px 12px;cursor:pointer;transition:all .2s;font-family:var(--sans);border-radius:999px}
 .airline-chip:hover{border-color:rgba(231,226,215,.45);color:var(--linen)}
 .airline-chip.active{background:var(--stone);border-color:var(--stone);color:var(--espresso)}
-.airline-result{border-top:1px solid rgba(231,226,215,.12);padding-top:18px;min-height:140px}
+.airline-result{border-top:1px solid rgba(231,226,215,.12);padding-top:18px;min-height:140px;border-radius:0 0 10px 10px}
 .airline-verdict{display:flex;align-items:center;gap:10px;margin-bottom:12px}
 .airline-verdict .av-mark{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0}
 .airline-verdict.fits .av-mark{background:var(--stone);color:var(--espresso)}
@@ -261,7 +261,7 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
 .mem-appshow{display:grid;grid-template-columns:0.85fr 1fr;gap:clamp(40px,6vw,88px);align-items:start;margin-bottom:clamp(40px,6vh,72px);max-width:1400px;margin-left:auto;margin-right:auto}
 .mem-phone{display:flex;justify-content:center}
 .mem-phone img{width:100%;max-width:360px;height:auto;border-radius:22px;box-shadow:0 30px 70px -30px rgba(42,40,37,.5),0 8px 24px -12px rgba(42,40,37,.3)}
-.mem-card{background:var(--espresso);padding:clamp(32px,4vw,52px);position:relative;overflow:hidden;max-width:1400px;margin-left:auto;margin-right:auto}
+.mem-card{background:var(--espresso);padding:clamp(32px,4vw,52px);position:relative;overflow:hidden;max-width:1400px;margin-left:auto;margin-right:auto;border-radius:16px}
 .mem-card-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,64px);align-items:center}
 .mem-owned{font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:rgba(231,226,215,.45);margin-bottom:6px}
 .mem-title{font-family:var(--serif);font-size:clamp(24px,3vw,34px);font-weight:300;color:var(--linen);margin-bottom:28px}
@@ -291,7 +291,7 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
 .specs-inner{max-width:1400px;margin:0 auto}
 .specs-head{text-align:center;margin-bottom:44px}
 .specs-head h2{font-family:var(--serif);font-size:clamp(26px,3.4vw,44px);font-weight:300;font-style:italic;color:var(--linen);line-height:1}
-.specs-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(231,226,215,.1);border:1px solid rgba(231,226,215,.1)}
+.specs-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(231,226,215,.1);border:1px solid rgba(231,226,215,.1);border-radius:16px;overflow:hidden}
 .spec-cell{background:var(--ink);padding:26px 24px}
 .spec-cell .sc-val{font-family:var(--serif);font-size:clamp(26px,3vw,38px);font-weight:300;color:var(--linen);line-height:1;margin-bottom:8px}
 .spec-cell .sc-lab{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(231,226,215,.45)}
@@ -346,8 +346,8 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
   .feature-text{width:100%;padding-left:0;align-items:center;text-align:center}
   .feature-caption-item{align-items:center}
   .feature-progress{justify-content:center}
-  .feature-caption-item .flt-name{font-size:10px}
-  .feature-caption-item .flt-desc{font-size:11px}
+  .feature-caption-item .flt-name{font-size:13px}
+  .feature-caption-item .flt-desc{font-size:14px}
   .config-tabs{overflow:visible}
   .config-tab{flex:1;min-width:0;white-space:nowrap;text-align:center;padding:14px 3px;font-size:8.5px;letter-spacing:.04em}
   .config-tab .ct-idx{margin-right:3px;font-size:9px}
@@ -364,7 +364,7 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
 <body>
 <nav class="back-nav" aria-label="Site navigation">
   <a href="https://mollycurtis.github.io/#landing-pages" aria-label="Back to Landing Pages">&#8592; Landing Pages</a>
-  <span class="nav-right">PASSAGE ONE &middot; Product Launch</span>
+  <span class="nav-right">PASSAGE &middot; Product Launch</span>
 </nav>
 
 <!-- ══ HERO ══ -->
@@ -372,27 +372,30 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
   <div class="hero-sticky">
     <div class="hero-content">
       <div class="hero-wordmark" id="heroWordmark" aria-hidden="true">PASSAGE</div>
-      <div class="hero-bag" id="heroBag" aria-label="PASSAGE ONE carry-on">
+      <div class="hero-bag" id="heroBag" aria-label="PASSAGE carry-on">
         <svg class="bag-svg" viewBox="0 0 400 460" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="32" y="80" width="336" height="360" rx="4" fill="none" stroke="#E7E2D7" stroke-width="1.2" opacity=".55"/>
-          <rect x="152" y="32" width="96" height="52" rx="3" fill="none" stroke="#E7E2D7" stroke-width="1.2" opacity=".4"/>
-          <rect x="166" y="46" width="68" height="24" rx="2" fill="none" stroke="#E7E2D7" stroke-width=".8" opacity=".25"/>
-          <line x1="32" y1="140" x2="368" y2="140" stroke="#E7E2D7" stroke-width=".7" opacity=".35"/>
-          <rect x="60" y="168" width="280" height="180" rx="3" fill="none" stroke="#E7E2D7" stroke-width=".8" opacity=".28"/>
-          <line x1="60" y1="260" x2="340" y2="260" stroke="#E7E2D7" stroke-width=".6" stroke-dasharray="4 6" opacity=".18"/>
-          <line x1="200" y1="168" x2="200" y2="348" stroke="#E7E2D7" stroke-width=".6" stroke-dasharray="4 6" opacity=".18"/>
-          <circle cx="60" cy="140" r="4" fill="none" stroke="#E7E2D7" stroke-width="1" opacity=".4"/>
-          <circle cx="340" cy="140" r="4" fill="none" stroke="#E7E2D7" stroke-width="1" opacity=".4"/>
-          <rect x="68" y="428" width="20" height="16" rx="2" fill="none" stroke="#E7E2D7" stroke-width=".9" opacity=".35"/>
-          <rect x="312" y="428" width="20" height="16" rx="2" fill="none" stroke="#E7E2D7" stroke-width=".9" opacity=".35"/>
-          <line x1="78" y1="428" x2="78" y2="444" stroke="#E7E2D7" stroke-width=".8" opacity=".22"/>
-          <line x1="322" y1="428" x2="322" y2="444" stroke="#E7E2D7" stroke-width=".8" opacity=".22"/>
-          <rect x="188" y="132" width="24" height="16" rx="2" fill="none" stroke="#E7E2D7" stroke-width=".8" opacity=".3"/>
+          <rect x="76" y="58" width="248" height="378" rx="26" fill="none" stroke="#E7E2D7" stroke-width="1.2" opacity=".55"/>
+          <path d="M168 58 C168 40 178 28 200 28 C222 28 232 40 232 58" fill="none" stroke="#E7E2D7" stroke-width="1.2" opacity=".4"/>
+          <rect x="180" y="20" width="40" height="16" rx="8" fill="none" stroke="#E7E2D7" stroke-width="1" opacity=".4"/>
+          <line x1="76" y1="130" x2="324" y2="130" stroke="#E7E2D7" stroke-width=".7" opacity=".3"/>
+          <line x1="130" y1="150" x2="130" y2="410" stroke="#E7E2D7" stroke-width=".6" opacity=".22"/>
+          <line x1="168" y1="150" x2="168" y2="410" stroke="#E7E2D7" stroke-width=".6" opacity=".22"/>
+          <path d="M282 90 L282 404" stroke="#E7E2D7" stroke-width=".7" stroke-dasharray="3 5" opacity=".3"/>
+          <rect x="272" y="150" width="20" height="26" rx="2" fill="none" stroke="#E7E2D7" stroke-width=".9" opacity=".38"/>
+          <circle cx="282" cy="220" r="2" fill="#E7E2D7" opacity=".4"/>
+          <text x="150" y="300" font-family="'Didot','Playfair Display',serif" font-size="8.5" font-weight="500" letter-spacing="4" opacity=".22" fill="#E7E2D7" transform="rotate(-90 150 300)">PASSAGE</text>
+          <path d="M76 84 C76 68 84 58 100 58" fill="none" stroke="#E7E2D7" stroke-width="1.4" opacity=".55"/>
+          <path d="M324 84 C324 68 316 58 300 58" fill="none" stroke="#E7E2D7" stroke-width="1.4" opacity=".55"/>
+          <path d="M76 410 C76 426 84 436 100 436" fill="none" stroke="#E7E2D7" stroke-width="1.4" opacity=".55"/>
+          <path d="M324 410 C324 426 316 436 300 436" fill="none" stroke="#E7E2D7" stroke-width="1.4" opacity=".55"/>
+          <circle cx="112" cy="446" r="7" fill="none" stroke="#E7E2D7" stroke-width="1.1" opacity=".4"/>
+          <circle cx="288" cy="446" r="7" fill="none" stroke="#E7E2D7" stroke-width="1.1" opacity=".4"/>
+          <circle cx="94" cy="450" r="4" fill="none" stroke="#E7E2D7" stroke-width=".8" opacity=".28"/>
+          <circle cx="306" cy="450" r="4" fill="none" stroke="#E7E2D7" stroke-width=".8" opacity=".28"/>
           <path d="M32 80 L32 104 M32 80 L56 80" stroke="#E7E2D7" stroke-width="1.5" opacity=".5"/>
           <path d="M368 80 L368 104 M368 80 L344 80" stroke="#E7E2D7" stroke-width="1.5" opacity=".5"/>
           <path d="M32 440 L32 416 M32 440 L56 440" stroke="#E7E2D7" stroke-width="1.5" opacity=".5"/>
           <path d="M368 440 L368 416 M368 440 L344 440" stroke="#E7E2D7" stroke-width="1.5" opacity=".5"/>
-          <text x="200" y="395" font-family="'Didot','Playfair Display',serif" font-size="8.5" font-weight="500" letter-spacing="5" text-anchor="middle" fill="#E7E2D7" opacity=".2">PASSAGE</text>
         </svg>
       </div>
       <div class="hero-headline">
@@ -400,7 +403,7 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
           <span class="hero-eyebrow" id="heroEyebrow">Product Launch</span>
           <h1 class="hero-h1" id="heroH1">A product launch,<br><em>designed end to end.</em></h1>
         </div>
-        <p class="hero-sub" id="heroSub">PASSAGE ONE is a carry-on whose interior and intelligence reconfigure around the trip. A walkthrough of how I built the brand, the story, and the launch page.</p>
+        <p class="hero-sub" id="heroSub">PASSAGE is a carry-on whose interior and intelligence reconfigure around the trip. A walkthrough of how I built the brand, the story, and the launch page.</p>
       </div>
       <div class="scroll-hint" id="scrollHint" aria-hidden="true"><span>Scroll</span><div class="scroll-line"></div></div>
     </div>
@@ -432,7 +435,7 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
       <span class="eyebrow">The Product &middot; Choose how yours travels</span>
       <h2>One suitcase. <em>Different ways to use it.</em></h2>
     </div>
-    <p class="reason">Every PASSAGE ONE is built on <strong>the Frame</strong>, a lightweight aluminum structure that stays in the case for good. The kits clip onto it and change with the trip, so you reconfigure without unpacking. At checkout you don't pick a color, you pick how it's packed.<span class="aside"><b>Design decision 01.</b> Lead with the suitcase, not the spec sheet. Buyers commit to the trip they picture.</span></p>
+    <p class="reason">Every PASSAGE is built on <strong>the Frame</strong>, a lightweight aluminum structure that stays in the case for good. The kits clip onto it and change with the trip, so you reconfigure without unpacking. At checkout you don't pick a color, you pick how it's packed.<span class="aside"><b>Design decision 01.</b> Lead with the suitcase, not the spec sheet. Buyers commit to the trip they picture.</span></p>
   </div>
 
   <div class="config-tabs" role="tablist" aria-label="Kit configurations">
@@ -444,10 +447,10 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
 
   <div class="config-stage" id="config-panel" role="tabpanel">
     <div class="config-viz" aria-hidden="true">
-      <div class="interior-panel active" data-panel="weekend"><img class="config-img" src="weekender.png" alt="PASSAGE ONE packed as the Weekender Kit"></div>
-      <div class="interior-panel" data-panel="work"><img class="config-img" src="work.png" alt="PASSAGE ONE packed as the Work Kit"></div>
-      <div class="interior-panel" data-panel="creative"><img class="config-img" src="creative.png" alt="PASSAGE ONE packed as the Field Kit"></div>
-      <div class="interior-panel" data-panel="longhaul"><img class="config-img" src="longhaul.png" alt="PASSAGE ONE packed as the Long Haul Kit"></div>
+      <div class="interior-panel active" data-panel="weekend"><img class="config-img" src="weekender.png" alt="PASSAGE packed as the Weekender Kit"></div>
+      <div class="interior-panel" data-panel="work"><img class="config-img" src="work.png" alt="PASSAGE packed as the Work Kit"></div>
+      <div class="interior-panel" data-panel="creative"><img class="config-img" src="creative.png" alt="PASSAGE packed as the Field Kit"></div>
+      <div class="interior-panel" data-panel="longhaul"><img class="config-img" src="longhaul.png" alt="PASSAGE packed as the Long Haul Kit"></div>
     </div>
 
     <div class="config-copy">
@@ -549,7 +552,7 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
     </div>
 
     <div class="ed-panel">
-      <div class="ed-name" id="edName">Passage / <em>Tokyo</em></div>
+      <div class="ed-name" id="edName">Japan / <em>Tokyo</em></div>
       <div class="ed-desc" id="edDesc">Dusty rose and gold. Cherry blossom drifting over a quiet Mt. Fuji morning.</div>
       <div class="ed-swatches" id="edSwatches" role="group" aria-label="Editions"></div>
     </div>
@@ -561,7 +564,7 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
   <div class="keepup-head">
     <span class="eyebrow">Designed to keep up</span>
     <h2>The bag does <em>some of the work.</em></h2>
-    <p>Three features that make ONE feel less like luggage and more like a travel companion, and give the landing page a reason to talk about intelligence, not just materials.</p>
+    <p>Three features that make PASSAGE feel less like luggage and more like a travel companion, and give the landing page a reason to talk about intelligence, not just materials.</p>
   </div>
 
   <div class="keepup-grid">
@@ -569,7 +572,7 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
     <div class="keepup-cell">
       <div class="kc-num">i</div>
       <div class="kc-name">It follows you.</div>
-      <div class="kc-desc">A low, quiet drive system lets ONE move on its own, staying a step behind you through the terminal and stopping when you stop. Hands free for the boarding pass and the coffee.</div>
+      <div class="kc-desc">A low, quiet drive system lets PASSAGE move on its own, staying a step behind you through the terminal and stopping when you stop. Hands free for the boarding pass and the coffee.</div>
       <div class="kc-visual">
         <div class="selfmove-track" aria-hidden="true">
           <div class="selfmove-path"></div>
@@ -597,7 +600,7 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
     <div class="keepup-cell">
       <div class="kc-num">ii</div>
       <div class="kc-name">You always know where it is.</div>
-      <div class="kc-desc">Location tracking is built into the Frame, not clipped on as an afterthought. Open the Passage app and ONE is on the map, in the terminal, in the hold, or three carousels over.</div>
+      <div class="kc-desc">Location tracking is built into the Frame, not clipped on as an afterthought. Open the Passage app and PASSAGE is on the map, in the terminal, in the hold, or three carousels over.</div>
       <div class="kc-visual">
         <div class="track-mini" aria-hidden="true" id="trackMini">
           <div class="track-ping" style="left:64%;top:42%"></div>
@@ -609,7 +612,7 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
     <div class="keepup-cell">
       <div class="kc-num">iii</div>
       <div class="kc-name">It knows the rules.</div>
-      <div class="kc-desc">ONE is built to the carry-on line. The Airline Check confirms it against a specific carrier before you get to the gate.</div>
+      <div class="kc-desc">PASSAGE is built to the carry-on line. The Airline Check confirms it against a specific carrier before you get to the gate.</div>
       <div class="kc-visual airline-check">
         <span class="airline-select-label">Flying with</span>
         <div class="airline-chips" id="airlineChips" role="group" aria-label="Airline"></div>
@@ -639,12 +642,12 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
       <h3>Your suitcase, <em>on your phone.</em></h3>
       <p>The physical object and the digital one are the same product. The app is where the Frame, the tracking, and every trip come together, from your first Pack Profile to the map of everywhere it's been.</p>
       <div class="mem-app-feats">
-        <div class="mem-app-feat"><span><b>Live location</b> &mdash; where ONE is, right now</span></div>
+        <div class="mem-app-feat"><span><b>Live location</b> &mdash; where PASSAGE is, right now</span></div>
         <div class="mem-app-feat"><span><b>Pack Profiles</b> &mdash; how to set it up per trip</span></div>
         <div class="mem-app-feat"><span><b>Trip Memory</b> &mdash; the map of everywhere it's been</span></div>
         <div class="mem-app-feat"><span><b>Airline Check</b> &mdash; confirm it fits before the gate</span></div>
       </div>
-      <p class="mem-app-quote">&ldquo;I check the app before I check the flight status.&rdquo; <span>&mdash; a PASSAGE ONE owner, six trips in</span></p>
+      <p class="mem-app-quote">&ldquo;I check the app before I check the flight status.&rdquo; <span>&mdash; a PASSAGE owner, six trips in</span></p>
     </div>
   </div>
 
@@ -653,7 +656,7 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
     <div class="mem-card-grid">
       <div class="mem-card-left">
         <div class="mem-owned">Owned since 2026</div>
-        <div class="mem-title">Your PASSAGE ONE</div>
+        <div class="mem-title">Your PASSAGE</div>
         <div class="mem-stats">
           <div class="mem-stat"><div class="ms-val">12</div><div class="ms-lab">Trips</div></div>
           <div class="mem-stat"><div class="ms-val">6</div><div class="ms-lab">Countries</div></div>
@@ -675,7 +678,7 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
 <section class="ch-specs" aria-label="Specifications">
   <div class="specs-inner">
     <div class="specs-head">
-      <h2>The numbers, once you're listening.</h2>
+      <h2>The numbers that back it up.</h2>
     </div>
     <div class="specs-grid">
       <div class="spec-cell"><div class="sc-val">42L</div><div class="sc-lab">Capacity</div></div>
@@ -693,7 +696,7 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
 
 <!-- ══ FOOTER ══ -->
 <footer class="ch-footer grain on-dark" aria-label="Footer">
-  <span class="cf-meta">PASSAGE ONE &nbsp;&middot;&nbsp; Product Launch &nbsp;&middot;&nbsp; 2026</span>
+  <span class="cf-meta">PASSAGE &nbsp;&middot;&nbsp; Product Launch &nbsp;&middot;&nbsp; 2026</span>
   <a href="https://mollycurtis.github.io/#landing-pages">&#8592; Back to Landing Pages</a>
 </footer>
 
@@ -890,14 +893,13 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
     edImgs.forEach(im=>im.classList.toggle('active',parseInt(im.dataset.ed)===i));
     if(edName){
       edName.style.opacity='0';edDesc.style.opacity='0';
-      setTimeout(()=>{edName.innerHTML=`Passage / <em>${ed.key}</em>`;edDesc.textContent=ed.desc;edName.style.opacity='1';edDesc.style.opacity='1'},200);
+      setTimeout(()=>{edName.innerHTML=`${ed.loc} / <em>${ed.key}</em>`;edDesc.textContent=ed.desc;edName.style.opacity='1';edDesc.style.opacity='1'},200);
     }
   }
   function buildEditions(){
     edSwatches.innerHTML=editions.map((ed,i)=>`<button class="ed-swatch${i===0?' active':''}" data-ed="${i}" aria-pressed="${i===0}">
       <span class="ed-swatch-dot" style="background:linear-gradient(115deg, ${ed.dots[0]} 0 50%, ${ed.dots[1]} 50% 100%)"></span>
-      <span class="ed-swatch-name">Passage / ${ed.key}</span>
-      <span class="ed-swatch-loc">${ed.loc}</span></button>`).join('');
+      <span class="ed-swatch-name">${ed.loc} / ${ed.key}</span></button>`).join('');
     edSwatches.querySelectorAll('.ed-swatch').forEach(b=>b.addEventListener('click',()=>{
       edSwatches.querySelectorAll('.ed-swatch').forEach(x=>{const on=x===b;x.classList.toggle('active',on);x.setAttribute('aria-pressed',on);});
       applyEdition(parseInt(b.dataset.ed));
@@ -906,7 +908,7 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
   if(edSwatches){buildEditions()}
 
   /* ══ AIRLINE CHECK ══ */
-  // ONE dimensions (in): height, width, depth
+  // PASSAGE dimensions (in): height, width, depth
   const ONE_DIMS=[21.5,13.5,9];
   const airlines=[
     {name:'Delta',dims:[22,14,9]},
@@ -926,11 +928,11 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
     let verdict,detail;
     if(fits){
       verdict=`<div class="airline-verdict fits"><span class="av-mark">&#10003;</span><span class="av-text">Fits ${a.name}'s carry-on allowance.</span></div>`;
-      detail=`ONE is <b>21.5 &times; 13.5 &times; 9 in</b>. ${a.name} allows up to <b>${a.dims[0]} &times; ${a.dims[1]} &times; ${a.dims[2]} in</b>.`;
+      detail=`PASSAGE is <b>21.5 &times; 13.5 &times; 9 in</b>. ${a.name} allows up to <b>${a.dims[0]} &times; ${a.dims[1]} &times; ${a.dims[2]} in</b>.`;
     }else{
       const which=overIdx.map(i=>dimNames[i]).join(' and ');
       verdict=`<div class="airline-verdict check"><span class="av-mark">!</span><span class="av-text">Worth confirming on ${a.name}.</span></div>`;
-      detail=`ONE's <b>${which}</b> sits just over ${a.name}'s stated limit of <b>${a.dims[0]} &times; ${a.dims[1]} &times; ${a.dims[2]} in</b>. Most gates flex, but check before you fly.`;
+      detail=`PASSAGE's <b>${which}</b> sits just over ${a.name}'s stated limit of <b>${a.dims[0]} &times; ${a.dims[1]} &times; ${a.dims[2]} in</b>. Most gates flex, but check before you fly.`;
     }
     airlineResult.innerHTML=verdict+`<div class="airline-dims">${detail}</div><div class="airline-fine">Illustrative allowances. Carriers change requirements, always confirm the current rule.</div>`;
   }
