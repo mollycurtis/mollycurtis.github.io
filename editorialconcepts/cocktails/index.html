@@ -396,10 +396,10 @@ body {
 
 /* ── BREAKPOINTS ── */
 @media (max-width: 600px) {
-  :root { --card-w: 100vw; }
+  :root { --card-w: 50vw; }
   .arrow { display: none; }
   .mobile-nav-btn { display: flex; align-items: center; }
-  .card { padding: 1.5rem 1.5rem 1.2rem; border-right: none; }
+  .card { padding: 1.25rem 0.95rem 1rem; border-right: 0.5px solid var(--rule); }
   .track-outer { height: calc(78vh - 44px); }
   .drink-photo { height: 240px; max-height: none; flex: none; margin-top: 0; margin-bottom: var(--sp-1); }
   .drink-photo img { width: 96%; max-height: 240px; }
@@ -518,15 +518,27 @@ cocktails.forEach((c, i) => {
   (document.getElementById("dotsInner") || dots).appendChild(d);
 });
 
-function goTo(idx) {
-  idx = Math.max(0, Math.min(TOTAL - 1, idx));
-  cur = idx;
-  const cardW = inner.querySelector('.card').offsetWidth;
-  inner.style.transform = `translateX(${-idx * cardW}px)`;
-  updateUI();
+function getMaxIndex() {
+  const cardW = inner.querySelector('.card')?.offsetWidth || 1;
+  const totalWidth = cardW * TOTAL;
+  const viewportWidth = document.getElementById('track').offsetWidth;
+  return Math.max(0, Math.ceil((totalWidth - viewportWidth) / cardW));
 }
 
-function go(dir) { if (dir > 0 && cur >= TOTAL - 1) return; if (dir < 0 && cur <= 0) return; goTo(cur + dir); }
+function goTo(idx) {
+  const maxIndex = getMaxIndex();
+  idx = Math.max(0, Math.min(maxIndex, idx));
+  cur = idx;
+  const cardW = inner.querySelector('.card').offsetWidth;
+  const totalWidth = cardW * TOTAL;
+  const viewportWidth = document.getElementById('track').offsetWidth;
+  const maxTranslate = Math.max(0, totalWidth - viewportWidth);
+  const translate = Math.min(idx * cardW, maxTranslate);
+  inner.style.transform = `translateX(${-translate}px)`;
+  updateUI(maxIndex);
+}
+
+function go(dir) { const maxIndex = getMaxIndex(); if (dir > 0 && cur >= maxIndex) return; if (dir < 0 && cur <= 0) return; goTo(cur + dir); }
 
 function setTrackWidth() {
   const card = inner.querySelector('.card');
