@@ -103,19 +103,21 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
 .config-copy{padding:clamp(40px,5vh,60px) 0 clamp(40px,5vh,60px) clamp(32px,5vw,64px);display:flex;flex-direction:column;justify-content:center}
 .config-kit-name{font-family:var(--serif);font-size:clamp(30px,4.2vw,52px);font-weight:300;font-style:italic;color:var(--linen);line-height:.98;letter-spacing:-.02em;margin-bottom:8px}
 .config-lines{display:flex;flex-direction:column;gap:2px;margin-bottom:24px}
-.config-line{font-size:14.5px;font-weight:300;color:rgba(231,226,215,.58);line-height:1.5;opacity:0;transform:translateY(8px);transition:opacity .4s var(--ease),transform .4s var(--ease)}
+.config-line{font-size:14.5px;font-weight:300;color:rgba(231,226,215,.58);line-height:1.5;white-space:nowrap;opacity:0;transform:translateY(8px);transition:opacity .4s var(--ease),transform .4s var(--ease)}
 .config-line.show{opacity:1;transform:none}
 .config-line.delay1{transition-delay:.06s}
-.config-components{list-style:none;display:flex;flex-direction:column;gap:0;margin-bottom:24px;border-top:1px solid rgba(231,226,215,.12)}
+.config-components{list-style:none;display:flex;flex-direction:column;gap:0;margin-bottom:24px;border-top:1px solid rgba(231,226,215,.12);min-height:160px}
 .config-components li{font-size:13px;font-weight:300;color:rgba(231,226,215,.7);padding:9px 0;border-bottom:1px solid rgba(231,226,215,.08);display:flex;align-items:center;gap:12px;opacity:0;transform:translateX(-6px);transition:opacity .4s var(--ease),transform .4s var(--ease)}
 .config-components li.show{opacity:1;transform:none}
 .config-components li::before{content:'';width:5px;height:5px;background:var(--rust-lt);flex-shrink:0;border-radius:50%}
-.config-rail-note{font-size:12px;font-weight:400;letter-spacing:.02em;color:rgba(231,226,215,.42);line-height:1.6;padding-top:18px;border-top:1px solid rgba(231,226,215,.12);max-width:34ch}
+.config-rail-note{font-size:12px;font-weight:400;letter-spacing:.02em;color:rgba(231,226,215,.42);line-height:1.6;padding-top:18px;max-width:46ch}
 .config-rail-note b{color:var(--stone);font-weight:500}
 
 /* ══ PACK PROFILES ══ */
 .ch-pack{background:var(--linen);padding:clamp(80px,11vh,130px) var(--gut)}
-.pack-head{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,7vw,96px);align-items:end;margin-bottom:52px}
+.pack-head{display:block;margin-bottom:48px}
+.pack-lead{font-size:13.5px;font-weight:300;color:rgba(42,40,37,.6);line-height:1.75;margin-bottom:28px;max-width:none}
+.pack-lead strong{color:var(--espresso);font-weight:500}
 .pack-head h2{font-family:var(--serif);font-size:clamp(30px,4.4vw,58px);font-weight:300;line-height:1.0;letter-spacing:-.018em;color:var(--espresso);margin-top:18px}
 .pack-head h2 em{font-style:italic}
 .pack-head .reason{font-size:14px;font-weight:300;color:rgba(42,40,37,.6);line-height:1.75;padding-bottom:6px}
@@ -159,24 +161,15 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
 .ch-feature{background:var(--espresso);position:relative}
 .feature-sticky-wrap{position:relative;height:360vh}
 .feature-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.feature-bag-center{position:relative;display:flex;align-items:center;justify-content:center;width:clamp(230px,30vw,420px)}
-.feature-labels{position:absolute;inset:0;pointer-events:none}
-.feature-label{position:absolute;display:flex;align-items:center;gap:12px;opacity:0;transition:opacity .5s var(--ease),transform .5s var(--ease)}
-.feature-label.show{opacity:1!important}
-.feature-label-text{display:flex;flex-direction:column;gap:3px}
-.feature-label-text .flt-name{font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--linen);white-space:nowrap;line-height:1}
-.feature-label-text .flt-desc{font-size:11px;font-weight:300;color:rgba(231,226,215,.5);white-space:nowrap;line-height:1.3}
-.feature-label-line{width:44px;height:1px;background:rgba(231,226,215,.32);flex-shrink:0}
-.fl-a{top:34%;right:calc(100% + 14px);flex-direction:row-reverse;transform:translateX(10px)}
-.fl-a .feature-label-text{text-align:right;align-items:flex-end}
-.fl-a.show{transform:none}
-.fl-b{bottom:12%;left:calc(100% + 14px);transform:translateX(-10px)}
-.fl-b.show{transform:none}
-.fl-c{top:22%;right:calc(100% + 14px);flex-direction:row-reverse;transform:translateX(10px)}
-.fl-c .feature-label-text{text-align:right;align-items:flex-end}
-.fl-c.show{transform:none}
-.fl-d{top:8%;left:calc(100% + 14px);transform:translateX(-10px)}
-.fl-d.show{transform:none}
+.feature-bag-center{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;width:clamp(240px,32vw,400px)}
+.feature-photo-stack{position:relative;width:100%;aspect-ratio:4/5;overflow:hidden;border-radius:2px;box-shadow:0 30px 70px -24px rgba(0,0,0,.55)}
+.feature-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.045);transition:opacity 1.1s var(--ease),transform 1.4s var(--ease)}
+.feature-photo.active{opacity:1;transform:scale(1)}
+.feature-caption{position:relative;width:100%;min-height:52px;text-align:center}
+.feature-caption-item{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;gap:6px;opacity:0;transform:translateY(8px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.feature-caption-item.show{opacity:1;transform:none}
+.feature-caption-item .flt-name{font-size:11.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--linen)}
+.feature-caption-item .flt-desc{font-size:12.5px;font-weight:300;color:rgba(231,226,215,.55)}
 .feature-progress{position:absolute;right:clamp(20px,3vw,44px);top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px}
 .fp-dot{width:4px;height:4px;background:rgba(231,226,215,.2);transition:background .3s,transform .3s}
 .fp-dot.on{background:var(--stone);transform:scale(1.6)}
@@ -244,7 +237,7 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
 .airline-chip{font-size:11px;font-weight:400;color:rgba(231,226,215,.6);background:none;border:1px solid rgba(231,226,215,.2);padding:7px 12px;cursor:pointer;transition:all .2s;font-family:var(--sans)}
 .airline-chip:hover{border-color:rgba(231,226,215,.45);color:var(--linen)}
 .airline-chip.active{background:var(--stone);border-color:var(--stone);color:var(--espresso)}
-.airline-result{border-top:1px solid rgba(231,226,215,.12);padding-top:18px;min-height:96px}
+.airline-result{border-top:1px solid rgba(231,226,215,.12);padding-top:18px;min-height:140px}
 .airline-verdict{display:flex;align-items:center;gap:10px;margin-bottom:12px}
 .airline-verdict .av-mark{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0}
 .airline-verdict.fits .av-mark{background:var(--stone);color:var(--espresso)}
@@ -256,7 +249,7 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
 
 /* ══ TRIP MEMORY ══ */
 .ch-memory{background:var(--linen);padding:clamp(80px,11vh,130px) var(--gut)}
-.mem-head{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,7vw,96px);align-items:end;margin-bottom:52px}
+.mem-head{display:grid;grid-template-columns:0.85fr 1fr;gap:clamp(40px,6vw,88px);align-items:start;margin-bottom:52px}
 .mem-head h2{font-family:var(--serif);font-size:clamp(30px,4.6vw,60px);font-weight:300;line-height:1.0;letter-spacing:-.02em;color:var(--espresso);margin-top:18px}
 .mem-head h2 em{font-style:italic}
 .mem-head .reason{font-size:14px;font-weight:300;color:rgba(42,40,37,.6);line-height:1.75;padding-bottom:6px}
@@ -291,14 +284,13 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
 /* ══ SPECS ══ */
 .ch-specs{background:var(--ink);padding:clamp(72px,10vh,120px) var(--gut)}
 .specs-inner{max-width:1400px;margin:0 auto}
-.specs-head{display:flex;align-items:baseline;justify-content:space-between;gap:24px;margin-bottom:44px;flex-wrap:wrap}
+.specs-head{text-align:center;margin-bottom:44px}
 .specs-head h2{font-family:var(--serif);font-size:clamp(26px,3.4vw,44px);font-weight:300;font-style:italic;color:var(--linen);line-height:1}
-.specs-head .sh-note{font-size:12px;font-weight:300;color:rgba(231,226,215,.4);max-width:34ch;line-height:1.6}
 .specs-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(231,226,215,.1);border:1px solid rgba(231,226,215,.1)}
 .spec-cell{background:var(--ink);padding:26px 24px}
 .spec-cell .sc-val{font-family:var(--serif);font-size:clamp(26px,3vw,38px);font-weight:300;color:var(--linen);line-height:1;margin-bottom:8px}
 .spec-cell .sc-lab{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(231,226,215,.45)}
-.specs-fine{margin-top:24px;font-size:11px;font-weight:300;color:rgba(231,226,215,.32);line-height:1.6;max-width:60ch}
+.specs-fine{margin-top:24px;font-size:11px;font-weight:300;color:rgba(231,226,215,.32);line-height:1.6;max-width:none}
 
 /* ══ CLOSE ══ */
 .ch-close{background:var(--espresso);min-height:92vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:clamp(80px,12vh,140px) var(--gut);position:relative}
@@ -310,6 +302,11 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
 .close-foot a:hover{color:var(--linen);border-color:rgba(231,226,215,.5)}
 
 .bag-svg{width:100%;height:auto;display:block}
+
+.ch-footer{background:var(--espresso);padding:clamp(40px,7vh,72px) var(--gut);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid rgba(231,226,215,.1)}
+.ch-footer .cf-meta{font-size:10px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:rgba(231,226,215,.28)}
+.ch-footer a{font-size:10.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(231,226,215,.45);text-decoration:none;border-bottom:1px solid rgba(231,226,215,.18);padding-bottom:3px;transition:color .2s,border-color .2s}
+.ch-footer a:hover{color:var(--linen);border-color:rgba(231,226,215,.5)}
 
 /* ══ RESPONSIVE ══ */
 @media(max-width:900px){
@@ -331,17 +328,17 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
 }
 @media(max-width:680px){
   .config-stage{grid-template-columns:1fr}
-  .config-viz{border-right:none;border-bottom:1px solid rgba(231,226,215,.12);min-height:56vw}
+  .config-viz{border-right:none;border-bottom:1px solid rgba(231,226,215,.12);min-height:clamp(220px,60vw,440px);padding:24px 16px}
+  .config-img{max-width:92%;max-height:100%}
   .config-copy{padding:36px 0 8px}
   .hero-headline{flex-direction:column;align-items:flex-start;gap:20px;padding-bottom:48px}
   .hero-sub{max-width:none}
-  .fl-a,.fl-c{right:auto;left:calc(100% + 10px);flex-direction:row}
-  .fl-a .feature-label-text,.fl-c .feature-label-text{text-align:left;align-items:flex-start}
-  .feature-label-line{width:22px}
-  .feature-label-text .flt-name{font-size:9px}
-  .feature-label-text .flt-desc{font-size:9.5px}
-  .config-tabs{overflow-x:auto}
-  .config-tab{min-width:92px}
+  .feature-bag-center{width:clamp(200px,58vw,300px);gap:20px}
+  .feature-caption-item .flt-name{font-size:10px}
+  .feature-caption-item .flt-desc{font-size:11px}
+  .config-tabs{overflow:visible}
+  .config-tab{flex:1;min-width:0;white-space:nowrap;text-align:center;padding:14px 3px;font-size:8.5px;letter-spacing:.04em}
+  .config-tab .ct-idx{margin-right:3px;font-size:9px}
   .brief-meta{grid-template-columns:1fr 1fr}
   .feature-counter{display:none}
   .pack-legend{grid-template-columns:1fr}
@@ -355,7 +352,7 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
 <body>
 <nav class="back-nav" aria-label="Site navigation">
   <a href="https://mollycurtis.github.io/#landing-pages" aria-label="Back to Landing Pages">&#8592; Landing Pages</a>
-  <span class="nav-right">PASSAGE ONE &middot; Case Study</span>
+  <span class="nav-right">PASSAGE ONE &middot; Product Launch</span>
 </nav>
 
 <!-- ══ HERO ══ -->
@@ -388,7 +385,7 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
       </div>
       <div class="hero-headline">
         <div class="hero-head-main">
-          <span class="hero-eyebrow" id="heroEyebrow">Product Launch &middot; Case Study</span>
+          <span class="hero-eyebrow" id="heroEyebrow">Product Launch</span>
           <h1 class="hero-h1" id="heroH1">A product launch,<br><em>designed end to end.</em></h1>
         </div>
         <p class="hero-sub" id="heroSub">PASSAGE ONE is a carry-on whose interior and intelligence reconfigure around the trip. A walkthrough of how I built the brand, the story, and the launch page.</p>
@@ -424,7 +421,7 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
       <p class="config-kicker">Your trip changes. Your luggage should too.</p>
       <h2>One suitcase. <em>Different ways to use it.</em></h2>
     </div>
-    <p class="reason">Every PASSAGE ONE is built on <strong>the Frame</strong>, a lightweight aluminum structure that stays in the case for good. The kits clip onto it and change with the trip, so you reconfigure without unpacking. At checkout you don't pick a color, you pick how it's packed.<span class="aside"><b>Design decision 01</b> &nbsp;&mdash;&nbsp; use cases before features</span></p>
+    <p class="reason">Every PASSAGE ONE is built on <strong>the Frame</strong>, a lightweight aluminum structure that stays in the case for good. The kits clip onto it and change with the trip, so you reconfigure without unpacking. At checkout you don't pick a color, you pick how it's packed.<span class="aside"><b>Design decision 01.</b> Lead with the suitcase, not the spec sheet. Buyers commit to the trip they picture.</span></p>
   </div>
 
   <div class="config-tabs" role="tablist" aria-label="Kit configurations">
@@ -461,11 +458,11 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
       <span class="eyebrow">The Digital Product &middot; Pack Profiles</span>
       <h2>Tell it where <em>you're going.</em></h2>
     </div>
-    <p class="reason">Passage's app reads your trip and suggests how to pack it, roughly how your space breaks down, and which mode to run. <strong>A reason to open the app before you've even left</strong>, and something most luggage brands never build.</p>
   </div>
 
   <div class="pack-grid">
     <div class="pack-controls">
+      <p class="pack-lead">Passage's app reads your trip and suggests how to pack it, roughly how your space breaks down, and which mode to run. Pick a destination and a length, and the profile updates live. <strong>A reason to open the app before you've even left</strong>, and something most luggage brands never build.</p>
       <span class="pack-ctrl-label">Where are you headed?</span>
       <div class="pack-chips" id="packChips" role="group" aria-label="Destination"></div>
       <span class="pack-ctrl-label">How long?</span>
@@ -502,33 +499,17 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
     <div class="feature-sticky">
       <div class="feature-counter" id="featureCounter" aria-hidden="true">01</div>
       <div class="feature-bag-center">
-        <svg viewBox="0 0 400 460" fill="none" style="width:100%;max-width:360px" aria-hidden="true">
-          <rect x="32" y="80" width="336" height="360" rx="4" fill="none" stroke="#E7E2D7" stroke-width="1.2" opacity=".5"/>
-          <rect x="152" y="32" width="96" height="52" rx="3" fill="none" stroke="#E7E2D7" stroke-width="1.2" opacity=".35"/>
-          <rect x="166" y="46" width="68" height="24" rx="2" fill="none" stroke="#E7E2D7" stroke-width=".8" opacity=".2"/>
-          <line x1="32" y1="140" x2="368" y2="140" stroke="#E7E2D7" stroke-width=".7" opacity=".3"/>
-          <rect x="60" y="168" width="280" height="180" rx="3" fill="none" stroke="#E7E2D7" stroke-width=".8" opacity=".25"/>
-          <line x1="200" y1="168" x2="200" y2="348" stroke="#E7E2D7" stroke-width="2" opacity=".35"/>
-          <line x1="60" y1="258" x2="340" y2="258" stroke="#E7E2D7" stroke-width=".5" stroke-dasharray="4 6" opacity=".15"/>
-          <circle cx="60" cy="140" r="4" fill="none" stroke="#E7E2D7" stroke-width="1" opacity=".35"/>
-          <circle cx="340" cy="140" r="4" fill="none" stroke="#E7E2D7" stroke-width="1" opacity=".35"/>
-          <rect x="68" y="428" width="20" height="16" rx="2" fill="none" stroke="#E7E2D7" stroke-width=".9" opacity=".3"/>
-          <rect x="312" y="428" width="20" height="16" rx="2" fill="none" stroke="#E7E2D7" stroke-width=".9" opacity=".3"/>
-          <rect x="188" y="132" width="24" height="16" rx="2" fill="none" stroke="#E7E2D7" stroke-width=".8" opacity=".25"/>
-          <path d="M32 80 L32 104 M32 80 L56 80" stroke="#E7E2D7" stroke-width="1.5" opacity=".45"/>
-          <path d="M368 80 L368 104 M368 80 L344 80" stroke="#E7E2D7" stroke-width="1.5" opacity=".45"/>
-          <path d="M32 440 L32 416 M32 440 L56 440" stroke="#E7E2D7" stroke-width="1.5" opacity=".45"/>
-          <path d="M368 440 L368 416 M368 440 L344 440" stroke="#E7E2D7" stroke-width="1.5" opacity=".45"/>
-          <rect id="zoneInterior" x="60" y="168" width="280" height="180" rx="3" fill="rgba(231,226,215,0)" stroke="rgba(231,226,215,0)" stroke-width="1.5" style="transition:fill .4s,stroke .4s"/>
-          <rect id="zoneWheels" x="56" y="424" width="288" height="24" rx="2" fill="rgba(231,226,215,0)" stroke="rgba(231,226,215,0)" stroke-width="1.5" style="transition:fill .4s,stroke .4s"/>
-          <rect id="zoneLaptop" x="60" y="168" width="132" height="180" rx="3" fill="rgba(231,226,215,0)" stroke="rgba(231,226,215,0)" stroke-width="1.5" style="transition:fill .4s,stroke .4s"/>
-          <rect id="zoneShell" x="28" y="76" width="344" height="368" rx="6" fill="rgba(231,226,215,0)" stroke="rgba(231,226,215,0)" stroke-width="1.5" style="transition:fill .4s,stroke .4s"/>
-        </svg>
-        <div class="feature-labels" aria-hidden="true">
-          <div class="feature-label fl-a" id="fl-0"><div class="feature-label-text"><span class="flt-name">The Frame</span><span class="flt-desc">Kits clip on, slide, and detach</span></div><div class="feature-label-line"></div></div>
-          <div class="feature-label fl-b" id="fl-1"><div class="feature-label-line"></div><div class="feature-label-text"><span class="flt-name">Quiet Wheels</span><span class="flt-desc">360&deg;, built for long terminals</span></div></div>
-          <div class="feature-label fl-c" id="fl-2"><div class="feature-label-text"><span class="flt-name">16&Prime; Laptop Sleeve</span><span class="flt-desc">Detaches into its own carrier</span></div><div class="feature-label-line"></div></div>
-          <div class="feature-label fl-d" id="fl-3"><div class="feature-label-line"></div><div class="feature-label-text"><span class="flt-name">Reinforced Shell</span><span class="flt-desc">42L &middot; 7.8 lb &middot; recycled ballistic nylon</span></div></div>
+        <div class="feature-photo-stack">
+          <img class="feature-photo active" data-step="0" src="the-frame.png" alt="Close-up of the PASSAGE ONE frame rail and clip mechanism">
+          <img class="feature-photo" data-step="1" src="wheels.png" alt="Close-up of PASSAGE ONE's 360-degree quiet wheels">
+          <img class="feature-photo" data-step="2" src="laptop-sleeve.png" alt="The detachable 16 inch laptop sleeve with a laptop inside PASSAGE ONE">
+          <img class="feature-photo" data-step="3" src="shell.png" alt="Close-up of the PASSAGE ONE reinforced shell corner and TSA lock">
+        </div>
+        <div class="feature-caption" aria-live="polite">
+          <div class="feature-caption-item show" id="fl-0"><span class="flt-name">The Frame</span><span class="flt-desc">Kits clip on, slide, and detach</span></div>
+          <div class="feature-caption-item" id="fl-1"><span class="flt-name">Quiet Wheels</span><span class="flt-desc">360&deg;, built for long terminals</span></div>
+          <div class="feature-caption-item" id="fl-2"><span class="flt-name">16&Prime; Laptop Sleeve</span><span class="flt-desc">Detaches into its own carrier</span></div>
+          <div class="feature-caption-item" id="fl-3"><span class="flt-name">Reinforced Shell</span><span class="flt-desc">42L &middot; 7.8 lb &middot; recycled ballistic nylon</span></div>
         </div>
       </div>
       <div class="feature-progress" aria-hidden="true">
@@ -666,14 +647,14 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
         <div class="mem-title">Your PASSAGE ONE</div>
         <div class="mem-stats">
           <div class="mem-stat"><div class="ms-val">12</div><div class="ms-lab">Trips</div></div>
-          <div class="mem-stat"><div class="ms-val">8</div><div class="ms-lab">Countries</div></div>
+          <div class="mem-stat"><div class="ms-val">6</div><div class="ms-lab">Countries</div></div>
           <div class="mem-stat"><div class="ms-val">43,218</div><div class="ms-lab">Miles</div></div>
         </div>
         <div class="mem-cities-label">Where it's been</div>
         <div class="mem-cities">
           <span class="mem-city">Tokyo</span><span class="mem-city">Lisbon</span><span class="mem-city">Barcelona</span>
           <span class="mem-city">New York</span><span class="mem-city">Chicago</span><span class="mem-city">Reykjav&iacute;k</span>
-          <span class="mem-city">Copenhagen</span><span class="mem-city">Marrakech</span>
+          <span class="mem-city">Marrakech</span>
         </div>
       </div>
       <div class="mem-map" id="memMap" aria-hidden="true"></div>
@@ -686,7 +667,6 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
   <div class="specs-inner">
     <div class="specs-head">
       <h2>The numbers, once you're listening.</h2>
-      <p class="sh-note">Placed last on purpose. By the time you reach them, they answer a question you're already asking: will it work for me?</p>
     </div>
     <div class="specs-grid">
       <div class="spec-cell"><div class="sc-val">42L</div><div class="sc-lab">Capacity</div></div>
@@ -702,14 +682,11 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
   </div>
 </section>
 
-<!-- ══ CLOSE ══ -->
-<section class="ch-close grain on-dark" id="ch-close" aria-label="Closing">
-  <p class="close-line" id="closeLine">Built for wherever<br><em>you're going.</em></p>
-  <div class="close-foot">
-    <span class="cf-meta">PASSAGE ONE &nbsp;&middot;&nbsp; Product launch case study &nbsp;&middot;&nbsp; 2026</span>
-    <a href="https://mollycurtis.github.io/#landing-pages">&#8592; Back to Landing Pages</a>
-  </div>
-</section>
+<!-- ══ FOOTER ══ -->
+<footer class="ch-footer grain on-dark" aria-label="Footer">
+  <span class="cf-meta">PASSAGE ONE &nbsp;&middot;&nbsp; Product Launch &nbsp;&middot;&nbsp; 2026</span>
+  <a href="https://mollycurtis.github.io/#landing-pages">&#8592; Back to Landing Pages</a>
+</footer>
 
 <script>
 (function(){
@@ -741,10 +718,9 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
 
   /* ══ FEATURE SCROLL ══ */
   const featureWrap=document.querySelector('.feature-sticky-wrap');
-  const featureLabels=[document.getElementById('fl-0'),document.getElementById('fl-1'),document.getElementById('fl-2'),document.getElementById('fl-3')];
+  const featureCaptions=[document.getElementById('fl-0'),document.getElementById('fl-1'),document.getElementById('fl-2'),document.getElementById('fl-3')];
+  const featurePhotos=document.querySelectorAll('.feature-photo');
   const featureDots=document.querySelectorAll('.fp-dot'),featureCounter=document.getElementById('featureCounter');
-  const zoneIds=['zoneInterior','zoneWheels','zoneLaptop','zoneShell'];
-  const hFill='rgba(231,226,215,0.06)',hStroke='rgba(231,226,215,0.45)';
   let currentStep=-1;
   function onFeatureScroll(){
     if(!featureWrap)return;
@@ -753,10 +729,10 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
     const p=Math.min(Math.max(-r.top/(featureWrap.offsetHeight-wh),0),1);
     const step=Math.min(Math.floor(p*4.5),3);
     if(step===currentStep)return;currentStep=step;
-    featureLabels.forEach((l,i)=>{if(l)l.classList.toggle('show',i<=step)});
+    featureCaptions.forEach((l,i)=>{if(l)l.classList.toggle('show',i===step)});
+    featurePhotos.forEach(el=>el.classList.toggle('active',parseInt(el.dataset.step)===step));
     featureDots.forEach((d,i)=>d.classList.toggle('on',i===step));
     if(featureCounter)featureCounter.textContent='0'+(step+1);
-    zoneIds.forEach((id,i)=>{const el=document.getElementById(id);if(!el)return;if(i===step){el.style.fill=hFill;el.style.stroke=hStroke}else{el.style.fill='rgba(231,226,215,0)';el.style.stroke='rgba(231,226,215,0)'}});
   }
 
   /* ══ CLOSE ══ */
@@ -815,12 +791,14 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
 
   /* ══ PACK PROFILES ══ */
   const destinations={
-    'Tokyo':{climate:'temperate',character:'creative'},
-    'Lisbon':{climate:'mild',character:'creative'},
-    'New York':{climate:'variable',character:'work'},
-    'Reykjav\u00EDk':{climate:'cold',character:'outdoor'},
-    'Marrakech':{climate:'hot',character:'creative'},
-    'Aspen':{climate:'snow',character:'outdoor'}
+    'Tokyo':{climate:'temperate',character:'creative',tip:'Tokyo runs on walking, so lead with comfortable shoes and light layers you can peel through a warm afternoon into a cool evening.'},
+    'Lisbon':{climate:'mild',character:'creative',tip:'Lisbon is all hills and cobblestone, so grippy shoes and breathable layers matter more than volume. Warm days, breezy nights off the water.'},
+    'New York':{climate:'variable',character:'work',tip:'New York swings from subway heat to sidewalk cold, so bring one sharp layer for meetings and one that handles both.'},
+    'Reykjav\u00EDk':{climate:'cold',character:'outdoor',tip:'Iceland is weather on fast forward, so a waterproof shell, a warm middle layer, and boots that shrug off wind and rain carry the trip.'},
+    'Marrakech':{climate:'hot',character:'creative',tip:'Marrakech is hot and dusty, so lean on loose covered layers for the medina, breathable fabrics, and real sun protection.'},
+    'San Diego':{climate:'warm',character:'outdoor',tip:'San Diego stays easy and warm, so swimwear, casual layers, and one light jacket for the coastal evening are plenty.'},
+    'Cairo':{climate:'hot',character:'outdoor',tip:'Cairo is sun heavy and full of walking, so covered breathable clothing, strong sun protection, and shoes that take on desert dust come first.'},
+    'Santorini':{climate:'warm',character:'creative',tip:'Santorini is sun and stone, so breathable resort wear, sandals with grip for the steps, and one nice layer for a caldera dinner.'}
   };
   const packCats=[
     {key:'clothing',label:'Clothing',color:'#C88A5B'},
@@ -837,12 +815,14 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
     else if(d.climate==='snow'){b.clothing+=14;b.shoes+=6;b.gear+=2;b.other-=4;b.toiletries-=2}
     else if(d.climate==='hot'){b.clothing-=8;b.toiletries+=2;b.other+=8;b.shoes-=2}
     else if(d.climate==='mild'){b.clothing-=2;b.other+=2}
+    else if(d.climate==='warm'){b.clothing-=5;b.other+=4;b.shoes-=1;b.toiletries+=1}
     // character
     if(d.character==='creative'){b.gear+=12;b.clothing-=8;b.other-=2}
     else if(d.character==='work'){b.gear+=7;b.clothing-=3;b.toiletries-=1}
     else if(d.character==='outdoor'){b.shoes+=5;b.gear+=4;b.clothing-=1;b.other-=2}
     // days
     if(days<=3){b.clothing-=6;b.toiletries-=1;b.other+=3}
+    else if(days>=14){b.clothing+=11;b.toiletries+=2;b.other-=3;b.gear-=1}
     else if(days>=10){b.clothing+=8;b.toiletries+=2;b.other-=2}
     else if(days>=7){b.clothing+=3}
     // clamp + normalize
@@ -866,22 +846,23 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
   const packChips=document.getElementById('packChips'),packDays=document.getElementById('packDays');
   const packDestEl=document.getElementById('packDest'),packDaysLabel=document.getElementById('packDaysLabel'),packModeLine=document.getElementById('packModeLine'),packBar=document.getElementById('packBar'),packLegend=document.getElementById('packLegend'),packModeTag=document.getElementById('packModeTag'),packNote=document.getElementById('packNote');
   let packState={dest:'Tokyo',days:7};
-  const dayOptions=[3,5,7,10,14];
+  const dayOptions=[3,5,7,10,14,15];
   function buildPackControls(){
     packChips.innerHTML=Object.keys(destinations).map(n=>`<button class="pack-chip${n===packState.dest?' active':''}" data-dest="${n}">${n}</button>`).join('');
-    packDays.innerHTML=dayOptions.map(d=>`<button class="pack-day${d===packState.days?' active':''}" data-days="${d}">${d}</button>`).join('');
+    packDays.innerHTML=dayOptions.map(d=>`<button class="pack-day${d===packState.days?' active':''}" data-days="${d}">${d===15?'15+':d}</button>`).join('');
     packChips.querySelectorAll('.pack-chip').forEach(c=>c.addEventListener('click',()=>{packState.dest=c.dataset.dest;packChips.querySelectorAll('.pack-chip').forEach(x=>x.classList.toggle('active',x===c));renderPack()}));
     packDays.querySelectorAll('.pack-day').forEach(c=>c.addEventListener('click',()=>{packState.days=parseInt(c.dataset.days);packDays.querySelectorAll('.pack-day').forEach(x=>x.classList.toggle('active',x===c));renderPack()}));
   }
   function renderPack(){
     const r=computeProfile(packState.dest,packState.days);
+    const label=packState.days===15?'15+ days':packState.days+' days';
     packDestEl.textContent=packState.dest;
-    packDaysLabel.textContent=packState.days+' days';
-    packModeLine.innerHTML=`Your space breaks down like this for a <b>${packState.days}-day</b> trip.`;
+    packDaysLabel.textContent=label;
+    packModeLine.innerHTML=`Your space breaks down like this over <b>${label}</b>.`;
     packBar.innerHTML=packCats.map(c=>`<div class="pack-seg" style="width:${r.pct[c.key]}%;background:${c.color}"></div>`).join('');
     packLegend.innerHTML=packCats.map(c=>`<div class="pack-leg-item"><span class="pack-leg-sw" style="background:${c.color}"></span><span class="pack-leg-txt">${c.label}<b>${r.pct[c.key]}%</b></span></div>`).join('');
     packModeTag.textContent='Use '+r.mode+' Mode';
-    packNote.innerHTML=`Passage suggests <b style="color:#C88A5B">${r.mode} Mode</b> for ${r.rationale}. Packed to about ${r.fill}% of 42L, so you keep room for the way home.`;
+    packNote.innerHTML=`${destinations[packState.dest].tip} Over ${label}, use <b style="color:#C88A5B">${r.mode} Mode</b>, packed to about ${r.fill}% of 42L so there is room for the way home.`;
   }
   if(packChips&&packDays){buildPackControls();renderPack()}
 
@@ -979,11 +960,11 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
     const cities=[
       {c:'Chicago',lat:41.9,lon:-87.6},{c:'New York',lat:40.7,lon:-74.0},
       {c:'Reykjav\u00EDk',lat:64.1,lon:-21.9},{c:'Lisbon',lat:38.7,lon:-9.1},
-      {c:'Barcelona',lat:41.4,lon:2.2},{c:'Copenhagen',lat:55.7,lon:12.6},
+      {c:'Barcelona',lat:41.4,lon:2.2},
       {c:'Marrakech',lat:31.6,lon:-8.0},{c:'Tokyo',lat:35.7,lon:139.7}
     ].map(o=>({...o,...proj(o.lat,o.lon)}));
     // flight arcs along a plausible route
-    const order=['Chicago','New York','Reykjav\u00EDk','Copenhagen','Lisbon','Barcelona','Marrakech','Tokyo'];
+    const order=['Chicago','New York','Reykjav\u00EDk','Lisbon','Barcelona','Marrakech','Tokyo'];
     const byName=Object.fromEntries(cities.map(o=>[o.c,o]));
     for(let i=0;i<order.length-1;i++){
       const a=byName[order[i]],b=byName[order[i+1]];
