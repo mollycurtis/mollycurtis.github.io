@@ -124,7 +124,9 @@ section{position:relative}
 .head{display:flex;align-items:flex-end;gap:clamp(18px,3vw,46px);flex-wrap:wrap;margin-bottom:clamp(28px,4vw,52px)}
 .head h2{font-family:var(--bodoni);font-weight:500;line-height:.86;letter-spacing:-.02em;font-size:clamp(44px,8vw,116px)}
 .head h2 em{font-style:italic;font-weight:400}
-.head .intro{font-family:var(--news);font-style:italic;font-size:clamp(17px,1.4vw,21px);line-height:1.4;max-width:38ch;color:rgba(23,19,15,.8);padding-bottom:.6em}
+.head{align-items:flex-end}
+.head h2{flex:0 0 auto}
+.head .intro{font-family:var(--news);font-style:italic;font-size:clamp(17px,1.4vw,21px);line-height:1.4;flex:1 1 380px;max-width:none;color:rgba(23,19,15,.8);padding-bottom:.6em}
 .dark .head .intro,.menu .head .intro{color:inherit;opacity:.9}
 
 /* ================= HERO / COVER ================= */
@@ -163,7 +165,7 @@ section{position:relative}
 /* ================= ZEBRA STATEMENT BAND ================= */
 .stripe{background:var(--zebra-img);background-size:auto 100%;padding-block:clamp(34px,6vw,72px);overflow:hidden}
 .stripe .wrap{text-align:center}
-.stripe .plate{background:var(--cream);display:inline-block;padding:clamp(16px,3vw,32px) clamp(22px,4vw,52px);transform:rotate(-1.4deg);box-shadow:0 20px 50px -24px rgba(0,0,0,.55)}
+.stripe .plate{background:var(--cream);display:inline-block;padding:clamp(16px,3vw,32px) clamp(22px,4vw,52px);transform:rotate(-1.4deg);box-shadow:0 20px 50px -24px rgba(0,0,0,.55);border:1.5px solid var(--magenta);outline:1px solid var(--magenta);outline-offset:-6px}
 .stripe .plate h2{font-family:var(--bodoni);font-weight:500;font-style:italic;font-size:clamp(32px,6.4vw,84px);line-height:.94}
 .stripe .plate h2 .hl{color:var(--tomato)}
 
@@ -231,13 +233,14 @@ section{position:relative}
 .chip:nth-child(4n){transform:rotate(1.5deg)}
 .chip:nth-child(5n){transform:rotate(-2deg);background:var(--ochre)}
 .chip.zeb{background:var(--zebra-img);background-size:120px;color:var(--cream);border-color:var(--ink);font-style:normal;font-family:var(--syne);font-weight:600;text-shadow:0 1px 3px rgba(0,0,0,.7)}
+.chip.blue{background:var(--peacock);color:var(--cream);border-color:var(--peacock);font-style:normal;font-family:var(--syne);font-weight:600}
 
 /* ================= CONTACT / HI ================= */
 .hi{background:var(--tomato);color:var(--cream);overflow:hidden}
 .hi-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(30px,5vw,80px)}
 .hi h2{font-family:var(--bodoni);font-weight:500;font-size:clamp(52px,11vw,150px);line-height:.82;letter-spacing:-.02em}
 .hi h2 .fx{color:var(--ink)}
-.hi .blurb{font-family:var(--news);font-size:clamp(17px,1.5vw,21px);line-height:1.5;margin-top:22px;max-width:36ch}
+.hi .blurb{font-family:var(--news);font-size:clamp(17px,1.5vw,21px);line-height:1.5;margin-top:clamp(28px,4vw,52px);max-width:36ch}
 .hi-cx{margin-top:30px;display:grid;gap:12px;font-family:var(--syne);font-weight:500;font-size:15px}
 .hi-cx .st{opacity:.9}
 
@@ -337,6 +340,31 @@ section{position:relative}
 .cs-nav .k{font-family:var(--syne);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--ochre)}
 .cs-nav .t{font-family:var(--bodoni);font-weight:500;font-size:clamp(22px,2.4vw,38px)}
 
+
+/* --- ABOUT restructure --- */
+.who-top{align-items:start !important}
+.who-left{display:flex;flex-direction:column;gap:clamp(20px,2.5vw,36px)}
+.who-body{font-family:var(--news);font-size:clamp(16px,1.1vw,18px);line-height:1.6;display:flex;flex-direction:column;gap:1em}
+.who-body p{margin:0}
+
+/* --- FINDS carousel inside about --- */
+.who-finds{margin-top:clamp(48px,7vw,96px)}
+.wf-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:clamp(20px,3vw,32px)}
+.wf-head h3{font-family:var(--bodoni);font-weight:500;font-size:clamp(34px,5vw,64px);line-height:.9;letter-spacing:-.01em}
+.wf-head h3 em{font-style:italic;font-weight:400}
+.wf-head p{font-family:var(--news);font-style:italic;font-size:clamp(16px,1.3vw,19px);margin-top:8px;color:rgba(23,19,15,.75);max-width:46ch}
+.wf-nav{display:flex;gap:10px}
+.wf-btn{width:52px;height:52px;border-radius:50%;border:2px solid var(--ink);background:transparent;cursor:pointer;font-size:20px;line-height:1;transition:.18s;display:grid;place-items:center;color:var(--ink)}
+.wf-btn:hover{background:var(--ink);color:var(--cream)}
+.wf-btn:disabled{opacity:.35;cursor:not-allowed}
+.finds-row{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.finds-row::-webkit-scrollbar{display:none}
+.find{flex:0 0 calc((100% - 40px) / 3);scroll-snap-align:start}
+.find .shot{--r:4/5}
+.find .cap{white-space:normal;margin-top:10px}
+@media (max-width:900px){ .find{flex:0 0 calc((100% - 20px) / 2)} }
+@media (max-width:600px){ .find{flex:0 0 86%} .wf-head h3{font-size:clamp(30px,10vw,44px)} }
+
 /* ---------- reveal (visible by default) ---------- */
 .up{opacity:1}
 html.js .up{opacity:0;transform:translateY(16px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
@@ -432,7 +460,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 </section>
 <section class="mani pad" data-nav="dark">
   <div class="wrap mani-in">
-    <p class="big drop">Your home should feel like your home. Not a showroom, not a catalog, not a copy of someone else&rsquo;s feed. Something <span class="fx">intentional</span> and <span class="fx">curated</span>, a little sentimental, layered with the things you actually love and the pieces you hunted down yourself.</p>
+    <p class="big drop">Your home should feel like your home. Not a showroom, not a catalog. Something <span class="fx">intentional</span> and <span class="fx">curated</span>, a little <span class="fx">sentimental</span>, layered with the things you actually love and the pieces you hunted down yourself.</p>
     <div class="mani-photo up">
       <figure class="shot " style="--r:3/4"><img src="images/styled-corner-01.jpg" alt="A layered, collected corner with mixed vintage and modern objects" loading="lazy" decoding="async"><span class="fill" aria-hidden="true"><svg class="cam" viewBox="0 0 24 24"><path d="M3 8h3l2-2h8l2 2h3v11H3z"/><circle cx="12" cy="13.5" r="3.6"/></svg><span class="fname">styled-corner-01.jpg</span><span class="dot">no photo yet</span></span></figure>
       <div class="badge">collected<br>not<br>decorated</div>
@@ -450,20 +478,6 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
     <div id="gal" class="gal"></div>
   </div>
 </section>
-<section id="finds" class="finds pad" data-nav="light">
-  <div class="ztop" aria-hidden="true"></div>
-  <div class="wide" style="padding-top:clamp(48px,7vw,110px)">
-    <div class="head"><h2>Favorite <em>finds</em>.</h2><p class="intro">The hunt is the best part. A few things I could not leave behind, photos coming as I go.</p></div>
-    <div class="finds-row">
-      <div class="find up"><figure class="shot " style="--r:4/5"><img src="images/find-01.jpg" alt="A thrifted chair find" loading="lazy" decoding="async"><span class="fill" aria-hidden="true"><svg class="cam" viewBox="0 0 24 24"><path d="M3 8h3l2-2h8l2 2h3v11H3z"/><circle cx="12" cy="13.5" r="3.6"/></svg><span class="fname">find-01.jpg</span><span class="dot">no photo yet</span></span></figure><p class="cap">The $12 chair</p></div>
-      <div class="find up"><figure class="shot " style="--r:4/5"><img src="images/find-02.jpg" alt="An estate sale lamp" loading="lazy" decoding="async"><span class="fill" aria-hidden="true"><svg class="cam" viewBox="0 0 24 24"><path d="M3 8h3l2-2h8l2 2h3v11H3z"/><circle cx="12" cy="13.5" r="3.6"/></svg><span class="fname">find-02.jpg</span><span class="dot">no photo yet</span></span></figure><p class="cap">Estate sale, 8am</p></div>
-      <div class="find up"><figure class="shot " style="--r:4/5"><img src="images/find-03.jpg" alt="A vintage vase from Marketplace" loading="lazy" decoding="async"><span class="fill" aria-hidden="true"><svg class="cam" viewBox="0 0 24 24"><path d="M3 8h3l2-2h8l2 2h3v11H3z"/><circle cx="12" cy="13.5" r="3.6"/></svg><span class="fname">find-03.jpg</span><span class="dot">no photo yet</span></span></figure><p class="cap">Marketplace rescue</p></div>
-      <div class="find up"><figure class="shot " style="--r:4/5"><img src="images/find-04.jpg" alt="A refinished thrifted side table" loading="lazy" decoding="async"><span class="fill" aria-hidden="true"><svg class="cam" viewBox="0 0 24 24"><path d="M3 8h3l2-2h8l2 2h3v11H3z"/><circle cx="12" cy="13.5" r="3.6"/></svg><span class="fname">find-04.jpg</span><span class="dot">no photo yet</span></span></figure><p class="cap">Thrifted, refinished</p></div>
-      <div class="find up"><figure class="shot " style="--r:4/5"><img src="images/find-05.jpg" alt="An overlooked vintage mirror" loading="lazy" decoding="async"><span class="fill" aria-hidden="true"><svg class="cam" viewBox="0 0 24 24"><path d="M3 8h3l2-2h8l2 2h3v11H3z"/><circle cx="12" cy="13.5" r="3.6"/></svg><span class="fname">find-05.jpg</span><span class="dot">no photo yet</span></span></figure><p class="cap">Nobody else wanted it</p></div>
-      <div class="find up"><figure class="shot " style="--r:4/5"><img src="images/find-06.jpg" alt="A find worth the drive" loading="lazy" decoding="async"><span class="fill" aria-hidden="true"><svg class="cam" viewBox="0 0 24 24"><path d="M3 8h3l2-2h8l2 2h3v11H3z"/><circle cx="12" cy="13.5" r="3.6"/></svg><span class="fname">find-06.jpg</span><span class="dot">no photo yet</span></span></figure><p class="cap">Worth the drive</p></div>
-    </div>
-  </div>
-</section>
 <section id="services" class="menu pad" data-nav="light">
   <div class="wrap">
     <div class="head"><h2>The <em>menu</em>.</h2><p class="intro">These prices are for my services. The actual furniture, decor and thrifted pieces come out of a separate budget we set together.</p></div>
@@ -472,19 +486,25 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
     <div class="mrow"><div class="mn">03</div><div class="mbody"><h3>Full Room Styling</h3><p class="d">One room from concept to finished and photographed.</p></div><div class="mprice">from $1,000</div></div>
     <div class="mrow"><div class="mn">04</div><div class="mbody"><h3>Thrift + Source</h3><p class="d">You have the vision. I do the hunting and hand you the finds.</p></div><div class="mprice">let&rsquo;s talk</div></div>
     <div class="mrow"><div class="mn">05</div><div class="mbody"><h3>Multi-Room Styling</h3><p class="d">Two rooms or a whole home, styled as one connected story.</p></div><div class="mprice">let&rsquo;s talk</div></div>
-    <div class="mrow"><div class="mn">06</div><div class="mbody"><h3>Custom Art</h3><p class="d">A piece painted for your exact wall. Starts at $200 and climbs with size and detail.</p></div><div class="mprice">$200+</div></div>
+    <div class="mrow"><div class="mn">06</div><div class="mbody"><h3>Custom Art</h3><p class="d">When the right piece does not exist, I paint it. Starts at $200 and climbs with size and detail.</p></div><div class="mprice">$200+</div></div>
     <div class="menu-foot">
       <span class="note">Not sure which one you need? Just ask.</span>
-      <a class="btn" href="#contact">Start a project <span class="ar">&rarr;</span></a>
+      <a class="btn" href="#contact">Let&rsquo;s talk <span class="ar">&rarr;</span></a>
     </div>
   </div>
 </section>
 <section id="about" class="who pad" data-nav="light">
   <div class="wrap">
     <div class="who-top">
-      <div>
+      <div class="who-left">
         <h2>Hi, I&rsquo;m <span class="fx">Molly</span>.</h2>
-        <p class="intro">&ldquo;Photographer, marketer, and the friend with the good eye, in one person.&rdquo; Based in St. Paul, working across the Twin Cities.</p>
+        <p class="intro">Photographer, marketer, and the friend with the good eye, in one person. Based in St. Paul, working across the Twin Cities.</p>
+        <div class="who-body">
+          <p>I have spent my whole career making things look intentional. As a marketer I build brands, which is really just deciding what a thing should feel like and making every detail agree. As a photographer I read light and composition for a living. Interior styling is where those two habits finally live in the same room.</p>
+          <p>My actual obsession is the hunt. The back corner of the thrift store, the Marketplace listing with the terrible photo hiding a great chair, the antique mall everyone else walks straight past. Most of what I use is thrifted, sourced, or already yours, which keeps budgets sane and keeps your home from looking like a showroom.</p>
+          <p>Then the two backgrounds pay off. The marketing brain builds a clear direction so the whole space feels like one idea. The photographer&rsquo;s eye styles it down to the last object and shoots it properly when it is done, so it looks as good in a photo as it does in person.</p>
+          <p>If beige is your thing, I can absolutely do a beautiful warm and layered version of it. The point is never a specific palette. The point is that your home ends up feeling like you.</p>
+        </div>
       </div>
       <div class="who-portrait up">
         <figure class="shot " style="--r:4/5"><img src="images/molly-portrait-01.jpg" alt="Portrait of Molly Curtis, interior stylist" loading="lazy" decoding="async"><span class="fill" aria-hidden="true"><svg class="cam" viewBox="0 0 24 24"><path d="M3 8h3l2-2h8l2 2h3v11H3z"/><circle cx="12" cy="13.5" r="3.6"/></svg><span class="fname">molly-portrait-01.jpg</span><span class="dot">no photo yet</span></span></figure>
@@ -494,20 +514,34 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 
     <blockquote class="who-quote">For people who have a space but don&rsquo;t know how to make it feel like <span class="fx">them</span>.</blockquote>
 
-    <div class="who-cols">
-      <p>I have spent my whole career making things look intentional. As a marketer I build brands, which is really just deciding what a thing should feel like and making every detail agree. As a photographer I read light and composition for a living. Interior styling is where those two habits finally live in the same room.</p>
-      <p>My actual obsession is the hunt. Estate sales at 8am, the back corner of the thrift store, the Marketplace listing with the terrible photo hiding a great chair. Most of what I use is thrifted, sourced, or already yours, which keeps budgets sane and keeps your home from looking like a showroom.</p>
-      <p>Then the two backgrounds pay off. The marketing brain builds a clear direction so the whole space feels like one idea. The photographer&rsquo;s eye styles it down to the last object and shoots it properly when it is done, so it looks as good in a photo as it does in person.</p>
-      <p>If beige is your thing, I can absolutely do a beautiful warm and layered version of it. The point is never a specific palette. The point is that your home ends up feeling like you.</p>
-    </div>
-
     <div class="loves">
       <span class="ll">A few obsessions:</span>
       <span class="chip">Chrome next to old wood</span>
-      <span class="chip zeb">One good animal print</span>
-      <span class="chip">Estate sales at 8am</span>
+      <span class="chip blue">One good animal print</span>
+      <span class="chip">Mid-century modern</span>
       <span class="chip">Color you were told to avoid</span>
       <span class="chip">Art made for its wall</span>
+    </div>
+
+    <div class="who-finds">
+      <div class="wf-head">
+        <div>
+          <h3>Favorite <em>finds</em>.</h3>
+          <p>The hunt is the best part. A few things I could not leave behind.</p>
+        </div>
+        <div class="wf-nav">
+          <button class="wf-btn" aria-label="Previous finds" data-dir="-1" type="button">&larr;</button>
+          <button class="wf-btn" aria-label="Next finds" data-dir="1" type="button">&rarr;</button>
+        </div>
+      </div>
+      <div class="finds-row" id="finds-row">
+        <div class="find"><figure class="shot " style="--r:4/5"><img src="images/find-01.jpg" alt="A thrifted chair find" loading="lazy" decoding="async"><span class="fill" aria-hidden="true"><svg class="cam" viewBox="0 0 24 24"><path d="M3 8h3l2-2h8l2 2h3v11H3z"/><circle cx="12" cy="13.5" r="3.6"/></svg><span class="fname">find-01.jpg</span><span class="dot">no photo yet</span></span></figure><p class="cap">The $12 chair</p></div>
+        <div class="find"><figure class="shot " style="--r:4/5"><img src="images/find-02.jpg" alt="A vintage lamp find" loading="lazy" decoding="async"><span class="fill" aria-hidden="true"><svg class="cam" viewBox="0 0 24 24"><path d="M3 8h3l2-2h8l2 2h3v11H3z"/><circle cx="12" cy="13.5" r="3.6"/></svg><span class="fname">find-02.jpg</span><span class="dot">no photo yet</span></span></figure><p class="cap">Nobody else wanted it</p></div>
+        <div class="find"><figure class="shot " style="--r:4/5"><img src="images/find-03.jpg" alt="A vintage vase from Marketplace" loading="lazy" decoding="async"><span class="fill" aria-hidden="true"><svg class="cam" viewBox="0 0 24 24"><path d="M3 8h3l2-2h8l2 2h3v11H3z"/><circle cx="12" cy="13.5" r="3.6"/></svg><span class="fname">find-03.jpg</span><span class="dot">no photo yet</span></span></figure><p class="cap">Marketplace rescue</p></div>
+        <div class="find"><figure class="shot " style="--r:4/5"><img src="images/find-04.jpg" alt="A refinished thrifted side table" loading="lazy" decoding="async"><span class="fill" aria-hidden="true"><svg class="cam" viewBox="0 0 24 24"><path d="M3 8h3l2-2h8l2 2h3v11H3z"/><circle cx="12" cy="13.5" r="3.6"/></svg><span class="fname">find-04.jpg</span><span class="dot">no photo yet</span></span></figure><p class="cap">Thrifted, refinished</p></div>
+        <div class="find"><figure class="shot " style="--r:4/5"><img src="images/find-05.jpg" alt="An overlooked vintage mirror" loading="lazy" decoding="async"><span class="fill" aria-hidden="true"><svg class="cam" viewBox="0 0 24 24"><path d="M3 8h3l2-2h8l2 2h3v11H3z"/><circle cx="12" cy="13.5" r="3.6"/></svg><span class="fname">find-05.jpg</span><span class="dot">no photo yet</span></span></figure><p class="cap">The overlooked one</p></div>
+        <div class="find"><figure class="shot " style="--r:4/5"><img src="images/find-06.jpg" alt="A find worth the drive" loading="lazy" decoding="async"><span class="fill" aria-hidden="true"><svg class="cam" viewBox="0 0 24 24"><path d="M3 8h3l2-2h8l2 2h3v11H3z"/><circle cx="12" cy="13.5" r="3.6"/></svg><span class="fname">find-06.jpg</span><span class="dot">no photo yet</span></span></figure><p class="cap">Worth the drive</p></div>
+      </div>
     </div>
   </div>
 </section>
@@ -528,19 +562,15 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
         <div class="f"><label for="name">Your name <span class="req">*</span></label><input id="name" name="name" type="text" required autocomplete="name"></div>
         <div class="f"><label for="email">Email <span class="req">*</span></label><input id="email" name="email" type="email" required autocomplete="email" placeholder="you@email.com"></div>
       </div>
-      <div class="f"><label for="location">Location <span class="req">*</span></label><input id="location" name="location" type="text" required placeholder="Neighborhood or city"></div>
-      <div class="f"><label for="project">What room or project? <span class="req">*</span></label>
-        <select id="project" name="project" required><option value="">Choose one</option><option>Living room</option><option>Bedroom</option><option>Dining room</option><option>Whole apartment</option><option>Whole home</option><option>Just sourcing help</option><option>Custom artwork</option><option>Not sure yet</option></select>
+      <div class="f2">
+        <div class="f"><label for="location">Location <span class="req">*</span></label><input id="location" name="location" type="text" required placeholder="Neighborhood or city"></div>
+        <div class="f"><label for="project">What room or project? <span class="req">*</span></label>
+          <select id="project" name="project" required><option value="">Choose one</option><option>Living room</option><option>Bedroom</option><option>Dining room</option><option>Whole apartment</option><option>Whole home</option><option>Just sourcing help</option><option>Custom artwork</option><option>Not sure yet</option></select>
+        </div>
       </div>
       <div class="f"><label for="change">What are you hoping to change? <span class="req">*</span></label><textarea id="change" name="what_to_change" required placeholder="Tell me what feels off, what you love, what you have tried."></textarea></div>
       <div class="f"><label for="budget">Approximate budget <span class="req">*</span></label>
         <select id="budget" name="budget" required><option value="">Choose a range</option><option>Under $500</option><option>$500 to $1,500</option><option>$1,500 to $5,000</option><option>$5,000 to $10,000</option><option>$10,000+</option><option>Not sure, help me figure it out</option></select>
-      </div>
-      <div class="f"><label>Interested in either of these?</label>
-        <div class="chips">
-          <label class="chk"><input type="checkbox" name="wants_sourcing" value="Yes"><span>Sourcing + thrifting</span></label>
-          <label class="chk"><input type="checkbox" name="wants_custom_art" value="Yes"><span>Custom artwork</span></label>
-        </div>
       </div>
       <div class="f"><label for="notes">Anything else I should know?</label><textarea id="notes" name="anything_else" placeholder="Timeline, rent or own, pets that will sit on everything, links you love."></textarea></div>
       <div class="f-foot">
@@ -557,8 +587,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
   <div class="z"></div>
   <div class="wrap colo-in">
     <p class="colo-brand">Your home should feel like <span class="fx">you</span>.</p>
-    <div class="colo-col"><h4>Explore</h4><a href="#portfolio">Rooms</a><a href="#finds">Finds</a><a href="#services">Menu</a><a href="#about">About</a><a href="#contact">Work with me</a></div>
-    <div class="colo-col"><h4>Elsewhere</h4><a href="https://mollycurtis.github.io/molcurphotos/">Photography &rarr;</a><a href="https://mollycurtis.github.io/">Marketing &rarr;</a><a href="https://www.instagram.com/molcurphotos/">Instagram &rarr;</a><a href="mailto:molcur9284@gmail.com">Email &rarr;</a></div>
+    <div class="colo-col"><h4>Explore</h4><a href="#portfolio">Rooms</a><a href="#services">Menu</a><a href="#about">About</a><a href="#contact">Work with me</a></div>
+    <div class="colo-col"><h4>Elsewhere</h4><a href="https://mollycurtis.github.io/molcurphotos/">Photography &rarr;</a><a href="https://mollycurtis.github.io/">Marketing &rarr;</a><a href="https://www.instagram.com/mollyycurtiss">Instagram &rarr;</a></div>
   </div>
   <div class="wrap colo-bot"><span>&copy; <span id="year">2026</span> Molly Curtis. Interior styling in the Twin Cities.</span><span>Made in St. Paul, MN</span></div>
 </footer>
@@ -639,7 +669,7 @@ const PROJECTS = [
       { hex: "#E7DBC9", name: "Plaster", light: true }
     ],
     sourcing: [
-      { name: "Chrome + glass coffee table", place: "Estate sale, Highland Park", note: "Forty dollars. The single best decision in the room." },
+      { name: "Chrome + glass coffee table", place: "Antique mall, Highland Park", note: "Forty dollars. The single best decision in the room." },
       { name: "Pair of tufted lounge chairs", place: "Facebook Marketplace", note: "Reupholstered myself in a rust bouclé remnant." },
       { name: "Sculptural table lamp", place: "Goodwill, Midway", note: "Ugly shade, perfect base. Swapped the shade for six dollars." }
     ],
@@ -660,7 +690,7 @@ const PROJECTS = [
     process: [
       { title: "Lived in it empty for two weeks", body: "Watched where the light goes before I moved a single thing in." },
       { title: "Painted first", body: "Color is the cheapest, highest-impact move there is. It came before any furniture." },
-      { title: "Sourced relentlessly", body: "Marketplace and estate sales every weekend for a month. Patience is the actual skill." },
+      { title: "Sourced relentlessly", body: "Marketplace and antique-mall runs every weekend for a month. Patience is the actual skill." },
       { title: "Styled, then removed one thing", body: "Every room got styled fully, then I took one thing away. It always looked better." }
     ],
     gallery: [
@@ -716,7 +746,7 @@ const PROJECTS = [
       { hex: "#241C1A", name: "Espresso" }
     ],
     sourcing: [
-      { name: "Petrol velvet sofa", place: "Estate sale", note: "Structurally perfect, needed a steam and new legs. Under two hundred." },
+      { name: "Petrol velvet sofa", place: "Marketplace", note: "Structurally perfect, needed a steam and new legs. Under two hundred." },
       { name: "Vintage wool rug", place: "Marketplace", note: "The color story of the whole room lives in this rug." }
     ],
     process: [
@@ -810,7 +840,7 @@ const PROJECTS = [
       label: "The brief",
       title: "Furnish an entire dining room almost entirely from secondhand, and make it look deliberate.",
       body: [
-        "The client wanted to host but had an empty room and a modest budget. The fun challenge: build the whole thing from thrift, estate sales, and Marketplace, and land somewhere that looks like a choice, not a compromise.",
+        "The client wanted to host but had an empty room and a modest budget. The fun challenge: build the whole thing from thrift, antique-mall runs, and Marketplace, and land somewhere that looks like a choice, not a compromise.",
         "The mismatched-chair look is easy to do badly. Done right, it is the warmest table in the city."
       ]
     },
@@ -823,7 +853,7 @@ const PROJECTS = [
       ]
     },
     sourcing: [
-      { name: "Solid oak dining table", place: "Estate sale", note: "Water rings and all. Sanded and oiled it back to life in a weekend." },
+      { name: "Solid oak dining table", place: "Antique mall", note: "Water rings and all. Sanded and oiled it back to life in a weekend." },
       { name: "Six mismatched chairs", place: "Six separate finds", note: "Rule: same wood family, different silhouette. Never a matched set." },
       { name: "Oversized vintage mirror", place: "Antique mall", note: "Doubles the candlelight and the apparent size of the room." },
       { name: "Brass candlesticks, uneven set", place: "Thrift, ongoing", note: "Collected over months. Odd heights look intentional." }
@@ -1136,9 +1166,30 @@ if (typeof module !== "undefined") { module.exports = { PROJECTS, CATEGORIES }; 
   }
   function initYear(){var y=$("#year"); if(y) y.textContent=new Date().getFullYear();}
 
+
+  function initFinds(){
+    var row=document.getElementById('finds-row'); if(!row) return;
+    var btns=[].slice.call(document.querySelectorAll('.wf-btn'));
+    function update(){
+      var maxL=row.scrollWidth-row.clientWidth-2;
+      btns.forEach(function(b){
+        var dir=+b.getAttribute('data-dir');
+        if(dir<0) b.disabled=(row.scrollLeft<=2);
+        else b.disabled=(row.scrollLeft>=maxL);
+      });
+    }
+    btns.forEach(function(b){b.addEventListener('click',function(){
+      var dir=+b.getAttribute('data-dir');
+      row.scrollBy({left:dir*row.clientWidth,behavior:'smooth'});
+    });});
+    row.addEventListener('scroll',update,{passive:true});
+    window.addEventListener('resize',update);
+    setTimeout(update,60);
+  }
+
   document.addEventListener("DOMContentLoaded",function(){
     homeView=$("#home-view"); projView=$("#project-view");
-    initPortfolio(); initDrawer(); initForm(); initYear(); initReveal(); updateMast();
+    initPortfolio(); initDrawer(); initForm(); initYear(); initFinds(); initReveal(); updateMast();
     window.addEventListener("scroll",updateMast,{passive:true});
     window.addEventListener("resize",updateMast,{passive:true});
     window.addEventListener("hashchange",function(){route(true);});
