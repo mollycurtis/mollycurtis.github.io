@@ -1070,7 +1070,7 @@ html, body {
   display: flex; align-items: center; justify-content: space-between;
   padding: 20px 0; cursor: pointer;
   font-family: var(--serif);
-  font-size: clamp(15px,1.8vh,22px); font-weight: 300;
+  font-size: clamp(17px,2.1vh,25px); font-weight: 300;
   color: var(--text); letter-spacing: .01em;
   background: none; border: none; width: 100%; text-align: left;
   transition: color .25s var(--ease);
@@ -1127,12 +1127,7 @@ html, body {
   font-family: var(--serif);
   font-size: clamp(32px,6vh,68px);
   font-weight: 300; color: var(--accent);
-  line-height: 1; letter-spacing: -.01em; margin-bottom: 8px; white-space: nowrap;
-}
-.contact-sub {
-  color: var(--muted); line-height: 1.7; margin-bottom: 28px;
-  font-style: italic; font-family: var(--serif);
-  font-size: clamp(15px,2vh,18px); font-weight: 300;
+  line-height: 1; letter-spacing: -.01em; margin-bottom: 28px; white-space: nowrap;
 }
 .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
 .contact-left { display: flex; flex-direction: column; }
@@ -1179,7 +1174,10 @@ textarea.f-input { resize: vertical; min-height: 100px; }
 }
 
 /* testimonial cards */
-.tcard-heading { font-family: var(--serif); font-size: 24px; font-weight: 300; color: var(--text); margin-bottom: 18px; margin-top: 28px; letter-spacing: .01em; }
+.tcard-heading {
+  font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--accent); margin-top: 28px; margin-bottom: 16px;
+}
 .tcard { border: 1px solid var(--border); padding: 20px; background: rgba(245,242,238,.025); margin-bottom: 10px; }
 .tcard-name { font-family: var(--serif); font-size: 18px; font-weight: 300; color: var(--accent); margin-bottom: 8px; }
 .tcard-text { font-size: 13px; color: var(--muted); line-height: 1.75; font-weight: 300; }
@@ -1365,7 +1363,6 @@ textarea.f-input { resize: vertical; min-height: 100px; }
   .contact-grid { gap: 32px; }
   .contact-right-inner { position: static; }
   .contact-hero { white-space: normal; font-size: clamp(36px,10vw,60px); text-align: center; }
-  .contact-sub { text-align: center; }
   .f-submit-row { justify-content: center; }
   .tcard-heading { text-align: center; }
   .contact-methods { flex-direction: column; align-items: center; gap: 16px; }
@@ -1894,17 +1891,17 @@ textarea.f-input { resize: vertical; min-height: 100px; }
         <div class="faq-marquee-item"><img src="IMG_6882.jpg" loading="lazy" decoding="async" alt=""></div>
         <div class="faq-marquee-item"><video src="https://res.cloudinary.com/dih43qroh/video/upload/q_auto:good,vc_auto,f_auto/v1789433300/IMG_0635_kcsviw.mov" autoplay muted loop playsinline preload="none"></video></div>
         <div class="faq-marquee-item"><img src="2DED8390-1DD2-4140-AACD-8A119AC8D892.JPG" loading="lazy" decoding="async" alt=""></div>
-        <div class="faq-marquee-item"><img src="IMG_1766.HEIC" loading="lazy" decoding="async" alt=""></div>
+        <div class="faq-marquee-item"><img src="IMG_4624.jpg" loading="lazy" decoding="async" alt=""></div>
         <div class="faq-marquee-item"><video src="https://res.cloudinary.com/dih43qroh/video/upload/q_auto:good,vc_auto,f_auto/v1789433295/IMG_0691_wrqkja.mov" autoplay muted loop playsinline preload="none"></video></div>
-        <div class="faq-marquee-item"><img src="IMG_9196.heic" loading="lazy" decoding="async" alt=""></div>
+        <div class="faq-marquee-item"><img src="IMG_4623.jpg" loading="lazy" decoding="async" alt=""></div>
 
         <div class="faq-marquee-item"><img src="IMG_4618.jpg" loading="lazy" decoding="async" alt=""></div>
         <div class="faq-marquee-item"><img src="IMG_6882.jpg" loading="lazy" decoding="async" alt=""></div>
         <div class="faq-marquee-item"><video src="https://res.cloudinary.com/dih43qroh/video/upload/q_auto:good,vc_auto,f_auto/v1789433300/IMG_0635_kcsviw.mov" autoplay muted loop playsinline preload="none"></video></div>
         <div class="faq-marquee-item"><img src="2DED8390-1DD2-4140-AACD-8A119AC8D892.JPG" loading="lazy" decoding="async" alt=""></div>
-        <div class="faq-marquee-item"><img src="IMG_1766.HEIC" loading="lazy" decoding="async" alt=""></div>
+        <div class="faq-marquee-item"><img src="IMG_4624.jpg" loading="lazy" decoding="async" alt=""></div>
         <div class="faq-marquee-item"><video src="https://res.cloudinary.com/dih43qroh/video/upload/q_auto:good,vc_auto,f_auto/v1789433295/IMG_0691_wrqkja.mov" autoplay muted loop playsinline preload="none"></video></div>
-        <div class="faq-marquee-item"><img src="IMG_9196.heic" loading="lazy" decoding="async" alt=""></div>
+        <div class="faq-marquee-item"><img src="IMG_4623.jpg" loading="lazy" decoding="async" alt=""></div>
       </div>
     </div>
   </div>
@@ -1924,7 +1921,6 @@ textarea.f-input { resize: vertical; min-height: 100px; }
           <button class="contact-faq-btn" onclick="closePage('contact');openPage('faqs')">Have questions first? View FAQs →</button>
         </div>
         <div class="contact-hero">Let's Connect</div>
-        <p class="contact-sub">If my work resonates with you, I'd love to connect.</p>
         <form id="contact-form" novalidate>
           <label class="f-label" for="cf-name">Your Name</label>
           <input class="f-input" id="cf-name" type="text" name="name" placeholder="Full name" autocomplete="name" required>
