@@ -173,6 +173,9 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
 .feature-caption-item .flt-name{font-size:16px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--linen)}
 .feature-caption-item .flt-desc{font-size:17px;font-weight:300;color:rgba(231,226,215,.55)}
 .feature-progress{position:relative;display:flex;flex-direction:row;gap:10px}
+.feature-scroll-hint{margin-top:28px;display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.feature-scroll-hint span{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:rgba(231,226,215,.4)}
+.feature-scroll-hint .scroll-line{width:1px;height:32px;background:rgba(231,226,215,.2)}
 .fp-dot{width:4px;height:4px;background:rgba(231,226,215,.2);transition:background .3s,transform .3s}
 .fp-dot.on{background:var(--stone);transform:scale(1.6)}
 .feature-counter{position:relative;font-family:var(--serif);font-style:italic;font-size:clamp(80px,9vw,150px);color:rgba(231,226,215,.14);line-height:1;pointer-events:none;user-select:none}
@@ -313,11 +316,28 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
 .ch-footer a{font-size:10.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(231,226,215,.45);text-decoration:none;border-bottom:1px solid rgba(231,226,215,.18);padding-bottom:3px;transition:color .2s,border-color .2s}
 .ch-footer a:hover{color:var(--linen);border-color:rgba(231,226,215,.5)}
 
+.ch-gtm{background:var(--linen);padding:clamp(80px,11vh,130px) var(--gut)}
+.gtm-inner{max-width:1400px;margin:0 auto}
+.gtm-head{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,7vw,96px);align-items:end;margin-bottom:56px}
+.gtm-head h2{font-family:var(--serif);font-size:clamp(35px,4.6vw,62px);font-weight:300;line-height:1.0;letter-spacing:-.02em;color:var(--espresso);margin-top:14px}
+.gtm-head h2 em{font-style:italic;color:var(--clay)}
+.gtm-head p{font-size:14.5px;font-weight:300;color:rgba(42,40,37,.6);line-height:1.7;padding-bottom:6px}
+.gtm-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(42,40,37,.1);border:1px solid rgba(42,40,37,.12);border-radius:16px;overflow:hidden}
+.gtm-cell{background:#FFFFFF;padding:clamp(22px,2.4vw,32px);display:flex;flex-direction:column;min-height:240px}
+.gtm-cell .gc-num{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--rust);margin-bottom:12px}
+.gtm-cell .gc-name{font-family:var(--serif);font-size:clamp(20px,2vw,26px);font-weight:300;color:var(--espresso);line-height:1.1;margin-bottom:10px}
+.gtm-cell .gc-desc{font-size:13px;font-weight:300;color:rgba(42,40,37,.62);line-height:1.6;margin-bottom:auto}
+.gtm-cell .gc-stat{font-family:var(--serif);font-size:26px;font-weight:300;color:var(--rust);margin-top:18px;padding-top:14px;border-top:1px solid rgba(42,40,37,.12)}
+.gtm-cell .gc-stat span{display:block;font-family:var(--sans);font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(42,40,37,.45);margin-top:4px}
+
 /* ══ RESPONSIVE ══ */
 @media(max-width:900px){
   #ch-brief{grid-template-columns:1fr;gap:44px;align-items:start}
       .config-head{grid-template-columns:1fr;gap:24px}
       .keepup-head{grid-template-columns:1fr;gap:24px}
+      .gtm-head{grid-template-columns:1fr;gap:24px}
+      .gtm-grid{grid-template-columns:1fr 1fr}
+      .gtm-cell{min-height:auto}
   .pack-grid{grid-template-columns:1fr;gap:40px}
   .feature-intro-inner{grid-template-columns:1fr;gap:24px}
   .ed-head{grid-template-columns:1fr;gap:24px}
@@ -345,6 +365,7 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
   .feature-photo-stack{max-width:380px}
   .feature-glow{width:min(700px,180%)}
   .feature-text{width:100%;padding-left:0;align-items:center;text-align:center}
+  .feature-scroll-hint{align-items:center}
   .feature-caption-item{align-items:center}
   .feature-progress{justify-content:center}
   .feature-caption-item .flt-name{font-size:13px}
@@ -363,6 +384,7 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
 }
 @media(max-width:420px){
   .specs-grid{grid-template-columns:1fr}
+  .gtm-grid{grid-template-columns:1fr}
 }
   </style>
 </head>
@@ -526,6 +548,7 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
         <div class="feature-progress" aria-hidden="true">
           <div class="fp-dot on" data-step="0"></div><div class="fp-dot" data-step="1"></div><div class="fp-dot" data-step="2"></div><div class="fp-dot" data-step="3"></div>
         </div>
+        <div class="feature-scroll-hint" aria-hidden="true"><span>Scroll</span><div class="scroll-line"></div></div>
       </div>
     </div>
   </div>
@@ -673,6 +696,45 @@ body.light-nav .nav-right{color:rgba(42,40,37,.3)}
         </div>
       </div>
       <div class="mem-map" id="memMap" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ GO TO MARKET ══ -->
+<section class="ch-gtm" aria-label="Go to Market">
+  <div class="gtm-inner">
+    <div class="gtm-head">
+      <div>
+        <span class="eyebrow">Go to Market</span>
+        <h2>Built to launch, <em>not just to look good.</em></h2>
+      </div>
+      <p>Every choice on this page traces back to a go-to-market call: who it's for, what it costs, where it's sold, and how people find it in the first place.</p>
+    </div>
+    <div class="gtm-grid">
+      <div class="gtm-cell">
+        <span class="gc-num">i</span>
+        <div class="gc-name">Who it's for</div>
+        <p class="gc-desc">Frequent flyers who pack for more than one kind of trip. Weekend, work, and long haul, without owning three different bags.</p>
+        <div class="gc-stat">All Travelers<span>Not a niche buyer</span></div>
+      </div>
+      <div class="gtm-cell">
+        <span class="gc-num">ii</span>
+        <div class="gc-name">What it costs</div>
+        <p class="gc-desc">Priced above mass-market carry-ons, below true luxury luggage. The Frame system justifies the gap. Editions run $100 more than the standard case.</p>
+        <div class="gc-stat">$495<span>Launch price &middot; +$100 for Editions</span></div>
+      </div>
+      <div class="gtm-cell">
+        <span class="gc-num">iii</span>
+        <div class="gc-name">Where it's sold</div>
+        <p class="gc-desc">Direct-to-consumer only at launch. No retail, no marketplace listings, so the story stays intact end to end.</p>
+        <div class="gc-stat">DTC<span>Only channel</span></div>
+      </div>
+      <div class="gtm-cell">
+        <span class="gc-num">iv</span>
+        <div class="gc-name">How people find it</div>
+        <p class="gc-desc">Paid social, organic social, and influencer seeding drive first visits. This page is built to convert once they land.</p>
+        <div class="gc-stat">3<span>Primary channels</span></div>
+      </div>
     </div>
   </div>
 </section>
