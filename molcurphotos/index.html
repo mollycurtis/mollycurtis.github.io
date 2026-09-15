@@ -674,7 +674,7 @@ html, body {
 .biz-group-photo img.loaded { opacity: 1; }
 
 .biz-marquee { overflow: hidden; width: 100%; position: relative; line-height: 0; }
-.biz-marquee-track { display: flex; width: max-content; }
+.biz-marquee-track { display: flex; width: max-content; will-change: transform; }
 .biz-marquee-item { flex-shrink: 0; width: 320px; line-height: 0; overflow: hidden; }
 .biz-marquee-item img {
   width: 100%; height: 400px;
@@ -1105,7 +1105,7 @@ html, body {
   transform: translateX(-50%);
   overflow: hidden; line-height: 0;
 }
-.faq-marquee-track { display: flex; gap: 3px; width: max-content; }
+.faq-marquee-track { display: flex; gap: 3px; width: max-content; will-change: transform; }
 .faq-marquee-item {
   flex-shrink: 0; width: 420px; aspect-ratio: 4/5;
   overflow: hidden; background: var(--bg2);
@@ -2021,18 +2021,30 @@ function revealImages(root) {
   });
 }
 
-/* Continuous horizontal marquee. Track must contain its items twice. */
+/* Continuous horizontal marquee. Track must contain its items twice.
+   speed is px per second, so motion is identical on 60Hz and 120Hz screens. */
 function startMarquee(track, speed) {
   if (!track || REDUCED_MOTION) return;
-  let pos = 0, half = 0;
-  (function step() {
+  let pos = 0, loop = 0, last = 0;
+
+  /* Distance to the start of the second copy — exact whatever the gap is. */
+  function measure() {
+    const items = track.children;
+    const second = items[Math.floor(items.length / 2)];
+    if (!second) return 0;
+    return second.offsetLeft - items[0].offsetLeft;
+  }
+
+  (function step(now) {
     if (!track.isConnected) return;          /* stop when the track is replaced */
-    if (!half) half = track.scrollWidth / 2;
-    pos += speed;
-    if (half && pos >= half) pos = 0;
-    track.style.transform = 'translateX(-' + pos + 'px)';
+    if (!loop) loop = measure();
+    if (last && loop) {
+      pos = (pos + speed * Math.min(now - last, 50) / 1000) % loop;
+      track.style.transform = 'translate3d(' + -pos + 'px,0,0)';
+    }
+    last = now;
     requestAnimationFrame(step);
-  })();
+  })(0);
 }
 
 /* ═══════════════════════════════════════════
@@ -2321,9 +2333,9 @@ function openCategory(cat) {
   grid.innerHTML = build();
   revealImages(grid);
 
-  if (cat === 'senior') startMarquee(grid.querySelector('.sr-marquee-track'), 0.5);
+  if (cat === 'senior') startMarquee(grid.querySelector('.sr-marquee-track'), 30);
   if (cat === 'business') {
-    grid.querySelectorAll('.biz-marquee-track').forEach(function (t) { startMarquee(t, 0.5); });
+    grid.querySelectorAll('.biz-marquee-track').forEach(function (t) { startMarquee(t, 30); });
   }
 
   document.getElementById('next-genre-placeholder').innerHTML =
@@ -2372,7 +2384,7 @@ let faqMarqueeStarted = false;
 function startFaqMarquee() {
   if (faqMarqueeStarted) return;
   faqMarqueeStarted = true;
-  startMarquee(document.getElementById('faq-marquee-track'), 0.4);
+  startMarquee(document.getElementById('faq-marquee-track'), 40);
 }
 
 /* ═══════════════════════════════════════════
